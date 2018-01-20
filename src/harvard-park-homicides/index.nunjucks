@@ -1,0 +1,14 @@
+{% extends '_layouts/base.nunjucks' %}
+
+{% block config %}
+  {# Correct base url pathing for this page #}
+  {% set baseUrl = '../' %}
+{% endblock %}
+
+{% block headline %}My headline will go here{% endblock %}
+
+{% block byline %}By me{% endblock %}
+
+{% block content %}
+<p>harvard-park-homicides page</p>
+{% endblock %}

@@ -5,29 +5,29 @@
   {% set baseUrl = config.baseUrl or './' %}
 {% endblock %}
 
-<!DOCTYPE html>
-<html lang="en" class="no-js">
-
-  <head>
-    <meta charset="utf-8"/>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-    <title>First Graphics App</title>
-    <meta name="description" content="A new Yeogurt application"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <link rel="stylesheet" href="{{baseUrl}}styles/main.css"/>
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>First News App</title>
+    <link rel="stylesheet" href="https://bl.ocks.org/palewire/raw/1035cd306a2f85b362b1a20ce315b8eb/base.css">
     {% block stylesheets %}{% endblock %}
-
-  </head>
-  <body>
-    <!--[if lt IE 11]>
-    <p class="browsehappy">
-      You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.
-    </p>
-    <![endif]-->
-
+</head>
+<body>
+    <nav>
+        <a href="http://first-graphics-app.readthedocs.org/">
+            <img src="https://bl.ocks.org/palewire/raw/1035cd306a2f85b362b1a20ce315b8eb/ire-logo.png">
+        </a>
+    </nav>
+    <header>
+        <h1>{% block headline %}{% endblock %}</h1>
+        <div class="byline">
+            {% block byline %}{% endblock %}
+        </div>
+    </header>
     {% block content %}{% endblock %}
-
     <script src="{{baseUrl}}scripts/main.js"></script>
     {% block scripts %}{% endblock %}
-  </body>
+</body>
 </html>
