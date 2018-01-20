@@ -37,7 +37,7 @@ sudo npm install -g yo
 Use yeoman to install our project generator.
 
 ```bash
-sudo npm install -g generator-react-static
+sudo npm install -g generator-yeogurt
 ```
 
 Create a new project.
