@@ -31,7 +31,7 @@ cd Code
 Install yeoman
 
 ```bash
-sudo npm install -g yo
+sudo npm install -g yo gulp
 ```
 
 Use yeoman to install our project generator.
@@ -45,3 +45,5 @@ Create a new project.
 ```bash
 yo react-static
 ```
+
+Be sure to pick "nunjucks" when creating the project.
