@@ -10,5 +10,21 @@
 {% block byline %}By me{% endblock %}
 
 {% block content %}
-<p>harvard-park-homicides page</p>
+<table>
+{% for obj in site.data.annual_totals %}
+    <tr>
+        <td>{{ obj.year }}</td>
+        <td>{{ obj.homicides_total }}</td>
+    </tr>
+{% endfor %}
+</table>
+
+<table>
+{% for obj in site.data.annual_totals %}
+    <tr>
+        <td>{{ obj.year }}</td>
+        <td>{{ obj.homicides_harvard_park }}</td>
+    </tr>
+{% endfor %}
+</table>
 {% endblock %}
