@@ -39,3 +39,9 @@ Use yeoman to install our project generator.
 ```bash
 sudo npm install -g generator-react-static
 ```
+
+Create a new project.
+
+```bash
+yo react-static
+```

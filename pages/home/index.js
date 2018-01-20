@@ -27,10 +27,10 @@ class HomePage extends React.Component {
     return (
       <Layout className={s.content}>
         <div dangerouslySetInnerHTML={{ __html: html }} />
-        <h4>Articles</h4>
+        <h4>Totals</h4>
         <ul>
-          {this.props.articles.map((article, i) =>
-            <li key={i}><a href={article.url}>{article.title}</a> by {article.author}</li>
+          {this.props.totals.map((obj, i) =>
+            <li key={i}>{obj.year} - {obj.homicides_total}</li>
           )}
         </ul>
         <p>
