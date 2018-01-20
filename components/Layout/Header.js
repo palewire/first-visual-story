@@ -28,7 +28,7 @@ class Header extends React.Component {
       <header className={`mdl-layout__header ${s.header}`} ref={node => (this.root = node)}>
         <div className={`mdl-layout__header-row ${s.row}`}>
           <Link className={`mdl-layout-title ${s.title}`} to="/">
-            React Static Boilerplate
+            First Graphics App
           </Link>
           <div className="mdl-layout-spacer"></div>
           <Navigation />
