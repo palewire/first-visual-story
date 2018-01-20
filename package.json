@@ -66,7 +66,7 @@
     "baseUrl": "./",
     "directories": {
       "source": "src",
-      "destination": "build",
+      "destination": "docs",
       "temporary": "tmp",
       "//": "Directories relative to `source` directory",
       "modules": "_modules",

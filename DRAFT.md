@@ -203,3 +203,28 @@ Build a static version of your site
 ```
 gulp --production
 ```
+
+Inspect the files in the build directory.
+
+Edit package.json to build files to docs instead.
+
+```
+"destination": "docs",
+```
+
+Build the static site again.
+
+```
+gulp --production
+```
+
+Commit and push to GitHub.
+
+```
+git add package.json
+git add docs
+git commit -am "Message here"
+git push origin master
+```
+
+Go to GitHub config and turn on GitHub Pages with the /docs options.
