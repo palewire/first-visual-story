@@ -227,4 +227,8 @@ git commit -am "Message here"
 git push origin master
 ```
 
-Go to GitHub config and turn on GitHub Pages with the /docs options.
+Go to GitHub config and turn on GitHub Pages with the /docs on the master branch as the source. Hit save.
+
+Visit [<your_username>.github.com/first-graphics-app/](https://ireapps.github.io/first-graphics-app/).
+
+Visit [<your_username>.github.com/first-graphics-app/harvard-park-homicides](https://ireapps.github.io/first-graphics-app/harvard-park-homicides/).
