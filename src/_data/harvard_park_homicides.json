@@ -1,706 +1,770 @@
-[  
-   {  
-      "coroners case number":"2017-04514",
+[
+   {
+      "case_number":"2017-04514",
       "slug":"eddie-rosendo-lino",
-      "first name":"Eddie",
-      "middle name":"Rosendo",
-      "last name":"Lino",
-      "death date":"2017-06-18T00:00:00.000Z",
+      "first_name":"Eddie",
+      "middle_name":"Rosendo",
+      "last_name":"Lino",
+      "death_date":"2017-06-18T00:00:00.000Z",
       "age":23.0,
       "race":"black",
-      "gender":"male"
+      "gender":"male",
+      "image":null
    },
-   {  
-      "coroners case number":"2017-03454",
+   {
+      "case_number":"2017-03454",
       "slug":"alex-david-lomeli",
-      "first name":"Alex",
-      "middle name":"David",
-      "last name":"Lomeli",
-      "death date":"2017-05-07T00:00:00.000Z",
+      "first_name":"Alex",
+      "middle_name":"David",
+      "last_name":"Lomeli",
+      "death_date":"2017-05-07T00:00:00.000Z",
       "age":18.0,
       "race":"latino",
-      "gender":"male"
+      "gender":"male",
+      "image":null
    },
-   {  
-      "coroners case number":"2017-03455",
+   {
+      "case_number":"2017-03455",
       "slug":"carlos-alberto-martinez",
-      "first name":"Carlos",
-      "middle name":"Alberto",
-      "last name":"Martinez",
-      "death date":"2017-05-07T00:00:00.000Z",
+      "first_name":"Carlos",
+      "middle_name":"Alberto",
+      "last_name":"Martinez",
+      "death_date":"2017-05-07T00:00:00.000Z",
       "age":61.0,
       "race":"latino",
-      "gender":"male"
+      "gender":"male",
+      "image":"http:\/\/s3-us-west-2.amazonaws.com\/homicide.latimes.com\/media\/homicide\/6c1c486b-acc7-4539-8eab-a53c1930aefe.jpeg"
    },
-   {  
-      "coroners case number":"2017-02656",
+   {
+      "case_number":"2017-02656",
       "slug":"lloyd-allen-craig",
-      "first name":"Lloyd",
-      "middle name":"Allen",
-      "last name":"Craig",
-      "death date":"2017-04-05T00:00:00.000Z",
+      "first_name":"Lloyd",
+      "middle_name":"Allen",
+      "last_name":"Craig",
+      "death_date":"2017-04-05T00:00:00.000Z",
       "age":33.0,
       "race":"black",
-      "gender":"male"
+      "gender":"male",
+      "image":null
    },
-   {  
-      "coroners case number":"2017-01306",
+   {
+      "case_number":"2017-01306",
       "slug":"jenell-gamble-kendrick",
-      "first name":"Jenell",
-      "middle name":null,
-      "last name":"Gamble-Kendrick",
-      "death date":"2017-02-14T00:00:00.000Z",
+      "first_name":"Jenell",
+      "middle_name":null,
+      "last_name":"Gamble-Kendrick",
+      "death_date":"2017-02-14T00:00:00.000Z",
       "age":73.0,
       "race":"black",
-      "gender":"female"
+      "gender":"female",
+      "image":"http:\/\/s3-us-west-2.amazonaws.com\/homicide.latimes.com\/media\/homicide\/7272e31f-42af-4536-8c56-9fc4c1bc1d93.jpeg"
    },
-   {  
-      "coroners case number":"2017-00343",
+   {
+      "case_number":"2017-00343",
       "slug":"brandon-tatum",
-      "first name":"Brandon",
-      "middle name":null,
-      "last name":"Tatum",
-      "death date":"2017-01-11T00:00:00.000Z",
+      "first_name":"Brandon",
+      "middle_name":null,
+      "last_name":"Tatum",
+      "death_date":"2017-01-11T00:00:00.000Z",
       "age":23.0,
       "race":"black",
-      "gender":"male"
+      "gender":"male",
+      "image":"http:\/\/s3-us-west-2.amazonaws.com\/homicide.latimes.com\/media\/homicide\/31140bd0-60c1-44f1-8ebc-c122b36c0b95.jpeg"
    },
-   {  
-      "coroners case number":"2016-08972",
+   {
+      "case_number":"2016-08972",
       "slug":"tyrone-davis-jr",
-      "first name":"Tyrone",
-      "middle name":null,
-      "last name":"Davis",
-      "death date":"2016-12-10T00:00:00.000Z",
+      "first_name":"Tyrone",
+      "middle_name":null,
+      "last_name":"Davis",
+      "death_date":"2016-12-10T00:00:00.000Z",
       "age":16.0,
       "race":"black",
-      "gender":"male"
+      "gender":"male",
+      "image":null
    },
-   {  
-      "coroners case number":"2016-08043",
+   {
+      "case_number":"2016-08043",
       "slug":"edwardo-garcia-hernandez",
-      "first name":"Edwardo",
-      "middle name":null,
-      "last name":"Garcia Hernandez",
-      "death date":"2016-11-05T00:00:00.000Z",
+      "first_name":"Edwardo",
+      "middle_name":null,
+      "last_name":"Garcia Hernandez",
+      "death_date":"2016-11-05T00:00:00.000Z",
       "age":20.0,
       "race":"latino",
-      "gender":"male"
+      "gender":"male",
+      "image":null
    },
-   {  
-      "coroners case number":"2016-05614",
+   {
+      "case_number":"2016-05614",
       "slug":"dewayne-parham",
-      "first name":"DeWayne",
-      "middle name":null,
-      "last name":"Parham",
-      "death date":"2016-07-31T00:00:00.000Z",
+      "first_name":"DeWayne",
+      "middle_name":null,
+      "last_name":"Parham",
+      "death_date":"2016-07-31T00:00:00.000Z",
       "age":42.0,
       "race":"black",
-      "gender":"male"
+      "gender":"male",
+      "image":"http:\/\/s3-us-west-2.amazonaws.com\/homicide.latimes.com\/media\/homicide\/09f092cf-52de-4ab3-a7d8-d70e63aaaea0.jpeg"
    },
-   {  
-      "coroners case number":"2016-05536",
+   {
+      "case_number":"2016-05536",
       "slug":"marcus-wilkerson",
-      "first name":"Marcus",
-      "middle name":"Jarrod",
-      "last name":"Wilkerson",
-      "death date":"2016-07-29T00:00:00.000Z",
+      "first_name":"Marcus",
+      "middle_name":"Jarrod",
+      "last_name":"Wilkerson",
+      "death_date":"2016-07-29T00:00:00.000Z",
       "age":46.0,
       "race":"black",
-      "gender":"male"
+      "gender":"male",
+      "image":null
    },
-   {  
-      "coroners case number":"2016-04935",
+   {
+      "case_number":"2016-04935",
       "slug":"abrey-tony-white",
-      "first name":"Abrey",
-      "middle name":"Tony",
-      "last name":"White",
-      "death date":"2016-07-04T00:00:00.000Z",
+      "first_name":"Abrey",
+      "middle_name":"Tony",
+      "last_name":"White",
+      "death_date":"2016-07-04T00:00:00.000Z",
       "age":33.0,
       "race":"black",
-      "gender":"male"
+      "gender":"male",
+      "image":"http:\/\/s3-us-west-2.amazonaws.com\/homicide.latimes.com\/media\/homicide\/d9d91d6d-f84b-43ce-b6fb-2eabb352f917.jpeg"
    },
-   {  
-      "coroners case number":"2016-04213",
+   {
+      "case_number":"2016-04213",
       "slug":"gareth-lopez",
-      "first name":"Gareth",
-      "middle name":null,
-      "last name":"Lopez",
-      "death date":"2016-06-07T00:00:00.000Z",
+      "first_name":"Gareth",
+      "middle_name":null,
+      "last_name":"Lopez",
+      "death_date":"2016-06-07T00:00:00.000Z",
       "age":34.0,
       "race":"black",
-      "gender":"male"
+      "gender":"male",
+      "image":null
    },
-   {  
-      "coroners case number":"2016-01692",
+   {
+      "case_number":"2016-01692",
       "slug":"deontae-deshon-ruffin",
-      "first name":"Deontae",
-      "middle name":"Deshon",
-      "last name":"Ruffin",
-      "death date":"2016-02-29T00:00:00.000Z",
+      "first_name":"Deontae",
+      "middle_name":"Deshon",
+      "last_name":"Ruffin",
+      "death_date":"2016-02-29T00:00:00.000Z",
       "age":24.0,
       "race":"black",
-      "gender":"male"
+      "gender":"male",
+      "image":null
    },
-   {  
-      "coroners case number":"2016-01525",
+   {
+      "case_number":"2016-01525",
       "slug":"kenneth-elliot-durden",
-      "first name":"Kenneth",
-      "middle name":"Elliot",
-      "last name":"Durden",
-      "death date":"2016-02-23T00:00:00.000Z",
+      "first_name":"Kenneth",
+      "middle_name":"Elliot",
+      "last_name":"Durden",
+      "death_date":"2016-02-23T00:00:00.000Z",
       "age":50.0,
       "race":"black",
-      "gender":"male"
+      "gender":"male",
+      "image":"http:\/\/s3-us-west-2.amazonaws.com\/homicide.latimes.com\/media\/homicide\/f47bbed2-5196-4c06-b316-2fd14877d5e6.jpeg"
    },
-   {  
-      "coroners case number":"2015-05723",
+   {
+      "case_number":"2015-05723",
       "slug":"marcus-edward-mcclendon",
-      "first name":"Marcus",
-      "middle name":"Edward",
-      "last name":"McClendon",
-      "death date":"2015-08-18T00:00:00.000Z",
+      "first_name":"Marcus",
+      "middle_name":"Edward",
+      "last_name":"McClendon",
+      "death_date":"2015-08-18T00:00:00.000Z",
       "age":52.0,
       "race":"black",
-      "gender":"male"
+      "gender":"male",
+      "image":"http:\/\/s3-us-west-2.amazonaws.com\/homicide.latimes.com\/media\/homicide\/cfdb38d7-2bc1-4aaa-baad-74d07b35f31e.jpeg"
    },
-   {  
-      "coroners case number":"2015-01373",
+   {
+      "case_number":"2015-01373",
       "slug":"jermaine-malone",
-      "first name":"Jermaine",
-      "middle name":null,
-      "last name":"Malone",
-      "death date":"2015-02-22T00:00:00.000Z",
+      "first_name":"Jermaine",
+      "middle_name":null,
+      "last_name":"Malone",
+      "death_date":"2015-02-22T00:00:00.000Z",
       "age":37.0,
       "race":"black",
-      "gender":"male"
+      "gender":"male",
+      "image":null
    },
-   {  
-      "coroners case number":"2015-00566",
+   {
+      "case_number":"2015-00566",
       "slug":"keion-jeffrey-coleman",
-      "first name":"Keion",
-      "middle name":"Jeffrey",
-      "last name":"Coleman",
-      "death date":"2015-01-21T00:00:00.000Z",
+      "first_name":"Keion",
+      "middle_name":"Jeffrey",
+      "last_name":"Coleman",
+      "death_date":"2015-01-21T00:00:00.000Z",
       "age":18.0,
       "race":"black",
-      "gender":"male"
+      "gender":"male",
+      "image":null
    },
-   {  
-      "coroners case number":"2014-05979",
+   {
+      "case_number":"2014-05979",
       "slug":"michael-allen-white",
-      "first name":"Michael",
-      "middle name":"Allen",
-      "last name":"White",
-      "death date":"2014-08-31T00:00:00.000Z",
+      "first_name":"Michael",
+      "middle_name":"Allen",
+      "last_name":"White",
+      "death_date":"2014-08-31T00:00:00.000Z",
       "age":30.0,
       "race":"black",
-      "gender":"male"
+      "gender":"male",
+      "image":null
    },
-   {  
-      "coroners case number":"2014-02932",
+   {
+      "case_number":"2014-02932",
       "slug":"kevin-quincy-williams",
-      "first name":"Kevin",
-      "middle name":"Quincy",
-      "last name":"Williams",
-      "death date":"2014-04-25T00:00:00.000Z",
+      "first_name":"Kevin",
+      "middle_name":"Quincy",
+      "last_name":"Williams",
+      "death_date":"2014-04-25T00:00:00.000Z",
       "age":32.0,
       "race":"black",
-      "gender":"male"
+      "gender":"male",
+      "image":"http:\/\/s3-us-west-2.amazonaws.com\/homicide.latimes.com\/media\/homicide\/1bf4b350-dada-463f-ba90-ab2336eff3f5.jpeg"
    },
-   {  
-      "coroners case number":"2012-08481",
+   {
+      "case_number":"2012-08481",
       "slug":"jorge-herrera",
-      "first name":"Jorge",
-      "middle name":"Alberto",
-      "last name":"Herrera",
-      "death date":"2012-12-22T00:00:00.000Z",
+      "first_name":"Jorge",
+      "middle_name":"Alberto",
+      "last_name":"Herrera",
+      "death_date":"2012-12-22T00:00:00.000Z",
       "age":24.0,
       "race":"latino",
-      "gender":"male"
+      "gender":"male",
+      "image":null
    },
-   {  
-      "coroners case number":"2012-06331",
+   {
+      "case_number":"2012-06331",
       "slug":"patrick-louis-davion-caruthers",
-      "first name":"Patrick",
-      "middle name":"Louis-Davion",
-      "last name":"Caruthers",
-      "death date":"2012-09-25T00:00:00.000Z",
+      "first_name":"Patrick",
+      "middle_name":"Louis-Davion",
+      "last_name":"Caruthers",
+      "death_date":"2012-09-25T00:00:00.000Z",
       "age":19.0,
       "race":"black",
-      "gender":"male"
+      "gender":"male",
+      "image":null
    },
-   {  
-      "coroners case number":"2012-04147",
+   {
+      "case_number":"2012-04147",
       "slug":"jose-zamarripa",
-      "first name":"Jose",
-      "middle name":null,
-      "last name":"Zamarripa",
-      "death date":"2012-06-22T00:00:00.000Z",
+      "first_name":"Jose",
+      "middle_name":null,
+      "last_name":"Zamarripa",
+      "death_date":"2012-06-22T00:00:00.000Z",
       "age":26.0,
       "race":"latino",
-      "gender":"male"
+      "gender":"male",
+      "image":null
    },
-   {  
-      "coroners case number":"2012-03692",
+   {
+      "case_number":"2012-03692",
       "slug":"cleo-hughes",
-      "first name":"Cleo",
-      "middle name":null,
-      "last name":"Hughes",
-      "death date":"2012-06-03T00:00:00.000Z",
+      "first_name":"Cleo",
+      "middle_name":null,
+      "last_name":"Hughes",
+      "death_date":"2012-06-03T00:00:00.000Z",
       "age":79.0,
       "race":"black",
-      "gender":"female"
+      "gender":"female",
+      "image":null
    },
-   {  
-      "coroners case number":"2012-00849",
+   {
+      "case_number":"2012-00849",
       "slug":"john-doe-20",
-      "first name":"John",
-      "middle name":"Joseph",
-      "last name":"Sullivan",
-      "death date":"2012-02-04T00:00:00.000Z",
+      "first_name":"John",
+      "middle_name":"Joseph",
+      "last_name":"Sullivan",
+      "death_date":"2012-02-04T00:00:00.000Z",
       "age":53.0,
       "race":"white",
-      "gender":"male"
+      "gender":"male",
+      "image":null
    },
-   {  
-      "coroners case number":"2011-08488",
+   {
+      "case_number":"2011-08488",
       "slug":"andre-lockhart",
-      "first name":"Andre",
-      "middle name":null,
-      "last name":"Lockhart",
-      "death date":"2011-12-27T00:00:00.000Z",
+      "first_name":"Andre",
+      "middle_name":null,
+      "last_name":"Lockhart",
+      "death_date":"2011-12-27T00:00:00.000Z",
       "age":28.0,
       "race":"black",
-      "gender":"male"
+      "gender":"male",
+      "image":null
    },
-   {  
-      "coroners case number":"2010-06394",
+   {
+      "case_number":"2010-06394",
       "slug":"donnell-washington",
-      "first name":"Donnell",
-      "middle name":"L.",
-      "last name":"Washington",
-      "death date":"2010-09-27T00:00:00.000Z",
+      "first_name":"Donnell",
+      "middle_name":"L.",
+      "last_name":"Washington",
+      "death_date":"2010-09-27T00:00:00.000Z",
       "age":30.0,
       "race":"black",
-      "gender":"male"
+      "gender":"male",
+      "image":null
    },
-   {  
-      "coroners case number":"2010-02165",
+   {
+      "case_number":"2010-02165",
       "slug":"che-grady",
-      "first name":"Che",
-      "middle name":"Yuseff",
-      "last name":"Grady",
-      "death date":"2010-03-27T00:00:00.000Z",
+      "first_name":"Che",
+      "middle_name":"Yuseff",
+      "last_name":"Grady",
+      "death_date":"2010-03-27T00:00:00.000Z",
       "age":39.0,
       "race":"black",
-      "gender":"male"
+      "gender":"male",
+      "image":"http:\/\/s3-us-west-2.amazonaws.com\/homicide.latimes.com\/media\/homicide\/che_grady.jpg"
    },
-   {  
-      "coroners case number":"2010-00568",
+   {
+      "case_number":"2010-00568",
       "slug":"dontae-cotton",
-      "first name":"Dontae",
-      "middle name":"Lamont",
-      "last name":"Cotton",
-      "death date":"2010-01-24T00:00:00.000Z",
+      "first_name":"Dontae",
+      "middle_name":"Lamont",
+      "last_name":"Cotton",
+      "death_date":"2010-01-24T00:00:00.000Z",
       "age":28.0,
       "race":"black",
-      "gender":"male"
+      "gender":"male",
+      "image":"http:\/\/s3-us-west-2.amazonaws.com\/homicide.latimes.com\/media\/homicide\/dontae_cotton_dmv.jpg"
    },
-   {  
-      "coroners case number":"2009-07666",
+   {
+      "case_number":"2009-07666",
       "slug":"mulindwa-traylor",
-      "first name":"Mulindwa",
-      "middle name":"K.",
-      "last name":"Traylor",
-      "death date":"2009-11-10T00:00:00.000Z",
+      "first_name":"Mulindwa",
+      "middle_name":"K.",
+      "last_name":"Traylor",
+      "death_date":"2009-11-10T00:00:00.000Z",
       "age":24.0,
       "race":"black",
-      "gender":"male"
+      "gender":"male",
+      "image":null
    },
-   {  
-      "coroners case number":"2009-06265",
+   {
+      "case_number":"2009-06265",
       "slug":"kadeemi-forman",
-      "first name":"Kadeemi",
-      "middle name":"Rashad",
-      "last name":"Forman",
-      "death date":"2009-09-10T00:00:00.000Z",
+      "first_name":"Kadeemi",
+      "middle_name":"Rashad",
+      "last_name":"Forman",
+      "death_date":"2009-09-10T00:00:00.000Z",
       "age":19.0,
       "race":"black",
-      "gender":"male"
+      "gender":"male",
+      "image":"http:\/\/s3-us-west-2.amazonaws.com\/homicide.latimes.com\/media\/homicide\/FormanKadeemi.jpg"
    },
-   {  
-      "coroners case number":"2009-06140",
+   {
+      "case_number":"2009-06140",
       "slug":"keith-moore",
-      "first name":"Keith",
-      "middle name":"Dwayne",
-      "last name":"Moore",
-      "death date":"2009-09-05T00:00:00.000Z",
+      "first_name":"Keith",
+      "middle_name":"Dwayne",
+      "last_name":"Moore",
+      "death_date":"2009-09-05T00:00:00.000Z",
       "age":20.0,
       "race":"black",
-      "gender":"male"
+      "gender":"male",
+      "image":null
    },
-   {  
-      "coroners case number":"2009-05352",
+   {
+      "case_number":"2009-05352",
       "slug":"jesse-mcwayne",
-      "first name":"Jesse",
-      "middle name":"Unique",
-      "last name":"McWayne",
-      "death date":"2009-08-02T00:00:00.000Z",
+      "first_name":"Jesse",
+      "middle_name":"Unique",
+      "last_name":"McWayne",
+      "death_date":"2009-08-02T00:00:00.000Z",
       "age":19.0,
       "race":"black",
-      "gender":"male"
+      "gender":"male",
+      "image":null
    },
-   {  
-      "coroners case number":"2008-05101",
+   {
+      "case_number":"2008-05101",
       "slug":"alcus-mallory",
-      "first name":"Alcus ",
-      "middle name":null,
-      "last name":"Mallory",
-      "death date":"2008-07-22T00:00:00.000Z",
+      "first_name":"Alcus ",
+      "middle_name":null,
+      "last_name":"Mallory",
+      "death_date":"2008-07-22T00:00:00.000Z",
       "age":15.0,
       "race":"black",
-      "gender":"male"
+      "gender":"male",
+      "image":null
    },
-   {  
-      "coroners case number":"2008-04434",
+   {
+      "case_number":"2008-04434",
       "slug":"edward-adams-jr",
-      "first name":"Edward",
-      "middle name":null,
-      "last name":"Adams",
-      "death date":"2008-06-20T00:00:00.000Z",
+      "first_name":"Edward",
+      "middle_name":null,
+      "last_name":"Adams",
+      "death_date":"2008-06-20T00:00:00.000Z",
       "age":53.0,
       "race":"black",
-      "gender":"male"
+      "gender":"male",
+      "image":null
    },
-   {  
-      "coroners case number":"2008-04313",
+   {
+      "case_number":"2008-04313",
       "slug":"matthew-denney",
-      "first name":"Matthew",
-      "middle name":null,
-      "last name":"Denney",
-      "death date":"2008-06-16T00:00:00.000Z",
+      "first_name":"Matthew",
+      "middle_name":null,
+      "last_name":"Denney",
+      "death_date":"2008-06-16T00:00:00.000Z",
       "age":20.0,
       "race":"black",
-      "gender":"male"
+      "gender":"male",
+      "image":null
    },
-   {  
-      "coroners case number":"2008-03916",
+   {
+      "case_number":"2008-03916",
       "slug":"james-hill",
-      "first name":"James",
-      "middle name":null,
-      "last name":"Hill",
-      "death date":"2008-05-29T00:00:00.000Z",
+      "first_name":"James",
+      "middle_name":null,
+      "last_name":"Hill",
+      "death_date":"2008-05-29T00:00:00.000Z",
       "age":64.0,
       "race":"black",
-      "gender":"male"
+      "gender":"male",
+      "image":null
    },
-   {  
-      "coroners case number":"2008-03491",
+   {
+      "case_number":"2008-03491",
       "slug":"luis-leon",
-      "first name":"Luis",
-      "middle name":null,
-      "last name":"Leon",
-      "death date":"2008-05-09T00:00:00.000Z",
+      "first_name":"Luis",
+      "middle_name":null,
+      "last_name":"Leon",
+      "death_date":"2008-05-09T00:00:00.000Z",
       "age":19.0,
       "race":"latino",
-      "gender":"male"
+      "gender":"male",
+      "image":"http:\/\/s3-us-west-2.amazonaws.com\/homicide.latimes.com\/media\/homicide\/luis_alberto_leon_19.jpg"
    },
-   {  
-      "coroners case number":"2008-00358",
+   {
+      "case_number":"2008-00358",
       "slug":"rosa-garcia",
-      "first name":"Rosa",
-      "middle name":null,
-      "last name":"Garcia",
-      "death date":"2008-01-13T00:00:00.000Z",
+      "first_name":"Rosa",
+      "middle_name":null,
+      "last_name":"Garcia",
+      "death_date":"2008-01-13T00:00:00.000Z",
       "age":35.0,
       "race":"latino",
-      "gender":"female"
+      "gender":"female",
+      "image":null
    },
-   {  
-      "coroners case number":"2007-08079",
+   {
+      "case_number":"2007-08079",
       "slug":"shontae-blanche",
-      "first name":"Shontae",
-      "middle name":null,
-      "last name":"Blanche",
-      "death date":"2007-11-05T00:00:00.000Z",
+      "first_name":"Shontae",
+      "middle_name":null,
+      "last_name":"Blanche",
+      "death_date":"2007-11-05T00:00:00.000Z",
       "age":22.0,
       "race":"black",
-      "gender":"female"
+      "gender":"female",
+      "image":"http:\/\/s3-us-west-2.amazonaws.com\/homicide.latimes.com\/media\/homicide\/blanche_shontae_1.jpg"
    },
-   {  
-      "coroners case number":"2007-08130",
+   {
+      "case_number":"2007-08130",
       "slug":"baby-blanche",
-      "first name":"Baby",
-      "middle name":null,
-      "last name":"Blanche",
-      "death date":"2007-11-05T00:00:00.000Z",
+      "first_name":"Baby",
+      "middle_name":null,
+      "last_name":"Blanche",
+      "death_date":"2007-11-05T00:00:00.000Z",
       "age":0.0,
       "race":"black",
-      "gender":"female"
+      "gender":"female",
+      "image":null
    },
-   {  
-      "coroners case number":"2006-03978",
+   {
+      "case_number":"2006-03978",
       "slug":"christopher-keith-wilson",
-      "first name":"Christopher",
-      "middle name":"Keith",
-      "last name":"Wilson",
-      "death date":"2006-05-24T00:00:00.000Z",
+      "first_name":"Christopher",
+      "middle_name":"Keith",
+      "last_name":"Wilson",
+      "death_date":"2006-05-24T00:00:00.000Z",
       "age":48.0,
       "race":"black",
-      "gender":"male"
+      "gender":"male",
+      "image":null
    },
-   {  
-      "coroners case number":"2006-01162",
+   {
+      "case_number":"2006-01162",
       "slug":"freddy-solis-jr",
-      "first name":"Freddy",
-      "middle name":null,
-      "last name":"Solis Jr.",
-      "death date":"2006-02-11T00:00:00.000Z",
+      "first_name":"Freddy",
+      "middle_name":null,
+      "last_name":"Solis Jr.",
+      "death_date":"2006-02-11T00:00:00.000Z",
       "age":14.0,
       "race":"latino",
-      "gender":"male"
+      "gender":"male",
+      "image":null
    },
-   {  
-      "coroners case number":"2005-08890",
+   {
+      "case_number":"2005-08890",
       "slug":"eric-bruce-woods",
-      "first name":"Eric",
-      "middle name":"Bruce",
-      "last name":"Woods",
-      "death date":"2005-11-24T00:00:00.000Z",
+      "first_name":"Eric",
+      "middle_name":"Bruce",
+      "last_name":"Woods",
+      "death_date":"2005-11-24T00:00:00.000Z",
       "age":36.0,
       "race":"black",
-      "gender":"male"
+      "gender":"male",
+      "image":null
    },
-   {  
-      "coroners case number":"2005-06676",
+   {
+      "case_number":"2005-06676",
       "slug":"melvin-green-jr",
-      "first name":"Melvin",
-      "middle name":null,
-      "last name":"Greenberg",
-      "death date":"2005-08-30T00:00:00.000Z",
+      "first_name":"Melvin",
+      "middle_name":null,
+      "last_name":"Greenberg",
+      "death_date":"2005-08-30T00:00:00.000Z",
       "age":58.0,
       "race":"black",
-      "gender":"male"
+      "gender":"male",
+      "image":null
    },
-   {  
-      "coroners case number":"2005-02017",
+   {
+      "case_number":"2005-02017",
       "slug":"gregory-jay-price",
-      "first name":"Gregory",
-      "middle name":"Jay",
-      "last name":"Price",
-      "death date":"2005-03-12T00:00:00.000Z",
+      "first_name":"Gregory",
+      "middle_name":"Jay",
+      "last_name":"Price",
+      "death_date":"2005-03-12T00:00:00.000Z",
       "age":51.0,
       "race":"black",
-      "gender":"male"
+      "gender":"male",
+      "image":null
    },
-   {  
-      "coroners case number":"2004-08656",
+   {
+      "case_number":"2004-08656",
       "slug":"corey-antione-toliver",
-      "first name":"Corey",
-      "middle name":"Antione",
-      "last name":"Toliver",
-      "death date":"2004-11-12T00:00:00.000Z",
+      "first_name":"Corey",
+      "middle_name":"Antione",
+      "last_name":"Toliver",
+      "death_date":"2004-11-12T00:00:00.000Z",
       "age":26.0,
       "race":"black",
-      "gender":"male"
+      "gender":"male",
+      "image":null
    },
-   {  
-      "coroners case number":"2004-08514",
+   {
+      "case_number":"2004-08514",
       "slug":"cheryl-ann-edwards",
-      "first name":"Cheryl",
-      "middle name":"Ann",
-      "last name":"Edwards",
-      "death date":"2004-11-09T00:00:00.000Z",
+      "first_name":"Cheryl",
+      "middle_name":"Ann",
+      "last_name":"Edwards",
+      "death_date":"2004-11-09T00:00:00.000Z",
       "age":41.0,
       "race":"black",
-      "gender":"female"
+      "gender":"female",
+      "image":null
    },
-   {  
-      "coroners case number":"2004-03810",
+   {
+      "case_number":"2004-03810",
       "slug":"shaunte-bragg",
-      "first name":"Shaunte",
-      "middle name":null,
-      "last name":"Bragg",
-      "death date":"2004-05-17T00:00:00.000Z",
+      "first_name":"Shaunte",
+      "middle_name":null,
+      "last_name":"Bragg",
+      "death_date":"2004-05-17T00:00:00.000Z",
       "age":34.0,
       "race":"black",
-      "gender":"male"
+      "gender":"male",
+      "image":null
    },
-   {  
-      "coroners case number":"2004-01913",
+   {
+      "case_number":"2004-01913",
       "slug":"michael-anthony-grant",
-      "first name":"Michael",
-      "middle name":"Anthony",
-      "last name":"Grant",
-      "death date":"2004-03-05T00:00:00.000Z",
+      "first_name":"Michael",
+      "middle_name":"Anthony",
+      "last_name":"Grant",
+      "death_date":"2004-03-05T00:00:00.000Z",
       "age":23.0,
       "race":"black",
-      "gender":"male"
+      "gender":"male",
+      "image":null
    },
-   {  
-      "coroners case number":"2004-01340",
+   {
+      "case_number":"2004-01340",
       "slug":"gregory-john-gabriel",
-      "first name":"Gregory",
-      "middle name":"John",
-      "last name":"Gabriel",
-      "death date":"2004-02-15T00:00:00.000Z",
+      "first_name":"Gregory",
+      "middle_name":"John",
+      "last_name":"Gabriel",
+      "death_date":"2004-02-15T00:00:00.000Z",
       "age":12.0,
       "race":"black",
-      "gender":"male"
+      "gender":"male",
+      "image":null
    },
-   {  
-      "coroners case number":"2004-00409",
+   {
+      "case_number":"2004-00409",
       "slug":"carl-peters",
-      "first name":"Carl",
-      "middle name":null,
-      "last name":"Peters",
-      "death date":"2004-01-06T00:00:00.000Z",
+      "first_name":"Carl",
+      "middle_name":null,
+      "last_name":"Peters",
+      "death_date":"2004-01-06T00:00:00.000Z",
       "age":42.0,
       "race":"black",
-      "gender":"male"
+      "gender":"male",
+      "image":null
    },
-   {  
-      "coroners case number":"2003-05654",
+   {
+      "case_number":"2003-05654",
       "slug":"lafayette-monte-davis",
-      "first name":"Lafayette",
-      "middle name":"Monte",
-      "last name":"Davis",
-      "death date":"2003-07-26T00:00:00.000Z",
+      "first_name":"Lafayette",
+      "middle_name":"Monte",
+      "last_name":"Davis",
+      "death_date":"2003-07-26T00:00:00.000Z",
       "age":32.0,
       "race":"black",
-      "gender":"male"
+      "gender":"male",
+      "image":null
    },
-   {  
-      "coroners case number":"2003-03490",
+   {
+      "case_number":"2003-03490",
       "slug":"norman-antonio-moore-jr",
-      "first name":"Norman",
-      "middle name":"Antonio",
-      "last name":"Moore",
-      "death date":"2003-05-08T00:00:00.000Z",
+      "first_name":"Norman",
+      "middle_name":"Antonio",
+      "last_name":"Moore",
+      "death_date":"2003-05-08T00:00:00.000Z",
       "age":27.0,
       "race":"black",
-      "gender":"male"
+      "gender":"male",
+      "image":null
    },
-   {  
-      "coroners case number":"2003-03221",
+   {
+      "case_number":"2003-03221",
       "slug":"wesley-brice-keene",
-      "first name":"Wesley",
-      "middle name":"Brice",
-      "last name":"Keene",
-      "death date":"2003-04-28T00:00:00.000Z",
+      "first_name":"Wesley",
+      "middle_name":"Brice",
+      "last_name":"Keene",
+      "death_date":"2003-04-28T00:00:00.000Z",
       "age":18.0,
       "race":"black",
-      "gender":"male"
+      "gender":"male",
+      "image":null
    },
-   {  
-      "coroners case number":"2003-02573",
+   {
+      "case_number":"2003-02573",
       "slug":"maurice-rico-marks",
-      "first name":"Maurice",
-      "middle name":"Rico",
-      "last name":"Marks",
-      "death date":"2003-04-01T00:00:00.000Z",
+      "first_name":"Maurice",
+      "middle_name":"Rico",
+      "last_name":"Marks",
+      "death_date":"2003-04-01T00:00:00.000Z",
       "age":21.0,
       "race":"black",
-      "gender":"male"
+      "gender":"male",
+      "image":null
    },
-   {  
-      "coroners case number":"2002-07313",
+   {
+      "case_number":"2002-07313",
       "slug":"hilgard-r-andrews",
-      "first name":"Hilgard",
-      "middle name":"R.",
-      "last name":"Andrews",
-      "death date":"2002-09-29T00:00:00.000Z",
+      "first_name":"Hilgard",
+      "middle_name":"R.",
+      "last_name":"Andrews",
+      "death_date":"2002-09-29T00:00:00.000Z",
       "age":45.0,
       "race":"black",
-      "gender":"male"
+      "gender":"male",
+      "image":null
    },
-   {  
-      "coroners case number":"2002-07040",
+   {
+      "case_number":"2002-07040",
       "slug":"chima-patrick-anyanwu",
-      "first name":"Chima",
-      "middle name":"Patrick",
-      "last name":"Anyanwu",
-      "death date":"2002-09-18T00:00:00.000Z",
+      "first_name":"Chima",
+      "middle_name":"Patrick",
+      "last_name":"Anyanwu",
+      "death_date":"2002-09-18T00:00:00.000Z",
       "age":21.0,
       "race":"black",
-      "gender":"male"
+      "gender":"male",
+      "image":null
    },
-   {  
-      "coroners case number":"2002-04720",
-      "slug":"uchechukwu-odi-ofoegbu",
-      "first name":"Uchechukwu",
-      "middle name":"Odi",
-      "last name":"Ofoegbu",
-      "death date":"2002-06-23T00:00:00.000Z",
-      "age":21.0,
-      "race":"black",
-      "gender":"male"
-   },
-   {  
-      "coroners case number":"2002-04719",
+   {
+      "case_number":"2002-04719",
       "slug":"lyndon-craig-cox-ii",
-      "first name":"Lyndon",
-      "middle name":"Craig",
-      "last name":"Cox",
-      "death date":"2002-06-23T00:00:00.000Z",
+      "first_name":"Lyndon",
+      "middle_name":"Craig",
+      "last_name":"Cox",
+      "death_date":"2002-06-23T00:00:00.000Z",
       "age":25.0,
       "race":"black",
-      "gender":"male"
+      "gender":"male",
+      "image":null
    },
-   {  
-      "coroners case number":"2001-07195",
+   {
+      "case_number":"2002-04720",
+      "slug":"uchechukwu-odi-ofoegbu",
+      "first_name":"Uchechukwu",
+      "middle_name":"Odi",
+      "last_name":"Ofoegbu",
+      "death_date":"2002-06-23T00:00:00.000Z",
+      "age":21.0,
+      "race":"black",
+      "gender":"male",
+      "image":null
+   },
+   {
+      "case_number":"2001-07195",
       "slug":"von-anthony-harris",
-      "first name":"Von",
-      "middle name":"Anthony",
-      "last name":"Harris",
-      "death date":"2001-10-03T00:00:00.000Z",
+      "first_name":"Von",
+      "middle_name":"Anthony",
+      "last_name":"Harris",
+      "death_date":"2001-10-03T00:00:00.000Z",
       "age":42.0,
       "race":"black",
-      "gender":"male"
+      "gender":"male",
+      "image":null
    },
-   {  
-      "coroners case number":"2001-06708",
+   {
+      "case_number":"2001-06708",
       "slug":"jason-esquite-flores",
-      "first name":"Jason",
-      "middle name":"Esquite",
-      "last name":"Flores",
-      "death date":"2001-09-15T00:00:00.000Z",
+      "first_name":"Jason",
+      "middle_name":"Esquite",
+      "last_name":"Flores",
+      "death_date":"2001-09-15T00:00:00.000Z",
       "age":20.0,
       "race":"latino",
-      "gender":"male"
+      "gender":"male",
+      "image":null
    },
-   {  
-      "coroners case number":"2000-08216",
-      "slug":"paul-david-mitchell",
-      "first name":"Paul",
-      "middle name":"David",
-      "last name":"Mitchell",
-      "death date":"2000-11-22T00:00:00.000Z",
-      "age":44.0,
-      "race":"black",
-      "gender":"male"
-   },
-   {  
-      "coroners case number":"2000-08217",
+   {
+      "case_number":"2000-08217",
       "slug":"mardress-brooks",
-      "first name":"Mardress",
-      "middle name":null,
-      "last name":"Brooks",
-      "death date":"2000-11-22T00:00:00.000Z",
+      "first_name":"Mardress",
+      "middle_name":null,
+      "last_name":"Brooks",
+      "death_date":"2000-11-22T00:00:00.000Z",
       "age":35.0,
       "race":"black",
-      "gender":"female"
+      "gender":"female",
+      "image":null
    },
-   {  
-      "coroners case number":"2000-05112",
+   {
+      "case_number":"2000-08216",
+      "slug":"paul-david-mitchell",
+      "first_name":"Paul",
+      "middle_name":"David",
+      "last_name":"Mitchell",
+      "death_date":"2000-11-22T00:00:00.000Z",
+      "age":44.0,
+      "race":"black",
+      "gender":"male",
+      "image":null
+   },
+   {
+      "case_number":"2000-05112",
       "slug":"grover-tinner-jr",
-      "first name":"Grover",
-      "middle name":null,
-      "last name":"Tinner",
-      "death date":"2000-07-18T00:00:00.000Z",
+      "first_name":"Grover",
+      "middle_name":null,
+      "last_name":"Tinner",
+      "death_date":"2000-07-18T00:00:00.000Z",
       "age":48.0,
       "race":"black",
-      "gender":"male"
+      "gender":"male",
+      "image":null
    }
 ]

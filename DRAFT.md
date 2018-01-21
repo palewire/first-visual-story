@@ -144,6 +144,24 @@ Fill in a byline and see it show up.
 {% block byline %}By me{% endblock %}
 ```
 
+Add the Harvard Park homicides data files to _data/harvard_park_homicides.json
+
+Return to index.nunjucks and print them out on the page.
+
+```
+{% block content %}
+{{ site.data.harvard_park_homicides }}
+{% endblock %}
+```
+
+Loop through them and print them all.
+
+```
+{% for obj in site.data.harvard_park_homicides %}
+    {{ obj.first_name }} {{ obj.last_name }}
+{% endfor %}
+```
+
 Add annual-totals JSON file to _data/annual_totals.json
 
 Return to index.nunjucks and print them out on the page.
