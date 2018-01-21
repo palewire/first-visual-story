@@ -10,7 +10,12 @@
 {% block byline %}By me{% endblock %}
 
 {% block content %}
+<table>
 {% for obj in site.data.harvard_park_homicides %}
-    {{ obj.first_name }} {{ obj.last_name }}
+    <tr>
+        <td>{{ obj.first_name }}</td>
+        <td>{{ obj.last_name }}</td>
+    </tr>
 {% endfor %}
+</table>
 {% endblock %}

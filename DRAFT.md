@@ -43,7 +43,7 @@ sudo npm install -g generator-yeogurt
 Create a new project.
 
 ```bash
-yo react-static
+yo yeogurt
 ```
 
 Be sure to pick "nunjucks" when creating the project.
@@ -158,9 +158,42 @@ Loop through them and print them all.
 
 ```
 {% for obj in site.data.harvard_park_homicides %}
+    {{ obj.last_name }}
+{% endfor %}
+```
+
+Add the first name
+
+```
+{% for obj in site.data.harvard_park_homicides %}
     {{ obj.first_name }} {{ obj.last_name }}
 {% endfor %}
 ```
+
+Make that an HTML table.
+
+```
+<table>
+{% for obj in site.data.harvard_park_homicides %}
+    <tr>
+        <td>{{ obj.first_name }}</td>
+        <td>{{ obj.last_name }}</td>
+    </tr>
+{% endfor %}
+</table>
+```
+
+Add the death date.
+
+<table>
+{% for obj in site.data.harvard_park_homicides %}
+    <tr>
+        <td>{{ obj.death_date }}</td>
+        <td>{{ obj.first_name }}</td>
+        <td>{{ obj.last_name }}</td>
+    </tr>
+{% endfor %}
+</table>
 
 Add annual-totals JSON file to _data/annual_totals.json
 
