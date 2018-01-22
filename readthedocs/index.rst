@@ -202,7 +202,7 @@ Chapter 7: Hello Map
 TK
 
 *************************
-Chapter 5: Hello Internet
+Chapter 8: Hello Internet
 *************************
 
 TK
