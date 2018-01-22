@@ -166,37 +166,37 @@ Reload your repository on GitHub and see your handiwork.
 
 
 **************************
-Chapter 2: Hello Framework
+Chapter 2: Hello framework
 **************************
 
 TK
 
 *************************
-Chapter 3: Hello Template
+Chapter 3: Hello template
 *************************
 
 TK
 
 *********************
-Chapter 4: Hello Data
+Chapter 4: Hello data
 *********************
 
 TK
 
 **********************
-Chapter 5: Hello Table
+Chapter 5: Hello table
 **********************
 
 TK
 
 **********************
-Chapter 6: Hello Chart
+Chapter 6: Hello chart
 **********************
 
 TK
 
 ********************
-Chapter 7: Hello Map
+Chapter 7: Hello map
 ********************
 
 TK
