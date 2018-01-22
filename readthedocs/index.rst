@@ -29,7 +29,7 @@ in Chicago <https://www.ire.org/events-and-training/event/3189/3508/>`_.
 Prelude: Prerequisites
 **********************
 
-Before you can begin, your computer needs the following tools installed and working.
+Before you can begin, your computer needs the following tools installed and working:
 
 1. A `command-line interface <https://en.wikipedia.org/wiki/Command-line_interface>`_ to interact with your computer
 2. A `text editor <https://en.wikipedia.org/wiki/Text_editor>`_ to work with plain text files
