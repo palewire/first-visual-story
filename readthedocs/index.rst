@@ -1,8 +1,8 @@
 :tocdepth: 2
 
-==============
-First News App
-==============
+==================
+First Graphics App
+==================
 
 A step-by-step guide to publishing standalone story from a dataset.
 
