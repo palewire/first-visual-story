@@ -94,9 +94,9 @@ You can verify it's installed from your command line like so:
 Once that's done, you should create an account at GitHub, if you don't already have one. `The free plan <https://github.com/pricing>`_ is all that's required to complete this lesson.
 
 
-****************
-Act 1: Hello Git
-****************
+********************
+Chapter 1: Hello Git
+********************
 
 Start by creating a new directory where we can store the code for our project. Name it after our application.
 
@@ -163,3 +163,46 @@ Now, finally, push your commit up to GitHub.
     $ git push origin master
 
 Reload your repository on GitHub and see your handiwork.
+
+
+**************************
+Chapter 2: Hello Framework
+**************************
+
+TK
+
+*************************
+Chapter 3: Hello Template
+*************************
+
+TK
+
+*********************
+Chapter 4: Hello Data
+*********************
+
+TK
+
+**********************
+Chapter 5: Hello Table
+**********************
+
+TK
+
+**********************
+Chapter 6: Hello Chart
+******************
+
+TK
+
+********************
+Chapter 7: Hello Map
+********************
+
+TK
+
+*************************
+Chapter 5: Hello Internet
+*************************
+
+TK
