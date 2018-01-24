@@ -85,16 +85,16 @@ Make a change to harvard-park-homicides/index.nunjucks. See it show up.
 {% endblock %}
 ```
 
-Open up _layouts/base.nunjucks and explain how the template inheritance system works.
+Open up `_layouts/base.nunjucks` and explain how the template inheritance system works.
 
 Make a small change to base.nunjucks and see it come up live.
 
-```nunjucks
+```
 Above content
 {% block content %}{% endblock %}
 ```
 
-Replace _layouts/base.nunjucks with our more polished base template.
+Replace `_layouts/base.nunjucks` with our more polished base template.
 
 ```nunjucks
 {# Custom Configuration #}
@@ -144,7 +144,7 @@ Fill in a byline and see it show up.
 {% block byline %}By me{% endblock %}
 ```
 
-Add the Harvard Park homicides data files to _data/harvard_park_homicides.json
+Add the Harvard Park homicides data files to `_data/harvard_park_homicides.json`
 
 Return to index.nunjucks and print them out on the page.
 
@@ -185,6 +185,7 @@ Make that an HTML table.
 
 Add the death date.
 
+```
 <table>
 {% for obj in site.data.harvard_park_homicides %}
     <tr>
@@ -194,8 +195,9 @@ Add the death date.
     </tr>
 {% endfor %}
 </table>
+```
 
-Add annual-totals JSON file to _data/annual_totals.json
+Add annual-totals JSON file to `_data/annual_totals.json`
 
 Return to index.nunjucks and print them out on the page.
 
@@ -215,6 +217,7 @@ Loop through them and print the annual totals.
 
 Make that an HTML table.
 
+```
 {% block content %}
 <table>
 {% for obj in site.data.annual_totals %}
@@ -225,9 +228,11 @@ Make that an HTML table.
 {% endfor %}
 </table>
 {% endblock %}
+```
 
 Make another table with the Harvard Park homicide totals.
 
+```
 {% block content %}
 <table>
 {% for obj in site.data.annual_totals %}
@@ -237,7 +242,6 @@ Make another table with the Harvard Park homicide totals.
     </tr>
 {% endfor %}
 </table>
-
 <table>
 {% for obj in site.data.annual_totals %}
     <tr>
@@ -247,7 +251,7 @@ Make another table with the Harvard Park homicide totals.
 {% endfor %}
 </table>
 {% endblock %}
-
+```
 
 Build a static version of your site
 
