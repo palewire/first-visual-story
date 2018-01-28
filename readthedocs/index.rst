@@ -169,7 +169,70 @@ Reload your repository on GitHub and see your handiwork.
 Chapter 2: Hello framework
 **************************
 
-TK
+Create a Code directory for your work.
+
+```bash
+mkdir Code
+```
+
+Move in.
+
+```bash
+cd Code
+```
+
+Create a new directory project
+
+```bash
+mkdir first-graphics-app
+```
+
+Move in.
+
+```bash
+cd Code
+```
+
+Install yeoman
+
+```bash
+sudo npm install -g yo gulp
+```
+
+Use yeoman to install our project generator.
+
+```bash
+sudo npm install -g generator-yeogurt
+```
+
+Create a new project.
+
+```bash
+yo yeogurt
+```
+
+Be sure to pick "nunjucks" when creating the project.
+
+Fire up the test server
+
+```bash
+gulp serve
+```
+
+Visit localhost:3000 in your browser.
+
+Make an edit to index.nunjucks and see it show up on the live site.
+
+```html
+    <h1>Welcome to First Graphics App!</h1>
+```
+
+Open a second terminal and navigate to your code folder.
+
+```bash
+cd Code
+cd first-graphics-app
+```
 
 *************************
 Chapter 3: Hello template
