@@ -251,7 +251,93 @@ Push it to GitHub.
 Chapter 3: Hello template
 *************************
 
-TK
+Create a new page for our app
+
+```
+yo yeogurt:page harvard-park-homicides
+```
+
+Navigate to localhost:3000/harvard-park-homicides/.
+
+Make a change to harvard-park-homicides/index.nunjucks. See it show up.
+
+```html
+{% block content %}
+<p>Hello World</p>
+{% endblock %}
+```
+
+Open up _layouts/base.nunjucks and explain how the template inheritance system works.
+
+Make a small change to base.nunjucks and see it come up live.
+
+```nunjucks
+Above content
+{% block content %}{% endblock %}
+```
+
+Replace _layouts/base.nunjucks with our more polished base template.
+
+```nunjucks
+{# Custom Configuration #}
+{% block config %}
+  {# Setup site's base URL to match the "baseUrl" key within `package.json` #}
+  {# Otherwise default to relative pathing #}
+  {% set baseUrl = config.baseUrl or './' %}
+{% endblock %}
+
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>First News App</title>
+    <link rel="stylesheet" href="https://bl.ocks.org/palewire/raw/1035cd306a2f85b362b1a20ce315b8eb/base.css">
+    {% block stylesheets %}{% endblock %}
+</head>
+<body>
+    <nav>
+        <a href="http://first-graphics-app.readthedocs.org/">
+            <img src="https://bl.ocks.org/palewire/raw/1035cd306a2f85b362b1a20ce315b8eb/ire-logo.png">
+        </a>
+    </nav>
+    <header>
+        <h1>{% block headline %}{% endblock %}</h1>
+        <div class="byline">
+            {% block byline %}{% endblock %}
+        </div>
+    </header>
+    {% block content %}{% endblock %}
+    <script src="{{baseUrl}}scripts/main.js"></script>
+    {% block scripts %}{% endblock %}
+</body>
+</html>
+```
+
+Fill in a headline and see it show up.
+
+```
+{% block headline %}My headline will go here{% endblock %}
+```
+
+Fill in a byline and see it show up.
+
+```
+{% block byline %}By me{% endblock %}
+```
+
+Commit our work.
+
+.. code-block:: bash
+
+    $ git add .
+    $ git commit -m "Installed framework"
+
+Push it to GitHub.
+
+.. code-block:: bash
+    $ git push origin master
+
 
 *********************
 Chapter 4: Hello data
