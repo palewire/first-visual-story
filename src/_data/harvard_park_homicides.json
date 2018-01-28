@@ -6,10 +6,13 @@
       "middle_name":"Rosendo",
       "last_name":"Lino",
       "death_date":"2017-06-18T00:00:00.000Z",
+      "death_year":2017,
       "age":23.0,
       "race":"black",
       "gender":"male",
-      "image":null
+      "image":null,
+      "longitude":-118.304107484,
+      "latitude":33.9904336958
    },
    {
       "case_number":"2017-03454",
@@ -18,10 +21,13 @@
       "middle_name":"David",
       "last_name":"Lomeli",
       "death_date":"2017-05-07T00:00:00.000Z",
+      "death_year":2017,
       "age":18.0,
       "race":"latino",
       "gender":"male",
-      "image":null
+      "image":null,
+      "longitude":-118.300290584,
+      "latitude":33.9793646958
    },
    {
       "case_number":"2017-03455",
@@ -30,10 +36,13 @@
       "middle_name":"Alberto",
       "last_name":"Martinez",
       "death_date":"2017-05-07T00:00:00.000Z",
+      "death_year":2017,
       "age":61.0,
       "race":"latino",
       "gender":"male",
-      "image":"http:\/\/s3-us-west-2.amazonaws.com\/homicide.latimes.com\/media\/homicide\/6c1c486b-acc7-4539-8eab-a53c1930aefe.jpeg"
+      "image":"http:\/\/s3-us-west-2.amazonaws.com\/homicide.latimes.com\/media\/homicide\/6c1c486b-acc7-4539-8eab-a53c1930aefe.jpeg",
+      "longitude":-118.300290584,
+      "latitude":33.9793646958
    },
    {
       "case_number":"2017-02656",
@@ -42,10 +51,13 @@
       "middle_name":"Allen",
       "last_name":"Craig",
       "death_date":"2017-04-05T00:00:00.000Z",
+      "death_year":2017,
       "age":33.0,
       "race":"black",
       "gender":"male",
-      "image":null
+      "image":null,
+      "longitude":-118.304618084,
+      "latitude":33.9914742958
    },
    {
       "case_number":"2017-01306",
@@ -54,10 +66,13 @@
       "middle_name":null,
       "last_name":"Gamble-Kendrick",
       "death_date":"2017-02-14T00:00:00.000Z",
+      "death_year":2017,
       "age":73.0,
       "race":"black",
       "gender":"female",
-      "image":"http:\/\/s3-us-west-2.amazonaws.com\/homicide.latimes.com\/media\/homicide\/7272e31f-42af-4536-8c56-9fc4c1bc1d93.jpeg"
+      "image":"http:\/\/s3-us-west-2.amazonaws.com\/homicide.latimes.com\/media\/homicide\/7272e31f-42af-4536-8c56-9fc4c1bc1d93.jpeg",
+      "longitude":-118.307344784,
+      "latitude":33.9860941958
    },
    {
       "case_number":"2017-00343",
@@ -66,10 +81,13 @@
       "middle_name":null,
       "last_name":"Tatum",
       "death_date":"2017-01-11T00:00:00.000Z",
+      "death_year":2017,
       "age":23.0,
       "race":"black",
       "gender":"male",
-      "image":"http:\/\/s3-us-west-2.amazonaws.com\/homicide.latimes.com\/media\/homicide\/31140bd0-60c1-44f1-8ebc-c122b36c0b95.jpeg"
+      "image":"http:\/\/s3-us-west-2.amazonaws.com\/homicide.latimes.com\/media\/homicide\/31140bd0-60c1-44f1-8ebc-c122b36c0b95.jpeg",
+      "longitude":-118.30673575401306,
+      "latitude":33.983398480211264
    },
    {
       "case_number":"2016-08972",
@@ -78,10 +96,13 @@
       "middle_name":null,
       "last_name":"Davis",
       "death_date":"2016-12-10T00:00:00.000Z",
+      "death_year":2016,
       "age":16.0,
       "race":"black",
       "gender":"male",
-      "image":null
+      "image":null,
+      "longitude":-118.307115484,
+      "latitude":33.9897150958
    },
    {
       "case_number":"2016-08043",
@@ -90,10 +111,13 @@
       "middle_name":null,
       "last_name":"Garcia Hernandez",
       "death_date":"2016-11-05T00:00:00.000Z",
+      "death_year":2016,
       "age":20.0,
       "race":"latino",
       "gender":"male",
-      "image":null
+      "image":null,
+      "longitude":-118.308092884,
+      "latitude":33.9848401958
    },
    {
       "case_number":"2016-05614",
@@ -102,10 +126,13 @@
       "middle_name":null,
       "last_name":"Parham",
       "death_date":"2016-07-31T00:00:00.000Z",
+      "death_year":2016,
       "age":42.0,
       "race":"black",
       "gender":"male",
-      "image":"http:\/\/s3-us-west-2.amazonaws.com\/homicide.latimes.com\/media\/homicide\/09f092cf-52de-4ab3-a7d8-d70e63aaaea0.jpeg"
+      "image":"http:\/\/s3-us-west-2.amazonaws.com\/homicide.latimes.com\/media\/homicide\/09f092cf-52de-4ab3-a7d8-d70e63aaaea0.jpeg",
+      "longitude":-118.30672502517699,
+      "latitude": 33.98298924730142
    },
    {
       "case_number":"2016-05536",
@@ -114,10 +141,13 @@
       "middle_name":"Jarrod",
       "last_name":"Wilkerson",
       "death_date":"2016-07-29T00:00:00.000Z",
+      "death_year":2016,
       "age":46.0,
       "race":"black",
       "gender":"male",
-      "image":null
+      "image":null,
+      "longitude":-118.308908925,
+      "latitude":33.9823622562
    },
    {
       "case_number":"2016-04935",
@@ -126,10 +156,13 @@
       "middle_name":"Tony",
       "last_name":"White",
       "death_date":"2016-07-04T00:00:00.000Z",
+      "death_year":2016,
       "age":33.0,
       "race":"black",
       "gender":"male",
-      "image":"http:\/\/s3-us-west-2.amazonaws.com\/homicide.latimes.com\/media\/homicide\/d9d91d6d-f84b-43ce-b6fb-2eabb352f917.jpeg"
+      "image":"http:\/\/s3-us-west-2.amazonaws.com\/homicide.latimes.com\/media\/homicide\/d9d91d6d-f84b-43ce-b6fb-2eabb352f917.jpeg",
+      "longitude":-118.3068323135376,
+      "latitude":33.98315383033896
    },
    {
       "case_number":"2016-04213",
@@ -138,10 +171,13 @@
       "middle_name":null,
       "last_name":"Lopez",
       "death_date":"2016-06-07T00:00:00.000Z",
+      "death_year":2016,
       "age":34.0,
       "race":"black",
       "gender":"male",
-      "image":null
+      "image":null,
+      "longitude":-118.304367484,
+      "latitude":33.9877070958
    },
    {
       "case_number":"2016-01692",
@@ -150,10 +186,13 @@
       "middle_name":"Deshon",
       "last_name":"Ruffin",
       "death_date":"2016-02-29T00:00:00.000Z",
+      "death_year":2016,
       "age":24.0,
       "race":"black",
       "gender":"male",
-      "image":null
+      "image":null,
+      "longitude":-118.302431084,
+      "latitude":33.9905553958
    },
    {
       "case_number":"2016-01525",
@@ -162,10 +201,13 @@
       "middle_name":"Elliot",
       "last_name":"Durden",
       "death_date":"2016-02-23T00:00:00.000Z",
+      "death_year":2016,
       "age":50.0,
       "race":"black",
       "gender":"male",
-      "image":"http:\/\/s3-us-west-2.amazonaws.com\/homicide.latimes.com\/media\/homicide\/f47bbed2-5196-4c06-b316-2fd14877d5e6.jpeg"
+      "image":"http:\/\/s3-us-west-2.amazonaws.com\/homicide.latimes.com\/media\/homicide\/f47bbed2-5196-4c06-b316-2fd14877d5e6.jpeg",
+      "longitude":-118.30683767795561,
+      "latitude":33.98291807615946
    },
    {
       "case_number":"2015-05723",
@@ -174,10 +216,13 @@
       "middle_name":"Edward",
       "last_name":"McClendon",
       "death_date":"2015-08-18T00:00:00.000Z",
+      "death_year":2015,
       "age":52.0,
       "race":"black",
       "gender":"male",
-      "image":"http:\/\/s3-us-west-2.amazonaws.com\/homicide.latimes.com\/media\/homicide\/cfdb38d7-2bc1-4aaa-baad-74d07b35f31e.jpeg"
+      "image":"http:\/\/s3-us-west-2.amazonaws.com\/homicide.latimes.com\/media\/homicide\/cfdb38d7-2bc1-4aaa-baad-74d07b35f31e.jpeg",
+      "longitude":-118.306613984,
+      "latitude":33.9796058958
    },
    {
       "case_number":"2015-01373",
@@ -186,10 +231,13 @@
       "middle_name":null,
       "last_name":"Malone",
       "death_date":"2015-02-22T00:00:00.000Z",
+      "death_year":2015,
       "age":37.0,
       "race":"black",
       "gender":"male",
-      "image":null
+      "image":null,
+      "longitude":-118.306628984,
+      "latitude":33.9929929958
    },
    {
       "case_number":"2015-00566",
@@ -198,10 +246,13 @@
       "middle_name":"Jeffrey",
       "last_name":"Coleman",
       "death_date":"2015-01-21T00:00:00.000Z",
+      "death_year":2015,
       "age":18.0,
       "race":"black",
       "gender":"male",
-      "image":null
+      "image":null,
+      "longitude":-118.304589684,
+      "latitude":33.9784857958
    },
    {
       "case_number":"2014-05979",
@@ -210,10 +261,13 @@
       "middle_name":"Allen",
       "last_name":"White",
       "death_date":"2014-08-31T00:00:00.000Z",
+      "death_year":2014,
       "age":30.0,
       "race":"black",
       "gender":"male",
-      "image":null
+      "image":null,
+      "longitude":-118.308582984,
+      "latitude":33.9930459958
    },
    {
       "case_number":"2014-02932",
@@ -222,10 +276,13 @@
       "middle_name":"Quincy",
       "last_name":"Williams",
       "death_date":"2014-04-25T00:00:00.000Z",
+      "death_year":2014,
       "age":32.0,
       "race":"black",
       "gender":"male",
-      "image":"http:\/\/s3-us-west-2.amazonaws.com\/homicide.latimes.com\/media\/homicide\/1bf4b350-dada-463f-ba90-ab2336eff3f5.jpeg"
+      "image":"http:\/\/s3-us-west-2.amazonaws.com\/homicide.latimes.com\/media\/homicide\/1bf4b350-dada-463f-ba90-ab2336eff3f5.jpeg",
+      "longitude":-118.308503984,
+      "latitude":33.9799959958
    },
    {
       "case_number":"2012-08481",
@@ -234,10 +291,13 @@
       "middle_name":"Alberto",
       "last_name":"Herrera",
       "death_date":"2012-12-22T00:00:00.000Z",
+      "death_year":2012,
       "age":24.0,
       "race":"latino",
       "gender":"male",
-      "image":null
+      "image":null,
+      "longitude":-118.302245984,
+      "latitude":33.9800529967
    },
    {
       "case_number":"2012-06331",
@@ -246,10 +306,13 @@
       "middle_name":"Louis-Davion",
       "last_name":"Caruthers",
       "death_date":"2012-09-25T00:00:00.000Z",
+      "death_year":2012,
       "age":19.0,
       "race":"black",
       "gender":"male",
-      "image":null
+      "image":null,
+      "longitude":-118.302426084,
+      "latitude":33.9832383967
    },
    {
       "case_number":"2012-04147",
@@ -258,10 +321,13 @@
       "middle_name":null,
       "last_name":"Zamarripa",
       "death_date":"2012-06-22T00:00:00.000Z",
+      "death_year":2012,
       "age":26.0,
       "race":"latino",
       "gender":"male",
-      "image":null
+      "image":null,
+      "longitude":-118.302401084,
+      "latitude":33.9829774967
    },
    {
       "case_number":"2012-03692",
@@ -270,10 +336,13 @@
       "middle_name":null,
       "last_name":"Hughes",
       "death_date":"2012-06-03T00:00:00.000Z",
+      "death_year":2012,
       "age":79.0,
       "race":"black",
       "gender":"female",
-      "image":null
+      "image":null,
+      "longitude":-118.306161984,
+      "latitude":33.9789349967
    },
    {
       "case_number":"2012-00849",
@@ -282,10 +351,13 @@
       "middle_name":"Joseph",
       "last_name":"Sullivan",
       "death_date":"2012-02-04T00:00:00.000Z",
+      "death_year":2012,
       "age":53.0,
       "race":"white",
       "gender":"male",
-      "image":null
+      "image":null,
+      "longitude":-118.302567984,
+      "latitude":33.9820729967
    },
    {
       "case_number":"2011-08488",
@@ -294,10 +366,13 @@
       "middle_name":null,
       "last_name":"Lockhart",
       "death_date":"2011-12-27T00:00:00.000Z",
+      "death_year":2011,
       "age":28.0,
       "race":"black",
       "gender":"male",
-      "image":null
+      "image":null,
+      "longitude":-118.300193484,
+      "latitude":33.9923303967
    },
    {
       "case_number":"2010-06394",
@@ -306,10 +381,13 @@
       "middle_name":"L.",
       "last_name":"Washington",
       "death_date":"2010-09-27T00:00:00.000Z",
+      "death_year":2010,
       "age":30.0,
       "race":"black",
       "gender":"male",
-      "image":null
+      "image":null,
+      "longitude":-118.300774984,
+      "latitude":33.9844109967
    },
    {
       "case_number":"2010-02165",
@@ -318,10 +396,13 @@
       "middle_name":"Yuseff",
       "last_name":"Grady",
       "death_date":"2010-03-27T00:00:00.000Z",
+      "death_year":2010,
       "age":39.0,
       "race":"black",
       "gender":"male",
-      "image":"http:\/\/s3-us-west-2.amazonaws.com\/homicide.latimes.com\/media\/homicide\/che_grady.jpg"
+      "image":"http:\/\/s3-us-west-2.amazonaws.com\/homicide.latimes.com\/media\/homicide\/che_grady.jpg",
+      "longitude":-118.308612984,
+      "latitude":33.9860579967
    },
    {
       "case_number":"2010-00568",
@@ -330,10 +411,13 @@
       "middle_name":"Lamont",
       "last_name":"Cotton",
       "death_date":"2010-01-24T00:00:00.000Z",
+      "death_year":2010,
       "age":28.0,
       "race":"black",
       "gender":"male",
-      "image":"http:\/\/s3-us-west-2.amazonaws.com\/homicide.latimes.com\/media\/homicide\/dontae_cotton_dmv.jpg"
+      "image":"http:\/\/s3-us-west-2.amazonaws.com\/homicide.latimes.com\/media\/homicide\/dontae_cotton_dmv.jpg",
+      "longitude":-118.306130984,
+      "latitude":33.9853039967
    },
    {
       "case_number":"2009-07666",
@@ -342,10 +426,13 @@
       "middle_name":"K.",
       "last_name":"Traylor",
       "death_date":"2009-11-10T00:00:00.000Z",
+      "death_year":2009,
       "age":24.0,
       "race":"black",
       "gender":"male",
-      "image":null
+      "image":null,
+      "longitude":-118.302689,
+      "latitude":33.992595
    },
    {
       "case_number":"2009-06265",
@@ -354,10 +441,13 @@
       "middle_name":"Rashad",
       "last_name":"Forman",
       "death_date":"2009-09-10T00:00:00.000Z",
+      "death_year":2009,
       "age":19.0,
       "race":"black",
       "gender":"male",
-      "image":"http:\/\/s3-us-west-2.amazonaws.com\/homicide.latimes.com\/media\/homicide\/FormanKadeemi.jpg"
+      "image":"http:\/\/s3-us-west-2.amazonaws.com\/homicide.latimes.com\/media\/homicide\/FormanKadeemi.jpg",
+      "longitude":-118.307256,
+      "latitude":33.977193
    },
    {
       "case_number":"2009-06140",
@@ -366,10 +456,13 @@
       "middle_name":"Dwayne",
       "last_name":"Moore",
       "death_date":"2009-09-05T00:00:00.000Z",
+      "death_year":2009,
       "age":20.0,
       "race":"black",
       "gender":"male",
-      "image":null
+      "image":null,
+      "longitude":-118.304154,
+      "latitude":33.992335
    },
    {
       "case_number":"2009-05352",
@@ -378,10 +471,13 @@
       "middle_name":"Unique",
       "last_name":"McWayne",
       "death_date":"2009-08-02T00:00:00.000Z",
+      "death_year":2009,
       "age":19.0,
       "race":"black",
       "gender":"male",
-      "image":null
+      "image":null,
+      "longitude":-118.307317,
+      "latitude":33.987804
    },
    {
       "case_number":"2008-05101",
@@ -390,10 +486,13 @@
       "middle_name":null,
       "last_name":"Mallory",
       "death_date":"2008-07-22T00:00:00.000Z",
+      "death_year":2008,
       "age":15.0,
       "race":"black",
       "gender":"male",
-      "image":null
+      "image":null,
+      "longitude":-118.30462,
+      "latitude":33.980606
    },
    {
       "case_number":"2008-04434",
@@ -402,10 +501,13 @@
       "middle_name":null,
       "last_name":"Adams",
       "death_date":"2008-06-20T00:00:00.000Z",
+      "death_year":2008,
       "age":53.0,
       "race":"black",
       "gender":"male",
-      "image":null
+      "image":null,
+      "longitude":-118.308312,
+      "latitude":33.980765
    },
    {
       "case_number":"2008-04313",
@@ -414,10 +516,13 @@
       "middle_name":null,
       "last_name":"Denney",
       "death_date":"2008-06-16T00:00:00.000Z",
+      "death_year":2008,
       "age":20.0,
       "race":"black",
       "gender":"male",
-      "image":null
+      "image":null,
+      "longitude":-118.308492,
+      "latitude":33.985905
    },
    {
       "case_number":"2008-03916",
@@ -426,10 +531,13 @@
       "middle_name":null,
       "last_name":"Hill",
       "death_date":"2008-05-29T00:00:00.000Z",
+      "death_year":2008,
       "age":64.0,
       "race":"black",
       "gender":"male",
-      "image":null
+      "image":null,
+      "longitude":-118.304643384,
+      "latitude":33.9745754958
    },
    {
       "case_number":"2008-03491",
@@ -438,10 +546,13 @@
       "middle_name":null,
       "last_name":"Leon",
       "death_date":"2008-05-09T00:00:00.000Z",
+      "death_year":2008,
       "age":19.0,
       "race":"latino",
       "gender":"male",
-      "image":"http:\/\/s3-us-west-2.amazonaws.com\/homicide.latimes.com\/media\/homicide\/luis_alberto_leon_19.jpg"
+      "image":"http:\/\/s3-us-west-2.amazonaws.com\/homicide.latimes.com\/media\/homicide\/luis_alberto_leon_19.jpg",
+      "longitude":-118.30125,
+      "latitude":33.989512
    },
    {
       "case_number":"2008-00358",
@@ -450,10 +561,13 @@
       "middle_name":null,
       "last_name":"Garcia",
       "death_date":"2008-01-13T00:00:00.000Z",
+      "death_year":2008,
       "age":35.0,
       "race":"latino",
       "gender":"female",
-      "image":null
+      "image":null,
+      "longitude":-118.30247,
+      "latitude":33.974576
    },
    {
       "case_number":"2007-08079",
@@ -462,10 +576,13 @@
       "middle_name":null,
       "last_name":"Blanche",
       "death_date":"2007-11-05T00:00:00.000Z",
+      "death_year":2007,
       "age":22.0,
       "race":"black",
       "gender":"female",
-      "image":"http:\/\/s3-us-west-2.amazonaws.com\/homicide.latimes.com\/media\/homicide\/blanche_shontae_1.jpg"
+      "image":"http:\/\/s3-us-west-2.amazonaws.com\/homicide.latimes.com\/media\/homicide\/blanche_shontae_1.jpg",
+      "longitude":-118.308933,
+      "latitude":33.989725
    },
    {
       "case_number":"2007-08130",
@@ -474,10 +591,13 @@
       "middle_name":null,
       "last_name":"Blanche",
       "death_date":"2007-11-05T00:00:00.000Z",
+      "death_year":2007,
       "age":0.0,
       "race":"black",
       "gender":"female",
-      "image":null
+      "image":null,
+      "longitude":-118.308933,
+      "latitude":33.989725
    },
    {
       "case_number":"2006-03978",
@@ -486,10 +606,13 @@
       "middle_name":"Keith",
       "last_name":"Wilson",
       "death_date":"2006-05-24T00:00:00.000Z",
+      "death_year":2006,
       "age":48.0,
       "race":"black",
       "gender":"male",
-      "image":null
+      "image":null,
+      "longitude":-118.305614,
+      "latitude":33.991214
    },
    {
       "case_number":"2006-01162",
@@ -498,10 +621,13 @@
       "middle_name":null,
       "last_name":"Solis Jr.",
       "death_date":"2006-02-11T00:00:00.000Z",
+      "death_year":2006,
       "age":14.0,
       "race":"latino",
       "gender":"male",
-      "image":null
+      "image":null,
+      "longitude":-118.301369,
+      "latitude":33.992589
    },
    {
       "case_number":"2005-08890",
@@ -510,10 +636,13 @@
       "middle_name":"Bruce",
       "last_name":"Woods",
       "death_date":"2005-11-24T00:00:00.000Z",
+      "death_year":2005,
       "age":36.0,
       "race":"black",
       "gender":"male",
-      "image":null
+      "image":null,
+      "longitude":-118.304784,
+      "latitude":33.987298
    },
    {
       "case_number":"2005-06676",
@@ -522,10 +651,13 @@
       "middle_name":null,
       "last_name":"Greenberg",
       "death_date":"2005-08-30T00:00:00.000Z",
+      "death_year":2005,
       "age":58.0,
       "race":"black",
       "gender":"male",
-      "image":null
+      "image":null,
+      "longitude":-118.308590984,
+      "latitude":33.9893208958
    },
    {
       "case_number":"2005-02017",
@@ -534,10 +666,13 @@
       "middle_name":"Jay",
       "last_name":"Price",
       "death_date":"2005-03-12T00:00:00.000Z",
+      "death_year":2005,
       "age":51.0,
       "race":"black",
       "gender":"male",
-      "image":null
+      "image":null,
+      "longitude":-118.306482,
+      "latitude":33.979607
    },
    {
       "case_number":"2004-08656",
@@ -546,10 +681,13 @@
       "middle_name":"Antione",
       "last_name":"Toliver",
       "death_date":"2004-11-12T00:00:00.000Z",
+      "death_year":2004,
       "age":26.0,
       "race":"black",
       "gender":"male",
-      "image":null
+      "image":null,
+      "longitude":-118.3002686,
+      "latitude":33.9798195
    },
    {
       "case_number":"2004-08514",
@@ -558,10 +696,13 @@
       "middle_name":"Ann",
       "last_name":"Edwards",
       "death_date":"2004-11-09T00:00:00.000Z",
+      "death_year":2004,
       "age":41.0,
       "race":"black",
       "gender":"female",
-      "image":null
+      "image":null,
+      "longitude":-118.30137,
+      "latitude":33.992091
    },
    {
       "case_number":"2004-03810",
@@ -570,10 +711,13 @@
       "middle_name":null,
       "last_name":"Bragg",
       "death_date":"2004-05-17T00:00:00.000Z",
+      "death_year":2004,
       "age":34.0,
       "race":"black",
       "gender":"male",
-      "image":null
+      "image":null,
+      "longitude":-118.303877,
+      "latitude":33.991717
    },
    {
       "case_number":"2004-01913",
@@ -582,10 +726,13 @@
       "middle_name":"Anthony",
       "last_name":"Grant",
       "death_date":"2004-03-05T00:00:00.000Z",
+      "death_year":2004,
       "age":23.0,
       "race":"black",
       "gender":"male",
-      "image":null
+      "image":null,
+      "longitude":-118.305447,
+      "latitude":33.988509
    },
    {
       "case_number":"2004-01340",
@@ -594,10 +741,13 @@
       "middle_name":"John",
       "last_name":"Gabriel",
       "death_date":"2004-02-15T00:00:00.000Z",
+      "death_year":2004,
       "age":12.0,
       "race":"black",
       "gender":"male",
-      "image":null
+      "image":null,
+      "longitude":-118.308609,
+      "latitude":33.990215
    },
    {
       "case_number":"2004-00409",
@@ -606,10 +756,13 @@
       "middle_name":null,
       "last_name":"Peters",
       "death_date":"2004-01-06T00:00:00.000Z",
+      "death_year":2004,
       "age":42.0,
       "race":"black",
       "gender":"male",
-      "image":null
+      "image":null,
+      "longitude":-118.3002094,
+      "latitude":33.9883405
    },
    {
       "case_number":"2003-05654",
@@ -618,10 +771,13 @@
       "middle_name":"Monte",
       "last_name":"Davis",
       "death_date":"2003-07-26T00:00:00.000Z",
+      "death_year":2003,
       "age":32.0,
       "race":"black",
       "gender":"male",
-      "image":null
+      "image":null,
+      "longitude":-118.301406,
+      "latitude":33.9929739
    },
    {
       "case_number":"2003-03490",
@@ -630,10 +786,13 @@
       "middle_name":"Antonio",
       "last_name":"Moore",
       "death_date":"2003-05-08T00:00:00.000Z",
+      "death_year":2003,
       "age":27.0,
       "race":"black",
       "gender":"male",
-      "image":null
+      "image":null,
+      "longitude":-118.308591,
+      "latitude":33.9893209
    },
    {
       "case_number":"2003-03221",
@@ -642,10 +801,13 @@
       "middle_name":"Brice",
       "last_name":"Keene",
       "death_date":"2003-04-28T00:00:00.000Z",
+      "death_year":2003,
       "age":18.0,
       "race":"black",
       "gender":"male",
-      "image":null
+      "image":null,
+      "longitude":-118.3008041,
+      "latitude":33.9777903
    },
    {
       "case_number":"2003-02573",
@@ -654,10 +816,13 @@
       "middle_name":"Rico",
       "last_name":"Marks",
       "death_date":"2003-04-01T00:00:00.000Z",
+      "death_year":2003,
       "age":21.0,
       "race":"black",
       "gender":"male",
-      "image":null
+      "image":null,
+      "longitude":-118.305655,
+      "latitude":33.989962
    },
    {
       "case_number":"2002-07313",
@@ -666,10 +831,13 @@
       "middle_name":"R.",
       "last_name":"Andrews",
       "death_date":"2002-09-29T00:00:00.000Z",
+      "death_year":2002,
       "age":45.0,
       "race":"black",
       "gender":"male",
-      "image":null
+      "image":null,
+      "longitude":-118.30867,
+      "latitude":33.99011
    },
    {
       "case_number":"2002-07040",
@@ -678,22 +846,13 @@
       "middle_name":"Patrick",
       "last_name":"Anyanwu",
       "death_date":"2002-09-18T00:00:00.000Z",
+      "death_year":2002,
       "age":21.0,
       "race":"black",
       "gender":"male",
-      "image":null
-   },
-   {
-      "case_number":"2002-04719",
-      "slug":"lyndon-craig-cox-ii",
-      "first_name":"Lyndon",
-      "middle_name":"Craig",
-      "last_name":"Cox",
-      "death_date":"2002-06-23T00:00:00.000Z",
-      "age":25.0,
-      "race":"black",
-      "gender":"male",
-      "image":null
+      "image":null,
+      "longitude":-118.305298,
+      "latitude":33.977559
    },
    {
       "case_number":"2002-04720",
@@ -702,10 +861,28 @@
       "middle_name":"Odi",
       "last_name":"Ofoegbu",
       "death_date":"2002-06-23T00:00:00.000Z",
+      "death_year":2002,
       "age":21.0,
       "race":"black",
       "gender":"male",
-      "image":null
+      "image":null,
+      "longitude":-118.300672,
+      "latitude":33.977565
+   },
+   {
+      "case_number":"2002-04719",
+      "slug":"lyndon-craig-cox-ii",
+      "first_name":"Lyndon",
+      "middle_name":"Craig",
+      "last_name":"Cox",
+      "death_date":"2002-06-23T00:00:00.000Z",
+      "death_year":2002,
+      "age":25.0,
+      "race":"black",
+      "gender":"male",
+      "image":null,
+      "longitude":-118.300672,
+      "latitude":33.977565
    },
    {
       "case_number":"2001-07195",
@@ -714,10 +891,13 @@
       "middle_name":"Anthony",
       "last_name":"Harris",
       "death_date":"2001-10-03T00:00:00.000Z",
+      "death_year":2001,
       "age":42.0,
       "race":"black",
       "gender":"male",
-      "image":null
+      "image":null,
+      "longitude":-118.306537,
+      "latitude":33.991722
    },
    {
       "case_number":"2001-06708",
@@ -726,22 +906,13 @@
       "middle_name":"Esquite",
       "last_name":"Flores",
       "death_date":"2001-09-15T00:00:00.000Z",
+      "death_year":2001,
       "age":20.0,
       "race":"latino",
       "gender":"male",
-      "image":null
-   },
-   {
-      "case_number":"2000-08217",
-      "slug":"mardress-brooks",
-      "first_name":"Mardress",
-      "middle_name":null,
-      "last_name":"Brooks",
-      "death_date":"2000-11-22T00:00:00.000Z",
-      "age":35.0,
-      "race":"black",
-      "gender":"female",
-      "image":null
+      "image":null,
+      "longitude":-118.304738,
+      "latitude":33.986121
    },
    {
       "case_number":"2000-08216",
@@ -750,10 +921,28 @@
       "middle_name":"David",
       "last_name":"Mitchell",
       "death_date":"2000-11-22T00:00:00.000Z",
+      "death_year":2000,
       "age":44.0,
       "race":"black",
       "gender":"male",
-      "image":null
+      "image":null,
+      "longitude":-118.308623,
+      "latitude":33.974956
+   },
+   {
+      "case_number":"2000-08217",
+      "slug":"mardress-brooks",
+      "first_name":"Mardress",
+      "middle_name":null,
+      "last_name":"Brooks",
+      "death_date":"2000-11-22T00:00:00.000Z",
+      "death_year":2000,
+      "age":35.0,
+      "race":"black",
+      "gender":"female",
+      "image":null,
+      "longitude":-118.301170984,
+      "latitude":33.9844109958
    },
    {
       "case_number":"2000-05112",
@@ -762,9 +951,12 @@
       "middle_name":null,
       "last_name":"Tinner",
       "death_date":"2000-07-18T00:00:00.000Z",
+      "death_year":2000,
       "age":48.0,
       "race":"black",
       "gender":"male",
-      "image":null
+      "image":null,
+      "longitude":-118.308289084,
+      "latitude":33.9824444958
    }
 ]

@@ -406,7 +406,119 @@ TK
 Chapter 7: Hello map
 ********************
 
-TK
+Toss Leaflet into the head.
+
+```
+{% block scripts %}
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.1/dist/leaflet.css" />
+<script src="https://unpkg.com/leaflet@1.3.1/dist/leaflet.js"></script>
+{% endblock %}
+```
+
+Create a starter map.
+
+```
+{% block content %}
+<div id="map"></div>
+{% endblock %}
+
+{% block scripts %}
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.1/dist/leaflet.css" />
+<script src="https://unpkg.com/leaflet@1.3.1/dist/leaflet.js"></script>
+<script>
+    var map = L.map('map').setView([41.890434, -87.623571], 15);
+    L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
+		maxZoom: 18,
+		attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, ' +
+			'<a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
+			'Imagery © <a href="http://mapbox.com">Mapbox</a>',
+		id: 'mapbox.streets'
+	}).addTo(map);
+</script>
+{% endblock %}
+```
+
+Go to Google Maps and find 62nd Street and Harvard Boulevard in South LA. Hold down a click until it gives you the latitude and longitude. Paste those numbers into Leaflet's setView method.
+
+```
+var map = L.map('map').setView([33.983265, -118.306799], 15);
+```
+
+Move in the zoom.
+
+```
+var map = L.map('map').setView([33.983265, -118.306799], 16);
+```
+
+Add a pin.
+
+```
+var marker = L.marker([33.983265, -118.306799]).addTo(map);
+```
+
+Add a popup.
+
+```
+marker.bindPopup("W. 62nd Street and Harvard Boulevard").openPopup();
+```
+
+Install Leaflet-minimap
+
+```
+<link rel="stylesheet" href="http://norkart.github.io/Leaflet-MiniMap/Control.MiniMap.css" />
+<script src="http://norkart.github.io/Leaflet-MiniMap/Control.MiniMap.js"></script>
+```
+
+Create a minimap in the corner
+
+```
+var osm2 = L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    maxZoom: 9,
+    attribution: 'Map data &copy; OpenStreetMap contributors',
+});
+var mini = new L.Control.MiniMap(osm2, { toggleDisplay: true });
+mini.addTo(map);
+```
+
+Create a point for each of the four people who have died on that corner.
+
+```
+{% for obj in site.data.harvard_park_homicides %}
+    {% if obj.death_year > 2015 %}
+        L.marker([{{ obj.latitude }},  {{ obj.longitude }}])
+          .addTo(map)
+          s.bindPopup("{{ obj.first_name }} {{ obj.last_name }}");
+    {% endif %}
+{% endfor %}
+```
+
+Set the map zoom to that corner, and remove our first marker.
+
+```
+map.setView([33.983265, -118.306799], 18);
+```
+
+Add a deck headline.
+
+```
+<h3>One corner. Four killings. </h3>
+```
+
+Write a section graf.
+
+```
+<p>The southwest corner of Harvard Park, at West 62nd Street and Harvard Boulevard, has been especially deadly. In the last year-and-a-half, four men have been killed there — while sitting in a car, trying to defuse an argument or walking home from the barber shop or the corner store.</p>
+```
+
+Wrap it in a section tag.
+
+```
+<section>
+    <h3>One corner. Four killings. </h3>
+    <p>The southwest corner of Harvard Park, at West 62nd Street and Harvard Boulevard, has been especially deadly. In the last year-and-a-half, four men have been killed there — while sitting in a car, trying to defuse an argument or walking home from the barber shop or the corner store.</p>
+    <div id="map"></div>
+</section>
+```
 
 *************************
 Chapter 8: Hello Internet

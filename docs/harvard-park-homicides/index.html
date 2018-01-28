@@ -1,1 +1,201 @@
- <!doctype html> <html lang="en"> <head> <meta charset="utf-8"> <meta name="viewport" content="width=device-width,initial-scale=1"> <title>First News App</title> <link rel="stylesheet" href="https://bl.ocks.org/palewire/raw/1035cd306a2f85b362b1a20ce315b8eb/base.css"> </head> <body> <nav> <a href="http://first-graphics-app.readthedocs.org/"> <img src="https://bl.ocks.org/palewire/raw/1035cd306a2f85b362b1a20ce315b8eb/ire-logo.png"> </a> </nav> <header> <h1>My headline will go here</h1> <div class="byline"> By me </div> </header> <table> <tr> <td>2000</td> <td>1036</td> </tr> <tr> <td>2001</td> <td>1125</td> </tr> <tr> <td>2002</td> <td>1196</td> </tr> <tr> <td>2003</td> <td>1086</td> </tr> <tr> <td>2004</td> <td>1087</td> </tr> <tr> <td>2005</td> <td>1104</td> </tr> <tr> <td>2006</td> <td>1057</td> </tr> <tr> <td>2007</td> <td>892</td> </tr> <tr> <td>2008</td> <td>843</td> </tr> <tr> <td>2009</td> <td>732</td> </tr> <tr> <td>2010</td> <td>654</td> </tr> <tr> <td>2011</td> <td>594</td> </tr> <tr> <td>2012</td> <td>617</td> </tr> <tr> <td>2014</td> <td>542</td> </tr> <tr> <td>2015</td> <td>613</td> </tr> <tr> <td>2016</td> <td>637</td> </tr> <tr> <td>2017</td> <td>587</td> </tr> </table> <table> <tr> <td>2000</td> <td>3</td> </tr> <tr> <td>2001</td> <td>2</td> </tr> <tr> <td>2002</td> <td>4</td> </tr> <tr> <td>2003</td> <td>4</td> </tr> <tr> <td>2004</td> <td>6</td> </tr> <tr> <td>2005</td> <td>3</td> </tr> <tr> <td>2006</td> <td>2</td> </tr> <tr> <td>2007</td> <td>2</td> </tr> <tr> <td>2008</td> <td>6</td> </tr> <tr> <td>2009</td> <td>4</td> </tr> <tr> <td>2010</td> <td>3</td> </tr> <tr> <td>2011</td> <td>1</td> </tr> <tr> <td>2012</td> <td>5</td> </tr> <tr> <td>2014</td> <td>2</td> </tr> <tr> <td>2015</td> <td>3</td> </tr> <tr> <td>2016</td> <td>8</td> </tr> <tr> <td>2017</td> <td>6</td> </tr> </table> <script src="../scripts/main.js"></script> </body> </html> 
+ <!doctype html> <html lang="en"> <head> <meta charset="utf-8"> <meta name="viewport" content="width=device-width,initial-scale=1"> <title>First Graphics App</title> <link rel="stylesheet" href="https://bl.ocks.org/palewire/raw/1035cd306a2f85b362b1a20ce315b8eb/base.css"> </head> <body> <nav> <a href="http://first-graphics-app.readthedocs.org/"> <img src="https://bl.ocks.org/palewire/raw/1035cd306a2f85b362b1a20ce315b8eb/ire-logo.png"> </a> </nav> <header> <h1>A South L.A. neighborhood grapples with a wave of violence</h1> <div class="byline"> By <a href="http://first-graphics-app.readthedocs.org/">The First Graphics App Tutorial</a> </div> <div class="pubdate"> <time datetime="2017-11-19" pubdate>Nov. 19, 2017</time> </div> </header> <section> <p>The area around Harvard Park was the deadliest place for African Americans in Los Angeles County last year, according to <a href="http://homicide.latimes.com/">The Times’ Homicide Report</a>. So far this year, six people have been killed. Most of the victims were black men.</p> <p>There is no clear pattern. Police and other experts say, such increases are not unusual in an area where the baseline level of violence is high, fueled by gangs, poverty and a readiness to settle arguments with guns.</p> </section> <section> <h3>One corner. Four killings. </h3> <p>The southwest corner of Harvard Park, at West 62nd Street and Harvard Boulevard, has been especially deadly. In the last year-and-a-half, four men have been killed there — while sitting in a car, trying to defuse an argument or walking home from the barber shop or the corner store.</p> <div id="map"></div> </section> <script src="../scripts/main.js"></script> <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.1/dist/leaflet.css"> <script src="https://unpkg.com/leaflet@1.3.1/dist/leaflet.js"></script> <link rel="stylesheet" href="http://norkart.github.io/Leaflet-MiniMap/Control.MiniMap.css"> <script src="http://norkart.github.io/Leaflet-MiniMap/Control.MiniMap.js"></script> <script> var map = L.map('map')
+    var osm = L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+		maxZoom: 18,
+        minZoom: 5,
+		attribution: 'Map data &copy; OpenStreetMap contributors',
+	});
+    osm.addTo(map);
+
+    
+        
+            L.marker([33.9904336958,  -118.304107484])
+              .addTo(map)
+              .bindPopup("Eddie Lino");
+        
+    
+        
+            L.marker([33.9793646958,  -118.300290584])
+              .addTo(map)
+              .bindPopup("Alex Lomeli");
+        
+    
+        
+            L.marker([33.9793646958,  -118.300290584])
+              .addTo(map)
+              .bindPopup("Carlos Martinez");
+        
+    
+        
+            L.marker([33.9914742958,  -118.304618084])
+              .addTo(map)
+              .bindPopup("Lloyd Craig");
+        
+    
+        
+            L.marker([33.9860941958,  -118.307344784])
+              .addTo(map)
+              .bindPopup("Jenell Gamble-Kendrick");
+        
+    
+        
+            L.marker([33.983398480211264,  -118.30673575401306])
+              .addTo(map)
+              .bindPopup("Brandon Tatum");
+        
+    
+        
+            L.marker([33.9897150958,  -118.307115484])
+              .addTo(map)
+              .bindPopup("Tyrone Davis");
+        
+    
+        
+            L.marker([33.9848401958,  -118.308092884])
+              .addTo(map)
+              .bindPopup("Edwardo Garcia Hernandez");
+        
+    
+        
+            L.marker([33.98298924730142,  -118.30672502517699])
+              .addTo(map)
+              .bindPopup("DeWayne Parham");
+        
+    
+        
+            L.marker([33.9823622562,  -118.308908925])
+              .addTo(map)
+              .bindPopup("Marcus Wilkerson");
+        
+    
+        
+            L.marker([33.98315383033896,  -118.3068323135376])
+              .addTo(map)
+              .bindPopup("Abrey White");
+        
+    
+        
+            L.marker([33.9877070958,  -118.304367484])
+              .addTo(map)
+              .bindPopup("Gareth Lopez");
+        
+    
+        
+            L.marker([33.9905553958,  -118.302431084])
+              .addTo(map)
+              .bindPopup("Deontae Ruffin");
+        
+    
+        
+            L.marker([33.98291807615946,  -118.30683767795561])
+              .addTo(map)
+              .bindPopup("Kenneth Durden");
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+    map.setView([33.983265, -118.306799], 18);
+
+    var osm2 = L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+		maxZoom: 9,
+		attribution: 'Map data &copy; OpenStreetMap contributors',
+	});
+    var mini = new L.Control.MiniMap(osm2, { toggleDisplay: true });
+    mini.addTo(map); </script> </body> </html> 

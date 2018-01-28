@@ -25,6 +25,9 @@
         <div class="byline">
             {% block byline %}{% endblock %}
         </div>
+        <div class="pubdate">
+            {% block pubdate %}{% endblock %}
+        </div>
     </header>
     {% block content %}{% endblock %}
     <script src="{{baseUrl}}scripts/main.js"></script>
