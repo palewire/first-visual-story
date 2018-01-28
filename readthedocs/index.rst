@@ -234,6 +234,19 @@ cd Code
 cd first-graphics-app
 ```
 
+Commit our work.
+
+.. code-block:: bash
+
+    $ git add .
+    $ git commit -m "Installed framework"
+
+Push it to GitHub.
+
+.. code-block:: bash
+    $ git push origin master
+
+
 *************************
 Chapter 3: Hello template
 *************************
