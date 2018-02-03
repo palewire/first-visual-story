@@ -125,6 +125,7 @@ Visit `GitHub <http://www.github.com>`_ and create a new public repository named
 Then connect your local directory to GitHub with the following command.
 
 .. code-block:: bash
+
     $ git remote add origin https://github.com/<yourusername>/first-graphics-app.git
 
 Create your first file, a blank ``README`` with a `Markdown <https://en.wikipedia.org/wiki/Markdown>`_ file extension since that's `the preferred format of GitHub <https://help.github.com/articles/github-flavored-markdown>`_.
@@ -177,68 +178,78 @@ Chapter 2: Hello framework
 
 Create a Code directory for your work.
 
-```bash
-mkdir Code
-```
+.. code-block:: bash
+
+    $ mkdir code
+
 
 Move in.
 
-```bash
-cd Code
-```
+.. code-block:: bash
+
+    $ cd Code
+
 
 Create a new directory project
 
-```bash
-mkdir first-graphics-app
-```
+.. code-block:: bash
+
+    $ mkdir first-graphics-app
+
 
 Move in.
 
-```bash
-cd Code
-```
+.. code-block:: bash
+
+    $ cd Code
+
 
 Install yeoman
 
-```bash
-sudo npm install -g yo gulp
-```
+.. code-block:: bash
+
+    $ sudo npm install -g yo gulp
+
 
 Use yeoman to install our project generator.
 
-```bash
-sudo npm install -g generator-yeogurt
-```
+.. code-block:: bash
+
+    $ sudo npm install -g generator-yeogurt
+
 
 Create a new project.
 
-```bash
-yo yeogurt
-```
+.. code-block:: bash
+
+    $ yo yeogurt
+
 
 Be sure to pick "nunjucks" when creating the project.
 
 Fire up the test server
 
-```bash
-gulp serve
-```
+.. code-block:: bash
+
+    $ gulp serve
+
 
 Visit localhost:3000 in your browser.
 
 Make an edit to index.nunjucks and see it show up on the live site.
 
-```html
+.. code-block:: html
+
     <h1>Welcome to First Graphics App!</h1>
-```
+
 
 Open a second terminal and navigate to your code folder.
 
-```bash
-cd Code
-cd first-graphics-app
-```
+.. code-block:: bash
+
+    $ cd Code
+    $ cd first-graphics-app
+
 
 Commit our work.
 

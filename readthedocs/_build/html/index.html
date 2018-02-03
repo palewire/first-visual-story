@@ -222,20 +222,41 @@ in Chicago</a>.</p>
 <p><a class="reference external" href="https://github.com/">GitHub</a> is a website that hosts git code repositories, both public and private. It comes with many helpful tools for reviewing code and managing projects. It also has some <a class="reference external" href="http://pages.github.com/">extra tricks</a> that make it easy to publish web pages, which we will use later.</p>
 <p>GitHub offers helpful guides for installing Git for <a class="reference external" href="https://help.github.com/articles/set-up-git#platform-windows">Windows</a>, <a class="reference external" href="https://help.github.com/articles/set-up-git#platform-mac">Macs</a> and <a class="reference external" href="https://help.github.com/articles/set-up-git#platform-linux">Linux</a>.</p>
 <p>You can verify it’s installed from your command line like so:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ git --version
+</pre></div>
+</div>
 <p>Once that’s done, you should create an account at GitHub, if you don’t already have one. <a class="reference external" href="https://github.com/pricing">The free plan</a> is all that’s required to complete this lesson.</p>
 </div>
 </div>
 <div class="section" id="chapter-1-hello-git">
 <h2>Chapter 1: Hello Git<a class="headerlink" href="#chapter-1-hello-git" title="Permalink to this headline">¶</a></h2>
 <p>Start by creating a new directory where we can store the code for our project. Name it after our application.</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span><span class="c1"># You don&#39;t have to type the &quot;$&quot; It&#39;s just a generic symbol</span>
+<span class="c1"># geeks use to show they&#39;re working on the command line.</span>
+$ mkdir first-graphics-app
+</pre></div>
+</div>
 <p>Jump into the directory it created.</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>$ <span class="nb">cd</span> first-graphics-app
 </pre></div>
 </div>
 <p>Create a new Git repository in the current directory.</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span><span class="c1"># &quot;.&quot; is a common shortcut to refer to the current directory from the terminal</span>
+$ git init .
+</pre></div>
+</div>
 <p>Visit <a class="reference external" href="http://www.github.com">GitHub</a> and create a new public repository named <code class="docutils literal"><span class="pre">first-graphics-app</span></code>. Don’t check “Initialize with README.” You want to start with a blank repository.</p>
 <p>Then connect your local directory to GitHub with the following command.</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ git remote add origin https://github.com/&lt;yourusername&gt;/first-graphics-app.git
+</pre></div>
+</div>
 <p>Create your first file, a blank <code class="docutils literal"><span class="pre">README</span></code> with a <a class="reference external" href="https://en.wikipedia.org/wiki/Markdown">Markdown</a> file extension since that’s <a class="reference external" href="https://help.github.com/articles/github-flavored-markdown">the preferred format of GitHub</a>.</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span><span class="c1"># Macs or Linux:</span>
+$ touch README.md
+<span class="c1"># In Windows fire it up in your text editor right away:</span>
+$ start notepad++ README.md
+</pre></div>
+</div>
 <p>Open up the README in your text editor and type something in it. Maybe something like:</p>
 <div class="highlight-markdown"><div class="highlight"><pre><span></span>My first graphics app
 =====================
@@ -250,62 +271,70 @@ in Chicago</a>.</p>
 </pre></div>
 </div>
 <p>If this is your first time using Git, you may be prompted to configure you name and email. If so, take the time now. Then run the <code class="docutils literal"><span class="pre">commit</span></code> command above again.</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ git config --global user.email <span class="s2">&quot;your@email.com&quot;</span>
+$ git config --global user.name <span class="s2">&quot;your name&quot;</span>
+</pre></div>
+</div>
 <p>Now, finally, push your commit up to GitHub.</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ git push origin master
+</pre></div>
+</div>
 <p>Reload your repository on GitHub and see your handiwork.</p>
 </div>
 <div class="section" id="chapter-2-hello-framework">
 <h2>Chapter 2: Hello framework<a class="headerlink" href="#chapter-2-hello-framework" title="Permalink to this headline">¶</a></h2>
 <p>Create a Code directory for your work.</p>
-<p><code class="docutils literal"><span class="pre">`bash</span>
-<span class="pre">mkdir</span> <span class="pre">Code</span>
-<span class="pre">`</span></code></p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ mkdir code
+</pre></div>
+</div>
 <p>Move in.</p>
-<p><code class="docutils literal"><span class="pre">`bash</span>
-<span class="pre">cd</span> <span class="pre">Code</span>
-<span class="pre">`</span></code></p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ <span class="nb">cd</span> Code
+</pre></div>
+</div>
 <p>Create a new directory project</p>
-<p><code class="docutils literal"><span class="pre">`bash</span>
-<span class="pre">mkdir</span> <span class="pre">first-graphics-app</span>
-<span class="pre">`</span></code></p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ mkdir first-graphics-app
+</pre></div>
+</div>
 <p>Move in.</p>
-<p><code class="docutils literal"><span class="pre">`bash</span>
-<span class="pre">cd</span> <span class="pre">Code</span>
-<span class="pre">`</span></code></p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ <span class="nb">cd</span> Code
+</pre></div>
+</div>
 <p>Install yeoman</p>
-<p><code class="docutils literal"><span class="pre">`bash</span>
-<span class="pre">sudo</span> <span class="pre">npm</span> <span class="pre">install</span> <span class="pre">-g</span> <span class="pre">yo</span> <span class="pre">gulp</span>
-<span class="pre">`</span></code></p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ sudo npm install -g yo gulp
+</pre></div>
+</div>
 <p>Use yeoman to install our project generator.</p>
-<p><code class="docutils literal"><span class="pre">`bash</span>
-<span class="pre">sudo</span> <span class="pre">npm</span> <span class="pre">install</span> <span class="pre">-g</span> <span class="pre">generator-yeogurt</span>
-<span class="pre">`</span></code></p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ sudo npm install -g generator-yeogurt
+</pre></div>
+</div>
 <p>Create a new project.</p>
-<p><code class="docutils literal"><span class="pre">`bash</span>
-<span class="pre">yo</span> <span class="pre">yeogurt</span>
-<span class="pre">`</span></code></p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ yo yeogurt
+</pre></div>
+</div>
 <p>Be sure to pick “nunjucks” when creating the project.</p>
 <p>Fire up the test server</p>
-<p><code class="docutils literal"><span class="pre">`bash</span>
-<span class="pre">gulp</span> <span class="pre">serve</span>
-<span class="pre">`</span></code></p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ gulp serve
+</pre></div>
+</div>
 <p>Visit localhost:3000 in your browser.</p>
 <p>Make an edit to index.nunjucks and see it show up on the live site.</p>
-<dl class="docutils">
-<dt><a href="#id8"><span class="problematic" id="id9">``</span></a><a href="#id10"><span class="problematic" id="id11">`</span></a>html</dt>
-<dd>&lt;h1&gt;Welcome to First Graphics App!&lt;/h1&gt;</dd>
-</dl>
-<p><a href="#id12"><span class="problematic" id="id13">``</span></a><a href="#id14"><span class="problematic" id="id15">`</span></a></p>
+<div class="highlight-html"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">h1</span><span class="p">&gt;</span>Welcome to First Graphics App!<span class="p">&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
+</pre></div>
+</div>
 <p>Open a second terminal and navigate to your code folder.</p>
-<p><code class="docutils literal"><span class="pre">`bash</span>
-<span class="pre">cd</span> <span class="pre">Code</span>
-<span class="pre">cd</span> <span class="pre">first-graphics-app</span>
-<span class="pre">`</span></code></p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ <span class="nb">cd</span> Code
+$ <span class="nb">cd</span> first-graphics-app
+</pre></div>
+</div>
 <p>Commit our work.</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>$ git add .
 $ git commit -m <span class="s2">&quot;Installed framework&quot;</span>
 </pre></div>
 </div>
 <p>Push it to GitHub.</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ git push origin master
+</pre></div>
+</div>
 </div>
 <div class="section" id="chapter-3-hello-template">
 <h2>Chapter 3: Hello template<a class="headerlink" href="#chapter-3-hello-template" title="Permalink to this headline">¶</a></h2>
@@ -327,7 +356,7 @@ $ git commit -m <span class="s2">&quot;Installed framework&quot;</span>
 <span class="pre">{%</span> <span class="pre">block</span> <span class="pre">content</span> <span class="pre">%}{%</span> <span class="pre">endblock</span> <span class="pre">%}</span>
 <span class="pre">`</span></code></p>
 <p>Replace _layouts/base.nunjucks with our more polished base template.</p>
-<p><a href="#id16"><span class="problematic" id="id17">``</span></a><a href="#id18"><span class="problematic" id="id19">`</span></a>nunjucks
+<p><a href="#id8"><span class="problematic" id="id9">``</span></a><a href="#id10"><span class="problematic" id="id11">`</span></a>nunjucks
 {# Custom Configuration #}
 {% block config %}</p>
 <blockquote>
@@ -372,7 +401,7 @@ $ git commit -m <span class="s2">&quot;Installed framework&quot;</span>
 </div></blockquote>
 <p>&lt;/body&gt;
 &lt;/html&gt;
-<a href="#id20"><span class="problematic" id="id21">``</span></a><a href="#id22"><span class="problematic" id="id23">`</span></a></p>
+<a href="#id12"><span class="problematic" id="id13">``</span></a><a href="#id14"><span class="problematic" id="id15">`</span></a></p>
 <p>Fill in a headline and see it show up.</p>
 <p><code class="docutils literal"><span class="pre">`</span>
 <span class="pre">{%</span> <span class="pre">block</span> <span class="pre">headline</span> <span class="pre">%}My</span> <span class="pre">headline</span> <span class="pre">will</span> <span class="pre">go</span> <span class="pre">here{%</span> <span class="pre">endblock</span> <span class="pre">%}</span>
@@ -387,6 +416,9 @@ $ git commit -m <span class="s2">&quot;Installed framework&quot;</span>
 </pre></div>
 </div>
 <p>Push it to GitHub.</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ git push origin master
+</pre></div>
+</div>
 </div>
 <div class="section" id="chapter-4-hello-data">
 <h2>Chapter 4: Hello data<a class="headerlink" href="#chapter-4-hello-data" title="Permalink to this headline">¶</a></h2>
@@ -398,32 +430,35 @@ $ git commit -m <span class="s2">&quot;Installed framework&quot;</span>
 <span class="pre">{%</span> <span class="pre">endblock</span> <span class="pre">%}</span>
 <span class="pre">`</span></code></p>
 <p>Loop through them and print them all.</p>
-<p><a href="#id24"><span class="problematic" id="id25">``</span></a>`
+<p><a href="#id16"><span class="problematic" id="id17">``</span></a>`
 {% for obj in site.data.harvard_park_homicides %}</p>
 <blockquote>
 <div>{{ obj }}</div></blockquote>
 <p>{% endfor %}
-<a href="#id26"><span class="problematic" id="id27">``</span></a><a href="#id28"><span class="problematic" id="id29">`</span></a></p>
+<a href="#id18"><span class="problematic" id="id19">``</span></a><a href="#id20"><span class="problematic" id="id21">`</span></a></p>
 <p>Print the last name.</p>
-<p><a href="#id30"><span class="problematic" id="id31">``</span></a>`
+<p><a href="#id22"><span class="problematic" id="id23">``</span></a>`
 {% for obj in site.data.harvard_park_homicides %}</p>
 <blockquote>
 <div>{{ obj.last_name }}</div></blockquote>
 <p>{% endfor %}
-<a href="#id32"><span class="problematic" id="id33">``</span></a><a href="#id34"><span class="problematic" id="id35">`</span></a></p>
+<a href="#id24"><span class="problematic" id="id25">``</span></a><a href="#id26"><span class="problematic" id="id27">`</span></a></p>
 <p>Add the first name</p>
-<p><a href="#id36"><span class="problematic" id="id37">``</span></a>`
+<p><a href="#id28"><span class="problematic" id="id29">``</span></a>`
 {% for obj in site.data.harvard_park_homicides %}</p>
 <blockquote>
 <div>{{ obj.first_name }} {{ obj.last_name }}</div></blockquote>
 <p>{% endfor %}
-<a href="#id38"><span class="problematic" id="id39">``</span></a><a href="#id40"><span class="problematic" id="id41">`</span></a></p>
+<a href="#id30"><span class="problematic" id="id31">``</span></a><a href="#id32"><span class="problematic" id="id33">`</span></a></p>
 <p>Commit our work.</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>$ git add .
 $ git commit -m <span class="s2">&quot;Installed framework&quot;</span>
 </pre></div>
 </div>
 <p>Push it to GitHub.</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ git push origin master
+</pre></div>
+</div>
 </div>
 <div class="section" id="chapter-5-hello-table">
 <h2>Chapter 5: Hello table<a class="headerlink" href="#chapter-5-hello-table" title="Permalink to this headline">¶</a></h2>
@@ -448,7 +483,7 @@ $ npm install d4
 <span class="pre">{%</span> <span class="pre">endblock</span> <span class="pre">%}</span>
 <span class="pre">`</span></code></p>
 <p>Create a starter map.</p>
-<p><a href="#id42"><span class="problematic" id="id43">``</span></a>`
+<p><a href="#id34"><span class="problematic" id="id35">``</span></a>`
 {% block content %}
 &lt;div id=”map”&gt;&lt;/div&gt;
 {% endblock %}</p>
@@ -473,7 +508,7 @@ attribution: ‘Map data &amp;copy; &lt;a href=”<a class="reference external" 
 </div></blockquote>
 <p>&lt;/script&gt;
 {% endblock %}
-<a href="#id44"><span class="problematic" id="id45">``</span></a><a href="#id46"><span class="problematic" id="id47">`</span></a></p>
+<a href="#id36"><span class="problematic" id="id37">``</span></a><a href="#id38"><span class="problematic" id="id39">`</span></a></p>
 <p>Go to Google Maps and find 62nd Street and Harvard Boulevard in South LA. Hold down a click until it gives you the latitude and longitude. Paste those numbers into Leaflet’s setView method.</p>
 <p><code class="docutils literal"><span class="pre">`</span>
 <span class="pre">var</span> <span class="pre">map</span> <span class="pre">=</span> <span class="pre">L.map('map').setView([33.983265,</span> <span class="pre">-118.306799],</span> <span class="pre">15);</span>
@@ -496,7 +531,7 @@ attribution: ‘Map data &amp;copy; &lt;a href=”<a class="reference external" 
 <span class="pre">&lt;script</span> <span class="pre">src=&quot;http://norkart.github.io/Leaflet-MiniMap/Control.MiniMap.js&quot;&gt;&lt;/script&gt;</span>
 <span class="pre">`</span></code></p>
 <p>Create a minimap in the corner</p>
-<p><a href="#id48"><span class="problematic" id="id49">``</span></a>`
+<p><a href="#id40"><span class="problematic" id="id41">``</span></a>`
 var osm2 = L.tileLayer(‘<a class="reference external" href="http:/">http:/</a>/{s}.tile.openstreetmap.org/{z}/{x}/{y}.png’, {</p>
 <blockquote>
 <div>maxZoom: 9,
@@ -504,9 +539,9 @@ attribution: ‘Map data &amp;copy; OpenStreetMap contributors’,</div></blockq
 <p>});
 var mini = new L.Control.MiniMap(osm2, { toggleDisplay: true });
 mini.addTo(map);
-<a href="#id50"><span class="problematic" id="id51">``</span></a><a href="#id52"><span class="problematic" id="id53">`</span></a></p>
+<a href="#id42"><span class="problematic" id="id43">``</span></a><a href="#id44"><span class="problematic" id="id45">`</span></a></p>
 <p>Create a point for each of the four people who have died on that corner.</p>
-<p><a href="#id54"><span class="problematic" id="id55">``</span></a>`
+<p><a href="#id46"><span class="problematic" id="id47">``</span></a>`
 {% for obj in site.data.harvard_park_homicides %}</p>
 <blockquote>
 <div><dl class="docutils">
@@ -521,7 +556,7 @@ s.bindPopup(“{{ obj.first_name }} {{ obj.last_name }}”);</dd>
 <p>{% endif %}</p>
 </div></blockquote>
 <p>{% endfor %}
-<a href="#id56"><span class="problematic" id="id57">``</span></a><a href="#id58"><span class="problematic" id="id59">`</span></a></p>
+<a href="#id48"><span class="problematic" id="id49">``</span></a><a href="#id50"><span class="problematic" id="id51">`</span></a></p>
 <p>Set the map zoom to that corner, and remove our first marker.</p>
 <p><code class="docutils literal"><span class="pre">`</span>
 <span class="pre">map.setView([33.983265,</span> <span class="pre">-118.306799],</span> <span class="pre">18);</span>
@@ -535,14 +570,14 @@ s.bindPopup(“{{ obj.first_name }} {{ obj.last_name }}”);</dd>
 <span class="pre">&lt;p&gt;The</span> <span class="pre">southwest</span> <span class="pre">corner</span> <span class="pre">of</span> <span class="pre">Harvard</span> <span class="pre">Park,</span> <span class="pre">at</span> <span class="pre">West</span> <span class="pre">62nd</span> <span class="pre">Street</span> <span class="pre">and</span> <span class="pre">Harvard</span> <span class="pre">Boulevard,</span> <span class="pre">has</span> <span class="pre">been</span> <span class="pre">especially</span> <span class="pre">deadly.</span> <span class="pre">In</span> <span class="pre">the</span> <span class="pre">last</span> <span class="pre">year-and-a-half,</span> <span class="pre">four</span> <span class="pre">men</span> <span class="pre">have</span> <span class="pre">been</span> <span class="pre">killed</span> <span class="pre">there</span> <span class="pre">—</span> <span class="pre">while</span> <span class="pre">sitting</span> <span class="pre">in</span> <span class="pre">a</span> <span class="pre">car,</span> <span class="pre">trying</span> <span class="pre">to</span> <span class="pre">defuse</span> <span class="pre">an</span> <span class="pre">argument</span> <span class="pre">or</span> <span class="pre">walking</span> <span class="pre">home</span> <span class="pre">from</span> <span class="pre">the</span> <span class="pre">barber</span> <span class="pre">shop</span> <span class="pre">or</span> <span class="pre">the</span> <span class="pre">corner</span> <span class="pre">store.&lt;/p&gt;</span>
 <span class="pre">`</span></code></p>
 <p>Wrap it in a section tag.</p>
-<p><a href="#id60"><span class="problematic" id="id61">``</span></a>`
+<p><a href="#id52"><span class="problematic" id="id53">``</span></a>`
 &lt;section&gt;</p>
 <blockquote>
 <div>&lt;h3&gt;One corner. Four killings. &lt;/h3&gt;
 &lt;p&gt;The southwest corner of Harvard Park, at West 62nd Street and Harvard Boulevard, has been especially deadly. In the last year-and-a-half, four men have been killed there — while sitting in a car, trying to defuse an argument or walking home from the barber shop or the corner store.&lt;/p&gt;
 &lt;div id=”map”&gt;&lt;/div&gt;</div></blockquote>
 <p>&lt;/section&gt;
-<a href="#id62"><span class="problematic" id="id63">``</span></a><a href="#id64"><span class="problematic" id="id65">`</span></a></p>
+<a href="#id54"><span class="problematic" id="id55">``</span></a><a href="#id56"><span class="problematic" id="id57">`</span></a></p>
 </div>
 <div class="section" id="chapter-8-hello-internet">
 <h2>Chapter 8: Hello Internet<a class="headerlink" href="#chapter-8-hello-internet" title="Permalink to this headline">¶</a></h2>
