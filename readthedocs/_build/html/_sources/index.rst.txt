@@ -229,7 +229,7 @@ Fire up the test server
 
 Visit `localhost:3000 <http://localhost:3000>`_ in your browser.
 
-Make an edit to index.nunjucks and see it show up on the live site.
+Replace the content of ``src/index.nunjucks`` with the below line, and see it show up on the live site.
 
 .. code-block:: html
 
@@ -240,7 +240,7 @@ Open a second terminal and navigate to your code folder.
 
 .. code-block:: bash
 
-    $ cd Code
+    $ cd code
     $ cd first-graphics-app
 
 
