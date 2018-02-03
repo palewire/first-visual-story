@@ -316,7 +316,7 @@ $ git config --global user.name <span class="s2">&quot;your name&quot;</span>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>$ gulp serve
 </pre></div>
 </div>
-<p>Visit localhost:3000 in your browser.</p>
+<p>Visit <a class="reference external" href="http://localhost:3000">localhost:3000</a> in your browser.</p>
 <p>Make an edit to index.nunjucks and see it show up on the live site.</p>
 <div class="highlight-html"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">h1</span><span class="p">&gt;</span>Welcome to First Graphics App!<span class="p">&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
 </pre></div>
@@ -339,77 +339,66 @@ $ git commit -m <span class="s2">&quot;Installed framework&quot;</span>
 <div class="section" id="chapter-3-hello-template">
 <h2>Chapter 3: Hello template<a class="headerlink" href="#chapter-3-hello-template" title="Permalink to this headline">¶</a></h2>
 <p>Create a new page for our app</p>
-<p><code class="docutils literal"><span class="pre">`</span>
-<span class="pre">yo</span> <span class="pre">yeogurt:page</span> <span class="pre">harvard-park-homicides</span>
-<span class="pre">`</span></code></p>
-<p>Navigate to localhost:3000/harvard-park-homicides/.</p>
-<p>Make a change to harvard-park-homicides/index.nunjucks. See it show up.</p>
-<p><code class="docutils literal"><span class="pre">`html</span>
-<span class="pre">{%</span> <span class="pre">block</span> <span class="pre">content</span> <span class="pre">%}</span>
-<span class="pre">&lt;p&gt;Hello</span> <span class="pre">World&lt;/p&gt;</span>
-<span class="pre">{%</span> <span class="pre">endblock</span> <span class="pre">%}</span>
-<span class="pre">`</span></code></p>
-<p>Open up _layouts/base.nunjucks and explain how the template inheritance system works.</p>
-<p>Make a small change to base.nunjucks and see it come up live.</p>
-<p><code class="docutils literal"><span class="pre">`nunjucks</span>
-<span class="pre">Above</span> <span class="pre">content</span>
-<span class="pre">{%</span> <span class="pre">block</span> <span class="pre">content</span> <span class="pre">%}{%</span> <span class="pre">endblock</span> <span class="pre">%}</span>
-<span class="pre">`</span></code></p>
-<p>Replace _layouts/base.nunjucks with our more polished base template.</p>
-<p><a href="#id8"><span class="problematic" id="id9">``</span></a><a href="#id10"><span class="problematic" id="id11">`</span></a>nunjucks
-{# Custom Configuration #}
-{% block config %}</p>
-<blockquote>
-<div>{# Setup site’s base URL to match the “baseUrl” key within <cite>package.json</cite> #}
-{# Otherwise default to relative pathing #}
-{% set baseUrl = config.baseUrl or ‘./’ %}</div></blockquote>
-<p>{% endblock %}</p>
-<p>&lt;!doctype html&gt;
-&lt;html lang=”en”&gt;
-&lt;head&gt;</p>
-<blockquote>
-<div>&lt;meta charset=”utf-8”&gt;
-&lt;meta name=”viewport” content=”width=device-width, initial-scale=1.0”&gt;
-&lt;title&gt;First News App&lt;/title&gt;
-&lt;link rel=”stylesheet” href=”<a class="reference external" href="https://bl.ocks.org/palewire/raw/1035cd306a2f85b362b1a20ce315b8eb/base.css">https://bl.ocks.org/palewire/raw/1035cd306a2f85b362b1a20ce315b8eb/base.css</a>”&gt;
-{% block stylesheets %}{% endblock %}</div></blockquote>
-<p>&lt;/head&gt;
-&lt;body&gt;</p>
-<blockquote>
-<div><dl class="docutils">
-<dt>&lt;nav&gt;</dt>
-<dd><dl class="first docutils">
-<dt>&lt;a href=”<a class="reference external" href="http://first-graphics-app.readthedocs.org/">http://first-graphics-app.readthedocs.org/</a>”&gt;</dt>
-<dd>&lt;img src=”<a class="reference external" href="https://bl.ocks.org/palewire/raw/1035cd306a2f85b362b1a20ce315b8eb/ire-logo.png">https://bl.ocks.org/palewire/raw/1035cd306a2f85b362b1a20ce315b8eb/ire-logo.png</a>”&gt;</dd>
-</dl>
-<p class="last">&lt;/a&gt;</p>
-</dd>
-</dl>
-<p>&lt;/nav&gt;
-&lt;header&gt;</p>
-<blockquote>
-<div><p>&lt;h1&gt;{% block headline %}{% endblock %}&lt;/h1&gt;
-&lt;div class=”byline”&gt;</p>
-<blockquote>
-<div>{% block byline %}{% endblock %}</div></blockquote>
-<p>&lt;/div&gt;</p>
-</div></blockquote>
-<p>&lt;/header&gt;
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ yo yeogurt:page harvard-park-homicides
+</pre></div>
+</div>
+<p>Navigate to <a class="reference external" href="http://localhost:3000/harvard-park-homicides/">localhost:3000/harvard-park-homicides/</a>.</p>
+<p>Make a change to <code class="docutils literal"><span class="pre">harvard-park-homicides/index.nunjucks</span></code>. See it show up.</p>
+<div class="highlight-nunjucks"><div class="highlight"><pre><span></span>{% block content %}
+&lt;p&gt;Hello World&lt;/p&gt;
+{% endblock %}
+</pre></div>
+</div>
+<p>Open up <code class="docutils literal"><span class="pre">_layouts/base.nunjucks</span></code> and explain how the template inheritance system works.</p>
+<p>Make a small change to <code class="docutils literal"><span class="pre">base.nunjucks</span></code> and see it come up live.</p>
+<div class="highlight-nunjucks"><div class="highlight"><pre><span></span>Above content
 {% block content %}{% endblock %}
-&lt;script src=”{{baseUrl}}scripts/main.js”&gt;&lt;/script&gt;
-{% block scripts %}{% endblock %}</p>
-</div></blockquote>
-<p>&lt;/body&gt;
+</pre></div>
+</div>
+<p>Replace <code class="docutils literal"><span class="pre">_layouts/base.nunjucks</span></code> with our more polished base template.</p>
+<div class="highlight-nunjucks"><div class="highlight"><pre><span></span>{# Custom Configuration #}
+{% block config %}
+  {# Setup site&#39;s base URL to match the &quot;baseUrl&quot; key within `package.json` #}
+  {# Otherwise default to relative pathing #}
+  {% set baseUrl = config.baseUrl or &#39;./&#39; %}
+{% endblock %}
+
+&lt;!doctype html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+    &lt;meta charset=&quot;utf-8&quot;&gt;
+    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+    &lt;title&gt;First News App&lt;/title&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;https://bl.ocks.org/palewire/raw/1035cd306a2f85b362b1a20ce315b8eb/base.css&quot;&gt;
+    {% block stylesheets %}{% endblock %}
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;nav&gt;
+        &lt;a href=&quot;http://first-graphics-app.readthedocs.org/&quot;&gt;
+            &lt;img src=&quot;https://bl.ocks.org/palewire/raw/1035cd306a2f85b362b1a20ce315b8eb/ire-logo.png&quot;&gt;
+        &lt;/a&gt;
+    &lt;/nav&gt;
+    &lt;header&gt;
+        &lt;h1&gt;{% block headline %}{% endblock %}&lt;/h1&gt;
+        &lt;div class=&quot;byline&quot;&gt;
+            {% block byline %}{% endblock %}
+        &lt;/div&gt;
+    &lt;/header&gt;
+    {% block content %}{% endblock %}
+    &lt;script src=&quot;{{baseUrl}}scripts/main.js&quot;&gt;&lt;/script&gt;
+    {% block scripts %}{% endblock %}
+&lt;/body&gt;
 &lt;/html&gt;
-<a href="#id12"><span class="problematic" id="id13">``</span></a><a href="#id14"><span class="problematic" id="id15">`</span></a></p>
+</pre></div>
+</div>
 <p>Fill in a headline and see it show up.</p>
-<p><code class="docutils literal"><span class="pre">`</span>
-<span class="pre">{%</span> <span class="pre">block</span> <span class="pre">headline</span> <span class="pre">%}My</span> <span class="pre">headline</span> <span class="pre">will</span> <span class="pre">go</span> <span class="pre">here{%</span> <span class="pre">endblock</span> <span class="pre">%}</span>
-<span class="pre">`</span></code></p>
+<div class="highlight-nunjucks"><div class="highlight"><pre><span></span>{% block headline %}My headline will go here{% endblock %}
+</pre></div>
+</div>
 <p>Fill in a byline and see it show up.</p>
-<p><code class="docutils literal"><span class="pre">`</span>
-<span class="pre">{%</span> <span class="pre">block</span> <span class="pre">byline</span> <span class="pre">%}By</span> <span class="pre">me{%</span> <span class="pre">endblock</span> <span class="pre">%}</span>
-<span class="pre">`</span></code></p>
+<div class="highlight-nunjucks"><div class="highlight"><pre><span></span>{% block byline %}By me{% endblock %}
+</pre></div>
+</div>
 <p>Commit our work.</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>$ git add .
 $ git commit -m <span class="s2">&quot;Installed framework&quot;</span>
@@ -422,34 +411,31 @@ $ git commit -m <span class="s2">&quot;Installed framework&quot;</span>
 </div>
 <div class="section" id="chapter-4-hello-data">
 <h2>Chapter 4: Hello data<a class="headerlink" href="#chapter-4-hello-data" title="Permalink to this headline">¶</a></h2>
-<p>Add the Harvard Park homicides data files to _data/harvard_park_homicides.json</p>
-<p>Return to index.nunjucks and print them out on the page.</p>
-<p><code class="docutils literal"><span class="pre">`</span>
-<span class="pre">{%</span> <span class="pre">block</span> <span class="pre">content</span> <span class="pre">%}</span>
-<span class="pre">{{</span> <span class="pre">site.data.harvard_park_homicides</span> <span class="pre">}}</span>
-<span class="pre">{%</span> <span class="pre">endblock</span> <span class="pre">%}</span>
-<span class="pre">`</span></code></p>
+<p>Add the Harvard Park homicides data files to <code class="docutils literal"><span class="pre">_data/harvard_park_homicides.json</span></code></p>
+<p>Return to <code class="docutils literal"><span class="pre">index.nunjucks</span></code> and print them out on the page.</p>
+<div class="highlight-nunjucks"><div class="highlight"><pre><span></span>{% block content %}
+{{ site.data.harvard_park_homicides }}
+{% endblock %}
+</pre></div>
+</div>
 <p>Loop through them and print them all.</p>
-<p><a href="#id16"><span class="problematic" id="id17">``</span></a>`
-{% for obj in site.data.harvard_park_homicides %}</p>
-<blockquote>
-<div>{{ obj }}</div></blockquote>
-<p>{% endfor %}
-<a href="#id18"><span class="problematic" id="id19">``</span></a><a href="#id20"><span class="problematic" id="id21">`</span></a></p>
+<div class="highlight-nunjucks"><div class="highlight"><pre><span></span>{% for obj in site.data.harvard_park_homicides %}
+    {{ obj }}
+{% endfor %}
+</pre></div>
+</div>
 <p>Print the last name.</p>
-<p><a href="#id22"><span class="problematic" id="id23">``</span></a>`
-{% for obj in site.data.harvard_park_homicides %}</p>
-<blockquote>
-<div>{{ obj.last_name }}</div></blockquote>
-<p>{% endfor %}
-<a href="#id24"><span class="problematic" id="id25">``</span></a><a href="#id26"><span class="problematic" id="id27">`</span></a></p>
+<div class="highlight-nunjucks"><div class="highlight"><pre><span></span>{% for obj in site.data.harvard_park_homicides %}
+    {{ obj.last_name }}
+{% endfor %}
+</pre></div>
+</div>
 <p>Add the first name</p>
-<p><a href="#id28"><span class="problematic" id="id29">``</span></a>`
-{% for obj in site.data.harvard_park_homicides %}</p>
-<blockquote>
-<div>{{ obj.first_name }} {{ obj.last_name }}</div></blockquote>
-<p>{% endfor %}
-<a href="#id30"><span class="problematic" id="id31">``</span></a><a href="#id32"><span class="problematic" id="id33">`</span></a></p>
+<div class="highlight-nunjucks"><div class="highlight"><pre><span></span>{% for obj in site.data.harvard_park_homicides %}
+    {{ obj.first_name }} {{ obj.last_name }}
+{% endfor %}
+</pre></div>
+</div>
 <p>Commit our work.</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>$ git add .
 $ git commit -m <span class="s2">&quot;Installed framework&quot;</span>
@@ -476,134 +462,119 @@ $ npm install d4
 <div class="section" id="chapter-7-hello-map">
 <h2>Chapter 7: Hello map<a class="headerlink" href="#chapter-7-hello-map" title="Permalink to this headline">¶</a></h2>
 <p>Toss Leaflet into the head.</p>
-<p><code class="docutils literal"><span class="pre">`</span>
-<span class="pre">{%</span> <span class="pre">block</span> <span class="pre">scripts</span> <span class="pre">%}</span>
-<span class="pre">&lt;link</span> <span class="pre">rel=&quot;stylesheet&quot;</span> <span class="pre">href=&quot;https://unpkg.com/leaflet&#64;1.3.1/dist/leaflet.css&quot;</span> <span class="pre">/&gt;</span>
-<span class="pre">&lt;script</span> <span class="pre">src=&quot;https://unpkg.com/leaflet&#64;1.3.1/dist/leaflet.js&quot;&gt;&lt;/script&gt;</span>
-<span class="pre">{%</span> <span class="pre">endblock</span> <span class="pre">%}</span>
-<span class="pre">`</span></code></p>
-<p>Create a starter map.</p>
-<p><a href="#id34"><span class="problematic" id="id35">``</span></a>`
-{% block content %}
-&lt;div id=”map”&gt;&lt;/div&gt;
-{% endblock %}</p>
-<p>{% block scripts %}
-&lt;link rel=”stylesheet” href=”<a class="reference external" href="https://unpkg.com/leaflet&#64;1.3.1/dist/leaflet.css">https://unpkg.com/leaflet&#64;1.3.1/dist/leaflet.css</a>” /&gt;
-&lt;script src=”<a class="reference external" href="https://unpkg.com/leaflet&#64;1.3.1/dist/leaflet.js">https://unpkg.com/leaflet&#64;1.3.1/dist/leaflet.js</a>”&gt;&lt;/script&gt;
-&lt;script&gt;</p>
-<blockquote>
-<div><p>var map = L.map(‘map’).setView([41.890434, -87.623571], 15);
-L.tileLayer(‘<a class="reference external" href="https://api.tiles.mapbox.com/v4">https://api.tiles.mapbox.com/v4</a>/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw’, {</p>
-<blockquote>
-<div><blockquote>
-<div><p>maxZoom: 18,
-attribution: ‘Map data &amp;copy; &lt;a href=”<a class="reference external" href="http://openstreetmap.org">http://openstreetmap.org</a>”&gt;OpenStreetMap&lt;/a&gt; contributors, ‘ +</p>
-<blockquote>
-<div>‘&lt;a href=”<a class="reference external" href="http://creativecommons.org/licenses/by-sa/2.0/">http://creativecommons.org/licenses/by-sa/2.0/</a>”&gt;CC-BY-SA&lt;/a&gt;, ‘ +
-‘Imagery © &lt;a href=”<a class="reference external" href="http://mapbox.com">http://mapbox.com</a>”&gt;Mapbox&lt;/a&gt;’,</div></blockquote>
-<p>id: ‘mapbox.streets’</p>
-</div></blockquote>
-<p>}).addTo(map);</p>
-</div></blockquote>
-</div></blockquote>
-<p>&lt;/script&gt;
+<div class="highlight-nunjucks"><div class="highlight"><pre><span></span>{% block scripts %}
+&lt;link rel=&quot;stylesheet&quot; href=&quot;https://unpkg.com/leaflet@1.3.1/dist/leaflet.css&quot; /&gt;
+&lt;script src=&quot;https://unpkg.com/leaflet@1.3.1/dist/leaflet.js&quot;&gt;&lt;/script&gt;
 {% endblock %}
-<a href="#id36"><span class="problematic" id="id37">``</span></a><a href="#id38"><span class="problematic" id="id39">`</span></a></p>
+</pre></div>
+</div>
+<p>Create a starter map.</p>
+<div class="highlight-nunjucks"><div class="highlight"><pre><span></span>{% block content %}
+&lt;div id=&quot;map&quot;&gt;&lt;/div&gt;
+{% endblock %}
+
+{% block scripts %}
+&lt;link rel=&quot;stylesheet&quot; href=&quot;https://unpkg.com/leaflet@1.3.1/dist/leaflet.css&quot; /&gt;
+&lt;script src=&quot;https://unpkg.com/leaflet@1.3.1/dist/leaflet.js&quot;&gt;&lt;/script&gt;
+&lt;script&gt;
+    var map = L.map(&#39;map&#39;).setView([41.890434, -87.623571], 15);
+    L.tileLayer(&#39;https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw&#39;, {
+            maxZoom: 18,
+            attribution: &#39;Map data &amp;copy; &lt;a href=&quot;http://openstreetmap.org&quot;&gt;OpenStreetMap&lt;/a&gt; contributors, &#39; +
+                    &#39;&lt;a href=&quot;http://creativecommons.org/licenses/by-sa/2.0/&quot;&gt;CC-BY-SA&lt;/a&gt;, &#39; +
+                    &#39;Imagery © &lt;a href=&quot;http://mapbox.com&quot;&gt;Mapbox&lt;/a&gt;&#39;,
+            id: &#39;mapbox.streets&#39;
+    }).addTo(map);
+&lt;/script&gt;
+{% endblock %}
+</pre></div>
+</div>
 <p>Go to Google Maps and find 62nd Street and Harvard Boulevard in South LA. Hold down a click until it gives you the latitude and longitude. Paste those numbers into Leaflet’s setView method.</p>
-<p><code class="docutils literal"><span class="pre">`</span>
-<span class="pre">var</span> <span class="pre">map</span> <span class="pre">=</span> <span class="pre">L.map('map').setView([33.983265,</span> <span class="pre">-118.306799],</span> <span class="pre">15);</span>
-<span class="pre">`</span></code></p>
+<div class="highlight-javascript"><div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">map</span> <span class="o">=</span> <span class="nx">L</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="s1">&#39;map&#39;</span><span class="p">).</span><span class="nx">setView</span><span class="p">([</span><span class="mf">33.983265</span><span class="p">,</span> <span class="o">-</span><span class="mf">118.306799</span><span class="p">],</span> <span class="mi">15</span><span class="p">);</span>
+</pre></div>
+</div>
 <p>Move in the zoom.</p>
-<p><code class="docutils literal"><span class="pre">`</span>
-<span class="pre">var</span> <span class="pre">map</span> <span class="pre">=</span> <span class="pre">L.map('map').setView([33.983265,</span> <span class="pre">-118.306799],</span> <span class="pre">16);</span>
-<span class="pre">`</span></code></p>
+<div class="highlight-javascript"><div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">map</span> <span class="o">=</span> <span class="nx">L</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="s1">&#39;map&#39;</span><span class="p">).</span><span class="nx">setView</span><span class="p">([</span><span class="mf">33.983265</span><span class="p">,</span> <span class="o">-</span><span class="mf">118.306799</span><span class="p">],</span> <span class="mi">16</span><span class="p">);</span>
+</pre></div>
+</div>
 <p>Add a pin.</p>
-<p><code class="docutils literal"><span class="pre">`</span>
-<span class="pre">var</span> <span class="pre">marker</span> <span class="pre">=</span> <span class="pre">L.marker([33.983265,</span> <span class="pre">-118.306799]).addTo(map);</span>
-<span class="pre">`</span></code></p>
+<div class="highlight-javascript"><div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">marker</span> <span class="o">=</span> <span class="nx">L</span><span class="p">.</span><span class="nx">marker</span><span class="p">([</span><span class="mf">33.983265</span><span class="p">,</span> <span class="o">-</span><span class="mf">118.306799</span><span class="p">]).</span><span class="nx">addTo</span><span class="p">(</span><span class="nx">map</span><span class="p">);</span>
+</pre></div>
+</div>
 <p>Add a popup.</p>
-<p><code class="docutils literal"><span class="pre">`</span>
-<span class="pre">marker.bindPopup(&quot;W.</span> <span class="pre">62nd</span> <span class="pre">Street</span> <span class="pre">and</span> <span class="pre">Harvard</span> <span class="pre">Boulevard&quot;).openPopup();</span>
-<span class="pre">`</span></code></p>
+<div class="highlight-javascript"><div class="highlight"><pre><span></span><span class="nx">marker</span><span class="p">.</span><span class="nx">bindPopup</span><span class="p">(</span><span class="s2">&quot;W. 62nd Street and Harvard Boulevard&quot;</span><span class="p">).</span><span class="nx">openPopup</span><span class="p">();</span>
+</pre></div>
+</div>
 <p>Install Leaflet-minimap</p>
-<p><code class="docutils literal"><span class="pre">`</span>
-<span class="pre">&lt;link</span> <span class="pre">rel=&quot;stylesheet&quot;</span> <span class="pre">href=&quot;http://norkart.github.io/Leaflet-MiniMap/Control.MiniMap.css&quot;</span> <span class="pre">/&gt;</span>
-<span class="pre">&lt;script</span> <span class="pre">src=&quot;http://norkart.github.io/Leaflet-MiniMap/Control.MiniMap.js&quot;&gt;&lt;/script&gt;</span>
-<span class="pre">`</span></code></p>
+<div class="highlight-html"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">link</span> <span class="na">rel</span><span class="o">=</span><span class="s">&quot;stylesheet&quot;</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;http://norkart.github.io/Leaflet-MiniMap/Control.MiniMap.css&quot;</span> <span class="p">/&gt;</span>
+<span class="p">&lt;</span><span class="nt">script</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;http://norkart.github.io/Leaflet-MiniMap/Control.MiniMap.js&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+</pre></div>
+</div>
 <p>Create a minimap in the corner</p>
-<p><a href="#id40"><span class="problematic" id="id41">``</span></a>`
-var osm2 = L.tileLayer(‘<a class="reference external" href="http:/">http:/</a>/{s}.tile.openstreetmap.org/{z}/{x}/{y}.png’, {</p>
-<blockquote>
-<div>maxZoom: 9,
-attribution: ‘Map data &amp;copy; OpenStreetMap contributors’,</div></blockquote>
-<p>});
-var mini = new L.Control.MiniMap(osm2, { toggleDisplay: true });
-mini.addTo(map);
-<a href="#id42"><span class="problematic" id="id43">``</span></a><a href="#id44"><span class="problematic" id="id45">`</span></a></p>
+<div class="highlight-javascript"><div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">osm2</span> <span class="o">=</span> <span class="nx">L</span><span class="p">.</span><span class="nx">tileLayer</span><span class="p">(</span><span class="s1">&#39;http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png&#39;</span><span class="p">,</span> <span class="p">{</span>
+    <span class="nx">maxZoom</span><span class="o">:</span> <span class="mi">9</span><span class="p">,</span>
+    <span class="nx">attribution</span><span class="o">:</span> <span class="s1">&#39;Map data &amp;copy; OpenStreetMap contributors&#39;</span><span class="p">,</span>
+<span class="p">});</span>
+<span class="kd">var</span> <span class="nx">mini</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">L</span><span class="p">.</span><span class="nx">Control</span><span class="p">.</span><span class="nx">MiniMap</span><span class="p">(</span><span class="nx">osm2</span><span class="p">,</span> <span class="p">{</span> <span class="nx">toggleDisplay</span><span class="o">:</span> <span class="kc">true</span> <span class="p">});</span>
+<span class="nx">mini</span><span class="p">.</span><span class="nx">addTo</span><span class="p">(</span><span class="nx">map</span><span class="p">);</span>
+</pre></div>
+</div>
 <p>Create a point for each of the four people who have died on that corner.</p>
-<p><a href="#id46"><span class="problematic" id="id47">``</span></a>`
-{% for obj in site.data.harvard_park_homicides %}</p>
-<blockquote>
-<div><dl class="docutils">
-<dt>{% if obj.death_year &gt; 2015 %}</dt>
-<dd><dl class="first last docutils">
-<dt>L.marker([{{ obj.latitude }},  {{ obj.longitude }}])</dt>
-<dd>.addTo(map)
-s.bindPopup(“{{ obj.first_name }} {{ obj.last_name }}”);</dd>
-</dl>
-</dd>
-</dl>
-<p>{% endif %}</p>
-</div></blockquote>
-<p>{% endfor %}
-<a href="#id48"><span class="problematic" id="id49">``</span></a><a href="#id50"><span class="problematic" id="id51">`</span></a></p>
+<div class="highlight-nunjucks"><div class="highlight"><pre><span></span>{% for obj in site.data.harvard_park_homicides %}
+    {% if obj.death_year &gt; 2015 %}
+        L.marker([{{ obj.latitude }},  {{ obj.longitude }}])
+          .addTo(map)
+          s.bindPopup(&quot;{{ obj.first_name }} {{ obj.last_name }}&quot;);
+    {% endif %}
+{% endfor %}
+</pre></div>
+</div>
 <p>Set the map zoom to that corner, and remove our first marker.</p>
-<p><code class="docutils literal"><span class="pre">`</span>
-<span class="pre">map.setView([33.983265,</span> <span class="pre">-118.306799],</span> <span class="pre">18);</span>
-<span class="pre">`</span></code></p>
+<div class="highlight-javascript"><div class="highlight"><pre><span></span><span class="nx">map</span><span class="p">.</span><span class="nx">setView</span><span class="p">([</span><span class="mf">33.983265</span><span class="p">,</span> <span class="o">-</span><span class="mf">118.306799</span><span class="p">],</span> <span class="mi">18</span><span class="p">);</span>
+</pre></div>
+</div>
 <p>Add a deck headline.</p>
-<p><code class="docutils literal"><span class="pre">`</span>
-<span class="pre">&lt;h3&gt;One</span> <span class="pre">corner.</span> <span class="pre">Four</span> <span class="pre">killings.</span> <span class="pre">&lt;/h3&gt;</span>
-<span class="pre">`</span></code></p>
+<div class="highlight-html"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">h3</span><span class="p">&gt;</span>One corner. Four killings. <span class="p">&lt;/</span><span class="nt">h3</span><span class="p">&gt;</span>
+</pre></div>
+</div>
 <p>Write a section graf.</p>
-<p><code class="docutils literal"><span class="pre">`</span>
-<span class="pre">&lt;p&gt;The</span> <span class="pre">southwest</span> <span class="pre">corner</span> <span class="pre">of</span> <span class="pre">Harvard</span> <span class="pre">Park,</span> <span class="pre">at</span> <span class="pre">West</span> <span class="pre">62nd</span> <span class="pre">Street</span> <span class="pre">and</span> <span class="pre">Harvard</span> <span class="pre">Boulevard,</span> <span class="pre">has</span> <span class="pre">been</span> <span class="pre">especially</span> <span class="pre">deadly.</span> <span class="pre">In</span> <span class="pre">the</span> <span class="pre">last</span> <span class="pre">year-and-a-half,</span> <span class="pre">four</span> <span class="pre">men</span> <span class="pre">have</span> <span class="pre">been</span> <span class="pre">killed</span> <span class="pre">there</span> <span class="pre">—</span> <span class="pre">while</span> <span class="pre">sitting</span> <span class="pre">in</span> <span class="pre">a</span> <span class="pre">car,</span> <span class="pre">trying</span> <span class="pre">to</span> <span class="pre">defuse</span> <span class="pre">an</span> <span class="pre">argument</span> <span class="pre">or</span> <span class="pre">walking</span> <span class="pre">home</span> <span class="pre">from</span> <span class="pre">the</span> <span class="pre">barber</span> <span class="pre">shop</span> <span class="pre">or</span> <span class="pre">the</span> <span class="pre">corner</span> <span class="pre">store.&lt;/p&gt;</span>
-<span class="pre">`</span></code></p>
+<div class="highlight-html"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>The southwest corner of Harvard Park, at West 62nd Street and Harvard Boulevard, has been especially deadly. In the last year-and-a-half, four men have been killed there — while sitting in a car, trying to defuse an argument or walking home from the barber shop or the corner store.<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+</pre></div>
+</div>
 <p>Wrap it in a section tag.</p>
-<p><a href="#id52"><span class="problematic" id="id53">``</span></a>`
-&lt;section&gt;</p>
-<blockquote>
-<div>&lt;h3&gt;One corner. Four killings. &lt;/h3&gt;
-&lt;p&gt;The southwest corner of Harvard Park, at West 62nd Street and Harvard Boulevard, has been especially deadly. In the last year-and-a-half, four men have been killed there — while sitting in a car, trying to defuse an argument or walking home from the barber shop or the corner store.&lt;/p&gt;
-&lt;div id=”map”&gt;&lt;/div&gt;</div></blockquote>
-<p>&lt;/section&gt;
-<a href="#id54"><span class="problematic" id="id55">``</span></a><a href="#id56"><span class="problematic" id="id57">`</span></a></p>
+<div class="highlight-html"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">section</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">h3</span><span class="p">&gt;</span>One corner. Four killings. <span class="p">&lt;/</span><span class="nt">h3</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>The southwest corner of Harvard Park, at West 62nd Street and Harvard Boulevard, has been especially deadly. In the last year-and-a-half, four men have been killed there — while sitting in a car, trying to defuse an argument or walking home from the barber shop or the corner store.<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;map&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">section</span><span class="p">&gt;</span>
+</pre></div>
+</div>
 </div>
 <div class="section" id="chapter-8-hello-internet">
 <h2>Chapter 8: Hello Internet<a class="headerlink" href="#chapter-8-hello-internet" title="Permalink to this headline">¶</a></h2>
 <p>Build a static version of your site</p>
-<p><code class="docutils literal"><span class="pre">`</span>
-<span class="pre">gulp</span> <span class="pre">--production</span>
-<span class="pre">`</span></code></p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ gulp --production
+</pre></div>
+</div>
 <p>Inspect the files in the build directory.</p>
-<p>Edit package.json to build files to docs instead.</p>
-<p><code class="docutils literal"><span class="pre">`</span>
-<span class="pre">&quot;destination&quot;:</span> <span class="pre">&quot;docs&quot;,</span>
-<span class="pre">`</span></code></p>
+<p>Edit <code class="docutils literal"><span class="pre">package.json</span></code> to build files to docs instead.</p>
+<div class="highlight-javascript"><div class="highlight"><pre><span></span><span class="s2">&quot;destination&quot;</span><span class="o">:</span> <span class="s2">&quot;docs&quot;</span><span class="p">,</span>
+</pre></div>
+</div>
 <p>Build the static site again.</p>
-<p><code class="docutils literal"><span class="pre">`</span>
-<span class="pre">gulp</span> <span class="pre">--production</span>
-<span class="pre">`</span></code></p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ gulp --production
+</pre></div>
+</div>
 <p>Commit and push to GitHub.</p>
-<p><code class="docutils literal"><span class="pre">`</span>
-<span class="pre">git</span> <span class="pre">add</span> <span class="pre">package.json</span>
-<span class="pre">git</span> <span class="pre">add</span> <span class="pre">docs</span>
-<span class="pre">git</span> <span class="pre">commit</span> <span class="pre">-am</span> <span class="pre">&quot;Message</span> <span class="pre">here&quot;</span>
-<span class="pre">git</span> <span class="pre">push</span> <span class="pre">origin</span> <span class="pre">master</span>
-<span class="pre">`</span></code></p>
-<p>Go to GitHub config and turn on GitHub Pages with the /docs on the master branch as the source. Hit save.</p>
-<p>Visit [&lt;your_username&gt;.github.com/first-graphics-app/](<a class="reference external" href="https://ireapps.github.io/first-graphics-app/">https://ireapps.github.io/first-graphics-app/</a>).</p>
-<p>Visit [&lt;your_username&gt;.github.com/first-graphics-app/harvard-park-homicides](<a class="reference external" href="https://ireapps.github.io/first-graphics-app/harvard-park-homicides/">https://ireapps.github.io/first-graphics-app/harvard-park-homicides/</a>).</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ git add package.json
+$ git add docs
+$ git commit -am <span class="s2">&quot;Message here&quot;</span>
+$ git push origin master
+</pre></div>
+</div>
+<p>Go to GitHub config and turn on GitHub Pages with the <code class="docutils literal"><span class="pre">/docs</span></code> on the master branch as the source. Hit save.</p>
+<p>Visit <a class="reference external" href="https://ireapps.github.io/first-graphics-app/">&lt;your_username&gt;.github.com/first-graphics-app/</a>.</p>
+<p>Visit <a class="reference external" href="https://ireapps.github.io/first-graphics-app/harvard-park-homicides/">&lt;your_username&gt;.github.com/first-graphics-app/harvard-park-homicides</a>.</p>
 </div>
 </div>
 

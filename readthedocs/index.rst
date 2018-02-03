@@ -234,7 +234,7 @@ Fire up the test server
     $ gulp serve
 
 
-Visit localhost:3000 in your browser.
+Visit `localhost:3000 <http://localhost:3000>`_ in your browser.
 
 Make an edit to index.nunjucks and see it show up on the live site.
 
@@ -271,78 +271,84 @@ Chapter 3: Hello template
 
 Create a new page for our app
 
-```
-yo yeogurt:page harvard-park-homicides
-```
+.. code-block:: bash
 
-Navigate to localhost:3000/harvard-park-homicides/.
+    $ yo yeogurt:page harvard-park-homicides
 
-Make a change to harvard-park-homicides/index.nunjucks. See it show up.
 
-```html
-{% block content %}
-<p>Hello World</p>
-{% endblock %}
-```
+Navigate to `localhost:3000/harvard-park-homicides/ <http://localhost:3000/harvard-park-homicides/>`_.
 
-Open up _layouts/base.nunjucks and explain how the template inheritance system works.
+Make a change to ``harvard-park-homicides/index.nunjucks``. See it show up.
 
-Make a small change to base.nunjucks and see it come up live.
+.. code-block:: nunjucks
 
-```nunjucks
-Above content
-{% block content %}{% endblock %}
-```
+    {% block content %}
+    <p>Hello World</p>
+    {% endblock %}
 
-Replace _layouts/base.nunjucks with our more polished base template.
 
-```nunjucks
-{# Custom Configuration #}
-{% block config %}
-  {# Setup site's base URL to match the "baseUrl" key within `package.json` #}
-  {# Otherwise default to relative pathing #}
-  {% set baseUrl = config.baseUrl or './' %}
-{% endblock %}
+Open up ``_layouts/base.nunjucks`` and explain how the template inheritance system works.
 
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>First News App</title>
-    <link rel="stylesheet" href="https://bl.ocks.org/palewire/raw/1035cd306a2f85b362b1a20ce315b8eb/base.css">
-    {% block stylesheets %}{% endblock %}
-</head>
-<body>
-    <nav>
-        <a href="http://first-graphics-app.readthedocs.org/">
-            <img src="https://bl.ocks.org/palewire/raw/1035cd306a2f85b362b1a20ce315b8eb/ire-logo.png">
-        </a>
-    </nav>
-    <header>
-        <h1>{% block headline %}{% endblock %}</h1>
-        <div class="byline">
-            {% block byline %}{% endblock %}
-        </div>
-    </header>
+Make a small change to ``base.nunjucks`` and see it come up live.
+
+.. code-block:: nunjucks
+
+    Above content
     {% block content %}{% endblock %}
-    <script src="{{baseUrl}}scripts/main.js"></script>
-    {% block scripts %}{% endblock %}
-</body>
-</html>
-```
+
+
+Replace ``_layouts/base.nunjucks`` with our more polished base template.
+
+.. code-block:: nunjucks
+
+    {# Custom Configuration #}
+    {% block config %}
+      {# Setup site's base URL to match the "baseUrl" key within `package.json` #}
+      {# Otherwise default to relative pathing #}
+      {% set baseUrl = config.baseUrl or './' %}
+    {% endblock %}
+
+    <!doctype html>
+    <html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>First News App</title>
+        <link rel="stylesheet" href="https://bl.ocks.org/palewire/raw/1035cd306a2f85b362b1a20ce315b8eb/base.css">
+        {% block stylesheets %}{% endblock %}
+    </head>
+    <body>
+        <nav>
+            <a href="http://first-graphics-app.readthedocs.org/">
+                <img src="https://bl.ocks.org/palewire/raw/1035cd306a2f85b362b1a20ce315b8eb/ire-logo.png">
+            </a>
+        </nav>
+        <header>
+            <h1>{% block headline %}{% endblock %}</h1>
+            <div class="byline">
+                {% block byline %}{% endblock %}
+            </div>
+        </header>
+        {% block content %}{% endblock %}
+        <script src="{{baseUrl}}scripts/main.js"></script>
+        {% block scripts %}{% endblock %}
+    </body>
+    </html>
+
 
 Fill in a headline and see it show up.
 
-```
-{% block headline %}My headline will go here{% endblock %}
-```
+.. code-block:: nunjucks
+
+    {% block headline %}My headline will go here{% endblock %}
+
 
 Fill in a byline and see it show up.
 
-```
-{% block byline %}By me{% endblock %}
-```
+.. code-block:: nunjucks
+
+    {% block byline %}By me{% endblock %}
+
 
 Commit our work.
 
@@ -362,39 +368,43 @@ Push it to GitHub.
 Chapter 4: Hello data
 *********************
 
-Add the Harvard Park homicides data files to _data/harvard_park_homicides.json
+Add the Harvard Park homicides data files to ``_data/harvard_park_homicides.json``
 
-Return to index.nunjucks and print them out on the page.
+Return to ``index.nunjucks`` and print them out on the page.
 
-```
-{% block content %}
-{{ site.data.harvard_park_homicides }}
-{% endblock %}
-```
+.. code-block:: nunjucks
+
+    {% block content %}
+    {{ site.data.harvard_park_homicides }}
+    {% endblock %}
+
 
 Loop through them and print them all.
 
-```
-{% for obj in site.data.harvard_park_homicides %}
-    {{ obj }}
-{% endfor %}
-```
+.. code-block:: nunjucks
+
+    {% for obj in site.data.harvard_park_homicides %}
+        {{ obj }}
+    {% endfor %}
+
 
 Print the last name.
 
-```
-{% for obj in site.data.harvard_park_homicides %}
-    {{ obj.last_name }}
-{% endfor %}
-```
+.. code-block:: nunjucks
+
+    {% for obj in site.data.harvard_park_homicides %}
+        {{ obj.last_name }}
+    {% endfor %}
+
 
 Add the first name
 
-```
-{% for obj in site.data.harvard_park_homicides %}
-    {{ obj.first_name }} {{ obj.last_name }}
-{% endfor %}
-```
+.. code-block:: nunjucks
+
+    {% for obj in site.data.harvard_park_homicides %}
+        {{ obj.first_name }} {{ obj.last_name }}
+    {% endfor %}
+
 
 Commit our work.
 
@@ -436,117 +446,130 @@ Chapter 7: Hello map
 
 Toss Leaflet into the head.
 
-```
-{% block scripts %}
-<link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.1/dist/leaflet.css" />
-<script src="https://unpkg.com/leaflet@1.3.1/dist/leaflet.js"></script>
-{% endblock %}
-```
+.. code-block:: nunjucks
+
+    {% block scripts %}
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.1/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.3.1/dist/leaflet.js"></script>
+    {% endblock %}
+
 
 Create a starter map.
 
-```
-{% block content %}
-<div id="map"></div>
-{% endblock %}
+.. code-block:: nunjucks
 
-{% block scripts %}
-<link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.1/dist/leaflet.css" />
-<script src="https://unpkg.com/leaflet@1.3.1/dist/leaflet.js"></script>
-<script>
-    var map = L.map('map').setView([41.890434, -87.623571], 15);
-    L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
-		maxZoom: 18,
-		attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, ' +
-			'<a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
-			'Imagery © <a href="http://mapbox.com">Mapbox</a>',
-		id: 'mapbox.streets'
-	}).addTo(map);
-</script>
-{% endblock %}
-```
+    {% block content %}
+    <div id="map"></div>
+    {% endblock %}
+
+    {% block scripts %}
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.1/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.3.1/dist/leaflet.js"></script>
+    <script>
+        var map = L.map('map').setView([41.890434, -87.623571], 15);
+        L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
+    		maxZoom: 18,
+    		attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, ' +
+    			'<a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
+    			'Imagery © <a href="http://mapbox.com">Mapbox</a>',
+    		id: 'mapbox.streets'
+    	}).addTo(map);
+    </script>
+    {% endblock %}
+
 
 Go to Google Maps and find 62nd Street and Harvard Boulevard in South LA. Hold down a click until it gives you the latitude and longitude. Paste those numbers into Leaflet's setView method.
 
-```
-var map = L.map('map').setView([33.983265, -118.306799], 15);
-```
+.. code-block:: javascript
+
+    var map = L.map('map').setView([33.983265, -118.306799], 15);
+
 
 Move in the zoom.
 
-```
-var map = L.map('map').setView([33.983265, -118.306799], 16);
-```
+.. code-block:: javascript
+
+    var map = L.map('map').setView([33.983265, -118.306799], 16);
+
 
 Add a pin.
 
-```
-var marker = L.marker([33.983265, -118.306799]).addTo(map);
-```
+.. code-block:: javascript
+
+    var marker = L.marker([33.983265, -118.306799]).addTo(map);
+
 
 Add a popup.
 
-```
-marker.bindPopup("W. 62nd Street and Harvard Boulevard").openPopup();
-```
+.. code-block:: javascript
+
+    marker.bindPopup("W. 62nd Street and Harvard Boulevard").openPopup();
+
 
 Install Leaflet-minimap
 
-```
-<link rel="stylesheet" href="http://norkart.github.io/Leaflet-MiniMap/Control.MiniMap.css" />
-<script src="http://norkart.github.io/Leaflet-MiniMap/Control.MiniMap.js"></script>
-```
+.. code-block:: html
+
+    <link rel="stylesheet" href="http://norkart.github.io/Leaflet-MiniMap/Control.MiniMap.css" />
+    <script src="http://norkart.github.io/Leaflet-MiniMap/Control.MiniMap.js"></script>
+
 
 Create a minimap in the corner
 
-```
-var osm2 = L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    maxZoom: 9,
-    attribution: 'Map data &copy; OpenStreetMap contributors',
-});
-var mini = new L.Control.MiniMap(osm2, { toggleDisplay: true });
-mini.addTo(map);
-```
+.. code-block:: javascript
+
+    var osm2 = L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 9,
+        attribution: 'Map data &copy; OpenStreetMap contributors',
+    });
+    var mini = new L.Control.MiniMap(osm2, { toggleDisplay: true });
+    mini.addTo(map);
+
 
 Create a point for each of the four people who have died on that corner.
 
-```
-{% for obj in site.data.harvard_park_homicides %}
-    {% if obj.death_year > 2015 %}
-        L.marker([{{ obj.latitude }},  {{ obj.longitude }}])
-          .addTo(map)
-          s.bindPopup("{{ obj.first_name }} {{ obj.last_name }}");
-    {% endif %}
-{% endfor %}
-```
+.. code-block:: nunjucks
+
+    {% for obj in site.data.harvard_park_homicides %}
+        {% if obj.death_year > 2015 %}
+            L.marker([{{ obj.latitude }},  {{ obj.longitude }}])
+              .addTo(map)
+              s.bindPopup("{{ obj.first_name }} {{ obj.last_name }}");
+        {% endif %}
+    {% endfor %}
+
 
 Set the map zoom to that corner, and remove our first marker.
 
-```
-map.setView([33.983265, -118.306799], 18);
-```
+.. code-block:: javascript
+
+    map.setView([33.983265, -118.306799], 18);
+
 
 Add a deck headline.
 
-```
-<h3>One corner. Four killings. </h3>
-```
+.. code-block:: html
+
+    <h3>One corner. Four killings. </h3>
+
 
 Write a section graf.
 
-```
-<p>The southwest corner of Harvard Park, at West 62nd Street and Harvard Boulevard, has been especially deadly. In the last year-and-a-half, four men have been killed there — while sitting in a car, trying to defuse an argument or walking home from the barber shop or the corner store.</p>
-```
+.. code-block:: html
+
+    <p>The southwest corner of Harvard Park, at West 62nd Street and Harvard Boulevard, has been especially deadly. In the last year-and-a-half, four men have been killed there — while sitting in a car, trying to defuse an argument or walking home from the barber shop or the corner store.</p>
+
 
 Wrap it in a section tag.
 
-```
-<section>
-    <h3>One corner. Four killings. </h3>
-    <p>The southwest corner of Harvard Park, at West 62nd Street and Harvard Boulevard, has been especially deadly. In the last year-and-a-half, four men have been killed there — while sitting in a car, trying to defuse an argument or walking home from the barber shop or the corner store.</p>
-    <div id="map"></div>
-</section>
-```
+.. code-block:: html
+
+    <section>
+        <h3>One corner. Four killings. </h3>
+        <p>The southwest corner of Harvard Park, at West 62nd Street and Harvard Boulevard, has been especially deadly. In the last year-and-a-half, four men have been killed there — while sitting in a car, trying to defuse an argument or walking home from the barber shop or the corner store.</p>
+        <div id="map"></div>
+    </section>
+
 
 *************************
 Chapter 8: Hello Internet
@@ -554,35 +577,39 @@ Chapter 8: Hello Internet
 
 Build a static version of your site
 
-```
-gulp --production
-```
+.. code-block:: bash
+
+    $ gulp --production
+
 
 Inspect the files in the build directory.
 
-Edit package.json to build files to docs instead.
+Edit ``package.json`` to build files to docs instead.
 
-```
-"destination": "docs",
-```
+.. code-block:: javascript
+
+    "destination": "docs",
+
 
 Build the static site again.
 
-```
-gulp --production
-```
+.. code-block:: bash
+
+    $ gulp --production
+
 
 Commit and push to GitHub.
 
-```
-git add package.json
-git add docs
-git commit -am "Message here"
-git push origin master
-```
+.. code-block:: bash
 
-Go to GitHub config and turn on GitHub Pages with the /docs on the master branch as the source. Hit save.
+    $ git add package.json
+    $ git add docs
+    $ git commit -am "Message here"
+    $ git push origin master
 
-Visit [<your_username>.github.com/first-graphics-app/](https://ireapps.github.io/first-graphics-app/).
 
-Visit [<your_username>.github.com/first-graphics-app/harvard-park-homicides](https://ireapps.github.io/first-graphics-app/harvard-park-homicides/).
+Go to GitHub config and turn on GitHub Pages with the ``/docs`` on the master branch as the source. Hit save.
+
+Visit `\<your_username\>.github.com/first-graphics-app/ <https://ireapps.github.io/first-graphics-app/>`_.
+
+Visit `\<your_username\>.github.com/first-graphics-app/harvard-park-homicides <https://ireapps.github.io/first-graphics-app/harvard-park-homicides/>`_.
