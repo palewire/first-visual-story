@@ -89,6 +89,7 @@ GitHub offers helpful guides for installing Git for `Windows <https://help.githu
 You can verify it's installed from your command line like so:
 
 .. code-block:: bash
+
     $ git --version
 
 Once that's done, you should create an account at GitHub, if you don't already have one. `The free plan <https://github.com/pricing>`_ is all that's required to complete this lesson.
@@ -101,6 +102,7 @@ Chapter 1: Hello Git
 Start by creating a new directory where we can store the code for our project. Name it after our application.
 
 .. code-block:: bash
+
     # You don't have to type the "$" It's just a generic symbol
     # geeks use to show they're working on the command line.
     $ mkdir first-graphics-app
@@ -114,6 +116,7 @@ Jump into the directory it created.
 Create a new Git repository in the current directory.
 
 .. code-block:: bash
+
     # "." is a common shortcut to refer to the current directory from the terminal
     $ git init .
 
@@ -127,6 +130,7 @@ Then connect your local directory to GitHub with the following command.
 Create your first file, a blank ``README`` with a `Markdown <https://en.wikipedia.org/wiki/Markdown>`_ file extension since that's `the preferred format of GitHub <https://help.github.com/articles/github-flavored-markdown>`_.
 
 .. code-block:: bash
+
     # Macs or Linux:
     $ touch README.md
     # In Windows fire it up in your text editor right away:
@@ -154,12 +158,14 @@ Log its creation with Git's ``commit`` command. You can include a personalized m
 If this is your first time using Git, you may be prompted to configure you name and email. If so, take the time now. Then run the ``commit`` command above again.
 
 .. code-block:: bash
+
     $ git config --global user.email "your@email.com"
     $ git config --global user.name "your name"
 
 Now, finally, push your commit up to GitHub.
 
 .. code-block:: bash
+
     $ git push origin master
 
 Reload your repository on GitHub and see your handiwork.
@@ -244,6 +250,7 @@ Commit our work.
 Push it to GitHub.
 
 .. code-block:: bash
+
     $ git push origin master
 
 
@@ -336,6 +343,7 @@ Commit our work.
 Push it to GitHub.
 
 .. code-block:: bash
+
     $ git push origin master
 
 
@@ -387,6 +395,7 @@ Commit our work.
 Push it to GitHub.
 
 .. code-block:: bash
+
     $ git push origin master
 
 
