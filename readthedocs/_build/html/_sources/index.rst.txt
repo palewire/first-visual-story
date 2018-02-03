@@ -187,31 +187,24 @@ Move in.
 
 .. code-block:: bash
 
-    $ cd Code
+    $ cd code
 
 
-Create a new directory project
+Create a new directory for your project.
 
 .. code-block:: bash
 
     $ mkdir first-graphics-app
 
 
-Move in.
-
-.. code-block:: bash
-
-    $ cd Code
-
-
-Install yeoman
+Use ``npm`` to install `yeoman <http://yeoman.io/>`_ (a tempate and scaffolding system) and `gulp <https://gulpjs.com/>`_ (a task runner).
 
 .. code-block:: bash
 
     $ sudo npm install -g yo gulp
 
 
-Use yeoman to install our project generator.
+Use npm to install `yeogurt <https://github.com/larsonjj/generator-yeogurt>`_, our project generator that yeoman will build.
 
 .. code-block:: bash
 
