@@ -560,6 +560,33 @@ Set the map zoom to that corner, and remove our first marker.
     map.setView([33.983265, -118.306799], 18);
 
 
+Swap in a circle marker to match the real Homicide Report.
+
+.. code-block:: nunjucks
+
+    {% for obj in site.data.harvard_park_homicides %}
+        {% if obj.death_year > 2015 %}
+            L.circleMarker([{{ obj.latitude }},  {{ obj.longitude }}])
+              .addTo(map)
+              s.bindPopup("{{ obj.first_name }} {{ obj.last_name }}");
+        {% endif %}
+    {% endfor %}
+
+Sprinkle some CSS in our page to make it match the colors.
+
+.. code-block:: nunjucks
+
+    {% block stylesheets %}
+    <style>
+        path {
+            fill: #e64d1f;
+            fill-opacity: 0.5;
+            stroke-opacity: 0;
+        }
+    </style>
+    {% endblock %}
+
+
 Add a deck headline.
 
 .. code-block:: html

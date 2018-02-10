@@ -5,6 +5,16 @@
   {% set baseUrl = '../' %}
 {% endblock %}
 
+{% block stylesheets %}
+<style>
+    path {
+        fill: #e64d1f;
+        fill-opacity: 0.5;
+        stroke-opacity: 0;
+    }
+</style>
+{% endblock %}
+
 {% block headline %}A South L.A. neighborhood grapples with a wave of violence{% endblock %}
 
 {% block byline %}
@@ -41,7 +51,7 @@ By <a href="http://first-graphics-app.readthedocs.org/">The First Graphics App T
 
     {% for obj in site.data.harvard_park_homicides %}
         {% if obj.death_year > 2015 %}
-            L.marker([{{ obj.latitude }},  {{ obj.longitude }}])
+            L.circleMarker([{{ obj.latitude }},  {{ obj.longitude }}])
               .addTo(map)
               .bindPopup("{{ obj.first_name }} {{ obj.last_name }}");
         {% endif %}
