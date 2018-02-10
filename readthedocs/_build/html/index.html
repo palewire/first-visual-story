@@ -339,14 +339,14 @@ $ git commit -m <span class="s2">&quot;Installed framework&quot;</span>
 </pre></div>
 </div>
 <p>Navigate to <a class="reference external" href="http://localhost:3000/harvard-park-homicides/">localhost:3000/harvard-park-homicides/</a>.</p>
-<p>Make a change to <code class="docutils literal"><span class="pre">harvard-park-homicides/index.nunjucks</span></code>. See it show up.</p>
+<p>Make a change to <code class="docutils literal"><span class="pre">harvard-park-homicides/index.nunjucks</span></code> by editing the <code class="docutils literal"><span class="pre">content</span></code> block. See it show up.</p>
 <div class="highlight-nunjucks"><div class="highlight"><pre><span></span>{% block content %}
 &lt;p&gt;Hello World&lt;/p&gt;
 {% endblock %}
 </pre></div>
 </div>
 <p>Open up <code class="docutils literal"><span class="pre">_layouts/base.nunjucks</span></code> and explain how the template inheritance system works.</p>
-<p>Make a small change to <code class="docutils literal"><span class="pre">base.nunjucks</span></code> and see it come up live.</p>
+<p>Make a small change to <code class="docutils literal"><span class="pre">_layouts/base.nunjucks</span></code> and see it come up live.</p>
 <div class="highlight-nunjucks"><div class="highlight"><pre><span></span>Above content
 {% block content %}{% endblock %}
 </pre></div>
@@ -397,7 +397,7 @@ $ git commit -m <span class="s2">&quot;Installed framework&quot;</span>
 </div>
 <p>Commit our work.</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>$ git add .
-$ git commit -m <span class="s2">&quot;Installed framework&quot;</span>
+$ git commit -m <span class="s2">&quot;Started editing templates&quot;</span>
 </pre></div>
 </div>
 <p>Push it to GitHub.</p>
@@ -407,8 +407,8 @@ $ git commit -m <span class="s2">&quot;Installed framework&quot;</span>
 </div>
 <div class="section" id="chapter-4-hello-data">
 <h2>Chapter 4: Hello data<a class="headerlink" href="#chapter-4-hello-data" title="Permalink to this headline">¶</a></h2>
-<p>Add the Harvard Park homicides data files to <code class="docutils literal"><span class="pre">_data/harvard_park_homicides.json</span></code></p>
-<p>Return to <code class="docutils literal"><span class="pre">index.nunjucks</span></code> and print them out on the page.</p>
+<p>Add the <a class="reference external" href="https://raw.githubusercontent.com/ireapps/first-graphics-app/master/src/_data/harvard_park_homicides.json">Harvard Park homicides data files</a> to <code class="docutils literal"><span class="pre">_data/harvard_park_homicides.json</span></code></p>
+<p>Return to <code class="docutils literal"><span class="pre">src/harvard-park-homicides/index.nunjucks</span></code> and print them out on the page.</p>
 <div class="highlight-nunjucks"><div class="highlight"><pre><span></span>{% block content %}
 {{ site.data.harvard_park_homicides }}
 {% endblock %}
@@ -422,19 +422,19 @@ $ git commit -m <span class="s2">&quot;Installed framework&quot;</span>
 </div>
 <p>Print the last name.</p>
 <div class="highlight-nunjucks"><div class="highlight"><pre><span></span>{% for obj in site.data.harvard_park_homicides %}
-    {{ obj.last_name }}
+    {{ obj.last_name }}&lt;br&gt;
 {% endfor %}
 </pre></div>
 </div>
-<p>Add the first name</p>
+<p>Add the first name. To have them display more nicely, you can also add a line break in between each one.</p>
 <div class="highlight-nunjucks"><div class="highlight"><pre><span></span>{% for obj in site.data.harvard_park_homicides %}
-    {{ obj.first_name }} {{ obj.last_name }}
+    {{ obj.first_name }} {{ obj.last_name }}&lt;br&gt;
 {% endfor %}
 </pre></div>
 </div>
 <p>Commit our work.</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>$ git add .
-$ git commit -m <span class="s2">&quot;Installed framework&quot;</span>
+$ git commit -m <span class="s2">&quot;Printed a list of names from data&quot;</span>
 </pre></div>
 </div>
 <p>Push it to GitHub.</p>
@@ -449,11 +449,25 @@ $ git commit -m <span class="s2">&quot;Installed framework&quot;</span>
 <div class="section" id="chapter-6-hello-chart">
 <h2>Chapter 6: Hello chart<a class="headerlink" href="#chapter-6-hello-chart" title="Permalink to this headline">¶</a></h2>
 <p>We’ll use two JavaScript libraries to make our charts: <a class="reference external" href="https://d3js.org/">D3</a> and <a class="reference external" href="http://visible.io/">D4</a>. D4 is basicaly a layer on top of D3 to make building simple charts easier.</p>
-<p>First, use npm to install the packages.</p>
+<p>First, use npm to install the packages. We’re installing a “bleeding-edge” version of D4 that’s meant to work in modern setups.</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>$ npm install d3
-$ npm install d4
+$ npm install -s git+https://git@github.com/heavysixer/d4.git
 </pre></div>
 </div>
+<p>From here, we’ll be working in our <code class="docutils literal"><span class="pre">_scripts</span></code> folder. Create a file called <code class="docutils literal"><span class="pre">charts.js</span></code> inside of <code class="docutils literal"><span class="pre">src/_scripts/</span></code>.</p>
+<p>You can include the libraries we installed (or any JavaScript file!) by using <code class="docutils literal"><span class="pre">require()</span></code>.</p>
+<div class="highlight-javascript"><div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">d3</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">&quot;d3&quot;</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">d4</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">&quot;d4&quot;</span><span class="p">);</span>
+
+<span class="c1">// At the end of the charts.js file</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;hello, this is my charts file!&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Then we use the same <code class="docutils literal"><span class="pre">require()</span></code> method to pull our code into <code class="docutils literal"><span class="pre">main.js</span></code>.</p>
+<div class="highlight-javascript"><div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">chart</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;./charts.js&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Structuring our code this way helps keep things organized, as each file controls one specific part of the page.</p>
 </div>
 <div class="section" id="chapter-7-hello-map">
 <h2>Chapter 7: Hello map<a class="headerlink" href="#chapter-7-hello-map" title="Permalink to this headline">¶</a></h2>
