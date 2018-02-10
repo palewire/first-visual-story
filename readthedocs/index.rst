@@ -458,10 +458,74 @@ TK PICTURE OF INSPECTOR / CONSOLE HERE
 
 What chart should we make? The story points out that Harvard Park experienced an increase in homicides as there was a decrease across the rest of the city. Let's try to visualize that.
 
-Our JSON values are in an external file, ``src/_data/annual_totals.json``
+First, we need somewhere for our charts to go. In our ``harvard-park-homicides/index.nunjucks`` file, inside of ``{% block content %}`` where you want the chart to go, create a ``div`` element with an id of "city-homicides", and another with an id of "harvard-park-homicides".
 
+.. code-block:: html
 
+    <div id="city-homicides"></div>
+    <div id="harvard-park-homicides"></div>
 
+Meanwhile, we need data. Our JSON values are in an external file, ``src/_data/annual_totals.json``. We're going to pull in the data using what's called an "AJAX" request.
+
+AJAX stands for Asynchronous JavaScript and XML. Aren't you happy you asked?
+
+Let's create the bare bones of a function that will make our charts. Back in ``charts.js``:
+
+.. code-block:: javascript
+
+    function createChart(data, element) {
+        // The code that creates our chart will go here.
+    }
+
+This is the start of a function that will take data, and an HTML element, and create a chart with the data inside the element. By structuring our code this way, we'll be able to make multiple charts without repeating ourselves.
+
+Making a chart in Plotly is simple, but we have to do some data transformation first. Plotly wants the x and y values of the chart to be in arrays, which are like a list of values.
+
+Inside of ``createChart()``, create two arrays that will hold our x and y values:
+
+.. code-block:: javascript
+
+    function createChart(data, element) {
+        // Create an empty variable for our x and y axis
+        var x = [];
+        var y = [];
+    }
+
+Then we want to loop over each item in our ``data`` by using a ``for`` loop.
+
+.. code-block:: javascript
+
+    function createChart(data, element) {
+        // Create an empty variable for our x and y axis
+        var x = [];
+        var y = [];
+
+        // Fill the x and y variables with data from our array
+        for (var i = 0; i < data.length; i++) {
+          x.push(data[i]['year']);
+          y.push(data[i]['homicides_total']);
+        }
+    }
+
+After the for loop, we need to set the options that we're going to give to plotly. These set the x and y axes, and the type of chart.
+
+.. code-block:: javascript
+
+    function createChart(data, element) {
+        ... // The rest of our code is up here. Don't type this.
+
+        // Use our x and y arrays for the values of the chart
+        var chartSettings = [{
+          x: x,
+          y: y,
+          type: 'bar'
+        }];
+
+        // Create the chart
+        Plotly.newPlot(element, chartSettings);
+    }
+
+Now, if you reload the page, you'll see the chart where you placed the div!
 
 
 
