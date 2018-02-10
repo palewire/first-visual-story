@@ -423,7 +423,7 @@ TK
 Chapter 6: Hello chart
 **********************
 
-We have data, but what does it look like? To visualize our data, we're going to use `plotly.js <https://plot.ly/javascript/>`. Plotly.js is an open source library built on the popular `D3 <https://d3js.org/>` library, which powers a lot of the news graphics made with JavaScript you'll see.
+We have data, but what does it look like? To visualize our data, we're going to use `plotly.js <https://plot.ly/javascript/>`_. Plotly.js is an open source library built on the popular `D3 <https://d3js.org/>`_ library, which powers a lot of the news graphics made with JavaScript you'll see.
 
 First, use npm to install plotly.js.
 
@@ -465,9 +465,17 @@ First, we need somewhere for our charts to go. In our ``harvard-park-homicides/i
     <div id="city-homicides"></div>
     <div id="harvard-park-homicides"></div>
 
-Meanwhile, we need data. Our JSON values are in an external file, ``src/_data/annual_totals.json``. We're going to pull in the data using what's called an "AJAX" request.
+Meanwhile, we need data. Copy the `annual totals data <https://raw.githubusercontent.com/ireapps/first-graphics-app/master/src/_data/annual_totals.json>`_ to ``_data/annual_totals.json``. We can use nunjucks to include our data file directly in the template.
 
-AJAX stands for Asynchronous JavaScript and XML. Aren't you happy you asked?
+Inside of the ``{% scripts %}`` block:
+
+.. code-block:: html
+
+    {% block scripts %}
+    <script>
+    var homicides = {% include '_data/annual_totals.json' %}
+    </script>
+    {% endblock %}
 
 Let's create the bare bones of a function that will make our charts. Back in ``charts.js``:
 
@@ -492,6 +500,8 @@ Inside of ``createChart()``, create two arrays that will hold our x and y values
     }
 
 Then we want to loop over each item in our ``data`` by using a ``for`` loop.
+
+WE COULD ALSO USE D3.MAP HERE BUT I THINK THIS IS MORE FUNDAMENTAL JS.
 
 .. code-block:: javascript
 
