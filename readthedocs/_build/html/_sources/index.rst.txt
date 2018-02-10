@@ -271,7 +271,7 @@ Create a new page for our app
 
 Navigate to `localhost:3000/harvard-park-homicides/ <http://localhost:3000/harvard-park-homicides/>`_.
 
-Make a change to ``harvard-park-homicides/index.nunjucks``. See it show up.
+Make a change to ``harvard-park-homicides/index.nunjucks`` by editing the ``content`` block. See it show up.
 
 .. code-block:: nunjucks
 
@@ -282,7 +282,7 @@ Make a change to ``harvard-park-homicides/index.nunjucks``. See it show up.
 
 Open up ``_layouts/base.nunjucks`` and explain how the template inheritance system works.
 
-Make a small change to ``base.nunjucks`` and see it come up live.
+Make a small change to ``_layouts/base.nunjucks`` and see it come up live.
 
 .. code-block:: nunjucks
 
@@ -348,7 +348,7 @@ Commit our work.
 .. code-block:: bash
 
     $ git add .
-    $ git commit -m "Installed framework"
+    $ git commit -m "Started editing templates"
 
 Push it to GitHub.
 
@@ -361,9 +361,9 @@ Push it to GitHub.
 Chapter 4: Hello data
 *********************
 
-Add the Harvard Park homicides data files to ``_data/harvard_park_homicides.json``
+Add the `Harvard Park homicides data files <https://raw.githubusercontent.com/ireapps/first-graphics-app/master/src/_data/harvard_park_homicides.json>`_ to ``_data/harvard_park_homicides.json``
 
-Return to ``index.nunjucks`` and print them out on the page.
+Return to ``src/harvard-park-homicides/index.nunjucks`` and print them out on the page.
 
 .. code-block:: nunjucks
 
@@ -386,16 +386,16 @@ Print the last name.
 .. code-block:: nunjucks
 
     {% for obj in site.data.harvard_park_homicides %}
-        {{ obj.last_name }}
+        {{ obj.last_name }}<br>
     {% endfor %}
 
 
-Add the first name
+Add the first name. To have them display more nicely, you can also add a line break in between each one.
 
 .. code-block:: nunjucks
 
     {% for obj in site.data.harvard_park_homicides %}
-        {{ obj.first_name }} {{ obj.last_name }}
+        {{ obj.first_name }} {{ obj.last_name }}<br>
     {% endfor %}
 
 
@@ -404,7 +404,7 @@ Commit our work.
 .. code-block:: bash
 
     $ git add .
-    $ git commit -m "Installed framework"
+    $ git commit -m "Printed a list of names from data"
 
 Push it to GitHub.
 
@@ -425,12 +425,38 @@ Chapter 6: Hello chart
 
 We'll use two JavaScript libraries to make our charts: `D3 <https://d3js.org/>`_ and `D4 <http://visible.io/>`_. D4 is basicaly a layer on top of D3 to make building simple charts easier.
 
-First, use npm to install the packages.
+First, use npm to install the packages. We're installing a "bleeding-edge" version of D4 that's meant to work in modern setups.
 
 .. code-block:: bash
 
     $ npm install d3
-    $ npm install d4
+    $ npm install -s git+https://git@github.com/heavysixer/d4.git
+
+
+From here, we'll be working in our ``_scripts`` folder. Create a file called ``charts.js`` inside of ``src/_scripts/``.
+
+You can include the libraries we installed (or any JavaScript file!) by using ``require()``.
+
+.. code-block:: javascript
+
+    var d3 = require("d3");
+    var d4 = require("d4");
+
+    // At the end of the charts.js file
+    console.log("hello, this is my charts file!")
+
+Then we use the same ``require()`` method to pull our code into ``main.js``.
+
+.. code-block:: javascript
+
+    var chart = require('./charts.js');
+
+Structuring our code this way helps keep things organized, as each file controls one specific part of the page.
+
+
+
+
+
 
 
 ********************
