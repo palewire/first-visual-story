@@ -132,7 +132,7 @@
       "gender":"male",
       "image":"http:\/\/s3-us-west-2.amazonaws.com\/homicide.latimes.com\/media\/homicide\/09f092cf-52de-4ab3-a7d8-d70e63aaaea0.jpeg",
       "longitude":-118.30672502517699,
-      "latitude": 33.98298924730142
+      "latitude": 33.98302
    },
    {
       "case_number":"2016-05536",
@@ -207,7 +207,7 @@
       "gender":"male",
       "image":"http:\/\/s3-us-west-2.amazonaws.com\/homicide.latimes.com\/media\/homicide\/f47bbed2-5196-4c06-b316-2fd14877d5e6.jpeg",
       "longitude":-118.30683767795561,
-      "latitude":33.98291807615946
+      "latitude":33.98289
    },
    {
       "case_number":"2015-05723",
