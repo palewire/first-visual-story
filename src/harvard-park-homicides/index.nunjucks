@@ -53,7 +53,7 @@ By <a href="http://first-graphics-app.readthedocs.org/">The First Graphics App T
         {% if obj.death_year > 2015 %}
             L.circleMarker([{{ obj.latitude }},  {{ obj.longitude }}])
               .addTo(map)
-              .bindPopup("{{ obj.first_name }} {{ obj.last_name }}");
+              .bindTooltip("{{ obj.first_name }} {{ obj.last_name }}", {permanent: true});
         {% endif %}
     {% endfor %}
     map.setView([33.983265, -118.306799], 18);
