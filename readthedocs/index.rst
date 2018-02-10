@@ -423,15 +423,15 @@ TK
 Chapter 6: Hello chart
 **********************
 
-We'll use two JavaScript libraries to make our charts: `D3 <https://d3js.org/>`_ and `D4 <http://visible.io/>`_. D4 is basicaly a layer on top of D3 to make building simple charts easier.
+We have data, but what does it look like? To visualize our data, we're going to use `plotly.js <https://plot.ly/javascript/>`. Plotly.js is an open source library built on the popular `D3 <https://d3js.org/>` library, which powers a lot of the news graphics made with JavaScript you'll see.
 
-First, use npm to install the packages. We're installing a "bleeding-edge" version of D4 that's meant to work in modern setups.
+First, use npm to install plotly.js.
 
 .. code-block:: bash
 
-    $ npm install d3
-    $ npm install -s git+https://git@github.com/heavysixer/d4.git
+    $ npm install -s plotly.js
 
+The ``-s`` argument saves plotly to a dependencies file. That way, if you ever need to go through the install steps for your app again, you can do so easily.
 
 From here, we'll be working in our ``_scripts`` folder. Create a file called ``charts.js`` inside of ``src/_scripts/``.
 
@@ -439,8 +439,7 @@ You can include the libraries we installed (or any JavaScript file!) by using ``
 
 .. code-block:: javascript
 
-    var d3 = require("d3");
-    var d4 = require("d4");
+    var Plotly = require('plotly.js');
 
     // At the end of the charts.js file
     console.log("hello, this is my charts file!")
@@ -451,8 +450,15 @@ Then we use the same ``require()`` method to pull our code into ``main.js``.
 
     var chart = require('./charts.js');
 
-Structuring our code this way helps keep things organized, as each file controls one specific part of the page.
+Structuring our code this way helps keep things organized, as each file controls one specific part of the page. Need to make an adjustment to your chart? Go to ``charts.js``. Want to tweak the map (which we'll do later)? Look in ``map.js``
 
+Now if you reload your page and go to your inspector (click on the three dots in the top right of Chrome, go down to "More tools" and select "Developer tools"), you should see ``hello, this is my charts file!`` in the console.
+
+TK PICTURE OF INSPECTOR / CONSOLE HERE
+
+What chart should we make? The story points out that Harvard Park experienced an increase in homicides as there was a decrease across the rest of the city. Let's try to visualize that.
+
+Our JSON values are in an external file, ``src/_data/annual_totals.json``
 
 
 
