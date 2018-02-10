@@ -463,15 +463,29 @@ Structuring our code this way helps keep things organized, as each file controls
 Chapter 7: Hello map
 ********************
 
-Toss Leaflet into the head.
+Install Leaflet with npm.
 
-.. code-block:: nunjucks
+.. code-block:: base
 
-    {% block scripts %}
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.1/dist/leaflet.css" />
-    <script src="https://unpkg.com/leaflet@1.3.1/dist/leaflet.js"></script>
-    {% endblock %}
+    $ npm install leaflet
 
+Import Leaflet's JavaScript in `_scripts/main.js`.
+
+.. code-block:: javascript
+
+    var L = require("leaflet");
+
+Add a little hack we'll need to get the images to work.
+
+.. code-block:: javascript
+
+    L.Icon.Default.imagePath = 'https://unpkg.com/leaflet@1.3.1/dist/images/';
+
+Import Leaflet's stylesheets in `_styles/main.scss`
+
+.. code-block:: css
+
+    @import 'node_modules/leaflet/dist/leaflet';
 
 Create a starter map.
 
@@ -482,17 +496,14 @@ Create a starter map.
     {% endblock %}
 
     {% block scripts %}
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.1/dist/leaflet.css" />
-    <script src="https://unpkg.com/leaflet@1.3.1/dist/leaflet.js"></script>
     <script>
         var map = L.map('map').setView([41.890434, -87.623571], 15);
-        L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
+        var osm = L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     		maxZoom: 18,
-    		attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, ' +
-    			'<a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
-    			'Imagery © <a href="http://mapbox.com">Mapbox</a>',
-    		id: 'mapbox.streets'
-    	}).addTo(map);
+            minZoom: 5,
+    		attribution: 'Map data &copy; OpenStreetMap contributors',
+    	});
+        osm.addTo(map);
     </script>
     {% endblock %}
 
@@ -527,11 +538,21 @@ Add a popup.
 
 Install Leaflet-minimap
 
-.. code-block:: html
+.. code-block:: bash
 
-    <link rel="stylesheet" href="http://norkart.github.io/Leaflet-MiniMap/Control.MiniMap.css" />
-    <script src="http://norkart.github.io/Leaflet-MiniMap/Control.MiniMap.js"></script>
+    $ npm install leaflet-minimap
 
+Add it to `_scripts/main.js`.
+
+.. code-block:: javascript
+
+    var MiniMap = require('leaflet-minimap');
+
+Add the stylesheets.
+
+.. code-block:: css
+
+    @import 'node_modules/leaflet-minimap/src/Control.MiniMap';
 
 Create a minimap in the corner
 

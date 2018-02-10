@@ -30,11 +30,6 @@ By <a href="http://first-graphics-app.readthedocs.org/">The First Graphics App T
 {% endblock %}
 
 {% block scripts %}
-<link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.1/dist/leaflet.css" />
-<script src="https://unpkg.com/leaflet@1.3.1/dist/leaflet.js"></script>
-<link rel="stylesheet" href="http://norkart.github.io/Leaflet-MiniMap/Control.MiniMap.css" />
-<script src="http://norkart.github.io/Leaflet-MiniMap/Control.MiniMap.js"></script>
-
 <script>
     var map = L.map('map')
     var osm = L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
