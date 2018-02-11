@@ -481,48 +481,55 @@ Let's create the bare bones of a function that will make our charts. Back in ``c
 
 .. code-block:: javascript
 
-    function createChart(data, element) {
+    function createChart(x, y, element) {
         // The code that creates our chart will go here.
     }
 
-This is the start of a function that will take data, and an HTML element, and create a chart with the data inside the element. By structuring our code this way, we'll be able to make multiple charts without repeating ourselves.
+This is the start of a function that will take values for the x and y axes, and an HTML element, and create a chart with the data inside the element.
+
+By structuring our code this way, we'll be able to make multiple charts without repeating our code (known as `DRY <https://en.wikipedia.org/wiki/Don%27t_repeat_yourself>`_).
 
 Making a chart in Plotly is simple, but we have to do some data transformation first. Plotly wants the x and y values of the chart to be in arrays, which are like a list of values.
 
-Inside of ``createChart()``, create two arrays that will hold our x and y values:
+We want to make two charts - one of city homicides and one of killings in Harvard Park. So let's make arrays that will hold those values that we will then provide to our function, as well as the years.
 
 .. code-block:: javascript
 
-    function createChart(data, element) {
-        // Create an empty variable for our x and y axis
-        var x = [];
-        var y = [];
+    // Initialize the arrays that will hold our lists of data
+    var cityHomicides = [];
+    var harvardParkHomicides = [];
+    var years = [];
+
+    function createChart(x, y, element) {
+        // The code that creates our chart will go here.
     }
 
-Then we want to loop over each item in our ``data`` by using a ``for`` loop.
-
-WE COULD ALSO USE D3.MAP HERE BUT I THINK THIS IS MORE FUNDAMENTAL JS.
+Then we want to fill our arrays by looping over each item in our ``data`` by using a ``for`` loop. ``.push()`` adds a value into an array.
 
 .. code-block:: javascript
 
-    function createChart(data, element) {
-        // Create an empty variable for our x and y axis
-        var x = [];
-        var y = [];
+    var cityHomicides = [];
+    var harvardParkHomicides = [];
+    var years = [];
 
-        // Fill the x and y variables with data from our array
-        for (var i = 0; i < data.length; i++) {
-          x.push(data[i]['year']);
-          y.push(data[i]['homicides_total']);
-        }
+    for (var i = 0; i < homicides.length; i++) {
+      cityHomicides.push(homicides[i]['homicides_total']);
+      harvardParkHomicides.push(homicides[i]['homicides_harvard_park']);
+      years.push(homicides[i]['year']);
     }
 
-After the for loop, we need to set the options that we're going to give to plotly. These set the x and y axes, and the type of chart.
+    function createChart(x, y, element) {
+        // The code that creates our chart will go here.
+    }
+
+
+Now that we've populated our data, we're ready to work on our chart function. Inside of ``createChart()``, create the settings for our chart. Right now, they're pretty simple, with options for the x and y axis, and specifying the type of the chart.
+
+Below the settings we call ``Plotly.newPlot()`` with our element and settings to create the chart.
 
 .. code-block:: javascript
 
-    function createChart(data, element) {
-        ... // The rest of our code is up here. Don't type this.
+    function createChart(x, y, element) {
 
         // Use our x and y arrays for the values of the chart
         var chartSettings = [{
@@ -535,7 +542,16 @@ After the for loop, we need to set the options that we're going to give to plotl
         Plotly.newPlot(element, chartSettings);
     }
 
-Now, if you reload the page, you'll see the chart where you placed the div!
+If you reload the page, you still won't see anything, because we've created a function, but haven't actually called it.
+
+At the end of your file, type:
+
+.. code-block:: javascript
+
+    // The rest of your code is up here
+    createChart(years, cityHomicides, 'city-homicides');
+
+
 
 
 
