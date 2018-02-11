@@ -262,16 +262,9 @@ Push it to GitHub.
 Chapter 3: Hello template
 *************************
 
-Create a new page for our app
+Navigate to `localhost:3000/ <http://localhost:3000/>`_.
 
-.. code-block:: bash
-
-    $ yo yeogurt:page harvard-park-homicides
-
-
-Navigate to `localhost:3000/harvard-park-homicides/ <http://localhost:3000/harvard-park-homicides/>`_.
-
-Make a change to ``harvard-park-homicides/index.nunjucks`` by editing the ``content`` block. See it show up.
+Make a change to ``index.nunjucks`` by editing the ``content`` block. See it show up.
 
 .. code-block:: nunjucks
 
@@ -342,6 +335,14 @@ Fill in a byline and see it show up.
 
     {% block byline %}By me{% endblock %}
 
+Let's do the publication date too while we are at it.
+
+
+.. code-block:: nunjucks
+
+    {% block pubdate %}
+        <time datetime="2017-11-19" pubdate>Nov. 19, 2017</time>
+    {% endblock %}
 
 Commit our work.
 
@@ -675,7 +676,7 @@ Install Leaflet with npm.
 
 .. code-block:: base
 
-    $ npm install leaflet
+    $ npm install -s leaflet
 
 Import Leaflet's JavaScript in `_scripts/main.js`.
 
@@ -695,7 +696,7 @@ Import Leaflet's stylesheets in `_styles/main.scss`
 
     @import 'node_modules/leaflet/dist/leaflet';
 
-Create a starter map.
+Create a placeholder in the page template where the map will live.
 
 .. code-block:: nunjucks
 
@@ -703,34 +704,39 @@ Create a starter map.
     <div id="map"></div>
     {% endblock %}
 
-    {% block scripts %}
-    <script>
-        var map = L.map('map').setView([41.890434, -87.623571], 15);
-        var osm = L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    		maxZoom: 18,
-            minZoom: 5,
-    		attribution: 'Map data &copy; OpenStreetMap contributors',
-    	});
-        osm.addTo(map);
-    </script>
-    {% endblock %}
+Add a new file named `map.js` to the `_scripts` directory. Import it in `main.js`.
 
+.. code-block:: javascript
+
+    var map = require("./map.js");
+
+
+Now in `map.js` paste in the following Leaflet code to generate a simple map.
+
+.. code-block:: javascript
+
+`   var map = L.map('map');
+    var osm = L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png');
+    osm.addTo(map);`
+
+
+Reload the index page to see the results.
 
 Go to Google Maps and find 62nd Street and Harvard Boulevard in South LA. Hold down a click until it gives you the latitude and longitude. Paste those numbers into Leaflet's setView method.
 
 .. code-block:: javascript
 
-    var map = L.map('map').setView([33.983265, -118.306799], 15);
+    map.setView([33.983265, -118.306799], 15);
 
 
 Move in the zoom.
 
 .. code-block:: javascript
 
-    var map = L.map('map').setView([33.983265, -118.306799], 16);
+    map.setView([33.983265, -118.306799], 16);
 
 
-Add a pin.
+Add a pin at that point.
 
 .. code-block:: javascript
 
@@ -744,11 +750,49 @@ Add a popup.
     marker.bindPopup("W. 62nd Street and Harvard Boulevard").openPopup();
 
 
-Install Leaflet-minimap
+At the bottom of the page import in the homicide list as we did with the totals for our chart.
+
+.. code-block:: nunjucks
+
+    var homicides = {% include '_data/harvard_park_homicides.json' %};
+
+
+Loop through the data in `map.js` and add each point to the map as a circle, just like the real Homicide Report.
+
+.. code-block:: javascript
+
+    homicides.forEach(function (obj) {
+        L.circleMarker([obj.latitude,  obj.longitude])
+        .addTo(map);
+    })
+
+Extend that code to add a tooltip label on each point.
+
+.. code-block:: javascript
+
+    homicides.forEach(function (obj) {
+        L.circleMarker([obj.latitude,  obj.longitude])
+          .addTo(map)
+          .bindTooltip(obj.first_name + " " + obj.last_name);
+    })
+
+Now add an option to the tooltip that makes them all visible all the time.
+
+.. code-block:: javascript
+
+    homicides.forEach(function (obj) {
+        L.circleMarker([obj.latitude,  obj.longitude])
+          .addTo(map)
+          .bindTooltip(obj.first_name + " " + obj.last_name, {permanent: true});
+    })
+
+Now let's add a mini map in the corner yet for context.
+
+Install Leaflet-minimap.
 
 .. code-block:: bash
 
-    $ npm install leaflet-minimap
+    $ npm install -s leaflet-minimap
 
 Add it to `_scripts/main.js`.
 

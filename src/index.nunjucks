@@ -41,28 +41,6 @@ By <a href="http://first-graphics-app.readthedocs.org/">The First Graphics App T
 
 {% block scripts %}
 <script>
-    var map = L.map('map')
-    var osm = L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-		maxZoom: 18,
-        minZoom: 5,
-		attribution: 'Map data &copy; OpenStreetMap contributors',
-	});
-    osm.addTo(map);
-
-    {% for obj in site.data.harvard_park_homicides %}
-        {% if obj.death_year > 2015 %}
-            L.circleMarker([{{ obj.latitude }},  {{ obj.longitude }}])
-              .addTo(map)
-              .bindTooltip("{{ obj.first_name }} {{ obj.last_name }}", {permanent: true});
-        {% endif %}
-    {% endfor %}
-    map.setView([33.983265, -118.306799], 18);
-
-    var osm2 = L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-		maxZoom: 9,
-		attribution: 'Map data &copy; OpenStreetMap contributors',
-	});
-    var mini = new L.Control.MiniMap(osm2, { toggleDisplay: true });
-    mini.addTo(map);
+    var homicides = {% include '_data/harvard_park_homicides.json' %};
 </script>
 {% endblock %}
