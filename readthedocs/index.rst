@@ -287,20 +287,14 @@ Replace ``_layouts/base.nunjucks`` with our more polished base template.
 
 .. code-block:: nunjucks
 
-    {# Custom Configuration #}
-    {% block config %}
-      {# Setup site's base URL to match the "baseUrl" key within `package.json` #}
-      {# Otherwise default to relative pathing #}
-      {% set baseUrl = config.baseUrl or './' %}
-    {% endblock %}
-
     <!doctype html>
     <html lang="en">
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>First News App</title>
-        <link rel="stylesheet" href="https://bl.ocks.org/palewire/raw/1035cd306a2f85b362b1a20ce315b8eb/base.css">
+        <title>First Graphics App</title>
+        <link rel="stylesheet" href="styles/main.css">
+        <link rel="stylesheet" href="https://bl.ocks.org/palewire/raw/1035cd306a2f85b362b1a20ce315b8eb/base.css?rev=4">
         {% block stylesheets %}{% endblock %}
     </head>
     <body>
@@ -314,20 +308,21 @@ Replace ``_layouts/base.nunjucks`` with our more polished base template.
             <div class="byline">
                 {% block byline %}{% endblock %}
             </div>
+            <div class="pubdate">
+                {% block pubdate %}{% endblock %}
+            </div>
         </header>
         {% block content %}{% endblock %}
-        <script src="{{baseUrl}}scripts/main.js"></script>
         {% block scripts %}{% endblock %}
+        <script src="scripts/main.js"></script>
     </body>
     </html>
-
 
 Fill in a headline and see it show up.
 
 .. code-block:: nunjucks
 
     {% block headline %}My headline will go here{% endblock %}
-
 
 Fill in a byline and see it show up.
 
@@ -336,7 +331,6 @@ Fill in a byline and see it show up.
     {% block byline %}By me{% endblock %}
 
 Let's do the publication date too while we are at it.
-
 
 .. code-block:: nunjucks
 
@@ -372,7 +366,6 @@ Return to ``src/harvard-park-homicides/index.nunjucks`` and print them out on th
     {{ site.data.harvard_park_homicides }}
     {% endblock %}
 
-
 Loop through them and print them all.
 
 .. code-block:: nunjucks
@@ -380,7 +373,6 @@ Loop through them and print them all.
     {% for obj in site.data.harvard_park_homicides %}
         {{ obj }}
     {% endfor %}
-
 
 Print the last name.
 
@@ -390,7 +382,6 @@ Print the last name.
         {{ obj.last_name }}<br>
     {% endfor %}
 
-
 Add the first name. To have them display more nicely, you can also add a line break in between each one.
 
 .. code-block:: nunjucks
@@ -398,7 +389,6 @@ Add the first name. To have them display more nicely, you can also add a line br
     {% for obj in site.data.harvard_park_homicides %}
         {{ obj.first_name }} {{ obj.last_name }}<br>
     {% endfor %}
-
 
 Commit our work.
 
@@ -710,15 +700,13 @@ Add a new file named `map.js` to the `_scripts` directory. Import it in `main.js
 
     var map = require("./map.js");
 
-
 Now in `map.js` paste in the following Leaflet code to generate a simple map.
 
 .. code-block:: javascript
 
-`   var map = L.map('map');
+    var map = L.map('map');
     var osm = L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png');
     osm.addTo(map);`
-
 
 Reload the index page to see the results.
 
@@ -728,13 +716,11 @@ Go to Google Maps and find 62nd Street and Harvard Boulevard in South LA. Hold d
 
     map.setView([33.983265, -118.306799], 15);
 
-
 Move in the zoom.
 
 .. code-block:: javascript
 
     map.setView([33.983265, -118.306799], 16);
-
 
 Add a pin at that point.
 
@@ -742,20 +728,17 @@ Add a pin at that point.
 
     var marker = L.marker([33.983265, -118.306799]).addTo(map);
 
-
 Add a popup.
 
 .. code-block:: javascript
 
     marker.bindPopup("W. 62nd Street and Harvard Boulevard").openPopup();
 
-
 At the bottom of the page import in the homicide list as we did with the totals for our chart.
 
 .. code-block:: nunjucks
 
     var homicides = {% include '_data/harvard_park_homicides.json' %};
-
 
 Loop through the data in `map.js` and add each point to the map as a circle, just like the real Homicide Report.
 
@@ -817,7 +800,6 @@ Create a minimap in the corner
     var mini = new L.Control.MiniMap(osm2, { toggleDisplay: true });
     mini.addTo(map);
 
-
 Create a point for each of the four people who have died on that corner.
 
 .. code-block:: nunjucks
@@ -830,13 +812,11 @@ Create a point for each of the four people who have died on that corner.
         {% endif %}
     {% endfor %}
 
-
 Set the map zoom to that corner, and remove our first marker.
 
 .. code-block:: javascript
 
     map.setView([33.983265, -118.306799], 18);
-
 
 Swap in a circle marker to match the real Homicide Report.
 
@@ -882,13 +862,11 @@ Add a deck headline.
 
     <h3>One corner. Four killings. </h3>
 
-
 Write a section graf.
 
 .. code-block:: html
 
     <p>The southwest corner of Harvard Park, at West 62nd Street and Harvard Boulevard, has been especially deadly. In the last year-and-a-half, four men have been killed there — while sitting in a car, trying to defuse an argument or walking home from the barber shop or the corner store.</p>
-
 
 Wrap it in a section tag.
 

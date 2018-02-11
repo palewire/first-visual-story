@@ -1,17 +1,10 @@
-{# Custom Configuration #}
-{% block config %}
-  {# Setup site's base URL to match the "baseUrl" key within `package.json` #}
-  {# Otherwise default to relative pathing #}
-  {% set baseUrl = config.baseUrl or './' %}
-{% endblock %}
-
 <!doctype html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>First Graphics App</title>
-    <link rel="stylesheet" href="{{ baseUrl }}styles/main.css">
+    <link rel="stylesheet" href="styles/main.css">
     <link rel="stylesheet" href="https://bl.ocks.org/palewire/raw/1035cd306a2f85b362b1a20ce315b8eb/base.css?rev=4">
     {% block stylesheets %}{% endblock %}
 </head>
@@ -32,6 +25,6 @@
     </header>
     {% block content %}{% endblock %}
     {% block scripts %}{% endblock %}
-    <script src="{{baseUrl}}scripts/main.js"></script>
+    <script src="scripts/main.js"></script>
 </body>
 </html>
