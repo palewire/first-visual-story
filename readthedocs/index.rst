@@ -551,8 +551,120 @@ At the end of your file, type:
     // The rest of your code is up here
     createChart(years, cityHomicides, 'city-homicides');
 
+Not bad, right? Now, we can make a second chart by using the Harvard Park data. Be sure to replace the ID of the element you're building the chart in.
+
+.. code-block:: javascript
+
+    // The rest of your code is up here
+    createChart(years, harvardParkHomicides, 'harvard-park-homicides');
+
+This is a good start, but we can further customize these charts so they fit better with the rest of the page. Now, let's try to:
+
+- Add axis labels
+- Change the colors of the bars
+- Change the fonts to match our page
+- Give the charts titles
+- Display the two charts alongside one another
+
+Let's add labels to our axes. Create a new variable, ``chartLayout`` in your ``createChart`` function. We can then specify properties for ``xaxis`` and yaxis``.
+
+.. code-block:: javascript
+
+    var chartLayout = {
+        xaxis: {
+            title: 'Year'
+        },
+        yaxis: {
+            title: 'Homicides'
+        }
+    };
 
 
+Then, add ``chartLayout`` as a third argument to ``Plotly.newPlot()``
+
+.. code-block:: javascript
+
+    Plotly.newPlot(element, chartSettings, chartLayout);
+
+Everything in plotly.js is handled by settings like this. For example, to change the markers to an light blue, update ``chartSettings``.
+
+.. code-block:: javascript
+
+    var chartSettings = [{
+      x: x,
+      y: y,
+      type: 'bar',
+      // Add the new settings for marker here
+      marker: {
+        color: '#86c7df'
+      }
+    }];
+
+Right now, our charts are stacked up on top of each other, which isn't a very nice layout. We can use HTML and CSS to lay out our charts side-by-side.
+
+In ``index.nunjucks``, add a ``div`` element that wraps your charts, and add a ``class`` of ``inline-chart`` to each of your charts.
+
+.. code-block:: html
+
+    <div class="charts-holder">
+        <div class="inline-chart" id="city-homicides"></div>
+        <div class="inline-chart" id="harvard-park-homicides"></div>
+    </div>
+
+This gives us a structure that we can style with CSS. In the ``_scripts`` folder, create a file called ``_charts.scss``. In that file, copy or write the following:
+
+.. code-block:: css
+
+    .inline-chart {
+        width: 49%;
+        float: left;
+    }
+
+You won't see anything yet, because we haven't imported it into our main stylesheet. Use ``@import`` to bring your CSS file into ``main.css``
+
+.. code-block:: css
+
+    // Normalize Styles
+    @import 'node_modules/normalize.css/normalize';
+
+    // Import Modules
+    @import '../_modules/link/link';
+
+    // Add this to main.scss
+    @import '_charts.scss';
+
+Again, this is the same modular structure that allows us to organize our chart styles in a different place from our map styles, for example.
+
+The charts are laid out side-by-side like we want them, but there's way too much space in between them. Luckily, we can adjust the margins in the chart layout. Back in ``_scripts/charts.js``, the following settings should work.
+
+``l``, ``r``, ``t`` and ``b`` stand for left, right, top and bottom margins, respectively.
+
+.. code-block:: javascript
+
+    var chartLayout = {
+        xaxis: {
+            title: 'Year'
+        },
+        yaxis: {
+            title: 'Homicides'
+        },
+        // Add the margin here
+        margin: {
+            l: 45,
+            r: 15,
+            t: 20,
+            b: 30
+        }
+    };
+
+We can also add a parameter to reduce the height, they're a bit tall.
+
+.. code-block:: javascript
+    var chartLayout = {
+        // Other properties are above
+        // Add a height parameter to the bottom of your file
+        height: 250
+    };
 
 
 ********************
