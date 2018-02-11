@@ -759,6 +759,20 @@ Extend that code to add a tooltip label on each point.
           .bindTooltip(obj.first_name + " " + obj.last_name);
     })
 
+Sprinkle some CSS in our page to make it match the colors.
+
+.. code-block:: nunjucks
+
+    {% block stylesheets %}
+    <style>
+        path {
+            fill: #e64d1f;
+            fill-opacity: 0.5;
+            stroke-opacity: 0;
+        }
+    </style>
+    {% endblock %}
+
 Now add an option to the tooltip that makes them all visible all the time.
 
 .. code-block:: javascript
@@ -794,67 +808,10 @@ Create a minimap in the corner
 .. code-block:: javascript
 
     var osm2 = L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        maxZoom: 9,
-        attribution: 'Map data &copy; OpenStreetMap contributors',
+        maxZoom: 9
     });
     var mini = new L.Control.MiniMap(osm2, { toggleDisplay: true });
     mini.addTo(map);
-
-Create a point for each of the four people who have died on that corner.
-
-.. code-block:: nunjucks
-
-    {% for obj in site.data.harvard_park_homicides %}
-        {% if obj.death_year > 2015 %}
-            L.marker([{{ obj.latitude }},  {{ obj.longitude }}])
-              .addTo(map)
-              .bindTooltip("{{ obj.first_name }} {{ obj.last_name }}");
-        {% endif %}
-    {% endfor %}
-
-Set the map zoom to that corner, and remove our first marker.
-
-.. code-block:: javascript
-
-    map.setView([33.983265, -118.306799], 18);
-
-Swap in a circle marker to match the real Homicide Report.
-
-.. code-block:: nunjucks
-
-    {% for obj in site.data.harvard_park_homicides %}
-        {% if obj.death_year > 2015 %}
-            L.circleMarker([{{ obj.latitude }},  {{ obj.longitude }}])
-              .addTo(map)
-              .bindTooltip("{{ obj.first_name }} {{ obj.last_name }}");
-        {% endif %}
-    {% endfor %}
-
-Sprinkle some CSS in our page to make it match the colors.
-
-.. code-block:: nunjucks
-
-    {% block stylesheets %}
-    <style>
-        path {
-            fill: #e64d1f;
-            fill-opacity: 0.5;
-            stroke-opacity: 0;
-        }
-    </style>
-    {% endblock %}
-
-Make the tooltip permanent.
-
-.. code-block:: nunjucks
-
-    {% for obj in site.data.harvard_park_homicides %}
-        {% if obj.death_year > 2015 %}
-            L.circleMarker([{{ obj.latitude }},  {{ obj.longitude }}])
-              .addTo(map)
-              .bindTooltip("{{ obj.first_name }} {{ obj.last_name }}", {permanent: true});
-        {% endif %}
-    {% endfor %}
 
 Add a deck headline.
 
