@@ -25,6 +25,12 @@ and the `National Institute for Computer-Assisted Reporting (NICAR) <http://data
 by `Dana Amihere <http://damihere.com>`_, `Armand Emamdjomeh <http://emamd.net>`_ and `Ben Welsh <http://palewi.re/who-is-ben-welsh/>`_. It will debut in March 2017 `at NICAR's conference
 in Chicago <https://www.ire.org/events-and-training/event/3189/3508/>`_.
 
+Their work was inspired by the footloose spirit of funk music. We urge you to bust free of the computer systems that constrain your creativity. Hit play and get into the groove.  
+
+.. raw:: html
+
+    <iframe src="https://open.spotify.com/embed?uri=spotify:user:227b2koy2xxyb23qliakea75y:playlist:54NS8jCdrgUpzUppUpokSg&theme=white" width="300" height="380" frameborder="0" allowtransparency="true"></iframe>
+
 **********************
 Prelude: Prerequisites
 **********************
