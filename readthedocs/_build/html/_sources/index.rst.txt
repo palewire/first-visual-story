@@ -530,13 +530,16 @@ Let's add labels to our axes. Create a new variable, ``chartLayout`` in your ``c
 
     var layout = {
         xaxis: {
-            title: 'Year'
+            title: 'Year',
+            fixedrange: true
         },
         yaxis: {
-            title: 'Homicides'
+            title: 'Homicides',
+            fixedrange: true
         }
     };
 
+The option ``fixedrange`` prevents clicking to zoom in on the chart, which I find mildly annoying.
 
 Then, add ``layout`` as a third argument to ``Plotly.newPlot()``
 
@@ -589,10 +592,12 @@ Note also that we change ``'city-homicides'`` to ``element`` in the call to ``Pl
 
         var layout = {
           xaxis: {
-            title: 'Year'
+            title: 'Year',
+            fixedrange: true
           },
           yaxis: {
-            title: 'Homicides'
+            title: 'Homicides',
+            fixedrange: true
           }
         };
 
@@ -661,10 +666,12 @@ The charts are laid out side-by-side like we want them, but there's way too much
 
     var chartLayout = {
         xaxis: {
-            title: 'Year'
+            title: 'Year',
+            fixedrange: true
         },
         yaxis: {
-            title: 'Homicides'
+            title: 'Homicides',
+            fixedrange: true
         },
         // Add the margin here
         margin: {
@@ -729,10 +736,12 @@ We're going to
         var layout = {
           title: title,
           xaxis: {
-            title: 'Year'
+            title: 'Year,
+            fixedrange: true
           },
           yaxis: {
-            title: 'Homicides'
+            title: 'Homicides,
+            fixedrange: true
           },
           // Add the margin here
           margin: {

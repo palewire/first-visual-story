@@ -528,14 +528,17 @@ $ git commit -m <span class="s2">&quot;Printed a list of names from data&quot;</
 <p>Let’s add labels to our axes. Create a new variable, <code class="docutils literal"><span class="pre">chartLayout</span></code> in your <code class="docutils literal"><span class="pre">createChart</span></code> function. We can then specify properties for <code class="docutils literal"><span class="pre">xaxis</span></code> and yaxis``.</p>
 <div class="highlight-javascript"><div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">layout</span> <span class="o">=</span> <span class="p">{</span>
     <span class="nx">xaxis</span><span class="o">:</span> <span class="p">{</span>
-        <span class="nx">title</span><span class="o">:</span> <span class="s1">&#39;Year&#39;</span>
+        <span class="nx">title</span><span class="o">:</span> <span class="s1">&#39;Year&#39;</span><span class="p">,</span>
+        <span class="nx">fixedrange</span><span class="o">:</span> <span class="kc">true</span>
     <span class="p">},</span>
     <span class="nx">yaxis</span><span class="o">:</span> <span class="p">{</span>
-        <span class="nx">title</span><span class="o">:</span> <span class="s1">&#39;Homicides&#39;</span>
+        <span class="nx">title</span><span class="o">:</span> <span class="s1">&#39;Homicides&#39;</span><span class="p">,</span>
+        <span class="nx">fixedrange</span><span class="o">:</span> <span class="kc">true</span>
     <span class="p">}</span>
 <span class="p">};</span>
 </pre></div>
 </div>
+<p>The option <code class="docutils literal"><span class="pre">fixedrange</span></code> prevents clicking to zoom in on the chart, which I find mildly annoying.</p>
 <p>Then, add <code class="docutils literal"><span class="pre">layout</span></code> as a third argument to <code class="docutils literal"><span class="pre">Plotly.newPlot()</span></code></p>
 <div class="highlight-javascript"><div class="highlight"><pre><span></span><span class="nx">Plotly</span><span class="p">.</span><span class="nx">newPlot</span><span class="p">(</span><span class="s1">&#39;city-homicides&#39;</span><span class="p">,</span> <span class="nx">settings</span><span class="p">,</span> <span class="nx">layout</span><span class="p">);</span>
 </pre></div>
@@ -575,10 +578,12 @@ $ git commit -m <span class="s2">&quot;Printed a list of names from data&quot;</
 
     <span class="kd">var</span> <span class="nx">layout</span> <span class="o">=</span> <span class="p">{</span>
       <span class="nx">xaxis</span><span class="o">:</span> <span class="p">{</span>
-        <span class="nx">title</span><span class="o">:</span> <span class="s1">&#39;Year&#39;</span>
+        <span class="nx">title</span><span class="o">:</span> <span class="s1">&#39;Year&#39;</span><span class="p">,</span>
+        <span class="nx">fixedrange</span><span class="o">:</span> <span class="kc">true</span>
       <span class="p">},</span>
       <span class="nx">yaxis</span><span class="o">:</span> <span class="p">{</span>
-        <span class="nx">title</span><span class="o">:</span> <span class="s1">&#39;Homicides&#39;</span>
+        <span class="nx">title</span><span class="o">:</span> <span class="s1">&#39;Homicides&#39;</span><span class="p">,</span>
+        <span class="nx">fixedrange</span><span class="o">:</span> <span class="kc">true</span>
       <span class="p">}</span>
     <span class="p">};</span>
 
@@ -630,10 +635,12 @@ $ git commit -m <span class="s2">&quot;Printed a list of names from data&quot;</
 <p><code class="docutils literal"><span class="pre">l</span></code>, <code class="docutils literal"><span class="pre">r</span></code>, <code class="docutils literal"><span class="pre">t</span></code> and <code class="docutils literal"><span class="pre">b</span></code> stand for left, right, top and bottom margins, respectively.</p>
 <div class="highlight-javascript"><div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">chartLayout</span> <span class="o">=</span> <span class="p">{</span>
     <span class="nx">xaxis</span><span class="o">:</span> <span class="p">{</span>
-        <span class="nx">title</span><span class="o">:</span> <span class="s1">&#39;Year&#39;</span>
+        <span class="nx">title</span><span class="o">:</span> <span class="s1">&#39;Year&#39;</span><span class="p">,</span>
+        <span class="nx">fixedrange</span><span class="o">:</span> <span class="kc">true</span>
     <span class="p">},</span>
     <span class="nx">yaxis</span><span class="o">:</span> <span class="p">{</span>
-        <span class="nx">title</span><span class="o">:</span> <span class="s1">&#39;Homicides&#39;</span>
+        <span class="nx">title</span><span class="o">:</span> <span class="s1">&#39;Homicides&#39;</span><span class="p">,</span>
+        <span class="nx">fixedrange</span><span class="o">:</span> <span class="kc">true</span>
     <span class="p">},</span>
     <span class="c1">// Add the margin here</span>
     <span class="nx">margin</span><span class="o">:</span> <span class="p">{</span>
@@ -694,10 +701,12 @@ $ git commit -m <span class="s2">&quot;Printed a list of names from data&quot;</
     <span class="kd">var</span> <span class="nx">layout</span> <span class="o">=</span> <span class="p">{</span>
       <span class="nx">title</span><span class="o">:</span> <span class="nx">title</span><span class="p">,</span>
       <span class="nx">xaxis</span><span class="o">:</span> <span class="p">{</span>
-        <span class="nx">title</span><span class="o">:</span> <span class="s1">&#39;Year&#39;</span>
-      <span class="p">},</span>
-      <span class="nx">yaxis</span><span class="o">:</span> <span class="p">{</span>
-        <span class="nx">title</span><span class="o">:</span> <span class="s1">&#39;Homicides&#39;</span>
+        <span class="nx">title</span><span class="o">:</span> <span class="s1">&#39;Year,</span>
+<span class="s1">        fixedrange: true</span>
+<span class="s1">      },</span>
+<span class="s1">      yaxis: {</span>
+<span class="s1">        title: &#39;</span><span class="nx">Homicides</span><span class="p">,</span>
+        <span class="nx">fixedrange</span><span class="o">:</span> <span class="kc">true</span>
       <span class="p">},</span>
       <span class="c1">// Add the margin here</span>
       <span class="nx">margin</span><span class="o">:</span> <span class="p">{</span>
