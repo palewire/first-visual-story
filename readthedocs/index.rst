@@ -25,7 +25,7 @@ and the `National Institute for Computer-Assisted Reporting (NICAR) <http://data
 by `Dana Amihere <http://damihere.com>`_, `Armand Emamdjomeh <http://emamd.net>`_ and `Ben Welsh <http://palewi.re/who-is-ben-welsh/>`_. It will debut in March 2017 `at NICAR's conference
 in Chicago <https://www.ire.org/events-and-training/event/3189/3508/>`_.
 
-Their work was inspired by the footloose spirit of funk music. We urge you to bust free of the computer systems that constrain your creativity. Hit play and get into the groove.  
+Their work was inspired by the footloose spirit of funk music. We urge you to bust free of the computer systems that constrain your creativity. Hit play and get into the groove.
 
 .. raw:: html
 
@@ -341,7 +341,7 @@ Let's do the publication date too while we are at it.
 .. code-block:: nunjucks
 
     {% block pubdate %}
-        <time datetime="2017-11-19" pubdate>Nov. 19, 2017</time>
+        <time datetime="2018-03-10" pubdate>Mar. 10, 2018</time>
     {% endblock %}
 
 Commit our work.
@@ -474,17 +474,6 @@ Inside of the ``{% scripts %}`` block:
     </script>
     {% endblock %}
 
-Let's create the bare bones of a function that will make our charts. Back in ``charts.js``:
-
-.. code-block:: javascript
-
-    function createChart(x, y, element) {
-        // The code that creates our chart will go here.
-    }
-
-This is the start of a function that will take values for the x and y axes, and an HTML element, and create a chart with the data inside the element.
-
-By structuring our code this way, we'll be able to make multiple charts without repeating our code (known as `DRY <https://en.wikipedia.org/wiki/Don%27t_repeat_yourself>`_).
 
 Making a chart in Plotly is simple, but we have to do some data transformation first. Plotly wants the x and y values of the chart to be in arrays, which are like a list of values.
 
@@ -497,11 +486,7 @@ We want to make two charts - one of city homicides and one of killings in Harvar
     var harvardParkHomicides = [];
     var years = [];
 
-    function createChart(x, y, element) {
-        // The code that creates our chart will go here.
-    }
-
-Then we want to fill our arrays by looping over each item in our ``data`` by using a ``for`` loop. ``.push()`` adds a value into an array.
+Then we want to fill our arrays by looping over each item in our ``data`` by using a ``.forEach()`` loop.  ``.forEach()`` goes through every item in our list of homicides.  ``.push()`` adds values into the arrays we've created.
 
 .. code-block:: javascript
 
@@ -509,53 +494,29 @@ Then we want to fill our arrays by looping over each item in our ``data`` by usi
     var harvardParkHomicides = [];
     var years = [];
 
-    for (var i = 0; i < homicides.length; i++) {
-      cityHomicides.push(homicides[i]['homicides_total']);
-      harvardParkHomicides.push(homicides[i]['homicides_harvard_park']);
-      years.push(homicides[i]['year']);
-    }
+    homicides.forEach(function(row) {
+      cityHomicides.push(row['homicides_total']);
+      harvardParkHomicides.push(row['homicides_harvard_park']);
+      years.push(row['year']);
+    });
 
-    function createChart(x, y, element) {
-        // The code that creates our chart will go here.
-    }
+Now that we've populated our data, we're ready to make our chart. Right now, it's pretty simple, with options for the x, which we want to be our ``years`` array, and y axis, which is our homicide counts, and specifying the type of the chart.
 
-
-Now that we've populated our data, we're ready to work on our chart function. Inside of ``createChart()``, create the settings for our chart. Right now, they're pretty simple, with options for the x and y axis, and specifying the type of the chart.
-
-Below the settings we call ``Plotly.newPlot()`` with our element and settings to create the chart.
+Below the settings we call ``Plotly.newPlot()`` with the id of the element where we want the chart to go and settings to create the chart.
 
 .. code-block:: javascript
 
-    function createChart(x, y, element) {
+    // Use our x and y arrays for the values of the chart
+    var settings = [{
+        x: years,
+        y: cityHomicides,
+        type: 'bar'
+    }];
 
-        // Use our x and y arrays for the values of the chart
-        var chartSettings = [{
-          x: x,
-          y: y,
-          type: 'bar'
-        }];
+    // Create the chart
+    Plotly.newPlot('city-homicides', settings);
 
-        // Create the chart
-        Plotly.newPlot(element, chartSettings);
-    }
-
-If you reload the page, you still won't see anything, because we've created a function, but haven't actually called it.
-
-At the end of your file, type:
-
-.. code-block:: javascript
-
-    // The rest of your code is up here
-    createChart(years, cityHomicides, 'city-homicides');
-
-Not bad, right? Now, we can make a second chart by using the Harvard Park data. Be sure to replace the ID of the element you're building the chart in.
-
-.. code-block:: javascript
-
-    // The rest of your code is up here
-    createChart(years, harvardParkHomicides, 'harvard-park-homicides');
-
-This is a good start, but we can further customize these charts so they fit better with the rest of the page. Now, let's try to:
+This is a good start, but we can further customize this chart so it fits better with the rest of the page. Now, let's try to:
 
 - Add axis labels
 - Change the colors of the bars
@@ -567,7 +528,7 @@ Let's add labels to our axes. Create a new variable, ``chartLayout`` in your ``c
 
 .. code-block:: javascript
 
-    var chartLayout = {
+    var layout = {
         xaxis: {
             title: 'Year'
         },
@@ -577,25 +538,85 @@ Let's add labels to our axes. Create a new variable, ``chartLayout`` in your ``c
     };
 
 
-Then, add ``chartLayout`` as a third argument to ``Plotly.newPlot()``
+Then, add ``layout`` as a third argument to ``Plotly.newPlot()``
 
 .. code-block:: javascript
 
-    Plotly.newPlot(element, chartSettings, chartLayout);
+    Plotly.newPlot('city-homicides', settings, layout);
 
-Everything in plotly.js is handled by settings like this. For example, to change the markers to an light blue, update ``chartSettings``.
+Everything in plotly.js is handled by settings like this. For example, to change the markers to an light blue, update ``settings``.
 
 .. code-block:: javascript
 
-    var chartSettings = [{
-      x: x,
-      y: y,
+    var settings = [{
+      x: years,
+      y: cityHomicides,
       type: 'bar',
       // Add the new settings for marker here
       marker: {
         color: '#86c7df'
       }
     }];
+
+But wait, what if you want to make another chart? You'd have to copy and paste all that code over again.
+
+Before we get to far, let's abstract all of this into a function.
+
+.. code-block:: javascript
+
+    function createChart(x, y, element) {
+        // The code that creates our chart will go here.
+    }
+
+This is the start of a function that will take values for the x and y axes, and an HTML element, and create a chart with the data inside the element.
+
+Now copy and paste the ``settings``, ``layout`` and the call to ``Plotly.newPlot()`` into the createChart function. Change the variables ``years`` and ``cityHomicides`` to ``x`` and ``y``.
+
+Note also that we change ``'city-homicides'`` to ``element`` in the call to ``Plotly.newPlot()``.
+
+.. code-block:: javascript
+
+    function createChart(x, y, element) {
+        // The code that creates our chart will go here.
+        var settings = [{
+          x: x,
+          y: y,
+          type: 'bar',
+          marker: {
+            color: '#86c7df'
+          }
+        }];
+
+        var layout = {
+          xaxis: {
+            title: 'Year'
+          },
+          yaxis: {
+            title: 'Homicides'
+          }
+        };
+
+        // Create the chart
+        Plotly.newPlot(element, settings, layout);
+    }
+
+Now, if you reload the page, you won't see your chart anymore! That's because we've defined the function, but we haven't called it.
+
+To call the function, add this line to the end of your file.
+
+.. code-block:: javascript
+
+    // The rest of your code is up here
+    createChart(years, cityHomicides, 'city-homicides');
+
+Now, we can make a second chart by using the Harvard Park data. Be sure to replace the ID of the element you're building the chart in.
+
+.. code-block:: javascript
+
+    // The rest of your code is up here
+    createChart(years, harvardParkHomicides, 'harvard-park-homicides');
+
+Not bad, right? By structuring our code this way, we'll be able to make multiple charts without repeating our code (known as `DRY <https://en.wikipedia.org/wiki/Don%27t_repeat_yourself>`_).
 
 Right now, our charts are stacked up on top of each other, which isn't a very nice layout. We can use HTML and CSS to lay out our charts side-by-side.
 

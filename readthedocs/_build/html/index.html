@@ -170,7 +170,7 @@
 <div class="section" id="what-you-will-make">
 <h2>What you will make<a class="headerlink" href="#what-you-will-make" title="Permalink to this headline">¶</a></h2>
 <p>By the end of this lesson, you will publish an standalone page with a series of graphics examining the high homicide rate in Harvard Park, a small neighborhood in South Los Angeles. You will do so by repurposing data from <a class="reference external" href="http://www.latimes.com/projects/la-me-harvard-park-homicides/">a 2017 Los Angeles Times story</a> by Nicole Santa Cruz and Cindy Chang.</p>
-<p>A working example of what you will make can be found at <a class="reference external" href="https://ireapps.github.io/first-graphics-app/harvard-park-homicides/">ireapps.github.io/first-graphics-app/harvard-park-homicides</a></p>
+<p>A working example of what you will make can be found at <a class="reference external" href="https://ireapps.github.io/first-graphics-app/">ireapps.github.io/first-graphics-app/</a></p>
 </div>
 <div class="section" id="about-the-authors">
 <h2>About the authors<a class="headerlink" href="#about-the-authors" title="Permalink to this headline">¶</a></h2>
@@ -178,7 +178,8 @@
 and the <a class="reference external" href="http://data.nicar.org/">National Institute for Computer-Assisted Reporting (NICAR)</a>
 by <a class="reference external" href="http://damihere.com">Dana Amihere</a>, <a class="reference external" href="http://emamd.net">Armand Emamdjomeh</a> and <a class="reference external" href="http://palewi.re/who-is-ben-welsh/">Ben Welsh</a>. It will debut in March 2017 <a class="reference external" href="https://www.ire.org/events-and-training/event/3189/3508/">at NICAR’s conference
 in Chicago</a>.</p>
-</div>
+<p>Their work was inspired by the footloose spirit of funk music. We urge you to bust free of the computer systems that constrain your creativity. Hit play and get into the groove.</p>
+<iframe src="https://open.spotify.com/embed?uri=spotify:user:227b2koy2xxyb23qliakea75y:playlist:54NS8jCdrgUpzUppUpokSg&theme=white" width="300" height="380" frameborder="0" allowtransparency="true"></iframe></div>
 <div class="section" id="prelude-prerequisites">
 <h2>Prelude: Prerequisites<a class="headerlink" href="#prelude-prerequisites" title="Permalink to this headline">¶</a></h2>
 <p>Before you can begin, your computer needs the following tools installed and working:</p>
@@ -334,12 +335,8 @@ $ git commit -m <span class="s2">&quot;Installed framework&quot;</span>
 </div>
 <div class="section" id="chapter-3-hello-template">
 <h2>Chapter 3: Hello template<a class="headerlink" href="#chapter-3-hello-template" title="Permalink to this headline">¶</a></h2>
-<p>Create a new page for our app</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ yo yeogurt:page harvard-park-homicides
-</pre></div>
-</div>
-<p>Navigate to <a class="reference external" href="http://localhost:3000/harvard-park-homicides/">localhost:3000/harvard-park-homicides/</a>.</p>
-<p>Make a change to <code class="docutils literal"><span class="pre">harvard-park-homicides/index.nunjucks</span></code> by editing the <code class="docutils literal"><span class="pre">content</span></code> block. See it show up.</p>
+<p>Navigate to <a class="reference external" href="http://localhost:3000/">localhost:3000/</a>.</p>
+<p>Make a change to <code class="docutils literal"><span class="pre">index.nunjucks</span></code> by editing the <code class="docutils literal"><span class="pre">content</span></code> block. See it show up.</p>
 <div class="highlight-nunjucks"><div class="highlight"><pre><span></span>{% block content %}
 &lt;p&gt;Hello World&lt;/p&gt;
 {% endblock %}
@@ -352,20 +349,14 @@ $ git commit -m <span class="s2">&quot;Installed framework&quot;</span>
 </pre></div>
 </div>
 <p>Replace <code class="docutils literal"><span class="pre">_layouts/base.nunjucks</span></code> with our more polished base template.</p>
-<div class="highlight-nunjucks"><div class="highlight"><pre><span></span>{# Custom Configuration #}
-{% block config %}
-  {# Setup site&#39;s base URL to match the &quot;baseUrl&quot; key within `package.json` #}
-  {# Otherwise default to relative pathing #}
-  {% set baseUrl = config.baseUrl or &#39;./&#39; %}
-{% endblock %}
-
-&lt;!doctype html&gt;
+<div class="highlight-nunjucks"><div class="highlight"><pre><span></span>&lt;!doctype html&gt;
 &lt;html lang=&quot;en&quot;&gt;
 &lt;head&gt;
     &lt;meta charset=&quot;utf-8&quot;&gt;
     &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
-    &lt;title&gt;First News App&lt;/title&gt;
-    &lt;link rel=&quot;stylesheet&quot; href=&quot;https://bl.ocks.org/palewire/raw/1035cd306a2f85b362b1a20ce315b8eb/base.css&quot;&gt;
+    &lt;title&gt;First Graphics App&lt;/title&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;styles/main.css&quot;&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;https://bl.ocks.org/palewire/raw/1035cd306a2f85b362b1a20ce315b8eb/base.css?rev=4&quot;&gt;
     {% block stylesheets %}{% endblock %}
 &lt;/head&gt;
 &lt;body&gt;
@@ -379,10 +370,13 @@ $ git commit -m <span class="s2">&quot;Installed framework&quot;</span>
         &lt;div class=&quot;byline&quot;&gt;
             {% block byline %}{% endblock %}
         &lt;/div&gt;
+        &lt;div class=&quot;pubdate&quot;&gt;
+            {% block pubdate %}{% endblock %}
+        &lt;/div&gt;
     &lt;/header&gt;
     {% block content %}{% endblock %}
-    &lt;script src=&quot;{{baseUrl}}scripts/main.js&quot;&gt;&lt;/script&gt;
     {% block scripts %}{% endblock %}
+    &lt;script src=&quot;scripts/main.js&quot;&gt;&lt;/script&gt;
 &lt;/body&gt;
 &lt;/html&gt;
 </pre></div>
@@ -393,6 +387,12 @@ $ git commit -m <span class="s2">&quot;Installed framework&quot;</span>
 </div>
 <p>Fill in a byline and see it show up.</p>
 <div class="highlight-nunjucks"><div class="highlight"><pre><span></span>{% block byline %}By me{% endblock %}
+</pre></div>
+</div>
+<p>Let’s do the publication date too while we are at it.</p>
+<div class="highlight-nunjucks"><div class="highlight"><pre><span></span>{% block pubdate %}
+    &lt;time datetime=&quot;2018-03-10&quot; pubdate&gt;Mar. 10, 2018&lt;/time&gt;
+{% endblock %}
 </pre></div>
 </div>
 <p>Commit our work.</p>
@@ -448,16 +448,15 @@ $ git commit -m <span class="s2">&quot;Printed a list of names from data&quot;</
 </div>
 <div class="section" id="chapter-6-hello-chart">
 <h2>Chapter 6: Hello chart<a class="headerlink" href="#chapter-6-hello-chart" title="Permalink to this headline">¶</a></h2>
-<p>We’ll use two JavaScript libraries to make our charts: <a class="reference external" href="https://d3js.org/">D3</a> and <a class="reference external" href="http://visible.io/">D4</a>. D4 is basicaly a layer on top of D3 to make building simple charts easier.</p>
-<p>First, use npm to install the packages. We’re installing a “bleeding-edge” version of D4 that’s meant to work in modern setups.</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ npm install d3
-$ npm install -s git+https://git@github.com/heavysixer/d4.git
+<p>We have data, but what does it look like? To visualize our data, we’re going to use <a class="reference external" href="https://plot.ly/javascript/">plotly.js</a>. Plotly.js is an open source library built on the popular <a class="reference external" href="https://d3js.org/">D3</a> library, which powers a lot of the news graphics made with JavaScript you’ll see.</p>
+<p>First, use npm to install plotly.js.</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ npm install -s plotly.js
 </pre></div>
 </div>
+<p>The <code class="docutils literal"><span class="pre">-s</span></code> argument saves plotly to a dependencies file. That way, if you ever need to go through the install steps for your app again, you can do so easily.</p>
 <p>From here, we’ll be working in our <code class="docutils literal"><span class="pre">_scripts</span></code> folder. Create a file called <code class="docutils literal"><span class="pre">charts.js</span></code> inside of <code class="docutils literal"><span class="pre">src/_scripts/</span></code>.</p>
 <p>You can include the libraries we installed (or any JavaScript file!) by using <code class="docutils literal"><span class="pre">require()</span></code>.</p>
-<div class="highlight-javascript"><div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">d3</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">&quot;d3&quot;</span><span class="p">);</span>
-<span class="kd">var</span> <span class="nx">d4</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">&quot;d4&quot;</span><span class="p">);</span>
+<div class="highlight-javascript"><div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">Plotly</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;plotly.js&#39;</span><span class="p">);</span>
 
 <span class="c1">// At the end of the charts.js file</span>
 <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;hello, this is my charts file!&quot;</span><span class="p">)</span>
@@ -467,47 +466,231 @@ $ npm install -s git+https://git@github.com/heavysixer/d4.git
 <div class="highlight-javascript"><div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">chart</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;./charts.js&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
-<p>Structuring our code this way helps keep things organized, as each file controls one specific part of the page.</p>
+<p>Structuring our code this way helps keep things organized, as each file controls one specific part of the page. Need to make an adjustment to your chart? Go to <code class="docutils literal"><span class="pre">charts.js</span></code>. Want to tweak the map (which we’ll do later)? Look in <code class="docutils literal"><span class="pre">map.js</span></code></p>
+<p>Now if you reload your page and go to your inspector (click on the three dots in the top right of Chrome, go down to “More tools” and select “Developer tools”), you should see <code class="docutils literal"><span class="pre">hello,</span> <span class="pre">this</span> <span class="pre">is</span> <span class="pre">my</span> <span class="pre">charts</span> <span class="pre">file!</span></code> in the console.</p>
+<p>TK PICTURE OF INSPECTOR / CONSOLE HERE</p>
+<p>What chart should we make? The story points out that Harvard Park experienced an increase in homicides as there was a decrease across the rest of the city. Let’s try to visualize that.</p>
+<p>First, we need somewhere for our charts to go. In our <code class="docutils literal"><span class="pre">harvard-park-homicides/index.nunjucks</span></code> file, inside of <code class="docutils literal"><span class="pre">{%</span> <span class="pre">block</span> <span class="pre">content</span> <span class="pre">%}</span></code> where you want the chart to go, create a <code class="docutils literal"><span class="pre">div</span></code> element with an id of “city-homicides”, and another with an id of “harvard-park-homicides”.</p>
+<div class="highlight-html"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;city-homicides&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;harvard-park-homicides&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+<p>Meanwhile, we need data. Copy the <a class="reference external" href="https://raw.githubusercontent.com/ireapps/first-graphics-app/master/src/_data/annual_totals.json">annual totals data</a> to <code class="docutils literal"><span class="pre">_data/annual_totals.json</span></code>. We can use nunjucks to include our data file directly in the template.</p>
+<p>Inside of the <code class="docutils literal"><span class="pre">{%</span> <span class="pre">scripts</span> <span class="pre">%}</span></code> block:</p>
+<div class="highlight-html"><div class="highlight"><pre><span></span>{% block scripts %}
+<span class="p">&lt;</span><span class="nt">script</span><span class="p">&gt;</span>
+<span class="kd">var</span> <span class="nx">homicides</span> <span class="o">=</span> <span class="p">{</span><span class="o">%</span> <span class="nx">include</span> <span class="s1">&#39;_data/annual_totals.json&#39;</span> <span class="o">%</span><span class="p">}</span>
+<span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+{% endblock %}
+</pre></div>
+</div>
+<p>Making a chart in Plotly is simple, but we have to do some data transformation first. Plotly wants the x and y values of the chart to be in arrays, which are like a list of values.</p>
+<p>We want to make two charts - one of city homicides and one of killings in Harvard Park. So let’s make arrays that will hold those values that we will then provide to our function, as well as the years.</p>
+<div class="highlight-javascript"><div class="highlight"><pre><span></span><span class="c1">// Initialize the arrays that will hold our lists of data</span>
+<span class="kd">var</span> <span class="nx">cityHomicides</span> <span class="o">=</span> <span class="p">[];</span>
+<span class="kd">var</span> <span class="nx">harvardParkHomicides</span> <span class="o">=</span> <span class="p">[];</span>
+<span class="kd">var</span> <span class="nx">years</span> <span class="o">=</span> <span class="p">[];</span>
+</pre></div>
+</div>
+<p>Then we want to fill our arrays by looping over each item in our <code class="docutils literal"><span class="pre">data</span></code> by using a <code class="docutils literal"><span class="pre">.forEach()</span></code> loop.  <code class="docutils literal"><span class="pre">.forEach()</span></code> goes through every item in our list of homicides.  <code class="docutils literal"><span class="pre">.push()</span></code> adds values into the arrays we’ve created.</p>
+<div class="highlight-javascript"><div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">cityHomicides</span> <span class="o">=</span> <span class="p">[];</span>
+<span class="kd">var</span> <span class="nx">harvardParkHomicides</span> <span class="o">=</span> <span class="p">[];</span>
+<span class="kd">var</span> <span class="nx">years</span> <span class="o">=</span> <span class="p">[];</span>
+
+<span class="nx">homicides</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">row</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">cityHomicides</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">row</span><span class="p">[</span><span class="s1">&#39;homicides_total&#39;</span><span class="p">]);</span>
+  <span class="nx">harvardParkHomicides</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">row</span><span class="p">[</span><span class="s1">&#39;homicides_harvard_park&#39;</span><span class="p">]);</span>
+  <span class="nx">years</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">row</span><span class="p">[</span><span class="s1">&#39;year&#39;</span><span class="p">]);</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+<p>Now that we’ve populated our data, we’re ready to make our chart. Right now, it’s pretty simple, with options for the x, which we want to be our <code class="docutils literal"><span class="pre">years</span></code> array, and y axis, which is our homicide counts, and specifying the type of the chart.</p>
+<p>Below the settings we call <code class="docutils literal"><span class="pre">Plotly.newPlot()</span></code> with the id of the element where we want the chart to go and settings to create the chart.</p>
+<div class="highlight-javascript"><div class="highlight"><pre><span></span><span class="c1">// Use our x and y arrays for the values of the chart</span>
+<span class="kd">var</span> <span class="nx">settings</span> <span class="o">=</span> <span class="p">[{</span>
+    <span class="nx">x</span><span class="o">:</span> <span class="nx">years</span><span class="p">,</span>
+    <span class="nx">y</span><span class="o">:</span> <span class="nx">cityHomicides</span><span class="p">,</span>
+    <span class="nx">type</span><span class="o">:</span> <span class="s1">&#39;bar&#39;</span>
+<span class="p">}];</span>
+
+<span class="c1">// Create the chart</span>
+<span class="nx">Plotly</span><span class="p">.</span><span class="nx">newPlot</span><span class="p">(</span><span class="s1">&#39;city-homicides&#39;</span><span class="p">,</span> <span class="nx">settings</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>This is a good start, but we can further customize this chart so it fits better with the rest of the page. Now, let’s try to:</p>
+<ul class="simple">
+<li>Add axis labels</li>
+<li>Change the colors of the bars</li>
+<li>Change the fonts to match our page</li>
+<li>Give the charts titles</li>
+<li>Display the two charts alongside one another</li>
+</ul>
+<p>Let’s add labels to our axes. Create a new variable, <code class="docutils literal"><span class="pre">chartLayout</span></code> in your <code class="docutils literal"><span class="pre">createChart</span></code> function. We can then specify properties for <code class="docutils literal"><span class="pre">xaxis</span></code> and yaxis``.</p>
+<div class="highlight-javascript"><div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">layout</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="nx">xaxis</span><span class="o">:</span> <span class="p">{</span>
+        <span class="nx">title</span><span class="o">:</span> <span class="s1">&#39;Year&#39;</span>
+    <span class="p">},</span>
+    <span class="nx">yaxis</span><span class="o">:</span> <span class="p">{</span>
+        <span class="nx">title</span><span class="o">:</span> <span class="s1">&#39;Homicides&#39;</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<p>Then, add <code class="docutils literal"><span class="pre">layout</span></code> as a third argument to <code class="docutils literal"><span class="pre">Plotly.newPlot()</span></code></p>
+<div class="highlight-javascript"><div class="highlight"><pre><span></span><span class="nx">Plotly</span><span class="p">.</span><span class="nx">newPlot</span><span class="p">(</span><span class="s1">&#39;city-homicides&#39;</span><span class="p">,</span> <span class="nx">settings</span><span class="p">,</span> <span class="nx">layout</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Everything in plotly.js is handled by settings like this. For example, to change the markers to an light blue, update <code class="docutils literal"><span class="pre">settings</span></code>.</p>
+<div class="highlight-javascript"><div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">settings</span> <span class="o">=</span> <span class="p">[{</span>
+  <span class="nx">x</span><span class="o">:</span> <span class="nx">years</span><span class="p">,</span>
+  <span class="nx">y</span><span class="o">:</span> <span class="nx">cityHomicides</span><span class="p">,</span>
+  <span class="nx">type</span><span class="o">:</span> <span class="s1">&#39;bar&#39;</span><span class="p">,</span>
+  <span class="c1">// Add the new settings for marker here</span>
+  <span class="nx">marker</span><span class="o">:</span> <span class="p">{</span>
+    <span class="nx">color</span><span class="o">:</span> <span class="s1">&#39;#86c7df&#39;</span>
+  <span class="p">}</span>
+<span class="p">}];</span>
+</pre></div>
+</div>
+<p>But wait, what if you want to make another chart? You’d have to copy and paste all that code over again.</p>
+<p>Before we get to far, let’s abstract all of this into a function.</p>
+<div class="highlight-javascript"><div class="highlight"><pre><span></span><span class="kd">function</span> <span class="nx">createChart</span><span class="p">(</span><span class="nx">x</span><span class="p">,</span> <span class="nx">y</span><span class="p">,</span> <span class="nx">element</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// The code that creates our chart will go here.</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>This is the start of a function that will take values for the x and y axes, and an HTML element, and create a chart with the data inside the element.</p>
+<p>Now copy and paste the <code class="docutils literal"><span class="pre">settings</span></code>, <code class="docutils literal"><span class="pre">layout</span></code> and the call to <code class="docutils literal"><span class="pre">Plotly.newPlot()</span></code> into the createChart function. Change the variables <code class="docutils literal"><span class="pre">years</span></code> and <code class="docutils literal"><span class="pre">cityHomicides</span></code> to <code class="docutils literal"><span class="pre">x</span></code> and <code class="docutils literal"><span class="pre">y</span></code>.</p>
+<p>Note also that we change <code class="docutils literal"><span class="pre">'city-homicides'</span></code> to <code class="docutils literal"><span class="pre">element</span></code> in the call to <code class="docutils literal"><span class="pre">Plotly.newPlot()</span></code>.</p>
+<div class="highlight-javascript"><div class="highlight"><pre><span></span><span class="kd">function</span> <span class="nx">createChart</span><span class="p">(</span><span class="nx">x</span><span class="p">,</span> <span class="nx">y</span><span class="p">,</span> <span class="nx">element</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// The code that creates our chart will go here.</span>
+    <span class="kd">var</span> <span class="nx">settings</span> <span class="o">=</span> <span class="p">[{</span>
+      <span class="nx">x</span><span class="o">:</span> <span class="nx">x</span><span class="p">,</span>
+      <span class="nx">y</span><span class="o">:</span> <span class="nx">y</span><span class="p">,</span>
+      <span class="nx">type</span><span class="o">:</span> <span class="s1">&#39;bar&#39;</span><span class="p">,</span>
+      <span class="nx">marker</span><span class="o">:</span> <span class="p">{</span>
+        <span class="nx">color</span><span class="o">:</span> <span class="s1">&#39;#86c7df&#39;</span>
+      <span class="p">}</span>
+    <span class="p">}];</span>
+
+    <span class="kd">var</span> <span class="nx">layout</span> <span class="o">=</span> <span class="p">{</span>
+      <span class="nx">xaxis</span><span class="o">:</span> <span class="p">{</span>
+        <span class="nx">title</span><span class="o">:</span> <span class="s1">&#39;Year&#39;</span>
+      <span class="p">},</span>
+      <span class="nx">yaxis</span><span class="o">:</span> <span class="p">{</span>
+        <span class="nx">title</span><span class="o">:</span> <span class="s1">&#39;Homicides&#39;</span>
+      <span class="p">}</span>
+    <span class="p">};</span>
+
+    <span class="c1">// Create the chart</span>
+    <span class="nx">Plotly</span><span class="p">.</span><span class="nx">newPlot</span><span class="p">(</span><span class="nx">element</span><span class="p">,</span> <span class="nx">settings</span><span class="p">,</span> <span class="nx">layout</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Now, if you reload the page, you won’t see your chart anymore! That’s because we’ve defined the function, but we haven’t called it.</p>
+<p>To call the function, add this line to the end of your file.</p>
+<div class="highlight-javascript"><div class="highlight"><pre><span></span><span class="c1">// The rest of your code is up here</span>
+<span class="nx">createChart</span><span class="p">(</span><span class="nx">years</span><span class="p">,</span> <span class="nx">cityHomicides</span><span class="p">,</span> <span class="s1">&#39;city-homicides&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Now, we can make a second chart by using the Harvard Park data. Be sure to replace the ID of the element you’re building the chart in.</p>
+<div class="highlight-javascript"><div class="highlight"><pre><span></span><span class="c1">// The rest of your code is up here</span>
+<span class="nx">createChart</span><span class="p">(</span><span class="nx">years</span><span class="p">,</span> <span class="nx">harvardParkHomicides</span><span class="p">,</span> <span class="s1">&#39;harvard-park-homicides&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Not bad, right? By structuring our code this way, we’ll be able to make multiple charts without repeating our code (known as <a class="reference external" href="https://en.wikipedia.org/wiki/Don%27t_repeat_yourself">DRY</a>).</p>
+<p>Right now, our charts are stacked up on top of each other, which isn’t a very nice layout. We can use HTML and CSS to lay out our charts side-by-side.</p>
+<p>In <code class="docutils literal"><span class="pre">index.nunjucks</span></code>, add a <code class="docutils literal"><span class="pre">div</span></code> element that wraps your charts, and add a <code class="docutils literal"><span class="pre">class</span></code> of <code class="docutils literal"><span class="pre">inline-chart</span></code> to each of your charts.</p>
+<div class="highlight-html"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;charts-holder&quot;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;inline-chart&quot;</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;city-homicides&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;inline-chart&quot;</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;harvard-park-homicides&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+<p>This gives us a structure that we can style with CSS. In the <code class="docutils literal"><span class="pre">_scripts</span></code> folder, create a file called <code class="docutils literal"><span class="pre">_charts.scss</span></code>. In that file, copy or write the following:</p>
+<div class="highlight-css"><div class="highlight"><pre><span></span><span class="p">.</span><span class="nc">inline-chart</span> <span class="p">{</span>
+    <span class="k">width</span><span class="p">:</span> <span class="mi">49</span><span class="kt">%</span><span class="p">;</span>
+    <span class="k">float</span><span class="p">:</span> <span class="kc">left</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>You won’t see anything yet, because we haven’t imported it into our main stylesheet. Use <code class="docutils literal"><span class="pre">&#64;import</span></code> to bring your CSS file into <code class="docutils literal"><span class="pre">main.css</span></code></p>
+<div class="highlight-css"><div class="highlight"><pre><span></span><span class="o">//</span> <span class="nt">Normalize</span> <span class="nt">Styles</span>
+<span class="p">@</span><span class="k">import</span> <span class="s1">&#39;node_modules/normalize.css/normalize&#39;</span><span class="p">;</span>
+
+<span class="o">//</span> <span class="nt">Import</span> <span class="nt">Modules</span>
+<span class="p">@</span><span class="k">import</span> <span class="s1">&#39;../_modules/link/link&#39;</span><span class="p">;</span>
+
+<span class="o">//</span> <span class="nt">Add</span> <span class="nt">this</span> <span class="nt">to</span> <span class="nt">main</span><span class="p">.</span><span class="nc">scss</span>
+<span class="p">@</span><span class="k">import</span> <span class="s1">&#39;_charts.scss&#39;</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>Again, this is the same modular structure that allows us to organize our chart styles in a different place from our map styles, for example.</p>
+<p>The charts are laid out side-by-side like we want them, but there’s way too much space in between them. Luckily, we can adjust the margins in the chart layout. Back in <code class="docutils literal"><span class="pre">_scripts/charts.js</span></code>, the following settings should work.</p>
+<p><code class="docutils literal"><span class="pre">l</span></code>, <code class="docutils literal"><span class="pre">r</span></code>, <code class="docutils literal"><span class="pre">t</span></code> and <code class="docutils literal"><span class="pre">b</span></code> stand for left, right, top and bottom margins, respectively.</p>
+<div class="highlight-javascript"><div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">chartLayout</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="nx">xaxis</span><span class="o">:</span> <span class="p">{</span>
+        <span class="nx">title</span><span class="o">:</span> <span class="s1">&#39;Year&#39;</span>
+    <span class="p">},</span>
+    <span class="nx">yaxis</span><span class="o">:</span> <span class="p">{</span>
+        <span class="nx">title</span><span class="o">:</span> <span class="s1">&#39;Homicides&#39;</span>
+    <span class="p">},</span>
+    <span class="c1">// Add the margin here</span>
+    <span class="nx">margin</span><span class="o">:</span> <span class="p">{</span>
+        <span class="nx">l</span><span class="o">:</span> <span class="mi">45</span><span class="p">,</span>
+        <span class="nx">r</span><span class="o">:</span> <span class="mi">15</span><span class="p">,</span>
+        <span class="nx">t</span><span class="o">:</span> <span class="mi">20</span><span class="p">,</span>
+        <span class="nx">b</span><span class="o">:</span> <span class="mi">30</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<p>We can also add a parameter to reduce the height, they’re a bit tall.</p>
 </div>
 <div class="section" id="chapter-7-hello-map">
 <h2>Chapter 7: Hello map<a class="headerlink" href="#chapter-7-hello-map" title="Permalink to this headline">¶</a></h2>
-<p>Toss Leaflet into the head.</p>
-<div class="highlight-nunjucks"><div class="highlight"><pre><span></span>{% block scripts %}
-&lt;link rel=&quot;stylesheet&quot; href=&quot;https://unpkg.com/leaflet@1.3.1/dist/leaflet.css&quot; /&gt;
-&lt;script src=&quot;https://unpkg.com/leaflet@1.3.1/dist/leaflet.js&quot;&gt;&lt;/script&gt;
-{% endblock %}
+<p>Install Leaflet with npm.</p>
+<div class="highlight-base"><div class="highlight"><pre><span></span>$ npm install -s leaflet
 </pre></div>
 </div>
-<p>Create a starter map.</p>
+<p>Import Leaflet’s JavaScript in <cite>_scripts/main.js</cite>.</p>
+<div class="highlight-javascript"><div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">L</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">&quot;leaflet&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Add a little hack we’ll need to get the images to work.</p>
+<div class="highlight-javascript"><div class="highlight"><pre><span></span><span class="nx">L</span><span class="p">.</span><span class="nx">Icon</span><span class="p">.</span><span class="nx">Default</span><span class="p">.</span><span class="nx">imagePath</span> <span class="o">=</span> <span class="s1">&#39;https://unpkg.com/leaflet@1.3.1/dist/images/&#39;</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>Import Leaflet’s stylesheets in <cite>_styles/main.scss</cite></p>
+<div class="highlight-css"><div class="highlight"><pre><span></span><span class="p">@</span><span class="k">import</span> <span class="s1">&#39;node_modules/leaflet/dist/leaflet&#39;</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>Create a placeholder in the page template where the map will live.</p>
 <div class="highlight-nunjucks"><div class="highlight"><pre><span></span>{% block content %}
 &lt;div id=&quot;map&quot;&gt;&lt;/div&gt;
 {% endblock %}
-
-{% block scripts %}
-&lt;link rel=&quot;stylesheet&quot; href=&quot;https://unpkg.com/leaflet@1.3.1/dist/leaflet.css&quot; /&gt;
-&lt;script src=&quot;https://unpkg.com/leaflet@1.3.1/dist/leaflet.js&quot;&gt;&lt;/script&gt;
-&lt;script&gt;
-    var map = L.map(&#39;map&#39;).setView([41.890434, -87.623571], 15);
-    L.tileLayer(&#39;https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw&#39;, {
-            maxZoom: 18,
-            attribution: &#39;Map data &amp;copy; &lt;a href=&quot;http://openstreetmap.org&quot;&gt;OpenStreetMap&lt;/a&gt; contributors, &#39; +
-                    &#39;&lt;a href=&quot;http://creativecommons.org/licenses/by-sa/2.0/&quot;&gt;CC-BY-SA&lt;/a&gt;, &#39; +
-                    &#39;Imagery © &lt;a href=&quot;http://mapbox.com&quot;&gt;Mapbox&lt;/a&gt;&#39;,
-            id: &#39;mapbox.streets&#39;
-    }).addTo(map);
-&lt;/script&gt;
-{% endblock %}
 </pre></div>
 </div>
+<p>Add a new file named <cite>map.js</cite> to the <cite>_scripts</cite> directory. Import it in <cite>main.js</cite>.</p>
+<div class="highlight-javascript"><div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">map</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">&quot;./map.js&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Now in <cite>map.js</cite> paste in the following Leaflet code to generate a simple map.</p>
+<div class="highlight-javascript"><div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">map</span> <span class="o">=</span> <span class="nx">L</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="s1">&#39;map&#39;</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">osm</span> <span class="o">=</span> <span class="nx">L</span><span class="p">.</span><span class="nx">tileLayer</span><span class="p">(</span><span class="s1">&#39;http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png&#39;</span><span class="p">);</span>
+<span class="nx">osm</span><span class="p">.</span><span class="nx">addTo</span><span class="p">(</span><span class="nx">map</span><span class="p">);</span><span class="sb">`</span>
+</pre></div>
+</div>
+<p>Reload the index page to see the results.</p>
 <p>Go to Google Maps and find 62nd Street and Harvard Boulevard in South LA. Hold down a click until it gives you the latitude and longitude. Paste those numbers into Leaflet’s setView method.</p>
-<div class="highlight-javascript"><div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">map</span> <span class="o">=</span> <span class="nx">L</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="s1">&#39;map&#39;</span><span class="p">).</span><span class="nx">setView</span><span class="p">([</span><span class="mf">33.983265</span><span class="p">,</span> <span class="o">-</span><span class="mf">118.306799</span><span class="p">],</span> <span class="mi">15</span><span class="p">);</span>
+<div class="highlight-javascript"><div class="highlight"><pre><span></span><span class="nx">map</span><span class="p">.</span><span class="nx">setView</span><span class="p">([</span><span class="mf">33.983265</span><span class="p">,</span> <span class="o">-</span><span class="mf">118.306799</span><span class="p">],</span> <span class="mi">15</span><span class="p">);</span>
 </pre></div>
 </div>
 <p>Move in the zoom.</p>
-<div class="highlight-javascript"><div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">map</span> <span class="o">=</span> <span class="nx">L</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="s1">&#39;map&#39;</span><span class="p">).</span><span class="nx">setView</span><span class="p">([</span><span class="mf">33.983265</span><span class="p">,</span> <span class="o">-</span><span class="mf">118.306799</span><span class="p">],</span> <span class="mi">16</span><span class="p">);</span>
+<div class="highlight-javascript"><div class="highlight"><pre><span></span><span class="nx">map</span><span class="p">.</span><span class="nx">setView</span><span class="p">([</span><span class="mf">33.983265</span><span class="p">,</span> <span class="o">-</span><span class="mf">118.306799</span><span class="p">],</span> <span class="mi">16</span><span class="p">);</span>
 </pre></div>
 </div>
-<p>Add a pin.</p>
+<p>Add a pin at that point.</p>
 <div class="highlight-javascript"><div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">marker</span> <span class="o">=</span> <span class="nx">L</span><span class="p">.</span><span class="nx">marker</span><span class="p">([</span><span class="mf">33.983265</span><span class="p">,</span> <span class="o">-</span><span class="mf">118.306799</span><span class="p">]).</span><span class="nx">addTo</span><span class="p">(</span><span class="nx">map</span><span class="p">);</span>
 </pre></div>
 </div>
@@ -515,32 +698,64 @@ $ npm install -s git+https://git@github.com/heavysixer/d4.git
 <div class="highlight-javascript"><div class="highlight"><pre><span></span><span class="nx">marker</span><span class="p">.</span><span class="nx">bindPopup</span><span class="p">(</span><span class="s2">&quot;W. 62nd Street and Harvard Boulevard&quot;</span><span class="p">).</span><span class="nx">openPopup</span><span class="p">();</span>
 </pre></div>
 </div>
-<p>Install Leaflet-minimap</p>
-<div class="highlight-html"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">link</span> <span class="na">rel</span><span class="o">=</span><span class="s">&quot;stylesheet&quot;</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;http://norkart.github.io/Leaflet-MiniMap/Control.MiniMap.css&quot;</span> <span class="p">/&gt;</span>
-<span class="p">&lt;</span><span class="nt">script</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;http://norkart.github.io/Leaflet-MiniMap/Control.MiniMap.js&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+<p>At the bottom of the page import in the homicide list as we did with the totals for our chart.</p>
+<div class="highlight-nunjucks"><div class="highlight"><pre><span></span>var homicides = {% include &#39;_data/harvard_park_homicides.json&#39; %};
+</pre></div>
+</div>
+<p>Loop through the data in <cite>map.js</cite> and add each point to the map as a circle, just like the real Homicide Report.</p>
+<div class="highlight-javascript"><div class="highlight"><pre><span></span><span class="nx">homicides</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">obj</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">L</span><span class="p">.</span><span class="nx">circleMarker</span><span class="p">([</span><span class="nx">obj</span><span class="p">.</span><span class="nx">latitude</span><span class="p">,</span>  <span class="nx">obj</span><span class="p">.</span><span class="nx">longitude</span><span class="p">])</span>
+    <span class="p">.</span><span class="nx">addTo</span><span class="p">(</span><span class="nx">map</span><span class="p">);</span>
+<span class="p">})</span>
+</pre></div>
+</div>
+<p>Extend that code to add a tooltip label on each point.</p>
+<div class="highlight-javascript"><div class="highlight"><pre><span></span><span class="nx">homicides</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">obj</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">L</span><span class="p">.</span><span class="nx">circleMarker</span><span class="p">([</span><span class="nx">obj</span><span class="p">.</span><span class="nx">latitude</span><span class="p">,</span>  <span class="nx">obj</span><span class="p">.</span><span class="nx">longitude</span><span class="p">])</span>
+      <span class="p">.</span><span class="nx">addTo</span><span class="p">(</span><span class="nx">map</span><span class="p">)</span>
+      <span class="p">.</span><span class="nx">bindTooltip</span><span class="p">(</span><span class="nx">obj</span><span class="p">.</span><span class="nx">first_name</span> <span class="o">+</span> <span class="s2">&quot; &quot;</span> <span class="o">+</span> <span class="nx">obj</span><span class="p">.</span><span class="nx">last_name</span><span class="p">);</span>
+<span class="p">})</span>
+</pre></div>
+</div>
+<p>Sprinkle some CSS in our page to make it match the colors.</p>
+<div class="highlight-nunjucks"><div class="highlight"><pre><span></span>{% block stylesheets %}
+&lt;style&gt;
+    path {
+        fill: #e64d1f;
+        fill-opacity: 0.5;
+        stroke-opacity: 0;
+    }
+&lt;/style&gt;
+{% endblock %}
+</pre></div>
+</div>
+<p>Now add an option to the tooltip that makes them all visible all the time.</p>
+<div class="highlight-javascript"><div class="highlight"><pre><span></span><span class="nx">homicides</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">obj</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">L</span><span class="p">.</span><span class="nx">circleMarker</span><span class="p">([</span><span class="nx">obj</span><span class="p">.</span><span class="nx">latitude</span><span class="p">,</span>  <span class="nx">obj</span><span class="p">.</span><span class="nx">longitude</span><span class="p">])</span>
+      <span class="p">.</span><span class="nx">addTo</span><span class="p">(</span><span class="nx">map</span><span class="p">)</span>
+      <span class="p">.</span><span class="nx">bindTooltip</span><span class="p">(</span><span class="nx">obj</span><span class="p">.</span><span class="nx">first_name</span> <span class="o">+</span> <span class="s2">&quot; &quot;</span> <span class="o">+</span> <span class="nx">obj</span><span class="p">.</span><span class="nx">last_name</span><span class="p">,</span> <span class="p">{</span><span class="nx">permanent</span><span class="o">:</span> <span class="kc">true</span><span class="p">});</span>
+<span class="p">})</span>
+</pre></div>
+</div>
+<p>Now let’s add a mini map in the corner yet for context.</p>
+<p>Install Leaflet-minimap.</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ npm install -s leaflet-minimap
+</pre></div>
+</div>
+<p>Add it to <cite>_scripts/main.js</cite>.</p>
+<div class="highlight-javascript"><div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">MiniMap</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;leaflet-minimap&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Add the stylesheets.</p>
+<div class="highlight-css"><div class="highlight"><pre><span></span><span class="p">@</span><span class="k">import</span> <span class="s1">&#39;node_modules/leaflet-minimap/src/Control.MiniMap&#39;</span><span class="p">;</span>
 </pre></div>
 </div>
 <p>Create a minimap in the corner</p>
 <div class="highlight-javascript"><div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">osm2</span> <span class="o">=</span> <span class="nx">L</span><span class="p">.</span><span class="nx">tileLayer</span><span class="p">(</span><span class="s1">&#39;http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png&#39;</span><span class="p">,</span> <span class="p">{</span>
-    <span class="nx">maxZoom</span><span class="o">:</span> <span class="mi">9</span><span class="p">,</span>
-    <span class="nx">attribution</span><span class="o">:</span> <span class="s1">&#39;Map data &amp;copy; OpenStreetMap contributors&#39;</span><span class="p">,</span>
+    <span class="nx">maxZoom</span><span class="o">:</span> <span class="mi">9</span>
 <span class="p">});</span>
 <span class="kd">var</span> <span class="nx">mini</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">L</span><span class="p">.</span><span class="nx">Control</span><span class="p">.</span><span class="nx">MiniMap</span><span class="p">(</span><span class="nx">osm2</span><span class="p">,</span> <span class="p">{</span> <span class="nx">toggleDisplay</span><span class="o">:</span> <span class="kc">true</span> <span class="p">});</span>
 <span class="nx">mini</span><span class="p">.</span><span class="nx">addTo</span><span class="p">(</span><span class="nx">map</span><span class="p">);</span>
-</pre></div>
-</div>
-<p>Create a point for each of the four people who have died on that corner.</p>
-<div class="highlight-nunjucks"><div class="highlight"><pre><span></span>{% for obj in site.data.harvard_park_homicides %}
-    {% if obj.death_year &gt; 2015 %}
-        L.marker([{{ obj.latitude }},  {{ obj.longitude }}])
-          .addTo(map)
-          s.bindPopup(&quot;{{ obj.first_name }} {{ obj.last_name }}&quot;);
-    {% endif %}
-{% endfor %}
-</pre></div>
-</div>
-<p>Set the map zoom to that corner, and remove our first marker.</p>
-<div class="highlight-javascript"><div class="highlight"><pre><span></span><span class="nx">map</span><span class="p">.</span><span class="nx">setView</span><span class="p">([</span><span class="mf">33.983265</span><span class="p">,</span> <span class="o">-</span><span class="mf">118.306799</span><span class="p">],</span> <span class="mi">18</span><span class="p">);</span>
 </pre></div>
 </div>
 <p>Add a deck headline.</p>

@@ -14,7 +14,7 @@ What you will make
 
 By the end of this lesson, you will publish an standalone page with a series of graphics examining the high homicide rate in Harvard Park, a small neighborhood in South Los Angeles. You will do so by repurposing data from `a 2017 Los Angeles Times story <http://www.latimes.com/projects/la-me-harvard-park-homicides/>`_ by Nicole Santa Cruz and Cindy Chang.
 
-A working example of what you will make can be found at `ireapps.github.io/first-graphics-app/harvard-park-homicides <https://ireapps.github.io/first-graphics-app/harvard-park-homicides/>`_
+A working example of what you will make can be found at `ireapps.github.io/first-graphics-app/ <https://ireapps.github.io/first-graphics-app/>`_
 
 *****************
 About the authors
@@ -24,6 +24,12 @@ This guide was prepared for training sessions of `Investigative Reporters and Ed
 and the `National Institute for Computer-Assisted Reporting (NICAR) <http://data.nicar.org/>`_
 by `Dana Amihere <http://damihere.com>`_, `Armand Emamdjomeh <http://emamd.net>`_ and `Ben Welsh <http://palewi.re/who-is-ben-welsh/>`_. It will debut in March 2017 `at NICAR's conference
 in Chicago <https://www.ire.org/events-and-training/event/3189/3508/>`_.
+
+Their work was inspired by the footloose spirit of funk music. We urge you to bust free of the computer systems that constrain your creativity. Hit play and get into the groove.
+
+.. raw:: html
+
+    <iframe src="https://open.spotify.com/embed?uri=spotify:user:227b2koy2xxyb23qliakea75y:playlist:54NS8jCdrgUpzUppUpokSg&theme=white" width="300" height="380" frameborder="0" allowtransparency="true"></iframe>
 
 **********************
 Prelude: Prerequisites
@@ -262,16 +268,9 @@ Push it to GitHub.
 Chapter 3: Hello template
 *************************
 
-Create a new page for our app
+Navigate to `localhost:3000/ <http://localhost:3000/>`_.
 
-.. code-block:: bash
-
-    $ yo yeogurt:page harvard-park-homicides
-
-
-Navigate to `localhost:3000/harvard-park-homicides/ <http://localhost:3000/harvard-park-homicides/>`_.
-
-Make a change to ``harvard-park-homicides/index.nunjucks`` by editing the ``content`` block. See it show up.
+Make a change to ``index.nunjucks`` by editing the ``content`` block. See it show up.
 
 .. code-block:: nunjucks
 
@@ -294,20 +293,14 @@ Replace ``_layouts/base.nunjucks`` with our more polished base template.
 
 .. code-block:: nunjucks
 
-    {# Custom Configuration #}
-    {% block config %}
-      {# Setup site's base URL to match the "baseUrl" key within `package.json` #}
-      {# Otherwise default to relative pathing #}
-      {% set baseUrl = config.baseUrl or './' %}
-    {% endblock %}
-
     <!doctype html>
     <html lang="en">
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>First News App</title>
-        <link rel="stylesheet" href="https://bl.ocks.org/palewire/raw/1035cd306a2f85b362b1a20ce315b8eb/base.css">
+        <title>First Graphics App</title>
+        <link rel="stylesheet" href="styles/main.css">
+        <link rel="stylesheet" href="https://bl.ocks.org/palewire/raw/1035cd306a2f85b362b1a20ce315b8eb/base.css?rev=4">
         {% block stylesheets %}{% endblock %}
     </head>
     <body>
@@ -321,13 +314,15 @@ Replace ``_layouts/base.nunjucks`` with our more polished base template.
             <div class="byline">
                 {% block byline %}{% endblock %}
             </div>
+            <div class="pubdate">
+                {% block pubdate %}{% endblock %}
+            </div>
         </header>
         {% block content %}{% endblock %}
-        <script src="{{baseUrl}}scripts/main.js"></script>
         {% block scripts %}{% endblock %}
+        <script src="scripts/main.js"></script>
     </body>
     </html>
-
 
 Fill in a headline and see it show up.
 
@@ -335,13 +330,19 @@ Fill in a headline and see it show up.
 
     {% block headline %}My headline will go here{% endblock %}
 
-
 Fill in a byline and see it show up.
 
 .. code-block:: nunjucks
 
     {% block byline %}By me{% endblock %}
 
+Let's do the publication date too while we are at it.
+
+.. code-block:: nunjucks
+
+    {% block pubdate %}
+        <time datetime="2018-03-10" pubdate>Mar. 10, 2018</time>
+    {% endblock %}
 
 Commit our work.
 
@@ -371,7 +372,6 @@ Return to ``src/harvard-park-homicides/index.nunjucks`` and print them out on th
     {{ site.data.harvard_park_homicides }}
     {% endblock %}
 
-
 Loop through them and print them all.
 
 .. code-block:: nunjucks
@@ -379,7 +379,6 @@ Loop through them and print them all.
     {% for obj in site.data.harvard_park_homicides %}
         {{ obj }}
     {% endfor %}
-
 
 Print the last name.
 
@@ -389,7 +388,6 @@ Print the last name.
         {{ obj.last_name }}<br>
     {% endfor %}
 
-
 Add the first name. To have them display more nicely, you can also add a line break in between each one.
 
 .. code-block:: nunjucks
@@ -397,7 +395,6 @@ Add the first name. To have them display more nicely, you can also add a line br
     {% for obj in site.data.harvard_park_homicides %}
         {{ obj.first_name }} {{ obj.last_name }}<br>
     {% endfor %}
-
 
 Commit our work.
 
@@ -423,15 +420,15 @@ TK
 Chapter 6: Hello chart
 **********************
 
-We'll use two JavaScript libraries to make our charts: `D3 <https://d3js.org/>`_ and `D4 <http://visible.io/>`_. D4 is basicaly a layer on top of D3 to make building simple charts easier.
+We have data, but what does it look like? To visualize our data, we're going to use `plotly.js <https://plot.ly/javascript/>`_. Plotly.js is an open source library built on the popular `D3 <https://d3js.org/>`_ library, which powers a lot of the news graphics made with JavaScript you'll see.
 
-First, use npm to install the packages. We're installing a "bleeding-edge" version of D4 that's meant to work in modern setups.
+First, use npm to install plotly.js.
 
 .. code-block:: bash
 
-    $ npm install d3
-    $ npm install -s git+https://git@github.com/heavysixer/d4.git
+    $ npm install -s plotly.js
 
+The ``-s`` argument saves plotly to a dependencies file. That way, if you ever need to go through the install steps for your app again, you can do so easily.
 
 From here, we'll be working in our ``_scripts`` folder. Create a file called ``charts.js`` inside of ``src/_scripts/``.
 
@@ -439,8 +436,7 @@ You can include the libraries we installed (or any JavaScript file!) by using ``
 
 .. code-block:: javascript
 
-    var d3 = require("d3");
-    var d4 = require("d4");
+    var Plotly = require('plotly.js');
 
     // At the end of the charts.js file
     console.log("hello, this is my charts file!")
@@ -451,29 +447,273 @@ Then we use the same ``require()`` method to pull our code into ``main.js``.
 
     var chart = require('./charts.js');
 
-Structuring our code this way helps keep things organized, as each file controls one specific part of the page.
+Structuring our code this way helps keep things organized, as each file controls one specific part of the page. Need to make an adjustment to your chart? Go to ``charts.js``. Want to tweak the map (which we'll do later)? Look in ``map.js``
+
+Now if you reload your page and go to your inspector (click on the three dots in the top right of Chrome, go down to "More tools" and select "Developer tools"), you should see ``hello, this is my charts file!`` in the console.
+
+TK PICTURE OF INSPECTOR / CONSOLE HERE
+
+What chart should we make? The story points out that Harvard Park experienced an increase in homicides as there was a decrease across the rest of the city. Let's try to visualize that.
+
+First, we need somewhere for our charts to go. In our ``harvard-park-homicides/index.nunjucks`` file, inside of ``{% block content %}`` where you want the chart to go, create a ``div`` element with an id of "city-homicides", and another with an id of "harvard-park-homicides".
+
+.. code-block:: html
+
+    <div id="city-homicides"></div>
+    <div id="harvard-park-homicides"></div>
+
+Meanwhile, we need data. Copy the `annual totals data <https://raw.githubusercontent.com/ireapps/first-graphics-app/master/src/_data/annual_totals.json>`_ to ``_data/annual_totals.json``. We can use nunjucks to include our data file directly in the template.
+
+Inside of the ``{% scripts %}`` block:
+
+.. code-block:: html
+
+    {% block scripts %}
+    <script>
+    var homicides = {% include '_data/annual_totals.json' %}
+    </script>
+    {% endblock %}
 
 
+Making a chart in Plotly is simple, but we have to do some data transformation first. Plotly wants the x and y values of the chart to be in arrays, which are like a list of values.
+
+We want to make two charts - one of city homicides and one of killings in Harvard Park. So let's make arrays that will hold those values that we will then provide to our function, as well as the years.
+
+.. code-block:: javascript
+
+    // Initialize the arrays that will hold our lists of data
+    var cityHomicides = [];
+    var harvardParkHomicides = [];
+    var years = [];
+
+Then we want to fill our arrays by looping over each item in our ``data`` by using a ``.forEach()`` loop.  ``.forEach()`` goes through every item in our list of homicides.  ``.push()`` adds values into the arrays we've created.
+
+.. code-block:: javascript
+
+    var cityHomicides = [];
+    var harvardParkHomicides = [];
+    var years = [];
+
+    homicides.forEach(function(row) {
+      cityHomicides.push(row['homicides_total']);
+      harvardParkHomicides.push(row['homicides_harvard_park']);
+      years.push(row['year']);
+    });
+
+Now that we've populated our data, we're ready to make our chart. Right now, it's pretty simple, with options for the x, which we want to be our ``years`` array, and y axis, which is our homicide counts, and specifying the type of the chart.
+
+Below the settings we call ``Plotly.newPlot()`` with the id of the element where we want the chart to go and settings to create the chart.
+
+.. code-block:: javascript
+
+    // Use our x and y arrays for the values of the chart
+    var settings = [{
+        x: years,
+        y: cityHomicides,
+        type: 'bar'
+    }];
+
+    // Create the chart
+    Plotly.newPlot('city-homicides', settings);
+
+This is a good start, but we can further customize this chart so it fits better with the rest of the page. Now, let's try to:
+
+- Add axis labels
+- Change the colors of the bars
+- Change the fonts to match our page
+- Give the charts titles
+- Display the two charts alongside one another
+
+Let's add labels to our axes. Create a new variable, ``chartLayout`` in your ``createChart`` function. We can then specify properties for ``xaxis`` and yaxis``.
+
+.. code-block:: javascript
+
+    var layout = {
+        xaxis: {
+            title: 'Year'
+        },
+        yaxis: {
+            title: 'Homicides'
+        }
+    };
 
 
+Then, add ``layout`` as a third argument to ``Plotly.newPlot()``
 
+.. code-block:: javascript
+
+    Plotly.newPlot('city-homicides', settings, layout);
+
+Everything in plotly.js is handled by settings like this. For example, to change the markers to an light blue, update ``settings``.
+
+.. code-block:: javascript
+
+    var settings = [{
+      x: years,
+      y: cityHomicides,
+      type: 'bar',
+      // Add the new settings for marker here
+      marker: {
+        color: '#86c7df'
+      }
+    }];
+
+But wait, what if you want to make another chart? You'd have to copy and paste all that code over again.
+
+Before we get to far, let's abstract all of this into a function.
+
+.. code-block:: javascript
+
+    function createChart(x, y, element) {
+        // The code that creates our chart will go here.
+    }
+
+This is the start of a function that will take values for the x and y axes, and an HTML element, and create a chart with the data inside the element.
+
+Now copy and paste the ``settings``, ``layout`` and the call to ``Plotly.newPlot()`` into the createChart function. Change the variables ``years`` and ``cityHomicides`` to ``x`` and ``y``.
+
+Note also that we change ``'city-homicides'`` to ``element`` in the call to ``Plotly.newPlot()``.
+
+.. code-block:: javascript
+
+    function createChart(x, y, element) {
+        // The code that creates our chart will go here.
+        var settings = [{
+          x: x,
+          y: y,
+          type: 'bar',
+          marker: {
+            color: '#86c7df'
+          }
+        }];
+
+        var layout = {
+          xaxis: {
+            title: 'Year'
+          },
+          yaxis: {
+            title: 'Homicides'
+          }
+        };
+
+        // Create the chart
+        Plotly.newPlot(element, settings, layout);
+    }
+
+Now, if you reload the page, you won't see your chart anymore! That's because we've defined the function, but we haven't called it.
+
+To call the function, add this line to the end of your file.
+
+.. code-block:: javascript
+
+    // The rest of your code is up here
+    createChart(years, cityHomicides, 'city-homicides');
+
+Now, we can make a second chart by using the Harvard Park data. Be sure to replace the ID of the element you're building the chart in.
+
+.. code-block:: javascript
+
+    // The rest of your code is up here
+    createChart(years, harvardParkHomicides, 'harvard-park-homicides');
+
+Not bad, right? By structuring our code this way, we'll be able to make multiple charts without repeating our code (known as `DRY <https://en.wikipedia.org/wiki/Don%27t_repeat_yourself>`_).
+
+Right now, our charts are stacked up on top of each other, which isn't a very nice layout. We can use HTML and CSS to lay out our charts side-by-side.
+
+In ``index.nunjucks``, add a ``div`` element that wraps your charts, and add a ``class`` of ``inline-chart`` to each of your charts.
+
+.. code-block:: html
+
+    <div class="charts-holder">
+        <div class="inline-chart" id="city-homicides"></div>
+        <div class="inline-chart" id="harvard-park-homicides"></div>
+    </div>
+
+This gives us a structure that we can style with CSS. In the ``_scripts`` folder, create a file called ``_charts.scss``. In that file, copy or write the following:
+
+.. code-block:: css
+
+    .inline-chart {
+        width: 49%;
+        float: left;
+    }
+
+You won't see anything yet, because we haven't imported it into our main stylesheet. Use ``@import`` to bring your CSS file into ``main.css``
+
+.. code-block:: css
+
+    // Normalize Styles
+    @import 'node_modules/normalize.css/normalize';
+
+    // Import Modules
+    @import '../_modules/link/link';
+
+    // Add this to main.scss
+    @import '_charts.scss';
+
+Again, this is the same modular structure that allows us to organize our chart styles in a different place from our map styles, for example.
+
+The charts are laid out side-by-side like we want them, but there's way too much space in between them. Luckily, we can adjust the margins in the chart layout. Back in ``_scripts/charts.js``, the following settings should work.
+
+``l``, ``r``, ``t`` and ``b`` stand for left, right, top and bottom margins, respectively.
+
+.. code-block:: javascript
+
+    var chartLayout = {
+        xaxis: {
+            title: 'Year'
+        },
+        yaxis: {
+            title: 'Homicides'
+        },
+        // Add the margin here
+        margin: {
+            l: 45,
+            r: 15,
+            t: 20,
+            b: 30
+        }
+    };
+
+We can also add a parameter to reduce the height, they're a bit tall.
+
+.. code-block:: javascript
+    var chartLayout = {
+        // Other properties are above
+        // Add a height parameter to the bottom of your file
+        height: 250
+    };
 
 
 ********************
 Chapter 7: Hello map
 ********************
 
-Toss Leaflet into the head.
+Install Leaflet with npm.
 
-.. code-block:: nunjucks
+.. code-block:: base
 
-    {% block scripts %}
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.1/dist/leaflet.css" />
-    <script src="https://unpkg.com/leaflet@1.3.1/dist/leaflet.js"></script>
-    {% endblock %}
+    $ npm install -s leaflet
 
+Import Leaflet's JavaScript in `_scripts/main.js`.
 
-Create a starter map.
+.. code-block:: javascript
+
+    var L = require("leaflet");
+
+Add a little hack we'll need to get the images to work.
+
+.. code-block:: javascript
+
+    L.Icon.Default.imagePath = 'https://unpkg.com/leaflet@1.3.1/dist/images/';
+
+Import Leaflet's stylesheets in `_styles/main.scss`
+
+.. code-block:: css
+
+    @import 'node_modules/leaflet/dist/leaflet';
+
+Create a placeholder in the page template where the map will live.
 
 .. code-block:: nunjucks
 
@@ -481,42 +721,39 @@ Create a starter map.
     <div id="map"></div>
     {% endblock %}
 
-    {% block scripts %}
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.1/dist/leaflet.css" />
-    <script src="https://unpkg.com/leaflet@1.3.1/dist/leaflet.js"></script>
-    <script>
-        var map = L.map('map').setView([41.890434, -87.623571], 15);
-        L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
-    		maxZoom: 18,
-    		attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, ' +
-    			'<a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
-    			'Imagery © <a href="http://mapbox.com">Mapbox</a>',
-    		id: 'mapbox.streets'
-    	}).addTo(map);
-    </script>
-    {% endblock %}
+Add a new file named `map.js` to the `_scripts` directory. Import it in `main.js`.
 
+.. code-block:: javascript
+
+    var map = require("./map.js");
+
+Now in `map.js` paste in the following Leaflet code to generate a simple map.
+
+.. code-block:: javascript
+
+    var map = L.map('map');
+    var osm = L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png');
+    osm.addTo(map);`
+
+Reload the index page to see the results.
 
 Go to Google Maps and find 62nd Street and Harvard Boulevard in South LA. Hold down a click until it gives you the latitude and longitude. Paste those numbers into Leaflet's setView method.
 
 .. code-block:: javascript
 
-    var map = L.map('map').setView([33.983265, -118.306799], 15);
-
+    map.setView([33.983265, -118.306799], 15);
 
 Move in the zoom.
 
 .. code-block:: javascript
 
-    var map = L.map('map').setView([33.983265, -118.306799], 16);
+    map.setView([33.983265, -118.306799], 16);
 
-
-Add a pin.
+Add a pin at that point.
 
 .. code-block:: javascript
 
     var marker = L.marker([33.983265, -118.306799]).addTo(map);
-
 
 Add a popup.
 
@@ -524,46 +761,84 @@ Add a popup.
 
     marker.bindPopup("W. 62nd Street and Harvard Boulevard").openPopup();
 
+At the bottom of the page import in the homicide list as we did with the totals for our chart.
 
-Install Leaflet-minimap
+.. code-block:: nunjucks
 
-.. code-block:: html
+    var homicides = {% include '_data/harvard_park_homicides.json' %};
 
-    <link rel="stylesheet" href="http://norkart.github.io/Leaflet-MiniMap/Control.MiniMap.css" />
-    <script src="http://norkart.github.io/Leaflet-MiniMap/Control.MiniMap.js"></script>
+Loop through the data in `map.js` and add each point to the map as a circle, just like the real Homicide Report.
 
+.. code-block:: javascript
+
+    homicides.forEach(function (obj) {
+        L.circleMarker([obj.latitude,  obj.longitude])
+        .addTo(map);
+    })
+
+Extend that code to add a tooltip label on each point.
+
+.. code-block:: javascript
+
+    homicides.forEach(function (obj) {
+        L.circleMarker([obj.latitude,  obj.longitude])
+          .addTo(map)
+          .bindTooltip(obj.first_name + " " + obj.last_name);
+    })
+
+Sprinkle some CSS in our page to make it match the colors.
+
+.. code-block:: nunjucks
+
+    {% block stylesheets %}
+    <style>
+        path {
+            fill: #e64d1f;
+            fill-opacity: 0.5;
+            stroke-opacity: 0;
+        }
+    </style>
+    {% endblock %}
+
+Now add an option to the tooltip that makes them all visible all the time.
+
+.. code-block:: javascript
+
+    homicides.forEach(function (obj) {
+        L.circleMarker([obj.latitude,  obj.longitude])
+          .addTo(map)
+          .bindTooltip(obj.first_name + " " + obj.last_name, {permanent: true});
+    })
+
+Now let's add a mini map in the corner yet for context.
+
+Install Leaflet-minimap.
+
+.. code-block:: bash
+
+    $ npm install -s leaflet-minimap
+
+Add it to `_scripts/main.js`.
+
+.. code-block:: javascript
+
+    var MiniMap = require('leaflet-minimap');
+
+Add the stylesheets.
+
+.. code-block:: css
+
+    @import 'node_modules/leaflet-minimap/src/Control.MiniMap';
 
 Create a minimap in the corner
 
 .. code-block:: javascript
 
     var osm2 = L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        maxZoom: 9,
-        attribution: 'Map data &copy; OpenStreetMap contributors',
+        maxZoom: 9
     });
     var mini = new L.Control.MiniMap(osm2, { toggleDisplay: true });
     mini.addTo(map);
-
-
-Create a point for each of the four people who have died on that corner.
-
-.. code-block:: nunjucks
-
-    {% for obj in site.data.harvard_park_homicides %}
-        {% if obj.death_year > 2015 %}
-            L.marker([{{ obj.latitude }},  {{ obj.longitude }}])
-              .addTo(map)
-              s.bindPopup("{{ obj.first_name }} {{ obj.last_name }}");
-        {% endif %}
-    {% endfor %}
-
-
-Set the map zoom to that corner, and remove our first marker.
-
-.. code-block:: javascript
-
-    map.setView([33.983265, -118.306799], 18);
-
 
 Add a deck headline.
 
@@ -571,13 +846,11 @@ Add a deck headline.
 
     <h3>One corner. Four killings. </h3>
 
-
 Write a section graf.
 
 .. code-block:: html
 
     <p>The southwest corner of Harvard Park, at West 62nd Street and Harvard Boulevard, has been especially deadly. In the last year-and-a-half, four men have been killed there — while sitting in a car, trying to defuse an argument or walking home from the barber shop or the corner store.</p>
-
 
 Wrap it in a section tag.
 
