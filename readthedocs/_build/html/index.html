@@ -639,13 +639,89 @@ $ git commit -m <span class="s2">&quot;Printed a list of names from data&quot;</
     <span class="nx">margin</span><span class="o">:</span> <span class="p">{</span>
         <span class="nx">l</span><span class="o">:</span> <span class="mi">45</span><span class="p">,</span>
         <span class="nx">r</span><span class="o">:</span> <span class="mi">15</span><span class="p">,</span>
-        <span class="nx">t</span><span class="o">:</span> <span class="mi">20</span><span class="p">,</span>
+        <span class="nx">t</span><span class="o">:</span> <span class="mi">45</span><span class="p">,</span>
         <span class="nx">b</span><span class="o">:</span> <span class="mi">30</span>
     <span class="p">}</span>
 <span class="p">};</span>
 </pre></div>
 </div>
 <p>We can also add a parameter to reduce the height, they’re a bit tall.</p>
+<div class="highlight-javascript"><div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">chartLayout</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="c1">// Other properties are above</span>
+    <span class="c1">// Add a height parameter to the bottom of your file</span>
+    <span class="nx">height</span><span class="o">:</span> <span class="mi">250</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<p>Another nice modification - we can make the annoying toolbar go away by adjusting our call to <code class="docutils literal"><span class="pre">Plotly.newPlot()</span></code></p>
+<div class="highlight-javascript"><div class="highlight"><pre><span></span><span class="nx">Plotly</span><span class="p">.</span><span class="nx">newPlot</span><span class="p">(</span><span class="nx">element</span><span class="p">,</span> <span class="nx">settings</span><span class="p">,</span> <span class="nx">layout</span><span class="p">,</span> <span class="p">{</span><span class="nx">displayModeBar</span><span class="o">:</span> <span class="kc">false</span><span class="p">});</span>
+</pre></div>
+</div>
+<p>Much better! There are a couple more customization options we can do with plotly. While it’s useful to get the homicide numbers on hover, we don’t really need those year label popups. We can turn those off by only displaying hovers for y-axis values.</p>
+<div class="highlight-javascript"><div class="highlight"><pre><span></span><span class="kd">function</span> <span class="nx">createChart</span><span class="p">(</span><span class="nx">x</span><span class="p">,</span> <span class="nx">y</span><span class="p">,</span> <span class="nx">element</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="nx">settings</span> <span class="o">=</span> <span class="p">[{</span>
+    <span class="nx">x</span><span class="o">:</span> <span class="nx">x</span><span class="p">,</span>
+    <span class="nx">y</span><span class="o">:</span> <span class="nx">y</span><span class="p">,</span>
+    <span class="nx">type</span><span class="o">:</span> <span class="s1">&#39;bar&#39;</span><span class="p">,</span>
+    <span class="nx">marker</span><span class="o">:</span> <span class="p">{</span>
+      <span class="nx">color</span><span class="o">:</span> <span class="s1">&#39;#86c7df&#39;</span>
+    <span class="p">},</span>
+    <span class="c1">// Add this to your chart settings</span>
+    <span class="nx">hoverinfo</span><span class="o">:</span> <span class="s1">&#39;y&#39;</span>
+  <span class="p">}];</span>
+
+  <span class="c1">// the rest of your code is down here</span>
+  <span class="p">...</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Last, our charts need titles! Since we want each chart to have a different title, we’ll need to update our function a bit.</p>
+<dl class="docutils">
+<dt>We’re going to</dt>
+<dd><ul class="first last simple">
+<li>add an argument to our <code class="docutils literal"><span class="pre">createChart</span></code> function for the title,</li>
+<li>feed that title to our chart options,</li>
+<li>update our calls to provide that title</li>
+</ul>
+</dd>
+</dl>
+<div class="highlight-javascript"><div class="highlight"><pre><span></span><span class="c1">// Note the new &#39;title&#39; argument</span>
+<span class="kd">function</span> <span class="nx">createChart</span><span class="p">(</span><span class="nx">x</span><span class="p">,</span> <span class="nx">y</span><span class="p">,</span> <span class="nx">element</span><span class="p">,</span> <span class="nx">title</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// More of the function is up here</span>
+    <span class="p">...</span>
+
+    <span class="c1">// Add a &#39;title&#39; parameter to the layout properties</span>
+    <span class="kd">var</span> <span class="nx">layout</span> <span class="o">=</span> <span class="p">{</span>
+      <span class="nx">title</span><span class="o">:</span> <span class="nx">title</span><span class="p">,</span>
+      <span class="nx">xaxis</span><span class="o">:</span> <span class="p">{</span>
+        <span class="nx">title</span><span class="o">:</span> <span class="s1">&#39;Year&#39;</span>
+      <span class="p">},</span>
+      <span class="nx">yaxis</span><span class="o">:</span> <span class="p">{</span>
+        <span class="nx">title</span><span class="o">:</span> <span class="s1">&#39;Homicides&#39;</span>
+      <span class="p">},</span>
+      <span class="c1">// Add the margin here</span>
+      <span class="nx">margin</span><span class="o">:</span> <span class="p">{</span>
+        <span class="nx">l</span><span class="o">:</span> <span class="mi">45</span><span class="p">,</span>
+        <span class="nx">r</span><span class="o">:</span> <span class="mi">15</span><span class="p">,</span>
+        <span class="nx">t</span><span class="o">:</span> <span class="mi">45</span><span class="p">,</span>
+        <span class="nx">b</span><span class="o">:</span> <span class="mi">30</span>
+      <span class="p">},</span>
+      <span class="nx">height</span><span class="o">:</span> <span class="mi">250</span>
+    <span class="p">};</span>
+
+    <span class="c1">// Create the chart</span>
+    <span class="nx">Plotly</span><span class="p">.</span><span class="nx">newPlot</span><span class="p">(</span><span class="nx">element</span><span class="p">,</span> <span class="nx">settings</span><span class="p">,</span> <span class="nx">layout</span><span class="p">,</span> <span class="p">{</span><span class="nx">displayModeBar</span><span class="o">:</span> <span class="kc">false</span><span class="p">});</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Then, add the title you want to your function call. We’ll assign them to variables first for cleanliness.</p>
+<div class="highlight-javascript"><div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">cityChartTitle</span> <span class="o">=</span> <span class="s2">&quot;City Homicides, 2000-2017&quot;</span><span class="p">;</span>
+<span class="kd">var</span> <span class="nx">hpChartTitle</span> <span class="o">=</span> <span class="s2">&quot;Harvard Park Homicides, 2000-2017&quot;</span><span class="p">;</span>
+
+<span class="nx">createChart</span><span class="p">(</span><span class="nx">years</span><span class="p">,</span> <span class="nx">cityHomicides</span><span class="p">,</span> <span class="s1">&#39;city-homicides&#39;</span><span class="p">,</span> <span class="nx">cityChartTitle</span><span class="p">);</span>
+<span class="nx">createChart</span><span class="p">(</span><span class="nx">years</span><span class="p">,</span> <span class="nx">harvardParkHomicides</span><span class="p">,</span> <span class="s1">&#39;harvard-park-homicides&#39;</span><span class="p">,</span> <span class="nx">hpChartTitle</span><span class="p">);</span>
+</pre></div>
+</div>
 </div>
 <div class="section" id="chapter-7-hello-map">
 <h2>Chapter 7: Hello map<a class="headerlink" href="#chapter-7-hello-map" title="Permalink to this headline">¶</a></h2>

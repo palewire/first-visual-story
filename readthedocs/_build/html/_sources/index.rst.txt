@@ -670,7 +670,7 @@ The charts are laid out side-by-side like we want them, but there's way too much
         margin: {
             l: 45,
             r: 15,
-            t: 20,
+            t: 45,
             b: 30
         }
     };
@@ -678,11 +678,86 @@ The charts are laid out side-by-side like we want them, but there's way too much
 We can also add a parameter to reduce the height, they're a bit tall.
 
 .. code-block:: javascript
+
     var chartLayout = {
         // Other properties are above
         // Add a height parameter to the bottom of your file
         height: 250
     };
+
+Another nice modification - we can make the annoying toolbar go away by adjusting our call to ``Plotly.newPlot()``
+
+.. code-block:: javascript
+
+    Plotly.newPlot(element, settings, layout, {displayModeBar: false});
+
+Much better! There are a couple more customization options we can do with plotly. While it's useful to get the homicide numbers on hover, we don't really need those year label popups. We can turn those off by only displaying hovers for y-axis values.
+
+.. code-block:: javascript
+
+    function createChart(x, y, element) {
+      var settings = [{
+        x: x,
+        y: y,
+        type: 'bar',
+        marker: {
+          color: '#86c7df'
+        },
+        // Add this to your chart settings
+        hoverinfo: 'y'
+      }];
+
+      // the rest of your code is down here
+      ...
+    }
+
+Last, our charts need titles! Since we want each chart to have a different title, we'll need to update our function a bit.
+
+We're going to
+ - add an argument to our ``createChart`` function for the title,
+ - feed that title to our chart options,
+ - update our calls to provide that title
+
+.. code-block:: javascript
+
+    // Note the new 'title' argument
+    function createChart(x, y, element, title) {
+        // More of the function is up here
+        ...
+
+        // Add a 'title' parameter to the layout properties
+        var layout = {
+          title: title,
+          xaxis: {
+            title: 'Year'
+          },
+          yaxis: {
+            title: 'Homicides'
+          },
+          // Add the margin here
+          margin: {
+            l: 45,
+            r: 15,
+            t: 45,
+            b: 30
+          },
+          height: 250
+        };
+
+        // Create the chart
+        Plotly.newPlot(element, settings, layout, {displayModeBar: false});
+    }
+
+Then, add the title you want to your function call. We'll assign them to variables first for cleanliness.
+
+.. code-block:: javascript
+
+    var cityChartTitle = "City Homicides, 2000-2017";
+    var hpChartTitle = "Harvard Park Homicides, 2000-2017";
+
+    createChart(years, cityHomicides, 'city-homicides', cityChartTitle);
+    createChart(years, harvardParkHomicides, 'harvard-park-homicides', hpChartTitle);
+
 
 
 ********************
