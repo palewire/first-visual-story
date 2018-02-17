@@ -25,6 +25,13 @@ By <a href="http://first-graphics-app.readthedocs.org/">The First Graphics App T
     <p>The area around Harvard Park was the deadliest place for African Americans in Los Angeles County last year, according to <a href="http://homicide.latimes.com/">The Times’ Homicide Report</a>. So far this year, six people have been killed. Most of the victims were black men.</p>
 
     <p>There is no clear pattern. Police and other experts say, such increases are not unusual in an area where the baseline level of violence is high, fueled by gangs, poverty and a readiness to settle arguments with guns.</p>
+
+
+    <div class="charts-holder">
+        <div class="inline-chart" id="city-homicides"></div>
+        <div class="inline-chart" id="harvard-park-homicides"></div>
+    </div>
+
 </section>
 
 <section>
@@ -37,5 +44,6 @@ By <a href="http://first-graphics-app.readthedocs.org/">The First Graphics App T
 {% block scripts %}
 <script>
     var homicides = {% include '_data/harvard_park_homicides.json' %};
+    var annualTotals = {% include '_data/annual_totals.json' %}
 </script>
 {% endblock %}
