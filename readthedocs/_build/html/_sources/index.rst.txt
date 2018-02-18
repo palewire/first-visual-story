@@ -453,13 +453,13 @@ Now if you reload your page and go to your inspector (click on the three dots in
 
 TK PICTURE OF INSPECTOR / CONSOLE HERE
 
-What chart should we make? The story points out that Harvard Park experienced an increase in homicides as there was a decrease across the rest of the city. Let's try to visualize that.
+What chart should we make? The story points out that Harvard Park experienced an increase in homicides as there was a decrease across the rest of the county. Let's try to visualize that.
 
-First, we need somewhere for our charts to go. In our ``harvard-park-homicides/index.nunjucks`` file, inside of ``{% block content %}`` where you want the chart to go, create a ``div`` element with an id of "city-homicides", and another with an id of "harvard-park-homicides".
+First, we need somewhere for our charts to go. In our ``harvard-park-homicides/index.nunjucks`` file, inside of ``{% block content %}`` where you want the chart to go, create a ``div`` element with an id of "county-homicides", and another with an id of "harvard-park-homicides".
 
 .. code-block:: html
 
-    <div id="city-homicides"></div>
+    <div id="county-homicides"></div>
     <div id="harvard-park-homicides"></div>
 
 Meanwhile, we need data. Copy the `annual totals data <https://raw.githubusercontent.com/ireapps/first-graphics-app/master/src/_data/annual_totals.json>`_ to ``_data/annual_totals.json``. We can use nunjucks to include our data file directly in the template.
@@ -477,12 +477,12 @@ Inside of the ``{% scripts %}`` block:
 
 Making a chart in Plotly is simple, but we have to do some data transformation first. Plotly wants the x and y values of the chart to be in arrays, which are like a list of values.
 
-We want to make two charts - one of city homicides and one of killings in Harvard Park. So let's make arrays that will hold those values that we will then provide to our function, as well as the years.
+We want to make two charts - one of county homicides and one of killings in Harvard Park. So let's make arrays that will hold those values that we will then provide to our function, as well as the years.
 
 .. code-block:: javascript
 
     // Initialize the arrays that will hold our lists of data
-    var cityHomicides = [];
+    var countyHomicides = [];
     var harvardParkHomicides = [];
     var years = [];
 
@@ -490,12 +490,12 @@ Then we want to fill our arrays by looping over each item in our ``data`` by usi
 
 .. code-block:: javascript
 
-    var cityHomicides = [];
+    var countyHomicides = [];
     var harvardParkHomicides = [];
     var years = [];
 
     homicides.forEach(function(row) {
-      cityHomicides.push(row['homicides_total']);
+      countyHomicides.push(row['homicides_total']);
       harvardParkHomicides.push(row['homicides_harvard_park']);
       years.push(row['year']);
     });
@@ -509,12 +509,12 @@ Below the settings we call ``Plotly.newPlot()`` with the id of the element where
     // Use our x and y arrays for the values of the chart
     var settings = [{
         x: years,
-        y: cityHomicides,
+        y: countyHomicides,
         type: 'bar'
     }];
 
     // Create the chart
-    Plotly.newPlot('city-homicides', settings);
+    Plotly.newPlot('county-homicides', settings);
 
 This is a good start, but we can further customize this chart so it fits better with the rest of the page. Now, let's try to:
 
@@ -545,7 +545,7 @@ Then, add ``layout`` as a third argument to ``Plotly.newPlot()``
 
 .. code-block:: javascript
 
-    Plotly.newPlot('city-homicides', settings, layout);
+    Plotly.newPlot('county-homicides', settings, layout);
 
 Everything in plotly.js is handled by settings like this. For example, to change the markers to an light blue, update ``settings``.
 
@@ -553,7 +553,7 @@ Everything in plotly.js is handled by settings like this. For example, to change
 
     var settings = [{
       x: years,
-      y: cityHomicides,
+      y: countyHomicides,
       type: 'bar',
       // Add the new settings for marker here
       marker: {
@@ -573,9 +573,9 @@ Before we get to far, let's abstract all of this into a function.
 
 This is the start of a function that will take values for the x and y axes, and an HTML element, and create a chart with the data inside the element.
 
-Now copy and paste the ``settings``, ``layout`` and the call to ``Plotly.newPlot()`` into the createChart function. Change the variables ``years`` and ``cityHomicides`` to ``x`` and ``y``.
+Now copy and paste the ``settings``, ``layout`` and the call to ``Plotly.newPlot()`` into the createChart function. Change the variables ``years`` and ``countyHomicides`` to ``x`` and ``y``.
 
-Note also that we change ``'city-homicides'`` to ``element`` in the call to ``Plotly.newPlot()``.
+Note also that we change ``'county-homicides'`` to ``element`` in the call to ``Plotly.newPlot()``.
 
 .. code-block:: javascript
 
@@ -612,7 +612,7 @@ To call the function, add this line to the end of your file.
 .. code-block:: javascript
 
     // The rest of your code is up here
-    createChart(years, cityHomicides, 'city-homicides');
+    createChart(years, countyHomicides, 'county-homicides');
 
 Now, we can make a second chart by using the Harvard Park data. Be sure to replace the ID of the element you're building the chart in.
 
@@ -630,7 +630,7 @@ In ``index.nunjucks``, add a ``div`` element that wraps your charts, and add a `
 .. code-block:: html
 
     <div class="charts-holder">
-        <div class="inline-chart" id="city-homicides"></div>
+        <div class="inline-chart" id="county-homicides"></div>
         <div class="inline-chart" id="harvard-park-homicides"></div>
     </div>
 
@@ -761,10 +761,10 @@ Then, add the title you want to your function call. We'll assign them to variabl
 
 .. code-block:: javascript
 
-    var cityChartTitle = "City Homicides, 2000-2017";
+    var countyChartTitle = "County Homicides, 2000-2017";
     var hpChartTitle = "Harvard Park Homicides, 2000-2017";
 
-    createChart(years, cityHomicides, 'city-homicides', cityChartTitle);
+    createChart(years, countyHomicides, 'county-homicides', countyChartTitle);
     createChart(years, harvardParkHomicides, 'harvard-park-homicides', hpChartTitle);
 
 

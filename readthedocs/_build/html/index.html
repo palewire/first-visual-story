@@ -469,9 +469,9 @@ $ git commit -m <span class="s2">&quot;Printed a list of names from data&quot;</
 <p>Structuring our code this way helps keep things organized, as each file controls one specific part of the page. Need to make an adjustment to your chart? Go to <code class="docutils literal"><span class="pre">charts.js</span></code>. Want to tweak the map (which we’ll do later)? Look in <code class="docutils literal"><span class="pre">map.js</span></code></p>
 <p>Now if you reload your page and go to your inspector (click on the three dots in the top right of Chrome, go down to “More tools” and select “Developer tools”), you should see <code class="docutils literal"><span class="pre">hello,</span> <span class="pre">this</span> <span class="pre">is</span> <span class="pre">my</span> <span class="pre">charts</span> <span class="pre">file!</span></code> in the console.</p>
 <p>TK PICTURE OF INSPECTOR / CONSOLE HERE</p>
-<p>What chart should we make? The story points out that Harvard Park experienced an increase in homicides as there was a decrease across the rest of the city. Let’s try to visualize that.</p>
-<p>First, we need somewhere for our charts to go. In our <code class="docutils literal"><span class="pre">harvard-park-homicides/index.nunjucks</span></code> file, inside of <code class="docutils literal"><span class="pre">{%</span> <span class="pre">block</span> <span class="pre">content</span> <span class="pre">%}</span></code> where you want the chart to go, create a <code class="docutils literal"><span class="pre">div</span></code> element with an id of “city-homicides”, and another with an id of “harvard-park-homicides”.</p>
-<div class="highlight-html"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;city-homicides&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<p>What chart should we make? The story points out that Harvard Park experienced an increase in homicides as there was a decrease across the rest of the county. Let’s try to visualize that.</p>
+<p>First, we need somewhere for our charts to go. In our <code class="docutils literal"><span class="pre">harvard-park-homicides/index.nunjucks</span></code> file, inside of <code class="docutils literal"><span class="pre">{%</span> <span class="pre">block</span> <span class="pre">content</span> <span class="pre">%}</span></code> where you want the chart to go, create a <code class="docutils literal"><span class="pre">div</span></code> element with an id of “county-homicides”, and another with an id of “harvard-park-homicides”.</p>
+<div class="highlight-html"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;county-homicides&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
 <span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;harvard-park-homicides&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
 </pre></div>
 </div>
@@ -485,20 +485,20 @@ $ git commit -m <span class="s2">&quot;Printed a list of names from data&quot;</
 </pre></div>
 </div>
 <p>Making a chart in Plotly is simple, but we have to do some data transformation first. Plotly wants the x and y values of the chart to be in arrays, which are like a list of values.</p>
-<p>We want to make two charts - one of city homicides and one of killings in Harvard Park. So let’s make arrays that will hold those values that we will then provide to our function, as well as the years.</p>
+<p>We want to make two charts - one of county homicides and one of killings in Harvard Park. So let’s make arrays that will hold those values that we will then provide to our function, as well as the years.</p>
 <div class="highlight-javascript"><div class="highlight"><pre><span></span><span class="c1">// Initialize the arrays that will hold our lists of data</span>
-<span class="kd">var</span> <span class="nx">cityHomicides</span> <span class="o">=</span> <span class="p">[];</span>
+<span class="kd">var</span> <span class="nx">countyHomicides</span> <span class="o">=</span> <span class="p">[];</span>
 <span class="kd">var</span> <span class="nx">harvardParkHomicides</span> <span class="o">=</span> <span class="p">[];</span>
 <span class="kd">var</span> <span class="nx">years</span> <span class="o">=</span> <span class="p">[];</span>
 </pre></div>
 </div>
 <p>Then we want to fill our arrays by looping over each item in our <code class="docutils literal"><span class="pre">data</span></code> by using a <code class="docutils literal"><span class="pre">.forEach()</span></code> loop.  <code class="docutils literal"><span class="pre">.forEach()</span></code> goes through every item in our list of homicides.  <code class="docutils literal"><span class="pre">.push()</span></code> adds values into the arrays we’ve created.</p>
-<div class="highlight-javascript"><div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">cityHomicides</span> <span class="o">=</span> <span class="p">[];</span>
+<div class="highlight-javascript"><div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">countyHomicides</span> <span class="o">=</span> <span class="p">[];</span>
 <span class="kd">var</span> <span class="nx">harvardParkHomicides</span> <span class="o">=</span> <span class="p">[];</span>
 <span class="kd">var</span> <span class="nx">years</span> <span class="o">=</span> <span class="p">[];</span>
 
 <span class="nx">homicides</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">row</span><span class="p">)</span> <span class="p">{</span>
-  <span class="nx">cityHomicides</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">row</span><span class="p">[</span><span class="s1">&#39;homicides_total&#39;</span><span class="p">]);</span>
+  <span class="nx">countyHomicides</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">row</span><span class="p">[</span><span class="s1">&#39;homicides_total&#39;</span><span class="p">]);</span>
   <span class="nx">harvardParkHomicides</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">row</span><span class="p">[</span><span class="s1">&#39;homicides_harvard_park&#39;</span><span class="p">]);</span>
   <span class="nx">years</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">row</span><span class="p">[</span><span class="s1">&#39;year&#39;</span><span class="p">]);</span>
 <span class="p">});</span>
@@ -509,12 +509,12 @@ $ git commit -m <span class="s2">&quot;Printed a list of names from data&quot;</
 <div class="highlight-javascript"><div class="highlight"><pre><span></span><span class="c1">// Use our x and y arrays for the values of the chart</span>
 <span class="kd">var</span> <span class="nx">settings</span> <span class="o">=</span> <span class="p">[{</span>
     <span class="nx">x</span><span class="o">:</span> <span class="nx">years</span><span class="p">,</span>
-    <span class="nx">y</span><span class="o">:</span> <span class="nx">cityHomicides</span><span class="p">,</span>
+    <span class="nx">y</span><span class="o">:</span> <span class="nx">countyHomicides</span><span class="p">,</span>
     <span class="nx">type</span><span class="o">:</span> <span class="s1">&#39;bar&#39;</span>
 <span class="p">}];</span>
 
 <span class="c1">// Create the chart</span>
-<span class="nx">Plotly</span><span class="p">.</span><span class="nx">newPlot</span><span class="p">(</span><span class="s1">&#39;city-homicides&#39;</span><span class="p">,</span> <span class="nx">settings</span><span class="p">);</span>
+<span class="nx">Plotly</span><span class="p">.</span><span class="nx">newPlot</span><span class="p">(</span><span class="s1">&#39;county-homicides&#39;</span><span class="p">,</span> <span class="nx">settings</span><span class="p">);</span>
 </pre></div>
 </div>
 <p>This is a good start, but we can further customize this chart so it fits better with the rest of the page. Now, let’s try to:</p>
@@ -540,13 +540,13 @@ $ git commit -m <span class="s2">&quot;Printed a list of names from data&quot;</
 </div>
 <p>The option <code class="docutils literal"><span class="pre">fixedrange</span></code> prevents clicking to zoom in on the chart, which I find mildly annoying.</p>
 <p>Then, add <code class="docutils literal"><span class="pre">layout</span></code> as a third argument to <code class="docutils literal"><span class="pre">Plotly.newPlot()</span></code></p>
-<div class="highlight-javascript"><div class="highlight"><pre><span></span><span class="nx">Plotly</span><span class="p">.</span><span class="nx">newPlot</span><span class="p">(</span><span class="s1">&#39;city-homicides&#39;</span><span class="p">,</span> <span class="nx">settings</span><span class="p">,</span> <span class="nx">layout</span><span class="p">);</span>
+<div class="highlight-javascript"><div class="highlight"><pre><span></span><span class="nx">Plotly</span><span class="p">.</span><span class="nx">newPlot</span><span class="p">(</span><span class="s1">&#39;county-homicides&#39;</span><span class="p">,</span> <span class="nx">settings</span><span class="p">,</span> <span class="nx">layout</span><span class="p">);</span>
 </pre></div>
 </div>
 <p>Everything in plotly.js is handled by settings like this. For example, to change the markers to an light blue, update <code class="docutils literal"><span class="pre">settings</span></code>.</p>
 <div class="highlight-javascript"><div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">settings</span> <span class="o">=</span> <span class="p">[{</span>
   <span class="nx">x</span><span class="o">:</span> <span class="nx">years</span><span class="p">,</span>
-  <span class="nx">y</span><span class="o">:</span> <span class="nx">cityHomicides</span><span class="p">,</span>
+  <span class="nx">y</span><span class="o">:</span> <span class="nx">countyHomicides</span><span class="p">,</span>
   <span class="nx">type</span><span class="o">:</span> <span class="s1">&#39;bar&#39;</span><span class="p">,</span>
   <span class="c1">// Add the new settings for marker here</span>
   <span class="nx">marker</span><span class="o">:</span> <span class="p">{</span>
@@ -563,8 +563,8 @@ $ git commit -m <span class="s2">&quot;Printed a list of names from data&quot;</
 </pre></div>
 </div>
 <p>This is the start of a function that will take values for the x and y axes, and an HTML element, and create a chart with the data inside the element.</p>
-<p>Now copy and paste the <code class="docutils literal"><span class="pre">settings</span></code>, <code class="docutils literal"><span class="pre">layout</span></code> and the call to <code class="docutils literal"><span class="pre">Plotly.newPlot()</span></code> into the createChart function. Change the variables <code class="docutils literal"><span class="pre">years</span></code> and <code class="docutils literal"><span class="pre">cityHomicides</span></code> to <code class="docutils literal"><span class="pre">x</span></code> and <code class="docutils literal"><span class="pre">y</span></code>.</p>
-<p>Note also that we change <code class="docutils literal"><span class="pre">'city-homicides'</span></code> to <code class="docutils literal"><span class="pre">element</span></code> in the call to <code class="docutils literal"><span class="pre">Plotly.newPlot()</span></code>.</p>
+<p>Now copy and paste the <code class="docutils literal"><span class="pre">settings</span></code>, <code class="docutils literal"><span class="pre">layout</span></code> and the call to <code class="docutils literal"><span class="pre">Plotly.newPlot()</span></code> into the createChart function. Change the variables <code class="docutils literal"><span class="pre">years</span></code> and <code class="docutils literal"><span class="pre">countyHomicides</span></code> to <code class="docutils literal"><span class="pre">x</span></code> and <code class="docutils literal"><span class="pre">y</span></code>.</p>
+<p>Note also that we change <code class="docutils literal"><span class="pre">'county-homicides'</span></code> to <code class="docutils literal"><span class="pre">element</span></code> in the call to <code class="docutils literal"><span class="pre">Plotly.newPlot()</span></code>.</p>
 <div class="highlight-javascript"><div class="highlight"><pre><span></span><span class="kd">function</span> <span class="nx">createChart</span><span class="p">(</span><span class="nx">x</span><span class="p">,</span> <span class="nx">y</span><span class="p">,</span> <span class="nx">element</span><span class="p">)</span> <span class="p">{</span>
     <span class="c1">// The code that creates our chart will go here.</span>
     <span class="kd">var</span> <span class="nx">settings</span> <span class="o">=</span> <span class="p">[{</span>
@@ -595,7 +595,7 @@ $ git commit -m <span class="s2">&quot;Printed a list of names from data&quot;</
 <p>Now, if you reload the page, you won’t see your chart anymore! That’s because we’ve defined the function, but we haven’t called it.</p>
 <p>To call the function, add this line to the end of your file.</p>
 <div class="highlight-javascript"><div class="highlight"><pre><span></span><span class="c1">// The rest of your code is up here</span>
-<span class="nx">createChart</span><span class="p">(</span><span class="nx">years</span><span class="p">,</span> <span class="nx">cityHomicides</span><span class="p">,</span> <span class="s1">&#39;city-homicides&#39;</span><span class="p">);</span>
+<span class="nx">createChart</span><span class="p">(</span><span class="nx">years</span><span class="p">,</span> <span class="nx">countyHomicides</span><span class="p">,</span> <span class="s1">&#39;county-homicides&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
 <p>Now, we can make a second chart by using the Harvard Park data. Be sure to replace the ID of the element you’re building the chart in.</p>
@@ -607,7 +607,7 @@ $ git commit -m <span class="s2">&quot;Printed a list of names from data&quot;</
 <p>Right now, our charts are stacked up on top of each other, which isn’t a very nice layout. We can use HTML and CSS to lay out our charts side-by-side.</p>
 <p>In <code class="docutils literal"><span class="pre">index.nunjucks</span></code>, add a <code class="docutils literal"><span class="pre">div</span></code> element that wraps your charts, and add a <code class="docutils literal"><span class="pre">class</span></code> of <code class="docutils literal"><span class="pre">inline-chart</span></code> to each of your charts.</p>
 <div class="highlight-html"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;charts-holder&quot;</span><span class="p">&gt;</span>
-    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;inline-chart&quot;</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;city-homicides&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;inline-chart&quot;</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;county-homicides&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
     <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;inline-chart&quot;</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;harvard-park-homicides&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
 <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
 </pre></div>
@@ -724,10 +724,10 @@ $ git commit -m <span class="s2">&quot;Printed a list of names from data&quot;</
 </pre></div>
 </div>
 <p>Then, add the title you want to your function call. We’ll assign them to variables first for cleanliness.</p>
-<div class="highlight-javascript"><div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">cityChartTitle</span> <span class="o">=</span> <span class="s2">&quot;City Homicides, 2000-2017&quot;</span><span class="p">;</span>
+<div class="highlight-javascript"><div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">countyChartTitle</span> <span class="o">=</span> <span class="s2">&quot;County Homicides, 2000-2017&quot;</span><span class="p">;</span>
 <span class="kd">var</span> <span class="nx">hpChartTitle</span> <span class="o">=</span> <span class="s2">&quot;Harvard Park Homicides, 2000-2017&quot;</span><span class="p">;</span>
 
-<span class="nx">createChart</span><span class="p">(</span><span class="nx">years</span><span class="p">,</span> <span class="nx">cityHomicides</span><span class="p">,</span> <span class="s1">&#39;city-homicides&#39;</span><span class="p">,</span> <span class="nx">cityChartTitle</span><span class="p">);</span>
+<span class="nx">createChart</span><span class="p">(</span><span class="nx">years</span><span class="p">,</span> <span class="nx">countyHomicides</span><span class="p">,</span> <span class="s1">&#39;county-homicides&#39;</span><span class="p">,</span> <span class="nx">countyChartTitle</span><span class="p">);</span>
 <span class="nx">createChart</span><span class="p">(</span><span class="nx">years</span><span class="p">,</span> <span class="nx">harvardParkHomicides</span><span class="p">,</span> <span class="s1">&#39;harvard-park-homicides&#39;</span><span class="p">,</span> <span class="nx">hpChartTitle</span><span class="p">);</span>
 </pre></div>
 </div>

@@ -1,11 +1,11 @@
 var Plotly = require('plotly.js');
 
-var cityHomicides = [];
+var countyHomicides = [];
 var harvardParkHomicides = [];
 var years = [];
 
 annualTotals.forEach(function(row) {
-  cityHomicides.push(row['homicides_total']);
+  countyHomicides.push(row['homicides_total']);
   harvardParkHomicides.push(row['homicides_harvard_park']);
   years.push(row['year']);
 });
@@ -46,8 +46,8 @@ function createChart(x, y, element, title) {
   Plotly.newPlot(element, settings, layout, {displayModeBar: false});
 }
 
-var cityChartTitle = 'City Homicides, 2000-2017';
+var countyChartTitle = 'County Homicides, 2000-2017';
 var hpChartTitle = 'Harvard Park Homicides, 2000-2017';
 
-createChart(years, cityHomicides, 'city-homicides', cityChartTitle);
+createChart(years, countyHomicides, 'county-homicides', countyChartTitle);
 createChart(years, harvardParkHomicides, 'harvard-park-homicides', hpChartTitle);

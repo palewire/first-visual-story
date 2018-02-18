@@ -28,7 +28,7 @@ By <a href="http://first-graphics-app.readthedocs.org/">The First Graphics App T
 
 
     <div class="charts-holder">
-        <div class="inline-chart" id="city-homicides"></div>
+        <div class="inline-chart" id="county-homicides"></div>
         <div class="inline-chart" id="harvard-park-homicides"></div>
     </div>
 
