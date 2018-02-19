@@ -736,11 +736,11 @@ We're going to
         var layout = {
           title: title,
           xaxis: {
-            title: 'Year,
+            title: 'Year',
             fixedrange: true
           },
           yaxis: {
-            title: 'Homicides,
+            title: 'Homicides',
             fixedrange: true
           },
           // Add the margin here
