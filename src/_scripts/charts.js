@@ -1,15 +1,8 @@
 var Plotly = require('plotly.js');
 
-var countyHomicides = [];
-var harvardParkHomicides = [];
-var years = [];
-
-annualTotals.forEach(function(row) {
-  countyHomicides.push(row['homicides_total']);
-  harvardParkHomicides.push(row['homicides_harvard_park']);
-  years.push(row['year']);
-});
-
+var countyHomicides = annualTotals.map(a => a.homicides_total);
+var harvardParkHomicides = annualTotals.map(a => a.homicides_harvard_park);
+var years = annualTotals.map(a => a.year);
 
 function createChart(x, y, element, title) {
   var settings = [{
