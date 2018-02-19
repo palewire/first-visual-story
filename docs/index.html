@@ -2,7 +2,7 @@
         fill: #e64d1f;
         fill-opacity: 0.5;
         stroke-opacity: 0;
-    } </style> </head> <body> <nav> <a href="http://first-graphics-app.readthedocs.org/"> <img src="https://bl.ocks.org/palewire/raw/1035cd306a2f85b362b1a20ce315b8eb/ire-logo.png"> </a> </nav> <header> <h1>A South L.A. neighborhood grapples with a wave of violence</h1> <div class="byline"> By <a href="http://first-graphics-app.readthedocs.org/">The First Graphics App Tutorial</a> </div> <div class="pubdate"> <time datetime="2017-11-19" pubdate>Nov. 19, 2017</time> </div> </header> <section> <p>The area around Harvard Park was the deadliest place for African Americans in Los Angeles County last year, according to <a href="http://homicide.latimes.com/">The Times’ Homicide Report</a>. So far this year, six people have been killed. Most of the victims were black men.</p> <p>There is no clear pattern. Police and other experts say, such increases are not unusual in an area where the baseline level of violence is high, fueled by gangs, poverty and a readiness to settle arguments with guns.</p> </section> <section> <h3>One corner. Four killings. </h3> <p>The southwest corner of Harvard Park, at West 62nd Street and Harvard Boulevard, has been especially deadly. In the last year-and-a-half, four men have been killed there — while sitting in a car, trying to defuse an argument or walking home from the barber shop or the corner store.</p> <div id="map"></div> </section> <script> var homicides = [
+    } </style> </head> <body> <nav> <a href="http://first-graphics-app.readthedocs.org/"> <img src="https://bl.ocks.org/palewire/raw/1035cd306a2f85b362b1a20ce315b8eb/ire-logo.png"> </a> </nav> <header> <h1>A South L.A. neighborhood grapples with a wave of violence</h1> <div class="byline"> By <a href="http://first-graphics-app.readthedocs.org/">The First Graphics App Tutorial</a> </div> <div class="pubdate"> <time datetime="2017-11-19" pubdate>Nov. 19, 2017</time> </div> </header> <section> <p>The area around Harvard Park was the deadliest place for African Americans in Los Angeles County last year, according to <a href="http://homicide.latimes.com/">The Times’ Homicide Report</a>. So far this year, six people have been killed. Most of the victims were black men.</p> <p>There is no clear pattern. Police and other experts say, such increases are not unusual in an area where the baseline level of violence is high, fueled by gangs, poverty and a readiness to settle arguments with guns.</p> <div class="charts-holder"> <div class="inline-chart" id="county-homicides"></div> <div class="inline-chart" id="harvard-park-homicides"></div> </div> </section> <section> <h3>One corner. Four killings. </h3> <p>The southwest corner of Harvard Park, at West 62nd Street and Harvard Boulevard, has been especially deadly. In the last year-and-a-half, four men have been killed there — while sitting in a car, trying to defuse an argument or walking home from the barber shop or the corner store.</p> <div id="map"></div> </section> <script> var homicides = [
    {
       "case_number":"2017-04514",
       "slug":"eddie-rosendo-lino",
@@ -964,4 +964,91 @@
       "latitude":33.9824444958
    }
 ]
-; </script> <script src="scripts/main.js"></script> </body> </html> 
+;
+    var annualTotals = [
+   {
+      "year":2000,
+      "homicides_total":1036,
+      "homicides_harvard_park":3
+   },
+   {
+      "year":2001,
+      "homicides_total":1125,
+      "homicides_harvard_park":2
+   },
+   {
+      "year":2002,
+      "homicides_total":1196,
+      "homicides_harvard_park":4
+   },
+   {
+      "year":2003,
+      "homicides_total":1086,
+      "homicides_harvard_park":4
+   },
+   {
+      "year":2004,
+      "homicides_total":1087,
+      "homicides_harvard_park":6
+   },
+   {
+      "year":2005,
+      "homicides_total":1104,
+      "homicides_harvard_park":3
+   },
+   {
+      "year":2006,
+      "homicides_total":1057,
+      "homicides_harvard_park":2
+   },
+   {
+      "year":2007,
+      "homicides_total":892,
+      "homicides_harvard_park":2
+   },
+   {
+      "year":2008,
+      "homicides_total":843,
+      "homicides_harvard_park":6
+   },
+   {
+      "year":2009,
+      "homicides_total":732,
+      "homicides_harvard_park":4
+   },
+   {
+      "year":2010,
+      "homicides_total":654,
+      "homicides_harvard_park":3
+   },
+   {
+      "year":2011,
+      "homicides_total":594,
+      "homicides_harvard_park":1
+   },
+   {
+      "year":2012,
+      "homicides_total":617,
+      "homicides_harvard_park":5
+   },
+   {
+      "year":2014,
+      "homicides_total":542,
+      "homicides_harvard_park":2
+   },
+   {
+      "year":2015,
+      "homicides_total":613,
+      "homicides_harvard_park":3
+   },
+   {
+      "year":2016,
+      "homicides_total":637,
+      "homicides_harvard_park":8
+   },
+   {
+      "year":2017,
+      "homicides_total":587,
+      "homicides_harvard_park":6
+   }
+] </script> <script src="scripts/main.js"></script> </body> </html> 
