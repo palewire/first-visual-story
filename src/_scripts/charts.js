@@ -29,7 +29,6 @@ function createChart(x, y, element, title) {
       fixedrange: true
     },
     yaxis: {
-      title: 'Homicides',
       fixedrange: true
     },
     // Add the margin here

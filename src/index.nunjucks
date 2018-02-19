@@ -13,7 +13,7 @@
 {% block headline %}A South L.A. neighborhood grapples with a wave of violence{% endblock %}
 
 {% block byline %}
-By <a href="http://first-graphics-app.readthedocs.org/">The First Graphics App Tutorial</a>
+    By <a href="http://first-graphics-app.readthedocs.org/">The First Graphics App Tutorial</a>
 {% endblock %}
 
 {% block pubdate %}
