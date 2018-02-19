@@ -817,7 +817,7 @@ Now in `map.js` paste in the following Leaflet code to generate a simple map.
 
     var map = L.map('map');
     var osm = L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png');
-    osm.addTo(map);`
+    osm.addTo(map);
 
 Reload the index page to see the results.
 
