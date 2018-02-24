@@ -533,7 +533,7 @@ This is a good start, but we can further customize this chart so it fits better 
 - Give the charts titles
 - Display the two charts alongside one another
 
-Let's add labels to our axes. Create a new variable, ``chartLayout`` in your ``createChart`` function. We can then specify properties for ``xaxis`` and yaxis``.
+Let's add labels to our axes. Create a new variable, ``chartLayout`` in your ``createChart`` function. We can then specify properties for ``xaxis`` and ``yaxis``. We don't have a homicide label because we'll add a title to the charts later that will take care of that.
 
 .. code-block:: javascript
 
@@ -543,7 +543,6 @@ Let's add labels to our axes. Create a new variable, ``chartLayout`` in your ``c
             fixedrange: true
         },
         yaxis: {
-            title: 'Homicides',
             fixedrange: true
         }
     };
@@ -588,7 +587,7 @@ Now copy and paste the ``settings``, ``layout`` and the call to ``Plotly.newPlot
 Note also that we change ``'county-homicides'`` to ``element`` in the call to ``Plotly.newPlot()``.
 
 .. code-block:: javascript
-    :emphasize-lines: 4,5,24
+    :emphasize-lines: 4,5,23
 
     function createChart(x, y, element) {
         // The code that creates our chart will go here.
@@ -607,7 +606,6 @@ Note also that we change ``'county-homicides'`` to ``element`` in the call to ``
             fixedrange: true
           },
           yaxis: {
-            title: 'Homicides',
             fixedrange: true
           }
         };
@@ -675,7 +673,7 @@ The charts are laid out side-by-side like we want them, but there's way too much
 ``l``, ``r``, ``t`` and ``b`` stand for left, right, top and bottom margins, respectively.
 
 .. code-block:: javascript
-    :emphasize-lines: 10-16
+    :emphasize-lines: 9-15
 
     var chartLayout = {
         xaxis: {
@@ -683,12 +681,11 @@ The charts are laid out side-by-side like we want them, but there's way too much
             fixedrange: true
         },
         yaxis: {
-            title: 'Homicides',
             fixedrange: true
         },
         // Add the margin here
         margin: {
-            l: 45,
+            l: 30,
             r: 15,
             t: 45,
             b: 30
@@ -698,7 +695,7 @@ The charts are laid out side-by-side like we want them, but there's way too much
 We can also add a parameter to reduce the height, they're a bit tall.
 
 .. code-block:: javascript
-    :emphasize-lines: 17-18
+    :emphasize-lines: 16-17
 
     var chartLayout = {
         xaxis: {
@@ -706,7 +703,6 @@ We can also add a parameter to reduce the height, they're a bit tall.
             fixedrange: true
         },
         yaxis: {
-            title: 'Homicides',
             fixedrange: true
         },
         // Add the margin here
@@ -747,6 +743,31 @@ Much better! There are a couple more customization options we can do with plotly
       ...
     }
 
+You can also slightly customize the label. For example, let's change the background color.
+
+.. code-block:: javascript
+    :emphasize-lines: 11-13
+
+    function createChart(x, y, element) {
+      var settings = [{
+        x: x,
+        y: y,
+        type: 'bar',
+        marker: {
+          color: '#86c7df'
+        },
+        // Add this to your chart settings
+        hoverinfo: 'y',
+        hoverlabel: {
+          bgcolor: '#333333'
+        }
+      }];
+
+      // the rest of your code is down here
+      ...
+    }
+
+
 Last, our charts need titles! Since we want each chart to have a different title, we'll need to update our function a bit.
 
 We're going to
@@ -770,12 +791,11 @@ We're going to
             fixedrange: true
           },
           yaxis: {
-            title: 'Homicides',
             fixedrange: true
           },
           // Add the margin here
           margin: {
-            l: 45,
+            l: 30,
             r: 15,
             t: 45,
             b: 30

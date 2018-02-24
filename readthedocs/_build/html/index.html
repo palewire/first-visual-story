@@ -532,14 +532,13 @@ $ git commit -m <span class="s2">&quot;Printed a list of names from data&quot;</
 <li>Give the charts titles</li>
 <li>Display the two charts alongside one another</li>
 </ul>
-<p>Let’s add labels to our axes. Create a new variable, <code class="docutils literal"><span class="pre">chartLayout</span></code> in your <code class="docutils literal"><span class="pre">createChart</span></code> function. We can then specify properties for <code class="docutils literal"><span class="pre">xaxis</span></code> and yaxis``.</p>
+<p>Let’s add labels to our axes. Create a new variable, <code class="docutils literal"><span class="pre">chartLayout</span></code> in your <code class="docutils literal"><span class="pre">createChart</span></code> function. We can then specify properties for <code class="docutils literal"><span class="pre">xaxis</span></code> and <code class="docutils literal"><span class="pre">yaxis</span></code>. We don’t have a homicide label because we’ll add a title to the charts later that will take care of that.</p>
 <div class="highlight-javascript"><div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">layout</span> <span class="o">=</span> <span class="p">{</span>
     <span class="nx">xaxis</span><span class="o">:</span> <span class="p">{</span>
         <span class="nx">title</span><span class="o">:</span> <span class="s1">&#39;Year&#39;</span><span class="p">,</span>
         <span class="nx">fixedrange</span><span class="o">:</span> <span class="kc">true</span>
     <span class="p">},</span>
     <span class="nx">yaxis</span><span class="o">:</span> <span class="p">{</span>
-        <span class="nx">title</span><span class="o">:</span> <span class="s1">&#39;Homicides&#39;</span><span class="p">,</span>
         <span class="nx">fixedrange</span><span class="o">:</span> <span class="kc">true</span>
     <span class="p">}</span>
 <span class="p">};</span>
@@ -589,7 +588,6 @@ $ git commit -m <span class="s2">&quot;Printed a list of names from data&quot;</
         <span class="nx">fixedrange</span><span class="o">:</span> <span class="kc">true</span>
       <span class="p">},</span>
       <span class="nx">yaxis</span><span class="o">:</span> <span class="p">{</span>
-        <span class="nx">title</span><span class="o">:</span> <span class="s1">&#39;Homicides&#39;</span><span class="p">,</span>
         <span class="nx">fixedrange</span><span class="o">:</span> <span class="kc">true</span>
       <span class="p">}</span>
     <span class="p">};</span>
@@ -646,12 +644,11 @@ $ git commit -m <span class="s2">&quot;Printed a list of names from data&quot;</
         <span class="nx">fixedrange</span><span class="o">:</span> <span class="kc">true</span>
     <span class="p">},</span>
     <span class="nx">yaxis</span><span class="o">:</span> <span class="p">{</span>
-        <span class="nx">title</span><span class="o">:</span> <span class="s1">&#39;Homicides&#39;</span><span class="p">,</span>
         <span class="nx">fixedrange</span><span class="o">:</span> <span class="kc">true</span>
     <span class="p">},</span>
 <span class="hll">    <span class="c1">// Add the margin here</span>
 </span><span class="hll">    <span class="nx">margin</span><span class="o">:</span> <span class="p">{</span>
-</span><span class="hll">        <span class="nx">l</span><span class="o">:</span> <span class="mi">45</span><span class="p">,</span>
+</span><span class="hll">        <span class="nx">l</span><span class="o">:</span> <span class="mi">30</span><span class="p">,</span>
 </span><span class="hll">        <span class="nx">r</span><span class="o">:</span> <span class="mi">15</span><span class="p">,</span>
 </span><span class="hll">        <span class="nx">t</span><span class="o">:</span> <span class="mi">45</span><span class="p">,</span>
 </span><span class="hll">        <span class="nx">b</span><span class="o">:</span> <span class="mi">30</span>
@@ -666,7 +663,6 @@ $ git commit -m <span class="s2">&quot;Printed a list of names from data&quot;</
         <span class="nx">fixedrange</span><span class="o">:</span> <span class="kc">true</span>
     <span class="p">},</span>
     <span class="nx">yaxis</span><span class="o">:</span> <span class="p">{</span>
-        <span class="nx">title</span><span class="o">:</span> <span class="s1">&#39;Homicides&#39;</span><span class="p">,</span>
         <span class="nx">fixedrange</span><span class="o">:</span> <span class="kc">true</span>
     <span class="p">},</span>
     <span class="c1">// Add the margin here</span>
@@ -703,6 +699,27 @@ $ git commit -m <span class="s2">&quot;Printed a list of names from data&quot;</
 <span class="p">}</span>
 </pre></div>
 </div>
+<p>You can also slightly customize the label. For example, let’s change the background color.</p>
+<div class="highlight-javascript"><div class="highlight"><pre><span></span><span class="kd">function</span> <span class="nx">createChart</span><span class="p">(</span><span class="nx">x</span><span class="p">,</span> <span class="nx">y</span><span class="p">,</span> <span class="nx">element</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="nx">settings</span> <span class="o">=</span> <span class="p">[{</span>
+    <span class="nx">x</span><span class="o">:</span> <span class="nx">x</span><span class="p">,</span>
+    <span class="nx">y</span><span class="o">:</span> <span class="nx">y</span><span class="p">,</span>
+    <span class="nx">type</span><span class="o">:</span> <span class="s1">&#39;bar&#39;</span><span class="p">,</span>
+    <span class="nx">marker</span><span class="o">:</span> <span class="p">{</span>
+      <span class="nx">color</span><span class="o">:</span> <span class="s1">&#39;#86c7df&#39;</span>
+    <span class="p">},</span>
+    <span class="c1">// Add this to your chart settings</span>
+    <span class="nx">hoverinfo</span><span class="o">:</span> <span class="s1">&#39;y&#39;</span><span class="p">,</span>
+<span class="hll">    <span class="nx">hoverlabel</span><span class="o">:</span> <span class="p">{</span>
+</span><span class="hll">      <span class="nx">bgcolor</span><span class="o">:</span> <span class="s1">&#39;#333333&#39;</span>
+</span><span class="hll">    <span class="p">}</span>
+</span>  <span class="p">}];</span>
+
+  <span class="c1">// the rest of your code is down here</span>
+  <span class="p">...</span>
+<span class="p">}</span>
+</pre></div>
+</div>
 <p>Last, our charts need titles! Since we want each chart to have a different title, we’ll need to update our function a bit.</p>
 <dl class="docutils">
 <dt>We’re going to</dt>
@@ -726,12 +743,11 @@ $ git commit -m <span class="s2">&quot;Printed a list of names from data&quot;</
         <span class="nx">fixedrange</span><span class="o">:</span> <span class="kc">true</span>
       <span class="p">},</span>
       <span class="nx">yaxis</span><span class="o">:</span> <span class="p">{</span>
-        <span class="nx">title</span><span class="o">:</span> <span class="s1">&#39;Homicides&#39;</span><span class="p">,</span>
         <span class="nx">fixedrange</span><span class="o">:</span> <span class="kc">true</span>
       <span class="p">},</span>
       <span class="c1">// Add the margin here</span>
       <span class="nx">margin</span><span class="o">:</span> <span class="p">{</span>
-        <span class="nx">l</span><span class="o">:</span> <span class="mi">45</span><span class="p">,</span>
+        <span class="nx">l</span><span class="o">:</span> <span class="mi">30</span><span class="p">,</span>
         <span class="nx">r</span><span class="o">:</span> <span class="mi">15</span><span class="p">,</span>
         <span class="nx">t</span><span class="o">:</span> <span class="mi">45</span><span class="p">,</span>
         <span class="nx">b</span><span class="o">:</span> <span class="mi">30</span>

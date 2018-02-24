@@ -15,7 +15,10 @@ function createChart(x, y, element, title) {
     marker: {
       color: '#86c7df'
     },
-    hoverinfo: 'y'
+    hoverinfo: 'y',
+    hoverlabel: {
+      bgcolor: '#333333'
+    }
   }];
 
   var layout = {
@@ -25,12 +28,11 @@ function createChart(x, y, element, title) {
       fixedrange: true
     },
     yaxis: {
-      title: 'Homicides',
       fixedrange: true
     },
     // Add the margin here
     margin: {
-      l: 45,
+      l: 30,
       r: 15,
       t: 45,
       b: 30
