@@ -449,6 +449,8 @@ $ git commit -m <span class="s2">&quot;Printed a list of names from data&quot;</
 <div class="section" id="chapter-6-hello-chart">
 <h2>Chapter 6: Hello chart<a class="headerlink" href="#chapter-6-hello-chart" title="Permalink to this headline">¶</a></h2>
 <p>We have data, but what does it look like? To visualize our data, we’re going to use <a class="reference external" href="https://plot.ly/javascript/">plotly.js</a>. Plotly.js is an open source library built on the popular <a class="reference external" href="https://d3js.org/">D3</a> library, which powers a lot of the news graphics made with JavaScript you’ll see.</p>
+<p><strong>But wait, why aren’t we using D3?</strong></p>
+<p>You’ve probably heard of the data visualization library, D3 by Mike Bostock. It’s a wonderful and incredibly powerful tool, but a little too powerful and complex for making simple bar charts. Instead we’re going to use a library that abstracts the tools provided by D3 into something that’s simpler to use.</p>
 <p>First, use npm to install plotly.js.</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>$ npm install -s plotly.js
 </pre></div>
@@ -701,11 +703,11 @@ $ git commit -m <span class="s2">&quot;Printed a list of names from data&quot;</
     <span class="kd">var</span> <span class="nx">layout</span> <span class="o">=</span> <span class="p">{</span>
       <span class="nx">title</span><span class="o">:</span> <span class="nx">title</span><span class="p">,</span>
       <span class="nx">xaxis</span><span class="o">:</span> <span class="p">{</span>
-        <span class="nx">title</span><span class="o">:</span> <span class="s1">&#39;Year,</span>
-<span class="s1">        fixedrange: true</span>
-<span class="s1">      },</span>
-<span class="s1">      yaxis: {</span>
-<span class="s1">        title: &#39;</span><span class="nx">Homicides</span><span class="p">,</span>
+        <span class="nx">title</span><span class="o">:</span> <span class="s1">&#39;Year&#39;</span><span class="p">,</span>
+        <span class="nx">fixedrange</span><span class="o">:</span> <span class="kc">true</span>
+      <span class="p">},</span>
+      <span class="nx">yaxis</span><span class="o">:</span> <span class="p">{</span>
+        <span class="nx">title</span><span class="o">:</span> <span class="s1">&#39;Homicides&#39;</span><span class="p">,</span>
         <span class="nx">fixedrange</span><span class="o">:</span> <span class="kc">true</span>
       <span class="p">},</span>
       <span class="c1">// Add the margin here</span>
@@ -763,7 +765,7 @@ $ git commit -m <span class="s2">&quot;Printed a list of names from data&quot;</
 <p>Now in <cite>map.js</cite> paste in the following Leaflet code to generate a simple map.</p>
 <div class="highlight-javascript"><div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">map</span> <span class="o">=</span> <span class="nx">L</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="s1">&#39;map&#39;</span><span class="p">);</span>
 <span class="kd">var</span> <span class="nx">osm</span> <span class="o">=</span> <span class="nx">L</span><span class="p">.</span><span class="nx">tileLayer</span><span class="p">(</span><span class="s1">&#39;http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png&#39;</span><span class="p">);</span>
-<span class="nx">osm</span><span class="p">.</span><span class="nx">addTo</span><span class="p">(</span><span class="nx">map</span><span class="p">);</span><span class="sb">`</span>
+<span class="nx">osm</span><span class="p">.</span><span class="nx">addTo</span><span class="p">(</span><span class="nx">map</span><span class="p">);</span>
 </pre></div>
 </div>
 <p>Reload the index page to see the results.</p>

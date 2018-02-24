@@ -422,6 +422,10 @@ Chapter 6: Hello chart
 
 We have data, but what does it look like? To visualize our data, we're going to use `plotly.js <https://plot.ly/javascript/>`_. Plotly.js is an open source library built on the popular `D3 <https://d3js.org/>`_ library, which powers a lot of the news graphics made with JavaScript you'll see.
 
+**But wait, why aren't we using D3?**
+
+You've probably heard of the data visualization library, D3 by Mike Bostock. It's a wonderful and incredibly powerful tool, but a little too powerful and complex for making simple bar charts. Instead we're going to use a library that abstracts the tools provided by D3 into something that's simpler to use.
+
 First, use npm to install plotly.js.
 
 .. code-block:: bash
