@@ -436,11 +436,14 @@ The ``-s`` argument saves plotly to a dependencies file. That way, if you ever n
 
 From here, we'll be working in our ``_scripts`` folder. Create a file called ``charts.js`` inside of ``src/_scripts/``.
 
-You can include the libraries we installed (or any JavaScript file!) by using ``require()``.
+You can include the libraries we installed (or any JavaScript file!) by using ``require()``. Plotly is a HUGE library, so we're only going to import the parts of it that we need.
 
 .. code-block:: javascript
 
-    var Plotly = require('plotly.js');
+    var Plotly = require('plotly.js/lib/core');
+    var Plotlybar = require('plotly.js/lib/bar');
+
+    Plotly.register(Plotlybar);
 
     // At the end of the charts.js file
     console.log("hello, this is my charts file!")
@@ -451,7 +454,7 @@ Then we use the same ``require()`` method to pull our code into ``main.js``.
 
     var chart = require('./charts.js');
 
-Structuring our code this way helps keep things organized, as each file controls one specific part of the page. Need to make an adjustment to your chart? Go to ``charts.js``. Want to tweak the map (which we'll do later)? Look in ``map.js``
+Structuring our code this way helps keep things organized, as each file controls one specific part of the page. Need to make an adjustment to your chart? Go to ``charts.js``. Want to change the map (which we'll do later)? Look in ``map.js``
 
 Now if you reload your page and go to your inspector (click on the three dots in the top right of Chrome, go down to "More tools" and select "Developer tools"), you should see ``hello, this is my charts file!`` in the console.
 
@@ -474,35 +477,37 @@ Inside of the ``{% scripts %}`` block:
 
     {% block scripts %}
     <script>
-    var homicides = {% include '_data/annual_totals.json' %}
+    var annualTotals = {% include '_data/annual_totals.json' %}
     </script>
     {% endblock %}
 
 
-Making a chart in Plotly is simple, but we have to do some data transformation first. Plotly wants the x and y values of the chart to be in arrays, which are like a list of values.
+Making a chart in Plotly is simple, but we have to do some data transformation first. Plotly wants the x and y values of the chart to be in arrays, which are like a list of values. Meanwhle, if you look in ``_data/annual_totals.json``, you'll see that the data is structured in objects, like this:
 
-We want to make two charts - one of county homicides and one of killings in Harvard Park. So let's make arrays that will hold those values that we will then provide to our function, as well as the years.
+.. code-block:: javascript
+
+    {
+       "year":2000,
+       "homicides_total":1036,
+       "homicides_harvard_park":3
+    },
+    {
+       "year":2001,
+       "homicides_total":1125,
+       "homicides_harvard_park":2
+    },
+    ...
+
+We want to make two charts - one of county homicides and one of killings in Harvard Park. So let's make arrays that will hold those values that we will then provide to our function, as well as the years. We can use a little bit of JavaScript shorthand for this, using the ``.map()`` method and "arrow" functions.
 
 .. code-block:: javascript
 
     // Initialize the arrays that will hold our lists of data
-    var countyHomicides = [];
-    var harvardParkHomicides = [];
-    var years = [];
+    var countyHomicides = annualTotals.map(a => a.homicides_total);
+    var harvardParkHomicides = annualTotals.map(a => a.homicides_harvard_park);
+    var years = annualTotals.map(a => a.year);
 
-Then we want to fill our arrays by looping over each item in our ``data`` by using a ``.forEach()`` loop.  ``.forEach()`` goes through every item in our list of homicides.  ``.push()`` adds values into the arrays we've created.
-
-.. code-block:: javascript
-
-    var countyHomicides = [];
-    var harvardParkHomicides = [];
-    var years = [];
-
-    homicides.forEach(function(row) {
-      countyHomicides.push(row['homicides_total']);
-      harvardParkHomicides.push(row['homicides_harvard_park']);
-      years.push(row['year']);
-    });
+The ``.map()`` creates and returns an array, and the arrow (``=>``) function returns the value for each object. Think of it as "plucking" the values we want to form a list.
 
 Now that we've populated our data, we're ready to make our chart. Right now, it's pretty simple, with options for the x, which we want to be our ``years`` array, and y axis, which is our homicide counts, and specifying the type of the chart.
 
@@ -554,6 +559,7 @@ Then, add ``layout`` as a third argument to ``Plotly.newPlot()``
 Everything in plotly.js is handled by settings like this. For example, to change the markers to an light blue, update ``settings``.
 
 .. code-block:: javascript
+    :emphasize-lines: 5-8
 
     var settings = [{
       x: years,
@@ -582,6 +588,7 @@ Now copy and paste the ``settings``, ``layout`` and the call to ``Plotly.newPlot
 Note also that we change ``'county-homicides'`` to ``element`` in the call to ``Plotly.newPlot()``.
 
 .. code-block:: javascript
+    :emphasize-lines: 4,5,24
 
     function createChart(x, y, element) {
         // The code that creates our chart will go here.
@@ -627,7 +634,7 @@ Now, we can make a second chart by using the Harvard Park data. Be sure to repla
 
 Not bad, right? By structuring our code this way, we'll be able to make multiple charts without repeating our code (known as `DRY <https://en.wikipedia.org/wiki/Don%27t_repeat_yourself>`_).
 
-Right now, our charts are stacked up on top of each other, which isn't a very nice layout. We can use HTML and CSS to lay out our charts side-by-side.
+Right now, our charts are stacked up on top of each other, which isn't reawlly a great layout. We can use HTML and CSS to lay out our charts side-by-side.
 
 In ``index.nunjucks``, add a ``div`` element that wraps your charts, and add a ``class`` of ``inline-chart`` to each of your charts.
 
@@ -650,6 +657,7 @@ This gives us a structure that we can style with CSS. In the ``_scripts`` folder
 You won't see anything yet, because we haven't imported it into our main stylesheet. Use ``@import`` to bring your CSS file into ``main.css``
 
 .. code-block:: css
+    :emphasize-lines: 7,8
 
     // Normalize Styles
     @import 'node_modules/normalize.css/normalize';
@@ -667,6 +675,7 @@ The charts are laid out side-by-side like we want them, but there's way too much
 ``l``, ``r``, ``t`` and ``b`` stand for left, right, top and bottom margins, respectively.
 
 .. code-block:: javascript
+    :emphasize-lines: 10-16
 
     var chartLayout = {
         xaxis: {
@@ -689,9 +698,24 @@ The charts are laid out side-by-side like we want them, but there's way too much
 We can also add a parameter to reduce the height, they're a bit tall.
 
 .. code-block:: javascript
+    :emphasize-lines: 17-18
 
     var chartLayout = {
-        // Other properties are above
+        xaxis: {
+            title: 'Year',
+            fixedrange: true
+        },
+        yaxis: {
+            title: 'Homicides',
+            fixedrange: true
+        },
+        // Add the margin here
+        margin: {
+            l: 45,
+            r: 15,
+            t: 45,
+            b: 30
+        }
         // Add a height parameter to the bottom of your file
         height: 250
     };
@@ -705,6 +729,7 @@ Another nice modification - we can make the annoying toolbar go away by adjustin
 Much better! There are a couple more customization options we can do with plotly. While it's useful to get the homicide numbers on hover, we don't really need those year label popups. We can turn those off by only displaying hovers for y-axis values.
 
 .. code-block:: javascript
+    :emphasize-lines: 9-10
 
     function createChart(x, y, element) {
       var settings = [{
@@ -726,10 +751,11 @@ Last, our charts need titles! Since we want each chart to have a different title
 
 We're going to
  - add an argument to our ``createChart`` function for the title,
- - feed that title to our chart options,
+ - send that title to our chart options,
  - update our calls to provide that title
 
 .. code-block:: javascript
+    :emphasize-lines: 2,8
 
     // Note the new 'title' argument
     function createChart(x, y, element, title) {
@@ -771,6 +797,17 @@ Then, add the title you want to your function call. We'll assign them to variabl
     createChart(years, countyHomicides, 'county-homicides', countyChartTitle);
     createChart(years, harvardParkHomicides, 'harvard-park-homicides', hpChartTitle);
 
+**What we haven't covered here**
+
+We used Plotly.js in this class, but there are many other javascript charting libraries, each one slightly different. If you want to explore this on your own, here are some other options that we considered using for this class.
+
+- `Vega-lite <https://vega.github.io/vega-lite/>`_
+
+- `Charts.js <http://www.chartjs.org/>`_
+
+- `C3.js <http://c3js.org/>`_ Important to note that this does not seem to support the latest version (4.0) of D3.js
+
+- `D3.js <https://d3js.org/>`_ The granddaddy of them all.
 
 
 ********************
