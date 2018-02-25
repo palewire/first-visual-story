@@ -186,14 +186,14 @@ Create a Code directory for your work.
 
 .. code-block:: bash
 
-    $ mkdir code
+    $ mkdir Code
 
 
 Move in.
 
 .. code-block:: bash
 
-    $ cd code
+    $ cd Code
 
 
 Create a new directory for your project.
@@ -233,20 +233,15 @@ Fire up the test server
     $ gulp serve
 
 
-Visit `localhost:3000 <http://localhost:3000>`_ in your browser.
+Visit `localhost:3000 <http://localhost:3000>`_ in your browser. There you can see the generic website offered as a starting point by our Yeoman generator.
 
-Replace the content of ``src/index.nunjucks`` with the below line, and see it show up on the live site.
-
-.. code-block:: html
-
-    <h1>Welcome to First Graphics App!</h1>
-
+Congratulations, you've got your framework up and running. Let's save our work and then we'll be ready to start developing our own content.
 
 Open a second terminal and navigate to your code folder.
 
 .. code-block:: bash
 
-    $ cd code
+    $ cd Code
     $ cd first-graphics-app
 
 
@@ -268,28 +263,49 @@ Push it to GitHub.
 Chapter 3: Hello template
 *************************
 
-Navigate to `localhost:3000/ <http://localhost:3000/>`_.
+Navigate back to `localhost:3000/ <http://localhost:3000/>`_ in your browser. You should see the same default homepage as before.
 
-Make a change to ``index.nunjucks`` by editing the ``content`` block. See it show up.
+Its contents is configured in the ``index.nunjucks`` file found in the directory Yeoman created. It uses a templating language for JavaScript invented at Mozilla called `Nunjucks <https://mozilla.github.io/nunjucks/>`_
+
+You can edit the page by changing what's found inside of the ``content`` block. Make a change and save the file.
 
 .. code-block:: jinja
+    :emphasize-lines: 2
 
     {% block content %}
     <p>Hello World</p>
     {% endblock %}
 
 
-Open up ``_layouts/base.nunjucks`` and explain how the template inheritance system works.
+You should see it immediately show up thanks to a BrowserSync, a popular feature of Gulp that automatically updates your test site after you make a change.
 
-Make a small change to ``_layouts/base.nunjucks`` and see it come up live.
+Look closely at the index file you and will notice that it doesn't include code for much of what you can see on the live page. For instance, you won't see the HTML of the navigation bar or the stylesheets that dicatate how the page looks.
+
+That's because that boilerplate has been moved back into a parent template "extended" by the index file with a line of Nunjucks code at the top of the page.
 
 .. code-block:: jinja
+
+    {% extends '_layouts/base.nunjucks' %}
+
+
+That "base" file, sometimes called the "layout," can be inherited other pages on your site to avoid duplication and share common code. One change to a parent file instantly ripples out to all pages the extend it. This approach to "template inheritance" is not just found in Nunjucks. It can be found in other templating systems, including Python ones like `Django <https://docs.djangoproject.com/en/1.7/topics/templates/>`_ and `Jinja <http://jinja.pocoo.org>`_.
+
+You can find the base layout packaged with our framework in the ``_layouts/base.nunjucks`` file. It includes a set of block tags, like ``content``, that act as placeholders for use in templates that extend it.
+
+Make a small change above the block and see the change on our site
+
+.. code-block:: jinja
+    :emphasize-lines: 1
 
     Above content
     {% block content %}{% endblock %}
 
 
-Replace ``_layouts/base.nunjucks`` with our more polished base template.
+Most newsrooms that use a similar system have a own base template for all of their custom pages. Graphic artists and designers install and extend it as the first step in their work. They develop their custom page within its confines and largely accept the furniture it provides, like the site's header and footer, fonts, common color schemes. This allows them to work more quickly because they do not have to bother with reinvent their site's most common elements.
+
+For this class, we have developed a base template that will act as a proxy for a real newsroom's base template. It is not as sophisticated or complete as a real-world example, but it will provide all of the basic elements we will need for this class.
+
+You can find it in the code block below. Copy all of its contents and paste them into ``_layouts/base.nunjucks``, replacing everything.
 
 .. code-block:: jinja
 
@@ -299,8 +315,9 @@ Replace ``_layouts/base.nunjucks`` with our more polished base template.
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>First Graphics App</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
         <link rel="stylesheet" href="styles/main.css">
-        <link rel="stylesheet" href="https://bl.ocks.org/palewire/raw/1035cd306a2f85b362b1a20ce315b8eb/base.css?rev=4">
+        <link rel="stylesheet" href="https://bl.ocks.org/palewire/raw/1035cd306a2f85b362b1a20ce315b8eb/base.css?rev=8">
         {% block stylesheets %}{% endblock %}
     </head>
     <body>
@@ -324,19 +341,21 @@ Replace ``_layouts/base.nunjucks`` with our more polished base template.
     </body>
     </html>
 
-Fill in a headline and see it show up.
+As you can see, it includes all of the standard HTML tags, with our custom stylesheets and content blocks mixed in.
+
+To see the effects, return to ``index.nunjucks`` and fill in a headline using the ``headline`` block introduced by our base template. Save the page and you should quickly see it appear on the page.
 
 .. code-block:: jinja
 
     {% block headline %}My headline will go here{% endblock %}
 
-Fill in a byline and see it show up.
+Now fill in a byline.
 
 .. code-block:: jinja
 
     {% block byline %}By me{% endblock %}
 
-Let's do the publication date too while we are at it.
+And let's do the publication date too while we are at it.
 
 .. code-block:: jinja
 
@@ -344,14 +363,14 @@ Let's do the publication date too while we are at it.
         <time datetime="2018-03-10" pubdate>Mar. 10, 2018</time>
     {% endblock %}
 
-Commit our work.
+Congratulations, you've installed a base template and started in on creating your first custom page. Now is another good time to pause and commit our work.
 
 .. code-block:: bash
 
     $ git add .
     $ git commit -m "Started editing templates"
 
-Push it to GitHub.
+And, again, push it to GitHub.
 
 .. code-block:: bash
 
@@ -364,7 +383,7 @@ Chapter 4: Hello data
 
 Add the `Harvard Park homicides data files <https://raw.githubusercontent.com/ireapps/first-graphics-app/master/src/_data/harvard_park_homicides.json>`_ to ``_data/harvard_park_homicides.json``
 
-Return to ``src/harvard-park-homicides/index.nunjucks`` and print them out on the page.
+Return to ``index.nunjucks`` and print them out on the page.
 
 .. code-block:: jinja
 
@@ -507,7 +526,7 @@ First, use npm to install plotly.js.
 
 The ``-s`` argument saves plotly to a dependencies file. That way, if you ever need to go through the install steps for your app again, you can do so easily.
 
-From here, we'll be working in our ``_scripts`` folder. Create a file called ``charts.js`` inside of ``src/_scripts/``.
+From here, we'll be working in our ``_scripts`` folder. Create a file called ``charts.js`` inside of ``_scripts/``.
 
 You can include the libraries we installed (or any JavaScript file!) by using ``require()``. Plotly is a HUGE library, so we're only going to import the parts of it that we need.
 
