@@ -411,7 +411,7 @@ Push it to GitHub.
 
 
 **********************
-Chapter 5: Hello table
+Chapter 5: Hello cards
 **********************
 
 Explain Bootstrap. Show what we're trying to make. Talk about cards. Show Bootstrap docs.
