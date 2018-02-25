@@ -17,7 +17,7 @@
 {% endblock %}
 
 {% block pubdate %}
-    <time datetime="2017-11-19" pubdate>Nov. 19, 2017</time>
+    <time datetime="2018-03-10" pubdate>March 10, 2018</time>
 {% endblock %}
 
 {% block content %}
@@ -26,7 +26,7 @@
 </section>
 
 <section>
-    <h3>One corner. Four killings. </h3>
+    <h3>One corner. Four killings</h3>
     <p>The southwest corner of Harvard Park, at West 62nd Street and Harvard Boulevard, has been especially deadly. In the last year-and-a-half, four men have been killed there — while sitting in a car, trying to defuse an argument or walking home from the barber shop or the corner store.</p>
     <div id="map"></div>
 </section>
