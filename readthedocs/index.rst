@@ -277,7 +277,7 @@ You can edit the page by changing what's found inside of the ``content`` block. 
     {% endblock %}
 
 
-You should see it immediately show up thanks to a BrowserSync, a popular feature of Gulp that automatically updates your test site after you make a change.
+You should see it immediately show up thanks to a `BrowserSync <https://browsersync.io>`_, a popular feature of Gulp that automatically updates your test site after you make a change.
 
 Look closely at the index file you and will notice that it doesn't include code for much of what you can see on the live page. For instance, you won't see the HTML of the navigation bar or the stylesheets that dicatate how the page looks.
 
