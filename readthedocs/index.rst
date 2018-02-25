@@ -508,9 +508,9 @@ Write a headline.
 
 Write the chatter.
 
-**********************
-Chapter 6: Hello chart
-**********************
+***********************
+Chapter 6: Hello charts
+***********************
 
 We have data, but what does it look like? To visualize our data, we're going to use `plotly.js <https://plot.ly/javascript/>`_. Plotly.js is an open source library built on the popular `D3 <https://d3js.org/>`_ library, which powers a lot of the news graphics made with JavaScript you'll see.
 
