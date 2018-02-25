@@ -265,7 +265,7 @@ Chapter 3: Hello template
 
 Navigate back to `localhost:3000/ <http://localhost:3000/>`_ in your browser. You should see the same default homepage as before.
 
-Its contents is configured in the ``index.nunjucks`` file found in the directory Yeoman created. It uses a templating language for JavaScript invented at Mozilla called `Nunjucks <https://mozilla.github.io/nunjucks/>`_
+Its contents is configured in the ``index.nunjucks`` file found in the directory Yeoman created. It uses a templating language for JavaScript invented at Mozilla called `Nunjucks <https://mozilla.github.io/nunjucks/>`_.
 
 You can edit the page by changing what's found inside of the ``content`` block. Make a change and save the file.
 
