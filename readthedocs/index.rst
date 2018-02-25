@@ -497,7 +497,7 @@ We have data, but what does it look like? To visualize our data, we're going to 
 
 **But wait, why aren't we using D3?**
 
-You've probably heard of the data visualization library, D3 by Mike Bostock. It's a wonderful and incredibly powerful tool, but a little too powerful and complex for making simple bar charts. Instead we're going to use a library that abstracts the tools provided by D3 into something that's simpler to use.
+You've probably heard of the ``D3 <https://d3js.org>``_, the data visualization library by Mike Bostock. It's an incredibly powerful tool, but a little too complex for making simple bar charts today. Instead we're going to use a library that abstracts the tools provided by D3 into something that's easier to use.
 
 First, use npm to install plotly.js.
 
@@ -524,6 +524,19 @@ You can include the libraries we installed (or any JavaScript file!) by using ``
 Then we use the same ``require()`` method to pull our code into ``main.js``.
 
 .. code-block:: javascript
+    :emphasize-lines: 13
+
+    // Main javascript entry point
+    // Should handle bootstrapping/starting application
+    'use strict';
+
+    var $ = require('jquery');
+    var Link = require('../_modules/link/link');
+
+    $(function() {
+      new Link(); // Activate Link modules logic
+      console.log('Welcome to Yeogurt!');
+    });
 
     var chart = require('./charts.js');
 
@@ -535,7 +548,7 @@ TK PICTURE OF INSPECTOR / CONSOLE HERE
 
 What chart should we make? The story points out that Harvard Park experienced an increase in homicides as there was a decrease across the rest of the county. Let's try to visualize that.
 
-First, we need somewhere for our charts to go. In our ``harvard-park-homicides/index.nunjucks`` file, inside of ``{% block content %}`` where you want the chart to go, create a ``div`` element with an id of "county-homicides", and another with an id of "harvard-park-homicides".
+First, we need somewhere for our charts to go. In our ``harvard-park-homicides/index.nunjucks`` file, inside of ``{% block content %}`` where you want the chart to go, create a ``div`` element with an id of ``county-homicides``, and another with an id of ``harvard-park-homicides``.
 
 .. code-block:: html
 
@@ -555,7 +568,7 @@ Inside of the ``{% scripts %}`` block:
     {% endblock %}
 
 
-Making a chart in Plotly is simple, but we have to do some data transformation first. Plotly wants the x and y values of the chart to be in arrays, which are like a list of values. Meanwhle, if you look in ``_data/annual_totals.json``, you'll see that the data is structured in objects, like this:
+Making a chart in Plotly is simple, but we have to do some data transformation first. Plotly wants the x and y values of the chart to be in arrays, which are like a list of values. Meanwhle, if you look in ``_data/annual_totals.json``, you'll see that the data is structured in JavaScript objects, like this:
 
 .. code-block:: javascript
 
@@ -574,6 +587,12 @@ Making a chart in Plotly is simple, but we have to do some data transformation f
 We want to make two charts - one of county homicides and one of killings in Harvard Park. So let's make arrays that will hold those values that we will then provide to our function, as well as the years. We can use a little bit of JavaScript shorthand for this, using the ``.map()`` method and "arrow" functions.
 
 .. code-block:: javascript
+    :emphasize-lines: 6-9
+
+    var Plotly = require('plotly.js/lib/core');
+    var Plotlybar = require('plotly.js/lib/bar');
+
+    Plotly.register(Plotlybar);
 
     // Initialize the arrays that will hold our lists of data
     var countyHomicides = annualTotals.map(a => a.homicides_total);
@@ -582,11 +601,14 @@ We want to make two charts - one of county homicides and one of killings in Harv
 
 The ``.map()`` creates and returns an array, and the arrow (``=>``) function returns the value for each object. Think of it as "plucking" the values we want to form a list.
 
-Now that we've populated our data, we're ready to make our chart. Right now, it's pretty simple, with options for the x, which we want to be our ``years`` array, and y axis, which is our homicide counts, and specifying the type of the chart.
+Now that we've populated our data, we're ready to make our chart. Right now, it's pretty simple, with options for the x axis, which we want to be our ``years`` array, and y axis, which is our homicide counts, and specifying the type of the chart.
 
 Below the settings we call ``Plotly.newPlot()`` with the id of the element where we want the chart to go and settings to create the chart.
 
 .. code-block:: javascript
+
+    // The rest of your code is up here.
+    // Add the below lines to the bottom of your file
 
     // Use our x and y arrays for the values of the chart
     var settings = [{
@@ -602,7 +624,6 @@ This is a good start, but we can further customize this chart so it fits better 
 
 - Add axis labels
 - Change the colors of the bars
-- Change the fonts to match our page
 - Give the charts titles
 - Display the two charts alongside one another
 
@@ -628,7 +649,7 @@ Then, add ``layout`` as a third argument to ``Plotly.newPlot()``
 
     Plotly.newPlot('county-homicides', settings, layout);
 
-Everything in plotly.js is handled by settings like this. For example, to change the markers to an light blue, update ``settings``.
+Everything in plotly.js is handled by settings like this. For example, to change the markers to an light blue, update the ``settings`` variable.
 
 .. code-block:: javascript
     :emphasize-lines: 5-8
@@ -705,7 +726,7 @@ Now, we can make a second chart by using the Harvard Park data. Be sure to repla
 
 Not bad, right? By structuring our code this way, we'll be able to make multiple charts without repeating our code (known as `DRY <https://en.wikipedia.org/wiki/Don%27t_repeat_yourself>`_).
 
-Right now, our charts are stacked up on top of each other, which isn't reawlly a great layout. We can use HTML and CSS to lay out our charts side-by-side.
+Right now, our charts are stacked on top of each other, which isn't really a great layout. We can use HTML and CSS to lay out our charts side-by-side.
 
 In ``index.nunjucks``, add a ``div`` element that wraps your charts, and add a ``class`` of ``inline-chart`` to each of your charts.
 
