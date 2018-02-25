@@ -959,14 +959,22 @@ Reload the index page to see the results.
 Go to Google Maps and find 62nd Street and Harvard Boulevard in South LA. Hold down a click until it gives you the latitude and longitude. Paste those numbers into Leaflet's setView method.
 
 .. code-block:: javascript
+    :emphasize-lines: 4
 
+    var map = L.map('map')
+    var osm = L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png');
+    osm.addTo(map);
     map.setView([33.983265, -118.306799], 15);
 
 Move in the zoom.
 
 .. code-block:: javascript
+    :emphasize-lines: 4
 
-    map.setView([33.983265, -118.306799], 16);
+    var map = L.map('map')
+    var osm = L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png');
+    osm.addTo(map);
+    map.setView([33.983265, -118.306799], 18);
 
 At the bottom of the page import in the homicide list as we did with the totals for our chart.
 
@@ -983,6 +991,12 @@ At the bottom of the page import in the homicide list as we did with the totals 
 Loop through the data in `map.js` and add each point to the map as a circle, just like the real Homicide Report.
 
 .. code-block:: javascript
+    :emphasize-lines: 6-9
+
+    var map = L.map('map')
+    var osm = L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png');
+    osm.addTo(map);
+    map.setView([33.983265, -118.306799], 18);
 
     homicides.forEach(function (obj) {
         L.circleMarker([obj.latitude,  obj.longitude])
