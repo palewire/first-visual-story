@@ -95,7 +95,7 @@
 <li><a class="reference internal" href="#chapter-3-hello-template">Chapter 3: Hello template</a></li>
 <li><a class="reference internal" href="#chapter-4-hello-data">Chapter 4: Hello data</a></li>
 <li><a class="reference internal" href="#chapter-5-hello-cards">Chapter 5: Hello cards</a></li>
-<li><a class="reference internal" href="#chapter-6-hello-chart">Chapter 6: Hello chart</a></li>
+<li><a class="reference internal" href="#chapter-6-hello-charts">Chapter 6: Hello charts</a></li>
 <li><a class="reference internal" href="#chapter-7-hello-map">Chapter 7: Hello map</a></li>
 <li><a class="reference internal" href="#chapter-8-hello-internet">Chapter 8: Hello Internet</a></li>
 </ul>
@@ -211,11 +211,12 @@ in Chicago</a>.</p>
 </div>
 <div class="section" id="id4">
 <h3>Node.js<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
-<p>TK</p>
+<p>Node.js is an open-source server framework built using JavaScript. Many programmers like it because it means they can write JS for both their server (“back-end”) and webpage (“front-end”) tasks.</p>
+<p>You should be on the latest LTS (Long-term Support) version of Node, which at the time of this writing is <code class="docutils literal"><span class="pre">8.9.4</span></code>. The <a class="reference external" href="https://nodejs.org">Node.js site</a> has <a class="reference external" href="https://nodejs.org/en/download/">installer packages</a> available for Windows and Mac OSX.</p>
 </div>
 <div class="section" id="id5">
 <h3>npm<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h3>
-<p>TK</p>
+<p>Installing Node will also install <code class="docutils literal"><span class="pre">npm</span></code> on your computer, which stands for “Node Package Manager.” We will use this to install various JS packages during the class.</p>
 </div>
 <div class="section" id="git-and-github">
 <h3>Git and GitHub<a class="headerlink" href="#git-and-github" title="Permalink to this headline">¶</a></h3>
@@ -285,11 +286,11 @@ $ git config --global user.name <span class="s2">&quot;your name&quot;</span>
 <div class="section" id="chapter-2-hello-framework">
 <h2>Chapter 2: Hello framework<a class="headerlink" href="#chapter-2-hello-framework" title="Permalink to this headline">¶</a></h2>
 <p>Create a Code directory for your work.</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ mkdir code
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ mkdir Code
 </pre></div>
 </div>
 <p>Move in.</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ <span class="nb">cd</span> code
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ <span class="nb">cd</span> Code
 </pre></div>
 </div>
 <p>Create a new directory for your project.</p>
@@ -313,13 +314,10 @@ $ git config --global user.name <span class="s2">&quot;your name&quot;</span>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>$ gulp serve
 </pre></div>
 </div>
-<p>Visit <a class="reference external" href="http://localhost:3000">localhost:3000</a> in your browser.</p>
-<p>Replace the content of <code class="docutils literal"><span class="pre">src/index.nunjucks</span></code> with the below line, and see it show up on the live site.</p>
-<div class="highlight-html"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">h1</span><span class="p">&gt;</span>Welcome to First Graphics App!<span class="p">&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
-</pre></div>
-</div>
+<p>Visit <a class="reference external" href="http://localhost:3000">localhost:3000</a> in your browser. There you can see the generic website offered as a starting point by our Yeoman generator.</p>
+<p>Congratulations, you’ve got your framework up and running. Let’s save our work and then we’ll be ready to start developing our own content.</p>
 <p>Open a second terminal and navigate to your code folder.</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ <span class="nb">cd</span> code
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ <span class="nb">cd</span> Code
 $ <span class="nb">cd</span> first-graphics-app
 </pre></div>
 </div>
@@ -335,28 +333,39 @@ $ git commit -m <span class="s2">&quot;Installed framework&quot;</span>
 </div>
 <div class="section" id="chapter-3-hello-template">
 <h2>Chapter 3: Hello template<a class="headerlink" href="#chapter-3-hello-template" title="Permalink to this headline">¶</a></h2>
-<p>Navigate to <a class="reference external" href="http://localhost:3000/">localhost:3000/</a>.</p>
-<p>Make a change to <code class="docutils literal"><span class="pre">index.nunjucks</span></code> by editing the <code class="docutils literal"><span class="pre">content</span></code> block. See it show up.</p>
+<p>Navigate back to <a class="reference external" href="http://localhost:3000/">localhost:3000</a> in your browser. You should see the same default homepage as before.</p>
+<p>Its contents is configured in the <code class="docutils literal"><span class="pre">index.nunjucks</span></code> file found in the directory Yeoman created. It uses a templating language for JavaScript invented at Mozilla called <a class="reference external" href="https://mozilla.github.io/nunjucks/">Nunjucks</a>.</p>
+<p>You can edit the page by changing what’s found inside of the <code class="docutils literal"><span class="pre">content</span></code> block. Make a change and save the file.</p>
 <div class="highlight-jinja"><div class="highlight"><pre><span></span><span class="cp">{%</span> <span class="k">block</span> <span class="nv">content</span> <span class="cp">%}</span><span class="x"></span>
-<span class="x">&lt;p&gt;Hello World&lt;/p&gt;</span>
-<span class="cp">{%</span> <span class="k">endblock</span> <span class="cp">%}</span><span class="x"></span>
+<span class="hll"><span class="x">&lt;p&gt;Hello World&lt;/p&gt;</span>
+</span><span class="cp">{%</span> <span class="k">endblock</span> <span class="cp">%}</span><span class="x"></span>
 </pre></div>
 </div>
-<p>Open up <code class="docutils literal"><span class="pre">_layouts/base.nunjucks</span></code> and explain how the template inheritance system works.</p>
-<p>Make a small change to <code class="docutils literal"><span class="pre">_layouts/base.nunjucks</span></code> and see it come up live.</p>
-<div class="highlight-jinja"><div class="highlight"><pre><span></span><span class="x">Above content</span>
-<span class="cp">{%</span> <span class="k">block</span> <span class="nv">content</span> <span class="cp">%}{%</span> <span class="k">endblock</span> <span class="cp">%}</span><span class="x"></span>
+<p>You should see it immediately show up thanks to a <a class="reference external" href="https://browsersync.io">BrowserSync</a>, a popular feature of Gulp that automatically updates your test site after you make a change.</p>
+<p>Look closely at the index file you and will notice that it doesn’t include code for much of what you can see on the live page. For instance, you won’t see the HTML of the navigation bar or the stylesheets that dicatate how the page looks.</p>
+<p>That’s because that boilerplate has been moved back into a parent template “extended” by the index file with a line of Nunjucks code at the top of the page.</p>
+<div class="highlight-jinja"><div class="highlight"><pre><span></span><span class="cp">{%</span> <span class="k">extends</span> <span class="s1">&#39;_layouts/base.nunjucks&#39;</span> <span class="cp">%}</span><span class="x"></span>
 </pre></div>
 </div>
-<p>Replace <code class="docutils literal"><span class="pre">_layouts/base.nunjucks</span></code> with our more polished base template.</p>
+<p>That “base” file, sometimes called the “layout,” can be inherited by other pages on your site to avoid duplication and share common code. One change to a parent file instantly ripples out to all pages the extend it. This approach to “template inheritance” is not just found in Nunjucks. It can be found in other templating systems, including Python ones like <a class="reference external" href="https://docs.djangoproject.com/en/1.7/topics/templates/">Django</a> and <a class="reference external" href="http://jinja.pocoo.org">Jinja</a>.</p>
+<p>You can find the base layout packaged with our framework in the <code class="docutils literal"><span class="pre">_layouts/base.nunjucks</span></code> file. It includes a set of block tags, like <code class="docutils literal"><span class="pre">content</span></code>, that act as placeholders for use in templates that extend it.</p>
+<p>Make a small change above the block and save the file. You should see the change on our site, with the new line appearing above the paragraph we added earlier to the index file.</p>
+<div class="highlight-jinja"><div class="highlight"><pre><span></span><span class="hll"><span class="x">Above content</span>
+</span><span class="cp">{%</span> <span class="k">block</span> <span class="nv">content</span> <span class="cp">%}{%</span> <span class="k">endblock</span> <span class="cp">%}</span><span class="x"></span>
+</pre></div>
+</div>
+<p>Most newsrooms that use a similar system have a own base template for all of their custom pages. Graphic artists and designers install and extend it as the first step in their work. They develop their custom page within its confines and largely accept the furniture it provides, like the site’s header and footer, fonts, common color schemes. This allows them to work more quickly because they do not have to bother with reinvent their site’s most common elements.</p>
+<p>For this class, we have developed a base template that will act as a proxy for a real newsroom’s base template. It is not as sophisticated or complete as a real-world example, but it will provide all of the basic elements we will need for this class.</p>
+<p>You can find it in the code block below. Copy all of its contents and paste them into <code class="docutils literal"><span class="pre">_layouts/base.nunjucks</span></code>, replacing everything.</p>
 <div class="highlight-jinja"><div class="highlight"><pre><span></span><span class="x">&lt;!doctype html&gt;</span>
 <span class="x">&lt;html lang=&quot;en&quot;&gt;</span>
 <span class="x">&lt;head&gt;</span>
 <span class="x">    &lt;meta charset=&quot;utf-8&quot;&gt;</span>
 <span class="x">    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;</span>
 <span class="x">    &lt;title&gt;First Graphics App&lt;/title&gt;</span>
+<span class="x">    &lt;link rel=&quot;stylesheet&quot; href=&quot;https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css&quot;&gt;</span>
 <span class="x">    &lt;link rel=&quot;stylesheet&quot; href=&quot;styles/main.css&quot;&gt;</span>
-<span class="x">    &lt;link rel=&quot;stylesheet&quot; href=&quot;https://bl.ocks.org/palewire/raw/1035cd306a2f85b362b1a20ce315b8eb/base.css?rev=4&quot;&gt;</span>
+<span class="x">    &lt;link rel=&quot;stylesheet&quot; href=&quot;https://bl.ocks.org/palewire/raw/1035cd306a2f85b362b1a20ce315b8eb/base.css?rev=8&quot;&gt;</span>
 <span class="x">    </span><span class="cp">{%</span> <span class="k">block</span> <span class="nv">stylesheets</span> <span class="cp">%}{%</span> <span class="k">endblock</span> <span class="cp">%}</span><span class="x"></span>
 <span class="x">&lt;/head&gt;</span>
 <span class="x">&lt;body&gt;</span>
@@ -381,26 +390,28 @@ $ git commit -m <span class="s2">&quot;Installed framework&quot;</span>
 <span class="x">&lt;/html&gt;</span>
 </pre></div>
 </div>
-<p>Fill in a headline and see it show up.</p>
+<p>As you can see, it includes all of the standard HTML tags, with our custom stylesheets and content blocks mixed in.</p>
+<p>To see the effects, return to <code class="docutils literal"><span class="pre">index.nunjucks</span></code> and fill in a headline using the <code class="docutils literal"><span class="pre">headline</span></code> block introduced by our base template. Save the page and you should quickly see it appear on the page.</p>
 <div class="highlight-jinja"><div class="highlight"><pre><span></span><span class="cp">{%</span> <span class="k">block</span> <span class="nv">headline</span> <span class="cp">%}</span><span class="x">My headline will go here</span><span class="cp">{%</span> <span class="k">endblock</span> <span class="cp">%}</span><span class="x"></span>
 </pre></div>
 </div>
-<p>Fill in a byline and see it show up.</p>
+<p>Now fill in a byline.</p>
 <div class="highlight-jinja"><div class="highlight"><pre><span></span><span class="cp">{%</span> <span class="k">block</span> <span class="nv">byline</span> <span class="cp">%}</span><span class="x">By me</span><span class="cp">{%</span> <span class="k">endblock</span> <span class="cp">%}</span><span class="x"></span>
 </pre></div>
 </div>
-<p>Let’s do the publication date too while we are at it.</p>
+<p>And let’s do the publication date too while we are at it.</p>
 <div class="highlight-jinja"><div class="highlight"><pre><span></span><span class="cp">{%</span> <span class="k">block</span> <span class="nv">pubdate</span> <span class="cp">%}</span><span class="x"></span>
 <span class="x">    &lt;time datetime=&quot;2018-03-10&quot; pubdate&gt;Mar. 10, 2018&lt;/time&gt;</span>
 <span class="cp">{%</span> <span class="k">endblock</span> <span class="cp">%}</span><span class="x"></span>
 </pre></div>
 </div>
-<p>Commit our work.</p>
+<p>Congratulations, you’ve installed a base template and started in on creating your first custom page. Now is another good time to pause and commit our work.</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>$ git add .
+<span class="c1"># ☝️ A fun trick to add *all* of the pages you&#39;ve changed with one command. ☝️</span>
 $ git commit -m <span class="s2">&quot;Started editing templates&quot;</span>
 </pre></div>
 </div>
-<p>Push it to GitHub.</p>
+<p>And, again, push it to GitHub.</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>$ git push origin master
 </pre></div>
 </div>
@@ -408,7 +419,7 @@ $ git commit -m <span class="s2">&quot;Started editing templates&quot;</span>
 <div class="section" id="chapter-4-hello-data">
 <h2>Chapter 4: Hello data<a class="headerlink" href="#chapter-4-hello-data" title="Permalink to this headline">¶</a></h2>
 <p>Add the <a class="reference external" href="https://raw.githubusercontent.com/ireapps/first-graphics-app/master/src/_data/harvard_park_homicides.json">Harvard Park homicides data files</a> to <code class="docutils literal"><span class="pre">_data/harvard_park_homicides.json</span></code></p>
-<p>Return to <code class="docutils literal"><span class="pre">src/harvard-park-homicides/index.nunjucks</span></code> and print them out on the page.</p>
+<p>Return to <code class="docutils literal"><span class="pre">index.nunjucks</span></code> and print them out on the page.</p>
 <div class="highlight-jinja"><div class="highlight"><pre><span></span><span class="cp">{%</span> <span class="k">block</span> <span class="nv">content</span> <span class="cp">%}</span><span class="x"></span>
 <span class="cp">{{</span> <span class="nv">site.data.harvard_park_homicides</span> <span class="cp">}}</span><span class="x"></span>
 <span class="cp">{%</span> <span class="k">endblock</span> <span class="cp">%}</span><span class="x"></span>
@@ -507,8 +518,8 @@ $ git commit -m <span class="s2">&quot;Printed a list of names from data&quot;</
 <p>Write a headline.</p>
 <p>Write the chatter.</p>
 </div>
-<div class="section" id="chapter-6-hello-chart">
-<h2>Chapter 6: Hello chart<a class="headerlink" href="#chapter-6-hello-chart" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="chapter-6-hello-charts">
+<h2>Chapter 6: Hello charts<a class="headerlink" href="#chapter-6-hello-charts" title="Permalink to this headline">¶</a></h2>
 <p>We have data, but what does it look like? To visualize our data, we’re going to use <a class="reference external" href="https://plot.ly/javascript/">plotly.js</a>. Plotly.js is an open source library built on the popular <a class="reference external" href="https://d3js.org/">D3</a> library, which powers a lot of the news graphics made with JavaScript you’ll see.</p>
 <p><strong>But wait, why aren’t we using D3?</strong></p>
 <p>You’ve probably heard of the <a href="#id9"><span class="problematic" id="id10">``</span></a>D3 &lt;<a class="reference external" href="https://d3js.org">https://d3js.org</a>&gt;``_, the data visualization library by Mike Bostock. It’s an incredibly powerful tool, but a little too complex for making simple bar charts today. Instead we’re going to use a library that abstracts the tools provided by D3 into something that’s easier to use.</p>
@@ -517,7 +528,7 @@ $ git commit -m <span class="s2">&quot;Printed a list of names from data&quot;</
 </pre></div>
 </div>
 <p>The <code class="docutils literal"><span class="pre">-s</span></code> argument saves plotly to a dependencies file. That way, if you ever need to go through the install steps for your app again, you can do so easily.</p>
-<p>From here, we’ll be working in our <code class="docutils literal"><span class="pre">_scripts</span></code> folder. Create a file called <code class="docutils literal"><span class="pre">charts.js</span></code> inside of <code class="docutils literal"><span class="pre">src/_scripts/</span></code>.</p>
+<p>From here, we’ll be working in our <code class="docutils literal"><span class="pre">_scripts</span></code> folder. Create a file called <code class="docutils literal"><span class="pre">charts.js</span></code> inside of <code class="docutils literal"><span class="pre">_scripts/</span></code>.</p>
 <p>You can include the libraries we installed (or any JavaScript file!) by using <code class="docutils literal"><span class="pre">require()</span></code>. Plotly is a HUGE library, so we’re only going to import the parts of it that we need.</p>
 <div class="highlight-javascript"><div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">Plotly</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;plotly.js/lib/core&#39;</span><span class="p">);</span>
 <span class="kd">var</span> <span class="nx">Plotlybar</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;plotly.js/lib/bar&#39;</span><span class="p">);</span>
@@ -548,7 +559,7 @@ $ git commit -m <span class="s2">&quot;Printed a list of names from data&quot;</
 <p>Now if you reload your page and go to your inspector (click on the three dots in the top right of Chrome, go down to “More tools” and select “Developer tools”), you should see <code class="docutils literal"><span class="pre">hello,</span> <span class="pre">this</span> <span class="pre">is</span> <span class="pre">my</span> <span class="pre">charts</span> <span class="pre">file!</span></code> in the console.</p>
 <p>TK PICTURE OF INSPECTOR / CONSOLE HERE</p>
 <p>What chart should we make? The story points out that Harvard Park experienced an increase in homicides as there was a decrease across the rest of the county. Let’s try to visualize that.</p>
-<p>First, we need somewhere for our charts to go. In our <code class="docutils literal"><span class="pre">harvard-park-homicides/index.nunjucks</span></code> file, inside of <code class="docutils literal"><span class="pre">{%</span> <span class="pre">block</span> <span class="pre">content</span> <span class="pre">%}</span></code> where you want the chart to go, create a <code class="docutils literal"><span class="pre">div</span></code> element with an id of <code class="docutils literal"><span class="pre">county-homicides</span></code>, and another with an id of <code class="docutils literal"><span class="pre">harvard-park-homicides</span></code>.</p>
+<p>First, we need somewhere for our charts to go. In our <code class="docutils literal"><span class="pre">index.nunjucks</span></code> file, inside of <code class="docutils literal"><span class="pre">{%</span> <span class="pre">block</span> <span class="pre">content</span> <span class="pre">%}</span></code> where you want the chart to go, create a <code class="docutils literal"><span class="pre">div</span></code> element with an id of <code class="docutils literal"><span class="pre">county-homicides</span></code>, and another with an id of <code class="docutils literal"><span class="pre">harvard-park-homicides</span></code>.</p>
 <div class="highlight-html"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;county-homicides&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
 <span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;harvard-park-homicides&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
 </pre></div>
@@ -935,16 +946,24 @@ $ git commit -m <span class="s2">&quot;Printed a list of names from data&quot;</
 </span><span class="p">})</span>
 </pre></div>
 </div>
-<p>Sprinkle some CSS in our page to make it match the colors.</p>
-<div class="highlight-jinja"><div class="highlight"><pre><span></span><span class="cp">{%</span> <span class="k">block</span> <span class="nv">stylesheets</span> <span class="cp">%}</span><span class="x"></span>
-<span class="x">&lt;style&gt;</span>
-<span class="x">    path {</span>
-<span class="x">        fill: #e64d1f;</span>
-<span class="x">        fill-opacity: 0.5;</span>
-<span class="x">        stroke-opacity: 0;</span>
-<span class="x">    }</span>
-<span class="x">&lt;/style&gt;</span>
-<span class="cp">{%</span> <span class="k">endblock</span> <span class="cp">%}</span><span class="x"></span>
+<p>Next let’s sprinkle some CSS in our page to make it match the colors of the dots found on The Homicide Report. As we did with the charts, go to the <code class="docutils literal"><span class="pre">_scripts</span></code> folder and create a new file. We’ll call this one <code class="docutils literal"><span class="pre">_map.scss</span></code>. In that file, copy or write the following:</p>
+<div class="highlight-css"><div class="highlight"><pre><span></span><span class="nt">path</span> <span class="p">{</span>
+    <span class="n">fill</span><span class="p">:</span> <span class="mh">#e64d1f</span><span class="p">;</span>
+    <span class="n">fill-opacity</span><span class="p">:</span> <span class="mf">0.5</span><span class="p">;</span>
+    <span class="n">stroke-opacity</span><span class="p">:</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Just as before, you won’t see anything until you import our file into our main stylesheet. Again, use <code class="docutils literal"><span class="pre">&#64;import</span></code> to bring your CSS file into <code class="docutils literal"><span class="pre">main.css</span></code></p>
+<div class="highlight-css"><div class="highlight"><pre><span></span><span class="o">//</span> <span class="nt">Normalize</span> <span class="nt">Styles</span>
+<span class="p">@</span><span class="k">import</span> <span class="s1">&#39;node_modules/normalize.css/normalize&#39;</span><span class="p">;</span>
+
+<span class="o">//</span> <span class="nt">Import</span> <span class="nt">Modules</span>
+<span class="p">@</span><span class="k">import</span> <span class="s1">&#39;../_modules/link/link&#39;</span><span class="p">;</span>
+
+<span class="hll"><span class="o">//</span> <span class="nt">Add</span> <span class="nt">this</span> <span class="nt">to</span> <span class="nt">main</span><span class="p">.</span><span class="nc">scss</span>
+</span><span class="hll"><span class="p">@</span><span class="k">import</span> <span class="s1">&#39;_charts.scss&#39;</span><span class="p">;</span>
+</span><span class="p">@</span><span class="k">import</span> <span class="s1">&#39;_map.scss&#39;</span><span class="p">;</span>
 </pre></div>
 </div>
 <p>Now add an option to the tooltip that makes them all visible all the time.</p>
@@ -1017,7 +1036,6 @@ $ git push origin master
 </div>
 <p>Go to GitHub config and turn on GitHub Pages with the <code class="docutils literal"><span class="pre">/docs</span></code> on the master branch as the source. Hit save.</p>
 <p>Visit <a class="reference external" href="https://ireapps.github.io/first-graphics-app/">&lt;your_username&gt;.github.com/first-graphics-app/</a>.</p>
-<p>Visit <a class="reference external" href="https://ireapps.github.io/first-graphics-app/harvard-park-homicides/">&lt;your_username&gt;.github.com/first-graphics-app/harvard-park-homicides</a>.</p>
 </div>
 </div>
 

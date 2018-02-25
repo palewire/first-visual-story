@@ -76,12 +76,15 @@ In Ubuntu Linux you can stick with the pre-installed `gedit <https://help.ubuntu
 Node.js
 -------
 
-TK
+Node.js is an open-source server framework built using JavaScript. Many programmers like it because it means they can write JS for both their server ("back-end") and webpage ("front-end") tasks.
+
+You should be on the latest LTS (Long-term Support) version of Node, which at the time of this writing is ``8.9.4``. The `Node.js site <https://nodejs.org>`_ has `installer packages <https://nodejs.org/en/download/>`_ available for Windows and Mac OSX.
 
 npm
 ---
 
-TK
+Installing Node will also install ``npm`` on your computer, which stands for "Node Package Manager." We will use this to install various JS packages during the class.
+
 
 Git and GitHub
 --------------
