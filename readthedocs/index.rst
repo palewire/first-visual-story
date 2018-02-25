@@ -367,6 +367,7 @@ Congratulations, you've installed a base template and started in on creating you
 .. code-block:: bash
 
     $ git add .
+    # ☝️ A fun trick to add *all* of the pages you've changed with one command. ☝️
     $ git commit -m "Started editing templates"
 
 And, again, push it to GitHub.
