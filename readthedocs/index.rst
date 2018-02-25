@@ -418,63 +418,72 @@ Explain Bootstrap. Show what we're trying to make. Talk about cards. Show Bootst
 
 Basic card with only a title. Talk about divs. etc.
 
-{% for obj in site.data.harvard_park_homicides %}
-    <div class="card">
-      <div class="card-body">
-        <h5 class="card-title">{{ obj.first_name }} {{ obj.last_name }}</h5>
-      </div>
-    </div>
-{% endfor %}
+.. code-block:: jinja
+
+    {% for obj in site.data.harvard_park_homicides %}
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">{{ obj.first_name }} {{ obj.last_name }}</h5>
+          </div>
+        </div>
+    {% endfor %}
 
 Add a sentence below the title.
 
-{% for obj in site.data.harvard_park_homicides %}
-    <div class="card">
-      <div class="card-body">
-        <h5 class="card-title">{{ obj.first_name }} {{ obj.last_name }}</h5>
-        <p class="card-text">A {{ obj.age}}-year-old {{ obj.race }} {{ obj.gender }} died in {{ obj.death_year }}.</p>
-      </div>
-    </div>
-{% endfor %}
+.. code-block:: jinja
 
+    {% for obj in site.data.harvard_park_homicides %}
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">{{ obj.first_name }} {{ obj.last_name }}</h5>
+            <p class="card-text">A {{ obj.age}}-year-old {{ obj.race }} {{ obj.gender }} died in {{ obj.death_year }}.</p>
+          </div>
+        </div>
+    {% endfor %}
 
 Add an image.
 
-{% for obj in site.data.harvard_park_homicides %}
-    <div class="card">
-      <img class="card-img-top" src="{{ obj.image }}">
-      <div class="card-body">
-        <h5 class="card-title">{{ obj.first_name }} {{ obj.last_name }}</h5>
-        <p class="card-text">A {{ obj.age}}-year-old {{ obj.race }} {{ obj.gender }} died in {{ obj.death_year }}.</p>
-      </div>
-    </div>
-{% endfor %}
+.. code-block:: jinja
+
+    {% for obj in site.data.harvard_park_homicides %}
+        <div class="card">
+          <img class="card-img-top" src="{{ obj.image }}">
+          <div class="card-body">
+            <h5 class="card-title">{{ obj.first_name }} {{ obj.last_name }}</h5>
+            <p class="card-text">A {{ obj.age}}-year-old {{ obj.race }} {{ obj.gender }} died in {{ obj.death_year }}.</p>
+          </div>
+        </div>
+    {% endfor %}
 
 Add if clause around the image.
 
-{% for obj in site.data.harvard_park_homicides %}
-    <div class="card">
-      {% if obj.image %}<img class="card-img-top" src="{{ obj.image }}">{% endif %}
-      <div class="card-body">
-        <h5 class="card-title">{{ obj.first_name }} {{ obj.last_name }}</h5>
-        <p class="card-text">A {{ obj.age}}-year-old {{ obj.race }} {{ obj.gender }} died in {{ obj.death_year }}.</p>
-      </div>
-    </div>
-{% endfor %}
+.. code-block:: jinja
+
+    {% for obj in site.data.harvard_park_homicides %}
+        <div class="card">
+          {% if obj.image %}<img class="card-img-top" src="{{ obj.image }}">{% endif %}
+          <div class="card-body">
+            <h5 class="card-title">{{ obj.first_name }} {{ obj.last_name }}</h5>
+            <p class="card-text">A {{ obj.age}}-year-old {{ obj.race }} {{ obj.gender }} died in {{ obj.death_year }}.</p>
+          </div>
+        </div>
+    {% endfor %}
 
 Add the columns.
 
-<div class="card-columns">
-    {% for obj in site.data.harvard_park_homicides %}
-    <div class="card">
-      {% if obj.image %}<img class="card-img-top" src="{{ obj.image }}">{% endif %}
-      <div class="card-body">
-        <h5 class="card-title">{{ obj.first_name }} {{ obj.last_name }}</h5>
-        <p class="card-text">A {{ obj.age}}-year-old {{ obj.race }} {{ obj.gender }} died in {{ obj.death_year }}.</p>
-      </div>
+.. code-block:: jinja
+
+    <div class="card-columns">
+        {% for obj in site.data.harvard_park_homicides %}
+        <div class="card">
+          {% if obj.image %}<img class="card-img-top" src="{{ obj.image }}">{% endif %}
+          <div class="card-body">
+            <h5 class="card-title">{{ obj.first_name }} {{ obj.last_name }}</h5>
+            <p class="card-text">A {{ obj.age}}-year-old {{ obj.race }} {{ obj.gender }} died in {{ obj.death_year }}.</p>
+          </div>
+        </div>
+        {% endfor %}
     </div>
-    {% endfor %}
-</div>
 
 Write a headline.
 
