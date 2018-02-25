@@ -511,7 +511,7 @@ $ git commit -m <span class="s2">&quot;Printed a list of names from data&quot;</
 <h2>Chapter 6: Hello chart<a class="headerlink" href="#chapter-6-hello-chart" title="Permalink to this headline">¶</a></h2>
 <p>We have data, but what does it look like? To visualize our data, we’re going to use <a class="reference external" href="https://plot.ly/javascript/">plotly.js</a>. Plotly.js is an open source library built on the popular <a class="reference external" href="https://d3js.org/">D3</a> library, which powers a lot of the news graphics made with JavaScript you’ll see.</p>
 <p><strong>But wait, why aren’t we using D3?</strong></p>
-<p>You’ve probably heard of the data visualization library, D3 by Mike Bostock. It’s a wonderful and incredibly powerful tool, but a little too powerful and complex for making simple bar charts. Instead we’re going to use a library that abstracts the tools provided by D3 into something that’s simpler to use.</p>
+<p>You’ve probably heard of the <a href="#id9"><span class="problematic" id="id10">``</span></a>D3 &lt;<a class="reference external" href="https://d3js.org">https://d3js.org</a>&gt;``_, the data visualization library by Mike Bostock. It’s an incredibly powerful tool, but a little too complex for making simple bar charts today. Instead we’re going to use a library that abstracts the tools provided by D3 into something that’s easier to use.</p>
 <p>First, use npm to install plotly.js.</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>$ npm install -s plotly.js
 </pre></div>
@@ -529,14 +529,26 @@ $ git commit -m <span class="s2">&quot;Printed a list of names from data&quot;</
 </pre></div>
 </div>
 <p>Then we use the same <code class="docutils literal"><span class="pre">require()</span></code> method to pull our code into <code class="docutils literal"><span class="pre">main.js</span></code>.</p>
-<div class="highlight-javascript"><div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">chart</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;./charts.js&#39;</span><span class="p">);</span>
-</pre></div>
+<div class="highlight-javascript"><div class="highlight"><pre><span></span><span class="c1">// Main javascript entry point</span>
+<span class="c1">// Should handle bootstrapping/starting application</span>
+<span class="s1">&#39;use strict&#39;</span><span class="p">;</span>
+
+<span class="kd">var</span> <span class="nx">$</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;jquery&#39;</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">Link</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;../_modules/link/link&#39;</span><span class="p">);</span>
+
+<span class="nx">$</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">new</span> <span class="nx">Link</span><span class="p">();</span> <span class="c1">// Activate Link modules logic</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;Welcome to Yeogurt!&#39;</span><span class="p">);</span>
+<span class="p">});</span>
+
+<span class="hll"><span class="kd">var</span> <span class="nx">chart</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;./charts.js&#39;</span><span class="p">);</span>
+</span></pre></div>
 </div>
 <p>Structuring our code this way helps keep things organized, as each file controls one specific part of the page. Need to make an adjustment to your chart? Go to <code class="docutils literal"><span class="pre">charts.js</span></code>. Want to change the map (which we’ll do later)? Look in <code class="docutils literal"><span class="pre">map.js</span></code></p>
 <p>Now if you reload your page and go to your inspector (click on the three dots in the top right of Chrome, go down to “More tools” and select “Developer tools”), you should see <code class="docutils literal"><span class="pre">hello,</span> <span class="pre">this</span> <span class="pre">is</span> <span class="pre">my</span> <span class="pre">charts</span> <span class="pre">file!</span></code> in the console.</p>
 <p>TK PICTURE OF INSPECTOR / CONSOLE HERE</p>
 <p>What chart should we make? The story points out that Harvard Park experienced an increase in homicides as there was a decrease across the rest of the county. Let’s try to visualize that.</p>
-<p>First, we need somewhere for our charts to go. In our <code class="docutils literal"><span class="pre">harvard-park-homicides/index.nunjucks</span></code> file, inside of <code class="docutils literal"><span class="pre">{%</span> <span class="pre">block</span> <span class="pre">content</span> <span class="pre">%}</span></code> where you want the chart to go, create a <code class="docutils literal"><span class="pre">div</span></code> element with an id of “county-homicides”, and another with an id of “harvard-park-homicides”.</p>
+<p>First, we need somewhere for our charts to go. In our <code class="docutils literal"><span class="pre">harvard-park-homicides/index.nunjucks</span></code> file, inside of <code class="docutils literal"><span class="pre">{%</span> <span class="pre">block</span> <span class="pre">content</span> <span class="pre">%}</span></code> where you want the chart to go, create a <code class="docutils literal"><span class="pre">div</span></code> element with an id of <code class="docutils literal"><span class="pre">county-homicides</span></code>, and another with an id of <code class="docutils literal"><span class="pre">harvard-park-homicides</span></code>.</p>
 <div class="highlight-html"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;county-homicides&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
 <span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;harvard-park-homicides&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
 </pre></div>
@@ -550,7 +562,7 @@ $ git commit -m <span class="s2">&quot;Printed a list of names from data&quot;</
 {% endblock %}
 </pre></div>
 </div>
-<p>Making a chart in Plotly is simple, but we have to do some data transformation first. Plotly wants the x and y values of the chart to be in arrays, which are like a list of values. Meanwhle, if you look in <code class="docutils literal"><span class="pre">_data/annual_totals.json</span></code>, you’ll see that the data is structured in objects, like this:</p>
+<p>Making a chart in Plotly is simple, but we have to do some data transformation first. Plotly wants the x and y values of the chart to be in arrays, which are like a list of values. Meanwhle, if you look in <code class="docutils literal"><span class="pre">_data/annual_totals.json</span></code>, you’ll see that the data is structured in JavaScript objects, like this:</p>
 <div class="highlight-javascript"><div class="highlight"><pre><span></span><span class="p">{</span>
    <span class="s2">&quot;year&quot;</span><span class="o">:</span><span class="mi">2000</span><span class="p">,</span>
    <span class="s2">&quot;homicides_total&quot;</span><span class="o">:</span><span class="mi">1036</span><span class="p">,</span>
@@ -565,16 +577,24 @@ $ git commit -m <span class="s2">&quot;Printed a list of names from data&quot;</
 </pre></div>
 </div>
 <p>We want to make two charts - one of county homicides and one of killings in Harvard Park. So let’s make arrays that will hold those values that we will then provide to our function, as well as the years. We can use a little bit of JavaScript shorthand for this, using the <code class="docutils literal"><span class="pre">.map()</span></code> method and “arrow” functions.</p>
-<div class="highlight-javascript"><div class="highlight"><pre><span></span><span class="c1">// Initialize the arrays that will hold our lists of data</span>
-<span class="kd">var</span> <span class="nx">countyHomicides</span> <span class="o">=</span> <span class="nx">annualTotals</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="nx">a</span> <span class="p">=&gt;</span> <span class="nx">a</span><span class="p">.</span><span class="nx">homicides_total</span><span class="p">);</span>
-<span class="kd">var</span> <span class="nx">harvardParkHomicides</span> <span class="o">=</span> <span class="nx">annualTotals</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="nx">a</span> <span class="p">=&gt;</span> <span class="nx">a</span><span class="p">.</span><span class="nx">homicides_harvard_park</span><span class="p">);</span>
-<span class="kd">var</span> <span class="nx">years</span> <span class="o">=</span> <span class="nx">annualTotals</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="nx">a</span> <span class="p">=&gt;</span> <span class="nx">a</span><span class="p">.</span><span class="nx">year</span><span class="p">);</span>
-</pre></div>
+<div class="highlight-javascript"><div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">Plotly</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;plotly.js/lib/core&#39;</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">Plotlybar</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;plotly.js/lib/bar&#39;</span><span class="p">);</span>
+
+<span class="nx">Plotly</span><span class="p">.</span><span class="nx">register</span><span class="p">(</span><span class="nx">Plotlybar</span><span class="p">);</span>
+
+<span class="hll"><span class="c1">// Initialize the arrays that will hold our lists of data</span>
+</span><span class="hll"><span class="kd">var</span> <span class="nx">countyHomicides</span> <span class="o">=</span> <span class="nx">annualTotals</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="nx">a</span> <span class="p">=&gt;</span> <span class="nx">a</span><span class="p">.</span><span class="nx">homicides_total</span><span class="p">);</span>
+</span><span class="hll"><span class="kd">var</span> <span class="nx">harvardParkHomicides</span> <span class="o">=</span> <span class="nx">annualTotals</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="nx">a</span> <span class="p">=&gt;</span> <span class="nx">a</span><span class="p">.</span><span class="nx">homicides_harvard_park</span><span class="p">);</span>
+</span><span class="hll"><span class="kd">var</span> <span class="nx">years</span> <span class="o">=</span> <span class="nx">annualTotals</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="nx">a</span> <span class="p">=&gt;</span> <span class="nx">a</span><span class="p">.</span><span class="nx">year</span><span class="p">);</span>
+</span></pre></div>
 </div>
 <p>The <code class="docutils literal"><span class="pre">.map()</span></code> creates and returns an array, and the arrow (<code class="docutils literal"><span class="pre">=&gt;</span></code>) function returns the value for each object. Think of it as “plucking” the values we want to form a list.</p>
-<p>Now that we’ve populated our data, we’re ready to make our chart. Right now, it’s pretty simple, with options for the x, which we want to be our <code class="docutils literal"><span class="pre">years</span></code> array, and y axis, which is our homicide counts, and specifying the type of the chart.</p>
+<p>Now that we’ve populated our data, we’re ready to make our chart. Right now, it’s pretty simple, with options for the x axis, which we want to be our <code class="docutils literal"><span class="pre">years</span></code> array, and y axis, which is our homicide counts, and specifying the type of the chart.</p>
 <p>Below the settings we call <code class="docutils literal"><span class="pre">Plotly.newPlot()</span></code> with the id of the element where we want the chart to go and settings to create the chart.</p>
-<div class="highlight-javascript"><div class="highlight"><pre><span></span><span class="c1">// Use our x and y arrays for the values of the chart</span>
+<div class="highlight-javascript"><div class="highlight"><pre><span></span><span class="c1">// The rest of your code is up here.</span>
+<span class="c1">// Add the below lines to the bottom of your file</span>
+
+<span class="c1">// Use our x and y arrays for the values of the chart</span>
 <span class="kd">var</span> <span class="nx">settings</span> <span class="o">=</span> <span class="p">[{</span>
     <span class="nx">x</span><span class="o">:</span> <span class="nx">years</span><span class="p">,</span>
     <span class="nx">y</span><span class="o">:</span> <span class="nx">countyHomicides</span><span class="p">,</span>
@@ -589,7 +609,6 @@ $ git commit -m <span class="s2">&quot;Printed a list of names from data&quot;</
 <ul class="simple">
 <li>Add axis labels</li>
 <li>Change the colors of the bars</li>
-<li>Change the fonts to match our page</li>
 <li>Give the charts titles</li>
 <li>Display the two charts alongside one another</li>
 </ul>
@@ -610,7 +629,7 @@ $ git commit -m <span class="s2">&quot;Printed a list of names from data&quot;</
 <div class="highlight-javascript"><div class="highlight"><pre><span></span><span class="nx">Plotly</span><span class="p">.</span><span class="nx">newPlot</span><span class="p">(</span><span class="s1">&#39;county-homicides&#39;</span><span class="p">,</span> <span class="nx">settings</span><span class="p">,</span> <span class="nx">layout</span><span class="p">);</span>
 </pre></div>
 </div>
-<p>Everything in plotly.js is handled by settings like this. For example, to change the markers to an light blue, update <code class="docutils literal"><span class="pre">settings</span></code>.</p>
+<p>Everything in plotly.js is handled by settings like this. For example, to change the markers to an light blue, update the <code class="docutils literal"><span class="pre">settings</span></code> variable.</p>
 <div class="highlight-javascript"><div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">settings</span> <span class="o">=</span> <span class="p">[{</span>
   <span class="nx">x</span><span class="o">:</span> <span class="nx">years</span><span class="p">,</span>
   <span class="nx">y</span><span class="o">:</span> <span class="nx">countyHomicides</span><span class="p">,</span>
@@ -670,7 +689,7 @@ $ git commit -m <span class="s2">&quot;Printed a list of names from data&quot;</
 </pre></div>
 </div>
 <p>Not bad, right? By structuring our code this way, we’ll be able to make multiple charts without repeating our code (known as <a class="reference external" href="https://en.wikipedia.org/wiki/Don%27t_repeat_yourself">DRY</a>).</p>
-<p>Right now, our charts are stacked up on top of each other, which isn’t reawlly a great layout. We can use HTML and CSS to lay out our charts side-by-side.</p>
+<p>Right now, our charts are stacked on top of each other, which isn’t really a great layout. We can use HTML and CSS to lay out our charts side-by-side.</p>
 <p>In <code class="docutils literal"><span class="pre">index.nunjucks</span></code>, add a <code class="docutils literal"><span class="pre">div</span></code> element that wraps your charts, and add a <code class="docutils literal"><span class="pre">class</span></code> of <code class="docutils literal"><span class="pre">inline-chart</span></code> to each of your charts.</p>
 <div class="highlight-html"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;charts-holder&quot;</span><span class="p">&gt;</span>
     <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;inline-chart&quot;</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;county-homicides&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
