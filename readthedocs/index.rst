@@ -39,7 +39,7 @@ Before you can begin, your computer needs the following tools installed and work
 
 1. A `command-line interface <https://en.wikipedia.org/wiki/Command-line_interface>`_ to interact with your computer
 2. A `text editor <https://en.wikipedia.org/wiki/Text_editor>`_ to work with plain text files
-3. Version x.x or greater of the `Node.js <https://nodejs.org/en/>`_ JavaScript runtime
+3. Version 8.9.4 or greater of the `Node.js <https://nodejs.org/en/>`_ JavaScript runtime
 4. The `npm <https://www.npmjs.com>`_ package manager
 5. `Git <http://git-scm.com/>`_ version control software and an account at `GitHub.com <http://www.github.com>`_
 
@@ -76,14 +76,29 @@ In Ubuntu Linux you can stick with the pre-installed `gedit <https://help.ubuntu
 Node.js
 -------
 
-Node.js is an open-source server framework built using JavaScript. Many programmers like it because it means they can write JS for both their server ("back-end") and webpage ("front-end") tasks.
+Node.js is an open-source programming framework built using JavaScript. Many programmers like it because it allows them to write JavaScript not just in their browser for "front-end" tasks, but also in terminal or on a server for "back-end" tasks.
 
-You should be on the latest LTS (Long-term Support) version of Node, which at the time of this writing is ``8.9.4``. The `Node.js site <https://nodejs.org>`_ has `installer packages <https://nodejs.org/en/download/>`_ available for Windows and Mac OSX.
+You should be on the latest long-term support (LTS) version of Node, which at the time of this writing is ``8.9.4``. The `Node.js site <https://nodejs.org>`_ has `installer packages <https://nodejs.org/en/download/>`_ available for Windows and Mac OSX.
+
+You can verify if you have Node installed, and if so what version, by typing the following into your terminal.
+
+.. code-block:: bash
+
+    $ node --version
+
+
+The number you get back is the version you have installed. If you get an error, you don't have it installed and should start from scratch with an installer package. If you have a slightly older version, you are probably okay. But we make no guarantees. Consider upgrading.
 
 npm
 ---
 
-Installing Node will also install ``npm`` on your computer, which stands for "Node Package Manager." We will use this to install various JS packages during the class.
+Installing Node will also install ``npm`` on your computer, which stands for "Node Package Manager." We will use this to install open-source JavaScript packages that will help us draw charts and maps during the class.
+
+You can verify you have npm installed by running the following command on your terminal.
+
+.. code-block:: bash
+
+    $ npm --version
 
 
 Git and GitHub
