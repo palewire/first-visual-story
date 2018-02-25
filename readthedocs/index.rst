@@ -272,7 +272,7 @@ Navigate to `localhost:3000/ <http://localhost:3000/>`_.
 
 Make a change to ``index.nunjucks`` by editing the ``content`` block. See it show up.
 
-.. code-block:: nunjucks
+.. code-block:: jinja
 
     {% block content %}
     <p>Hello World</p>
@@ -283,7 +283,7 @@ Open up ``_layouts/base.nunjucks`` and explain how the template inheritance syst
 
 Make a small change to ``_layouts/base.nunjucks`` and see it come up live.
 
-.. code-block:: nunjucks
+.. code-block:: jinja
 
     Above content
     {% block content %}{% endblock %}
@@ -291,7 +291,7 @@ Make a small change to ``_layouts/base.nunjucks`` and see it come up live.
 
 Replace ``_layouts/base.nunjucks`` with our more polished base template.
 
-.. code-block:: nunjucks
+.. code-block:: jinja
 
     <!doctype html>
     <html lang="en">
@@ -326,19 +326,19 @@ Replace ``_layouts/base.nunjucks`` with our more polished base template.
 
 Fill in a headline and see it show up.
 
-.. code-block:: nunjucks
+.. code-block:: jinja
 
     {% block headline %}My headline will go here{% endblock %}
 
 Fill in a byline and see it show up.
 
-.. code-block:: nunjucks
+.. code-block:: jinja
 
     {% block byline %}By me{% endblock %}
 
 Let's do the publication date too while we are at it.
 
-.. code-block:: nunjucks
+.. code-block:: jinja
 
     {% block pubdate %}
         <time datetime="2018-03-10" pubdate>Mar. 10, 2018</time>
@@ -366,7 +366,7 @@ Add the `Harvard Park homicides data files <https://raw.githubusercontent.com/ir
 
 Return to ``src/harvard-park-homicides/index.nunjucks`` and print them out on the page.
 
-.. code-block:: nunjucks
+.. code-block:: jinja
 
     {% block content %}
     {{ site.data.harvard_park_homicides }}
@@ -374,7 +374,7 @@ Return to ``src/harvard-park-homicides/index.nunjucks`` and print them out on th
 
 Loop through them and print them all.
 
-.. code-block:: nunjucks
+.. code-block:: jinja
 
     {% for obj in site.data.harvard_park_homicides %}
         {{ obj }}
@@ -382,7 +382,7 @@ Loop through them and print them all.
 
 Print the last name.
 
-.. code-block:: nunjucks
+.. code-block:: jinja
 
     {% for obj in site.data.harvard_park_homicides %}
         {{ obj.last_name }}<br>
@@ -390,7 +390,7 @@ Print the last name.
 
 Add the first name. To have them display more nicely, you can also add a line break in between each one.
 
-.. code-block:: nunjucks
+.. code-block:: jinja
 
     {% for obj in site.data.harvard_park_homicides %}
         {{ obj.first_name }} {{ obj.last_name }}<br>
@@ -933,7 +933,7 @@ Import Leaflet's stylesheets in `_styles/main.scss`
 
 Create a placeholder in the page template where the map will live.
 
-.. code-block:: nunjucks
+.. code-block:: jinja
 
     {% block content %}
     <div id="map"></div>
@@ -981,7 +981,7 @@ Add a popup.
 
 At the bottom of the page import in the homicide list as we did with the totals for our chart.
 
-.. code-block:: nunjucks
+.. code-block:: jinja
 
     var homicides = {% include '_data/harvard_park_homicides.json' %};
 
@@ -1006,7 +1006,7 @@ Extend that code to add a tooltip label on each point.
 
 Sprinkle some CSS in our page to make it match the colors.
 
-.. code-block:: nunjucks
+.. code-block:: jinja
 
     {% block stylesheets %}
     <style>
