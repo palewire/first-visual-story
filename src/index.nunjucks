@@ -42,7 +42,7 @@
 
 <section>
     <h3>The full list</h3>
-    <p>Explore the full list of Harvard Park homicides.</p>
+    <p>Explore the {{ site.data.harvard_park_homicides|length }} homicides in Harvard Park since 2000.</p>
     <div class="card-columns">
     {% for obj in site.data.harvard_park_homicides %}
     <div class="card">
