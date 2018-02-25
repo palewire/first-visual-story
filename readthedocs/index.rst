@@ -414,92 +414,71 @@ Push it to GitHub.
 Chapter 5: Hello table
 **********************
 
-<table>
+Explain Bootstrap. Show what we're trying to make. Talk about cards. Show Bootstrap docs.
+
+Basic card with only a title. Talk about divs. etc.
+
 {% for obj in site.data.harvard_park_homicides %}
-    <tr>
-        <td>{{ obj.first_name }} {{ obj.last_name }}</td>
-    </tr>
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">{{ obj.first_name }} {{ obj.last_name }}</h5>
+      </div>
+    </div>
 {% endfor %}
-</table>
 
-<table>
-    <tr>
-        <th>Name</th>
-    </tr>
+Add a sentence below the title.
+
 {% for obj in site.data.harvard_park_homicides %}
-    <tr>
-        <td>{{ obj.first_name }} {{ obj.last_name }}</td>
-    </tr>
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">{{ obj.first_name }} {{ obj.last_name }}</h5>
+        <p class="card-text">A {{ obj.age}}-year-old {{ obj.race }} {{ obj.gender }} died in {{ obj.death_year }}.</p>
+      </div>
+    </div>
 {% endfor %}
-</table>
 
-<table>
-    <tr>
-        <th>Name</th>
-        <th>Year</th>
-        <th>Age</th>
-    </tr>
+
+Add an image.
+
 {% for obj in site.data.harvard_park_homicides %}
-    <tr>
-        <td>{{ obj.first_name }} {{ obj.last_name }}</td>
-        <td>{{ obj.death_year }}</td>
-        <td>{{ obj.age }}</td>
-    </tr>
+    <div class="card">
+      <img class="card-img-top" src="{{ obj.image }}">
+      <div class="card-body">
+        <h5 class="card-title">{{ obj.first_name }} {{ obj.last_name }}</h5>
+        <p class="card-text">A {{ obj.age}}-year-old {{ obj.race }} {{ obj.gender }} died in {{ obj.death_year }}.</p>
+      </div>
+    </div>
 {% endfor %}
-</table>
 
-<table>
-    <tr>
-        <th>Image</th>
-        <th>Name</th>
-        <th>Year</th>
-        <th>Age</th>
-    </tr>
+Add if clause around the image.
+
 {% for obj in site.data.harvard_park_homicides %}
-    <tr>
-        <td>{{ obj.image }}</td>
-        <td>{{ obj.first_name }} {{ obj.last_name }}</td>
-        <td>{{ obj.death_year }}</td>
-        <td>{{ obj.age }}</td>
-    </tr>
+    <div class="card">
+      {% if obj.image %}<img class="card-img-top" src="{{ obj.image }}">{% endif %}
+      <div class="card-body">
+        <h5 class="card-title">{{ obj.first_name }} {{ obj.last_name }}</h5>
+        <p class="card-text">A {{ obj.age}}-year-old {{ obj.race }} {{ obj.gender }} died in {{ obj.death_year }}.</p>
+      </div>
+    </div>
 {% endfor %}
-</table>
 
+Add the columns.
 
-<table>
-    <tr>
-        <th>Image</th>
-        <th>Name</th>
-        <th>Year</th>
-        <th>Age</th>
-    </tr>
-{% for obj in site.data.harvard_park_homicides %}
-    <tr>
-        <td><img src="{{ obj.image }}"></td>
-        <td>{{ obj.first_name }} {{ obj.last_name }}</td>
-        <td>{{ obj.death_year }}</td>
-        <td>{{ obj.age }}</td>
-    </tr>
-{% endfor %}
-</table>
+<div class="card-columns">
+    {% for obj in site.data.harvard_park_homicides %}
+    <div class="card">
+      {% if obj.image %}<img class="card-img-top" src="{{ obj.image }}">{% endif %}
+      <div class="card-body">
+        <h5 class="card-title">{{ obj.first_name }} {{ obj.last_name }}</h5>
+        <p class="card-text">A {{ obj.age}}-year-old {{ obj.race }} {{ obj.gender }} died in {{ obj.death_year }}.</p>
+      </div>
+    </div>
+    {% endfor %}
+</div>
 
+Write a headline.
 
-<table>
-    <tr>
-        <th>Image</th>
-        <th>Name</th>
-        <th>Year</th>
-        <th>Age</th>
-    </tr>
-{% for obj in site.data.harvard_park_homicides %}
-    <tr>
-        <td>{% if obj.image %}<img src="{{ obj.image }}">{% endif %}</td>
-        <td>{{ obj.first_name }} {{ obj.last_name }}</td>
-        <td>{{ obj.death_year }}</td>
-        <td>{{ obj.age }}</td>
-    </tr>
-{% endfor %}
-</table>
+Write the chatter.
 
 **********************
 Chapter 6: Hello chart
