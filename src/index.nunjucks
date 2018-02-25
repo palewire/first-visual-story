@@ -1,15 +1,5 @@
 {% extends '_layouts/base.nunjucks' %}
 
-{% block stylesheets %}
-<style>
-    path {
-        fill: #e64d1f;
-        fill-opacity: 0.5;
-        stroke-opacity: 0;
-    }
-</style>
-{% endblock %}
-
 {% block headline %}A South L.A. neighborhood grapples with a wave of violence{% endblock %}
 
 {% block byline %}

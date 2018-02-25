@@ -1054,19 +1054,31 @@ Extend that code to add a tooltip label on each point.
           .bindTooltip(obj.first_name + " " + obj.last_name);
     })
 
-Sprinkle some CSS in our page to make it match the colors.
+Next let's sprinkle some CSS in our page to make it match the colors of the dots found on The Homicide Report. As we did with the charts, go to the ``_scripts`` folder and create a new file. We'll call this one ``_map.scss``. In that file, copy or write the following:
 
-.. code-block:: jinja
+.. code-block:: css
 
-    {% block stylesheets %}
-    <style>
-        path {
-            fill: #e64d1f;
-            fill-opacity: 0.5;
-            stroke-opacity: 0;
-        }
-    </style>
-    {% endblock %}
+    path {
+        fill: #e64d1f;
+        fill-opacity: 0.5;
+        stroke-opacity: 0;
+    }
+
+Just as before, you won't see anything until you import our file into our main stylesheet. Again, use ``@import`` to bring your CSS file into ``main.css``
+
+.. code-block:: css
+    :emphasize-lines: 7,8
+
+    // Normalize Styles
+    @import 'node_modules/normalize.css/normalize';
+
+    // Import Modules
+    @import '../_modules/link/link';
+
+    // Add this to main.scss
+    @import '_charts.scss';
+    @import '_map.scss';
+
 
 Now add an option to the tooltip that makes them all visible all the time.
 
