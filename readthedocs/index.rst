@@ -288,7 +288,7 @@ That's because that boilerplate has been moved back into a parent template "exte
     {% extends '_layouts/base.nunjucks' %}
 
 
-That "base" file, sometimes called the "layout," can be inherited other pages on your site to avoid duplication and share common code. One change to a parent file instantly ripples out to all pages the extend it. This approach to "template inheritance" is not just found in Nunjucks. It can be found in other templating systems, including Python ones like `Django <https://docs.djangoproject.com/en/1.7/topics/templates/>`_ and `Jinja <http://jinja.pocoo.org>`_.
+That "base" file, sometimes called the "layout," can be inherited by other pages on your site to avoid duplication and share common code. One change to a parent file instantly ripples out to all pages the extend it. This approach to "template inheritance" is not just found in Nunjucks. It can be found in other templating systems, including Python ones like `Django <https://docs.djangoproject.com/en/1.7/topics/templates/>`_ and `Jinja <http://jinja.pocoo.org>`_.
 
 You can find the base layout packaged with our framework in the ``_layouts/base.nunjucks`` file. It includes a set of block tags, like ``content``, that act as placeholders for use in templates that extend it.
 
