@@ -414,7 +414,92 @@ Push it to GitHub.
 Chapter 5: Hello table
 **********************
 
-TK
+<table>
+{% for obj in site.data.harvard_park_homicides %}
+    <tr>
+        <td>{{ obj.first_name }} {{ obj.last_name }}</td>
+    </tr>
+{% endfor %}
+</table>
+
+<table>
+    <tr>
+        <th>Name</th>
+    </tr>
+{% for obj in site.data.harvard_park_homicides %}
+    <tr>
+        <td>{{ obj.first_name }} {{ obj.last_name }}</td>
+    </tr>
+{% endfor %}
+</table>
+
+<table>
+    <tr>
+        <th>Name</th>
+        <th>Year</th>
+        <th>Age</th>
+    </tr>
+{% for obj in site.data.harvard_park_homicides %}
+    <tr>
+        <td>{{ obj.first_name }} {{ obj.last_name }}</td>
+        <td>{{ obj.death_year }}</td>
+        <td>{{ obj.age }}</td>
+    </tr>
+{% endfor %}
+</table>
+
+<table>
+    <tr>
+        <th>Image</th>
+        <th>Name</th>
+        <th>Year</th>
+        <th>Age</th>
+    </tr>
+{% for obj in site.data.harvard_park_homicides %}
+    <tr>
+        <td>{{ obj.image }}</td>
+        <td>{{ obj.first_name }} {{ obj.last_name }}</td>
+        <td>{{ obj.death_year }}</td>
+        <td>{{ obj.age }}</td>
+    </tr>
+{% endfor %}
+</table>
+
+
+<table>
+    <tr>
+        <th>Image</th>
+        <th>Name</th>
+        <th>Year</th>
+        <th>Age</th>
+    </tr>
+{% for obj in site.data.harvard_park_homicides %}
+    <tr>
+        <td><img src="{{ obj.image }}"></td>
+        <td>{{ obj.first_name }} {{ obj.last_name }}</td>
+        <td>{{ obj.death_year }}</td>
+        <td>{{ obj.age }}</td>
+    </tr>
+{% endfor %}
+</table>
+
+
+<table>
+    <tr>
+        <th>Image</th>
+        <th>Name</th>
+        <th>Year</th>
+        <th>Age</th>
+    </tr>
+{% for obj in site.data.harvard_park_homicides %}
+    <tr>
+        <td>{% if obj.image %}<img src="{{ obj.image }}">{% endif %}</td>
+        <td>{{ obj.first_name }} {{ obj.last_name }}</td>
+        <td>{{ obj.death_year }}</td>
+        <td>{{ obj.age }}</td>
+    </tr>
+{% endfor %}
+</table>
 
 **********************
 Chapter 6: Hello chart

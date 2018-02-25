@@ -45,6 +45,7 @@
     <table class="table">
         <thead>
             <tr>
+                <th>Image</th>
                 <th class='col-header active-header'>Name</th>
                 <th class='col-header'>Year</th>
                 <th class='col-header'>Age</th>
@@ -53,6 +54,7 @@
         <tbody>
             {% for obj in site.data.harvard_park_homicides %}
             <tr>
+                <td data-title="Image">{% if obj.image %}<img src="{{ obj.image }}">{% endif %}</td>
                 <td data-title='Name'>{{ obj.first_name }} {{ obj.last_name }}</td>
                 <td data-title='Year'>{{ obj.death_year }}</td>
                 <td data-title='Age'>{{ obj.age }}</td>
