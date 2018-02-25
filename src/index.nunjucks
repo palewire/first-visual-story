@@ -42,26 +42,14 @@
 
 <section>
     <h3>The full list</h3>
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Image</th>
-                <th class='col-header active-header'>Name</th>
-                <th class='col-header'>Year</th>
-                <th class='col-header'>Age</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for obj in site.data.harvard_park_homicides %}
-            <tr>
-                <td data-title="Image">{% if obj.image %}<img src="{{ obj.image }}">{% endif %}</td>
-                <td data-title='Name'>{{ obj.first_name }} {{ obj.last_name }}</td>
-                <td data-title='Year'>{{ obj.death_year }}</td>
-                <td data-title='Age'>{{ obj.age }}</td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+    {% for obj in site.data.harvard_park_homicides %}
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">{{ obj.first_name }} {{ obj.last_name }}</h5>
+        <p class="card-text">A {{ obj.age}} year old {{ obj.race }} {{ obj.gender }} died in {{ obj.death_year }}.</p>
+      </div>
+    </div>
+    {% endfor %}
 </section>
 {% endblock %}
 
