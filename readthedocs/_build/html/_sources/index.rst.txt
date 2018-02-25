@@ -272,7 +272,7 @@ Navigate to `localhost:3000/ <http://localhost:3000/>`_.
 
 Make a change to ``index.nunjucks`` by editing the ``content`` block. See it show up.
 
-.. code-block:: nunjucks
+.. code-block:: jinja
 
     {% block content %}
     <p>Hello World</p>
@@ -283,7 +283,7 @@ Open up ``_layouts/base.nunjucks`` and explain how the template inheritance syst
 
 Make a small change to ``_layouts/base.nunjucks`` and see it come up live.
 
-.. code-block:: nunjucks
+.. code-block:: jinja
 
     Above content
     {% block content %}{% endblock %}
@@ -291,7 +291,7 @@ Make a small change to ``_layouts/base.nunjucks`` and see it come up live.
 
 Replace ``_layouts/base.nunjucks`` with our more polished base template.
 
-.. code-block:: nunjucks
+.. code-block:: jinja
 
     <!doctype html>
     <html lang="en">
@@ -326,19 +326,19 @@ Replace ``_layouts/base.nunjucks`` with our more polished base template.
 
 Fill in a headline and see it show up.
 
-.. code-block:: nunjucks
+.. code-block:: jinja
 
     {% block headline %}My headline will go here{% endblock %}
 
 Fill in a byline and see it show up.
 
-.. code-block:: nunjucks
+.. code-block:: jinja
 
     {% block byline %}By me{% endblock %}
 
 Let's do the publication date too while we are at it.
 
-.. code-block:: nunjucks
+.. code-block:: jinja
 
     {% block pubdate %}
         <time datetime="2018-03-10" pubdate>Mar. 10, 2018</time>
@@ -366,7 +366,7 @@ Add the `Harvard Park homicides data files <https://raw.githubusercontent.com/ir
 
 Return to ``src/harvard-park-homicides/index.nunjucks`` and print them out on the page.
 
-.. code-block:: nunjucks
+.. code-block:: jinja
 
     {% block content %}
     {{ site.data.harvard_park_homicides }}
@@ -374,7 +374,7 @@ Return to ``src/harvard-park-homicides/index.nunjucks`` and print them out on th
 
 Loop through them and print them all.
 
-.. code-block:: nunjucks
+.. code-block:: jinja
 
     {% for obj in site.data.harvard_park_homicides %}
         {{ obj }}
@@ -382,7 +382,7 @@ Loop through them and print them all.
 
 Print the last name.
 
-.. code-block:: nunjucks
+.. code-block:: jinja
 
     {% for obj in site.data.harvard_park_homicides %}
         {{ obj.last_name }}<br>
@@ -390,7 +390,7 @@ Print the last name.
 
 Add the first name. To have them display more nicely, you can also add a line break in between each one.
 
-.. code-block:: nunjucks
+.. code-block:: jinja
 
     {% for obj in site.data.harvard_park_homicides %}
         {{ obj.first_name }} {{ obj.last_name }}<br>
@@ -411,10 +411,83 @@ Push it to GitHub.
 
 
 **********************
-Chapter 5: Hello table
+Chapter 5: Hello cards
 **********************
 
-TK
+Explain Bootstrap. Show what we're trying to make. Talk about cards. Show Bootstrap docs.
+
+Basic card with only a title. Talk about divs. etc.
+
+.. code-block:: jinja
+
+    {% for obj in site.data.harvard_park_homicides %}
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">{{ obj.first_name }} {{ obj.last_name }}</h5>
+          </div>
+        </div>
+    {% endfor %}
+
+Add a sentence below the title.
+
+.. code-block:: jinja
+
+    {% for obj in site.data.harvard_park_homicides %}
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">{{ obj.first_name }} {{ obj.last_name }}</h5>
+            <p class="card-text">A {{ obj.age}}-year-old {{ obj.race }} {{ obj.gender }} died in {{ obj.death_year }}.</p>
+          </div>
+        </div>
+    {% endfor %}
+
+Add an image.
+
+.. code-block:: jinja
+
+    {% for obj in site.data.harvard_park_homicides %}
+        <div class="card">
+          <img class="card-img-top" src="{{ obj.image }}">
+          <div class="card-body">
+            <h5 class="card-title">{{ obj.first_name }} {{ obj.last_name }}</h5>
+            <p class="card-text">A {{ obj.age}}-year-old {{ obj.race }} {{ obj.gender }} died in {{ obj.death_year }}.</p>
+          </div>
+        </div>
+    {% endfor %}
+
+Add if clause around the image.
+
+.. code-block:: jinja
+
+    {% for obj in site.data.harvard_park_homicides %}
+        <div class="card">
+          {% if obj.image %}<img class="card-img-top" src="{{ obj.image }}">{% endif %}
+          <div class="card-body">
+            <h5 class="card-title">{{ obj.first_name }} {{ obj.last_name }}</h5>
+            <p class="card-text">A {{ obj.age}}-year-old {{ obj.race }} {{ obj.gender }} died in {{ obj.death_year }}.</p>
+          </div>
+        </div>
+    {% endfor %}
+
+Add the columns.
+
+.. code-block:: jinja
+
+    <div class="card-columns">
+        {% for obj in site.data.harvard_park_homicides %}
+        <div class="card">
+          {% if obj.image %}<img class="card-img-top" src="{{ obj.image }}">{% endif %}
+          <div class="card-body">
+            <h5 class="card-title">{{ obj.first_name }} {{ obj.last_name }}</h5>
+            <p class="card-text">A {{ obj.age}}-year-old {{ obj.race }} {{ obj.gender }} died in {{ obj.death_year }}.</p>
+          </div>
+        </div>
+        {% endfor %}
+    </div>
+
+Write a headline.
+
+Write the chatter.
 
 **********************
 Chapter 6: Hello chart
@@ -860,7 +933,8 @@ Import Leaflet's stylesheets in `_styles/main.scss`
 
 Create a placeholder in the page template where the map will live.
 
-.. code-block:: nunjucks
+.. code-block:: jinja
+    :emphasize-lines: 2
 
     {% block content %}
     <div id="map"></div>
@@ -885,45 +959,54 @@ Reload the index page to see the results.
 Go to Google Maps and find 62nd Street and Harvard Boulevard in South LA. Hold down a click until it gives you the latitude and longitude. Paste those numbers into Leaflet's setView method.
 
 .. code-block:: javascript
+    :emphasize-lines: 4
 
+    var map = L.map('map')
+    var osm = L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png');
+    osm.addTo(map);
     map.setView([33.983265, -118.306799], 15);
 
 Move in the zoom.
 
 .. code-block:: javascript
+    :emphasize-lines: 4
 
-    map.setView([33.983265, -118.306799], 16);
-
-Add a pin at that point.
-
-.. code-block:: javascript
-
-    var marker = L.marker([33.983265, -118.306799]).addTo(map);
-
-Add a popup.
-
-.. code-block:: javascript
-
-    marker.bindPopup("W. 62nd Street and Harvard Boulevard").openPopup();
+    var map = L.map('map')
+    var osm = L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png');
+    osm.addTo(map);
+    map.setView([33.983265, -118.306799], 18);
 
 At the bottom of the page import in the homicide list as we did with the totals for our chart.
 
-.. code-block:: nunjucks
+.. code-block:: jinja
+    :emphasize-lines: 4
 
+    {% block scripts %}
+    <script>
+    var annualTotals = {% include '_data/annual_totals.json' %}
     var homicides = {% include '_data/harvard_park_homicides.json' %};
+    </script>
+    {% endblock %}
 
 Loop through the data in `map.js` and add each point to the map as a circle, just like the real Homicide Report.
 
 .. code-block:: javascript
+    :emphasize-lines: 6-9
+
+    var map = L.map('map')
+    var osm = L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png');
+    osm.addTo(map);
+    map.setView([33.983265, -118.306799], 18);
 
     homicides.forEach(function (obj) {
         L.circleMarker([obj.latitude,  obj.longitude])
-        .addTo(map);
+          .addTo(map);
     })
 
 Extend that code to add a tooltip label on each point.
 
 .. code-block:: javascript
+    :emphasize-lines: 4
 
     homicides.forEach(function (obj) {
         L.circleMarker([obj.latitude,  obj.longitude])
@@ -933,7 +1016,7 @@ Extend that code to add a tooltip label on each point.
 
 Sprinkle some CSS in our page to make it match the colors.
 
-.. code-block:: nunjucks
+.. code-block:: jinja
 
     {% block stylesheets %}
     <style>
@@ -948,6 +1031,7 @@ Sprinkle some CSS in our page to make it match the colors.
 Now add an option to the tooltip that makes them all visible all the time.
 
 .. code-block:: javascript
+    :emphasize-lines: 4
 
     homicides.forEach(function (obj) {
         L.circleMarker([obj.latitude,  obj.longitude])
