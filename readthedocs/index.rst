@@ -567,7 +567,7 @@ TK PICTURE OF INSPECTOR / CONSOLE HERE
 
 What chart should we make? The story points out that Harvard Park experienced an increase in homicides as there was a decrease across the rest of the county. Let's try to visualize that.
 
-First, we need somewhere for our charts to go. In our ``harvard-park-homicides/index.nunjucks`` file, inside of ``{% block content %}`` where you want the chart to go, create a ``div`` element with an id of ``county-homicides``, and another with an id of ``harvard-park-homicides``.
+First, we need somewhere for our charts to go. In our ``index.nunjucks`` file, inside of ``{% block content %}`` where you want the chart to go, create a ``div`` element with an id of ``county-homicides``, and another with an id of ``harvard-park-homicides``.
 
 .. code-block:: html
 
@@ -1172,5 +1172,3 @@ Commit and push to GitHub.
 Go to GitHub config and turn on GitHub Pages with the ``/docs`` on the master branch as the source. Hit save.
 
 Visit `\<your_username\>.github.com/first-graphics-app/ <https://ireapps.github.io/first-graphics-app/>`_.
-
-Visit `\<your_username\>.github.com/first-graphics-app/harvard-park-homicides <https://ireapps.github.io/first-graphics-app/harvard-park-homicides/>`_.
