@@ -934,6 +934,7 @@ Import Leaflet's stylesheets in `_styles/main.scss`
 Create a placeholder in the page template where the map will live.
 
 .. code-block:: jinja
+    :emphasize-lines: 2
 
     {% block content %}
     <div id="map"></div>
@@ -967,23 +968,17 @@ Move in the zoom.
 
     map.setView([33.983265, -118.306799], 16);
 
-Add a pin at that point.
-
-.. code-block:: javascript
-
-    var marker = L.marker([33.983265, -118.306799]).addTo(map);
-
-Add a popup.
-
-.. code-block:: javascript
-
-    marker.bindPopup("W. 62nd Street and Harvard Boulevard").openPopup();
-
 At the bottom of the page import in the homicide list as we did with the totals for our chart.
 
 .. code-block:: jinja
+    :emphasize-lines: 4
 
+    {% block scripts %}
+    <script>
+    var annualTotals = {% include '_data/annual_totals.json' %}
     var homicides = {% include '_data/harvard_park_homicides.json' %};
+    </script>
+    {% endblock %}
 
 Loop through the data in `map.js` and add each point to the map as a circle, just like the real Homicide Report.
 
@@ -991,12 +986,13 @@ Loop through the data in `map.js` and add each point to the map as a circle, jus
 
     homicides.forEach(function (obj) {
         L.circleMarker([obj.latitude,  obj.longitude])
-        .addTo(map);
+          .addTo(map);
     })
 
 Extend that code to add a tooltip label on each point.
 
 .. code-block:: javascript
+    :emphasize-lines: 4
 
     homicides.forEach(function (obj) {
         L.circleMarker([obj.latitude,  obj.longitude])
@@ -1021,6 +1017,7 @@ Sprinkle some CSS in our page to make it match the colors.
 Now add an option to the tooltip that makes them all visible all the time.
 
 .. code-block:: javascript
+    :emphasize-lines: 4
 
     homicides.forEach(function (obj) {
         L.circleMarker([obj.latitude,  obj.longitude])
