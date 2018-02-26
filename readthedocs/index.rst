@@ -608,7 +608,7 @@ Inside of the ``{% scripts %}`` block:
 
     {% block scripts %}
     <script>
-    var annualTotals = {% include '_data/annual_totals.json' %}
+    var annualTotals = {% include '_data/annual_totals.json' %};
     </script>
     {% endblock %}
 
@@ -990,7 +990,7 @@ To draw the map we will rely on `Leaflet <http://leafletjs.com>`_, a JavaScript 
     $ npm install -s leaflet
 
 
-After it's been installed, we should import Leaflet into `_scripts/main.js` so that its tools are available on our site.
+After it's been installed, we should import Leaflet into ``_scripts/main.js`` so that its tools are available on our site.
 
 .. code-block:: javascript
     :emphasize-lines: 15
@@ -1012,7 +1012,7 @@ After it's been installed, we should import Leaflet into `_scripts/main.js` so t
     var L = require("leaflet");
 
 
-We'll also need to add a little hack so the file so that Leaflet's images will load. Don't ask. It's a long story.
+We'll also need to add a little hack to the file so that Leaflet's images will load. Don't ask. It's a long story.
 
 .. code-block:: javascript
     :emphasize-lines: 17
@@ -1036,7 +1036,7 @@ We'll also need to add a little hack so the file so that Leaflet's images will l
     L.Icon.Default.imagePath = 'https://unpkg.com/leaflet@1.3.1/dist/images/';
 
 
-Next we import Leaflet's stylesheets in `_styles/main.scss` so that they are also included on our site.
+Next we import Leaflet's stylesheets in ``_styles/main.scss`` so that they are also included on our site.
 
 .. code-block:: css
     :emphasize-lines: 7
@@ -1050,14 +1050,14 @@ Next we import Leaflet's stylesheets in `_styles/main.scss` so that they are als
     @import 'node_modules/leaflet/dist/leaflet';
 
 
-Now, back in the index.nunjucks template, we should create a placeholder in the page template where the map will live.
+Now, back in the ``index.nunjucks`` template, we should create a placeholder in the page template where the map will live.
 
 .. code-block:: jinja
 
     <div id="map"></div>
 
 
-Add a new file named `map.js` to the `_scripts` directory. Import it in `main.js`.
+To bring the map to life, add a new file named ``map.js`` to the ``_scripts`` directory. Import it in ``main.js``.
 
 .. code-block:: javascript
     :emphasize-lines: 16
@@ -1082,7 +1082,7 @@ Add a new file named `map.js` to the `_scripts` directory. Import it in `main.js
     L.Icon.Default.imagePath = 'https://unpkg.com/leaflet@1.3.1/dist/images/';
 
 
-Now in `map.js` paste in the following Leaflet code to generate a simple map. It does three things, create a new map in the HTML element we made with "map" set as its ID, create a new map layer with roads, borders, water and other features from OpenStreetMap, then finally add the layer to the map.
+Now in ``_scripts/map.js`` paste in the following Leaflet code to generate a simple map. It does three things: create a new map in the HTML element we made with "map" set as its ID; add a new map layer with roads, borders, water and other features from OpenStreetMap; finally, add the layer to the map.
 
 .. code-block:: javascript
 
@@ -1104,7 +1104,7 @@ To zero in on the area we're reporting on, we will need its longitude and latitu
     map.setView([33.983265, -118.306799], 15);
 
 
-After you save the file, your map should move. Let's tighten up that zoom and save again.
+After you save the file, your map should have relocated. Let's tighten up that zoom and save again.
 
 .. code-block:: javascript
     :emphasize-lines: 4
@@ -1162,13 +1162,13 @@ Now let's include that data in the page. Open ``index.nunjucks`` and add a new v
 
     {% block scripts %}
     <script>
-    var annualTotals = {% include '_data/annual_totals.json' %}
+    var annualTotals = {% include '_data/annual_totals.json' %};
     var homicides = {% include '_data/harvard_park_homicides.json' %};
     </script>
     {% endblock %}
 
 
-Now return to ``_scripts/map.js``. At the bottom add some JavaScript code that steps through the homicide list and adds each one the map as a circle, just like the real Homicide Report.
+Now return to ``_scripts/map.js``. At the bottom add some JavaScript code that steps through the homicide list and adds each one to the map as a circle, just like the real Homicide Report.
 
 .. code-block:: javascript
     :emphasize-lines: 6-9
@@ -1183,7 +1183,8 @@ Now return to ``_scripts/map.js``. At the bottom add some JavaScript code that s
           .addTo(map);
     })
 
-Save the file and you should now see all the homicides mapped on the page. Next, extend the code in to ``_scripts/map.js`` to add a tooltip label on each point.
+
+Save the file and you should now see all the homicides mapped on the page. Next, extend the code in ``_scripts/map.js`` to add a tooltip label on each point.
 
 .. code-block:: javascript
     :emphasize-lines: 4
@@ -1193,6 +1194,7 @@ Save the file and you should now see all the homicides mapped on the page. Next,
           .addTo(map)
           .bindTooltip(obj.first_name + " " + obj.last_name);
     })
+
 
 Here's what you should see after you do that.
 
@@ -1221,7 +1223,8 @@ Just as before, that won't change anything until you import our new file into th
     @import 'node_modules/leaflet/dist/leaflet';
     @import '_map.scss';
 
-After you save. The tooltips should now appear when you hover over a circle.
+
+After you save, the tooltips should appear when you hover over a circle.
 
 To make the tooltips visible all the time, edit the JavaScript in ``_scripts/map.js`` to make the tooltips "permanent."
 
@@ -1235,7 +1238,7 @@ To make the tooltips visible all the time, edit the JavaScript in ``_scripts/map
     })
 
 
-Alright. We've got an okay map. But it's zoomed in so close a reader might now know where it is. To combat this problem, graphics artists often inset a small map in the corner that shows the the area of focus from a greater distance.
+Alright. We've got an okay map. But it's zoomed in so close a reader might now know where it is. To combat this problem, graphic artists often inset a small map in the corner that shows the the area of focus from a greater distance.
 
 Lucky for us, there's already a Leaflet extension that provides this feature. It's called `MiniMap <https://github.com/Norkart/Leaflet-MiniMap>`_.
 
