@@ -983,11 +983,7 @@ Chapter 7: Hello map
 
 Next we'll move on to creating a map focused on West 62nd Street and Harvard Boulevard, an intersection in South Los Angeles where four men died in less than a year and a half.
 
-To draw the map we will rely on `Leaflet <http://leafletjs.com>`_, a JavaScript library for creating interactive maps.
-
-We will install it just as before by using `npm` from our terminal.
-
-Install Leaflet with npm.
+To draw the map we will rely on `Leaflet <http://leafletjs.com>`_, a JavaScript library for creating interactive maps. We will install it just as before by using ``npm`` from our terminal.
 
 .. code-block:: base
 
@@ -1040,7 +1036,7 @@ We'll also need to add a little hack so the file so that Leaflet's images will l
     L.Icon.Default.imagePath = 'https://unpkg.com/leaflet@1.3.1/dist/images/';
 
 
-We will also need to import Leaflet's stylesheets in `_styles/main.scss`
+Next we import Leaflet's stylesheets in `_styles/main.scss` so that they are also included on our site.
 
 .. code-block:: css
     :emphasize-lines: 7
@@ -1054,14 +1050,11 @@ We will also need to import Leaflet's stylesheets in `_styles/main.scss`
     @import 'node_modules/leaflet/dist/leaflet';
 
 
-Create a placeholder in the page template where the map will live.
+Now, back in the index.nunjucks template, we should create a placeholder in the page template where the map will live.
 
 .. code-block:: jinja
-    :emphasize-lines: 2
 
-    {% block content %}
     <div id="map"></div>
-    {% endblock %}
 
 
 Add a new file named `map.js` to the `_scripts` directory. Import it in `main.js`.
