@@ -996,6 +996,28 @@ Install Leaflet with npm.
 After it's been installed, we should import Leaflet into `_scripts/main.js` so that its tools are available on our site.
 
 .. code-block:: javascript
+    :emphasize-lines: 15
+
+    // Main javascript entry point
+    // Should handle bootstrapping/starting application
+
+    'use strict';
+
+    var $ = require('jquery');
+    var Link = require('../_modules/link/link');
+
+    $(function() {
+      new Link(); // Activate Link modules logic
+      console.log('Welcome to Yeogurt!');
+    });
+
+    var chart = require('./charts.js');
+    var L = require("leaflet");
+
+
+We'll also need to add a little hack so the file so that Leaflet's images will load. Don't ask. It's a long story.
+
+.. code-block:: javascript
     :emphasize-lines: 17
 
     // Main javascript entry point
@@ -1005,8 +1027,6 @@ After it's been installed, we should import Leaflet into `_scripts/main.js` so t
 
     var $ = require('jquery');
     var Link = require('../_modules/link/link');
-    var L = require("leaflet");
-    var MiniMap = require('leaflet-minimap');
 
     $(function() {
       new Link(); // Activate Link modules logic
@@ -1014,31 +1034,7 @@ After it's been installed, we should import Leaflet into `_scripts/main.js` so t
     });
 
     var chart = require('./charts.js');
-    var map = require("./map.js");
-
-
-We'll also need to add a little hack so the file so that Leaflet's images will load. Don't ask. It's a long story.
-
-.. code-block:: javascript
-    :emphasize-lines: 19
-
-    // Main javascript entry point
-    // Should handle bootstrapping/starting application
-
-    'use strict';
-
-    var $ = require('jquery');
-    var Link = require('../_modules/link/link');
     var L = require("leaflet");
-    var MiniMap = require('leaflet-minimap');
-
-    $(function() {
-      new Link(); // Activate Link modules logic
-      console.log('Welcome to Yeogurt!');
-    });
-
-    var chart = require('./charts.js');
-    var map = require("./map.js");
 
     L.Icon.Default.imagePath = 'https://unpkg.com/leaflet@1.3.1/dist/images/';
 
@@ -1056,6 +1052,7 @@ We will also need to import Leaflet's stylesheets in `_styles/main.scss`
     @import '_charts.scss';
     @import 'node_modules/leaflet/dist/leaflet';
 
+
 Create a placeholder in the page template where the map will live.
 
 .. code-block:: jinja
@@ -1065,11 +1062,30 @@ Create a placeholder in the page template where the map will live.
     <div id="map"></div>
     {% endblock %}
 
+
 Add a new file named `map.js` to the `_scripts` directory. Import it in `main.js`.
 
 .. code-block:: javascript
+    :emphasize-lines: 16
 
+    // Main javascript entry point
+    // Should handle bootstrapping/starting application
+
+    'use strict';
+
+    var $ = require('jquery');
+    var Link = require('../_modules/link/link');
+
+    $(function() {
+      new Link(); // Activate Link modules logic
+      console.log('Welcome to Yeogurt!');
+    });
+
+    var chart = require('./charts.js');
+    var L = require("leaflet");
     var map = require("./map.js");
+
+    L.Icon.Default.imagePath = 'https://unpkg.com/leaflet@1.3.1/dist/images/';
 
 Now in `map.js` paste in the following Leaflet code to generate a simple map.
 
