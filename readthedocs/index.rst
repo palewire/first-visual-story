@@ -530,17 +530,23 @@ Write the chatter.
 Chapter 6: Hello charts
 ***********************
 
-We have data, but what does it look like? To visualize our data, we're going to use `plotly.js <https://plot.ly/javascript/>`_. Plotly.js is an open source library built on the popular `D3 <https://d3js.org/>`_ library, which powers a lot of the news graphics made with JavaScript you'll see.
+We have data, but what does it look like?
 
-**But wait, why aren't we using D3?**
+To visualize our data, we're going to use `plotly.js <https://plot.ly/javascript/>`_. Plotly.js is an open source library built on top of the popular `D3 <https://d3js.org/>`_ library, which powers a lot of the news graphics made with JavaScript you see online.
 
-You've probably heard of the ``D3 <https://d3js.org>``_, the data visualization library by Mike Bostock. It's an incredibly powerful tool, but a little too complex for making simple bar charts today. Instead we're going to use a library that abstracts the tools provided by D3 into something that's easier to use.
+.. note::
+
+    **But wait, why aren't we using D3?**
+
+    You've probably heard of the ``D3 <https://d3js.org>``_, the data visualization library by Mike Bostock. It's an incredibly powerful tool, but a little too complex for making simple bar charts today. Instead we're going to use a library that abstracts the tools provided by D3 into something that's easier to use.
+
 
 First, use npm to install plotly.js.
 
 .. code-block:: bash
 
     $ npm install -s plotly.js
+
 
 The ``-s`` argument saves plotly to a dependencies file. That way, if you ever need to go through the install steps for your app again, you can do so easily.
 
