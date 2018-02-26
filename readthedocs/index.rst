@@ -969,7 +969,8 @@ Congratulations. You've made your charts! Let's move on to our next challenge.
 
 .. note::
 
-    We used Plotly.js in this class, but there are many other JavaScript charting libraries, each one slightly different. If you want to explore this on your own, here are some other options that we considered using for this class:
+    We used Plotly.js in this class, but there are many other JavaScript charting libraries, each one slightly different. If you want to explore this on your own, here are some other options that we considered using for this class
+
     - `Vega-lite <https://vega.github.io/vega-lite/>`_
     - `Charts.js <http://www.chartjs.org/>`_
     - `C3.js <http://c3js.org/>`_ Important to note that this does not seem to support the latest versions of D3.
