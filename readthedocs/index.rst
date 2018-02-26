@@ -1102,6 +1102,7 @@ To zero in on the area we're reporting on, we will need its longitude and latitu
     osm.addTo(map);
     map.setView([33.983265, -118.306799], 15);
 
+
 After you save the map should move. Let's tighten up that zoom and save again.
 
 .. code-block:: javascript
@@ -1111,6 +1112,7 @@ After you save the map should move. Let's tighten up that zoom and save again.
     var osm = L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png');
     osm.addTo(map);
     map.setView([33.983265, -118.306799], 18);
+
 
 At the bottom of the page import in the homicide list as we did with the totals for our chart.
 
@@ -1123,6 +1125,7 @@ At the bottom of the page import in the homicide list as we did with the totals 
     var homicides = {% include '_data/harvard_park_homicides.json' %};
     </script>
     {% endblock %}
+
 
 Loop through the data in `map.js` and add each point to the map as a circle, just like the real Homicide Report.
 
@@ -1139,6 +1142,7 @@ Loop through the data in `map.js` and add each point to the map as a circle, jus
           .addTo(map);
     })
 
+
 Extend that code to add a tooltip label on each point.
 
 .. code-block:: javascript
@@ -1150,6 +1154,7 @@ Extend that code to add a tooltip label on each point.
           .bindTooltip(obj.first_name + " " + obj.last_name);
     })
 
+
 Next let's sprinkle some CSS in our page to make it match the colors of the dots found on The Homicide Report. As we did with the charts, go to the ``_scripts`` folder and create a new file. We'll call this one ``_map.scss``. In that file, copy or write the following:
 
 .. code-block:: css
@@ -1159,6 +1164,7 @@ Next let's sprinkle some CSS in our page to make it match the colors of the dots
         fill-opacity: 0.5;
         stroke-opacity: 0;
     }
+
 
 Just as before, you won't see anything until you import our file into our main stylesheet. Again, use ``@import`` to bring your CSS file into ``main.css``
 
@@ -1186,6 +1192,7 @@ Now add an option to the tooltip that makes them all visible all the time.
           .bindTooltip(obj.first_name + " " + obj.last_name, {permanent: true});
     })
 
+
 Now let's add a mini map in the corner yet for context.
 
 Install Leaflet-minimap.
@@ -1194,11 +1201,13 @@ Install Leaflet-minimap.
 
     $ npm install -s leaflet-minimap
 
+
 Add it to `_scripts/main.js`.
 
 .. code-block:: javascript
 
     var MiniMap = require('leaflet-minimap');
+
 
 Add the stylesheets.
 
@@ -1214,6 +1223,7 @@ Add the stylesheets.
     @import 'node_modules/leaflet/dist/leaflet';
     @import '_map.scss';
     @import 'node_modules/leaflet-minimap/src/Control.MiniMap';
+
 
 Create a minimap in the corner
 
@@ -1237,17 +1247,20 @@ Create a minimap in the corner
     var mini = new L.Control.MiniMap(osm2, { toggleDisplay: true });
     mini.addTo(map);
 
+
 Add a deck headline.
 
 .. code-block:: html
 
     <h3>One corner. Four killings</h3>
 
+
 Write a section graf.
 
 .. code-block:: html
 
     <p>The southwest corner of Harvard Park, at West 62nd Street and Harvard Boulevard, has been especially deadly. In the last year-and-a-half, four men have been killed there — while sitting in a car, trying to defuse an argument or walking home from the barber shop or the corner store.</p>
+
 
 Wrap it in a section tag.
 
