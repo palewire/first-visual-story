@@ -989,7 +989,7 @@ Congratulations. You've made your charts! Let's move on to our next challenge.
 
     There are also tools that allow you to use a visual editor, creating charts and other visualizations that you can download and/or embed in your project.
 
-    - `Chartbuilder <https://quartz.github.io/Chartbuilder/>`_ is very good for basic, fast charts with light customization.
+    - `Chartbuilder <https://quartz.github.io/Chartbuilder/>`_ from `Quartz <https://qz.com/>`_, is very good for basic, fast charts with light customization.
     - `DataWrapper <https://www.datawrapper.de/>`_ allows a range of visualizations beyond basic charts, including scatter plots and maps.
 
 
