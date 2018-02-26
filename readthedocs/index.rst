@@ -534,9 +534,7 @@ We have data, but what does it look like?
 
 To visualize our data, we're going to use `plotly.js <https://plot.ly/javascript/>`_. Plotly.js is an open source library built on top of the popular `D3 <https://d3js.org/>`_ library, which powers a lot of the news graphics made with JavaScript you see online.
 
-.. note::
-
-    **But wait, why aren't we using D3?**
+.. note:: But wait, why aren't we using D3?
 
     You've probably heard of the ``D3 <https://d3js.org>``_, the data visualization library by Mike Bostock. It's an incredibly powerful tool, but a little too complex for making simple bar charts today. Instead we're going to use a library that abstracts the tools provided by D3 into something that's easier to use.
 
