@@ -1081,7 +1081,8 @@ Add a new file named `map.js` to the `_scripts` directory. Import it in `main.js
 
     L.Icon.Default.imagePath = 'https://unpkg.com/leaflet@1.3.1/dist/images/';
 
-Now in `map.js` paste in the following Leaflet code to generate a simple map.
+
+Now in `map.js` paste in the following Leaflet code to generate a simple map. It does three things, create a new map in the HTML element we made with "map" set as its ID, create a new map layer with roads, borders, water and other features from OpenStreetMap, then finally add the layer to the map.
 
 .. code-block:: javascript
 
@@ -1089,9 +1090,9 @@ Now in `map.js` paste in the following Leaflet code to generate a simple map.
     var osm = L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png');
     osm.addTo(map);
 
-Reload the index page to see the results.
+After you save, the index page should reload with a simple map, centered far from Los Angeles.
 
-Go to Google Maps and find 62nd Street and Harvard Boulevard in South LA. Hold down a click until it gives you the latitude and longitude. Paste those numbers into Leaflet's setView method.
+To zero in on the area we're reporting on, we will need its longitude and latitude coordinates. Go to Google Maps and find 62nd Street and Harvard Boulevard in South LA. Hold down a click until it gives you the coordinates in a popup box. Paste those numbers into Leaflet's ``setView`` method with a zoom level of 15 included.
 
 .. code-block:: javascript
     :emphasize-lines: 4
@@ -1101,7 +1102,7 @@ Go to Google Maps and find 62nd Street and Harvard Boulevard in South LA. Hold d
     osm.addTo(map);
     map.setView([33.983265, -118.306799], 15);
 
-Move in the zoom.
+After you save the map should move. Let's tighten up that zoom and save again.
 
 .. code-block:: javascript
     :emphasize-lines: 4
