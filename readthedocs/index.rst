@@ -800,15 +800,13 @@ This gives us a structure that we can style with CSS. In the ``_scripts`` folder
 You won't see anything yet, because we haven't imported it into our main stylesheet. Use ``@import`` to bring your CSS file into ``main.css``
 
 .. code-block:: css
-    :emphasize-lines: 7,8
+    :emphasize-lines: 6
 
     // Normalize Styles
     @import 'node_modules/normalize.css/normalize';
 
     // Import Modules
     @import '../_modules/link/link';
-
-    // Add this to main.scss
     @import '_charts.scss';
 
 
@@ -982,28 +980,80 @@ Congratulations. You've made your charts! Let's move on to our next challenge.
 Chapter 7: Hello map
 ********************
 
+Next we'll move on to creating a map focused on West 62nd Street and Harvard Boulevard, an intersection in South Los Angeles where four men died in less than a year and a half.
+
+To draw the map we will rely on `Leaflet <http://leafletjs.com>`_, a JavaScript library for creating interactive maps.
+
+We will install it just as before by using `npm` from our terminal.
+
 Install Leaflet with npm.
 
 .. code-block:: base
 
     $ npm install -s leaflet
 
-Import Leaflet's JavaScript in `_scripts/main.js`.
+
+After it's been installed, we should import Leaflet into `_scripts/main.js` so that its tools are available on our site.
 
 .. code-block:: javascript
+    :emphasize-lines: 17
 
+    // Main javascript entry point
+    // Should handle bootstrapping/starting application
+
+    'use strict';
+
+    var $ = require('jquery');
+    var Link = require('../_modules/link/link');
     var L = require("leaflet");
+    var MiniMap = require('leaflet-minimap');
 
-Add a little hack we'll need to get the images to work.
+    $(function() {
+      new Link(); // Activate Link modules logic
+      console.log('Welcome to Yeogurt!');
+    });
+
+    var chart = require('./charts.js');
+    var map = require("./map.js");
+
+
+We'll also need to add a little hack so the file so that Leaflet's images will load. Don't ask. It's a long story.
 
 .. code-block:: javascript
+    :emphasize-lines: 19
+
+    // Main javascript entry point
+    // Should handle bootstrapping/starting application
+
+    'use strict';
+
+    var $ = require('jquery');
+    var Link = require('../_modules/link/link');
+    var L = require("leaflet");
+    var MiniMap = require('leaflet-minimap');
+
+    $(function() {
+      new Link(); // Activate Link modules logic
+      console.log('Welcome to Yeogurt!');
+    });
+
+    var chart = require('./charts.js');
+    var map = require("./map.js");
 
     L.Icon.Default.imagePath = 'https://unpkg.com/leaflet@1.3.1/dist/images/';
 
-Import Leaflet's stylesheets in `_styles/main.scss`
+
+We will also need to import Leaflet's stylesheets in `_styles/main.scss`
 
 .. code-block:: css
+    :emphasize-lines: 7
 
+    // Normalize Styles
+    @import 'node_modules/normalize.css/normalize';
+
+    // Import Modules
+    @import '../_modules/link/link';
+    @import '_charts.scss';
     @import 'node_modules/leaflet/dist/leaflet';
 
 Create a placeholder in the page template where the map will live.
@@ -1102,16 +1152,15 @@ Next let's sprinkle some CSS in our page to make it match the colors of the dots
 Just as before, you won't see anything until you import our file into our main stylesheet. Again, use ``@import`` to bring your CSS file into ``main.css``
 
 .. code-block:: css
-    :emphasize-lines: 7,8
+    :emphasize-lines: 7
 
     // Normalize Styles
     @import 'node_modules/normalize.css/normalize';
 
     // Import Modules
     @import '../_modules/link/link';
-
-    // Add this to main.scss
     @import '_charts.scss';
+    @import 'node_modules/leaflet/dist/leaflet';
     @import '_map.scss';
 
 
@@ -1143,7 +1192,16 @@ Add it to `_scripts/main.js`.
 Add the stylesheets.
 
 .. code-block:: css
+    :emphasize-lines: 8
 
+    // Normalize Styles
+    @import 'node_modules/normalize.css/normalize';
+
+    // Import Modules
+    @import '../_modules/link/link';
+    @import '_charts.scss';
+    @import 'node_modules/leaflet/dist/leaflet';
+    @import '_map.scss';
     @import 'node_modules/leaflet-minimap/src/Control.MiniMap';
 
 Create a minimap in the corner
