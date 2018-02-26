@@ -1224,7 +1224,7 @@ Add the stylesheets.
 Create a minimap in the corner
 
 .. code-block:: javascript
-    :emphasize-lines: 11-15
+    :emphasize-lines: 12-16
 
     var map = L.map('map')
     var osm = L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png');
