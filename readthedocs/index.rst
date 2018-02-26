@@ -965,6 +965,17 @@ Then, add the title you want to your function call. We'll assign them to variabl
     createChart(years, countyHomicides, 'county-homicides', countyChartTitle);
     createChart(years, harvardParkHomicides, 'harvard-park-homicides', hpChartTitle);
 
+These titles are a little light and blend in to the rest of the text. Let's make them bolder. The easiest way I've found to do this with Plotly is by wrapping them in bold tags.
+
+.. code-block:: javascript
+    :emphasize-lines: 1,2
+
+    var countyChartTitle = "<b>County Homicides, 2000-2017</b>";
+    var hpChartTitle = "<b>Harvard Park Homicides, 2000-2017</b>";
+
+    createChart(years, countyHomicides, 'county-homicides', countyChartTitle);
+    createChart(years, harvardParkHomicides, 'harvard-park-homicides', hpChartTitle);
+
 Congratulations. You've made your charts! Let's move on to our next challenge.
 
 .. note::

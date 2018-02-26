@@ -45,8 +45,11 @@ function createChart(x, y, element, title) {
   Plotly.newPlot(element, settings, layout, {displayModeBar: false});
 }
 
-var countyChartTitle = 'Homicides in L.A. County';
-var hpChartTitle = 'Homicides in Harvard Park neighborhood';
+var countyChartTitle = '<b>Homicides in L.A. County</b>';
+var hpChartTitle = '<b>Homicides in Harvard Park neighborhood</b>';
+
+createChart(years, countyHomicides, 'county-homicides', countyChartTitle);
+createChart(years, harvardParkHomicides, 'harvard-park-homicides', hpChartTitle);
 
 createChart(years, countyHomicides, 'county-homicides', countyChartTitle);
 createChart(years, harvardParkHomicides, 'harvard-park-homicides', hpChartTitle);
