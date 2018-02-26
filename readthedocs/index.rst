@@ -1278,7 +1278,7 @@ Just as with other libraries, we need to import it into `_scripts/main.js`.
 Its stylesheets also need to be imported to ``_styles/main.scss``.
 
 .. code-block:: css
-    :emphasize-lines: 9
+    :emphasize-lines: 8
 
     // Normalize Styles
     @import 'node_modules/normalize.css/normalize';
@@ -1287,8 +1287,8 @@ Its stylesheets also need to be imported to ``_styles/main.scss``.
     @import '../_modules/link/link';
     @import '_charts.scss';
     @import 'node_modules/leaflet/dist/leaflet';
-    @import '_map.scss';
     @import 'node_modules/leaflet-minimap/src/Control.MiniMap';
+    @import '_map.scss';
 
 
 Now that everything is installed, return to ``scripts/map.js`` and create an inset map with the library's custom tools. We can set its view with the ``maxZoom`` option.
