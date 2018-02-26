@@ -1169,7 +1169,7 @@ Next let's sprinkle some CSS in our page to make it match the colors of the dots
 Just as before, you won't see anything until you import our file into our main stylesheet. Again, use ``@import`` to bring your CSS file into ``main.css``
 
 .. code-block:: css
-    :emphasize-lines: 7
+    :emphasize-lines: 8
 
     // Normalize Styles
     @import 'node_modules/normalize.css/normalize';
@@ -1209,7 +1209,7 @@ Add it to `_scripts/main.js`.
 Add the stylesheets.
 
 .. code-block:: css
-    :emphasize-lines: 8
+    :emphasize-lines: 9
 
     // Normalize Styles
     @import 'node_modules/normalize.css/normalize';
@@ -1224,6 +1224,18 @@ Add the stylesheets.
 Create a minimap in the corner
 
 .. code-block:: javascript
+    :emphasize-lines: 11-15
+
+    var map = L.map('map')
+    var osm = L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png');
+    osm.addTo(map);
+    map.setView([33.983265, -118.306799], 18);
+
+    homicides.forEach(function (obj) {
+        L.circleMarker([obj.latitude,  obj.longitude])
+          .addTo(map)
+          .bindTooltip(obj.first_name + " " + obj.last_name, {permanent: true});
+    })
 
     var osm2 = L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         maxZoom: 9
@@ -1235,7 +1247,7 @@ Add a deck headline.
 
 .. code-block:: html
 
-    <h3>One corner. Four killings. </h3>
+    <h3>One corner. Four killings</h3>
 
 Write a section graf.
 
@@ -1248,7 +1260,7 @@ Wrap it in a section tag.
 .. code-block:: html
 
     <section>
-        <h3>One corner. Four killings. </h3>
+        <h3>One corner. Four killings</h3>
         <p>The southwest corner of Harvard Park, at West 62nd Street and Harvard Boulevard, has been especially deadly. In the last year-and-a-half, four men have been killed there — while sitting in a car, trying to defuse an argument or walking home from the barber shop or the corner store.</p>
         <div id="map"></div>
     </section>
