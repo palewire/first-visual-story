@@ -1090,6 +1090,7 @@ Now in `map.js` paste in the following Leaflet code to generate a simple map. It
     var osm = L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png');
     osm.addTo(map);
 
+
 After you save, the index page should reload with a simple map, centered far from Los Angeles.
 
 To zero in on the area we're reporting on, we will need its longitude and latitude coordinates. Go to Google Maps and find 62nd Street and Harvard Boulevard in South LA. Hold down a click until it gives you the coordinates in a popup box. Paste those numbers into Leaflet's ``setView`` method with a zoom level of 15 included.
@@ -1103,7 +1104,7 @@ To zero in on the area we're reporting on, we will need its longitude and latitu
     map.setView([33.983265, -118.306799], 15);
 
 
-After you save the map should move. Let's tighten up that zoom and save again.
+After you save the file, your map should move. Let's tighten up that zoom and save again.
 
 .. code-block:: javascript
     :emphasize-lines: 4
@@ -1114,7 +1115,47 @@ After you save the map should move. Let's tighten up that zoom and save again.
     map.setView([33.983265, -118.306799], 18);
 
 
-At the bottom of the page import in the homicide list as we did with the totals for our chart.
+Now let's load some data on the map. Download the complete list of Harvard Park homicides from `this link <https://gist.githubusercontent.com/palewire/1035cd306a2f85b362b1a20ce315b8eb/raw/harvard_park_homicides.json>`_. Create a new file at ``_data/harvard_park_homicides.json`` and paste the file's content in.
+
+It includes a list with a dictionary of data about each homicide victim in the neighborhood since 2000.
+
+.. code-block:: javascript
+
+    [
+       {
+          "case_number":"2017-04514",
+          "slug":"eddie-rosendo-lino",
+          "first_name":"Eddie",
+          "middle_name":"Rosendo",
+          "last_name":"Lino",
+          "death_date":"2017-06-18T00:00:00.000Z",
+          "death_year":2017,
+          "age":23.0,
+          "race":"black",
+          "gender":"male",
+          "image":null,
+          "longitude":-118.304107484,
+          "latitude":33.9904336958
+       },
+       {
+          "case_number":"2017-03454",
+          "slug":"alex-david-lomeli",
+          "first_name":"Alex",
+          "middle_name":"David",
+          "last_name":"Lomeli",
+          "death_date":"2017-05-07T00:00:00.000Z",
+          "death_year":2017,
+          "age":18.0,
+          "race":"latino",
+          "gender":"male",
+          "image":null,
+          "longitude":-118.300290584,
+          "latitude":33.9793646958
+       },
+       ...
+
+
+Now let's include that data in the page. Open ``index.nunjucks`` and add a new variable to the ``scripts`` block where the homicides list is stored.
 
 .. code-block:: jinja
     :emphasize-lines: 4
@@ -1127,7 +1168,7 @@ At the bottom of the page import in the homicide list as we did with the totals 
     {% endblock %}
 
 
-Loop through the data in `map.js` and add each point to the map as a circle, just like the real Homicide Report.
+Now return to ``_scripts/map.js``. At the bottom add some JavaScript code that steps through the homicide list and adds each one the map as a circle, just like the real Homicide Report.
 
 .. code-block:: javascript
     :emphasize-lines: 6-9
@@ -1142,8 +1183,7 @@ Loop through the data in `map.js` and add each point to the map as a circle, jus
           .addTo(map);
     })
 
-
-Extend that code to add a tooltip label on each point.
+Save the file and you should now see all the homicides mapped on the page. Next, extend the code in to ``_scripts/map.js`` to add a tooltip label on each point.
 
 .. code-block:: javascript
     :emphasize-lines: 4
@@ -1154,8 +1194,9 @@ Extend that code to add a tooltip label on each point.
           .bindTooltip(obj.first_name + " " + obj.last_name);
     })
 
+Here's what you should see after you do that.
 
-Next let's sprinkle some CSS in our page to make it match the colors of the dots found on The Homicide Report. As we did with the charts, go to the ``_scripts`` folder and create a new file. We'll call this one ``_map.scss``. In that file, copy or write the following:
+Next let's sprinkle some CSS in our page to make the circles match the orange color of the dots found on The Homicide Report. As we did with the charts, go to the ``_scripts`` folder and create a new file. We'll call this one ``_map.scss``. In that file, copy or write the following:
 
 .. code-block:: css
 
@@ -1166,7 +1207,7 @@ Next let's sprinkle some CSS in our page to make it match the colors of the dots
     }
 
 
-Just as before, you won't see anything until you import our file into our main stylesheet. Again, use ``@import`` to bring your CSS file into ``main.css``
+Just as before, that won't change anything until you import our new file into the main stylesheet. Again, use ``@import`` to introduce your CSS file into ``main.css``
 
 .. code-block:: css
     :emphasize-lines: 8
@@ -1180,8 +1221,9 @@ Just as before, you won't see anything until you import our file into our main s
     @import 'node_modules/leaflet/dist/leaflet';
     @import '_map.scss';
 
+After you save. The tooltips should now appear when you hover over a circle.
 
-Now add an option to the tooltip that makes them all visible all the time.
+To make the tooltips visible all the time, edit the JavaScript in ``_scripts/map.js`` to make the tooltips "permanent."
 
 .. code-block:: javascript
     :emphasize-lines: 4
@@ -1193,23 +1235,44 @@ Now add an option to the tooltip that makes them all visible all the time.
     })
 
 
-Now let's add a mini map in the corner yet for context.
+Alright. We've got an okay map. But it's zoomed in so close a reader might now know where it is. To combat this problem, graphics artists often inset a small map in the corner that shows the the area of focus from a greater distance.
 
-Install Leaflet-minimap.
+Lucky for us, there's already a Leaflet extension that provides this feature. It's called `MiniMap <https://github.com/Norkart/Leaflet-MiniMap>`_.
+
+To put it to use, we'll need to return to our friend ``npm``.
 
 .. code-block:: bash
 
     $ npm install -s leaflet-minimap
 
 
-Add it to `_scripts/main.js`.
+Just as with other libraries, we need to import it into `_scripts/main.js`.
 
 .. code-block:: javascript
+    :emphasize-lines: 16
 
+    // Main javascript entry point
+    // Should handle bootstrapping/starting application
+
+    'use strict';
+
+    var $ = require('jquery');
+    var Link = require('../_modules/link/link');
+
+    $(function() {
+      new Link(); // Activate Link modules logic
+      console.log('Welcome to Yeogurt!');
+    });
+
+    var chart = require('./charts.js');
+    var L = require("leaflet");
     var MiniMap = require('leaflet-minimap');
+    var map = require("./map.js");
+
+    L.Icon.Default.imagePath = 'https://unpkg.com/leaflet@1.3.1/dist/images/';
 
 
-Add the stylesheets.
+Its stylesheets also need to be imported to ``_styles/main.scss``.
 
 .. code-block:: css
     :emphasize-lines: 9
@@ -1225,7 +1288,7 @@ Add the stylesheets.
     @import 'node_modules/leaflet-minimap/src/Control.MiniMap';
 
 
-Create a minimap in the corner
+Now that everything is installed, return to ``scripts/map.js`` and create an inset map with the library's custom tools. We can set its view with the ``maxZoom`` option.
 
 .. code-block:: javascript
     :emphasize-lines: 12-16
@@ -1247,22 +1310,23 @@ Create a minimap in the corner
     var mini = new L.Control.MiniMap(osm2, { toggleDisplay: true });
     mini.addTo(map);
 
+Save the file and the inset map should appear on your page.
 
-Add a deck headline.
+Finally, let's preface the map with so a headline.
 
 .. code-block:: html
 
     <h3>One corner. Four killings</h3>
 
 
-Write a section graf.
+Then an introductory paragraph.
 
 .. code-block:: html
 
     <p>The southwest corner of Harvard Park, at West 62nd Street and Harvard Boulevard, has been especially deadly. In the last year-and-a-half, four men have been killed there — while sitting in a car, trying to defuse an argument or walking home from the barber shop or the corner store.</p>
 
 
-Wrap it in a section tag.
+All wrapped up in a ``<section>`` tag.
 
 .. code-block:: html
 
@@ -1271,6 +1335,8 @@ Wrap it in a section tag.
         <p>The southwest corner of Harvard Park, at West 62nd Street and Harvard Boulevard, has been especially deadly. In the last year-and-a-half, four men have been killed there — while sitting in a car, trying to defuse an argument or walking home from the barber shop or the corner store.</p>
         <div id="map"></div>
     </section>
+
+Congratulations. You've created a custom map. Now let's get on to the business of sharing it with the world.
 
 
 *************************
