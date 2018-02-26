@@ -526,6 +526,7 @@ Write a headline.
 
 Write the chatter.
 
+
 ***********************
 Chapter 6: Hello charts
 ***********************
@@ -534,9 +535,9 @@ We have data, but what does it look like?
 
 To visualize our data, we're going to use `plotly.js <https://plot.ly/javascript/>`_. Plotly.js is an open source library built on top of the popular `D3 <https://d3js.org/>`_ library, which powers a lot of the news graphics made with JavaScript you see online.
 
-.. note:: But wait, why aren't we using D3?
+.. note::
 
-    You've probably heard of the `D3 <https://d3js.org>`_, the data visualization library by Mike Bostock. It's an incredibly powerful tool, but a little too complex for making simple bar charts today. Instead we're going to use a library that abstracts the tools provided by D3 into something that's easier to use.
+    You've probably heard of the `D3 <https://d3js.org>`_, the data visualization library by Mike Bostock. Why aren't we using it? It's an incredibly powerful tool, but a little too complex for making simple bar charts on your first day writing JavaScript. Instead we're going to use a library that simplifies the tools provided by D3 into something that's easier to use.
 
 
 First, use npm to install plotly.js.
@@ -562,6 +563,7 @@ You can include the libraries we installed (or any JavaScript file!) by using ``
     // At the end of the charts.js file
     console.log("hello, this is my charts file!")
 
+
 Then we use the same ``require()`` method to pull our code into ``main.js``.
 
 .. code-block:: javascript
@@ -581,7 +583,8 @@ Then we use the same ``require()`` method to pull our code into ``main.js``.
 
     var chart = require('./charts.js');
 
-Structuring our code this way helps keep things organized, as each file controls one specific part of the page. Need to make an adjustment to your chart? Go to ``charts.js``. Want to change the map (which we'll do later)? Look in ``map.js``
+
+Structuring our code this way helps keep things organized, as each file controls one specific part of the page. Need to make an adjustment to your chart? Go to ``charts.js``.
 
 Now if you reload your page and go to your inspector (click on the three dots in the top right of Chrome, go down to "More tools" and select "Developer tools"), you should see ``hello, this is my charts file!`` in the console.
 
@@ -595,6 +598,7 @@ First, we need somewhere for our charts to go. In our ``index.nunjucks`` file, i
 
     <div id="county-homicides"></div>
     <div id="harvard-park-homicides"></div>
+
 
 Meanwhile, we need data. Copy the `annual totals data <https://raw.githubusercontent.com/ireapps/first-graphics-app/master/src/_data/annual_totals.json>`_ to ``_data/annual_totals.json``. We can use nunjucks to include our data file directly in the template.
 
@@ -625,6 +629,7 @@ Making a chart in Plotly is simple, but we have to do some data transformation f
     },
     ...
 
+
 We want to make two charts - one of county homicides and one of killings in Harvard Park. So let's make arrays that will hold those values that we will then provide to our function, as well as the years. We can use a little bit of JavaScript shorthand for this, using the ``.map()`` method and "arrow" functions.
 
 .. code-block:: javascript
@@ -639,6 +644,7 @@ We want to make two charts - one of county homicides and one of killings in Harv
     var countyHomicides = annualTotals.map(a => a.homicides_total);
     var harvardParkHomicides = annualTotals.map(a => a.homicides_harvard_park);
     var years = annualTotals.map(a => a.year);
+
 
 The ``.map()`` creates and returns an array, and the arrow (``=>``) function returns the value for each object. Think of it as "plucking" the values we want to form a list.
 
@@ -660,6 +666,7 @@ Below the settings we call ``Plotly.newPlot()`` with the id of the element where
 
     // Create the chart
     Plotly.newPlot('county-homicides', settings);
+
 
 This is a good start, but we can further customize this chart so it fits better with the rest of the page. Now, let's try to:
 
@@ -765,6 +772,7 @@ Now, we can make a second chart by using the Harvard Park data. Be sure to repla
     // The rest of your code is up here
     createChart(years, harvardParkHomicides, 'harvard-park-homicides');
 
+
 Not bad, right? By structuring our code this way, we'll be able to make multiple charts without repeating our code (known as `DRY <https://en.wikipedia.org/wiki/Don%27t_repeat_yourself>`_).
 
 Right now, our charts are stacked on top of each other, which isn't really a great layout. We can use HTML and CSS to lay out our charts side-by-side.
@@ -778,6 +786,7 @@ In ``index.nunjucks``, add a ``div`` element that wraps your charts, and add a `
         <div class="inline-chart" id="harvard-park-homicides"></div>
     </div>
 
+
 This gives us a structure that we can style with CSS. In the ``_scripts`` folder, create a file called ``_charts.scss``. In that file, copy or write the following:
 
 .. code-block:: css
@@ -786,6 +795,7 @@ This gives us a structure that we can style with CSS. In the ``_scripts`` folder
         width: 49%;
         float: left;
     }
+
 
 You won't see anything yet, because we haven't imported it into our main stylesheet. Use ``@import`` to bring your CSS file into ``main.css``
 
@@ -800,6 +810,7 @@ You won't see anything yet, because we haven't imported it into our main stylesh
 
     // Add this to main.scss
     @import '_charts.scss';
+
 
 Again, this is the same modular structure that allows us to organize our chart styles in a different place from our map styles, for example.
 
@@ -826,6 +837,7 @@ The charts are laid out side-by-side like we want them, but there's way too much
             b: 30
         }
     };
+
 
 We can also add a parameter to reduce the height, they're a bit tall.
 
@@ -857,6 +869,7 @@ Another nice modification - we can make the annoying toolbar go away by adjustin
 
     Plotly.newPlot(element, settings, layout, {displayModeBar: false});
 
+
 Much better! There are a couple more customization options we can do with plotly. While it's useful to get the homicide numbers on hover, we don't really need those year label popups. We can turn those off by only displaying hovers for y-axis values.
 
 .. code-block:: javascript
@@ -877,6 +890,7 @@ Much better! There are a couple more customization options we can do with plotly
       // the rest of your code is down here
       ...
     }
+
 
 You can also slightly customize the label. For example, let's change the background color.
 
@@ -942,6 +956,7 @@ We're going to
         Plotly.newPlot(element, settings, layout, {displayModeBar: false});
     }
 
+
 Then, add the title you want to your function call. We'll assign them to variables first for cleanliness.
 
 .. code-block:: javascript
@@ -952,17 +967,16 @@ Then, add the title you want to your function call. We'll assign them to variabl
     createChart(years, countyHomicides, 'county-homicides', countyChartTitle);
     createChart(years, harvardParkHomicides, 'harvard-park-homicides', hpChartTitle);
 
-**What we haven't covered here**
+Congratulations. You've made your charts! Let's move on to our next challenge.
 
-We used Plotly.js in this class, but there are many other javascript charting libraries, each one slightly different. If you want to explore this on your own, here are some other options that we considered using for this class.
+.. note::
 
-- `Vega-lite <https://vega.github.io/vega-lite/>`_
+    We used Plotly.js in this class, but there are many other JavaScript charting libraries, each one slightly different. If you want to explore this on your own, here are some other options that we considered using for this class:
 
-- `Charts.js <http://www.chartjs.org/>`_
-
-- `C3.js <http://c3js.org/>`_ Important to note that this does not seem to support the latest version (4.0) of D3.js
-
-- `D3.js <https://d3js.org/>`_ The granddaddy of them all.
+    - `Vega-lite <https://vega.github.io/vega-lite/>`_
+    - `Charts.js <http://www.chartjs.org/>`_
+    - `C3.js <http://c3js.org/>`_ Important to note that this does not seem to support the latest versions of D3.
+    - `D3.js <https://d3js.org/>`_ The granddaddy of them all.
 
 
 ********************
