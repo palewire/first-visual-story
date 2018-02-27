@@ -262,6 +262,7 @@ Congratulations, you've got your framework up and running. Let's save our work a
     While some frameworks are more popular than others, each newsroom tends to go its own way with a custom system for publishing pages. The programming languages and the details vary, but the fundamentals are almost all the same. Some of them have even been released as open-source software. They include:
 
     * The Los Angeles Times Data Desk's `bigbuild <https://github.com/datadesk/django-bigbuild>`_
+    * The Seattle Times `newsapp-template <https://github.com/seattletimes/newsapp-template/>`_
     * The NPR Apps team's `dailygraphics <https://github.com/nprapps/dailygraphics>`_
     * Politico's `Yeoman generator <https://github.com/The-Politico/generator-politico-interactives>`_
 
@@ -1402,6 +1403,7 @@ That process — converting a dynamic, living website to simple files living on 
 
     * `A wide array of interactive graphics <https://www.washingtonpost.com/graphics/2017/ns/year-in-graphics/>`_ by The Washington Post
     * Hundreds of Los Angeles Times stories at `latimes.com/projects <http://www.latimes.com/projects/>`_
+    * Dozens more from The Seattle Times at `projects.seattletimes.com <https://projects.seattletimes.com>`_
     * Interactive apps by `The Dallas Morning News <https://interactives.dallasnews.com/2018/secrets-dallas-dead/>`_
     * `Live election results <https://open.blogs.nytimes.com/2010/12/20/using-flat-files-so-elections-dont-break-your-server/>`_ published by The New York Times
     * Data downloads from the `California Civic Data Coalition <https://calaccess.californiacivicdata.org/downloads/latest/>`_
