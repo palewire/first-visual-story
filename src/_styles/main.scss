@@ -3,6 +3,10 @@
 
 // Import Modules
 @import '../_modules/link/link';
+@import 'node_modules/leaflet/dist/leaflet';
+@import 'node_modules/leaflet-minimap/src/Control.MiniMap';
+@import '_charts.scss';
+@import '_map.scss';
 
 // Box sizing partial styles:
 // Apply a natural box layout model to all elements
