@@ -241,30 +241,43 @@ in Chicago</a>.</p>
 </div>
 <div class="section" id="chapter-1-hello-git">
 <h2>Chapter 1: Hello Git<a class="headerlink" href="#chapter-1-hello-git" title="Permalink to this headline">¶</a></h2>
-<p>Start by creating a new directory where we can store the code for our project. Name it after our application.</p>
+<p>First things first - it always helps to store all your code in the same place, instead of haphazard folders around your computer. This way, you always know where to look.</p>
+<p>In this case, let’s call that directory <code class="docutils literal"><span class="pre">Code</span></code>.</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span><span class="c1"># You don&#39;t have to type the &quot;$&quot; It&#39;s just a generic symbol</span>
 <span class="c1"># geeks use to show they&#39;re working on the command line.</span>
-$ mkdir first-graphics-app
+$ mkdir Code
 </pre></div>
 </div>
-<p>Jump into the directory it created.</p>
+<p>You can use the <cite>cd</cite> command to “change directory” into the directory we created.</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span><span class="c1"># You don&#39;t have to type the &quot;$&quot; It&#39;s just a generic symbol</span>
+<span class="c1"># geeks use to show they&#39;re working on the command line.</span>
+$ <span class="nb">cd</span> Code
+</pre></div>
+</div>
+<p>Then, create a new directory where we can store the code for the project we’re going to build today. Name it after our application.</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ mkdir first-graphics-app
+</pre></div>
+</div>
+<p>Now, use <code class="docutils literal"><span class="pre">cd</span></code> again to enter the the directory you just created.</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>$ <span class="nb">cd</span> first-graphics-app
 </pre></div>
 </div>
-<p>Create a new Git repository in the current directory.</p>
+<p>Use the command <code class="docutils literal"><span class="pre">git</span> <span class="pre">init</span></code> to create a new Git repository in the current directory. This will be the root of our version-controlled project.</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span><span class="c1"># &quot;.&quot; is a common shortcut to refer to the current directory from the terminal</span>
 $ git init .
 </pre></div>
 </div>
-<p>Visit <a class="reference external" href="http://www.github.com">GitHub</a> and create a new public repository named <code class="docutils literal"><span class="pre">first-graphics-app</span></code>. Don’t check “Initialize with README.” You want to start with a blank repository.</p>
+<p>Visit <a class="reference external" href="http://www.github.com">GitHub</a> and create a new public repository named <code class="docutils literal"><span class="pre">first-graphics-app</span></code>. Don’t check “Initialize with README.” You’ll want to start with a blank repository.</p>
+<p>TK SCREENSHOT OF GIT REPO CREATION SCREEN</p>
 <p>Then connect your local directory to GitHub with the following command.</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>$ git remote add origin https://github.com/&lt;yourusername&gt;/first-graphics-app.git
 </pre></div>
 </div>
-<p>Create your first file, a blank <code class="docutils literal"><span class="pre">README</span></code> with a <a class="reference external" href="https://en.wikipedia.org/wiki/Markdown">Markdown</a> file extension since that’s <a class="reference external" href="https://help.github.com/articles/github-flavored-markdown">the preferred format of GitHub</a>.</p>
+<p>Create your first file, a blank <code class="docutils literal"><span class="pre">README</span></code> with a <a class="reference external" href="https://en.wikipedia.org/wiki/Markdown">Markdown</a> file extension since that’s <a class="reference external" href="https://help.github.com/articles/github-flavored-markdown">the preferred format of GitHub</a>. The filename will be <code class="docutils literal"><span class="pre">README.md</span></code>.</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span><span class="c1"># Macs or Linux:</span>
 $ touch README.md
-<span class="c1"># In Windows fire it up in your text editor right away:</span>
+
+<span class="c1"># On Windows, fire it up in your text editor right away:</span>
 $ start notepad++ README.md
 </pre></div>
 </div>
@@ -290,23 +303,13 @@ $ git config --global user.name <span class="s2">&quot;your name&quot;</span>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>$ git push origin master
 </pre></div>
 </div>
-<p>Reload your repository on GitHub and see your handiwork.</p>
+<p>You just created your first code commit! Reload your repository on GitHub and see your handiwork.</p>
 </div>
 <div class="section" id="chapter-2-hello-framework">
 <h2>Chapter 2: Hello framework<a class="headerlink" href="#chapter-2-hello-framework" title="Permalink to this headline">¶</a></h2>
-<p>Create a Code directory for your work.</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ mkdir Code
-</pre></div>
-</div>
-<p>Move in.</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ <span class="nb">cd</span> Code
-</pre></div>
-</div>
-<p>Create a new directory for your project.</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ mkdir first-graphics-app
-</pre></div>
-</div>
+<p>Now that we have our Git repository created, we’re going to start building our framework. We’ll use <code class="docutils literal"><span class="pre">npm</span></code> (Node Package Manager) to install the framework packages from the command line.</p>
 <p>Use <code class="docutils literal"><span class="pre">npm</span></code> to install <a class="reference external" href="http://yeoman.io/">yeoman</a> (a tempate and scaffolding system) and <a class="reference external" href="https://gulpjs.com/">gulp</a> (a task runner).</p>
+<p>The <code class="docutils literal"><span class="pre">-g</span></code> means that we’re installing the packages globally. You’ll be able to run these from any directory on your computer.</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>$ sudo npm install -g yo gulp
 </pre></div>
 </div>

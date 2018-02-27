@@ -123,28 +123,46 @@ Once that's done, you should create an account at GitHub, if you don't already h
 Chapter 1: Hello Git
 ********************
 
-Start by creating a new directory where we can store the code for our project. Name it after our application.
+First things first - it always helps to store all your code in the same place, instead of haphazard folders around your computer. This way, you always know where to look.
+
+In this case, let's call that directory ``Code``.
 
 .. code-block:: bash
 
     # You don't have to type the "$" It's just a generic symbol
     # geeks use to show they're working on the command line.
+    $ mkdir Code
+
+You can use the `cd` command to "change directory" into the directory we created.
+
+.. code-block:: bash
+
+    # You don't have to type the "$" It's just a generic symbol
+    # geeks use to show they're working on the command line.
+    $ cd Code
+
+Then, create a new directory where we can store the code for the project we're going to build today. Name it after our application.
+
+.. code-block:: bash
+
     $ mkdir first-graphics-app
 
-Jump into the directory it created.
+Now, use ``cd`` again to enter the the directory you just created.
 
 .. code-block:: bash
 
     $ cd first-graphics-app
 
-Create a new Git repository in the current directory.
+Use the command ``git init`` to create a new Git repository in the current directory. This will be the root of our version-controlled project.
 
 .. code-block:: bash
 
     # "." is a common shortcut to refer to the current directory from the terminal
     $ git init .
 
-Visit `GitHub <http://www.github.com>`_ and create a new public repository named ``first-graphics-app``. Don't check "Initialize with README." You want to start with a blank repository.
+Visit `GitHub <http://www.github.com>`_ and create a new public repository named ``first-graphics-app``. Don't check "Initialize with README." You'll want to start with a blank repository.
+
+TK SCREENSHOT OF GIT REPO CREATION SCREEN
 
 Then connect your local directory to GitHub with the following command.
 
@@ -152,13 +170,14 @@ Then connect your local directory to GitHub with the following command.
 
     $ git remote add origin https://github.com/<yourusername>/first-graphics-app.git
 
-Create your first file, a blank ``README`` with a `Markdown <https://en.wikipedia.org/wiki/Markdown>`_ file extension since that's `the preferred format of GitHub <https://help.github.com/articles/github-flavored-markdown>`_.
+Create your first file, a blank ``README`` with a `Markdown <https://en.wikipedia.org/wiki/Markdown>`_ file extension since that's `the preferred format of GitHub <https://help.github.com/articles/github-flavored-markdown>`_. The filename will be ``README.md``.
 
 .. code-block:: bash
 
     # Macs or Linux:
     $ touch README.md
-    # In Windows fire it up in your text editor right away:
+
+    # On Windows, fire it up in your text editor right away:
     $ start notepad++ README.md
 
 Open up the README in your text editor and type something in it. Maybe something like:
@@ -193,35 +212,18 @@ Now, finally, push your commit up to GitHub.
 
     $ git push origin master
 
-Reload your repository on GitHub and see your handiwork.
+You just created your first code commit! Reload your repository on GitHub and see your handiwork.
 
 
 **************************
 Chapter 2: Hello framework
 **************************
 
-Create a Code directory for your work.
-
-.. code-block:: bash
-
-    $ mkdir Code
-
-
-Move in.
-
-.. code-block:: bash
-
-    $ cd Code
-
-
-Create a new directory for your project.
-
-.. code-block:: bash
-
-    $ mkdir first-graphics-app
-
+Now that we have our Git repository created, we're going to start building our framework. We'll use ``npm`` (Node Package Manager) to install the framework packages from the command line.
 
 Use ``npm`` to install `yeoman <http://yeoman.io/>`_ (a tempate and scaffolding system) and `gulp <https://gulpjs.com/>`_ (a task runner).
+
+The ``-g`` means that we're installing the packages globally. You'll be able to run these from any directory on your computer.
 
 .. code-block:: bash
 
