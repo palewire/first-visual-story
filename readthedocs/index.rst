@@ -1332,6 +1332,7 @@ Now that everything is installed, return to ``scripts/map.js`` and create an ins
     var mini = new L.Control.MiniMap(osm2, { toggleDisplay: true });
     mini.addTo(map);
 
+
 Save the file and the inset map should appear on your page.
 
 Finally, let's preface the map with so a headline.
@@ -1339,13 +1340,16 @@ Finally, let's preface the map with so a headline.
 .. code-block:: html
 
     <h3>One corner. Four killings</h3>
+    <div id="map"></div>
 
 
 Then an introductory paragraph.
 
 .. code-block:: html
 
+    <h3>One corner. Four killings</h3>
     <p>The southwest corner of Harvard Park, at West 62nd Street and Harvard Boulevard, has been especially deadly. In the last year-and-a-half, four men have been killed there — while sitting in a car, trying to defuse an argument or walking home from the barber shop or the corner store.</p>
+    <div id="map"></div>
 
 
 All wrapped up in a ``<section>`` tag.
@@ -1357,6 +1361,7 @@ All wrapped up in a ``<section>`` tag.
         <p>The southwest corner of Harvard Park, at West 62nd Street and Harvard Boulevard, has been especially deadly. In the last year-and-a-half, four men have been killed there — while sitting in a car, trying to defuse an argument or walking home from the barber shop or the corner store.</p>
         <div id="map"></div>
     </section>
+
 
 Congratulations. You've created a custom map. Now let's get on to the business of sharing it with the world.
 
