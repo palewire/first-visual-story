@@ -1378,11 +1378,11 @@ The HTML, JavaScript and CSS files the framework generates are all they need. Wi
 
 That process — converting a dynamic, living website to simple files living on the filesystem — is a common strategy for publishing news sites. It goes by different names, like "flattening," "freezing" or "baking."  Whatever you call it, it’s a solid path to cheap­, stable host­ing for simple sites. It is used across the industry for pub­lish­ing elec­tion res­ults, longform stories, spe­cial pro­jects and numerous other things.
 
-Lucky for us, Yeogurt is pre-configured to flatten our dynamic site. And GitHub has a free hosting option built in for publishing static pages. Here's all it takes.
+Lucky for us, Yeogurt is pre-configured to flatten our dynamic site. And GitHub has a hosting service for publishing static pages. Here's all it takes.
 
 Go to GitHub's page for the repository. Click on the "Settings" tab. Scroll down to the "GitHub Pages" section. Select "master branch /docs folder" as the source. Hit save.
 
-This will result in any files pushed to the "docs" directory of your repository being published on the web.
+This will result in any files pushed to the "docs" directory of your repository being published on the web. For free.
 
 Next, open ``package.json`` file at the root of the project. Scroll to the bottom. In the ``config`` section edit it to instruct Gulp to flatten files to the ``docs`` directory.
 
