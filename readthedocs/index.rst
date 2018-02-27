@@ -257,6 +257,14 @@ Visit `localhost:3000 <http://localhost:3000>`_ in your browser. There you can s
 
 Congratulations, you've got your framework up and running. Let's save our work and then we'll be ready to start developing our own content.
 
+.. note::
+
+    While some frameworks are more popular than others, each newsroom tends to go its own way with a custom system for publishing pages. The programming languages and the details vary, but the fundamentals are almost all the same. Some of them have even been released as open-source software. They include:
+
+    * The Los Angeles Times Data Desk's `bigbuild <https://github.com/datadesk/django-bigbuild>`_
+    * The NPR Apps Team's `dailygraphics <https://github.com/nprapps/dailygraphics>`_
+    * Politico's `Yeoman generator <https://github.com/The-Politico/generator-politico-interactives>`_
+
 Open a second terminal and navigate to your code folder.
 
 .. code-block:: bash
@@ -320,7 +328,17 @@ Make a small change above the block and save the file. You should see the change
     Above content
     {% block content %}{% endblock %}
 
+
 Most newsrooms that use a similar system have a own base template for all of their custom pages. Graphic artists and designers install and extend it as the first step in their work. They develop their custom page within its confines and largely accept the furniture it provides, like the site's header and footer, fonts, common color schemes. This allows them to work more quickly because they do not have to bother with reinvent their site's most common elements.
+
+.. note::
+
+    While most newsrooms keep their base templates to themselves, a few have published them as open-source software. You can find them online, if you know where to look. They include:
+
+    * The Los Angeles Times Data Desk's `HTML Cookbook <http://cookbook.latimes.com>`_
+    * The Texas Tribune News App team's `Style Guide <https://apps.texastribune.org/styles/>`_
+    * The Politico interactive team's `Style Guide <https://the-politico.github.io/politico-style/>`_
+
 
 For this class, we have developed a base template that will act as a proxy for a real newsroom's base template. It is not as sophisticated or complete as a real-world example, but it will provide all of the basic elements we will need for this class.
 
@@ -1377,6 +1395,17 @@ Our Yeoman framework, with its tools, structure and shortcuts, has served us wel
 The HTML, JavaScript and CSS files the framework generates are all they need. Without all the code running our terminal, those files aren't be able to take advantage of Yeogurt, Gulp, BrowserSync and all our other tricks. But it won't matter. We can upload the simple files our framework renders to the web and they'll be enough for anyone who wants them.
 
 That process — converting a dynamic, living website to simple files living on the filesystem — is a common strategy for publishing news sites. It goes by different names, like "flattening," "freezing" or "baking."  Whatever you call it, it’s a solid path to cheap­, stable host­ing for simple sites. It is used across the industry for pub­lish­ing elec­tion res­ults, longform stories, spe­cial pro­jects and numerous other things.
+
+.. note::
+
+    Examples of static news pages in the wild include:
+
+    * `A wide array of interactive graphics <https://www.washingtonpost.com/graphics/2017/ns/year-in-graphics/>`_ by The Washington Post
+    * Hundreds of Los Angeles Times stories at `latimes.com/projects <http://www.latimes.com/projects/>`_
+    * Interactive apps by `The Dallas Morning News <https://interactives.dallasnews.com/2018/secrets-dallas-dead/>`_
+    * `Live election results <https://open.blogs.nytimes.com/2010/12/20/using-flat-files-so-elections-dont-break-your-server/>`_ published by The New York Times
+    * Data downloads from the `California Civic Data Coalition <https://calaccess.californiacivicdata.org/downloads/latest/>`_
+
 
 Lucky for us, Yeogurt is pre-configured to flatten our dynamic site. And GitHub has a hosting service for publishing static pages. Here's all it takes.
 
