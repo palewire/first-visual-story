@@ -1384,7 +1384,7 @@ Go to GitHub's page for the repository. Click on the "Settings" tab. Scroll down
 
 This will result in any files pushed to the "docs" directory of your repository being published on the web. For free.
 
-Next, open ``package.json`` file at the root of the project. Scroll to the bottom. In the ``config`` section edit it to instruct Gulp to flatten files to the ``docs`` directory.
+Next, open the ``package.json`` file at the root of the project. Scroll to the bottom. In the ``config`` section edit it to instruct Gulp to flatten files to the ``docs`` directory.
 
 .. code-block:: javascript
     :emphasize-lines: 8
