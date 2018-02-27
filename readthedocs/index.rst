@@ -1370,23 +1370,48 @@ Congratulations. You've created a custom map. Now let's get on to the business o
 Chapter 8: Hello Internet
 *************************
 
-Build a static version of your site
+In in our last chapter, all the work we've done will finally be published online.
 
-.. code-block:: bash
+Our Yeoman framework, with its tools, structure and shortcuts, has served us well. It's been a great place to experiment, organize and develop our work. But it's useless to our readers.
 
-    $ gulp --production
+The HTML, JavaScript and CSS files the framework generates are all they need. Without our framework, and all the code running our terminal, those files aren't be able to take advantage of Yeogurt, Gulp, BrowserSync and all our other tricks. But it won't matter. We can upload the rendered files our framework to the web and they'll be ready for anyone who wants them.
 
+That process -- converting a dynamic, living website to simple files living on the filesystem -- is a common strategy for publishing news sites. It goes by different names, like "flattening," "freezing" or "baking" a page.  Whatever you call it, it’s a solid path to cheap­, stable host­ing for simple sites. It is used across the industry for pub­lish­ing elec­tion res­ults, longform stories, spe­cial pro­jects and numerous other things.
 
-Inspect the files in the build directory.
+Lucky for us, Yeogurt is pre-configured to flatten our dynamic site. And GitHub has a free hosting option built in for publishing static pages. Here's all it takes.
 
-Edit ``package.json`` to build files to docs instead.
+Go to GitHub's page for the repository. Click on the "Settings" tab. Scroll down to the "GitHub Pages" section. Select "master branch /docs folder" as the source. Hit save.
+
+This will result in any files pushed to the "docs" directory of your repository being published on the web.
+
+Next, open ``package.json`` file at the root of the project. Scroll to the bottom. In the ``config`` section edit it to instruct Gulp to flatten files to the ``docs`` directory.
 
 .. code-block:: javascript
+    :emphasize-lines: 8
 
-    "destination": "docs",
+    "config": {
+      "//": "Entry files",
+      "host": "127.0.0.1",
+      "port": "3000",
+      "baseUrl": "./",
+      "directories": {
+        "source": "src",
+        "destination": "docs",
+        "temporary": "tmp",
+        "//": "Directories relative to `source` directory",
+        "modules": "_modules",
+        "layouts": "_layouts",
+        "images": "_images",
+        "styles": "_styles",
+        "scripts": "_scripts",
+        "data": "_data"
+      }
+    }
 
 
-Build the static site again.
+Return to your terminal where the ``serve`` command is running. Hit ``CTRL-C`` or ``CTRL-Z`` to terminate its process.
+
+Once you are back at the standard terminal, enter the following command to build a static version of your site. Rather than start up the local test server we've been using so far, it will instead save the site as flat files in ``docs``.
 
 .. code-block:: bash
 
@@ -1397,12 +1422,11 @@ Commit and push to GitHub.
 
 .. code-block:: bash
 
-    $ git add package.json
-    $ git add docs
-    $ git commit -am "Message here"
+    $ git add .
+    $ git commit -m "Built site to docs folder"
     $ git push origin master
 
 
-Go to GitHub config and turn on GitHub Pages with the ``/docs`` on the master branch as the source. Hit save.
+Wait a few moments and visit `\<your_username\>.github.com/first-graphics-app/ <https://ireapps.github.io/first-graphics-app/>`_. You should see your app published live on the World Wide Web.
 
-Visit `\<your_username\>.github.com/first-graphics-app/ <https://ireapps.github.io/first-graphics-app/>`_.
+Congratulations. You've finished this class. 
