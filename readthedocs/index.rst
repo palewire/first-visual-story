@@ -1374,9 +1374,9 @@ In in our last chapter, all the work we've done will finally be published online
 
 Our Yeoman framework, with its tools, structure and shortcuts, has served us well. It's been a great place to experiment, organize and develop our work. But it's useless to our readers.
 
-The HTML, JavaScript and CSS files the framework generates are all they need. Without our framework, and all the code running our terminal, those files aren't be able to take advantage of Yeogurt, Gulp, BrowserSync and all our other tricks. But it won't matter. We can upload the rendered files our framework to the web and they'll be ready for anyone who wants them.
+The HTML, JavaScript and CSS files the framework generates are all they need. Without all the code running our terminal, those files aren't be able to take advantage of Yeogurt, Gulp, BrowserSync and all our other tricks. But it won't matter. We can upload the simple files our framework renders to the web and they'll be enough for anyone who wants them.
 
-That process -- converting a dynamic, living website to simple files living on the filesystem -- is a common strategy for publishing news sites. It goes by different names, like "flattening," "freezing" or "baking" a page.  Whatever you call it, it’s a solid path to cheap­, stable host­ing for simple sites. It is used across the industry for pub­lish­ing elec­tion res­ults, longform stories, spe­cial pro­jects and numerous other things.
+That process — converting a dynamic, living website to simple files living on the filesystem — is a common strategy for publishing news sites. It goes by different names, like "flattening," "freezing" or "baking" a page.  Whatever you call it, it’s a solid path to cheap­, stable host­ing for simple sites. It is used across the industry for pub­lish­ing elec­tion res­ults, longform stories, spe­cial pro­jects and numerous other things.
 
 Lucky for us, Yeogurt is pre-configured to flatten our dynamic site. And GitHub has a free hosting option built in for publishing static pages. Here's all it takes.
 
@@ -1429,4 +1429,4 @@ Commit and push to GitHub.
 
 Wait a few moments and visit `\<your_username\>.github.com/first-graphics-app/ <https://ireapps.github.io/first-graphics-app/>`_. You should see your app published live on the World Wide Web.
 
-Congratulations. You've finished this class. 
+Congratulations. You've finished this class.
