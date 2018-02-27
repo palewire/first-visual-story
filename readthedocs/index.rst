@@ -133,6 +133,7 @@ In this case, let's call that directory ``Code``.
     # geeks use to show they're working on the command line.
     $ mkdir Code
 
+
 You can use the `cd` command to "change directory" into the directory we created.
 
 .. code-block:: bash
@@ -141,11 +142,13 @@ You can use the `cd` command to "change directory" into the directory we created
     # geeks use to show they're working on the command line.
     $ cd Code
 
+
 Then, create a new directory where we can store the code for the project we're going to build today. Name it after our application.
 
 .. code-block:: bash
 
     $ mkdir first-graphics-app
+
 
 Now, use ``cd`` again to enter the the directory you just created.
 
@@ -153,12 +156,14 @@ Now, use ``cd`` again to enter the the directory you just created.
 
     $ cd first-graphics-app
 
+
 Use the command ``git init`` to create a new Git repository in the current directory. This will be the root of our version-controlled project.
 
 .. code-block:: bash
 
     # "." is a common shortcut to refer to the current directory from the terminal
     $ git init .
+
 
 Visit `GitHub <http://www.github.com>`_ and create a new public repository named ``first-graphics-app``. Don't check "Initialize with README." You'll want to start with a blank repository.
 
@@ -170,6 +175,7 @@ Then connect your local directory to GitHub with the following command.
 
     $ git remote add origin https://github.com/<yourusername>/first-graphics-app.git
 
+
 Create your first file, a blank ``README`` with a `Markdown <https://en.wikipedia.org/wiki/Markdown>`_ file extension since that's `the preferred format of GitHub <https://help.github.com/articles/github-flavored-markdown>`_. The filename will be ``README.md``.
 
 .. code-block:: bash
@@ -179,6 +185,7 @@ Create your first file, a blank ``README`` with a `Markdown <https://en.wikipedi
 
     # On Windows, fire it up in your text editor right away:
     $ start notepad++ README.md
+
 
 Open up the README in your text editor and type something in it. Maybe something like:
 
@@ -193,11 +200,13 @@ Make sure to save it. Then officially add the file to your repository for tracki
 
     $ git add README.md
 
+
 Log its creation with Git's ``commit`` command. You can include a personalized message after the ``-m`` flag.
 
 .. code-block:: bash
 
     $ git commit -m "First commit"
+
 
 If this is your first time using Git, you may be prompted to configure you name and email. If so, take the time now. Then run the ``commit`` command above again.
 
@@ -206,11 +215,13 @@ If this is your first time using Git, you may be prompted to configure you name 
     $ git config --global user.email "your@email.com"
     $ git config --global user.name "your name"
 
+
 Now, finally, push your commit up to GitHub.
 
 .. code-block:: bash
 
     $ git push origin master
+
 
 You just created your first code commit! Reload your repository on GitHub and see your handiwork.
 
@@ -262,9 +273,10 @@ Congratulations, you've got your framework up and running. Let's save our work a
     While some frameworks are more popular than others, each newsroom tends to go its own way with a custom system for publishing pages. The programming languages and the details vary, but the fundamentals are almost all the same. Some of them have even been released as open-source software. They include:
 
     * The Los Angeles Times Data Desk's `bigbuild <https://github.com/datadesk/django-bigbuild>`_
-    * The Seattle Times `newsapp-template <https://github.com/seattletimes/newsapp-template/>`_
+    * The Seattle Times' `newsapp-template <https://github.com/seattletimes/newsapp-template/>`_
     * The NPR Apps team's `dailygraphics <https://github.com/nprapps/dailygraphics>`_
-    * Politico's `Yeoman generator <https://github.com/The-Politico/generator-politico-interactives>`_
+    * Politico's `generator-politico-graphics  <https://github.com/The-Politico/generator-politico-graphics>`_
+
 
 Open a second terminal and navigate to your code folder.
 
@@ -337,8 +349,8 @@ Most newsrooms that use a similar system have a own base template for all of the
     While most newsrooms keep their base templates to themselves, a few have published them as open-source software. You can find them online, if you know where to look. They include:
 
     * The Los Angeles Times Data Desk's `HTML Cookbook <http://cookbook.latimes.com>`_
-    * The Texas Tribune News App team's `Style Guide <https://apps.texastribune.org/styles/>`_
-    * The Politico interactive team's `Style Guide <https://the-politico.github.io/politico-style/>`_
+    * The Texas Tribune News App team's `style guide <https://apps.texastribune.org/styles/>`_
+    * Politico's `style guide <https://github.com/The-Politico/politico-style>`_
 
 
 For this class, we have developed a base template that will act as a proxy for a real newsroom's base template. It is not as sophisticated or complete as a real-world example, but it will provide all of the basic elements we will need for this class.
