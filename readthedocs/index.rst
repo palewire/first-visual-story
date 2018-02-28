@@ -515,9 +515,11 @@ Loop through them and print them all.
 
 .. code-block:: jinja
 
+    {% block content %}
     {% for obj in site.data.harvard_park_homicides %}
         {{ obj }}
     {% endfor %}
+    {% endblock %}
 
 
 .. image:: _static/data-dump.png
@@ -529,9 +531,11 @@ Add a line break with a ``<br>`` tag.
 
 .. code-block:: jinja
 
+    {% block content %}
     {% for obj in site.data.harvard_park_homicides %}
         {{ obj }}<br>
     {% endfor %}
+    {% endblock %}
 
 
 .. image:: _static/hello-loop.png
@@ -542,9 +546,11 @@ Print the last name.
 
 .. code-block:: jinja
 
+    {% block content %}
     {% for obj in site.data.harvard_park_homicides %}
         {{ obj.last_name }}<br>
     {% endfor %}
+    {% endblock %}
 
 
 .. image:: _static/hello-last-name.png
@@ -555,9 +561,11 @@ Add the first name. To have them display more nicely, you can also add a line br
 
 .. code-block:: jinja
 
+    {% block content %}
     {% for obj in site.data.harvard_park_homicides %}
         {{ obj.first_name }} {{ obj.last_name }}<br>
     {% endfor %}
+    {% endblock %}
 
 
 .. image:: _static/hello-full-name.png
