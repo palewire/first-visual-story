@@ -121,7 +121,7 @@ Once that's done, you should create an account at GitHub, if you don't already h
 Chapter 1: Hello Git
 ********************
 
-First things first - it always helps to store all your code in the same place, instead of haphazard folders around your computer. This way, you always know where to look.
+First things first. It always helps to store all your code in the same place, instead of haphazard folders around your computer. This way, you always know where to look.
 
 In this case, let's call that directory ``Code``.
 
@@ -163,9 +163,12 @@ Use the command ``git init`` to create a new Git repository in the current direc
     $ git init .
 
 
-Visit `GitHub <http://www.github.com>`_ and create a new public repository named ``first-graphics-app``. Don't check "Initialize with README." You'll want to start with a blank repository.
+Visit `GitHub <http://www.github.com>`_ and `create <https://github.com/new>`_ a new public repository named ``first-graphics-app``. Don't check "Initialize with README." You'll want to start with a blank repository.
 
-TK SCREENSHOT OF GIT REPO CREATION SCREEN
+.. image:: _static/new-repo.png
+   :width: 100%
+   :target: https://github.com/new
+
 
 Then connect your local directory to GitHub with the following command.
 
