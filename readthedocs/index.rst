@@ -514,6 +514,8 @@ Return to ``index.nunjucks`` and print them out on the page.
     {% endblock %}
 
 
+Here's what you should see.
+
 .. image:: _static/data-dump.png
     :width: 100%
 
@@ -529,6 +531,9 @@ Loop through them and print them all.
 
 .. image:: _static/data-dump.png
     :width: 100%
+
+
+Add a line break with a ``<br>`` tag.
 
 
 .. code-block:: jinja
