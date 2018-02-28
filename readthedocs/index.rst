@@ -14,7 +14,7 @@ What you will make
 
 By the end of this lesson, you will publish a standalone page with a series of graphics examining the high homicide rate in Harvard Park, a small neighborhood in South Los Angeles. You will do so by repurposing data from `a 2017 Los Angeles Times story <http://www.latimes.com/projects/la-me-harvard-park-homicides/>`_ by Nicole Santa Cruz and Cindy Chang.
 
-.. image:: preview.gif
+.. image:: _static/preview.gif
    :width: 100%
    :target: https://ireapps.github.io/first-graphics-app/
 
