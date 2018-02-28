@@ -583,12 +583,23 @@ Push it to GitHub.
 Chapter 5: Hello cards
 **********************
 
-Explain Bootstrap. Show what we're trying to make. Talk about cards. Show Bootstrap docs.
+Explain Bootstrap. Show what we're trying to make.
+
+.. image:: _static/bootstrap.png
+    :width: 100%
+
+
+Talk about cards. Show Bootstrap docs.
+
+.. image:: _static/bootstrap-cols.png
+    :width: 100%
+
 
 Basic card with only a title. Talk about divs. etc.
 
 .. code-block:: jinja
 
+    {% block content %}
     {% for obj in site.data.harvard_park_homicides %}
         <div class="card">
           <div class="card-body">
@@ -596,6 +607,12 @@ Basic card with only a title. Talk about divs. etc.
           </div>
         </div>
     {% endfor %}
+    {% endblock %}
+
+
+.. image:: _static/cards-first.png
+    :width: 100%
+
 
 Add a sentence below the title.
 
@@ -609,6 +626,10 @@ Add a sentence below the title.
           </div>
         </div>
     {% endfor %}
+
+
+PHOTO ONCE WE FINALIZE THE SENTENCE
+
 
 Add an image.
 
@@ -624,6 +645,10 @@ Add an image.
         </div>
     {% endfor %}
 
+
+PHOTO ONCE WE FINALIZE THE SENTENCE
+
+
 Add if clause around the image.
 
 .. code-block:: jinja
@@ -637,6 +662,10 @@ Add if clause around the image.
           </div>
         </div>
     {% endfor %}
+
+
+PHOTO ONCE WE FINALIZE THE SENTENCE
+
 
 Add the columns.
 
@@ -654,9 +683,38 @@ Add the columns.
         {% endfor %}
     </div>
 
+
+PHOTO ONCE WE FINALIZE THE SENTENCE
+
+
 Write a headline.
 
+.. code-block:: jinja
+
+    TK
+
+
+PHOTO
+
+
 Write the chatter.
+
+.. code-block:: jinja
+
+    TK
+
+
+PHOTO
+
+
+Section tag.
+
+.. code-block:: jinja
+
+    TK
+
+
+PHOTO
 
 
 ***********************
