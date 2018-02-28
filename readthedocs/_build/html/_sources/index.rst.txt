@@ -265,7 +265,7 @@ After you run the command, you will be asked a series of questions. *Pay close a
    :width: 100%
 
 
-1. Your project name should be "First Graphics App."
+1. Your project name should be the slug "first-graphics-app"
 2. The HTML preprocessor you choose must be "Nunjucks."
 3. The JavaScript preprocessor your choose must be "ES6 (Using Babel)"
 4. Styles must be written with "Sass"
