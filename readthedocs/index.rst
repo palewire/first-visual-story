@@ -496,21 +496,12 @@ Chapter 4: Hello data
 
 Add the `Harvard Park homicides data files <https://raw.githubusercontent.com/ireapps/first-graphics-app/master/src/_data/harvard_park_homicides.json>`_ to ``_data/harvard_park_homicides.json``
 
-Return to ``index.nunjucks`` and print them out on the page.
+Return to ``index.nunjucks`` and add the following to the bottom to print the data out on the page.
 
 .. code-block:: jinja
-    :emphasize-lines:9-11
-
-    {% extends '_layouts/base.nunjucks' %}
-
-    {% block headline %}My headline will go here{% endblock %}
-    {% block byline %}By me{% endblock %}
-    {% block pubdate %}
-        <time datetime="2018-03-10" pubdate>Mar. 10, 2018</time>
-    {% endblock %}
 
     {% block content %}
-    {{ site.data.harvard_park_homicides }}
+        {{ site.data.harvard_park_homicides }}
     {% endblock %}
 
 
