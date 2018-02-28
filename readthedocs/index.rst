@@ -253,16 +253,26 @@ Use npm to install `yeogurt <https://github.com/larsonjj/generator-yeogurt>`_, o
     $ sudo npm install -g generator-yeogurt
 
 
-Create a new project.
+Create a new project using our yeogurt generator as the guide.
 
 .. code-block:: bash
 
     $ yo yeogurt
 
+After you run the command, you will be asked a series of questions. *Pay close attention* because you will need to choose the proper options to continue with our tutorial, and some of the correct selections are not the default choice.
 
-Be sure to pick "nunjucks" when creating the project.
+.. image:: _static/yo.png
+   :width: 100%
 
-Fire up the test server
+1. Your project name should be "First Graphics App."
+2. The HTML preprocessor you choose must be "Nunjucks."
+3. The JavaScript preprocessor your choose must be "ES6 (Using Babel)"
+4. Styles must be written with "Sass"
+5. The Sass syntax must be "Scss"
+
+Don't sweat the rest. But make sure you get the above right.
+
+Yeoman will then use the generator to create a complete project that's ready for us to work in. Fire up its test server to see what it has to offer out of the box. 
 
 .. code-block:: bash
 
