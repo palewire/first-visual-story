@@ -12,7 +12,11 @@ This tutorial will show you how journalists at America’s top news organization
 What you will make
 ******************
 
-By the end of this lesson, you will publish an standalone page with a series of graphics examining the high homicide rate in Harvard Park, a small neighborhood in South Los Angeles. You will do so by repurposing data from `a 2017 Los Angeles Times story <http://www.latimes.com/projects/la-me-harvard-park-homicides/>`_ by Nicole Santa Cruz and Cindy Chang.
+By the end of this lesson, you will publish a standalone page with a series of graphics examining the high homicide rate in Harvard Park, a small neighborhood in South Los Angeles. You will do so by repurposing data from `a 2017 Los Angeles Times story <http://www.latimes.com/projects/la-me-harvard-park-homicides/>`_ by Nicole Santa Cruz and Cindy Chang.
+
+.. image:: _static/preview.gif
+   :width: 100%
+   :target: https://ireapps.github.io/first-graphics-app/
 
 A working example of what you will make can be found at `ireapps.github.io/first-graphics-app/ <https://ireapps.github.io/first-graphics-app/>`_
 
@@ -29,7 +33,7 @@ Their work was inspired by the footloose spirit of funk music. We urge you to bu
 
 .. raw:: html
 
-    <iframe src="https://open.spotify.com/embed?uri=spotify:user:227b2koy2xxyb23qliakea75y:playlist:54NS8jCdrgUpzUppUpokSg&theme=white" width="300" height="380" frameborder="0" allowtransparency="true"></iframe>
+    <iframe src="https://open.spotify.com/embed?uri=spotify:user:227b2koy2xxyb23qliakea75y:playlist:54NS8jCdrgUpzUppUpokSg&theme=white" width="300" height="380" frameborder="0" allowtransparency="true" style="margin: 20px 0;"></iframe>
 
 **********************
 Prelude: Prerequisites
@@ -49,16 +53,14 @@ Before you can begin, your computer needs the following tools installed and work
 
 .. _command-line-prereq:
 
+
 Command-line interface
 ----------------------
 
 Unless something is wrong with your computer, there should be a way to open a window that lets you type in commands. Different operating systems give this tool slightly different names, but they all have some form of it.
 
-On Windows you can find the command-line interface by opening the "command prompt." Here are `instructions <https://www.bleepingcomputer.com/tutorials/windows-command-prompt-introduction/>`_.
+On Windows you can find the command-line interface by opening the "command prompt." Here are `instructions <https://www.bleepingcomputer.com/tutorials/windows-command-prompt-introduction/>`_. On Apple computers, you open the `"Terminal" application <http://blog.teamtreehouse.com/introduction-to-the-mac-os-x-command-line>`_. Ubuntu Linux comes with a program of the `same name <http://askubuntu.com/questions/38162/what-is-a-terminal-and-how-do-i-open-and-use-it>`_.
 
-On Apple computers, you open the `"Terminal" application <http://blog.teamtreehouse.com/introduction-to-the-mac-os-x-command-line>`_.
-
-Ubuntu Linux comes with a program of the `same name <http://askubuntu.com/questions/38162/what-is-a-terminal-and-how-do-i-open-and-use-it>`_.
 
 Text editor
 -----------
@@ -67,11 +69,8 @@ A program like Microsoft Word, which can do all sorts of text formatting like ch
 
 You need a program that works with simple `"plain text" files <https://en.wikipedia.org/wiki/Text_file>`_, and is therefore capable of editing documents containing Python code, HTML markup and other languages without dressing them up by adding anything extra. Such programs are easy to find and some of the best ones are free, including those below.
 
-For Windows, we recommend installing `Notepad++ <http://notepad-plus-plus.org/>`_.
+For Windows, we recommend installing `Notepad++ <http://notepad-plus-plus.org/>`_. For Apple computers, try `Atom <https://atom.io>`_ or `Sublime Text <https://www.sublimetext.com/>`_. In Ubuntu Linux you can stick with the pre-installed `gedit <https://help.ubuntu.com/community/gedit>`_ text editor or install a more sophisticated tool like `Atom <https://atom.io>`_
 
-For Apple computers, try `Atom <https://atom.io>`_ or `Sublime Text <https://www.sublimetext.com/>`_.
-
-In Ubuntu Linux you can stick with the pre-installed `gedit <https://help.ubuntu.com/community/gedit>`_ text editor or install a more sophisticated tool like `Atom <https://atom.io>`_
 
 Node.js
 -------
@@ -88,6 +87,7 @@ You can verify if you have Node installed, and if so what version, by typing the
 
 
 The number you get back is the version you have installed. If you get an error, you don't have it installed and should start from scratch with an installer package. If you have a slightly older version, you are probably okay. But we make no guarantees. Consider upgrading.
+
 
 npm
 ---
@@ -106,11 +106,9 @@ Git and GitHub
 
 `Git <http://git-scm.com/>`_ is a version control program for saving the changes you make to files over time. This is useful when you're working on your own, but quickly becomes essential with large software projects when you work with other developers.
 
-`GitHub <https://github.com/>`_ is a website that hosts git code repositories, both public and private. It comes with many helpful tools for reviewing code and managing projects. It also has some `extra tricks <http://pages.github.com/>`_ that make it easy to publish web pages, which we will use later.
+`GitHub <https://github.com/>`_ is a website that hosts git code repositories, both public and private. It comes with many helpful tools for reviewing code and managing projects. It also has some `extra tricks <http://pages.github.com/>`_ that make it easy to publish web pages, which we will use later. GitHub offers helpful guides for installing Git for `Windows <https://help.github.com/articles/set-up-git#platform-windows>`_, `Macs <https://help.github.com/articles/set-up-git#platform-mac>`_ and `Linux <https://help.github.com/articles/set-up-git#platform-linux>`_.
 
-GitHub offers helpful guides for installing Git for `Windows <https://help.github.com/articles/set-up-git#platform-windows>`_, `Macs <https://help.github.com/articles/set-up-git#platform-mac>`_ and `Linux <https://help.github.com/articles/set-up-git#platform-linux>`_.
-
-You can verify it's installed from your command line like so:
+You can verify Git is installed from your command line like so:
 
 .. code-block:: bash
 
@@ -123,7 +121,7 @@ Once that's done, you should create an account at GitHub, if you don't already h
 Chapter 1: Hello Git
 ********************
 
-First things first - it always helps to store all your code in the same place, instead of haphazard folders around your computer. This way, you always know where to look.
+First things first. It always helps to store all your code in the same place, instead of haphazard folders around your computer. This way, you always know where to look.
 
 In this case, let's call that directory ``Code``.
 
@@ -133,6 +131,7 @@ In this case, let's call that directory ``Code``.
     # geeks use to show they're working on the command line.
     $ mkdir Code
 
+
 You can use the `cd` command to "change directory" into the directory we created.
 
 .. code-block:: bash
@@ -141,17 +140,20 @@ You can use the `cd` command to "change directory" into the directory we created
     # geeks use to show they're working on the command line.
     $ cd Code
 
+
 Then, create a new directory where we can store the code for the project we're going to build today. Name it after our application.
 
 .. code-block:: bash
 
     $ mkdir first-graphics-app
 
+
 Now, use ``cd`` again to enter the the directory you just created.
 
 .. code-block:: bash
 
     $ cd first-graphics-app
+
 
 Use the command ``git init`` to create a new Git repository in the current directory. This will be the root of our version-controlled project.
 
@@ -160,15 +162,20 @@ Use the command ``git init`` to create a new Git repository in the current direc
     # "." is a common shortcut to refer to the current directory from the terminal
     $ git init .
 
-Visit `GitHub <http://www.github.com>`_ and create a new public repository named ``first-graphics-app``. Don't check "Initialize with README." You'll want to start with a blank repository.
 
-TK SCREENSHOT OF GIT REPO CREATION SCREEN
+Visit `GitHub <http://www.github.com>`_ and `create <https://github.com/new>`_ a new public repository named ``first-graphics-app``. Don't check "Initialize with README." You'll want to start with a blank repository.
+
+.. image:: _static/new-repo.png
+   :width: 100%
+   :target: https://github.com/new
+
 
 Then connect your local directory to GitHub with the following command.
 
 .. code-block:: bash
 
     $ git remote add origin https://github.com/<yourusername>/first-graphics-app.git
+
 
 Create your first file, a blank ``README`` with a `Markdown <https://en.wikipedia.org/wiki/Markdown>`_ file extension since that's `the preferred format of GitHub <https://help.github.com/articles/github-flavored-markdown>`_. The filename will be ``README.md``.
 
@@ -180,6 +187,7 @@ Create your first file, a blank ``README`` with a `Markdown <https://en.wikipedi
     # On Windows, fire it up in your text editor right away:
     $ start notepad++ README.md
 
+
 Open up the README in your text editor and type something in it. Maybe something like:
 
 .. code-block:: markdown
@@ -187,17 +195,20 @@ Open up the README in your text editor and type something in it. Maybe something
     My first graphics app
     =====================
 
+
 Make sure to save it. Then officially add the file to your repository for tracking with Git's ``add`` command.
 
 .. code-block:: bash
 
     $ git add README.md
 
+
 Log its creation with Git's ``commit`` command. You can include a personalized message after the ``-m`` flag.
 
 .. code-block:: bash
 
     $ git commit -m "First commit"
+
 
 If this is your first time using Git, you may be prompted to configure you name and email. If so, take the time now. Then run the ``commit`` command above again.
 
@@ -206,13 +217,18 @@ If this is your first time using Git, you may be prompted to configure you name 
     $ git config --global user.email "your@email.com"
     $ git config --global user.name "your name"
 
+
 Now, finally, push your commit up to GitHub.
 
 .. code-block:: bash
 
     $ git push origin master
 
+
 You just created your first code commit! Reload your repository on GitHub and see your handiwork.
+
+.. image:: _static/first-commit.png
+   :width: 100%
 
 
 **************************
@@ -237,16 +253,27 @@ Use npm to install `yeogurt <https://github.com/larsonjj/generator-yeogurt>`_, o
     $ sudo npm install -g generator-yeogurt
 
 
-Create a new project.
+Create a new project using our yeogurt generator as the guide.
 
 .. code-block:: bash
 
     $ yo yeogurt
 
+After you run the command, you will be asked a series of questions. *Pay close attention* because you will need to choose the proper options to continue with our tutorial, and some of the correct selections are not the default choice.
 
-Be sure to pick "nunjucks" when creating the project.
+.. image:: _static/yo.png
+   :width: 100%
 
-Fire up the test server
+
+1. Your project name should be "First Graphics App."
+2. The HTML preprocessor you choose must be "Nunjucks."
+3. The JavaScript preprocessor your choose must be "ES6 (Using Babel)"
+4. Styles must be written with "Sass"
+5. The Sass syntax must be "Scss"
+
+Don't sweat the rest. But make sure you get the above right.
+
+Yeoman will then use the generator to create a complete project that's ready for us to work in. Fire up its test server to see what it has to offer out of the box.
 
 .. code-block:: bash
 
@@ -255,9 +282,23 @@ Fire up the test server
 
 Visit `localhost:3000 <http://localhost:3000>`_ in your browser. There you can see the generic website offered as a starting point by our Yeoman generator.
 
+.. image:: _static/welcome.png
+   :width: 100%
+
+
 Congratulations, you've got your framework up and running. Let's save our work and then we'll be ready to start developing our own content.
 
-Open a second terminal and navigate to your code folder.
+.. note::
+
+    While some frameworks are more popular than others, each newsroom tends to go its own way with a custom system for publishing pages. The programming languages and the details vary, but the fundamentals are almost all the same. Some of them have even been released as open-source software. They include:
+
+    * The Los Angeles Times Data Desk's `bigbuild <https://github.com/datadesk/django-bigbuild>`_
+    * The Seattle Times' `newsapp-template <https://github.com/seattletimes/newsapp-template/>`_
+    * The NPR Apps team's `dailygraphics <https://github.com/nprapps/dailygraphics>`_
+    * Politico's `generator-politico-graphics  <https://github.com/The-Politico/generator-politico-graphics>`_
+
+
+Open a second terminal (this way you can keep your server running) and navigate to your code folder.
 
 .. code-block:: bash
 
@@ -285,6 +326,10 @@ Chapter 3: Hello template
 
 Navigate back to `localhost:3000 <http://localhost:3000/>`_ in your browser. You should see the same default homepage as before.
 
+.. image:: _static/welcome.png
+   :width: 100%
+
+
 Its contents is configured in the ``index.nunjucks`` file found in the directory Yeoman created. It uses a templating language for JavaScript invented at Mozilla called `Nunjucks <https://mozilla.github.io/nunjucks/>`_.
 
 You can edit the page by changing what's found inside of the ``content`` block. Make a change and save the file.
@@ -299,6 +344,10 @@ You can edit the page by changing what's found inside of the ``content`` block. 
 
 You should see it immediately show up thanks to a `BrowserSync <https://browsersync.io>`_, a popular feature of Gulp that automatically updates your test site after you make a change.
 
+.. image:: _static/hello-world.png
+   :width: 100%
+
+
 Look closely at the index file you and will notice that it doesn't include code for much of what you can see on the live page. For instance, you won't see the HTML of the navigation bar or the stylesheets that dicatate how the page looks.
 
 That's because that boilerplate has been moved back into a parent template "extended" by the index file with a line of Nunjucks code at the top of the page.
@@ -312,7 +361,7 @@ That "base" file, sometimes called the "layout," can be inherited by other pages
 
 You can find the base layout packaged with our framework in the ``_layouts/base.nunjucks`` file. It includes a set of block tags, like ``content``, that act as placeholders for use in templates that extend it.
 
-Make a small change above the block and save the file. You should see the change on our site, with the new line appearing above the paragraph we added earlier to the index file.
+Make a small change above the block and save the file.
 
 .. code-block:: jinja
     :emphasize-lines: 1
@@ -320,7 +369,23 @@ Make a small change above the block and save the file. You should see the change
     Above content
     {% block content %}{% endblock %}
 
-Most newsrooms that use a similar system have a own base template for all of their custom pages. Graphic artists and designers install and extend it as the first step in their work. They develop their custom page within its confines and largely accept the furniture it provides, like the site's header and footer, fonts, common color schemes. This allows them to work more quickly because they do not have to bother with reinvent their site's most common elements.
+
+You should see the change on our site, with the new line appearing above the paragraph we added earlier to the index file.
+
+.. image:: _static/above-content.png
+    :width: 100%
+
+
+Most newsrooms that use a similar system have a own base template for all of their custom pages. Graphic artists and designers install and extend it as the first step in their work. They develop their custom page within its confines and largely accept the furniture it provides, like the site's header and footer, fonts, common color schemes. This allows them to work more quickly because they do not have to bother with reinventing their site's most common elements.
+
+.. note::
+
+    While most newsrooms keep their base templates to themselves, a few have published them as open-source software. You can find them online, if you know where to look. They include:
+
+    * The Los Angeles Times Data Desk's `HTML Cookbook <http://cookbook.latimes.com>`_
+    * The Texas Tribune News App team's `style guide <https://apps.texastribune.org/styles/>`_
+    * Politico's `style guide <https://github.com/The-Politico/politico-style>`_
+
 
 For this class, we have developed a base template that will act as a proxy for a real newsroom's base template. It is not as sophisticated or complete as a real-world example, but it will provide all of the basic elements we will need for this class.
 
@@ -365,22 +430,49 @@ As you can see, it includes all of the standard HTML tags, with our custom style
 To see the effects, return to ``index.nunjucks`` and fill in a headline using the ``headline`` block introduced by our base template. Save the page and you should quickly see it appear on the page.
 
 .. code-block:: jinja
+    :emphasize-lines: 3
+
+    {% extends '_layouts/base.nunjucks' %}
 
     {% block headline %}My headline will go here{% endblock %}
+
+
+.. image:: _static/headline.png
+    :width: 100%
+
 
 Now fill in a byline.
 
 .. code-block:: jinja
+    :emphasize-lines: 4
 
+    {% extends '_layouts/base.nunjucks' %}
+
+    {% block headline %}My headline will go here{% endblock %}
     {% block byline %}By me{% endblock %}
+
+
+.. image:: _static/byline.png
+    :width: 100%
+
 
 And let's do the publication date too while we are at it.
 
 .. code-block:: jinja
+    :emphasize-lines: 5-7
 
+    {% extends '_layouts/base.nunjucks' %}
+
+    {% block headline %}My headline will go here{% endblock %}
+    {% block byline %}By me{% endblock %}
     {% block pubdate %}
         <time datetime="2018-03-10" pubdate>Mar. 10, 2018</time>
     {% endblock %}
+
+
+.. image:: _static/pubdate.png
+    :width: 100%
+
 
 Congratulations, you've installed a base template and started in on creating your first custom page. Now is another good time to pause and commit our work.
 
@@ -389,6 +481,7 @@ Congratulations, you've installed a base template and started in on creating you
     $ git add .
     # ☝️ A fun trick to add *all* of the pages you've changed with one command. ☝️
     $ git commit -m "Started editing templates"
+
 
 And, again, push it to GitHub.
 
@@ -403,37 +496,81 @@ Chapter 4: Hello data
 
 Add the `Harvard Park homicides data files <https://raw.githubusercontent.com/ireapps/first-graphics-app/master/src/_data/harvard_park_homicides.json>`_ to ``_data/harvard_park_homicides.json``
 
-Return to ``index.nunjucks`` and print them out on the page.
+Return to ``index.nunjucks`` and add the following to the bottom to print the data out on the page.
 
 .. code-block:: jinja
 
     {% block content %}
-    {{ site.data.harvard_park_homicides }}
+        {{ site.data.harvard_park_homicides }}
     {% endblock %}
+
+
+Here's what you should see.
+
+.. image:: _static/data-dump.png
+    :width: 100%
+
 
 Loop through them and print them all.
 
 .. code-block:: jinja
 
+    {% block content %}
     {% for obj in site.data.harvard_park_homicides %}
         {{ obj }}
     {% endfor %}
+    {% endblock %}
+
+
+.. image:: _static/data-dump.png
+    :width: 100%
+
+
+Add a line break with a ``<br>`` tag.
+
+
+.. code-block:: jinja
+
+    {% block content %}
+    {% for obj in site.data.harvard_park_homicides %}
+        {{ obj }}<br>
+    {% endfor %}
+    {% endblock %}
+
+
+.. image:: _static/hello-loop.png
+    :width: 100%
+
 
 Print the last name.
 
 .. code-block:: jinja
 
+    {% block content %}
     {% for obj in site.data.harvard_park_homicides %}
         {{ obj.last_name }}<br>
     {% endfor %}
+    {% endblock %}
+
+
+.. image:: _static/hello-last-name.png
+    :width: 100%
+
 
 Add the first name. To have them display more nicely, you can also add a line break in between each one.
 
 .. code-block:: jinja
 
+    {% block content %}
     {% for obj in site.data.harvard_park_homicides %}
         {{ obj.first_name }} {{ obj.last_name }}<br>
     {% endfor %}
+    {% endblock %}
+
+
+.. image:: _static/hello-full-name.png
+    :width: 100%
+
 
 Commit our work.
 
@@ -441,6 +578,7 @@ Commit our work.
 
     $ git add .
     $ git commit -m "Printed a list of names from data"
+
 
 Push it to GitHub.
 
@@ -453,12 +591,23 @@ Push it to GitHub.
 Chapter 5: Hello cards
 **********************
 
-Explain Bootstrap. Show what we're trying to make. Talk about cards. Show Bootstrap docs.
+Explain Bootstrap. Show what we're trying to make.
+
+.. image:: _static/bootstrap.png
+    :width: 100%
+
+
+Talk about cards. Show Bootstrap docs.
+
+.. image:: _static/bootstrap-cols.png
+    :width: 100%
+
 
 Basic card with only a title. Talk about divs. etc.
 
 .. code-block:: jinja
 
+    {% block content %}
     {% for obj in site.data.harvard_park_homicides %}
         <div class="card">
           <div class="card-body">
@@ -466,6 +615,12 @@ Basic card with only a title. Talk about divs. etc.
           </div>
         </div>
     {% endfor %}
+    {% endblock %}
+
+
+.. image:: _static/cards-first.png
+    :width: 100%
+
 
 Add a sentence below the title.
 
@@ -479,6 +634,10 @@ Add a sentence below the title.
           </div>
         </div>
     {% endfor %}
+
+
+PHOTO ONCE WE FINALIZE THE SENTENCE
+
 
 Add an image.
 
@@ -494,6 +653,10 @@ Add an image.
         </div>
     {% endfor %}
 
+
+PHOTO ONCE WE FINALIZE THE SENTENCE
+
+
 Add if clause around the image.
 
 .. code-block:: jinja
@@ -507,6 +670,10 @@ Add if clause around the image.
           </div>
         </div>
     {% endfor %}
+
+
+PHOTO ONCE WE FINALIZE THE SENTENCE
+
 
 Add the columns.
 
@@ -524,9 +691,38 @@ Add the columns.
         {% endfor %}
     </div>
 
+
+PHOTO ONCE WE FINALIZE THE SENTENCE
+
+
 Write a headline.
 
+.. code-block:: jinja
+
+    TK
+
+
+PHOTO
+
+
 Write the chatter.
+
+.. code-block:: jinja
+
+    TK
+
+
+PHOTO
+
+
+Section tag.
+
+.. code-block:: jinja
+
+    TK
+
+
+PHOTO
 
 
 ***********************
@@ -1332,6 +1528,7 @@ Now that everything is installed, return to ``scripts/map.js`` and create an ins
     var mini = new L.Control.MiniMap(osm2, { toggleDisplay: true });
     mini.addTo(map);
 
+
 Save the file and the inset map should appear on your page.
 
 Finally, let's preface the map with so a headline.
@@ -1339,13 +1536,16 @@ Finally, let's preface the map with so a headline.
 .. code-block:: html
 
     <h3>One corner. Four killings</h3>
+    <div id="map"></div>
 
 
 Then an introductory paragraph.
 
 .. code-block:: html
 
+    <h3>One corner. Four killings</h3>
     <p>The southwest corner of Harvard Park, at West 62nd Street and Harvard Boulevard, has been especially deadly. In the last year-and-a-half, four men have been killed there — while sitting in a car, trying to defuse an argument or walking home from the barber shop or the corner store.</p>
+    <div id="map"></div>
 
 
 All wrapped up in a ``<section>`` tag.
@@ -1358,6 +1558,7 @@ All wrapped up in a ``<section>`` tag.
         <div id="map"></div>
     </section>
 
+
 Congratulations. You've created a custom map. Now let's get on to the business of sharing it with the world.
 
 
@@ -1365,23 +1566,60 @@ Congratulations. You've created a custom map. Now let's get on to the business o
 Chapter 8: Hello Internet
 *************************
 
-Build a static version of your site
+In in our last chapter, all the work we've done will finally be published online.
 
-.. code-block:: bash
+Our Yeoman framework, with its tools, structure and shortcuts, has served us well. It's been a great place to experiment, organize and develop our work. But it's useless to our readers.
 
-    $ gulp --production
+The HTML, JavaScript and CSS files the framework generates are all they need. Without all the code running our terminal, those files aren't be able to take advantage of Yeogurt, Gulp, BrowserSync and all our other tricks. But it won't matter. We can upload the simple files our framework renders to the web and they'll be enough for anyone who wants them.
+
+That process — converting a dynamic, living website to simple files living on the filesystem — is a common strategy for publishing news sites. It goes by different names, like "flattening," "freezing" or "baking."  Whatever you call it, it’s a solid path to cheap­, stable host­ing for simple sites. It is used across the industry for pub­lish­ing elec­tion res­ults, longform stories, spe­cial pro­jects and numerous other things.
+
+.. note::
+
+    Examples of static news pages in the wild include:
+
+    * `A wide array of interactive graphics <https://www.washingtonpost.com/graphics/2017/ns/year-in-graphics/>`_ by The Washington Post
+    * Hundreds of Los Angeles Times stories at `latimes.com/projects <http://www.latimes.com/projects/>`_
+    * Dozens more from The Seattle Times at `projects.seattletimes.com <https://projects.seattletimes.com>`_
+    * Interactive apps by `The Dallas Morning News <https://interactives.dallasnews.com/2018/secrets-dallas-dead/>`_
+    * `Live election results <https://open.blogs.nytimes.com/2010/12/20/using-flat-files-so-elections-dont-break-your-server/>`_ published by The New York Times
+    * Data downloads from the `California Civic Data Coalition <https://calaccess.californiacivicdata.org/downloads/latest/>`_
 
 
-Inspect the files in the build directory.
+Lucky for us, Yeogurt is pre-configured to flatten our dynamic site. And GitHub has a hosting service for publishing static pages. Here's all it takes.
 
-Edit ``package.json`` to build files to docs instead.
+Go to GitHub's page for the repository. Click on the "Settings" tab. Scroll down to the "GitHub Pages" section. Select "master branch /docs folder" as the source. Hit save.
+
+This will result in any files pushed to the "docs" directory of your repository being published on the web. For free.
+
+Next, open the ``package.json`` file at the root of the project. Scroll to the bottom. In the ``config`` section edit it to instruct Gulp to flatten files to the ``docs`` directory.
 
 .. code-block:: javascript
+    :emphasize-lines: 8
 
-    "destination": "docs",
+    "config": {
+      "//": "Entry files",
+      "host": "127.0.0.1",
+      "port": "3000",
+      "baseUrl": "./",
+      "directories": {
+        "source": "src",
+        "destination": "docs",
+        "temporary": "tmp",
+        "//": "Directories relative to `source` directory",
+        "modules": "_modules",
+        "layouts": "_layouts",
+        "images": "_images",
+        "styles": "_styles",
+        "scripts": "_scripts",
+        "data": "_data"
+      }
+    }
 
 
-Build the static site again.
+Return to your terminal where the ``serve`` command is running. Hit ``CTRL-C`` or ``CTRL-Z`` to terminate its process.
+
+Once you are back at the standard terminal, enter the following command to build a static version of your site. Rather than start up the local test server we've been using so far, it will instead save the site as flat files in ``docs``.
 
 .. code-block:: bash
 
@@ -1392,12 +1630,11 @@ Commit and push to GitHub.
 
 .. code-block:: bash
 
-    $ git add package.json
-    $ git add docs
-    $ git commit -am "Message here"
+    $ git add .
+    $ git commit -m "Built site to docs folder"
     $ git push origin master
 
 
-Go to GitHub config and turn on GitHub Pages with the ``/docs`` on the master branch as the source. Hit save.
+Wait a few moments and visit `\<your_username\>.github.com/first-graphics-app/ <https://ireapps.github.io/first-graphics-app/>`_. You should see your app published live on the World Wide Web.
 
-Visit `\<your_username\>.github.com/first-graphics-app/ <https://ireapps.github.io/first-graphics-app/>`_.
+Congratulations. You've finished this class.
