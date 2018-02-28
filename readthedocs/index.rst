@@ -282,6 +282,9 @@ Yeoman will then use the generator to create a complete project that's ready for
 
 Visit `localhost:3000 <http://localhost:3000>`_ in your browser. There you can see the generic website offered as a starting point by our Yeoman generator.
 
+.. image:: _static/welcome.png
+   :width: 100%
+
 Congratulations, you've got your framework up and running. Let's save our work and then we'll be ready to start developing our own content.
 
 .. note::
