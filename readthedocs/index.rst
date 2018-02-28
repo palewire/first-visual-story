@@ -499,10 +499,24 @@ Add the `Harvard Park homicides data files <https://raw.githubusercontent.com/ir
 Return to ``index.nunjucks`` and print them out on the page.
 
 .. code-block:: jinja
+    :emphasize-lines:9-11
+
+    {% extends '_layouts/base.nunjucks' %}
+
+    {% block headline %}My headline will go here{% endblock %}
+    {% block byline %}By me{% endblock %}
+    {% block pubdate %}
+        <time datetime="2018-03-10" pubdate>Mar. 10, 2018</time>
+    {% endblock %}
 
     {% block content %}
     {{ site.data.harvard_park_homicides }}
     {% endblock %}
+
+
+.. image:: _static/data-dump.png
+    :width: 100%
+
 
 Loop through them and print them all.
 
@@ -512,6 +526,22 @@ Loop through them and print them all.
         {{ obj }}
     {% endfor %}
 
+
+.. image:: _static/data-dump.png
+    :width: 100%
+
+
+.. code-block:: jinja
+
+    {% for obj in site.data.harvard_park_homicides %}
+        {{ obj }}<br>
+    {% endfor %}
+
+
+.. image:: _static/hello-loop.png
+    :width: 100%
+
+
 Print the last name.
 
 .. code-block:: jinja
@@ -519,6 +549,11 @@ Print the last name.
     {% for obj in site.data.harvard_park_homicides %}
         {{ obj.last_name }}<br>
     {% endfor %}
+
+
+.. image:: _static/hello-last-name.png
+    :width: 100%
+
 
 Add the first name. To have them display more nicely, you can also add a line break in between each one.
 
@@ -528,12 +563,18 @@ Add the first name. To have them display more nicely, you can also add a line br
         {{ obj.first_name }} {{ obj.last_name }}<br>
     {% endfor %}
 
+
+.. image:: _static/hello-full-name.png
+    :width: 100%
+
+
 Commit our work.
 
 .. code-block:: bash
 
     $ git add .
     $ git commit -m "Printed a list of names from data"
+
 
 Push it to GitHub.
 
