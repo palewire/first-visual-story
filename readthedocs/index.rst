@@ -264,6 +264,7 @@ After you run the command, you will be asked a series of questions. *Pay close a
 .. image:: _static/yo.png
    :width: 100%
 
+
 1. Your project name should be "First Graphics App."
 2. The HTML preprocessor you choose must be "Nunjucks."
 3. The JavaScript preprocessor your choose must be "ES6 (Using Babel)"
@@ -272,7 +273,7 @@ After you run the command, you will be asked a series of questions. *Pay close a
 
 Don't sweat the rest. But make sure you get the above right.
 
-Yeoman will then use the generator to create a complete project that's ready for us to work in. Fire up its test server to see what it has to offer out of the box. 
+Yeoman will then use the generator to create a complete project that's ready for us to work in. Fire up its test server to see what it has to offer out of the box.
 
 .. code-block:: bash
 
