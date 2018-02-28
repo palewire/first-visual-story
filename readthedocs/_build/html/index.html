@@ -469,6 +469,11 @@ $ git commit -m <span class="s2">&quot;Started editing templates&quot;</span>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>$ git push origin master
 </pre></div>
 </div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>You’ll notice that the all of the sub folders in the <code class="docutils literal"><span class="pre">src/</span></code> directory of your project have underscores <code class="docutils literal"><span class="pre">_</span></code> in front of their name. This convention is used to note that these files are <strong>private</strong>, and won’t be deployed.</p>
+<p class="last">Instead, Gulp processes the contents of these folders when it builds the project and serves the files from a <code class="docutils literal"><span class="pre">tmp/</span></code> folder, where you’ll see unprefixed <code class="docutils literal"><span class="pre">images/</span></code>, <code class="docutils literal"><span class="pre">scripts/</span></code> and <code class="docutils literal"><span class="pre">styles/</span></code> directories.</p>
+</div>
 </div>
 <div class="section" id="chapter-4-hello-data">
 <h2>Chapter 4: Hello data<a class="headerlink" href="#chapter-4-hello-data" title="Permalink to this headline">¶</a></h2>
@@ -628,18 +633,19 @@ $ git commit -m <span class="s2">&quot;Printed a list of names from data&quot;</
 </pre></div>
 </div>
 <p>The <code class="docutils literal"><span class="pre">-s</span></code> argument saves plotly to a dependencies file. That way, if you ever need to go through the install steps for your app again, you can do so easily.</p>
-<p>From here, we’ll be working in our <code class="docutils literal"><span class="pre">_scripts</span></code> folder. Create a file called <code class="docutils literal"><span class="pre">charts.js</span></code> inside of <code class="docutils literal"><span class="pre">_scripts/</span></code>.</p>
+<p>From here, we’ll be working in our <code class="docutils literal"><span class="pre">_scripts</span></code> folder. Create a file called <code class="docutils literal"><span class="pre">_charts.js</span></code> inside of <code class="docutils literal"><span class="pre">_scripts/</span></code>.</p>
 <p>You can include the libraries we installed (or any JavaScript file!) by using <code class="docutils literal"><span class="pre">require()</span></code>. Plotly is a HUGE library, so we’re only going to import the parts of it that we need.</p>
 <div class="highlight-javascript"><div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">Plotly</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;plotly.js/lib/core&#39;</span><span class="p">);</span>
 <span class="kd">var</span> <span class="nx">Plotlybar</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;plotly.js/lib/bar&#39;</span><span class="p">);</span>
 
 <span class="nx">Plotly</span><span class="p">.</span><span class="nx">register</span><span class="p">(</span><span class="nx">Plotlybar</span><span class="p">);</span>
 
-<span class="c1">// At the end of the charts.js file</span>
+<span class="c1">// At the end of the _charts.js file</span>
 <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;hello, this is my charts file!&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>Then we use the same <code class="docutils literal"><span class="pre">require()</span></code> method to pull our code into <code class="docutils literal"><span class="pre">main.js</span></code>.</p>
+<p>Remember our underscore coding convention? Here, <code class="docutils literal"><span class="pre">_charts.js</span></code> has an underscore (<code class="docutils literal"><span class="pre">_</span></code>) in front of it because it will be compiled into <code class="docutils literal"><span class="pre">main.js</span></code> when the site is baked.</p>
+<p>That is, if we tell it to. Use the same <code class="docutils literal"><span class="pre">require()</span></code> method to pull our code into <code class="docutils literal"><span class="pre">main.js</span></code>. Unlike <code class="docutils literal"><span class="pre">_charts.js</span></code>, <code class="docutils literal"><span class="pre">main.js</span></code> doesn’t have an underscore, because it is the file that the other scripts will be pulled into.</p>
 <div class="highlight-javascript"><div class="highlight"><pre><span></span><span class="c1">// Main javascript entry point</span>
 <span class="c1">// Should handle bootstrapping/starting application</span>
 <span class="s1">&#39;use strict&#39;</span><span class="p">;</span>
@@ -652,10 +658,10 @@ $ git commit -m <span class="s2">&quot;Printed a list of names from data&quot;</
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;Welcome to Yeogurt!&#39;</span><span class="p">);</span>
 <span class="p">});</span>
 
-<span class="hll"><span class="kd">var</span> <span class="nx">chart</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;./charts.js&#39;</span><span class="p">);</span>
+<span class="hll"><span class="kd">var</span> <span class="nx">chart</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;./_charts.js&#39;</span><span class="p">);</span>
 </span></pre></div>
 </div>
-<p>Structuring our code this way helps keep things organized, as each file controls one specific part of the page. Need to make an adjustment to your chart? Go to <code class="docutils literal"><span class="pre">charts.js</span></code>.</p>
+<p>Structuring our code this way helps keep things organized, as each file controls one specific part of the page. Need to make an adjustment to your chart? Go to <code class="docutils literal"><span class="pre">_charts.js</span></code>.</p>
 <p>Now if you reload your page and go to your inspector (click on the three dots in the top right of Chrome, go down to “More tools” and select “Developer tools”), you should see <code class="docutils literal"><span class="pre">hello,</span> <span class="pre">this</span> <span class="pre">is</span> <span class="pre">my</span> <span class="pre">charts</span> <span class="pre">file!</span></code> in the console.</p>
 <p>TK PICTURE OF INSPECTOR / CONSOLE HERE</p>
 <p>What chart should we make? The story points out that Harvard Park experienced an increase in homicides as there was a decrease across the rest of the county. Let’s try to visualize that.</p>
@@ -1041,7 +1047,7 @@ $ git commit -m <span class="s2">&quot;Printed a list of names from data&quot;</
 <div class="highlight-jinja"><div class="highlight"><pre><span></span><span class="x">&lt;div id=&quot;map&quot;&gt;&lt;/div&gt;</span>
 </pre></div>
 </div>
-<p>To bring the map to life, add a new file named <code class="docutils literal"><span class="pre">map.js</span></code> to the <code class="docutils literal"><span class="pre">_scripts</span></code> directory. Import it in <code class="docutils literal"><span class="pre">main.js</span></code>.</p>
+<p>To bring the map to life, add a new file named <code class="docutils literal"><span class="pre">_map.js</span></code> to the <code class="docutils literal"><span class="pre">_scripts</span></code> directory. Import it in <code class="docutils literal"><span class="pre">main.js</span></code>.</p>
 <div class="highlight-javascript"><div class="highlight"><pre><span></span><span class="c1">// Main javascript entry point</span>
 <span class="c1">// Should handle bootstrapping/starting application</span>
 
@@ -1057,12 +1063,12 @@ $ git commit -m <span class="s2">&quot;Printed a list of names from data&quot;</
 
 <span class="kd">var</span> <span class="nx">chart</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;./charts.js&#39;</span><span class="p">);</span>
 <span class="kd">var</span> <span class="nx">L</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">&quot;leaflet&quot;</span><span class="p">);</span>
-<span class="hll"><span class="kd">var</span> <span class="nx">map</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">&quot;./map.js&quot;</span><span class="p">);</span>
+<span class="hll"><span class="kd">var</span> <span class="nx">map</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">&quot;./_map.js&quot;</span><span class="p">);</span>
 </span>
 <span class="nx">L</span><span class="p">.</span><span class="nx">Icon</span><span class="p">.</span><span class="nx">Default</span><span class="p">.</span><span class="nx">imagePath</span> <span class="o">=</span> <span class="s1">&#39;https://unpkg.com/leaflet@1.3.1/dist/images/&#39;</span><span class="p">;</span>
 </pre></div>
 </div>
-<p>Now in <code class="docutils literal"><span class="pre">_scripts/map.js</span></code> paste in the following Leaflet code to generate a simple map. It does three things: create a new map in the HTML element we made with “map” set as its ID; add a new map layer with roads, borders, water and other features from OpenStreetMap; finally, add the layer to the map.</p>
+<p>Now in <code class="docutils literal"><span class="pre">_scripts/_map.js</span></code> paste in the following Leaflet code to generate a simple map. It does three things: create a new map in the HTML element we made with “map” set as its ID; add a new map layer with roads, borders, water and other features from OpenStreetMap; finally, add the layer to the map.</p>
 <div class="highlight-javascript"><div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">map</span> <span class="o">=</span> <span class="nx">L</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="s1">&#39;map&#39;</span><span class="p">);</span>
 <span class="kd">var</span> <span class="nx">osm</span> <span class="o">=</span> <span class="nx">L</span><span class="p">.</span><span class="nx">tileLayer</span><span class="p">(</span><span class="s1">&#39;http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png&#39;</span><span class="p">);</span>
 <span class="nx">osm</span><span class="p">.</span><span class="nx">addTo</span><span class="p">(</span><span class="nx">map</span><span class="p">);</span>
@@ -1128,7 +1134,7 @@ $ git commit -m <span class="s2">&quot;Printed a list of names from data&quot;</
 <span class="cp">{%</span> <span class="k">endblock</span> <span class="cp">%}</span><span class="x"></span>
 </pre></div>
 </div>
-<p>Now return to <code class="docutils literal"><span class="pre">_scripts/map.js</span></code>. At the bottom add some JavaScript code that steps through the homicide list and adds each one to the map as a circle, just like the real Homicide Report.</p>
+<p>Now return to <code class="docutils literal"><span class="pre">_scripts/_map.js</span></code>. At the bottom add some JavaScript code that steps through the homicide list and adds each one to the map as a circle, just like the real Homicide Report.</p>
 <div class="highlight-javascript"><div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">map</span> <span class="o">=</span> <span class="nx">L</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="s1">&#39;map&#39;</span><span class="p">)</span>
 <span class="kd">var</span> <span class="nx">osm</span> <span class="o">=</span> <span class="nx">L</span><span class="p">.</span><span class="nx">tileLayer</span><span class="p">(</span><span class="s1">&#39;http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png&#39;</span><span class="p">);</span>
 <span class="nx">osm</span><span class="p">.</span><span class="nx">addTo</span><span class="p">(</span><span class="nx">map</span><span class="p">);</span>
@@ -1140,7 +1146,7 @@ $ git commit -m <span class="s2">&quot;Printed a list of names from data&quot;</
 </span><span class="hll"><span class="p">})</span>
 </span></pre></div>
 </div>
-<p>Save the file and you should now see all the homicides mapped on the page. Next, extend the code in <code class="docutils literal"><span class="pre">_scripts/map.js</span></code> to add a tooltip label on each point.</p>
+<p>Save the file and you should now see all the homicides mapped on the page. Next, extend the code in <code class="docutils literal"><span class="pre">_scripts/_map.js</span></code> to add a tooltip label on each point.</p>
 <div class="highlight-javascript"><div class="highlight"><pre><span></span><span class="nx">homicides</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">obj</span><span class="p">)</span> <span class="p">{</span>
     <span class="nx">L</span><span class="p">.</span><span class="nx">circleMarker</span><span class="p">([</span><span class="nx">obj</span><span class="p">.</span><span class="nx">latitude</span><span class="p">,</span>  <span class="nx">obj</span><span class="p">.</span><span class="nx">longitude</span><span class="p">])</span>
       <span class="p">.</span><span class="nx">addTo</span><span class="p">(</span><span class="nx">map</span><span class="p">)</span>
@@ -1169,7 +1175,7 @@ $ git commit -m <span class="s2">&quot;Printed a list of names from data&quot;</
 </span></pre></div>
 </div>
 <p>After you save, the tooltips should appear when you hover over a circle.</p>
-<p>To make the tooltips visible all the time, edit the JavaScript in <code class="docutils literal"><span class="pre">_scripts/map.js</span></code> to make the tooltips “permanent.”</p>
+<p>To make the tooltips visible all the time, edit the JavaScript in <code class="docutils literal"><span class="pre">_scripts/_map.js</span></code> to make the tooltips “permanent.”</p>
 <div class="highlight-javascript"><div class="highlight"><pre><span></span><span class="nx">homicides</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">obj</span><span class="p">)</span> <span class="p">{</span>
     <span class="nx">L</span><span class="p">.</span><span class="nx">circleMarker</span><span class="p">([</span><span class="nx">obj</span><span class="p">.</span><span class="nx">latitude</span><span class="p">,</span>  <span class="nx">obj</span><span class="p">.</span><span class="nx">longitude</span><span class="p">])</span>
       <span class="p">.</span><span class="nx">addTo</span><span class="p">(</span><span class="nx">map</span><span class="p">)</span>
@@ -1200,7 +1206,7 @@ $ git commit -m <span class="s2">&quot;Printed a list of names from data&quot;</
 <span class="kd">var</span> <span class="nx">chart</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;./charts.js&#39;</span><span class="p">);</span>
 <span class="kd">var</span> <span class="nx">L</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">&quot;leaflet&quot;</span><span class="p">);</span>
 <span class="hll"><span class="kd">var</span> <span class="nx">MiniMap</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;leaflet-minimap&#39;</span><span class="p">);</span>
-</span><span class="kd">var</span> <span class="nx">map</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">&quot;./map.js&quot;</span><span class="p">);</span>
+</span><span class="kd">var</span> <span class="nx">map</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">&quot;./_map.js&quot;</span><span class="p">);</span>
 
 <span class="nx">L</span><span class="p">.</span><span class="nx">Icon</span><span class="p">.</span><span class="nx">Default</span><span class="p">.</span><span class="nx">imagePath</span> <span class="o">=</span> <span class="s1">&#39;https://unpkg.com/leaflet@1.3.1/dist/images/&#39;</span><span class="p">;</span>
 </pre></div>
@@ -1217,7 +1223,7 @@ $ git commit -m <span class="s2">&quot;Printed a list of names from data&quot;</
 </span><span class="p">@</span><span class="k">import</span> <span class="s1">&#39;_map.scss&#39;</span><span class="p">;</span>
 </pre></div>
 </div>
-<p>Now that everything is installed, return to <code class="docutils literal"><span class="pre">scripts/map.js</span></code> and create an inset map with the library’s custom tools. We can set its view with the <code class="docutils literal"><span class="pre">maxZoom</span></code> option.</p>
+<p>Now that everything is installed, return to <code class="docutils literal"><span class="pre">scripts/_map.js</span></code> and create an inset map with the library’s custom tools. We can set its view with the <code class="docutils literal"><span class="pre">maxZoom</span></code> option.</p>
 <div class="highlight-javascript"><div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">map</span> <span class="o">=</span> <span class="nx">L</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="s1">&#39;map&#39;</span><span class="p">)</span>
 <span class="kd">var</span> <span class="nx">osm</span> <span class="o">=</span> <span class="nx">L</span><span class="p">.</span><span class="nx">tileLayer</span><span class="p">(</span><span class="s1">&#39;http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png&#39;</span><span class="p">);</span>
 <span class="nx">osm</span><span class="p">.</span><span class="nx">addTo</span><span class="p">(</span><span class="nx">map</span><span class="p">);</span>
