@@ -195,6 +195,7 @@ Open up the README in your text editor and type something in it. Maybe something
     My first graphics app
     =====================
 
+
 Make sure to save it. Then officially add the file to your repository for tracking with Git's ``add`` command.
 
 .. code-block:: bash
@@ -225,6 +226,9 @@ Now, finally, push your commit up to GitHub.
 
 
 You just created your first code commit! Reload your repository on GitHub and see your handiwork.
+
+.. image:: _static/first-commit.png
+   :width: 100%
 
 
 **************************
