@@ -1612,7 +1612,66 @@ All wrapped up in a ``<section>`` tag.
     :width: 100%
 
 
-Congratulations. You've created a custom map. Now let's get on to the business of sharing it with the world.
+Congratulations. You've created a custom map. Before we get on to the business of sharing it with the world, we need a couple more pieces here.
+
+Hey. How about a headline?
+
+.. code-block:: html
+    :emphasize-lines: 3
+
+    {% extends '_layouts/base.nunjucks' %}
+
+    {% block headline %}A South L.A. neighborhood grapples with a wave of violence{% endblock %}
+    {% block byline %}By me{% endblock %}
+    {% block pubdate %}
+        <time datetime="2018-03-10" pubdate>Mar. 10, 2018</time>
+    {% endblock %}
+
+
+.. image:: _static/final-headline.png
+    :width: 100%
+
+
+And a real byline.
+
+.. code-block:: html
+    :emphasize-lines: 4
+
+    {% extends '_layouts/base.nunjucks' %}
+
+    {% block headline %}A South L.A. neighborhood grapples with a wave of violence{% endblock %}
+    {% block byline %}By <a href="http://www.firstgraphicsapp.org/">The First Graphics App Tutorial</a>{% endblock %}
+    {% block pubdate %}
+        <time datetime="2018-03-10" pubdate>Mar. 10, 2018</time>
+    {% endblock %}
+
+
+.. image:: _static/final-byline.png
+    :width: 100%
+
+
+And let's a write a lead.
+
+.. code-block:: html
+    :emphasize-lines: 1-3
+
+    {% block content %}
+    <section>
+        <p>The area around Harvard Park was the deadliest place for African Americans in Los Angeles County last year, according to <a href="http://homicide.latimes.com/">The Times’ Homicide Report</a>. So far this year, six people have been killed. Most of the victims were black men.</p> </section>
+    <section>
+    <h3>One corner. Four killings</h3>
+    <p>The southwest corner of Harvard Park, at West 62nd Street and Harvard Boulevard, has been especially deadly. In the last year-and-a-half, four men have been killed there — while sitting in a car, trying to defuse an argument or walking home from the barber shop or the corner store.</p>
+    <div id="map"></div>
+    </section>
+    ...
+    {% endblock %}
+
+
+.. image:: _static/final-lead.png
+    :width: 100%
+
+
+Now we're ready. Let's do it live.
 
 
 *************************
