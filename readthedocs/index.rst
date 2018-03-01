@@ -265,7 +265,7 @@ After you run the command, you will be asked a series of questions. *Pay close a
    :width: 100%
 
 
-1. Your project name should be "First Graphics App."
+1. Your project name should be the slug "first-graphics-app"
 2. The HTML preprocessor you choose must be "Nunjucks."
 3. The JavaScript preprocessor your choose must be "ES6 (Using Babel)"
 4. Styles must be written with "Sass"
@@ -298,7 +298,7 @@ Congratulations, you've got your framework up and running. Let's save our work a
     * Politico's `generator-politico-graphics  <https://github.com/The-Politico/generator-politico-graphics>`_
 
 
-Open a second terminal and navigate to your code folder.
+Open a second terminal (this way you can keep your server running) and navigate to your code folder.
 
 .. code-block:: bash
 
@@ -376,7 +376,7 @@ You should see the change on our site, with the new line appearing above the par
     :width: 100%
 
 
-Most newsrooms that use a similar system have a own base template for all of their custom pages. Graphic artists and designers install and extend it as the first step in their work. They develop their custom page within its confines and largely accept the furniture it provides, like the site's header and footer, fonts, common color schemes. This allows them to work more quickly because they do not have to bother with reinvent their site's most common elements.
+Most newsrooms that use a similar system have a own base template for all of their custom pages. Graphic artists and designers install and extend it as the first step in their work. They develop their custom page within its confines and largely accept the furniture it provides, like the site's header and footer, fonts, common color schemes. This allows them to work more quickly because they do not have to bother with reinventing their site's most common elements.
 
 .. note::
 
@@ -489,6 +489,12 @@ And, again, push it to GitHub.
 
     $ git push origin master
 
+
+.. note::
+
+    You'll notice that the all of the sub folders in the ``src/`` directory of your project have underscores ``_`` in front of their name. This convention is used to note that these files are **private**, and won't be deployed.
+
+    Instead, Gulp processes the contents of these folders when it builds the project and serves the files from a ``tmp/`` folder, where you'll see unprefixed ``images/``, ``scripts/`` and ``styles/`` directories.
 
 *********************
 Chapter 4: Hello data
@@ -784,7 +790,7 @@ First, use npm to install plotly.js.
 
 The ``-s`` argument saves plotly to a dependencies file. That way, if you ever need to go through the install steps for your app again, you can do so easily.
 
-From here, we'll be working in our ``_scripts`` folder. Create a file called ``charts.js`` inside of ``_scripts/``.
+From here, we'll be working in our ``_scripts`` folder. Create a file called ``_charts.js`` inside of ``_scripts/``.
 
 You can include the libraries we installed (or any JavaScript file!) by using ``require()``. Plotly is a HUGE library, so we're only going to import the parts of it that we need.
 
@@ -795,11 +801,13 @@ You can include the libraries we installed (or any JavaScript file!) by using ``
 
     Plotly.register(Plotlybar);
 
-    // At the end of the charts.js file
+    // At the end of the _charts.js file
     console.log("hello, this is my charts file!")
 
 
-Then we use the same ``require()`` method to pull our code into ``main.js``.
+Remember our underscore coding convention? Here, ``_charts.js`` has an underscore (``_``) in front of it because it will be compiled into ``main.js`` when the site is baked.
+
+That is, if we tell it to. Use the same ``require()`` method to pull our code into ``main.js``. Unlike ``_charts.js``, ``main.js`` doesn't have an underscore, because it is the file that the other scripts will be pulled into.
 
 .. code-block:: javascript
     :emphasize-lines: 13
@@ -816,10 +824,10 @@ Then we use the same ``require()`` method to pull our code into ``main.js``.
       console.log('Welcome to Yeogurt!');
     });
 
-    var chart = require('./charts.js');
+    var chart = require('./_charts.js');
 
 
-Structuring our code this way helps keep things organized, as each file controls one specific part of the page. Need to make an adjustment to your chart? Go to ``charts.js``.
+Structuring our code this way helps keep things organized, as each file controls one specific part of the page. Need to make an adjustment to your chart? Go to ``_charts.js``.
 
 Now if you reload your page and go to your inspector (click on the three dots in the top right of Chrome, go down to "More tools" and select "Developer tools"), you should see ``hello, this is my charts file!`` in the console.
 
@@ -1309,7 +1317,7 @@ Now, back in the ``index.nunjucks`` template, we should create a placeholder in 
     <div id="map"></div>
 
 
-To bring the map to life, add a new file named ``map.js`` to the ``_scripts`` directory. Import it in ``main.js``.
+To bring the map to life, add a new file named ``_map.js`` to the ``_scripts`` directory. Import it in ``main.js``.
 
 .. code-block:: javascript
     :emphasize-lines: 16
@@ -1329,12 +1337,12 @@ To bring the map to life, add a new file named ``map.js`` to the ``_scripts`` di
 
     var chart = require('./charts.js');
     var L = require("leaflet");
-    var map = require("./map.js");
+    var map = require("./_map.js");
 
     L.Icon.Default.imagePath = 'https://unpkg.com/leaflet@1.3.1/dist/images/';
 
 
-Now in ``_scripts/map.js`` paste in the following Leaflet code to generate a simple map. It does three things: create a new map in the HTML element we made with "map" set as its ID; add a new map layer with roads, borders, water and other features from OpenStreetMap; finally, add the layer to the map.
+Now in ``_scripts/_map.js`` paste in the following Leaflet code to generate a simple map. It does three things: create a new map in the HTML element we made with "map" set as its ID; add a new map layer with roads, borders, water and other features from OpenStreetMap; finally, add the layer to the map.
 
 .. code-block:: javascript
 
@@ -1393,7 +1401,7 @@ Open ``index.nunjucks`` and add a new variable to the ``scripts`` block where th
     {% endblock %}
 
 
-Now return to ``_scripts/map.js``. At the bottom add some JavaScript code that steps through the homicide list and adds each one to the map as a circle, just like the real Homicide Report.
+Now return to ``_scripts/_map.js``. At the bottom add some JavaScript code that steps through the homicide list and adds each one to the map as a circle, just like the real Homicide Report.
 
 .. code-block:: javascript
     :emphasize-lines: 6-9
@@ -1465,7 +1473,7 @@ After you save, here's what you'll get.
     :width: 100%
 
 
-To make the tooltips visible all the time, edit the JavaScript in ``_scripts/map.js`` to make the tooltips "permanent."
+To make the tooltips visible all the time, edit the JavaScript in ``_scripts/_map.js`` to make the tooltips "permanent."
 
 .. code-block:: javascript
     :emphasize-lines: 4
@@ -1514,7 +1522,7 @@ Just as with other libraries, we need to import it into `_scripts/main.js`.
     var chart = require('./charts.js');
     var L = require("leaflet");
     var MiniMap = require('leaflet-minimap');
-    var map = require("./map.js");
+    var map = require("./_map.js");
 
     L.Icon.Default.imagePath = 'https://unpkg.com/leaflet@1.3.1/dist/images/';
 
@@ -1535,7 +1543,7 @@ Its stylesheets also need to be imported to ``_styles/main.scss``.
     @import '_map.scss';
 
 
-Now that everything is installed, return to ``scripts/map.js`` and create an inset map with the library's custom tools. We can set its view with the ``maxZoom`` option.
+Now that everything is installed, return to ``scripts/_map.js`` and create an inset map with the library's custom tools. We can set its view with the ``maxZoom`` option.
 
 .. code-block:: javascript
     :emphasize-lines: 12-16

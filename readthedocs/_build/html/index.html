@@ -169,7 +169,8 @@
 <p>This tutorial will show you how journalists at America’s top news organizations escape rigid content-management systems to publish custom interactive graphics on deadline. You will get hands-on experience in every stage of the development process, writing JavaScript, HTML and CSS within a Node.js framework. You won’t stop until you’ve deployed a working application on the World Wide Web.</p>
 <div class="section" id="what-you-will-make">
 <h2>What you will make<a class="headerlink" href="#what-you-will-make" title="Permalink to this headline">¶</a></h2>
-<p>By the end of this lesson, you will publish an standalone page with a series of graphics examining the high homicide rate in Harvard Park, a small neighborhood in South Los Angeles. You will do so by repurposing data from <a class="reference external" href="http://www.latimes.com/projects/la-me-harvard-park-homicides/">a 2017 Los Angeles Times story</a> by Nicole Santa Cruz and Cindy Chang.</p>
+<p>By the end of this lesson, you will publish a standalone page with a series of graphics examining the high homicide rate in Harvard Park, a small neighborhood in South Los Angeles. You will do so by repurposing data from <a class="reference external" href="http://www.latimes.com/projects/la-me-harvard-park-homicides/">a 2017 Los Angeles Times story</a> by Nicole Santa Cruz and Cindy Chang.</p>
+<a class="reference external image-reference" href="https://ireapps.github.io/first-graphics-app/"><img alt="_images/preview.gif" src="_images/preview.gif" style="width: 100%;" /></a>
 <p>A working example of what you will make can be found at <a class="reference external" href="https://ireapps.github.io/first-graphics-app/">ireapps.github.io/first-graphics-app/</a></p>
 </div>
 <div class="section" id="about-the-authors">
@@ -179,7 +180,7 @@ and the <a class="reference external" href="http://data.nicar.org/">National Ins
 by <a class="reference external" href="http://damihere.com">Dana Amihere</a>, <a class="reference external" href="http://emamd.net">Armand Emamdjomeh</a> and <a class="reference external" href="http://palewi.re/who-is-ben-welsh/">Ben Welsh</a>. It will debut in March 2017 <a class="reference external" href="https://www.ire.org/events-and-training/event/3189/3508/">at NICAR’s conference
 in Chicago</a>.</p>
 <p>Their work was inspired by the footloose spirit of funk music. We urge you to bust free of the computer systems that constrain your creativity. Hit play and get into the groove.</p>
-<iframe src="https://open.spotify.com/embed?uri=spotify:user:227b2koy2xxyb23qliakea75y:playlist:54NS8jCdrgUpzUppUpokSg&theme=white" width="300" height="380" frameborder="0" allowtransparency="true"></iframe></div>
+<iframe src="https://open.spotify.com/embed?uri=spotify:user:227b2koy2xxyb23qliakea75y:playlist:54NS8jCdrgUpzUppUpokSg&theme=white" width="300" height="380" frameborder="0" allowtransparency="true" style="margin: 20px 0;"></iframe></div>
 <div class="section" id="prelude-prerequisites">
 <h2>Prelude: Prerequisites<a class="headerlink" href="#prelude-prerequisites" title="Permalink to this headline">¶</a></h2>
 <p>Before you can begin, your computer needs the following tools installed and working:</p>
@@ -197,17 +198,13 @@ in Chicago</a>.</p>
 <div class="section" id="command-line-prereq">
 <span id="id1"></span><h3>Command-line interface<a class="headerlink" href="#command-line-prereq" title="Permalink to this headline">¶</a></h3>
 <p>Unless something is wrong with your computer, there should be a way to open a window that lets you type in commands. Different operating systems give this tool slightly different names, but they all have some form of it.</p>
-<p>On Windows you can find the command-line interface by opening the “command prompt.” Here are <a class="reference external" href="https://www.bleepingcomputer.com/tutorials/windows-command-prompt-introduction/">instructions</a>.</p>
-<p>On Apple computers, you open the <a class="reference external" href="http://blog.teamtreehouse.com/introduction-to-the-mac-os-x-command-line">“Terminal” application</a>.</p>
-<p>Ubuntu Linux comes with a program of the <a class="reference external" href="http://askubuntu.com/questions/38162/what-is-a-terminal-and-how-do-i-open-and-use-it">same name</a>.</p>
+<p>On Windows you can find the command-line interface by opening the “command prompt.” Here are <a class="reference external" href="https://www.bleepingcomputer.com/tutorials/windows-command-prompt-introduction/">instructions</a>. On Apple computers, you open the <a class="reference external" href="http://blog.teamtreehouse.com/introduction-to-the-mac-os-x-command-line">“Terminal” application</a>. Ubuntu Linux comes with a program of the <a class="reference external" href="http://askubuntu.com/questions/38162/what-is-a-terminal-and-how-do-i-open-and-use-it">same name</a>.</p>
 </div>
 <div class="section" id="id2">
 <h3>Text editor<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
 <p>A program like Microsoft Word, which can do all sorts of text formatting like change the size and color of words, is not what you need. Do not try to use it.</p>
 <p>You need a program that works with simple <a class="reference external" href="https://en.wikipedia.org/wiki/Text_file">“plain text” files</a>, and is therefore capable of editing documents containing Python code, HTML markup and other languages without dressing them up by adding anything extra. Such programs are easy to find and some of the best ones are free, including those below.</p>
-<p>For Windows, we recommend installing <a class="reference external" href="http://notepad-plus-plus.org/">Notepad++</a>.</p>
-<p>For Apple computers, try <a class="reference external" href="https://atom.io">Atom</a> or <a class="reference external" href="https://www.sublimetext.com/">Sublime Text</a>.</p>
-<p>In Ubuntu Linux you can stick with the pre-installed <a class="reference external" href="https://help.ubuntu.com/community/gedit">gedit</a> text editor or install a more sophisticated tool like <a class="reference external" href="https://atom.io">Atom</a></p>
+<p>For Windows, we recommend installing <a class="reference external" href="http://notepad-plus-plus.org/">Notepad++</a>. For Apple computers, try <a class="reference external" href="https://atom.io">Atom</a> or <a class="reference external" href="https://www.sublimetext.com/">Sublime Text</a>. In Ubuntu Linux you can stick with the pre-installed <a class="reference external" href="https://help.ubuntu.com/community/gedit">gedit</a> text editor or install a more sophisticated tool like <a class="reference external" href="https://atom.io">Atom</a></p>
 </div>
 <div class="section" id="id4">
 <h3>Node.js<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
@@ -230,9 +227,8 @@ in Chicago</a>.</p>
 <div class="section" id="git-and-github">
 <h3>Git and GitHub<a class="headerlink" href="#git-and-github" title="Permalink to this headline">¶</a></h3>
 <p><a class="reference external" href="http://git-scm.com/">Git</a> is a version control program for saving the changes you make to files over time. This is useful when you’re working on your own, but quickly becomes essential with large software projects when you work with other developers.</p>
-<p><a class="reference external" href="https://github.com/">GitHub</a> is a website that hosts git code repositories, both public and private. It comes with many helpful tools for reviewing code and managing projects. It also has some <a class="reference external" href="http://pages.github.com/">extra tricks</a> that make it easy to publish web pages, which we will use later.</p>
-<p>GitHub offers helpful guides for installing Git for <a class="reference external" href="https://help.github.com/articles/set-up-git#platform-windows">Windows</a>, <a class="reference external" href="https://help.github.com/articles/set-up-git#platform-mac">Macs</a> and <a class="reference external" href="https://help.github.com/articles/set-up-git#platform-linux">Linux</a>.</p>
-<p>You can verify it’s installed from your command line like so:</p>
+<p><a class="reference external" href="https://github.com/">GitHub</a> is a website that hosts git code repositories, both public and private. It comes with many helpful tools for reviewing code and managing projects. It also has some <a class="reference external" href="http://pages.github.com/">extra tricks</a> that make it easy to publish web pages, which we will use later. GitHub offers helpful guides for installing Git for <a class="reference external" href="https://help.github.com/articles/set-up-git#platform-windows">Windows</a>, <a class="reference external" href="https://help.github.com/articles/set-up-git#platform-mac">Macs</a> and <a class="reference external" href="https://help.github.com/articles/set-up-git#platform-linux">Linux</a>.</p>
+<p>You can verify Git is installed from your command line like so:</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>$ git --version
 </pre></div>
 </div>
@@ -241,7 +237,7 @@ in Chicago</a>.</p>
 </div>
 <div class="section" id="chapter-1-hello-git">
 <h2>Chapter 1: Hello Git<a class="headerlink" href="#chapter-1-hello-git" title="Permalink to this headline">¶</a></h2>
-<p>First things first - it always helps to store all your code in the same place, instead of haphazard folders around your computer. This way, you always know where to look.</p>
+<p>First things first. It always helps to store all your code in the same place, instead of haphazard folders around your computer. This way, you always know where to look.</p>
 <p>In this case, let’s call that directory <code class="docutils literal"><span class="pre">Code</span></code>.</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span><span class="c1"># You don&#39;t have to type the &quot;$&quot; It&#39;s just a generic symbol</span>
 <span class="c1"># geeks use to show they&#39;re working on the command line.</span>
@@ -267,8 +263,8 @@ $ <span class="nb">cd</span> Code
 $ git init .
 </pre></div>
 </div>
-<p>Visit <a class="reference external" href="http://www.github.com">GitHub</a> and create a new public repository named <code class="docutils literal"><span class="pre">first-graphics-app</span></code>. Don’t check “Initialize with README.” You’ll want to start with a blank repository.</p>
-<p>TK SCREENSHOT OF GIT REPO CREATION SCREEN</p>
+<p>Visit <a class="reference external" href="http://www.github.com">GitHub</a> and <a class="reference external" href="https://github.com/new">create</a> a new public repository named <code class="docutils literal"><span class="pre">first-graphics-app</span></code>. Don’t check “Initialize with README.” You’ll want to start with a blank repository.</p>
+<a class="reference external image-reference" href="https://github.com/new"><img alt="_images/new-repo.png" src="_images/new-repo.png" style="width: 100%;" /></a>
 <p>Then connect your local directory to GitHub with the following command.</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>$ git remote add origin https://github.com/&lt;yourusername&gt;/first-graphics-app.git
 </pre></div>
@@ -304,6 +300,7 @@ $ git config --global user.name <span class="s2">&quot;your name&quot;</span>
 </pre></div>
 </div>
 <p>You just created your first code commit! Reload your repository on GitHub and see your handiwork.</p>
+<a class="reference internal image-reference" href="_images/first-commit.png"><img alt="_images/first-commit.png" src="_images/first-commit.png" style="width: 100%;" /></a>
 </div>
 <div class="section" id="chapter-2-hello-framework">
 <h2>Chapter 2: Hello framework<a class="headerlink" href="#chapter-2-hello-framework" title="Permalink to this headline">¶</a></h2>
@@ -317,18 +314,38 @@ $ git config --global user.name <span class="s2">&quot;your name&quot;</span>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>$ sudo npm install -g generator-yeogurt
 </pre></div>
 </div>
-<p>Create a new project.</p>
+<p>Create a new project using our yeogurt generator as the guide.</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>$ yo yeogurt
 </pre></div>
 </div>
-<p>Be sure to pick “nunjucks” when creating the project.</p>
-<p>Fire up the test server</p>
+<p>After you run the command, you will be asked a series of questions. <em>Pay close attention</em> because you will need to choose the proper options to continue with our tutorial, and some of the correct selections are not the default choice.</p>
+<a class="reference internal image-reference" href="_images/yo.png"><img alt="_images/yo.png" src="_images/yo.png" style="width: 100%;" /></a>
+<ol class="arabic simple">
+<li>Your project name should be the slug “first-graphics-app”</li>
+<li>The HTML preprocessor you choose must be “Nunjucks.”</li>
+<li>The JavaScript preprocessor your choose must be “ES6 (Using Babel)”</li>
+<li>Styles must be written with “Sass”</li>
+<li>The Sass syntax must be “Scss”</li>
+</ol>
+<p>Don’t sweat the rest. But make sure you get the above right.</p>
+<p>Yeoman will then use the generator to create a complete project that’s ready for us to work in. Fire up its test server to see what it has to offer out of the box.</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>$ gulp serve
 </pre></div>
 </div>
 <p>Visit <a class="reference external" href="http://localhost:3000">localhost:3000</a> in your browser. There you can see the generic website offered as a starting point by our Yeoman generator.</p>
+<a class="reference internal image-reference" href="_images/welcome.png"><img alt="_images/welcome.png" src="_images/welcome.png" style="width: 100%;" /></a>
 <p>Congratulations, you’ve got your framework up and running. Let’s save our work and then we’ll be ready to start developing our own content.</p>
-<p>Open a second terminal and navigate to your code folder.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>While some frameworks are more popular than others, each newsroom tends to go its own way with a custom system for publishing pages. The programming languages and the details vary, but the fundamentals are almost all the same. Some of them have even been released as open-source software. They include:</p>
+<ul class="last simple">
+<li>The Los Angeles Times Data Desk’s <a class="reference external" href="https://github.com/datadesk/django-bigbuild">bigbuild</a></li>
+<li>The Seattle Times’ <a class="reference external" href="https://github.com/seattletimes/newsapp-template/">newsapp-template</a></li>
+<li>The NPR Apps team’s <a class="reference external" href="https://github.com/nprapps/dailygraphics">dailygraphics</a></li>
+<li>Politico’s <a class="reference external" href="https://github.com/The-Politico/generator-politico-graphics">generator-politico-graphics</a></li>
+</ul>
+</div>
+<p>Open a second terminal (this way you can keep your server running) and navigate to your code folder.</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>$ <span class="nb">cd</span> Code
 $ <span class="nb">cd</span> first-graphics-app
 </pre></div>
@@ -346,6 +363,7 @@ $ git commit -m <span class="s2">&quot;Installed framework&quot;</span>
 <div class="section" id="chapter-3-hello-template">
 <h2>Chapter 3: Hello template<a class="headerlink" href="#chapter-3-hello-template" title="Permalink to this headline">¶</a></h2>
 <p>Navigate back to <a class="reference external" href="http://localhost:3000/">localhost:3000</a> in your browser. You should see the same default homepage as before.</p>
+<a class="reference internal image-reference" href="_images/welcome.png"><img alt="_images/welcome.png" src="_images/welcome.png" style="width: 100%;" /></a>
 <p>Its contents is configured in the <code class="docutils literal"><span class="pre">index.nunjucks</span></code> file found in the directory Yeoman created. It uses a templating language for JavaScript invented at Mozilla called <a class="reference external" href="https://mozilla.github.io/nunjucks/">Nunjucks</a>.</p>
 <p>You can edit the page by changing what’s found inside of the <code class="docutils literal"><span class="pre">content</span></code> block. Make a change and save the file.</p>
 <div class="highlight-jinja"><div class="highlight"><pre><span></span><span class="cp">{%</span> <span class="k">block</span> <span class="nv">content</span> <span class="cp">%}</span><span class="x"></span>
@@ -354,6 +372,7 @@ $ git commit -m <span class="s2">&quot;Installed framework&quot;</span>
 </pre></div>
 </div>
 <p>You should see it immediately show up thanks to a <a class="reference external" href="https://browsersync.io">BrowserSync</a>, a popular feature of Gulp that automatically updates your test site after you make a change.</p>
+<a class="reference internal image-reference" href="_images/hello-world.png"><img alt="_images/hello-world.png" src="_images/hello-world.png" style="width: 100%;" /></a>
 <p>Look closely at the index file you and will notice that it doesn’t include code for much of what you can see on the live page. For instance, you won’t see the HTML of the navigation bar or the stylesheets that dicatate how the page looks.</p>
 <p>That’s because that boilerplate has been moved back into a parent template “extended” by the index file with a line of Nunjucks code at the top of the page.</p>
 <div class="highlight-jinja"><div class="highlight"><pre><span></span><span class="cp">{%</span> <span class="k">extends</span> <span class="s1">&#39;_layouts/base.nunjucks&#39;</span> <span class="cp">%}</span><span class="x"></span>
@@ -361,12 +380,23 @@ $ git commit -m <span class="s2">&quot;Installed framework&quot;</span>
 </div>
 <p>That “base” file, sometimes called the “layout,” can be inherited by other pages on your site to avoid duplication and share common code. One change to a parent file instantly ripples out to all pages the extend it. This approach to “template inheritance” is not just found in Nunjucks. It can be found in other templating systems, including Python ones like <a class="reference external" href="https://docs.djangoproject.com/en/1.7/topics/templates/">Django</a> and <a class="reference external" href="http://jinja.pocoo.org">Jinja</a>.</p>
 <p>You can find the base layout packaged with our framework in the <code class="docutils literal"><span class="pre">_layouts/base.nunjucks</span></code> file. It includes a set of block tags, like <code class="docutils literal"><span class="pre">content</span></code>, that act as placeholders for use in templates that extend it.</p>
-<p>Make a small change above the block and save the file. You should see the change on our site, with the new line appearing above the paragraph we added earlier to the index file.</p>
+<p>Make a small change above the block and save the file.</p>
 <div class="highlight-jinja"><div class="highlight"><pre><span></span><span class="hll"><span class="x">Above content</span>
 </span><span class="cp">{%</span> <span class="k">block</span> <span class="nv">content</span> <span class="cp">%}{%</span> <span class="k">endblock</span> <span class="cp">%}</span><span class="x"></span>
 </pre></div>
 </div>
-<p>Most newsrooms that use a similar system have a own base template for all of their custom pages. Graphic artists and designers install and extend it as the first step in their work. They develop their custom page within its confines and largely accept the furniture it provides, like the site’s header and footer, fonts, common color schemes. This allows them to work more quickly because they do not have to bother with reinvent their site’s most common elements.</p>
+<p>You should see the change on our site, with the new line appearing above the paragraph we added earlier to the index file.</p>
+<a class="reference internal image-reference" href="_images/above-content.png"><img alt="_images/above-content.png" src="_images/above-content.png" style="width: 100%;" /></a>
+<p>Most newsrooms that use a similar system have a own base template for all of their custom pages. Graphic artists and designers install and extend it as the first step in their work. They develop their custom page within its confines and largely accept the furniture it provides, like the site’s header and footer, fonts, common color schemes. This allows them to work more quickly because they do not have to bother with reinventing their site’s most common elements.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>While most newsrooms keep their base templates to themselves, a few have published them as open-source software. You can find them online, if you know where to look. They include:</p>
+<ul class="last simple">
+<li>The Los Angeles Times Data Desk’s <a class="reference external" href="http://cookbook.latimes.com">HTML Cookbook</a></li>
+<li>The Texas Tribune News App team’s <a class="reference external" href="https://apps.texastribune.org/styles/">style guide</a></li>
+<li>Politico’s <a class="reference external" href="https://github.com/The-Politico/politico-style">style guide</a></li>
+</ul>
+</div>
 <p>For this class, we have developed a base template that will act as a proxy for a real newsroom’s base template. It is not as sophisticated or complete as a real-world example, but it will provide all of the basic elements we will need for this class.</p>
 <p>You can find it in the code block below. Copy all of its contents and paste them into <code class="docutils literal"><span class="pre">_layouts/base.nunjucks</span></code>, replacing everything.</p>
 <div class="highlight-jinja"><div class="highlight"><pre><span></span><span class="x">&lt;!doctype html&gt;</span>
@@ -404,19 +434,31 @@ $ git commit -m <span class="s2">&quot;Installed framework&quot;</span>
 </div>
 <p>As you can see, it includes all of the standard HTML tags, with our custom stylesheets and content blocks mixed in.</p>
 <p>To see the effects, return to <code class="docutils literal"><span class="pre">index.nunjucks</span></code> and fill in a headline using the <code class="docutils literal"><span class="pre">headline</span></code> block introduced by our base template. Save the page and you should quickly see it appear on the page.</p>
-<div class="highlight-jinja"><div class="highlight"><pre><span></span><span class="cp">{%</span> <span class="k">block</span> <span class="nv">headline</span> <span class="cp">%}</span><span class="x">My headline will go here</span><span class="cp">{%</span> <span class="k">endblock</span> <span class="cp">%}</span><span class="x"></span>
-</pre></div>
+<div class="highlight-jinja"><div class="highlight"><pre><span></span><span class="cp">{%</span> <span class="k">extends</span> <span class="s1">&#39;_layouts/base.nunjucks&#39;</span> <span class="cp">%}</span><span class="x"></span>
+
+<span class="hll"><span class="cp">{%</span> <span class="k">block</span> <span class="nv">headline</span> <span class="cp">%}</span><span class="x">My headline will go here</span><span class="cp">{%</span> <span class="k">endblock</span> <span class="cp">%}</span><span class="x"></span>
+</span></pre></div>
 </div>
+<a class="reference internal image-reference" href="_images/headline.png"><img alt="_images/headline.png" src="_images/headline.png" style="width: 100%;" /></a>
 <p>Now fill in a byline.</p>
-<div class="highlight-jinja"><div class="highlight"><pre><span></span><span class="cp">{%</span> <span class="k">block</span> <span class="nv">byline</span> <span class="cp">%}</span><span class="x">By me</span><span class="cp">{%</span> <span class="k">endblock</span> <span class="cp">%}</span><span class="x"></span>
-</pre></div>
+<div class="highlight-jinja"><div class="highlight"><pre><span></span><span class="cp">{%</span> <span class="k">extends</span> <span class="s1">&#39;_layouts/base.nunjucks&#39;</span> <span class="cp">%}</span><span class="x"></span>
+
+<span class="cp">{%</span> <span class="k">block</span> <span class="nv">headline</span> <span class="cp">%}</span><span class="x">My headline will go here</span><span class="cp">{%</span> <span class="k">endblock</span> <span class="cp">%}</span><span class="x"></span>
+<span class="hll"><span class="cp">{%</span> <span class="k">block</span> <span class="nv">byline</span> <span class="cp">%}</span><span class="x">By me</span><span class="cp">{%</span> <span class="k">endblock</span> <span class="cp">%}</span><span class="x"></span>
+</span></pre></div>
 </div>
+<a class="reference internal image-reference" href="_images/byline.png"><img alt="_images/byline.png" src="_images/byline.png" style="width: 100%;" /></a>
 <p>And let’s do the publication date too while we are at it.</p>
-<div class="highlight-jinja"><div class="highlight"><pre><span></span><span class="cp">{%</span> <span class="k">block</span> <span class="nv">pubdate</span> <span class="cp">%}</span><span class="x"></span>
-<span class="x">    &lt;time datetime=&quot;2018-03-10&quot; pubdate&gt;Mar. 10, 2018&lt;/time&gt;</span>
-<span class="cp">{%</span> <span class="k">endblock</span> <span class="cp">%}</span><span class="x"></span>
-</pre></div>
+<div class="highlight-jinja"><div class="highlight"><pre><span></span><span class="cp">{%</span> <span class="k">extends</span> <span class="s1">&#39;_layouts/base.nunjucks&#39;</span> <span class="cp">%}</span><span class="x"></span>
+
+<span class="cp">{%</span> <span class="k">block</span> <span class="nv">headline</span> <span class="cp">%}</span><span class="x">My headline will go here</span><span class="cp">{%</span> <span class="k">endblock</span> <span class="cp">%}</span><span class="x"></span>
+<span class="cp">{%</span> <span class="k">block</span> <span class="nv">byline</span> <span class="cp">%}</span><span class="x">By me</span><span class="cp">{%</span> <span class="k">endblock</span> <span class="cp">%}</span><span class="x"></span>
+<span class="hll"><span class="cp">{%</span> <span class="k">block</span> <span class="nv">pubdate</span> <span class="cp">%}</span><span class="x"></span>
+</span><span class="hll"><span class="x">    &lt;time datetime=&quot;2018-03-10&quot; pubdate&gt;Mar. 10, 2018&lt;/time&gt;</span>
+</span><span class="hll"><span class="cp">{%</span> <span class="k">endblock</span> <span class="cp">%}</span><span class="x"></span>
+</span></pre></div>
 </div>
+<a class="reference internal image-reference" href="_images/pubdate.png"><img alt="_images/pubdate.png" src="_images/pubdate.png" style="width: 100%;" /></a>
 <p>Congratulations, you’ve installed a base template and started in on creating your first custom page. Now is another good time to pause and commit our work.</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>$ git add .
 <span class="c1"># ☝️ A fun trick to add *all* of the pages you&#39;ve changed with one command. ☝️</span>
@@ -427,34 +469,59 @@ $ git commit -m <span class="s2">&quot;Started editing templates&quot;</span>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>$ git push origin master
 </pre></div>
 </div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>You’ll notice that the all of the sub folders in the <code class="docutils literal"><span class="pre">src/</span></code> directory of your project have underscores <code class="docutils literal"><span class="pre">_</span></code> in front of their name. This convention is used to note that these files are <strong>private</strong>, and won’t be deployed.</p>
+<p class="last">Instead, Gulp processes the contents of these folders when it builds the project and serves the files from a <code class="docutils literal"><span class="pre">tmp/</span></code> folder, where you’ll see unprefixed <code class="docutils literal"><span class="pre">images/</span></code>, <code class="docutils literal"><span class="pre">scripts/</span></code> and <code class="docutils literal"><span class="pre">styles/</span></code> directories.</p>
+</div>
 </div>
 <div class="section" id="chapter-4-hello-data">
 <h2>Chapter 4: Hello data<a class="headerlink" href="#chapter-4-hello-data" title="Permalink to this headline">¶</a></h2>
 <p>Add the <a class="reference external" href="https://raw.githubusercontent.com/ireapps/first-graphics-app/master/src/_data/harvard_park_homicides.json">Harvard Park homicides data files</a> to <code class="docutils literal"><span class="pre">_data/harvard_park_homicides.json</span></code></p>
-<p>Return to <code class="docutils literal"><span class="pre">index.nunjucks</span></code> and print them out on the page.</p>
+<p>Return to <code class="docutils literal"><span class="pre">index.nunjucks</span></code> and add the following to the bottom to print the data out on the page.</p>
 <div class="highlight-jinja"><div class="highlight"><pre><span></span><span class="cp">{%</span> <span class="k">block</span> <span class="nv">content</span> <span class="cp">%}</span><span class="x"></span>
-<span class="cp">{{</span> <span class="nv">site.data.harvard_park_homicides</span> <span class="cp">}}</span><span class="x"></span>
+<span class="x">    </span><span class="cp">{{</span> <span class="nv">site.data.harvard_park_homicides</span> <span class="cp">}}</span><span class="x"></span>
 <span class="cp">{%</span> <span class="k">endblock</span> <span class="cp">%}</span><span class="x"></span>
 </pre></div>
 </div>
+<p>Here’s what you should see.</p>
+<a class="reference internal image-reference" href="_images/data-dump.png"><img alt="_images/data-dump.png" src="_images/data-dump.png" style="width: 100%;" /></a>
 <p>Loop through them and print them all.</p>
-<div class="highlight-jinja"><div class="highlight"><pre><span></span><span class="cp">{%</span> <span class="k">for</span> <span class="nv">obj</span> <span class="k">in</span> <span class="nv">site.data.harvard_park_homicides</span> <span class="cp">%}</span><span class="x"></span>
+<div class="highlight-jinja"><div class="highlight"><pre><span></span><span class="cp">{%</span> <span class="k">block</span> <span class="nv">content</span> <span class="cp">%}</span><span class="x"></span>
+<span class="cp">{%</span> <span class="k">for</span> <span class="nv">obj</span> <span class="k">in</span> <span class="nv">site.data.harvard_park_homicides</span> <span class="cp">%}</span><span class="x"></span>
 <span class="x">    </span><span class="cp">{{</span> <span class="nv">obj</span> <span class="cp">}}</span><span class="x"></span>
 <span class="cp">{%</span> <span class="k">endfor</span> <span class="cp">%}</span><span class="x"></span>
+<span class="cp">{%</span> <span class="k">endblock</span> <span class="cp">%}</span><span class="x"></span>
 </pre></div>
 </div>
+<a class="reference internal image-reference" href="_images/data-dump.png"><img alt="_images/data-dump.png" src="_images/data-dump.png" style="width: 100%;" /></a>
+<p>Add a line break with a <code class="docutils literal"><span class="pre">&lt;br&gt;</span></code> tag.</p>
+<div class="highlight-jinja"><div class="highlight"><pre><span></span><span class="cp">{%</span> <span class="k">block</span> <span class="nv">content</span> <span class="cp">%}</span><span class="x"></span>
+<span class="cp">{%</span> <span class="k">for</span> <span class="nv">obj</span> <span class="k">in</span> <span class="nv">site.data.harvard_park_homicides</span> <span class="cp">%}</span><span class="x"></span>
+<span class="x">    </span><span class="cp">{{</span> <span class="nv">obj</span> <span class="cp">}}</span><span class="x">&lt;br&gt;</span>
+<span class="cp">{%</span> <span class="k">endfor</span> <span class="cp">%}</span><span class="x"></span>
+<span class="cp">{%</span> <span class="k">endblock</span> <span class="cp">%}</span><span class="x"></span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="_images/hello-loop.png"><img alt="_images/hello-loop.png" src="_images/hello-loop.png" style="width: 100%;" /></a>
 <p>Print the last name.</p>
-<div class="highlight-jinja"><div class="highlight"><pre><span></span><span class="cp">{%</span> <span class="k">for</span> <span class="nv">obj</span> <span class="k">in</span> <span class="nv">site.data.harvard_park_homicides</span> <span class="cp">%}</span><span class="x"></span>
+<div class="highlight-jinja"><div class="highlight"><pre><span></span><span class="cp">{%</span> <span class="k">block</span> <span class="nv">content</span> <span class="cp">%}</span><span class="x"></span>
+<span class="cp">{%</span> <span class="k">for</span> <span class="nv">obj</span> <span class="k">in</span> <span class="nv">site.data.harvard_park_homicides</span> <span class="cp">%}</span><span class="x"></span>
 <span class="x">    </span><span class="cp">{{</span> <span class="nv">obj.last_name</span> <span class="cp">}}</span><span class="x">&lt;br&gt;</span>
 <span class="cp">{%</span> <span class="k">endfor</span> <span class="cp">%}</span><span class="x"></span>
+<span class="cp">{%</span> <span class="k">endblock</span> <span class="cp">%}</span><span class="x"></span>
 </pre></div>
 </div>
+<a class="reference internal image-reference" href="_images/hello-last-name.png"><img alt="_images/hello-last-name.png" src="_images/hello-last-name.png" style="width: 100%;" /></a>
 <p>Add the first name. To have them display more nicely, you can also add a line break in between each one.</p>
-<div class="highlight-jinja"><div class="highlight"><pre><span></span><span class="cp">{%</span> <span class="k">for</span> <span class="nv">obj</span> <span class="k">in</span> <span class="nv">site.data.harvard_park_homicides</span> <span class="cp">%}</span><span class="x"></span>
+<div class="highlight-jinja"><div class="highlight"><pre><span></span><span class="cp">{%</span> <span class="k">block</span> <span class="nv">content</span> <span class="cp">%}</span><span class="x"></span>
+<span class="cp">{%</span> <span class="k">for</span> <span class="nv">obj</span> <span class="k">in</span> <span class="nv">site.data.harvard_park_homicides</span> <span class="cp">%}</span><span class="x"></span>
 <span class="x">    </span><span class="cp">{{</span> <span class="nv">obj.first_name</span> <span class="cp">}}</span><span class="x"> </span><span class="cp">{{</span> <span class="nv">obj.last_name</span> <span class="cp">}}</span><span class="x">&lt;br&gt;</span>
 <span class="cp">{%</span> <span class="k">endfor</span> <span class="cp">%}</span><span class="x"></span>
+<span class="cp">{%</span> <span class="k">endblock</span> <span class="cp">%}</span><span class="x"></span>
 </pre></div>
 </div>
+<a class="reference internal image-reference" href="_images/hello-full-name.png"><img alt="_images/hello-full-name.png" src="_images/hello-full-name.png" style="width: 100%;" /></a>
 <p>Commit our work.</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>$ git add .
 $ git commit -m <span class="s2">&quot;Printed a list of names from data&quot;</span>
@@ -467,17 +534,23 @@ $ git commit -m <span class="s2">&quot;Printed a list of names from data&quot;</
 </div>
 <div class="section" id="chapter-5-hello-cards">
 <h2>Chapter 5: Hello cards<a class="headerlink" href="#chapter-5-hello-cards" title="Permalink to this headline">¶</a></h2>
-<p>Explain Bootstrap. Show what we’re trying to make. Talk about cards. Show Bootstrap docs.</p>
+<p>Explain Bootstrap. Show what we’re trying to make.</p>
+<a class="reference internal image-reference" href="_images/bootstrap.png"><img alt="_images/bootstrap.png" src="_images/bootstrap.png" style="width: 100%;" /></a>
+<p>Talk about cards. Show Bootstrap docs.</p>
+<a class="reference internal image-reference" href="_images/bootstrap-cols.png"><img alt="_images/bootstrap-cols.png" src="_images/bootstrap-cols.png" style="width: 100%;" /></a>
 <p>Basic card with only a title. Talk about divs. etc.</p>
-<div class="highlight-jinja"><div class="highlight"><pre><span></span><span class="cp">{%</span> <span class="k">for</span> <span class="nv">obj</span> <span class="k">in</span> <span class="nv">site.data.harvard_park_homicides</span> <span class="cp">%}</span><span class="x"></span>
+<div class="highlight-jinja"><div class="highlight"><pre><span></span><span class="cp">{%</span> <span class="k">block</span> <span class="nv">content</span> <span class="cp">%}</span><span class="x"></span>
+<span class="cp">{%</span> <span class="k">for</span> <span class="nv">obj</span> <span class="k">in</span> <span class="nv">site.data.harvard_park_homicides</span> <span class="cp">%}</span><span class="x"></span>
 <span class="x">    &lt;div class=&quot;card&quot;&gt;</span>
 <span class="x">      &lt;div class=&quot;card-body&quot;&gt;</span>
 <span class="x">        &lt;h5 class=&quot;card-title&quot;&gt;</span><span class="cp">{{</span> <span class="nv">obj.first_name</span> <span class="cp">}}</span><span class="x"> </span><span class="cp">{{</span> <span class="nv">obj.last_name</span> <span class="cp">}}</span><span class="x">&lt;/h5&gt;</span>
 <span class="x">      &lt;/div&gt;</span>
 <span class="x">    &lt;/div&gt;</span>
 <span class="cp">{%</span> <span class="k">endfor</span> <span class="cp">%}</span><span class="x"></span>
+<span class="cp">{%</span> <span class="k">endblock</span> <span class="cp">%}</span><span class="x"></span>
 </pre></div>
 </div>
+<a class="reference internal image-reference" href="_images/cards-first.png"><img alt="_images/cards-first.png" src="_images/cards-first.png" style="width: 100%;" /></a>
 <p>Add a sentence below the title.</p>
 <div class="highlight-jinja"><div class="highlight"><pre><span></span><span class="cp">{%</span> <span class="k">for</span> <span class="nv">obj</span> <span class="k">in</span> <span class="nv">site.data.harvard_park_homicides</span> <span class="cp">%}</span><span class="x"></span>
 <span class="x">    &lt;div class=&quot;card&quot;&gt;</span>
@@ -489,6 +562,7 @@ $ git commit -m <span class="s2">&quot;Printed a list of names from data&quot;</
 <span class="cp">{%</span> <span class="k">endfor</span> <span class="cp">%}</span><span class="x"></span>
 </pre></div>
 </div>
+<p>PHOTO ONCE WE FINALIZE THE SENTENCE</p>
 <p>Add an image.</p>
 <div class="highlight-jinja"><div class="highlight"><pre><span></span><span class="cp">{%</span> <span class="k">for</span> <span class="nv">obj</span> <span class="k">in</span> <span class="nv">site.data.harvard_park_homicides</span> <span class="cp">%}</span><span class="x"></span>
 <span class="x">    &lt;div class=&quot;card&quot;&gt;</span>
@@ -501,6 +575,7 @@ $ git commit -m <span class="s2">&quot;Printed a list of names from data&quot;</
 <span class="cp">{%</span> <span class="k">endfor</span> <span class="cp">%}</span><span class="x"></span>
 </pre></div>
 </div>
+<p>PHOTO ONCE WE FINALIZE THE SENTENCE</p>
 <p>Add if clause around the image.</p>
 <div class="highlight-jinja"><div class="highlight"><pre><span></span><span class="cp">{%</span> <span class="k">for</span> <span class="nv">obj</span> <span class="k">in</span> <span class="nv">site.data.harvard_park_homicides</span> <span class="cp">%}</span><span class="x"></span>
 <span class="x">    &lt;div class=&quot;card&quot;&gt;</span>
@@ -513,6 +588,7 @@ $ git commit -m <span class="s2">&quot;Printed a list of names from data&quot;</
 <span class="cp">{%</span> <span class="k">endfor</span> <span class="cp">%}</span><span class="x"></span>
 </pre></div>
 </div>
+<p>PHOTO ONCE WE FINALIZE THE SENTENCE</p>
 <p>Add the columns.</p>
 <div class="highlight-jinja"><div class="highlight"><pre><span></span><span class="x">&lt;div class=&quot;card-columns&quot;&gt;</span>
 <span class="x">    </span><span class="cp">{%</span> <span class="k">for</span> <span class="nv">obj</span> <span class="k">in</span> <span class="nv">site.data.harvard_park_homicides</span> <span class="cp">%}</span><span class="x"></span>
@@ -527,8 +603,22 @@ $ git commit -m <span class="s2">&quot;Printed a list of names from data&quot;</
 <span class="x">&lt;/div&gt;</span>
 </pre></div>
 </div>
+<p>PHOTO ONCE WE FINALIZE THE SENTENCE</p>
 <p>Write a headline.</p>
+<div class="highlight-jinja"><div class="highlight"><pre><span></span><span class="x">TK</span>
+</pre></div>
+</div>
+<p>PHOTO</p>
 <p>Write the chatter.</p>
+<div class="highlight-jinja"><div class="highlight"><pre><span></span><span class="x">TK</span>
+</pre></div>
+</div>
+<p>PHOTO</p>
+<p>Section tag.</p>
+<div class="highlight-jinja"><div class="highlight"><pre><span></span><span class="x">TK</span>
+</pre></div>
+</div>
+<p>PHOTO</p>
 </div>
 <div class="section" id="chapter-6-hello-charts">
 <h2>Chapter 6: Hello charts<a class="headerlink" href="#chapter-6-hello-charts" title="Permalink to this headline">¶</a></h2>
@@ -543,18 +633,19 @@ $ git commit -m <span class="s2">&quot;Printed a list of names from data&quot;</
 </pre></div>
 </div>
 <p>The <code class="docutils literal"><span class="pre">-s</span></code> argument saves plotly to a dependencies file. That way, if you ever need to go through the install steps for your app again, you can do so easily.</p>
-<p>From here, we’ll be working in our <code class="docutils literal"><span class="pre">_scripts</span></code> folder. Create a file called <code class="docutils literal"><span class="pre">charts.js</span></code> inside of <code class="docutils literal"><span class="pre">_scripts/</span></code>.</p>
+<p>From here, we’ll be working in our <code class="docutils literal"><span class="pre">_scripts</span></code> folder. Create a file called <code class="docutils literal"><span class="pre">_charts.js</span></code> inside of <code class="docutils literal"><span class="pre">_scripts/</span></code>.</p>
 <p>You can include the libraries we installed (or any JavaScript file!) by using <code class="docutils literal"><span class="pre">require()</span></code>. Plotly is a HUGE library, so we’re only going to import the parts of it that we need.</p>
 <div class="highlight-javascript"><div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">Plotly</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;plotly.js/lib/core&#39;</span><span class="p">);</span>
 <span class="kd">var</span> <span class="nx">Plotlybar</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;plotly.js/lib/bar&#39;</span><span class="p">);</span>
 
 <span class="nx">Plotly</span><span class="p">.</span><span class="nx">register</span><span class="p">(</span><span class="nx">Plotlybar</span><span class="p">);</span>
 
-<span class="c1">// At the end of the charts.js file</span>
+<span class="c1">// At the end of the _charts.js file</span>
 <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;hello, this is my charts file!&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>Then we use the same <code class="docutils literal"><span class="pre">require()</span></code> method to pull our code into <code class="docutils literal"><span class="pre">main.js</span></code>.</p>
+<p>Remember our underscore coding convention? Here, <code class="docutils literal"><span class="pre">_charts.js</span></code> has an underscore (<code class="docutils literal"><span class="pre">_</span></code>) in front of it because it will be compiled into <code class="docutils literal"><span class="pre">main.js</span></code> when the site is baked.</p>
+<p>That is, if we tell it to. Use the same <code class="docutils literal"><span class="pre">require()</span></code> method to pull our code into <code class="docutils literal"><span class="pre">main.js</span></code>. Unlike <code class="docutils literal"><span class="pre">_charts.js</span></code>, <code class="docutils literal"><span class="pre">main.js</span></code> doesn’t have an underscore, because it is the file that the other scripts will be pulled into.</p>
 <div class="highlight-javascript"><div class="highlight"><pre><span></span><span class="c1">// Main javascript entry point</span>
 <span class="c1">// Should handle bootstrapping/starting application</span>
 <span class="s1">&#39;use strict&#39;</span><span class="p">;</span>
@@ -567,10 +658,10 @@ $ git commit -m <span class="s2">&quot;Printed a list of names from data&quot;</
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;Welcome to Yeogurt!&#39;</span><span class="p">);</span>
 <span class="p">});</span>
 
-<span class="hll"><span class="kd">var</span> <span class="nx">chart</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;./charts.js&#39;</span><span class="p">);</span>
+<span class="hll"><span class="kd">var</span> <span class="nx">chart</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;./_charts.js&#39;</span><span class="p">);</span>
 </span></pre></div>
 </div>
-<p>Structuring our code this way helps keep things organized, as each file controls one specific part of the page. Need to make an adjustment to your chart? Go to <code class="docutils literal"><span class="pre">charts.js</span></code>.</p>
+<p>Structuring our code this way helps keep things organized, as each file controls one specific part of the page. Need to make an adjustment to your chart? Go to <code class="docutils literal"><span class="pre">_charts.js</span></code>.</p>
 <p>Now if you reload your page and go to your inspector (click on the three dots in the top right of Chrome, go down to “More tools” and select “Developer tools”), you should see <code class="docutils literal"><span class="pre">hello,</span> <span class="pre">this</span> <span class="pre">is</span> <span class="pre">my</span> <span class="pre">charts</span> <span class="pre">file!</span></code> in the console.</p>
 <p>TK PICTURE OF INSPECTOR / CONSOLE HERE</p>
 <p>What chart should we make? The story points out that Harvard Park experienced an increase in homicides as there was a decrease across the rest of the county. Let’s try to visualize that.</p>
@@ -956,7 +1047,7 @@ $ git commit -m <span class="s2">&quot;Printed a list of names from data&quot;</
 <div class="highlight-jinja"><div class="highlight"><pre><span></span><span class="x">&lt;div id=&quot;map&quot;&gt;&lt;/div&gt;</span>
 </pre></div>
 </div>
-<p>To bring the map to life, add a new file named <code class="docutils literal"><span class="pre">map.js</span></code> to the <code class="docutils literal"><span class="pre">_scripts</span></code> directory. Import it in <code class="docutils literal"><span class="pre">main.js</span></code>.</p>
+<p>To bring the map to life, add a new file named <code class="docutils literal"><span class="pre">_map.js</span></code> to the <code class="docutils literal"><span class="pre">_scripts</span></code> directory. Import it in <code class="docutils literal"><span class="pre">main.js</span></code>.</p>
 <div class="highlight-javascript"><div class="highlight"><pre><span></span><span class="c1">// Main javascript entry point</span>
 <span class="c1">// Should handle bootstrapping/starting application</span>
 
@@ -972,12 +1063,12 @@ $ git commit -m <span class="s2">&quot;Printed a list of names from data&quot;</
 
 <span class="kd">var</span> <span class="nx">chart</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;./charts.js&#39;</span><span class="p">);</span>
 <span class="kd">var</span> <span class="nx">L</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">&quot;leaflet&quot;</span><span class="p">);</span>
-<span class="hll"><span class="kd">var</span> <span class="nx">map</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">&quot;./map.js&quot;</span><span class="p">);</span>
+<span class="hll"><span class="kd">var</span> <span class="nx">map</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">&quot;./_map.js&quot;</span><span class="p">);</span>
 </span>
 <span class="nx">L</span><span class="p">.</span><span class="nx">Icon</span><span class="p">.</span><span class="nx">Default</span><span class="p">.</span><span class="nx">imagePath</span> <span class="o">=</span> <span class="s1">&#39;https://unpkg.com/leaflet@1.3.1/dist/images/&#39;</span><span class="p">;</span>
 </pre></div>
 </div>
-<p>Now in <code class="docutils literal"><span class="pre">_scripts/map.js</span></code> paste in the following Leaflet code to generate a simple map. It does three things: create a new map in the HTML element we made with “map” set as its ID; add a new map layer with roads, borders, water and other features from OpenStreetMap; finally, add the layer to the map.</p>
+<p>Now in <code class="docutils literal"><span class="pre">_scripts/_map.js</span></code> paste in the following Leaflet code to generate a simple map. It does three things: create a new map in the HTML element we made with “map” set as its ID; add a new map layer with roads, borders, water and other features from OpenStreetMap; finally, add the layer to the map.</p>
 <div class="highlight-javascript"><div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">map</span> <span class="o">=</span> <span class="nx">L</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="s1">&#39;map&#39;</span><span class="p">);</span>
 <span class="kd">var</span> <span class="nx">osm</span> <span class="o">=</span> <span class="nx">L</span><span class="p">.</span><span class="nx">tileLayer</span><span class="p">(</span><span class="s1">&#39;http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png&#39;</span><span class="p">);</span>
 <span class="nx">osm</span><span class="p">.</span><span class="nx">addTo</span><span class="p">(</span><span class="nx">map</span><span class="p">);</span>
@@ -1043,7 +1134,7 @@ $ git commit -m <span class="s2">&quot;Printed a list of names from data&quot;</
 <span class="cp">{%</span> <span class="k">endblock</span> <span class="cp">%}</span><span class="x"></span>
 </pre></div>
 </div>
-<p>Now return to <code class="docutils literal"><span class="pre">_scripts/map.js</span></code>. At the bottom add some JavaScript code that steps through the homicide list and adds each one to the map as a circle, just like the real Homicide Report.</p>
+<p>Now return to <code class="docutils literal"><span class="pre">_scripts/_map.js</span></code>. At the bottom add some JavaScript code that steps through the homicide list and adds each one to the map as a circle, just like the real Homicide Report.</p>
 <div class="highlight-javascript"><div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">map</span> <span class="o">=</span> <span class="nx">L</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="s1">&#39;map&#39;</span><span class="p">)</span>
 <span class="kd">var</span> <span class="nx">osm</span> <span class="o">=</span> <span class="nx">L</span><span class="p">.</span><span class="nx">tileLayer</span><span class="p">(</span><span class="s1">&#39;http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png&#39;</span><span class="p">);</span>
 <span class="nx">osm</span><span class="p">.</span><span class="nx">addTo</span><span class="p">(</span><span class="nx">map</span><span class="p">);</span>
@@ -1055,7 +1146,7 @@ $ git commit -m <span class="s2">&quot;Printed a list of names from data&quot;</
 </span><span class="hll"><span class="p">})</span>
 </span></pre></div>
 </div>
-<p>Save the file and you should now see all the homicides mapped on the page. Next, extend the code in <code class="docutils literal"><span class="pre">_scripts/map.js</span></code> to add a tooltip label on each point.</p>
+<p>Save the file and you should now see all the homicides mapped on the page. Next, extend the code in <code class="docutils literal"><span class="pre">_scripts/_map.js</span></code> to add a tooltip label on each point.</p>
 <div class="highlight-javascript"><div class="highlight"><pre><span></span><span class="nx">homicides</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">obj</span><span class="p">)</span> <span class="p">{</span>
     <span class="nx">L</span><span class="p">.</span><span class="nx">circleMarker</span><span class="p">([</span><span class="nx">obj</span><span class="p">.</span><span class="nx">latitude</span><span class="p">,</span>  <span class="nx">obj</span><span class="p">.</span><span class="nx">longitude</span><span class="p">])</span>
       <span class="p">.</span><span class="nx">addTo</span><span class="p">(</span><span class="nx">map</span><span class="p">)</span>
@@ -1084,7 +1175,7 @@ $ git commit -m <span class="s2">&quot;Printed a list of names from data&quot;</
 </span></pre></div>
 </div>
 <p>After you save, the tooltips should appear when you hover over a circle.</p>
-<p>To make the tooltips visible all the time, edit the JavaScript in <code class="docutils literal"><span class="pre">_scripts/map.js</span></code> to make the tooltips “permanent.”</p>
+<p>To make the tooltips visible all the time, edit the JavaScript in <code class="docutils literal"><span class="pre">_scripts/_map.js</span></code> to make the tooltips “permanent.”</p>
 <div class="highlight-javascript"><div class="highlight"><pre><span></span><span class="nx">homicides</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">obj</span><span class="p">)</span> <span class="p">{</span>
     <span class="nx">L</span><span class="p">.</span><span class="nx">circleMarker</span><span class="p">([</span><span class="nx">obj</span><span class="p">.</span><span class="nx">latitude</span><span class="p">,</span>  <span class="nx">obj</span><span class="p">.</span><span class="nx">longitude</span><span class="p">])</span>
       <span class="p">.</span><span class="nx">addTo</span><span class="p">(</span><span class="nx">map</span><span class="p">)</span>
@@ -1115,7 +1206,7 @@ $ git commit -m <span class="s2">&quot;Printed a list of names from data&quot;</
 <span class="kd">var</span> <span class="nx">chart</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;./charts.js&#39;</span><span class="p">);</span>
 <span class="kd">var</span> <span class="nx">L</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">&quot;leaflet&quot;</span><span class="p">);</span>
 <span class="hll"><span class="kd">var</span> <span class="nx">MiniMap</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;leaflet-minimap&#39;</span><span class="p">);</span>
-</span><span class="kd">var</span> <span class="nx">map</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">&quot;./map.js&quot;</span><span class="p">);</span>
+</span><span class="kd">var</span> <span class="nx">map</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">&quot;./_map.js&quot;</span><span class="p">);</span>
 
 <span class="nx">L</span><span class="p">.</span><span class="nx">Icon</span><span class="p">.</span><span class="nx">Default</span><span class="p">.</span><span class="nx">imagePath</span> <span class="o">=</span> <span class="s1">&#39;https://unpkg.com/leaflet@1.3.1/dist/images/&#39;</span><span class="p">;</span>
 </pre></div>
@@ -1132,7 +1223,7 @@ $ git commit -m <span class="s2">&quot;Printed a list of names from data&quot;</
 </span><span class="p">@</span><span class="k">import</span> <span class="s1">&#39;_map.scss&#39;</span><span class="p">;</span>
 </pre></div>
 </div>
-<p>Now that everything is installed, return to <code class="docutils literal"><span class="pre">scripts/map.js</span></code> and create an inset map with the library’s custom tools. We can set its view with the <code class="docutils literal"><span class="pre">maxZoom</span></code> option.</p>
+<p>Now that everything is installed, return to <code class="docutils literal"><span class="pre">scripts/_map.js</span></code> and create an inset map with the library’s custom tools. We can set its view with the <code class="docutils literal"><span class="pre">maxZoom</span></code> option.</p>
 <div class="highlight-javascript"><div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">map</span> <span class="o">=</span> <span class="nx">L</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="s1">&#39;map&#39;</span><span class="p">)</span>
 <span class="kd">var</span> <span class="nx">osm</span> <span class="o">=</span> <span class="nx">L</span><span class="p">.</span><span class="nx">tileLayer</span><span class="p">(</span><span class="s1">&#39;http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png&#39;</span><span class="p">);</span>
 <span class="nx">osm</span><span class="p">.</span><span class="nx">addTo</span><span class="p">(</span><span class="nx">map</span><span class="p">);</span>
@@ -1154,10 +1245,13 @@ $ git commit -m <span class="s2">&quot;Printed a list of names from data&quot;</
 <p>Save the file and the inset map should appear on your page.</p>
 <p>Finally, let’s preface the map with so a headline.</p>
 <div class="highlight-html"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">h3</span><span class="p">&gt;</span>One corner. Four killings<span class="p">&lt;/</span><span class="nt">h3</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;map&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
 </pre></div>
 </div>
 <p>Then an introductory paragraph.</p>
-<div class="highlight-html"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>The southwest corner of Harvard Park, at West 62nd Street and Harvard Boulevard, has been especially deadly. In the last year-and-a-half, four men have been killed there — while sitting in a car, trying to defuse an argument or walking home from the barber shop or the corner store.<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+<div class="highlight-html"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">h3</span><span class="p">&gt;</span>One corner. Four killings<span class="p">&lt;/</span><span class="nt">h3</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>The southwest corner of Harvard Park, at West 62nd Street and Harvard Boulevard, has been especially deadly. In the last year-and-a-half, four men have been killed there — while sitting in a car, trying to defuse an argument or walking home from the barber shop or the corner store.<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;map&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
 </pre></div>
 </div>
 <p>All wrapped up in a <code class="docutils literal"><span class="pre">&lt;section&gt;</span></code> tag.</p>
@@ -1172,28 +1266,59 @@ $ git commit -m <span class="s2">&quot;Printed a list of names from data&quot;</
 </div>
 <div class="section" id="chapter-8-hello-internet">
 <h2>Chapter 8: Hello Internet<a class="headerlink" href="#chapter-8-hello-internet" title="Permalink to this headline">¶</a></h2>
-<p>Build a static version of your site</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ gulp --production
+<p>In in our last chapter, all the work we’ve done will finally be published online.</p>
+<p>Our Yeoman framework, with its tools, structure and shortcuts, has served us well. It’s been a great place to experiment, organize and develop our work. But it’s useless to our readers.</p>
+<p>The HTML, JavaScript and CSS files the framework generates are all they need. Without all the code running our terminal, those files aren’t be able to take advantage of Yeogurt, Gulp, BrowserSync and all our other tricks. But it won’t matter. We can upload the simple files our framework renders to the web and they’ll be enough for anyone who wants them.</p>
+<p>That process — converting a dynamic, living website to simple files living on the filesystem — is a common strategy for publishing news sites. It goes by different names, like “flattening,” “freezing” or “baking.”  Whatever you call it, it’s a solid path to cheap­, stable host­ing for simple sites. It is used across the industry for pub­lish­ing elec­tion res­ults, longform stories, spe­cial pro­jects and numerous other things.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>Examples of static news pages in the wild include:</p>
+<ul class="last simple">
+<li><a class="reference external" href="https://www.washingtonpost.com/graphics/2017/ns/year-in-graphics/">A wide array of interactive graphics</a> by The Washington Post</li>
+<li>Hundreds of Los Angeles Times stories at <a class="reference external" href="http://www.latimes.com/projects/">latimes.com/projects</a></li>
+<li>Dozens more from The Seattle Times at <a class="reference external" href="https://projects.seattletimes.com">projects.seattletimes.com</a></li>
+<li>Interactive apps by <a class="reference external" href="https://interactives.dallasnews.com/2018/secrets-dallas-dead/">The Dallas Morning News</a></li>
+<li><a class="reference external" href="https://open.blogs.nytimes.com/2010/12/20/using-flat-files-so-elections-dont-break-your-server/">Live election results</a> published by The New York Times</li>
+<li>Data downloads from the <a class="reference external" href="https://calaccess.californiacivicdata.org/downloads/latest/">California Civic Data Coalition</a></li>
+</ul>
+</div>
+<p>Lucky for us, Yeogurt is pre-configured to flatten our dynamic site. And GitHub has a hosting service for publishing static pages. Here’s all it takes.</p>
+<p>Go to GitHub’s page for the repository. Click on the “Settings” tab. Scroll down to the “GitHub Pages” section. Select “master branch /docs folder” as the source. Hit save.</p>
+<p>This will result in any files pushed to the “docs” directory of your repository being published on the web. For free.</p>
+<p>Next, open the <code class="docutils literal"><span class="pre">package.json</span></code> file at the root of the project. Scroll to the bottom. In the <code class="docutils literal"><span class="pre">config</span></code> section edit it to instruct Gulp to flatten files to the <code class="docutils literal"><span class="pre">docs</span></code> directory.</p>
+<div class="highlight-javascript"><div class="highlight"><pre><span></span><span class="s2">&quot;config&quot;</span><span class="o">:</span> <span class="p">{</span>
+  <span class="s2">&quot;//&quot;</span><span class="o">:</span> <span class="s2">&quot;Entry files&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;host&quot;</span><span class="o">:</span> <span class="s2">&quot;127.0.0.1&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;port&quot;</span><span class="o">:</span> <span class="s2">&quot;3000&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;baseUrl&quot;</span><span class="o">:</span> <span class="s2">&quot;./&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;directories&quot;</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s2">&quot;source&quot;</span><span class="o">:</span> <span class="s2">&quot;src&quot;</span><span class="p">,</span>
+<span class="hll">    <span class="s2">&quot;destination&quot;</span><span class="o">:</span> <span class="s2">&quot;docs&quot;</span><span class="p">,</span>
+</span>    <span class="s2">&quot;temporary&quot;</span><span class="o">:</span> <span class="s2">&quot;tmp&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;//&quot;</span><span class="o">:</span> <span class="s2">&quot;Directories relative to `source` directory&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;modules&quot;</span><span class="o">:</span> <span class="s2">&quot;_modules&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;layouts&quot;</span><span class="o">:</span> <span class="s2">&quot;_layouts&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;images&quot;</span><span class="o">:</span> <span class="s2">&quot;_images&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;styles&quot;</span><span class="o">:</span> <span class="s2">&quot;_styles&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;scripts&quot;</span><span class="o">:</span> <span class="s2">&quot;_scripts&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;data&quot;</span><span class="o">:</span> <span class="s2">&quot;_data&quot;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
 </pre></div>
 </div>
-<p>Inspect the files in the build directory.</p>
-<p>Edit <code class="docutils literal"><span class="pre">package.json</span></code> to build files to docs instead.</p>
-<div class="highlight-javascript"><div class="highlight"><pre><span></span><span class="s2">&quot;destination&quot;</span><span class="o">:</span> <span class="s2">&quot;docs&quot;</span><span class="p">,</span>
-</pre></div>
-</div>
-<p>Build the static site again.</p>
+<p>Return to your terminal where the <code class="docutils literal"><span class="pre">serve</span></code> command is running. Hit <code class="docutils literal"><span class="pre">CTRL-C</span></code> or <code class="docutils literal"><span class="pre">CTRL-Z</span></code> to terminate its process.</p>
+<p>Once you are back at the standard terminal, enter the following command to build a static version of your site. Rather than start up the local test server we’ve been using so far, it will instead save the site as flat files in <code class="docutils literal"><span class="pre">docs</span></code>.</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>$ gulp --production
 </pre></div>
 </div>
 <p>Commit and push to GitHub.</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ git add package.json
-$ git add docs
-$ git commit -am <span class="s2">&quot;Message here&quot;</span>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ git add .
+$ git commit -m <span class="s2">&quot;Built site to docs folder&quot;</span>
 $ git push origin master
 </pre></div>
 </div>
-<p>Go to GitHub config and turn on GitHub Pages with the <code class="docutils literal"><span class="pre">/docs</span></code> on the master branch as the source. Hit save.</p>
-<p>Visit <a class="reference external" href="https://ireapps.github.io/first-graphics-app/">&lt;your_username&gt;.github.com/first-graphics-app/</a>.</p>
+<p>Wait a few moments and visit <a class="reference external" href="https://ireapps.github.io/first-graphics-app/">&lt;your_username&gt;.github.com/first-graphics-app/</a>. You should see your app published live on the World Wide Web.</p>
+<p>Congratulations. You’ve finished this class.</p>
 </div>
 </div>
 
