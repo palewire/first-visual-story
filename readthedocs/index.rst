@@ -496,6 +496,43 @@ Chapter 4: Hello data
 
 Add the `Harvard Park homicides data files <https://raw.githubusercontent.com/ireapps/first-graphics-app/master/src/_data/harvard_park_homicides.json>`_ to ``_data/harvard_park_homicides.json``
 
+It includes a list with a dictionary of data about each homicide victim in the neighborhood since 2000.
+
+.. code-block:: javascript
+
+    [
+       {
+          "case_number":"2017-04514",
+          "slug":"eddie-rosendo-lino",
+          "first_name":"Eddie",
+          "middle_name":"Rosendo",
+          "last_name":"Lino",
+          "death_date":"2017-06-18T00:00:00.000Z",
+          "death_year":2017,
+          "age":23.0,
+          "race":"black",
+          "gender":"male",
+          "image":null,
+          "longitude":-118.304107484,
+          "latitude":33.9904336958
+       },
+       {
+          "case_number":"2017-03454",
+          "slug":"alex-david-lomeli",
+          "first_name":"Alex",
+          "middle_name":"David",
+          "last_name":"Lomeli",
+          "death_date":"2017-05-07T00:00:00.000Z",
+          "death_year":2017,
+          "age":18.0,
+          "race":"latino",
+          "gender":"male",
+          "image":null,
+          "longitude":-118.300290584,
+          "latitude":33.9793646958
+       },
+       ...
+
 Return to ``index.nunjucks`` and add the following to the bottom to print the data out on the page.
 
 .. code-block:: jinja
@@ -1306,7 +1343,11 @@ Now in ``_scripts/map.js`` paste in the following Leaflet code to generate a sim
     osm.addTo(map);
 
 
-After you save, the index page should reload with a simple map, centered far from Los Angeles.
+After you save, the index page should reload with a blank map.
+
+.. image:: _static/blank-map.png
+    :width: 100%
+
 
 To zero in on the area we're reporting on, we will need its longitude and latitude coordinates. Go to Google Maps and find 62nd Street and Harvard Boulevard in South LA. Hold down a click until it gives you the coordinates in a popup box. Paste those numbers into Leaflet's ``setView`` method with a zoom level of 15 included.
 
@@ -1317,6 +1358,9 @@ To zero in on the area we're reporting on, we will need its longitude and latitu
     var osm = L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png');
     osm.addTo(map);
     map.setView([33.983265, -118.306799], 15);
+
+.. image:: _static/first-map.png
+    :width: 100%
 
 
 After you save the file, your map should have relocated. Let's tighten up that zoom and save again.
@@ -1330,47 +1374,13 @@ After you save the file, your map should have relocated. Let's tighten up that z
     map.setView([33.983265, -118.306799], 18);
 
 
-Now let's load some data on the map. Download the complete list of Harvard Park homicides from `this link <https://gist.githubusercontent.com/palewire/1035cd306a2f85b362b1a20ce315b8eb/raw/harvard_park_homicides.json>`_. Create a new file at ``_data/harvard_park_homicides.json`` and paste the file's content in.
-
-It includes a list with a dictionary of data about each homicide victim in the neighborhood since 2000.
-
-.. code-block:: javascript
-
-    [
-       {
-          "case_number":"2017-04514",
-          "slug":"eddie-rosendo-lino",
-          "first_name":"Eddie",
-          "middle_name":"Rosendo",
-          "last_name":"Lino",
-          "death_date":"2017-06-18T00:00:00.000Z",
-          "death_year":2017,
-          "age":23.0,
-          "race":"black",
-          "gender":"male",
-          "image":null,
-          "longitude":-118.304107484,
-          "latitude":33.9904336958
-       },
-       {
-          "case_number":"2017-03454",
-          "slug":"alex-david-lomeli",
-          "first_name":"Alex",
-          "middle_name":"David",
-          "last_name":"Lomeli",
-          "death_date":"2017-05-07T00:00:00.000Z",
-          "death_year":2017,
-          "age":18.0,
-          "race":"latino",
-          "gender":"male",
-          "image":null,
-          "longitude":-118.300290584,
-          "latitude":33.9793646958
-       },
-       ...
+.. image:: _static/corner-map.png
+    :width: 100%
 
 
-Now let's include that data in the page. Open ``index.nunjucks`` and add a new variable to the ``scripts`` block where the homicides list is stored.
+Now let's load some data on the map. We will return to the list of all homicides already stored in ``_data/harvard_park_homicides.json``.
+
+Open ``index.nunjucks`` and add a new variable to the ``scripts`` block where the homicides list is stored.
 
 .. code-block:: jinja
     :emphasize-lines: 4
@@ -1396,10 +1406,16 @@ Now return to ``_scripts/map.js``. At the bottom add some JavaScript code that s
     homicides.forEach(function (obj) {
         L.circleMarker([obj.latitude,  obj.longitude])
           .addTo(map);
-    })
+    });
 
 
-Save the file and you should now see all the homicides mapped on the page. Next, extend the code in ``_scripts/map.js`` to add a tooltip label on each point.
+Save the file and you should now see all the homicides mapped on the page.
+
+.. image:: _static/hello-circles.png
+    :width: 100%
+
+
+Next, extend the code in ``_scripts/map.js`` to add a tooltip label on each point.
 
 .. code-block:: javascript
     :emphasize-lines: 4
@@ -1412,6 +1428,10 @@ Save the file and you should now see all the homicides mapped on the page. Next,
 
 
 Here's what you should see after you do that.
+
+.. image:: _static/hello-tooltips.gif
+    :width: 100%
+
 
 Next let's sprinkle some CSS in our page to make the circles match the orange color of the dots found on The Homicide Report. As we did with the charts, go to the ``_scripts`` folder and create a new file. We'll call this one ``_map.scss``. In that file, copy or write the following:
 
@@ -1439,7 +1459,11 @@ Just as before, that won't change anything until you import our new file into th
     @import '_map.scss';
 
 
-After you save, the tooltips should appear when you hover over a circle.
+After you save, here's what you'll get.
+
+.. image:: _static/orange-circles.png
+    :width: 100%
+
 
 To make the tooltips visible all the time, edit the JavaScript in ``_scripts/map.js`` to make the tooltips "permanent."
 
@@ -1450,7 +1474,12 @@ To make the tooltips visible all the time, edit the JavaScript in ``_scripts/map
         L.circleMarker([obj.latitude,  obj.longitude])
           .addTo(map)
           .bindTooltip(obj.first_name + " " + obj.last_name, {permanent: true});
-    })
+    });
+
+Here they are.
+
+.. image:: _static/permanent-tooltips.png
+    :width: 100%
 
 
 Alright. We've got an okay map. But it's zoomed in so close a reader might now know where it is. To combat this problem, graphic artists often inset a small map in the corner that shows the the area of focus from a greater distance.
@@ -1531,12 +1560,20 @@ Now that everything is installed, return to ``scripts/map.js`` and create an ins
 
 Save the file and the inset map should appear on your page.
 
+.. image:: _static/hello-minimap.png
+    :width: 100%
+
+
 Finally, let's preface the map with so a headline.
 
 .. code-block:: html
 
     <h3>One corner. Four killings</h3>
     <div id="map"></div>
+
+
+.. image:: _static/map-hed.png
+    :width: 100%
 
 
 Then an introductory paragraph.
@@ -1548,6 +1585,10 @@ Then an introductory paragraph.
     <div id="map"></div>
 
 
+.. image:: _static/map-deck.png
+    :width: 100%
+
+
 All wrapped up in a ``<section>`` tag.
 
 .. code-block:: html
@@ -1557,6 +1598,10 @@ All wrapped up in a ``<section>`` tag.
         <p>The southwest corner of Harvard Park, at West 62nd Street and Harvard Boulevard, has been especially deadly. In the last year-and-a-half, four men have been killed there — while sitting in a car, trying to defuse an argument or walking home from the barber shop or the corner store.</p>
         <div id="map"></div>
     </section>
+
+
+.. image:: _static/map-section.png
+    :width: 100%
 
 
 Congratulations. You've created a custom map. Now let's get on to the business of sharing it with the world.
