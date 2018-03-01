@@ -1423,7 +1423,7 @@ Save the file and you should now see all the homicides mapped on the page.
     :width: 100%
 
 
-Next, extend the code in ``_scripts/map.js`` to add a tooltip label on each point.
+Next, extend the code in ``_scripts/_map.js`` to add a tooltip label on each point.
 
 .. code-block:: javascript
     :emphasize-lines: 4
