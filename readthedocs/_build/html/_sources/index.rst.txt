@@ -921,9 +921,9 @@ We want to make two charts - one of county homicides and one of killings in Harv
 
 The ``.map()`` creates and returns an array, and the arrow (``=>``) function returns the value for each object. Think of it as "plucking" the values we want to form a list.
 
-Now that we've populated our data, we're ready to make our chart. Right now, it's pretty simple, with options for the x axis, which we want to be our ``years`` array, and y axis, which is our homicide counts, and specifying the type of the chart.
+Now that we've populated our data, we're ready to make our chart. Right now, it's pretty simple, with a single variable ``settings`` providing options for the x axis, which we want to be our ``years`` array, and y axis, which is our homicide counts, and specifying the type of the chart.
 
-Below the settings we call ``Plotly.newPlot()`` with the id of the element where we want the chart to go and settings to create the chart.
+Below ``settings`` we call ``Plotly.newPlot()`` with the id of the element where we want the chart to go and settings to create the chart.
 
 .. code-block:: javascript
 
@@ -952,7 +952,7 @@ This is a good start, but we can further customize this chart so it fits better 
 - Give the charts titles
 - Display the two charts alongside one another
 
-Let's add labels to our axes. Create a new variable, ``chartLayout`` in your ``createChart`` function. We can then specify properties for ``xaxis`` and ``yaxis``. We don't have a homicide label because we'll add a title to the charts later that will take care of that.
+Let's add labels to our axes. Create a new variable, ``layout``. Here, we can specify display properties for ``xaxis`` and ``yaxis``. We don't have a homicide label on the Y axis because we'll add a title to the charts later that will take care of that.
 
 .. code-block:: javascript
 
@@ -974,6 +974,9 @@ Then, add ``layout`` as a third argument to ``Plotly.newPlot()``
 
     Plotly.newPlot('county-homicides', settings, layout);
 
+.. image:: _static/charts-2.png
+    :width: 100%
+
 Everything in plotly.js is handled by settings like this. For example, to change the markers to an light blue, update the ``settings`` variable.
 
 .. code-block:: javascript
@@ -988,6 +991,11 @@ Everything in plotly.js is handled by settings like this. For example, to change
         color: '#86c7df'
       }
     }];
+
+
+.. image:: _static/charts-light-blue.png
+    :width: 100%
+
 
 But wait, what if you want to make another chart? You'd have to copy and paste all that code over again.
 
@@ -1049,16 +1057,20 @@ Now, we can make a second chart by using the Harvard Park data. Be sure to repla
     // The rest of your code is up here
     createChart(years, harvardParkHomicides, 'harvard-park-homicides');
 
+.. image:: _static/two-charts.png
+    :width: 100%
 
 Not bad, right? By structuring our code this way, we'll be able to make multiple charts without repeating our code (known as `DRY <https://en.wikipedia.org/wiki/Don%27t_repeat_yourself>`_).
 
 Right now, our charts are stacked on top of each other, which isn't really a great layout. We can use HTML and CSS to lay out our charts side-by-side.
 
-In ``index.nunjucks``, add a ``div`` element that wraps your charts, and add a ``class`` of ``inline-chart`` to each of your charts.
+In ``index.nunjucks``, add a ``div`` element with a class of ``charts-holder`` and ``clearfix`` that wraps your charts, and add a ``class`` of ``inline-chart`` to each of your charts.
+
+Make sure you give the wrapping div a class of ``clearfix``, which will make sure that the rest of the page displays below these items.
 
 .. code-block:: html
 
-    <div class="charts-holder">
+    <div class="charts-holder clearfix">
         <div class="inline-chart" id="county-homicides"></div>
         <div class="inline-chart" id="harvard-park-homicides"></div>
     </div>
@@ -1089,14 +1101,19 @@ You won't see anything yet, because we haven't imported it into our main stylesh
 
 Again, this is the same modular structure that allows us to organize our chart styles in a different place from our map styles, for example.
 
+Reload the page to see your changes.
+
+.. image:: _static/inline-charts.png
+    :width: 100%
+
 The charts are laid out side-by-side like we want them, but there's way too much space in between them. Luckily, we can adjust the margins in the chart layout. Back in ``_scripts/charts.js``, the following settings should work.
 
-``l``, ``r``, ``t`` and ``b`` stand for left, right, top and bottom margins, respectively.
+``l``, ``r``, ``t`` and ``b`` stand for left, right, top and bottom margins, respectively. Make sure you add a comma after the ``yaxis`` value!
 
 .. code-block:: javascript
-    :emphasize-lines: 9-15
+    :emphasize-lines: 8-16
 
-    var chartLayout = {
+    var layout = {
         xaxis: {
             title: 'Year',
             fixedrange: true
@@ -1105,6 +1122,7 @@ The charts are laid out side-by-side like we want them, but there's way too much
             fixedrange: true
         },
         // Add the margin here
+        // Don't forget the comma above!
         margin: {
             l: 30,
             r: 15,
@@ -1133,7 +1151,7 @@ We can also add a parameter to reduce the height, they're a bit tall.
             r: 15,
             t: 45,
             b: 30
-        }
+        },
         // Add a height parameter to the bottom of your file
         height: 250
     };
@@ -1144,6 +1162,8 @@ Another nice modification - we can make the annoying toolbar go away by adjustin
 
     Plotly.newPlot(element, settings, layout, {displayModeBar: false});
 
+.. image:: _static/two-charts-styled.png
+    :width: 100%
 
 Much better! There are a couple more customization options we can do with plotly. While it's useful to get the homicide numbers on hover, we don't really need those year label popups. We can turn those off by only displaying hovers for y-axis values.
 
@@ -1183,7 +1203,7 @@ You can also slightly customize the label. For example, let's change the backgro
         // Add this to your chart settings
         hoverinfo: 'y',
         hoverlabel: {
-          bgcolor: '#333333'
+          bgcolor: '#777777'
         }
       }];
 
@@ -1191,6 +1211,9 @@ You can also slightly customize the label. For example, let's change the backgro
       ...
     }
 
+
+.. image:: _static/two-charts-label.png
+    :width: 100%
 
 Last, our charts need titles! Since we want each chart to have a different title, we'll need to update our function a bit.
 
@@ -1253,7 +1276,10 @@ These titles are a little light and blend in to the rest of the text. Let's make
     createChart(years, countyHomicides, 'county-homicides', countyChartTitle);
     createChart(years, harvardParkHomicides, 'harvard-park-homicides', hpChartTitle);
 
-Congratulations. You've made your charts! Let's move on to our next challenge.
+.. image:: _static/two-charts-title.png
+    :width: 100%
+
+Congratulations, you've made your charts! Let's move on to our next challenge.
 
 .. note::
 

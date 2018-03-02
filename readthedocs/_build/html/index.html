@@ -769,8 +769,8 @@ Explain Bootstrap. Show what we’re trying to make.</p>
 </span></pre></div>
 </div>
 <p>The <code class="docutils literal"><span class="pre">.map()</span></code> creates and returns an array, and the arrow (<code class="docutils literal"><span class="pre">=&gt;</span></code>) function returns the value for each object. Think of it as “plucking” the values we want to form a list.</p>
-<p>Now that we’ve populated our data, we’re ready to make our chart. Right now, it’s pretty simple, with options for the x axis, which we want to be our <code class="docutils literal"><span class="pre">years</span></code> array, and y axis, which is our homicide counts, and specifying the type of the chart.</p>
-<p>Below the settings we call <code class="docutils literal"><span class="pre">Plotly.newPlot()</span></code> with the id of the element where we want the chart to go and settings to create the chart.</p>
+<p>Now that we’ve populated our data, we’re ready to make our chart. Right now, it’s pretty simple, with a single variable <code class="docutils literal"><span class="pre">settings</span></code> providing options for the x axis, which we want to be our <code class="docutils literal"><span class="pre">years</span></code> array, and y axis, which is our homicide counts, and specifying the type of the chart.</p>
+<p>Below <code class="docutils literal"><span class="pre">settings</span></code> we call <code class="docutils literal"><span class="pre">Plotly.newPlot()</span></code> with the id of the element where we want the chart to go and settings to create the chart.</p>
 <div class="highlight-javascript"><div class="highlight"><pre><span></span><span class="c1">// The rest of your code is up here.</span>
 <span class="c1">// Add the below lines to the bottom of your file</span>
 
@@ -794,7 +794,7 @@ Explain Bootstrap. Show what we’re trying to make.</p>
 <li>Give the charts titles</li>
 <li>Display the two charts alongside one another</li>
 </ul>
-<p>Let’s add labels to our axes. Create a new variable, <code class="docutils literal"><span class="pre">chartLayout</span></code> in your <code class="docutils literal"><span class="pre">createChart</span></code> function. We can then specify properties for <code class="docutils literal"><span class="pre">xaxis</span></code> and <code class="docutils literal"><span class="pre">yaxis</span></code>. We don’t have a homicide label because we’ll add a title to the charts later that will take care of that.</p>
+<p>Let’s add labels to our axes. Create a new variable, <code class="docutils literal"><span class="pre">layout</span></code>. Here, we can specify display properties for <code class="docutils literal"><span class="pre">xaxis</span></code> and <code class="docutils literal"><span class="pre">yaxis</span></code>. We don’t have a homicide label on the Y axis because we’ll add a title to the charts later that will take care of that.</p>
 <div class="highlight-javascript"><div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">layout</span> <span class="o">=</span> <span class="p">{</span>
     <span class="nx">xaxis</span><span class="o">:</span> <span class="p">{</span>
         <span class="nx">title</span><span class="o">:</span> <span class="s1">&#39;Year&#39;</span><span class="p">,</span>
@@ -811,6 +811,7 @@ Explain Bootstrap. Show what we’re trying to make.</p>
 <div class="highlight-javascript"><div class="highlight"><pre><span></span><span class="nx">Plotly</span><span class="p">.</span><span class="nx">newPlot</span><span class="p">(</span><span class="s1">&#39;county-homicides&#39;</span><span class="p">,</span> <span class="nx">settings</span><span class="p">,</span> <span class="nx">layout</span><span class="p">);</span>
 </pre></div>
 </div>
+<a class="reference internal image-reference" href="_images/charts-2.png"><img alt="_images/charts-2.png" src="_images/charts-2.png" style="width: 100%;" /></a>
 <p>Everything in plotly.js is handled by settings like this. For example, to change the markers to an light blue, update the <code class="docutils literal"><span class="pre">settings</span></code> variable.</p>
 <div class="highlight-javascript"><div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">settings</span> <span class="o">=</span> <span class="p">[{</span>
   <span class="nx">x</span><span class="o">:</span> <span class="nx">years</span><span class="p">,</span>
@@ -823,6 +824,7 @@ Explain Bootstrap. Show what we’re trying to make.</p>
 </span><span class="p">}];</span>
 </pre></div>
 </div>
+<a class="reference internal image-reference" href="_images/charts-light-blue.png"><img alt="_images/charts-light-blue.png" src="_images/charts-light-blue.png" style="width: 100%;" /></a>
 <p>But wait, what if you want to make another chart? You’d have to copy and paste all that code over again.</p>
 <p>Before we get to far, let’s abstract all of this into a function.</p>
 <div class="highlight-javascript"><div class="highlight"><pre><span></span><span class="kd">function</span> <span class="nx">createChart</span><span class="p">(</span><span class="nx">x</span><span class="p">,</span> <span class="nx">y</span><span class="p">,</span> <span class="nx">element</span><span class="p">)</span> <span class="p">{</span>
@@ -870,10 +872,12 @@ Explain Bootstrap. Show what we’re trying to make.</p>
 <span class="nx">createChart</span><span class="p">(</span><span class="nx">years</span><span class="p">,</span> <span class="nx">harvardParkHomicides</span><span class="p">,</span> <span class="s1">&#39;harvard-park-homicides&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
+<a class="reference internal image-reference" href="_images/two-charts.png"><img alt="_images/two-charts.png" src="_images/two-charts.png" style="width: 100%;" /></a>
 <p>Not bad, right? By structuring our code this way, we’ll be able to make multiple charts without repeating our code (known as <a class="reference external" href="https://en.wikipedia.org/wiki/Don%27t_repeat_yourself">DRY</a>).</p>
 <p>Right now, our charts are stacked on top of each other, which isn’t really a great layout. We can use HTML and CSS to lay out our charts side-by-side.</p>
-<p>In <code class="docutils literal"><span class="pre">index.nunjucks</span></code>, add a <code class="docutils literal"><span class="pre">div</span></code> element that wraps your charts, and add a <code class="docutils literal"><span class="pre">class</span></code> of <code class="docutils literal"><span class="pre">inline-chart</span></code> to each of your charts.</p>
-<div class="highlight-html"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;charts-holder&quot;</span><span class="p">&gt;</span>
+<p>In <code class="docutils literal"><span class="pre">index.nunjucks</span></code>, add a <code class="docutils literal"><span class="pre">div</span></code> element with a class of <code class="docutils literal"><span class="pre">charts-holder</span></code> and <code class="docutils literal"><span class="pre">clearfix</span></code> that wraps your charts, and add a <code class="docutils literal"><span class="pre">class</span></code> of <code class="docutils literal"><span class="pre">inline-chart</span></code> to each of your charts.</p>
+<p>Make sure you give the wrapping div a class of <code class="docutils literal"><span class="pre">clearfix</span></code>, which will make sure that the rest of the page displays below these items.</p>
+<div class="highlight-html"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;charts-holder clearfix&quot;</span><span class="p">&gt;</span>
     <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;inline-chart&quot;</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;county-homicides&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
     <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;inline-chart&quot;</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;harvard-park-homicides&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
 <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
@@ -896,17 +900,20 @@ Explain Bootstrap. Show what we’re trying to make.</p>
 </span></pre></div>
 </div>
 <p>Again, this is the same modular structure that allows us to organize our chart styles in a different place from our map styles, for example.</p>
+<p>Reload the page to see your changes.</p>
+<a class="reference internal image-reference" href="_images/inline-charts.png"><img alt="_images/inline-charts.png" src="_images/inline-charts.png" style="width: 100%;" /></a>
 <p>The charts are laid out side-by-side like we want them, but there’s way too much space in between them. Luckily, we can adjust the margins in the chart layout. Back in <code class="docutils literal"><span class="pre">_scripts/charts.js</span></code>, the following settings should work.</p>
-<p><code class="docutils literal"><span class="pre">l</span></code>, <code class="docutils literal"><span class="pre">r</span></code>, <code class="docutils literal"><span class="pre">t</span></code> and <code class="docutils literal"><span class="pre">b</span></code> stand for left, right, top and bottom margins, respectively.</p>
-<div class="highlight-javascript"><div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">chartLayout</span> <span class="o">=</span> <span class="p">{</span>
+<p><code class="docutils literal"><span class="pre">l</span></code>, <code class="docutils literal"><span class="pre">r</span></code>, <code class="docutils literal"><span class="pre">t</span></code> and <code class="docutils literal"><span class="pre">b</span></code> stand for left, right, top and bottom margins, respectively. Make sure you add a comma after the <code class="docutils literal"><span class="pre">yaxis</span></code> value!</p>
+<div class="highlight-javascript"><div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">layout</span> <span class="o">=</span> <span class="p">{</span>
     <span class="nx">xaxis</span><span class="o">:</span> <span class="p">{</span>
         <span class="nx">title</span><span class="o">:</span> <span class="s1">&#39;Year&#39;</span><span class="p">,</span>
         <span class="nx">fixedrange</span><span class="o">:</span> <span class="kc">true</span>
     <span class="p">},</span>
     <span class="nx">yaxis</span><span class="o">:</span> <span class="p">{</span>
         <span class="nx">fixedrange</span><span class="o">:</span> <span class="kc">true</span>
-    <span class="p">},</span>
-<span class="hll">    <span class="c1">// Add the margin here</span>
+<span class="hll">    <span class="p">},</span>
+</span><span class="hll">    <span class="c1">// Add the margin here</span>
+</span><span class="hll">    <span class="c1">// Don&#39;t forget the comma above!</span>
 </span><span class="hll">    <span class="nx">margin</span><span class="o">:</span> <span class="p">{</span>
 </span><span class="hll">        <span class="nx">l</span><span class="o">:</span> <span class="mi">30</span><span class="p">,</span>
 </span><span class="hll">        <span class="nx">r</span><span class="o">:</span> <span class="mi">15</span><span class="p">,</span>
@@ -931,7 +938,7 @@ Explain Bootstrap. Show what we’re trying to make.</p>
         <span class="nx">r</span><span class="o">:</span> <span class="mi">15</span><span class="p">,</span>
         <span class="nx">t</span><span class="o">:</span> <span class="mi">45</span><span class="p">,</span>
         <span class="nx">b</span><span class="o">:</span> <span class="mi">30</span>
-    <span class="p">}</span>
+    <span class="p">},</span>
 <span class="hll">    <span class="c1">// Add a height parameter to the bottom of your file</span>
 </span><span class="hll">    <span class="nx">height</span><span class="o">:</span> <span class="mi">250</span>
 </span><span class="p">};</span>
@@ -941,6 +948,7 @@ Explain Bootstrap. Show what we’re trying to make.</p>
 <div class="highlight-javascript"><div class="highlight"><pre><span></span><span class="nx">Plotly</span><span class="p">.</span><span class="nx">newPlot</span><span class="p">(</span><span class="nx">element</span><span class="p">,</span> <span class="nx">settings</span><span class="p">,</span> <span class="nx">layout</span><span class="p">,</span> <span class="p">{</span><span class="nx">displayModeBar</span><span class="o">:</span> <span class="kc">false</span><span class="p">});</span>
 </pre></div>
 </div>
+<a class="reference internal image-reference" href="_images/two-charts-styled.png"><img alt="_images/two-charts-styled.png" src="_images/two-charts-styled.png" style="width: 100%;" /></a>
 <p>Much better! There are a couple more customization options we can do with plotly. While it’s useful to get the homicide numbers on hover, we don’t really need those year label popups. We can turn those off by only displaying hovers for y-axis values.</p>
 <div class="highlight-javascript"><div class="highlight"><pre><span></span><span class="kd">function</span> <span class="nx">createChart</span><span class="p">(</span><span class="nx">x</span><span class="p">,</span> <span class="nx">y</span><span class="p">,</span> <span class="nx">element</span><span class="p">)</span> <span class="p">{</span>
   <span class="kd">var</span> <span class="nx">settings</span> <span class="o">=</span> <span class="p">[{</span>
@@ -971,7 +979,7 @@ Explain Bootstrap. Show what we’re trying to make.</p>
     <span class="c1">// Add this to your chart settings</span>
     <span class="nx">hoverinfo</span><span class="o">:</span> <span class="s1">&#39;y&#39;</span><span class="p">,</span>
 <span class="hll">    <span class="nx">hoverlabel</span><span class="o">:</span> <span class="p">{</span>
-</span><span class="hll">      <span class="nx">bgcolor</span><span class="o">:</span> <span class="s1">&#39;#333333&#39;</span>
+</span><span class="hll">      <span class="nx">bgcolor</span><span class="o">:</span> <span class="s1">&#39;#777777&#39;</span>
 </span><span class="hll">    <span class="p">}</span>
 </span>  <span class="p">}];</span>
 
@@ -980,6 +988,7 @@ Explain Bootstrap. Show what we’re trying to make.</p>
 <span class="p">}</span>
 </pre></div>
 </div>
+<a class="reference internal image-reference" href="_images/two-charts-label.png"><img alt="_images/two-charts-label.png" src="_images/two-charts-label.png" style="width: 100%;" /></a>
 <p>Last, our charts need titles! Since we want each chart to have a different title, we’ll need to update our function a bit.</p>
 <dl class="docutils">
 <dt>We’re going to</dt>
@@ -1036,7 +1045,8 @@ Explain Bootstrap. Show what we’re trying to make.</p>
 <span class="nx">createChart</span><span class="p">(</span><span class="nx">years</span><span class="p">,</span> <span class="nx">harvardParkHomicides</span><span class="p">,</span> <span class="s1">&#39;harvard-park-homicides&#39;</span><span class="p">,</span> <span class="nx">hpChartTitle</span><span class="p">);</span>
 </pre></div>
 </div>
-<p>Congratulations. You’ve made your charts! Let’s move on to our next challenge.</p>
+<a class="reference internal image-reference" href="_images/two-charts-title.png"><img alt="_images/two-charts-title.png" src="_images/two-charts-title.png" style="width: 100%;" /></a>
+<p>Congratulations, you’ve made your charts! Let’s move on to our next challenge.</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
 <p>We used Plotly.js in this class, but there are many other JavaScript charting libraries, each one slightly different. If you want to explore this on your own, here are some other options that we considered using for this class</p>
