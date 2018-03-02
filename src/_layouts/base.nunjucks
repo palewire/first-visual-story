@@ -18,6 +18,7 @@
     <header>
         <h1>{% block headline %}{% endblock %}</h1>
         <div class="byline">
+            test
             {% block byline %}{% endblock %}
         </div>
         <div class="pubdate">
