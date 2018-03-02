@@ -634,6 +634,7 @@ Push it to GitHub.
 Chapter 5: Hello cards
 **********************
 
+YO 
 Explain Bootstrap. Show what we're trying to make.
 
 .. image:: _static/bootstrap.png
