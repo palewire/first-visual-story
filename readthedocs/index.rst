@@ -8,6 +8,7 @@ A step-by-step guide to publishing a standalone story from a dataset.
 
 This tutorial will show you how journalists at America’s top news organizations escape rigid content-management systems to publish custom interactive graphics on deadline. You will get hands-on experience in every stage of the development process, writing JavaScript, HTML and CSS within a Node.js framework. You won't stop until you've deployed a working application on the World Wide Web.
 
+
 ******************
 What you will make
 ******************
@@ -18,7 +19,9 @@ By the end of this lesson, you will publish a standalone page with a series of g
    :width: 100%
    :target: https://ireapps.github.io/first-graphics-app/
 
+
 A working example of what you will make can be found at `ireapps.github.io/first-graphics-app/ <https://ireapps.github.io/first-graphics-app/>`_
+
 
 *****************
 About the authors
@@ -34,6 +37,7 @@ Their work was inspired by the footloose spirit of funk music. We urge you to bu
 .. raw:: html
 
     <iframe src="https://open.spotify.com/embed?uri=spotify:user:227b2koy2xxyb23qliakea75y:playlist:54NS8jCdrgUpzUppUpokSg&theme=white" width="300" height="380" frameborder="0" allowtransparency="true" style="margin: 20px 0;"></iframe>
+
 
 **********************
 Prelude: Prerequisites
@@ -312,6 +316,7 @@ Commit our work.
 
     $ git add .
     $ git commit -m "Installed framework"
+
 
 Push it to GitHub.
 
@@ -1156,14 +1161,17 @@ We can also add a parameter to reduce the height, they're a bit tall.
         height: 250
     };
 
+
 Another nice modification - we can make the annoying toolbar go away by adjusting our call to ``Plotly.newPlot()``
 
 .. code-block:: javascript
 
     Plotly.newPlot(element, settings, layout, {displayModeBar: false});
 
+
 .. image:: _static/two-charts-styled.png
     :width: 100%
+
 
 Much better! There are a couple more customization options we can do with plotly. While it's useful to get the homicide numbers on hover, we don't really need those year label popups. We can turn those off by only displaying hovers for y-axis values.
 
@@ -1265,6 +1273,7 @@ Then, add the title you want to your function call. We'll assign them to variabl
     createChart(years, countyHomicides, 'county-homicides', countyChartTitle);
     createChart(years, harvardParkHomicides, 'harvard-park-homicides', hpChartTitle);
 
+
 These titles are a little light and blend in to the rest of the text. Let's make them bolder. The easiest way I've found to do this with Plotly is by wrapping them in bold tags.
 
 .. code-block:: javascript
@@ -1276,8 +1285,10 @@ These titles are a little light and blend in to the rest of the text. Let's make
     createChart(years, countyHomicides, 'county-homicides', countyChartTitle);
     createChart(years, harvardParkHomicides, 'harvard-park-homicides', hpChartTitle);
 
+
 .. image:: _static/two-charts-title.png
     :width: 100%
+
 
 Congratulations, you've made your charts! Let's move on to our next challenge.
 
@@ -1294,7 +1305,6 @@ Congratulations, you've made your charts! Let's move on to our next challenge.
 
     - `Chartbuilder <https://quartz.github.io/Chartbuilder/>`_ from `Quartz <https://qz.com/>`_, is very good for basic, fast charts with light customization.
     - `DataWrapper <https://www.datawrapper.de/>`_ allows a range of visualizations beyond basic charts, including scatter plots and maps.
-
 
 
 ********************
@@ -1808,5 +1818,10 @@ Commit and push to GitHub.
 
 
 Wait a few moments and visit `\<your_username\>.github.com/first-graphics-app/ <https://ireapps.github.io/first-graphics-app/>`_. You should see your app published live on the World Wide Web.
+
+.. image:: _static/preview.gif
+   :width: 100%
+   :target: https://ireapps.github.io/first-graphics-app/
+
 
 Congratulations. You've finished this class.
