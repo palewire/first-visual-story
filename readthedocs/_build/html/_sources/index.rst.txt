@@ -597,7 +597,8 @@ Push it to GitHub.
 Chapter 5: Hello cards
 **********************
 
-Explain Bootstrap. Show what we're trying to make. Test.
+Bootstrap is a ...
+Explain Bootstrap. Show what we're trying to make.
 
 .. image:: _static/bootstrap.png
     :width: 100%
