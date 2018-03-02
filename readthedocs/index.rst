@@ -121,7 +121,7 @@ Once that's done, you should create an account at GitHub, if you don't already h
 Chapter 1: Hello Git
 ********************
 
-First things first. It always helps to store all your code in the same place, instead of haphazard folders around your computer. This way, you always know where to look.
+First things first. It always helps to store all your code in the same place, instead of haphazard folders around your computer. This way, you always know where to look if you need to find a project.
 
 In this case, let's call that directory ``Code``.
 
@@ -170,14 +170,14 @@ Visit `GitHub <http://www.github.com>`_ and `create <https://github.com/new>`_ a
    :target: https://github.com/new
 
 
-Then connect your local directory to GitHub with the following command.
+Then connect your local directory to GitHub with the following command. Replace ``<yourusername>`` with your GitHub user name.
 
 .. code-block:: bash
 
     $ git remote add origin https://github.com/<yourusername>/first-graphics-app.git
 
 
-Create your first file, a blank ``README`` with a `Markdown <https://en.wikipedia.org/wiki/Markdown>`_ file extension since that's `the preferred format of GitHub <https://help.github.com/articles/github-flavored-markdown>`_. The filename will be ``README.md``.
+Create your first file, a blank ``README`` with a `Markdown <https://en.wikipedia.org/wiki/Markdown>`_ file extension since that's `the preferred format of GitHub <https://help.github.com/articles/github-flavored-markdown>`_. The filename will be ``README.md``. Markdown is a simple way of writing nicely formatted text, complete with headlines, links, images, etc.
 
 .. code-block:: bash
 
@@ -634,7 +634,7 @@ Push it to GitHub.
 Chapter 5: Hello cards
 **********************
 
-YO 
+YO
 Explain Bootstrap. Show what we're trying to make.
 
 .. image:: _static/bootstrap.png
