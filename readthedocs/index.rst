@@ -803,7 +803,7 @@ You can include the libraries we installed (or any JavaScript file!) by using ``
     Plotly.register(Plotlybar);
 
     // At the end of the _charts.js file
-    console.log("hello, this is my charts file!")
+    console.log('hello, this is my charts file!')
 
 
 Remember our underscore coding convention? Here, ``_charts.js`` has an underscore (``_``) in front of it because it will be compiled into ``main.js`` when the site is baked.
@@ -811,16 +811,17 @@ Remember our underscore coding convention? Here, ``_charts.js`` has an underscor
 That is, if we tell it to. Use the same ``require()`` method to pull our code into ``main.js``. Unlike ``_charts.js``, ``main.js`` doesn't have an underscore, because it is the file that the other scripts will be pulled into.
 
 .. code-block:: javascript
-    :emphasize-lines: 13
+    :emphasize-lines: 14
 
     // Main javascript entry point
     // Should handle bootstrapping/starting application
+
     'use strict';
 
-    var $ = require('jquery');
-    var Link = require('../_modules/link/link');
+    import $ from 'jquery';
+    import Link from '../_modules/link/link';
 
-    $(function() {
+    $(() => {
       new Link(); // Activate Link modules logic
       console.log('Welcome to Yeogurt!');
     });
@@ -832,21 +833,49 @@ Structuring our code this way helps keep things organized, as each file controls
 
 Now if you reload your page and go to your inspector (click on the three dots in the top right of Chrome, go down to "More tools" and select "Developer tools"), you should see ``hello, this is my charts file!`` in the console.
 
-TK PICTURE OF INSPECTOR / CONSOLE HERE
+.. image:: _static/hello-charts.png
+    :width: 100%
 
 What chart should we make? The story points out that Harvard Park experienced an increase in homicides as there was a decrease across the rest of the county. Let's try to visualize that.
 
 First, we need somewhere for our charts to go. In our ``index.nunjucks`` file, inside of ``{% block content %}`` where you want the chart to go, create a ``div`` element with an id of ``county-homicides``, and another with an id of ``harvard-park-homicides``.
 
 .. code-block:: html
+    :emphasize-lines: 11-12
+
+    {% extends '_layouts/base.nunjucks' %}
+
+    {% block headline %}My headline will go here{% endblock %}
+    {% block byline %}By me{% endblock %}
+    {% block pubdate %}
+        <time datetime="2018-03-10" pubdate>Mar. 10, 2018</time>
+    {% endblock %}
+
+    {% block content %}
 
     <div id="county-homicides"></div>
     <div id="harvard-park-homicides"></div>
 
+    {% for obj in site.data.harvard_park_homicides %}
+    <div class="card-columns">
+        {% for obj in site.data.harvard_park_homicides %}
+        <div class="card">
+          {% if obj.image %}<img class="card-img-top" src="{{ obj.image }}">{% endif %}
+          <div class="card-body">
+            <h5 class="card-title">{{ obj.first_name }} {{ obj.last_name }}</h5>
+            <p class="card-text">A {{ obj.age}}-year-old {{ obj.race }} {{ obj.gender }} died in {{ obj.death_year }}.</p>
+          </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% endfor %}
+
+    {% endblock %}
+
 
 Meanwhile, we need data. Copy the `annual totals data <https://raw.githubusercontent.com/ireapps/first-graphics-app/master/src/_data/annual_totals.json>`_ to ``_data/annual_totals.json``. We can use nunjucks to include our data file directly in the template.
 
-Inside of the ``{% scripts %}`` block:
+Add a ``{% scripts %}`` block to the end of your ``index.nunjucks`` file:
 
 .. code-block:: html
 
@@ -911,6 +940,10 @@ Below the settings we call ``Plotly.newPlot()`` with the id of the element where
     // Create the chart
     Plotly.newPlot('county-homicides', settings);
 
+You should see something like this on your page.
+
+.. image:: _static/first-chart.png
+    :width: 100%
 
 This is a good start, but we can further customize this chart so it fits better with the rest of the page. Now, let's try to:
 
