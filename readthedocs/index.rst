@@ -1749,7 +1749,7 @@ Hey. How about a headline?
     {% endblock %}
 
 
-.. image:: _static/final-headline.png
+.. image:: _static/final-hed.png
     :width: 100%
 
 
