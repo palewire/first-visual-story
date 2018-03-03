@@ -500,6 +500,7 @@ And, again, push it to GitHub.
 
     Instead, Gulp processes the contents of these folders when it builds the project and serves the files from a ``tmp/`` folder, where you'll see unprefixed ``images/``, ``scripts/`` and ``styles/`` directories.
 
+
 *********************
 Chapter 4: Hello data
 *********************
