@@ -1696,6 +1696,7 @@ While we're at it, let's also restrict the zoom level so it you can't back too f
 Finally, let's preface the map with so a headline.
 
 .. code-block:: html
+    :emphasize-lines: 1
 
     <h3>One corner. Four killings</h3>
     <div id="map"></div>
@@ -1708,6 +1709,7 @@ Finally, let's preface the map with so a headline.
 Then an introductory paragraph.
 
 .. code-block:: html
+    :emphasize-lines: 2
 
     <h3>One corner. Four killings</h3>
     <p>The southwest corner of Harvard Park, at West 62nd Street and Harvard Boulevard, has been especially deadly. In the last year-and-a-half, four men have been killed there — while sitting in a car, trying to defuse an argument or walking home from the barber shop or the corner store.</p>
@@ -1721,6 +1723,7 @@ Then an introductory paragraph.
 All wrapped up in a ``<section>`` tag.
 
 .. code-block:: html
+    :emphasize-lines: 1,5
 
     <section>
         <h3>One corner. Four killings</h3>
@@ -1774,7 +1777,7 @@ And a real byline.
 And let's a write a lead.
 
 .. code-block:: html
-    :emphasize-lines: 1-3
+    :emphasize-lines: 2-4
 
     {% block content %}
     <section>
