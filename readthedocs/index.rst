@@ -180,7 +180,7 @@ Then connect your local directory to GitHub with the following command. Replace 
     $ git remote add origin https://github.com/<yourusername>/first-graphics-app.git
 
 
-Create your first file, a blank ``README`` with a `Markdown <https://en.wikipedia.org/wiki/Markdown>`_ file extension since that's `the preferred format of GitHub <https://help.github.com/articles/github-flavored-markdown>`_. The filename will be ``README.md``. Markdown is a simple way of writing nicely formatted text, complete with headlines, links, images, etc.
+Create your first file, a blank ``README`` with a `Markdown <https://en.wikipedia.org/wiki/Markdown>`_ file extension since that's `the preferred format of GitHub <https://help.github.com/articles/github-flavored-markdown>`_. The filename will be ``README.md``. Markdown is a simple way of writing nicely formatted text, complete with headlines, links and images.
 
 .. code-block:: bash
 
