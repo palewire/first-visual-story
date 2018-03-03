@@ -296,6 +296,7 @@ Congratulations, you've got your framework up and running. Let's save our work a
     While some frameworks are more popular than others, each newsroom tends to go its own way with a custom system for publishing pages. The programming languages and the details vary, but the fundamentals are almost all the same. Some of them have even been released as open-source software. They include:
 
     * The Los Angeles Times Data Desk's `bigbuild <https://github.com/datadesk/django-bigbuild>`_
+    * The Dallas Morning News' `generator-dmninteractives <https://github.com/DallasMorningNews/generator-dmninteractives>`_
     * The Seattle Times' `newsapp-template <https://github.com/seattletimes/newsapp-template/>`_
     * The NPR Apps team's `dailygraphics <https://github.com/nprapps/dailygraphics>`_
     * Politico's `generator-politico-graphics  <https://github.com/The-Politico/generator-politico-graphics>`_
