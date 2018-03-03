@@ -563,6 +563,7 @@ Here's what you should see.
 Loop through them and print them all.
 
 .. code-block:: jinja
+    :emphasize-lines: 2-4
 
     {% block content %}
     {% for obj in site.data.harvard_park_homicides %}
@@ -579,6 +580,7 @@ Add a line break with a ``<br>`` tag.
 
 
 .. code-block:: jinja
+    :emphasize-lines: 3
 
     {% block content %}
     {% for obj in site.data.harvard_park_homicides %}
@@ -594,6 +596,7 @@ Add a line break with a ``<br>`` tag.
 Print the last name.
 
 .. code-block:: jinja
+    :emphasize-lines: 3
 
     {% block content %}
     {% for obj in site.data.harvard_park_homicides %}
@@ -609,6 +612,7 @@ Print the last name.
 Add the first name. To have them display more nicely, you can also add a line break in between each one.
 
 .. code-block:: jinja
+    :emphasize-lines: 3
 
     {% block content %}
     {% for obj in site.data.harvard_park_homicides %}
