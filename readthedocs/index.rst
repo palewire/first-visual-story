@@ -15,12 +15,11 @@ What you will make
 
 By the end of this lesson, you will publish a standalone page with a series of graphics examining the high homicide rate in Harvard Park, a small neighborhood in South Los Angeles. You will do so by repurposing data from `a 2017 Los Angeles Times story <http://www.latimes.com/projects/la-me-harvard-park-homicides/>`_ by Nicole Santa Cruz and Cindy Chang.
 
+A working example of what you will make can be found at `ireapps.github.io/first-graphics-app/ <https://ireapps.github.io/first-graphics-app/>`_
+
 .. image:: _static/preview.gif
    :width: 100%
    :target: https://ireapps.github.io/first-graphics-app/
-
-
-A working example of what you will make can be found at `ireapps.github.io/first-graphics-app/ <https://ireapps.github.io/first-graphics-app/>`_
 
 
 *****************
@@ -81,22 +80,22 @@ Node.js
 
 Node.js is an open-source programming framework built using JavaScript. Many programmers like it because it allows them to write JavaScript not just in their browser for "front-end" tasks, but also in the terminal or on a server for "back-end" tasks.
 
-You should be on the latest long-term support (LTS) version of Node, which at the time of this writing is ``8.9.4``. The `Node.js site <https://nodejs.org>`_ has `installer packages <https://nodejs.org/en/download/>`_ available for Windows and Mac OSX.
+You should be on the latest long-term support (LTS) version of Node, which at the time of this writing was ``8.9.4``. The `Node.js site <https://nodejs.org>`_ has `installer packages <https://nodejs.org/en/download/>`_ available for Windows and Mac OSX.
 
-You can verify if you have Node installed, and if so what version, by typing the following into your terminal.
+You can verify if you have Node installed, and if so what version, by typing the following into your terminal:
 
 .. code-block:: bash
 
     $ node --version
 
 
-The number you get back is the version you have installed. If you get an error, you don't have it installed and should start from scratch with an installer package. If you have a slightly older version, you are probably okay. But we make no guarantees. Consider upgrading.
+The number you get back is the version you have installed. If you get an error, you don't have Node.js installed and you should start from scratch with an installer package. If you have a slightly older version, you are probably okay. But we make no guarantees. Consider upgrading.
 
 
 npm
 ---
 
-Installing Node will also install ``npm`` on your computer, which stands for "Node Package Manager." We will use this to install open-source JavaScript packages that will help us draw charts and maps during the class.
+Installing Node will also install npm on your computer, which stands for "Node Package Manager." During the class, we will use it to install open-source JavaScript packages that will help us draw charts and maps.
 
 You can verify you have npm installed by running the following command on your terminal.
 
@@ -118,7 +117,7 @@ You can verify Git is installed from your command line like so:
 
     $ git --version
 
-Once that's done, you should create an account at GitHub, if you don't already have one. `The free plan <https://github.com/pricing>`_ is all that's required to complete this lesson.
+Once that's done, you should create an account at GitHub, if you don't already have one. `The free plan <https://github.com/pricing>`_ is all that's required to complete this lesson. If you make a new account, make sure to confirm your email address with GitHub. We'll need that for something later.
 
 
 ********************
@@ -1823,5 +1822,9 @@ Wait a few moments and visit `\<your_username\>.github.com/first-graphics-app/ <
    :width: 100%
    :target: https://ireapps.github.io/first-graphics-app/
 
+
+   .. note::
+
+       If your page does not appear, make sure that you have verified your email address with GitHub. It is required before the site will allow publishing pages. And keep in mind there are many other options for publishing flat files, like `Amazon's S3 service <https://en.wikipedia.org/wiki/Amazon_S3>`_.
 
 Congratulations. You've finished this class.
