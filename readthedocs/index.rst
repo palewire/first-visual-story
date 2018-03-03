@@ -1875,8 +1875,9 @@ Wait a few moments and visit `\<your_username\>.github.com/first-graphics-app/ <
    :target: https://ireapps.github.io/first-graphics-app/
 
 
-   .. note::
+.. note::
 
-       If your page does not appear, make sure that you have verified your email address with GitHub. It is required before the site will allow publishing pages. And keep in mind there are many other options for publishing flat files, like `Amazon's S3 service <https://en.wikipedia.org/wiki/Amazon_S3>`_.
+   If your page does not appear, make sure that you have verified your email address with GitHub. It is required before the site will allow publishing pages. And keep in mind there are many other options for publishing flat files, like `Amazon's S3 service <https://en.wikipedia.org/wiki/Amazon_S3>`_.
+
 
 Congratulations. You've finished this class.
