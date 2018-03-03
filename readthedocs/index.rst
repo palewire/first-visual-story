@@ -1642,6 +1642,56 @@ Save the file and the inset map should appear on your page.
 .. image:: _static/hello-minimap.png
     :width: 100%
 
+Just for fun, let's add a couple creature comforts to map. By default, the scroll wheel on your mouse will trigger zooms on the map. Some people (Armand!) have strong feelings about this. Let's do them a favor and turn it off.
+
+.. code-block:: javascript
+    :emphasize-lines: 2-4
+
+    var map = L.map('map')
+    var osm = L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'. {
+        scrollWheelZoom: false
+    });
+    osm.addTo(map);
+    map.setView([33.983265, -118.306799], 18);
+
+    homicides.forEach(function (obj) {
+        L.circleMarker([obj.latitude,  obj.longitude])
+          .addTo(map)
+          .bindTooltip(obj.first_name + " " + obj.last_name, {permanent: true});
+    })
+
+    var osm2 = L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 9
+    });
+    var mini = new L.Control.MiniMap(osm2, { toggleDisplay: true });
+    mini.addTo(map);
+
+
+While we're at it, let's also restrict the zoom level so it you can't back too far away from LA.
+
+.. code-block:: javascript
+    :emphasize-lines: 4
+
+    var map = L.map('map')
+    var osm = L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'. {
+        scrollWheelZoom: false,
+        minZoom: 9
+    });
+    osm.addTo(map);
+    map.setView([33.983265, -118.306799], 18);
+
+    homicides.forEach(function (obj) {
+        L.circleMarker([obj.latitude,  obj.longitude])
+          .addTo(map)
+          .bindTooltip(obj.first_name + " " + obj.last_name, {permanent: true});
+    })
+
+    var osm2 = L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 9
+    });
+    var mini = new L.Control.MiniMap(osm2, { toggleDisplay: true });
+    mini.addTo(map);
+
 
 Finally, let's preface the map with so a headline.
 
