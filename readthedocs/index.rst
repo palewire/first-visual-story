@@ -1328,7 +1328,7 @@ And an introductory paragraph to say a little bit about what we're looking at.
 
 Congratulations, you've made your charts! Let's commit our changes and move on to our next challenge.
 
-..code-block: bash
+.. code-block:: bash
 
     $ git commit -m "Made my first charts."
     $ git push origin master
