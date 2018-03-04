@@ -72,7 +72,7 @@ A program like Microsoft Word, which can do all sorts of text formatting like ch
 
 You need a program that works with simple `"plain text" files <https://en.wikipedia.org/wiki/Text_file>`_, and is therefore capable of editing documents containing Python code, HTML markup and other languages without dressing them up by adding anything extra. Such programs are easy to find and some of the best ones are free, including those below.
 
-For Windows, we recommend installing `Notepad++ <http://notepad-plus-plus.org/>`_. For Apple computers, try `Atom <https://atom.io>`_ or `Sublime Text <https://www.sublimetext.com/>`_. In Ubuntu Linux you can stick with the pre-installed `gedit <https://help.ubuntu.com/community/gedit>`_ text editor or install a more sophisticated tool like `Atom <https://atom.io>`_
+For Windows, we recommend installing `Notepad++ <http://notepad-plus-plus.org/>`_ or `Visual Studio Code <https://code.visualstudio.com/>`_. For Apple computers, try `Atom <https://atom.io>`_ or `Sublime Text <https://www.sublimetext.com/>`_. In Ubuntu Linux you can stick with the pre-installed `gedit <https://help.ubuntu.com/community/gedit>`_ text editor or install a more sophisticated tool like `Atom <https://atom.io>`_.
 
 
 Node.js
@@ -246,14 +246,14 @@ The ``-g`` means that we're installing the packages globally. You'll be able to 
 
 .. code-block:: bash
 
-    $ sudo npm install -g yo gulp
+    $ npm install -g yo gulp
 
 
 Use npm to install `yeogurt <https://github.com/larsonjj/generator-yeogurt>`_, our project generator that yeoman will build.
 
 .. code-block:: bash
 
-    $ sudo npm install -g generator-yeogurt
+    $ npm install -g generator-yeogurt
 
 
 Create a new project using our yeogurt generator as the guide.
@@ -1072,7 +1072,7 @@ Now, we can make a second chart by using the Harvard Park data. Be sure to repla
 
 Not bad, right? By structuring our code this way, we'll be able to make multiple charts without repeating our code (known as `DRY <https://en.wikipedia.org/wiki/Don%27t_repeat_yourself>`_).
 
-Right now, our charts are stacked on top of each other, which isn't really a great layout. We can use HTML and CSS to lay out our charts side-by-side.
+Right now, our charts are stacked on top of each other, which isn't a great layout. We can use HTML and CSS to lay out our charts side-by-side.
 
 In ``index.nunjucks``, add a ``div`` element with a class of ``charts-holder`` and ``clearfix`` that wraps your charts, and add a ``class`` of ``inline-chart`` to each of your charts.
 
