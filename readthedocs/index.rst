@@ -206,7 +206,7 @@ Make sure to save it. Then officially add the file to your repository for tracki
     $ git add README.md
 
 
-Log its creation with Git's ``commit`` command. You can include a personalized message after the ``-m`` flag.
+Log its creation with Git's ``commit`` command. You can include a personalized message after the ``-m`` flag. If you're on a Windows machine, make sure you use double quotes around your commit message.  
 
 .. code-block:: bash
 
