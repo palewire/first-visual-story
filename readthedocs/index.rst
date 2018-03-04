@@ -1307,7 +1307,7 @@ Last, let's add a headline to introduce our charts section.
         <div class="inline-chart" id="harvard-park-homicides"></div>
     </div>
 
-..image:: _static/chart-headline.png
+.. image:: _static/two-charts-title.png
     :width: 100%
 
 And an introductory paragraph to say a little bit about what we're looking at. 
@@ -1323,7 +1323,7 @@ And an introductory paragraph to say a little bit about what we're looking at.
         <div class="inline-chart" id="harvard-park-homicides"></div>
     </div>
 
-..image:: _static/chart-intro-graf.png
+.. image:: _static/chart-intro-graf.png
     :width: 100%
 
 Congratulations, you've made your charts! Let's commit our changes and move on to our next challenge.
