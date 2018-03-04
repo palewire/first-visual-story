@@ -883,7 +883,7 @@ First, we need somewhere for our charts to go. In our ``index.nunjucks`` file, i
     {% endblock %}
 
 
-Meanwhile, we need data. Copy the `annual totals data <https://raw.githubusercontent.com/ireapps/first-graphics-app/master/src/_data/annual_totals.json>`_ to ``_data/annual_totals.json``. We can use nunjucks to include our data file directly in the template.
+Meanwhile, we need data. Copy the `annual totals data <https://raw.githubusercontent.com/ireapps/first-graphics-app/master/src/_data/annual_totals.json>`_ to ``_data/annual_totals.json``. This file contains annual homicide counts for Harvard Park and all of Los Angeles County. We can use nunjucks to include our data file directly in the template. 
 
 Add a ``{% scripts %}`` block to the end of your ``index.nunjucks`` file:
 
@@ -987,7 +987,7 @@ Then, add ``layout`` as a third argument to ``Plotly.newPlot()``
 .. image:: _static/charts-2.png
     :width: 100%
 
-Everything in plotly.js is handled by settings like this. For example, to change the markers to an light blue, update the ``settings`` variable.
+Everything in plotly.js is handled by settings like this. For example, to change the markers to an light blue, update the ``settings`` variable. Make sure you add a comma after ``type: 'bar'``.
 
 .. code-block:: javascript
     :emphasize-lines: 5-8
@@ -1079,6 +1079,7 @@ In ``index.nunjucks``, add a ``div`` element with a class of ``charts-holder`` a
 Make sure you give the wrapping div a class of ``clearfix``, which will make sure that the rest of the page displays below these items.
 
 .. code-block:: html
+    :emphasize-lines: 1,4
 
     <div class="charts-holder clearfix">
         <div class="inline-chart" id="county-homicides"></div>
@@ -1294,8 +1295,43 @@ These titles are a little light and blend in to the rest of the text. Let's make
 .. image:: _static/two-charts-title.png
     :width: 100%
 
+Last, let's add a headline to introduce our charts section.
 
-Congratulations, you've made your charts! Let's move on to our next challenge.
+.. code-block:: html
+    :emphasize-lines: 1
+
+    <h3>A South L.A. neighborhood stands apart</h3>
+
+    <div class="charts-holder clearfix">
+        <div class="inline-chart" id="county-homicides"></div>
+        <div class="inline-chart" id="harvard-park-homicides"></div>
+    </div>
+
+..image:: _static/chart-headline.png
+    :width: 100%
+
+And an introductory paragraph to say a little bit about what we're looking at. 
+
+.. code-block:: html
+    :emphasize-lines: 2
+
+    <h3>A South L.A. neighborhood stands apart</h3>
+    <p>Harvard Park's 2016 homicide total was its highest in at least 15 years despite a downward trend in killings across L.A. County.</p>
+
+    <div class="charts-holder clearfix">
+        <div class="inline-chart" id="county-homicides"></div>
+        <div class="inline-chart" id="harvard-park-homicides"></div>
+    </div>
+
+..image:: _static/chart-intro-graf.png
+    :width: 100%
+
+Congratulations, you've made your charts! Let's commit our changes and move on to our next challenge.
+
+..code-block: bash
+
+    $ git commit -m "Made my first charts."
+    $ git push origin master
 
 .. note::
 
