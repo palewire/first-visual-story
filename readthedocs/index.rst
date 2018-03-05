@@ -712,7 +712,8 @@ Let's add each victim's image to their card.
     {% endfor %}
 
 
-PHOTO ONCE WE FINALIZE THE SENTENCE
+.. image:: _static/card-no-columns.png
+    :width: 100%
 
 
 What do we do if there is no image of the victim?  As soon as the code reaches a victim with no image, the code will break.
@@ -731,8 +732,6 @@ To fix this, let's add an if clause around the image tag to check for an image i
         </div>
     {% endfor %}
 
-
-PHOTO ONCE WE FINALIZE THE SENTENCE
 
 
 What we've got so far is a grid that doesn't look much like a grid. Let's give it some structure to make it neat and tidy. To do that, we're going to arrange our grid of cards using Bootstrap's card columns.
@@ -769,7 +768,9 @@ Let's say we want to be able to click on each card and be redirected to that vic
         {% endfor %}
     </div>
 
-PHOTO ONCE WE FINALIZE THE SENTENCE
+
+.. image:: _static/card-slug.png
+    :width: 100%
 
 
 Let's write a headline for our cards section.
@@ -790,8 +791,8 @@ Let's write a headline for our cards section.
     </div>
 
 
-
-PHOTO ONCE WE FINALIZE THE SENTENCE
+.. image:: _static/card-headline.png
+    :width: 100%
 
 
 And now, some summary text.
@@ -813,7 +814,8 @@ And now, some summary text.
     </div>
 
 
-PHOTO
+.. image:: _static/card-chatter.png
+    :width: 100%
 
 
 Let's set up our card grid as it's own section by adding ``<section>`` tags.
@@ -837,7 +839,8 @@ Let's set up our card grid as it's own section by adding ``<section>`` tags.
     </section>
 
 
-PHOTO
+.. image:: _static/card-full-section.png
+    :width: 100%
 
 
 ***********************
