@@ -694,9 +694,6 @@ Let's add a sentence below the name we just printed to summarize who each victim
     {% endfor %}
 
 
-PHOTO ONCE WE FINALIZE THE SENTENCE
-
-
 Let's add each victim's image to their card.
 
 .. code-block:: jinja
