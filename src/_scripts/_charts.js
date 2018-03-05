@@ -18,7 +18,7 @@ function createChart(x, y, element, title) {
     },
     hoverinfo: 'y',
     hoverlabel: {
-      bgcolor: '#333333'
+      bgcolor: '#777777'
     }
   }];
 

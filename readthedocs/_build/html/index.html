@@ -237,7 +237,7 @@ in Chicago</a>.</p>
 </div>
 <div class="section" id="chapter-1-hello-git">
 <h2>Chapter 1: Hello Git<a class="headerlink" href="#chapter-1-hello-git" title="Permalink to this headline">¶</a></h2>
-<p>First things first. It always helps to store all your code in the same place, instead of haphazard folders around your computer. This way, you always know where to look.</p>
+<p>First things first. It always helps to store all your code in the same place, instead of haphazard folders around your computer. This way, you always know where to look if you need to find a project.</p>
 <p>In this case, let’s call that directory <code class="docutils literal"><span class="pre">Code</span></code>.</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span><span class="c1"># You don&#39;t have to type the &quot;$&quot; It&#39;s just a generic symbol</span>
 <span class="c1"># geeks use to show they&#39;re working on the command line.</span>
@@ -265,11 +265,11 @@ $ git init .
 </div>
 <p>Visit <a class="reference external" href="http://www.github.com">GitHub</a> and <a class="reference external" href="https://github.com/new">create</a> a new public repository named <code class="docutils literal"><span class="pre">first-graphics-app</span></code>. Don’t check “Initialize with README.” You’ll want to start with a blank repository.</p>
 <a class="reference external image-reference" href="https://github.com/new"><img alt="_images/new-repo.png" src="_images/new-repo.png" style="width: 100%;" /></a>
-<p>Then connect your local directory to GitHub with the following command.</p>
+<p>Then connect your local directory to GitHub with the following command. Replace <code class="docutils literal"><span class="pre">&lt;yourusername&gt;</span></code> with your GitHub user name.</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>$ git remote add origin https://github.com/&lt;yourusername&gt;/first-graphics-app.git
 </pre></div>
 </div>
-<p>Create your first file, a blank <code class="docutils literal"><span class="pre">README</span></code> with a <a class="reference external" href="https://en.wikipedia.org/wiki/Markdown">Markdown</a> file extension since that’s <a class="reference external" href="https://help.github.com/articles/github-flavored-markdown">the preferred format of GitHub</a>. The filename will be <code class="docutils literal"><span class="pre">README.md</span></code>.</p>
+<p>Create your first file, a blank <code class="docutils literal"><span class="pre">README</span></code> with a <a class="reference external" href="https://en.wikipedia.org/wiki/Markdown">Markdown</a> file extension since that’s <a class="reference external" href="https://help.github.com/articles/github-flavored-markdown">the preferred format of GitHub</a>. The filename will be <code class="docutils literal"><span class="pre">README.md</span></code>. Markdown is a simple way of writing nicely formatted text, complete with headlines, links, images, etc.</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span><span class="c1"># Macs or Linux:</span>
 $ touch README.md
 
@@ -478,6 +478,41 @@ $ git commit -m <span class="s2">&quot;Started editing templates&quot;</span>
 <div class="section" id="chapter-4-hello-data">
 <h2>Chapter 4: Hello data<a class="headerlink" href="#chapter-4-hello-data" title="Permalink to this headline">¶</a></h2>
 <p>Add the <a class="reference external" href="https://raw.githubusercontent.com/ireapps/first-graphics-app/master/src/_data/harvard_park_homicides.json">Harvard Park homicides data files</a> to <code class="docutils literal"><span class="pre">_data/harvard_park_homicides.json</span></code></p>
+<p>It includes a list with a dictionary of data about each homicide victim in the neighborhood since 2000.</p>
+<div class="highlight-javascript"><div class="highlight"><pre><span></span><span class="p">[</span>
+   <span class="p">{</span>
+      <span class="s2">&quot;case_number&quot;</span><span class="o">:</span><span class="s2">&quot;2017-04514&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;slug&quot;</span><span class="o">:</span><span class="s2">&quot;eddie-rosendo-lino&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;first_name&quot;</span><span class="o">:</span><span class="s2">&quot;Eddie&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;middle_name&quot;</span><span class="o">:</span><span class="s2">&quot;Rosendo&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;last_name&quot;</span><span class="o">:</span><span class="s2">&quot;Lino&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;death_date&quot;</span><span class="o">:</span><span class="s2">&quot;2017-06-18T00:00:00.000Z&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;death_year&quot;</span><span class="o">:</span><span class="mi">2017</span><span class="p">,</span>
+      <span class="s2">&quot;age&quot;</span><span class="o">:</span><span class="mf">23.0</span><span class="p">,</span>
+      <span class="s2">&quot;race&quot;</span><span class="o">:</span><span class="s2">&quot;black&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;gender&quot;</span><span class="o">:</span><span class="s2">&quot;male&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;image&quot;</span><span class="o">:</span><span class="kc">null</span><span class="p">,</span>
+      <span class="s2">&quot;longitude&quot;</span><span class="o">:-</span><span class="mf">118.304107484</span><span class="p">,</span>
+      <span class="s2">&quot;latitude&quot;</span><span class="o">:</span><span class="mf">33.9904336958</span>
+   <span class="p">},</span>
+   <span class="p">{</span>
+      <span class="s2">&quot;case_number&quot;</span><span class="o">:</span><span class="s2">&quot;2017-03454&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;slug&quot;</span><span class="o">:</span><span class="s2">&quot;alex-david-lomeli&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;first_name&quot;</span><span class="o">:</span><span class="s2">&quot;Alex&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;middle_name&quot;</span><span class="o">:</span><span class="s2">&quot;David&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;last_name&quot;</span><span class="o">:</span><span class="s2">&quot;Lomeli&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;death_date&quot;</span><span class="o">:</span><span class="s2">&quot;2017-05-07T00:00:00.000Z&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;death_year&quot;</span><span class="o">:</span><span class="mi">2017</span><span class="p">,</span>
+      <span class="s2">&quot;age&quot;</span><span class="o">:</span><span class="mf">18.0</span><span class="p">,</span>
+      <span class="s2">&quot;race&quot;</span><span class="o">:</span><span class="s2">&quot;latino&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;gender&quot;</span><span class="o">:</span><span class="s2">&quot;male&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;image&quot;</span><span class="o">:</span><span class="kc">null</span><span class="p">,</span>
+      <span class="s2">&quot;longitude&quot;</span><span class="o">:-</span><span class="mf">118.300290584</span><span class="p">,</span>
+      <span class="s2">&quot;latitude&quot;</span><span class="o">:</span><span class="mf">33.9793646958</span>
+   <span class="p">},</span>
+   <span class="p">...</span>
+</pre></div>
+</div>
 <p>Return to <code class="docutils literal"><span class="pre">index.nunjucks</span></code> and add the following to the bottom to print the data out on the page.</p>
 <div class="highlight-jinja"><div class="highlight"><pre><span></span><span class="cp">{%</span> <span class="k">block</span> <span class="nv">content</span> <span class="cp">%}</span><span class="x"></span>
 <span class="x">    </span><span class="cp">{{</span> <span class="nv">site.data.harvard_park_homicides</span> <span class="cp">}}</span><span class="x"></span>
@@ -534,7 +569,8 @@ $ git commit -m <span class="s2">&quot;Printed a list of names from data&quot;</
 </div>
 <div class="section" id="chapter-5-hello-cards">
 <h2>Chapter 5: Hello cards<a class="headerlink" href="#chapter-5-hello-cards" title="Permalink to this headline">¶</a></h2>
-<p>Explain Bootstrap. Show what we’re trying to make.</p>
+<p>YO
+Explain Bootstrap. Show what we’re trying to make.</p>
 <a class="reference internal image-reference" href="_images/bootstrap.png"><img alt="_images/bootstrap.png" src="_images/bootstrap.png" style="width: 100%;" /></a>
 <p>Talk about cards. Show Bootstrap docs.</p>
 <a class="reference internal image-reference" href="_images/bootstrap-cols.png"><img alt="_images/bootstrap-cols.png" src="_images/bootstrap-cols.png" style="width: 100%;" /></a>
@@ -641,19 +677,20 @@ $ git commit -m <span class="s2">&quot;Printed a list of names from data&quot;</
 <span class="nx">Plotly</span><span class="p">.</span><span class="nx">register</span><span class="p">(</span><span class="nx">Plotlybar</span><span class="p">);</span>
 
 <span class="c1">// At the end of the _charts.js file</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;hello, this is my charts file!&quot;</span><span class="p">)</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;hello, this is my charts file!&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>Remember our underscore coding convention? Here, <code class="docutils literal"><span class="pre">_charts.js</span></code> has an underscore (<code class="docutils literal"><span class="pre">_</span></code>) in front of it because it will be compiled into <code class="docutils literal"><span class="pre">main.js</span></code> when the site is baked.</p>
 <p>That is, if we tell it to. Use the same <code class="docutils literal"><span class="pre">require()</span></code> method to pull our code into <code class="docutils literal"><span class="pre">main.js</span></code>. Unlike <code class="docutils literal"><span class="pre">_charts.js</span></code>, <code class="docutils literal"><span class="pre">main.js</span></code> doesn’t have an underscore, because it is the file that the other scripts will be pulled into.</p>
 <div class="highlight-javascript"><div class="highlight"><pre><span></span><span class="c1">// Main javascript entry point</span>
 <span class="c1">// Should handle bootstrapping/starting application</span>
+
 <span class="s1">&#39;use strict&#39;</span><span class="p">;</span>
 
-<span class="kd">var</span> <span class="nx">$</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;jquery&#39;</span><span class="p">);</span>
-<span class="kd">var</span> <span class="nx">Link</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;../_modules/link/link&#39;</span><span class="p">);</span>
+<span class="kr">import</span> <span class="nx">$</span> <span class="nx">from</span> <span class="s1">&#39;jquery&#39;</span><span class="p">;</span>
+<span class="kr">import</span> <span class="nx">Link</span> <span class="nx">from</span> <span class="s1">&#39;../_modules/link/link&#39;</span><span class="p">;</span>
 
-<span class="nx">$</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+<span class="nx">$</span><span class="p">(()</span> <span class="p">=&gt;</span> <span class="p">{</span>
   <span class="k">new</span> <span class="nx">Link</span><span class="p">();</span> <span class="c1">// Activate Link modules logic</span>
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;Welcome to Yeogurt!&#39;</span><span class="p">);</span>
 <span class="p">});</span>
@@ -663,15 +700,41 @@ $ git commit -m <span class="s2">&quot;Printed a list of names from data&quot;</
 </div>
 <p>Structuring our code this way helps keep things organized, as each file controls one specific part of the page. Need to make an adjustment to your chart? Go to <code class="docutils literal"><span class="pre">_charts.js</span></code>.</p>
 <p>Now if you reload your page and go to your inspector (click on the three dots in the top right of Chrome, go down to “More tools” and select “Developer tools”), you should see <code class="docutils literal"><span class="pre">hello,</span> <span class="pre">this</span> <span class="pre">is</span> <span class="pre">my</span> <span class="pre">charts</span> <span class="pre">file!</span></code> in the console.</p>
-<p>TK PICTURE OF INSPECTOR / CONSOLE HERE</p>
+<a class="reference internal image-reference" href="_images/hello-charts.png"><img alt="_images/hello-charts.png" src="_images/hello-charts.png" style="width: 100%;" /></a>
 <p>What chart should we make? The story points out that Harvard Park experienced an increase in homicides as there was a decrease across the rest of the county. Let’s try to visualize that.</p>
 <p>First, we need somewhere for our charts to go. In our <code class="docutils literal"><span class="pre">index.nunjucks</span></code> file, inside of <code class="docutils literal"><span class="pre">{%</span> <span class="pre">block</span> <span class="pre">content</span> <span class="pre">%}</span></code> where you want the chart to go, create a <code class="docutils literal"><span class="pre">div</span></code> element with an id of <code class="docutils literal"><span class="pre">county-homicides</span></code>, and another with an id of <code class="docutils literal"><span class="pre">harvard-park-homicides</span></code>.</p>
-<div class="highlight-html"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;county-homicides&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-<span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;harvard-park-homicides&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<div class="highlight-html"><div class="highlight"><pre><span></span>{% extends &#39;_layouts/base.nunjucks&#39; %}
+
+{% block headline %}My headline will go here{% endblock %}
+{% block byline %}By me{% endblock %}
+{% block pubdate %}
+    <span class="p">&lt;</span><span class="nt">time</span> <span class="na">datetime</span><span class="o">=</span><span class="s">&quot;2018-03-10&quot;</span> <span class="na">pubdate</span><span class="p">&gt;</span>Mar. 10, 2018<span class="p">&lt;/</span><span class="nt">time</span><span class="p">&gt;</span>
+{% endblock %}
+
+{% block content %}
+
+<span class="hll"><span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;county-homicides&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</span><span class="hll"><span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;harvard-park-homicides&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</span>
+{% for obj in site.data.harvard_park_homicides %}
+<span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;card-columns&quot;</span><span class="p">&gt;</span>
+    {% for obj in site.data.harvard_park_homicides %}
+    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;card&quot;</span><span class="p">&gt;</span>
+      {% if obj.image %}<span class="p">&lt;</span><span class="nt">img</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;card-img-top&quot;</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;{{ obj.image }}&quot;</span><span class="p">&gt;</span>{% endif %}
+      <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;card-body&quot;</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">h5</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;card-title&quot;</span><span class="p">&gt;</span>{{ obj.first_name }} {{ obj.last_name }}<span class="p">&lt;/</span><span class="nt">h5</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">p</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;card-text&quot;</span><span class="p">&gt;</span>A {{ obj.age}}-year-old {{ obj.race }} {{ obj.gender }} died in {{ obj.death_year }}.<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+      <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+    {% endfor %}
+<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+{% endfor %}
+
+{% endblock %}
 </pre></div>
 </div>
 <p>Meanwhile, we need data. Copy the <a class="reference external" href="https://raw.githubusercontent.com/ireapps/first-graphics-app/master/src/_data/annual_totals.json">annual totals data</a> to <code class="docutils literal"><span class="pre">_data/annual_totals.json</span></code>. We can use nunjucks to include our data file directly in the template.</p>
-<p>Inside of the <code class="docutils literal"><span class="pre">{%</span> <span class="pre">scripts</span> <span class="pre">%}</span></code> block:</p>
+<p>Add a <code class="docutils literal"><span class="pre">{%</span> <span class="pre">scripts</span> <span class="pre">%}</span></code> block to the end of your <code class="docutils literal"><span class="pre">index.nunjucks</span></code> file:</p>
 <div class="highlight-html"><div class="highlight"><pre><span></span>{% block scripts %}
 <span class="p">&lt;</span><span class="nt">script</span><span class="p">&gt;</span>
 <span class="kd">var</span> <span class="nx">annualTotals</span> <span class="o">=</span> <span class="p">{</span><span class="o">%</span> <span class="nx">include</span> <span class="s1">&#39;_data/annual_totals.json&#39;</span> <span class="o">%</span><span class="p">};</span>
@@ -706,8 +769,8 @@ $ git commit -m <span class="s2">&quot;Printed a list of names from data&quot;</
 </span></pre></div>
 </div>
 <p>The <code class="docutils literal"><span class="pre">.map()</span></code> creates and returns an array, and the arrow (<code class="docutils literal"><span class="pre">=&gt;</span></code>) function returns the value for each object. Think of it as “plucking” the values we want to form a list.</p>
-<p>Now that we’ve populated our data, we’re ready to make our chart. Right now, it’s pretty simple, with options for the x axis, which we want to be our <code class="docutils literal"><span class="pre">years</span></code> array, and y axis, which is our homicide counts, and specifying the type of the chart.</p>
-<p>Below the settings we call <code class="docutils literal"><span class="pre">Plotly.newPlot()</span></code> with the id of the element where we want the chart to go and settings to create the chart.</p>
+<p>Now that we’ve populated our data, we’re ready to make our chart. Right now, it’s pretty simple, with a single variable <code class="docutils literal"><span class="pre">settings</span></code> providing options for the x axis, which we want to be our <code class="docutils literal"><span class="pre">years</span></code> array, and y axis, which is our homicide counts, and specifying the type of the chart.</p>
+<p>Below <code class="docutils literal"><span class="pre">settings</span></code> we call <code class="docutils literal"><span class="pre">Plotly.newPlot()</span></code> with the id of the element where we want the chart to go and settings to create the chart.</p>
 <div class="highlight-javascript"><div class="highlight"><pre><span></span><span class="c1">// The rest of your code is up here.</span>
 <span class="c1">// Add the below lines to the bottom of your file</span>
 
@@ -722,6 +785,8 @@ $ git commit -m <span class="s2">&quot;Printed a list of names from data&quot;</
 <span class="nx">Plotly</span><span class="p">.</span><span class="nx">newPlot</span><span class="p">(</span><span class="s1">&#39;county-homicides&#39;</span><span class="p">,</span> <span class="nx">settings</span><span class="p">);</span>
 </pre></div>
 </div>
+<p>You should see something like this on your page.</p>
+<a class="reference internal image-reference" href="_images/first-chart.png"><img alt="_images/first-chart.png" src="_images/first-chart.png" style="width: 100%;" /></a>
 <p>This is a good start, but we can further customize this chart so it fits better with the rest of the page. Now, let’s try to:</p>
 <ul class="simple">
 <li>Add axis labels</li>
@@ -729,7 +794,7 @@ $ git commit -m <span class="s2">&quot;Printed a list of names from data&quot;</
 <li>Give the charts titles</li>
 <li>Display the two charts alongside one another</li>
 </ul>
-<p>Let’s add labels to our axes. Create a new variable, <code class="docutils literal"><span class="pre">chartLayout</span></code> in your <code class="docutils literal"><span class="pre">createChart</span></code> function. We can then specify properties for <code class="docutils literal"><span class="pre">xaxis</span></code> and <code class="docutils literal"><span class="pre">yaxis</span></code>. We don’t have a homicide label because we’ll add a title to the charts later that will take care of that.</p>
+<p>Let’s add labels to our axes. Create a new variable, <code class="docutils literal"><span class="pre">layout</span></code>. Here, we can specify display properties for <code class="docutils literal"><span class="pre">xaxis</span></code> and <code class="docutils literal"><span class="pre">yaxis</span></code>. We don’t have a homicide label on the Y axis because we’ll add a title to the charts later that will take care of that.</p>
 <div class="highlight-javascript"><div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">layout</span> <span class="o">=</span> <span class="p">{</span>
     <span class="nx">xaxis</span><span class="o">:</span> <span class="p">{</span>
         <span class="nx">title</span><span class="o">:</span> <span class="s1">&#39;Year&#39;</span><span class="p">,</span>
@@ -746,6 +811,7 @@ $ git commit -m <span class="s2">&quot;Printed a list of names from data&quot;</
 <div class="highlight-javascript"><div class="highlight"><pre><span></span><span class="nx">Plotly</span><span class="p">.</span><span class="nx">newPlot</span><span class="p">(</span><span class="s1">&#39;county-homicides&#39;</span><span class="p">,</span> <span class="nx">settings</span><span class="p">,</span> <span class="nx">layout</span><span class="p">);</span>
 </pre></div>
 </div>
+<a class="reference internal image-reference" href="_images/charts-2.png"><img alt="_images/charts-2.png" src="_images/charts-2.png" style="width: 100%;" /></a>
 <p>Everything in plotly.js is handled by settings like this. For example, to change the markers to an light blue, update the <code class="docutils literal"><span class="pre">settings</span></code> variable.</p>
 <div class="highlight-javascript"><div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">settings</span> <span class="o">=</span> <span class="p">[{</span>
   <span class="nx">x</span><span class="o">:</span> <span class="nx">years</span><span class="p">,</span>
@@ -758,6 +824,7 @@ $ git commit -m <span class="s2">&quot;Printed a list of names from data&quot;</
 </span><span class="p">}];</span>
 </pre></div>
 </div>
+<a class="reference internal image-reference" href="_images/charts-light-blue.png"><img alt="_images/charts-light-blue.png" src="_images/charts-light-blue.png" style="width: 100%;" /></a>
 <p>But wait, what if you want to make another chart? You’d have to copy and paste all that code over again.</p>
 <p>Before we get to far, let’s abstract all of this into a function.</p>
 <div class="highlight-javascript"><div class="highlight"><pre><span></span><span class="kd">function</span> <span class="nx">createChart</span><span class="p">(</span><span class="nx">x</span><span class="p">,</span> <span class="nx">y</span><span class="p">,</span> <span class="nx">element</span><span class="p">)</span> <span class="p">{</span>
@@ -805,10 +872,12 @@ $ git commit -m <span class="s2">&quot;Printed a list of names from data&quot;</
 <span class="nx">createChart</span><span class="p">(</span><span class="nx">years</span><span class="p">,</span> <span class="nx">harvardParkHomicides</span><span class="p">,</span> <span class="s1">&#39;harvard-park-homicides&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
+<a class="reference internal image-reference" href="_images/two-charts.png"><img alt="_images/two-charts.png" src="_images/two-charts.png" style="width: 100%;" /></a>
 <p>Not bad, right? By structuring our code this way, we’ll be able to make multiple charts without repeating our code (known as <a class="reference external" href="https://en.wikipedia.org/wiki/Don%27t_repeat_yourself">DRY</a>).</p>
 <p>Right now, our charts are stacked on top of each other, which isn’t really a great layout. We can use HTML and CSS to lay out our charts side-by-side.</p>
-<p>In <code class="docutils literal"><span class="pre">index.nunjucks</span></code>, add a <code class="docutils literal"><span class="pre">div</span></code> element that wraps your charts, and add a <code class="docutils literal"><span class="pre">class</span></code> of <code class="docutils literal"><span class="pre">inline-chart</span></code> to each of your charts.</p>
-<div class="highlight-html"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;charts-holder&quot;</span><span class="p">&gt;</span>
+<p>In <code class="docutils literal"><span class="pre">index.nunjucks</span></code>, add a <code class="docutils literal"><span class="pre">div</span></code> element with a class of <code class="docutils literal"><span class="pre">charts-holder</span></code> and <code class="docutils literal"><span class="pre">clearfix</span></code> that wraps your charts, and add a <code class="docutils literal"><span class="pre">class</span></code> of <code class="docutils literal"><span class="pre">inline-chart</span></code> to each of your charts.</p>
+<p>Make sure you give the wrapping div a class of <code class="docutils literal"><span class="pre">clearfix</span></code>, which will make sure that the rest of the page displays below these items.</p>
+<div class="highlight-html"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;charts-holder clearfix&quot;</span><span class="p">&gt;</span>
     <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;inline-chart&quot;</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;county-homicides&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
     <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;inline-chart&quot;</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;harvard-park-homicides&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
 <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
@@ -831,17 +900,20 @@ $ git commit -m <span class="s2">&quot;Printed a list of names from data&quot;</
 </span></pre></div>
 </div>
 <p>Again, this is the same modular structure that allows us to organize our chart styles in a different place from our map styles, for example.</p>
+<p>Reload the page to see your changes.</p>
+<a class="reference internal image-reference" href="_images/inline-charts.png"><img alt="_images/inline-charts.png" src="_images/inline-charts.png" style="width: 100%;" /></a>
 <p>The charts are laid out side-by-side like we want them, but there’s way too much space in between them. Luckily, we can adjust the margins in the chart layout. Back in <code class="docutils literal"><span class="pre">_scripts/charts.js</span></code>, the following settings should work.</p>
-<p><code class="docutils literal"><span class="pre">l</span></code>, <code class="docutils literal"><span class="pre">r</span></code>, <code class="docutils literal"><span class="pre">t</span></code> and <code class="docutils literal"><span class="pre">b</span></code> stand for left, right, top and bottom margins, respectively.</p>
-<div class="highlight-javascript"><div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">chartLayout</span> <span class="o">=</span> <span class="p">{</span>
+<p><code class="docutils literal"><span class="pre">l</span></code>, <code class="docutils literal"><span class="pre">r</span></code>, <code class="docutils literal"><span class="pre">t</span></code> and <code class="docutils literal"><span class="pre">b</span></code> stand for left, right, top and bottom margins, respectively. Make sure you add a comma after the <code class="docutils literal"><span class="pre">yaxis</span></code> value!</p>
+<div class="highlight-javascript"><div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">layout</span> <span class="o">=</span> <span class="p">{</span>
     <span class="nx">xaxis</span><span class="o">:</span> <span class="p">{</span>
         <span class="nx">title</span><span class="o">:</span> <span class="s1">&#39;Year&#39;</span><span class="p">,</span>
         <span class="nx">fixedrange</span><span class="o">:</span> <span class="kc">true</span>
     <span class="p">},</span>
     <span class="nx">yaxis</span><span class="o">:</span> <span class="p">{</span>
         <span class="nx">fixedrange</span><span class="o">:</span> <span class="kc">true</span>
-    <span class="p">},</span>
-<span class="hll">    <span class="c1">// Add the margin here</span>
+<span class="hll">    <span class="p">},</span>
+</span><span class="hll">    <span class="c1">// Add the margin here</span>
+</span><span class="hll">    <span class="c1">// Don&#39;t forget the comma above!</span>
 </span><span class="hll">    <span class="nx">margin</span><span class="o">:</span> <span class="p">{</span>
 </span><span class="hll">        <span class="nx">l</span><span class="o">:</span> <span class="mi">30</span><span class="p">,</span>
 </span><span class="hll">        <span class="nx">r</span><span class="o">:</span> <span class="mi">15</span><span class="p">,</span>
@@ -866,7 +938,7 @@ $ git commit -m <span class="s2">&quot;Printed a list of names from data&quot;</
         <span class="nx">r</span><span class="o">:</span> <span class="mi">15</span><span class="p">,</span>
         <span class="nx">t</span><span class="o">:</span> <span class="mi">45</span><span class="p">,</span>
         <span class="nx">b</span><span class="o">:</span> <span class="mi">30</span>
-    <span class="p">}</span>
+    <span class="p">},</span>
 <span class="hll">    <span class="c1">// Add a height parameter to the bottom of your file</span>
 </span><span class="hll">    <span class="nx">height</span><span class="o">:</span> <span class="mi">250</span>
 </span><span class="p">};</span>
@@ -876,6 +948,7 @@ $ git commit -m <span class="s2">&quot;Printed a list of names from data&quot;</
 <div class="highlight-javascript"><div class="highlight"><pre><span></span><span class="nx">Plotly</span><span class="p">.</span><span class="nx">newPlot</span><span class="p">(</span><span class="nx">element</span><span class="p">,</span> <span class="nx">settings</span><span class="p">,</span> <span class="nx">layout</span><span class="p">,</span> <span class="p">{</span><span class="nx">displayModeBar</span><span class="o">:</span> <span class="kc">false</span><span class="p">});</span>
 </pre></div>
 </div>
+<a class="reference internal image-reference" href="_images/two-charts-styled.png"><img alt="_images/two-charts-styled.png" src="_images/two-charts-styled.png" style="width: 100%;" /></a>
 <p>Much better! There are a couple more customization options we can do with plotly. While it’s useful to get the homicide numbers on hover, we don’t really need those year label popups. We can turn those off by only displaying hovers for y-axis values.</p>
 <div class="highlight-javascript"><div class="highlight"><pre><span></span><span class="kd">function</span> <span class="nx">createChart</span><span class="p">(</span><span class="nx">x</span><span class="p">,</span> <span class="nx">y</span><span class="p">,</span> <span class="nx">element</span><span class="p">)</span> <span class="p">{</span>
   <span class="kd">var</span> <span class="nx">settings</span> <span class="o">=</span> <span class="p">[{</span>
@@ -906,7 +979,7 @@ $ git commit -m <span class="s2">&quot;Printed a list of names from data&quot;</
     <span class="c1">// Add this to your chart settings</span>
     <span class="nx">hoverinfo</span><span class="o">:</span> <span class="s1">&#39;y&#39;</span><span class="p">,</span>
 <span class="hll">    <span class="nx">hoverlabel</span><span class="o">:</span> <span class="p">{</span>
-</span><span class="hll">      <span class="nx">bgcolor</span><span class="o">:</span> <span class="s1">&#39;#333333&#39;</span>
+</span><span class="hll">      <span class="nx">bgcolor</span><span class="o">:</span> <span class="s1">&#39;#777777&#39;</span>
 </span><span class="hll">    <span class="p">}</span>
 </span>  <span class="p">}];</span>
 
@@ -915,6 +988,7 @@ $ git commit -m <span class="s2">&quot;Printed a list of names from data&quot;</
 <span class="p">}</span>
 </pre></div>
 </div>
+<a class="reference internal image-reference" href="_images/two-charts-label.png"><img alt="_images/two-charts-label.png" src="_images/two-charts-label.png" style="width: 100%;" /></a>
 <p>Last, our charts need titles! Since we want each chart to have a different title, we’ll need to update our function a bit.</p>
 <dl class="docutils">
 <dt>We’re going to</dt>
@@ -971,7 +1045,8 @@ $ git commit -m <span class="s2">&quot;Printed a list of names from data&quot;</
 <span class="nx">createChart</span><span class="p">(</span><span class="nx">years</span><span class="p">,</span> <span class="nx">harvardParkHomicides</span><span class="p">,</span> <span class="s1">&#39;harvard-park-homicides&#39;</span><span class="p">,</span> <span class="nx">hpChartTitle</span><span class="p">);</span>
 </pre></div>
 </div>
-<p>Congratulations. You’ve made your charts! Let’s move on to our next challenge.</p>
+<a class="reference internal image-reference" href="_images/two-charts-title.png"><img alt="_images/two-charts-title.png" src="_images/two-charts-title.png" style="width: 100%;" /></a>
+<p>Congratulations, you’ve made your charts! Let’s move on to our next challenge.</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
 <p>We used Plotly.js in this class, but there are many other JavaScript charting libraries, each one slightly different. If you want to explore this on your own, here are some other options that we considered using for this class</p>
@@ -1074,7 +1149,8 @@ $ git commit -m <span class="s2">&quot;Printed a list of names from data&quot;</
 <span class="nx">osm</span><span class="p">.</span><span class="nx">addTo</span><span class="p">(</span><span class="nx">map</span><span class="p">);</span>
 </pre></div>
 </div>
-<p>After you save, the index page should reload with a simple map, centered far from Los Angeles.</p>
+<p>After you save, the index page should reload with a blank map.</p>
+<a class="reference internal image-reference" href="_images/blank-map.png"><img alt="_images/blank-map.png" src="_images/blank-map.png" style="width: 100%;" /></a>
 <p>To zero in on the area we’re reporting on, we will need its longitude and latitude coordinates. Go to Google Maps and find 62nd Street and Harvard Boulevard in South LA. Hold down a click until it gives you the coordinates in a popup box. Paste those numbers into Leaflet’s <code class="docutils literal"><span class="pre">setView</span></code> method with a zoom level of 15 included.</p>
 <div class="highlight-javascript"><div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">map</span> <span class="o">=</span> <span class="nx">L</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="s1">&#39;map&#39;</span><span class="p">)</span>
 <span class="kd">var</span> <span class="nx">osm</span> <span class="o">=</span> <span class="nx">L</span><span class="p">.</span><span class="nx">tileLayer</span><span class="p">(</span><span class="s1">&#39;http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png&#39;</span><span class="p">);</span>
@@ -1082,6 +1158,7 @@ $ git commit -m <span class="s2">&quot;Printed a list of names from data&quot;</
 <span class="hll"><span class="nx">map</span><span class="p">.</span><span class="nx">setView</span><span class="p">([</span><span class="mf">33.983265</span><span class="p">,</span> <span class="o">-</span><span class="mf">118.306799</span><span class="p">],</span> <span class="mi">15</span><span class="p">);</span>
 </span></pre></div>
 </div>
+<a class="reference internal image-reference" href="_images/first-map.png"><img alt="_images/first-map.png" src="_images/first-map.png" style="width: 100%;" /></a>
 <p>After you save the file, your map should have relocated. Let’s tighten up that zoom and save again.</p>
 <div class="highlight-javascript"><div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">map</span> <span class="o">=</span> <span class="nx">L</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="s1">&#39;map&#39;</span><span class="p">)</span>
 <span class="kd">var</span> <span class="nx">osm</span> <span class="o">=</span> <span class="nx">L</span><span class="p">.</span><span class="nx">tileLayer</span><span class="p">(</span><span class="s1">&#39;http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png&#39;</span><span class="p">);</span>
@@ -1089,43 +1166,9 @@ $ git commit -m <span class="s2">&quot;Printed a list of names from data&quot;</
 <span class="hll"><span class="nx">map</span><span class="p">.</span><span class="nx">setView</span><span class="p">([</span><span class="mf">33.983265</span><span class="p">,</span> <span class="o">-</span><span class="mf">118.306799</span><span class="p">],</span> <span class="mi">18</span><span class="p">);</span>
 </span></pre></div>
 </div>
-<p>Now let’s load some data on the map. Download the complete list of Harvard Park homicides from <a class="reference external" href="https://gist.githubusercontent.com/palewire/1035cd306a2f85b362b1a20ce315b8eb/raw/harvard_park_homicides.json">this link</a>. Create a new file at <code class="docutils literal"><span class="pre">_data/harvard_park_homicides.json</span></code> and paste the file’s content in.</p>
-<p>It includes a list with a dictionary of data about each homicide victim in the neighborhood since 2000.</p>
-<div class="highlight-javascript"><div class="highlight"><pre><span></span><span class="p">[</span>
-   <span class="p">{</span>
-      <span class="s2">&quot;case_number&quot;</span><span class="o">:</span><span class="s2">&quot;2017-04514&quot;</span><span class="p">,</span>
-      <span class="s2">&quot;slug&quot;</span><span class="o">:</span><span class="s2">&quot;eddie-rosendo-lino&quot;</span><span class="p">,</span>
-      <span class="s2">&quot;first_name&quot;</span><span class="o">:</span><span class="s2">&quot;Eddie&quot;</span><span class="p">,</span>
-      <span class="s2">&quot;middle_name&quot;</span><span class="o">:</span><span class="s2">&quot;Rosendo&quot;</span><span class="p">,</span>
-      <span class="s2">&quot;last_name&quot;</span><span class="o">:</span><span class="s2">&quot;Lino&quot;</span><span class="p">,</span>
-      <span class="s2">&quot;death_date&quot;</span><span class="o">:</span><span class="s2">&quot;2017-06-18T00:00:00.000Z&quot;</span><span class="p">,</span>
-      <span class="s2">&quot;death_year&quot;</span><span class="o">:</span><span class="mi">2017</span><span class="p">,</span>
-      <span class="s2">&quot;age&quot;</span><span class="o">:</span><span class="mf">23.0</span><span class="p">,</span>
-      <span class="s2">&quot;race&quot;</span><span class="o">:</span><span class="s2">&quot;black&quot;</span><span class="p">,</span>
-      <span class="s2">&quot;gender&quot;</span><span class="o">:</span><span class="s2">&quot;male&quot;</span><span class="p">,</span>
-      <span class="s2">&quot;image&quot;</span><span class="o">:</span><span class="kc">null</span><span class="p">,</span>
-      <span class="s2">&quot;longitude&quot;</span><span class="o">:-</span><span class="mf">118.304107484</span><span class="p">,</span>
-      <span class="s2">&quot;latitude&quot;</span><span class="o">:</span><span class="mf">33.9904336958</span>
-   <span class="p">},</span>
-   <span class="p">{</span>
-      <span class="s2">&quot;case_number&quot;</span><span class="o">:</span><span class="s2">&quot;2017-03454&quot;</span><span class="p">,</span>
-      <span class="s2">&quot;slug&quot;</span><span class="o">:</span><span class="s2">&quot;alex-david-lomeli&quot;</span><span class="p">,</span>
-      <span class="s2">&quot;first_name&quot;</span><span class="o">:</span><span class="s2">&quot;Alex&quot;</span><span class="p">,</span>
-      <span class="s2">&quot;middle_name&quot;</span><span class="o">:</span><span class="s2">&quot;David&quot;</span><span class="p">,</span>
-      <span class="s2">&quot;last_name&quot;</span><span class="o">:</span><span class="s2">&quot;Lomeli&quot;</span><span class="p">,</span>
-      <span class="s2">&quot;death_date&quot;</span><span class="o">:</span><span class="s2">&quot;2017-05-07T00:00:00.000Z&quot;</span><span class="p">,</span>
-      <span class="s2">&quot;death_year&quot;</span><span class="o">:</span><span class="mi">2017</span><span class="p">,</span>
-      <span class="s2">&quot;age&quot;</span><span class="o">:</span><span class="mf">18.0</span><span class="p">,</span>
-      <span class="s2">&quot;race&quot;</span><span class="o">:</span><span class="s2">&quot;latino&quot;</span><span class="p">,</span>
-      <span class="s2">&quot;gender&quot;</span><span class="o">:</span><span class="s2">&quot;male&quot;</span><span class="p">,</span>
-      <span class="s2">&quot;image&quot;</span><span class="o">:</span><span class="kc">null</span><span class="p">,</span>
-      <span class="s2">&quot;longitude&quot;</span><span class="o">:-</span><span class="mf">118.300290584</span><span class="p">,</span>
-      <span class="s2">&quot;latitude&quot;</span><span class="o">:</span><span class="mf">33.9793646958</span>
-   <span class="p">},</span>
-   <span class="p">...</span>
-</pre></div>
-</div>
-<p>Now let’s include that data in the page. Open <code class="docutils literal"><span class="pre">index.nunjucks</span></code> and add a new variable to the <code class="docutils literal"><span class="pre">scripts</span></code> block where the homicides list is stored.</p>
+<a class="reference internal image-reference" href="_images/corner-map.png"><img alt="_images/corner-map.png" src="_images/corner-map.png" style="width: 100%;" /></a>
+<p>Now let’s load some data on the map. We will return to the list of all homicides already stored in <code class="docutils literal"><span class="pre">_data/harvard_park_homicides.json</span></code>.</p>
+<p>Open <code class="docutils literal"><span class="pre">index.nunjucks</span></code> and add a new variable to the <code class="docutils literal"><span class="pre">scripts</span></code> block where the homicides list is stored.</p>
 <div class="highlight-jinja"><div class="highlight"><pre><span></span><span class="cp">{%</span> <span class="k">block</span> <span class="nv">scripts</span> <span class="cp">%}</span><span class="x"></span>
 <span class="x">&lt;script&gt;</span>
 <span class="x">var annualTotals = </span><span class="cp">{%</span> <span class="k">include</span> <span class="s1">&#39;_data/annual_totals.json&#39;</span> <span class="cp">%}</span><span class="x">;</span>
@@ -1143,10 +1186,12 @@ $ git commit -m <span class="s2">&quot;Printed a list of names from data&quot;</
 <span class="hll"><span class="nx">homicides</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">obj</span><span class="p">)</span> <span class="p">{</span>
 </span><span class="hll">    <span class="nx">L</span><span class="p">.</span><span class="nx">circleMarker</span><span class="p">([</span><span class="nx">obj</span><span class="p">.</span><span class="nx">latitude</span><span class="p">,</span>  <span class="nx">obj</span><span class="p">.</span><span class="nx">longitude</span><span class="p">])</span>
 </span><span class="hll">      <span class="p">.</span><span class="nx">addTo</span><span class="p">(</span><span class="nx">map</span><span class="p">);</span>
-</span><span class="hll"><span class="p">})</span>
+</span><span class="hll"><span class="p">});</span>
 </span></pre></div>
 </div>
-<p>Save the file and you should now see all the homicides mapped on the page. Next, extend the code in <code class="docutils literal"><span class="pre">_scripts/_map.js</span></code> to add a tooltip label on each point.</p>
+<p>Save the file and you should now see all the homicides mapped on the page.</p>
+<a class="reference internal image-reference" href="_images/hello-circles.png"><img alt="_images/hello-circles.png" src="_images/hello-circles.png" style="width: 100%;" /></a>
+<p>Next, extend the code in <code class="docutils literal"><span class="pre">_scripts/_map.js</span></code> to add a tooltip label on each point.</p>
 <div class="highlight-javascript"><div class="highlight"><pre><span></span><span class="nx">homicides</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">obj</span><span class="p">)</span> <span class="p">{</span>
     <span class="nx">L</span><span class="p">.</span><span class="nx">circleMarker</span><span class="p">([</span><span class="nx">obj</span><span class="p">.</span><span class="nx">latitude</span><span class="p">,</span>  <span class="nx">obj</span><span class="p">.</span><span class="nx">longitude</span><span class="p">])</span>
       <span class="p">.</span><span class="nx">addTo</span><span class="p">(</span><span class="nx">map</span><span class="p">)</span>
@@ -1155,6 +1200,7 @@ $ git commit -m <span class="s2">&quot;Printed a list of names from data&quot;</
 </pre></div>
 </div>
 <p>Here’s what you should see after you do that.</p>
+<a class="reference internal image-reference" href="_images/hello-tooltips.gif"><img alt="_images/hello-tooltips.gif" src="_images/hello-tooltips.gif" style="width: 100%;" /></a>
 <p>Next let’s sprinkle some CSS in our page to make the circles match the orange color of the dots found on The Homicide Report. As we did with the charts, go to the <code class="docutils literal"><span class="pre">_scripts</span></code> folder and create a new file. We’ll call this one <code class="docutils literal"><span class="pre">_map.scss</span></code>. In that file, copy or write the following:</p>
 <div class="highlight-css"><div class="highlight"><pre><span></span><span class="nt">path</span> <span class="p">{</span>
     <span class="n">fill</span><span class="p">:</span> <span class="mh">#e64d1f</span><span class="p">;</span>
@@ -1174,15 +1220,18 @@ $ git commit -m <span class="s2">&quot;Printed a list of names from data&quot;</
 <span class="hll"><span class="p">@</span><span class="k">import</span> <span class="s1">&#39;_map.scss&#39;</span><span class="p">;</span>
 </span></pre></div>
 </div>
-<p>After you save, the tooltips should appear when you hover over a circle.</p>
+<p>After you save, here’s what you’ll get.</p>
+<a class="reference internal image-reference" href="_images/orange-circles.png"><img alt="_images/orange-circles.png" src="_images/orange-circles.png" style="width: 100%;" /></a>
 <p>To make the tooltips visible all the time, edit the JavaScript in <code class="docutils literal"><span class="pre">_scripts/_map.js</span></code> to make the tooltips “permanent.”</p>
 <div class="highlight-javascript"><div class="highlight"><pre><span></span><span class="nx">homicides</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">obj</span><span class="p">)</span> <span class="p">{</span>
     <span class="nx">L</span><span class="p">.</span><span class="nx">circleMarker</span><span class="p">([</span><span class="nx">obj</span><span class="p">.</span><span class="nx">latitude</span><span class="p">,</span>  <span class="nx">obj</span><span class="p">.</span><span class="nx">longitude</span><span class="p">])</span>
       <span class="p">.</span><span class="nx">addTo</span><span class="p">(</span><span class="nx">map</span><span class="p">)</span>
 <span class="hll">      <span class="p">.</span><span class="nx">bindTooltip</span><span class="p">(</span><span class="nx">obj</span><span class="p">.</span><span class="nx">first_name</span> <span class="o">+</span> <span class="s2">&quot; &quot;</span> <span class="o">+</span> <span class="nx">obj</span><span class="p">.</span><span class="nx">last_name</span><span class="p">,</span> <span class="p">{</span><span class="nx">permanent</span><span class="o">:</span> <span class="kc">true</span><span class="p">});</span>
-</span><span class="p">})</span>
+</span><span class="p">});</span>
 </pre></div>
 </div>
+<p>Here they are.</p>
+<a class="reference internal image-reference" href="_images/permanent-tooltips.png"><img alt="_images/permanent-tooltips.png" src="_images/permanent-tooltips.png" style="width: 100%;" /></a>
 <p>Alright. We’ve got an okay map. But it’s zoomed in so close a reader might now know where it is. To combat this problem, graphic artists often inset a small map in the corner that shows the the area of focus from a greater distance.</p>
 <p>Lucky for us, there’s already a Leaflet extension that provides this feature. It’s called <a class="reference external" href="https://github.com/Norkart/Leaflet-MiniMap">MiniMap</a>.</p>
 <p>To put it to use, we’ll need to return to our friend <code class="docutils literal"><span class="pre">npm</span></code>.</p>
@@ -1243,17 +1292,20 @@ $ git commit -m <span class="s2">&quot;Printed a list of names from data&quot;</
 </span></pre></div>
 </div>
 <p>Save the file and the inset map should appear on your page.</p>
+<a class="reference internal image-reference" href="_images/hello-minimap.png"><img alt="_images/hello-minimap.png" src="_images/hello-minimap.png" style="width: 100%;" /></a>
 <p>Finally, let’s preface the map with so a headline.</p>
 <div class="highlight-html"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">h3</span><span class="p">&gt;</span>One corner. Four killings<span class="p">&lt;/</span><span class="nt">h3</span><span class="p">&gt;</span>
 <span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;map&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
 </pre></div>
 </div>
+<a class="reference internal image-reference" href="_images/map-hed.png"><img alt="_images/map-hed.png" src="_images/map-hed.png" style="width: 100%;" /></a>
 <p>Then an introductory paragraph.</p>
 <div class="highlight-html"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">h3</span><span class="p">&gt;</span>One corner. Four killings<span class="p">&lt;/</span><span class="nt">h3</span><span class="p">&gt;</span>
 <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>The southwest corner of Harvard Park, at West 62nd Street and Harvard Boulevard, has been especially deadly. In the last year-and-a-half, four men have been killed there — while sitting in a car, trying to defuse an argument or walking home from the barber shop or the corner store.<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
 <span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;map&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
 </pre></div>
 </div>
+<a class="reference internal image-reference" href="_images/map-deck.png"><img alt="_images/map-deck.png" src="_images/map-deck.png" style="width: 100%;" /></a>
 <p>All wrapped up in a <code class="docutils literal"><span class="pre">&lt;section&gt;</span></code> tag.</p>
 <div class="highlight-html"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">section</span><span class="p">&gt;</span>
     <span class="p">&lt;</span><span class="nt">h3</span><span class="p">&gt;</span>One corner. Four killings<span class="p">&lt;/</span><span class="nt">h3</span><span class="p">&gt;</span>
@@ -1262,7 +1314,45 @@ $ git commit -m <span class="s2">&quot;Printed a list of names from data&quot;</
 <span class="p">&lt;/</span><span class="nt">section</span><span class="p">&gt;</span>
 </pre></div>
 </div>
-<p>Congratulations. You’ve created a custom map. Now let’s get on to the business of sharing it with the world.</p>
+<a class="reference internal image-reference" href="_images/map-section.png"><img alt="_images/map-section.png" src="_images/map-section.png" style="width: 100%;" /></a>
+<p>Congratulations. You’ve created a custom map. Before we get on to the business of sharing it with the world, we need a couple more pieces here.</p>
+<p>Hey. How about a headline?</p>
+<div class="highlight-html"><div class="highlight"><pre><span></span>{% extends &#39;_layouts/base.nunjucks&#39; %}
+
+<span class="hll">{% block headline %}A South L.A. neighborhood grapples with a wave of violence{% endblock %}
+</span>{% block byline %}By me{% endblock %}
+{% block pubdate %}
+    <span class="p">&lt;</span><span class="nt">time</span> <span class="na">datetime</span><span class="o">=</span><span class="s">&quot;2018-03-10&quot;</span> <span class="na">pubdate</span><span class="p">&gt;</span>Mar. 10, 2018<span class="p">&lt;/</span><span class="nt">time</span><span class="p">&gt;</span>
+{% endblock %}
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="_static/final-headline.png"><img alt="_static/final-headline.png" src="_static/final-headline.png" style="width: 100%;" /></a>
+<p>And a real byline.</p>
+<div class="highlight-html"><div class="highlight"><pre><span></span>{% extends &#39;_layouts/base.nunjucks&#39; %}
+
+{% block headline %}A South L.A. neighborhood grapples with a wave of violence{% endblock %}
+<span class="hll">{% block byline %}By <span class="p">&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;http://www.firstgraphicsapp.org/&quot;</span><span class="p">&gt;</span>The First Graphics App Tutorial<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>{% endblock %}
+</span>{% block pubdate %}
+    <span class="p">&lt;</span><span class="nt">time</span> <span class="na">datetime</span><span class="o">=</span><span class="s">&quot;2018-03-10&quot;</span> <span class="na">pubdate</span><span class="p">&gt;</span>Mar. 10, 2018<span class="p">&lt;/</span><span class="nt">time</span><span class="p">&gt;</span>
+{% endblock %}
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="_images/final-byline.png"><img alt="_images/final-byline.png" src="_images/final-byline.png" style="width: 100%;" /></a>
+<p>And let’s a write a lead.</p>
+<div class="highlight-html"><div class="highlight"><pre><span></span><span class="hll">{% block content %}
+</span><span class="hll"><span class="p">&lt;</span><span class="nt">section</span><span class="p">&gt;</span>
+</span><span class="hll">    <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>The area around Harvard Park was the deadliest place for African Americans in Los Angeles County last year, according to <span class="p">&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;http://homicide.latimes.com/&quot;</span><span class="p">&gt;</span>The Times’ Homicide Report<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>. So far this year, six people have been killed. Most of the victims were black men.<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span> <span class="p">&lt;/</span><span class="nt">section</span><span class="p">&gt;</span>
+</span><span class="p">&lt;</span><span class="nt">section</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">h3</span><span class="p">&gt;</span>One corner. Four killings<span class="p">&lt;/</span><span class="nt">h3</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>The southwest corner of Harvard Park, at West 62nd Street and Harvard Boulevard, has been especially deadly. In the last year-and-a-half, four men have been killed there — while sitting in a car, trying to defuse an argument or walking home from the barber shop or the corner store.<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;map&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">section</span><span class="p">&gt;</span>
+...
+{% endblock %}
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="_images/final-lead.png"><img alt="_images/final-lead.png" src="_images/final-lead.png" style="width: 100%;" /></a>
+<p>Now we’re ready. Let’s do it live.</p>
 </div>
 <div class="section" id="chapter-8-hello-internet">
 <h2>Chapter 8: Hello Internet<a class="headerlink" href="#chapter-8-hello-internet" title="Permalink to this headline">¶</a></h2>

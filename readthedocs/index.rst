@@ -8,17 +8,19 @@ A step-by-step guide to publishing a standalone story from a dataset.
 
 This tutorial will show you how journalists at America’s top news organizations escape rigid content-management systems to publish custom interactive graphics on deadline. You will get hands-on experience in every stage of the development process, writing JavaScript, HTML and CSS within a Node.js framework. You won't stop until you've deployed a working application on the World Wide Web.
 
+
 ******************
 What you will make
 ******************
 
 By the end of this lesson, you will publish a standalone page with a series of graphics examining the high homicide rate in Harvard Park, a small neighborhood in South Los Angeles. You will do so by repurposing data from `a 2017 Los Angeles Times story <http://www.latimes.com/projects/la-me-harvard-park-homicides/>`_ by Nicole Santa Cruz and Cindy Chang.
 
+A working example of what you will make can be found at `ireapps.github.io/first-graphics-app/ <https://ireapps.github.io/first-graphics-app/>`_
+
 .. image:: _static/preview.gif
    :width: 100%
    :target: https://ireapps.github.io/first-graphics-app/
 
-A working example of what you will make can be found at `ireapps.github.io/first-graphics-app/ <https://ireapps.github.io/first-graphics-app/>`_
 
 *****************
 About the authors
@@ -34,6 +36,7 @@ Their work was inspired by the footloose spirit of funk music. We urge you to bu
 .. raw:: html
 
     <iframe src="https://open.spotify.com/embed?uri=spotify:user:227b2koy2xxyb23qliakea75y:playlist:54NS8jCdrgUpzUppUpokSg&theme=white" width="300" height="380" frameborder="0" allowtransparency="true" style="margin: 20px 0;"></iframe>
+
 
 **********************
 Prelude: Prerequisites
@@ -69,30 +72,30 @@ A program like Microsoft Word, which can do all sorts of text formatting like ch
 
 You need a program that works with simple `"plain text" files <https://en.wikipedia.org/wiki/Text_file>`_, and is therefore capable of editing documents containing Python code, HTML markup and other languages without dressing them up by adding anything extra. Such programs are easy to find and some of the best ones are free, including those below.
 
-For Windows, we recommend installing `Notepad++ <http://notepad-plus-plus.org/>`_. For Apple computers, try `Atom <https://atom.io>`_ or `Sublime Text <https://www.sublimetext.com/>`_. In Ubuntu Linux you can stick with the pre-installed `gedit <https://help.ubuntu.com/community/gedit>`_ text editor or install a more sophisticated tool like `Atom <https://atom.io>`_
+For Windows, we recommend installing `Notepad++ <http://notepad-plus-plus.org/>`_ or `Visual Studio Code <https://code.visualstudio.com/>`_. For Apple computers, try `Atom <https://atom.io>`_ or `Sublime Text <https://www.sublimetext.com/>`_. In Ubuntu Linux you can stick with the pre-installed `gedit <https://help.ubuntu.com/community/gedit>`_ text editor or install a more sophisticated tool like `Atom <https://atom.io>`_.
 
 
 Node.js
 -------
 
-Node.js is an open-source programming framework built using JavaScript. Many programmers like it because it allows them to write JavaScript not just in their browser for "front-end" tasks, but also in terminal or on a server for "back-end" tasks.
+Node.js is an open-source programming framework built using JavaScript. Many programmers like it because it allows them to write JavaScript not just in their browser for "front-end" tasks, but also in the terminal or on a server for "back-end" tasks.
 
-You should be on the latest long-term support (LTS) version of Node, which at the time of this writing is ``8.9.4``. The `Node.js site <https://nodejs.org>`_ has `installer packages <https://nodejs.org/en/download/>`_ available for Windows and Mac OSX.
+You should be on the latest long-term support (LTS) version of Node, which at the time of this writing was ``8.9.4``. The `Node.js site <https://nodejs.org>`_ has `installer packages <https://nodejs.org/en/download/>`_ available for Windows and Mac OSX.
 
-You can verify if you have Node installed, and if so what version, by typing the following into your terminal.
+You can verify if you have Node installed, and if so what version, by typing the following into your terminal:
 
 .. code-block:: bash
 
     $ node --version
 
 
-The number you get back is the version you have installed. If you get an error, you don't have it installed and should start from scratch with an installer package. If you have a slightly older version, you are probably okay. But we make no guarantees. Consider upgrading.
+The number you get back is the version you have installed. If you get an error, you don't have Node.js installed and you should start from scratch with an installer package. If you have a slightly older version, you are probably okay. But we make no guarantees. Consider upgrading.
 
 
 npm
 ---
 
-Installing Node will also install ``npm`` on your computer, which stands for "Node Package Manager." We will use this to install open-source JavaScript packages that will help us draw charts and maps during the class.
+Installing Node will also install npm on your computer, which stands for "Node Package Manager." During the class, we will use it to install open-source JavaScript packages that will help us draw charts and maps.
 
 You can verify you have npm installed by running the following command on your terminal.
 
@@ -114,14 +117,14 @@ You can verify Git is installed from your command line like so:
 
     $ git --version
 
-Once that's done, you should create an account at GitHub, if you don't already have one. `The free plan <https://github.com/pricing>`_ is all that's required to complete this lesson.
+Once that's done, you should create an account at GitHub, if you don't already have one. `The free plan <https://github.com/pricing>`_ is all that's required to complete this lesson. If you make a new account, make sure to confirm your email address with GitHub. We'll need that for something later.
 
 
 ********************
 Chapter 1: Hello Git
 ********************
 
-First things first. It always helps to store all your code in the same place, instead of haphazard folders around your computer. This way, you always know where to look.
+First things first. It always helps to store all your code in the same place, instead of haphazard folders around your computer. This way, you always know where to look if you need to find a project.
 
 In this case, let's call that directory ``Code``.
 
@@ -170,14 +173,14 @@ Visit `GitHub <http://www.github.com>`_ and `create <https://github.com/new>`_ a
    :target: https://github.com/new
 
 
-Then connect your local directory to GitHub with the following command.
+Then connect your local directory to GitHub with the following command. Replace ``<yourusername>`` with your GitHub user name.
 
 .. code-block:: bash
 
     $ git remote add origin https://github.com/<yourusername>/first-graphics-app.git
 
 
-Create your first file, a blank ``README`` with a `Markdown <https://en.wikipedia.org/wiki/Markdown>`_ file extension since that's `the preferred format of GitHub <https://help.github.com/articles/github-flavored-markdown>`_. The filename will be ``README.md``.
+Create your first file, a blank ``README`` with a `Markdown <https://en.wikipedia.org/wiki/Markdown>`_ file extension since that's `the preferred format of GitHub <https://help.github.com/articles/github-flavored-markdown>`_. The filename will be ``README.md``. Markdown is a simple way of writing nicely formatted text, complete with headlines, links and images.
 
 .. code-block:: bash
 
@@ -203,7 +206,7 @@ Make sure to save it. Then officially add the file to your repository for tracki
     $ git add README.md
 
 
-Log its creation with Git's ``commit`` command. You can include a personalized message after the ``-m`` flag.
+Log its creation with Git's ``commit`` command. You can include a personalized message after the ``-m`` flag. If you're on a Windows machine, make sure you use double quotes around your commit message.
 
 .. code-block:: bash
 
@@ -243,14 +246,14 @@ The ``-g`` means that we're installing the packages globally. You'll be able to 
 
 .. code-block:: bash
 
-    $ sudo npm install -g yo gulp
+    $ npm install -g yo gulp
 
 
 Use npm to install `yeogurt <https://github.com/larsonjj/generator-yeogurt>`_, our project generator that yeoman will build.
 
 .. code-block:: bash
 
-    $ sudo npm install -g generator-yeogurt
+    $ npm install -g generator-yeogurt
 
 
 Create a new project using our yeogurt generator as the guide.
@@ -293,6 +296,7 @@ Congratulations, you've got your framework up and running. Let's save our work a
     While some frameworks are more popular than others, each newsroom tends to go its own way with a custom system for publishing pages. The programming languages and the details vary, but the fundamentals are almost all the same. Some of them have even been released as open-source software. They include:
 
     * The Los Angeles Times Data Desk's `bigbuild <https://github.com/datadesk/django-bigbuild>`_
+    * The Dallas Morning News' `generator-dmninteractives <https://github.com/DallasMorningNews/generator-dmninteractives>`_
     * The Seattle Times' `newsapp-template <https://github.com/seattletimes/newsapp-template/>`_
     * The NPR Apps team's `dailygraphics <https://github.com/nprapps/dailygraphics>`_
     * Politico's `generator-politico-graphics  <https://github.com/The-Politico/generator-politico-graphics>`_
@@ -312,6 +316,7 @@ Commit our work.
 
     $ git add .
     $ git commit -m "Installed framework"
+
 
 Push it to GitHub.
 
@@ -496,6 +501,7 @@ And, again, push it to GitHub.
 
     Instead, Gulp processes the contents of these folders when it builds the project and serves the files from a ``tmp/`` folder, where you'll see unprefixed ``images/``, ``scripts/`` and ``styles/`` directories.
 
+
 *********************
 Chapter 4: Hello data
 *********************
@@ -557,6 +563,7 @@ Here's what you should see.
 Loop through them and print them all.
 
 .. code-block:: jinja
+    :emphasize-lines: 2-4
 
     {% block content %}
     {% for obj in site.data.harvard_park_homicides %}
@@ -573,6 +580,7 @@ Add a line break with a ``<br>`` tag.
 
 
 .. code-block:: jinja
+    :emphasize-lines: 3
 
     {% block content %}
     {% for obj in site.data.harvard_park_homicides %}
@@ -588,6 +596,7 @@ Add a line break with a ``<br>`` tag.
 Print the last name.
 
 .. code-block:: jinja
+    :emphasize-lines: 3
 
     {% block content %}
     {% for obj in site.data.harvard_park_homicides %}
@@ -603,6 +612,7 @@ Print the last name.
 Add the first name. To have them display more nicely, you can also add a line break in between each one.
 
 .. code-block:: jinja
+    :emphasize-lines: 3
 
     {% block content %}
     {% for obj in site.data.harvard_park_homicides %}
@@ -809,7 +819,7 @@ You can include the libraries we installed (or any JavaScript file!) by using ``
     Plotly.register(Plotlybar);
 
     // At the end of the _charts.js file
-    console.log("hello, this is my charts file!")
+    console.log('hello, this is my charts file!')
 
 
 Remember our underscore coding convention? Here, ``_charts.js`` has an underscore (``_``) in front of it because it will be compiled into ``main.js`` when the site is baked.
@@ -817,16 +827,17 @@ Remember our underscore coding convention? Here, ``_charts.js`` has an underscor
 That is, if we tell it to. Use the same ``require()`` method to pull our code into ``main.js``. Unlike ``_charts.js``, ``main.js`` doesn't have an underscore, because it is the file that the other scripts will be pulled into.
 
 .. code-block:: javascript
-    :emphasize-lines: 13
+    :emphasize-lines: 14
 
     // Main javascript entry point
     // Should handle bootstrapping/starting application
+
     'use strict';
 
-    var $ = require('jquery');
-    var Link = require('../_modules/link/link');
+    import $ from 'jquery';
+    import Link from '../_modules/link/link';
 
-    $(function() {
+    $(() => {
       new Link(); // Activate Link modules logic
       console.log('Welcome to Yeogurt!');
     });
@@ -838,21 +849,49 @@ Structuring our code this way helps keep things organized, as each file controls
 
 Now if you reload your page and go to your inspector (click on the three dots in the top right of Chrome, go down to "More tools" and select "Developer tools"), you should see ``hello, this is my charts file!`` in the console.
 
-TK PICTURE OF INSPECTOR / CONSOLE HERE
+.. image:: _static/hello-charts.png
+    :width: 100%
 
 What chart should we make? The story points out that Harvard Park experienced an increase in homicides as there was a decrease across the rest of the county. Let's try to visualize that.
 
 First, we need somewhere for our charts to go. In our ``index.nunjucks`` file, inside of ``{% block content %}`` where you want the chart to go, create a ``div`` element with an id of ``county-homicides``, and another with an id of ``harvard-park-homicides``.
 
 .. code-block:: html
+    :emphasize-lines: 11-12
+
+    {% extends '_layouts/base.nunjucks' %}
+
+    {% block headline %}My headline will go here{% endblock %}
+    {% block byline %}By me{% endblock %}
+    {% block pubdate %}
+        <time datetime="2018-03-10" pubdate>Mar. 10, 2018</time>
+    {% endblock %}
+
+    {% block content %}
 
     <div id="county-homicides"></div>
     <div id="harvard-park-homicides"></div>
 
+    {% for obj in site.data.harvard_park_homicides %}
+    <div class="card-columns">
+        {% for obj in site.data.harvard_park_homicides %}
+        <div class="card">
+          {% if obj.image %}<img class="card-img-top" src="{{ obj.image }}">{% endif %}
+          <div class="card-body">
+            <h5 class="card-title">{{ obj.first_name }} {{ obj.last_name }}</h5>
+            <p class="card-text">A {{ obj.age}}-year-old {{ obj.race }} {{ obj.gender }} died in {{ obj.death_year }}.</p>
+          </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% endfor %}
 
-Meanwhile, we need data. Copy the `annual totals data <https://raw.githubusercontent.com/ireapps/first-graphics-app/master/src/_data/annual_totals.json>`_ to ``_data/annual_totals.json``. We can use nunjucks to include our data file directly in the template.
+    {% endblock %}
 
-Inside of the ``{% scripts %}`` block:
+
+Meanwhile, we need data. Copy the `annual totals data <https://raw.githubusercontent.com/ireapps/first-graphics-app/master/src/_data/annual_totals.json>`_ to ``_data/annual_totals.json``. This file contains annual homicide counts for Harvard Park and all of Los Angeles County. We can use nunjucks to include our data file directly in the template.
+
+Add a ``{% scripts %}`` block to the end of your ``index.nunjucks`` file:
 
 .. code-block:: html
 
@@ -898,9 +937,9 @@ We want to make two charts - one of county homicides and one of killings in Harv
 
 The ``.map()`` creates and returns an array, and the arrow (``=>``) function returns the value for each object. Think of it as "plucking" the values we want to form a list.
 
-Now that we've populated our data, we're ready to make our chart. Right now, it's pretty simple, with options for the x axis, which we want to be our ``years`` array, and y axis, which is our homicide counts, and specifying the type of the chart.
+Now that we've populated our data, we're ready to make our chart. Right now, it's pretty simple, with a single variable ``settings`` providing options for the x axis, which we want to be our ``years`` array, and y axis, which is our homicide counts, and specifying the type of the chart.
 
-Below the settings we call ``Plotly.newPlot()`` with the id of the element where we want the chart to go and settings to create the chart.
+Below ``settings`` we call ``Plotly.newPlot()`` with the id of the element where we want the chart to go and settings to create the chart.
 
 .. code-block:: javascript
 
@@ -917,6 +956,10 @@ Below the settings we call ``Plotly.newPlot()`` with the id of the element where
     // Create the chart
     Plotly.newPlot('county-homicides', settings);
 
+You should see something like this on your page.
+
+.. image:: _static/first-chart.png
+    :width: 100%
 
 This is a good start, but we can further customize this chart so it fits better with the rest of the page. Now, let's try to:
 
@@ -925,7 +968,7 @@ This is a good start, but we can further customize this chart so it fits better 
 - Give the charts titles
 - Display the two charts alongside one another
 
-Let's add labels to our axes. Create a new variable, ``chartLayout`` in your ``createChart`` function. We can then specify properties for ``xaxis`` and ``yaxis``. We don't have a homicide label because we'll add a title to the charts later that will take care of that.
+Let's add labels to our axes. Create a new variable, ``layout``. Here, we can specify display properties for ``xaxis`` and ``yaxis``. We don't have a homicide label on the Y axis because we'll add a title to the charts later that will take care of that.
 
 .. code-block:: javascript
 
@@ -947,7 +990,10 @@ Then, add ``layout`` as a third argument to ``Plotly.newPlot()``
 
     Plotly.newPlot('county-homicides', settings, layout);
 
-Everything in plotly.js is handled by settings like this. For example, to change the markers to an light blue, update the ``settings`` variable.
+.. image:: _static/charts-2.png
+    :width: 100%
+
+Everything in plotly.js is handled by settings like this. For example, to change the markers to an light blue, update the ``settings`` variable. Make sure you add a comma after ``type: 'bar'``.
 
 .. code-block:: javascript
     :emphasize-lines: 5-8
@@ -961,6 +1007,11 @@ Everything in plotly.js is handled by settings like this. For example, to change
         color: '#86c7df'
       }
     }];
+
+
+.. image:: _static/charts-light-blue.png
+    :width: 100%
+
 
 But wait, what if you want to make another chart? You'd have to copy and paste all that code over again.
 
@@ -1022,16 +1073,21 @@ Now, we can make a second chart by using the Harvard Park data. Be sure to repla
     // The rest of your code is up here
     createChart(years, harvardParkHomicides, 'harvard-park-homicides');
 
+.. image:: _static/two-charts.png
+    :width: 100%
 
 Not bad, right? By structuring our code this way, we'll be able to make multiple charts without repeating our code (known as `DRY <https://en.wikipedia.org/wiki/Don%27t_repeat_yourself>`_).
 
-Right now, our charts are stacked on top of each other, which isn't really a great layout. We can use HTML and CSS to lay out our charts side-by-side.
+Right now, our charts are stacked on top of each other, which isn't a great layout. We can use HTML and CSS to lay out our charts side-by-side.
 
-In ``index.nunjucks``, add a ``div`` element that wraps your charts, and add a ``class`` of ``inline-chart`` to each of your charts.
+In ``index.nunjucks``, add a ``div`` element with a class of ``charts-holder`` and ``clearfix`` that wraps your charts, and add a ``class`` of ``inline-chart`` to each of your charts.
+
+Make sure you give the wrapping div a class of ``clearfix``, which will make sure that the rest of the page displays below these items.
 
 .. code-block:: html
+    :emphasize-lines: 1,4
 
-    <div class="charts-holder">
+    <div class="charts-holder clearfix">
         <div class="inline-chart" id="county-homicides"></div>
         <div class="inline-chart" id="harvard-park-homicides"></div>
     </div>
@@ -1062,14 +1118,19 @@ You won't see anything yet, because we haven't imported it into our main stylesh
 
 Again, this is the same modular structure that allows us to organize our chart styles in a different place from our map styles, for example.
 
+Reload the page to see your changes.
+
+.. image:: _static/inline-charts.png
+    :width: 100%
+
 The charts are laid out side-by-side like we want them, but there's way too much space in between them. Luckily, we can adjust the margins in the chart layout. Back in ``_scripts/charts.js``, the following settings should work.
 
-``l``, ``r``, ``t`` and ``b`` stand for left, right, top and bottom margins, respectively.
+``l``, ``r``, ``t`` and ``b`` stand for left, right, top and bottom margins, respectively. Make sure you add a comma after the ``yaxis`` value!
 
 .. code-block:: javascript
-    :emphasize-lines: 9-15
+    :emphasize-lines: 8-16
 
-    var chartLayout = {
+    var layout = {
         xaxis: {
             title: 'Year',
             fixedrange: true
@@ -1078,6 +1139,7 @@ The charts are laid out side-by-side like we want them, but there's way too much
             fixedrange: true
         },
         // Add the margin here
+        // Don't forget the comma above!
         margin: {
             l: 30,
             r: 15,
@@ -1106,16 +1168,21 @@ We can also add a parameter to reduce the height, they're a bit tall.
             r: 15,
             t: 45,
             b: 30
-        }
+        },
         // Add a height parameter to the bottom of your file
         height: 250
     };
+
 
 Another nice modification - we can make the annoying toolbar go away by adjusting our call to ``Plotly.newPlot()``
 
 .. code-block:: javascript
 
     Plotly.newPlot(element, settings, layout, {displayModeBar: false});
+
+
+.. image:: _static/two-charts-styled.png
+    :width: 100%
 
 
 Much better! There are a couple more customization options we can do with plotly. While it's useful to get the homicide numbers on hover, we don't really need those year label popups. We can turn those off by only displaying hovers for y-axis values.
@@ -1156,7 +1223,7 @@ You can also slightly customize the label. For example, let's change the backgro
         // Add this to your chart settings
         hoverinfo: 'y',
         hoverlabel: {
-          bgcolor: '#333333'
+          bgcolor: '#777777'
         }
       }];
 
@@ -1164,6 +1231,9 @@ You can also slightly customize the label. For example, let's change the backgro
       ...
     }
 
+
+.. image:: _static/two-charts-label.png
+    :width: 100%
 
 Last, our charts need titles! Since we want each chart to have a different title, we'll need to update our function a bit.
 
@@ -1215,6 +1285,7 @@ Then, add the title you want to your function call. We'll assign them to variabl
     createChart(years, countyHomicides, 'county-homicides', countyChartTitle);
     createChart(years, harvardParkHomicides, 'harvard-park-homicides', hpChartTitle);
 
+
 These titles are a little light and blend in to the rest of the text. Let's make them bolder. The easiest way I've found to do this with Plotly is by wrapping them in bold tags.
 
 .. code-block:: javascript
@@ -1226,7 +1297,47 @@ These titles are a little light and blend in to the rest of the text. Let's make
     createChart(years, countyHomicides, 'county-homicides', countyChartTitle);
     createChart(years, harvardParkHomicides, 'harvard-park-homicides', hpChartTitle);
 
-Congratulations. You've made your charts! Let's move on to our next challenge.
+
+.. image:: _static/two-charts-title.png
+    :width: 100%
+
+Last, let's add a headline to introduce our charts section.
+
+.. code-block:: html
+    :emphasize-lines: 1
+
+    <h3>A South L.A. neighborhood stands apart</h3>
+
+    <div class="charts-holder clearfix">
+        <div class="inline-chart" id="county-homicides"></div>
+        <div class="inline-chart" id="harvard-park-homicides"></div>
+    </div>
+
+.. image:: _static/two-charts-title.png
+    :width: 100%
+
+And an introductory paragraph to say a little bit about what we're looking at.
+
+.. code-block:: html
+    :emphasize-lines: 2
+
+    <h3>A South L.A. neighborhood stands apart</h3>
+    <p>Harvard Park's 2016 homicide total was its highest in at least 15 years despite a downward trend in killings across L.A. County.</p>
+
+    <div class="charts-holder clearfix">
+        <div class="inline-chart" id="county-homicides"></div>
+        <div class="inline-chart" id="harvard-park-homicides"></div>
+    </div>
+
+.. image:: _static/chart-intro-graf.png
+    :width: 100%
+
+Congratulations, you've made your charts! Let's commit our changes and move on to our next challenge.
+
+.. code-block:: bash
+
+    $ git commit -m "Made my first charts."
+    $ git push origin master
 
 .. note::
 
@@ -1241,7 +1352,6 @@ Congratulations. You've made your charts! Let's move on to our next challenge.
 
     - `Chartbuilder <https://quartz.github.io/Chartbuilder/>`_ from `Quartz <https://qz.com/>`_, is very good for basic, fast charts with light customization.
     - `DataWrapper <https://www.datawrapper.de/>`_ allows a range of visualizations beyond basic charts, including scatter plots and maps.
-
 
 
 ********************
@@ -1578,10 +1688,61 @@ Save the file and the inset map should appear on your page.
 .. image:: _static/hello-minimap.png
     :width: 100%
 
+Just for fun, let's add a couple creature comforts to map. By default, the scroll wheel on your mouse will trigger zooms on the map. Some people (Armand!) have strong feelings about this. Let's do them a favor and turn it off.
+
+.. code-block:: javascript
+    :emphasize-lines: 2-4
+
+    var map = L.map('map')
+    var osm = L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'. {
+        scrollWheelZoom: false
+    });
+    osm.addTo(map);
+    map.setView([33.983265, -118.306799], 18);
+
+    homicides.forEach(function (obj) {
+        L.circleMarker([obj.latitude,  obj.longitude])
+          .addTo(map)
+          .bindTooltip(obj.first_name + " " + obj.last_name, {permanent: true});
+    })
+
+    var osm2 = L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 9
+    });
+    var mini = new L.Control.MiniMap(osm2, { toggleDisplay: true });
+    mini.addTo(map);
+
+
+While we're at it, let's also restrict the zoom level so it you can't back too far away from LA.
+
+.. code-block:: javascript
+    :emphasize-lines: 4
+
+    var map = L.map('map')
+    var osm = L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'. {
+        scrollWheelZoom: false,
+        minZoom: 9
+    });
+    osm.addTo(map);
+    map.setView([33.983265, -118.306799], 18);
+
+    homicides.forEach(function (obj) {
+        L.circleMarker([obj.latitude,  obj.longitude])
+          .addTo(map)
+          .bindTooltip(obj.first_name + " " + obj.last_name, {permanent: true});
+    })
+
+    var osm2 = L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 9
+    });
+    var mini = new L.Control.MiniMap(osm2, { toggleDisplay: true });
+    mini.addTo(map);
+
 
 Finally, let's preface the map with so a headline.
 
 .. code-block:: html
+    :emphasize-lines: 1
 
     <h3>One corner. Four killings</h3>
     <div id="map"></div>
@@ -1594,6 +1755,7 @@ Finally, let's preface the map with so a headline.
 Then an introductory paragraph.
 
 .. code-block:: html
+    :emphasize-lines: 2
 
     <h3>One corner. Four killings</h3>
     <p>The southwest corner of Harvard Park, at West 62nd Street and Harvard Boulevard, has been especially deadly. In the last year-and-a-half, four men have been killed there — while sitting in a car, trying to defuse an argument or walking home from the barber shop or the corner store.</p>
@@ -1607,6 +1769,7 @@ Then an introductory paragraph.
 All wrapped up in a ``<section>`` tag.
 
 .. code-block:: html
+    :emphasize-lines: 1,5
 
     <section>
         <h3>One corner. Four killings</h3>
@@ -1635,7 +1798,7 @@ Hey. How about a headline?
     {% endblock %}
 
 
-.. image:: _static/final-headline.png
+.. image:: _static/final-hed.png
     :width: 100%
 
 
@@ -1660,7 +1823,7 @@ And a real byline.
 And let's a write a lead.
 
 .. code-block:: html
-    :emphasize-lines: 1-3
+    :emphasize-lines: 2-4
 
     {% block content %}
     <section>
@@ -1755,5 +1918,15 @@ Commit and push to GitHub.
 
 
 Wait a few moments and visit `\<your_username\>.github.com/first-graphics-app/ <https://ireapps.github.io/first-graphics-app/>`_. You should see your app published live on the World Wide Web.
+
+.. image:: _static/preview.gif
+   :width: 100%
+   :target: https://ireapps.github.io/first-graphics-app/
+
+
+.. note::
+
+   If your page does not appear, make sure that you have verified your email address with GitHub. It is required before the site will allow publishing pages. And keep in mind there are many other options for publishing flat files, like `Amazon's S3 service <https://en.wikipedia.org/wiki/Amazon_S3>`_.
+
 
 Congratulations. You've finished this class.
