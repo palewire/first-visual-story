@@ -510,6 +510,8 @@ Add the `Harvard Park homicides data files <https://raw.githubusercontent.com/ir
 
 It includes a list with a dictionary of data about each homicide victim in the neighborhood since 2000.
 
+Using Yeoman, we can inject the data from this dictionary into the page we're building. 
+
 .. code-block:: javascript
 
     [
