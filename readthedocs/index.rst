@@ -759,13 +759,13 @@ Let's say we want to be able to click on each card and be redirected to that vic
 
     <div class="card-columns">
         {% for obj in site.data.harvard_park_homicides %}
-        <a href="http://homicide.latimes.com/post/{{ obj.slug }}" target="_blank"><div class="card">
+        <div class="card">
           {% if obj.image %}<img class="card-img-top" src="{{ obj.image }}">{% endif %}
           <div class="card-body">
-            <h5 class="card-title">{{ obj.first_name }} {{ obj.last_name }}</h5>
+            <a href="http://homicide.latimes.com/post/{{ obj.slug }}" target="_blank"><h5 class="card-title">{{ obj.first_name }} {{ obj.last_name }}</h5></a>
             <p class="card-text">{{ obj.last_name }}, a {{ obj.age}}-year-old {{ obj.race }} {{ obj.gender }}, died in {{ obj.death_year }}.</p>
           </div>
-        </div></a>
+        </div>
         {% endfor %}
     </div>
 
@@ -779,13 +779,13 @@ Let's write a headline for our cards section.
     <h3>Lives lost</h3>
     <div class="card-columns">
         {% for obj in site.data.harvard_park_homicides %}
-        <a href="http://homicide.latimes.com/post/{{ obj.slug }}" target="_blank"><div class="card">
+        <div class="card">
           {% if obj.image %}<img class="card-img-top" src="{{ obj.image }}">{% endif %}
           <div class="card-body">
-            <h5 class="card-title">{{ obj.first_name }} {{ obj.last_name }}</h5>
+            <a href="http://homicide.latimes.com/post/{{ obj.slug }}" target="_blank"><h5 class="card-title">{{ obj.first_name }} {{ obj.last_name }}</h5></a>
             <p class="card-text">{{ obj.last_name }}, a {{ obj.age}}-year-old {{ obj.race }} {{ obj.gender }}, died in {{ obj.death_year }}.</p>
           </div>
-        </div></a>
+        </div>
         {% endfor %}
     </div>
 
@@ -802,13 +802,13 @@ And now, some summary text.
     <p>The {{ site.data.harvard_park_homicides|length }} homicides in Harvard Park since 2000 were primarily black and Latino males, but the list includes husbands, wives, fathers, mothers of all ages, and even some small children.</p>
     <div class="card-columns">
         {% for obj in site.data.harvard_park_homicides %}
-        <a href="http://homicide.latimes.com/post/{{ obj.slug }}" target="_blank"><div class="card">
+        <div class="card">
           {% if obj.image %}<img class="card-img-top" src="{{ obj.image }}">{% endif %}
           <div class="card-body">
-            <h5 class="card-title">{{ obj.first_name }} {{ obj.last_name }}</h5>
+            <a href="http://homicide.latimes.com/post/{{ obj.slug }}" target="_blank"><h5 class="card-title">{{ obj.first_name }} {{ obj.last_name }}</h5></a>
             <p class="card-text">{{ obj.last_name }}, a {{ obj.age}}-year-old {{ obj.race }} {{ obj.gender }}, died in {{ obj.death_year }}.</p>
           </div>
-        </div></a>
+        </div>
         {% endfor %}
     </div>
 
