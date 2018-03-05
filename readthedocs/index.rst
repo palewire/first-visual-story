@@ -798,7 +798,7 @@ And now, some summary text.
 
 .. code-block:: jinja
 
-    <h3>Lives lost</h3>
+    <h3>Lives lost in Harvard Park</h3>
     <p>The {{ site.data.harvard_park_homicides|length }} homicides in Harvard Park since 2000 were primarily black and Latino males, but the list includes husbands, wives, fathers, mothers of all ages, and even some small children.</p>
     <div class="card-columns">
         {% for obj in site.data.harvard_park_homicides %}
@@ -821,7 +821,7 @@ Let's set up our card grid as it's own section by adding ``<section>`` tags.
 .. code-block:: jinja
 
   <section>
-    <h3>Lives lost</h3>
+    <h3>Lives lost in Harvard Park</h3>
     <p>The {{ site.data.harvard_park_homicides|length }} homicides in Harvard Park since 2000 were primarily black and Latino males, but the list includes husbands, wives, fathers, mothers of all ages, and even some small children.</p>
     <div class="card-columns">
         {% for obj in site.data.harvard_park_homicides %}

@@ -31,7 +31,7 @@
 </section>
 
 <section>
-    <h3>Lives lost</h3>
+    <h3>Lives lost in Harvard Park</h3>
     <p>The {{ site.data.harvard_park_homicides|length }} homicides in Harvard Park since 2000 were primarily black and Latino males, but the list includes husbands, wives, fathers, mothers of all ages, and even some small children.</p>
     <div class="card-columns">
         {% for obj in site.data.harvard_park_homicides %}
