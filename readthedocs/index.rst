@@ -634,20 +634,24 @@ Push it to GitHub.
 Chapter 5: Hello cards
 **********************
 
-YO 
-Explain Bootstrap. Show what we're trying to make.
+Bootstrap is an HTML, CSS and JavaScript framework that you can use as a basis to create websites and web applications. Bootstrap is made up of different pre-made, ready-to-use pieces called components. Think of Bootstrap as building blocks you can mix and match to help jumpstart your project. Bootstrap components can be used as-is or as a base to be customized by the developer.
+
+The components library includes things that you might include in a project, like buttons, modals and dropdowns.
+
 
 .. image:: _static/bootstrap.png
     :width: 100%
 
-
-Talk about cards. Show Bootstrap docs.
+We're going to create a photo grid of the Harvard Park homicide victims' pictures. Each grid block will have a picture and some basic information about the victim. We're going to use the Bootstrap 4 "cards" component accomplish this. Cards are self-contained boxes of information which can be arranged and grouped on a page any way you want.
 
 .. image:: _static/bootstrap-cols.png
     :width: 100%
 
+First, need to set up our grid. To do that, we need to talk about divs, or the building blocks of HTML. The simplest way to think of a div is as container. Like any container, divs hold things. Divs can be nested inside of each other, like putting a box inside a box.
 
-Basic card with only a title. Talk about divs. etc.
+This is how Bootstrap cards work. Each card is a container which has additional containers inside it to hold, in this case, a picture, the victim's name, age, race and when he/she was killed.
+
+Now that we understand divs, we can build the base of our grid. For this, we'll need a container div for each victim. We'll add just the name of the first and last name of each victim first.
 
 .. code-block:: jinja
 
@@ -666,7 +670,7 @@ Basic card with only a title. Talk about divs. etc.
     :width: 100%
 
 
-Add a sentence below the title.
+Let's add a sentence below the name we just printed to summarize who each victim was and when they died.
 
 .. code-block:: jinja
 
@@ -674,7 +678,7 @@ Add a sentence below the title.
         <div class="card">
           <div class="card-body">
             <h5 class="card-title">{{ obj.first_name }} {{ obj.last_name }}</h5>
-            <p class="card-text">A {{ obj.age}}-year-old {{ obj.race }} {{ obj.gender }} died in {{ obj.death_year }}.</p>
+            <p class="card-text">{{ obj.last_name }}, a {{ obj.age}}-year-old {{ obj.race }} {{ obj.gender }}, died in {{ obj.death_year }}.</p>
           </div>
         </div>
     {% endfor %}
@@ -683,7 +687,7 @@ Add a sentence below the title.
 PHOTO ONCE WE FINALIZE THE SENTENCE
 
 
-Add an image.
+Let's add each victim's image to their card.
 
 .. code-block:: jinja
 
@@ -692,7 +696,7 @@ Add an image.
           <img class="card-img-top" src="{{ obj.image }}">
           <div class="card-body">
             <h5 class="card-title">{{ obj.first_name }} {{ obj.last_name }}</h5>
-            <p class="card-text">A {{ obj.age}}-year-old {{ obj.race }} {{ obj.gender }} died in {{ obj.death_year }}.</p>
+            <p class="card-text">{{ obj.last_name }}, a {{ obj.age}}-year-old {{ obj.race }} {{ obj.gender }}, died in {{ obj.death_year }}.</p>
           </div>
         </div>
     {% endfor %}
@@ -701,7 +705,9 @@ Add an image.
 PHOTO ONCE WE FINALIZE THE SENTENCE
 
 
-Add if clause around the image.
+What do we do if there is no image of the victim?  As soon as the code reaches a victim with no image, the code will break.
+
+To fix this, let's add an if clause around the image tag to check for an image in the data. This way, our code will loop through the list of victims and <em>if</em> there is an image, it will add it to the right card. If there isn't, the code will move on to the next victim until it reaches the end of the list.
 
 .. code-block:: jinja
 
@@ -710,7 +716,7 @@ Add if clause around the image.
           {% if obj.image %}<img class="card-img-top" src="{{ obj.image }}">{% endif %}
           <div class="card-body">
             <h5 class="card-title">{{ obj.first_name }} {{ obj.last_name }}</h5>
-            <p class="card-text">A {{ obj.age}}-year-old {{ obj.race }} {{ obj.gender }} died in {{ obj.death_year }}.</p>
+            <p class="card-text">{{ obj.last_name }}, a {{ obj.age}}-year-old {{ obj.race }} {{ obj.gender }}, died in {{ obj.death_year }}.</p>
           </div>
         </div>
     {% endfor %}
@@ -719,7 +725,7 @@ Add if clause around the image.
 PHOTO ONCE WE FINALIZE THE SENTENCE
 
 
-Add the columns.
+What we've got so far is a grid that doesn't look much like a grid. Let's give it some structure to make it neat and tidy. To do that, we're going to arrange our grid of cards using Bootstrap's card columns.
 
 .. code-block:: jinja
 
@@ -729,7 +735,7 @@ Add the columns.
           {% if obj.image %}<img class="card-img-top" src="{{ obj.image }}">{% endif %}
           <div class="card-body">
             <h5 class="card-title">{{ obj.first_name }} {{ obj.last_name }}</h5>
-            <p class="card-text">A {{ obj.age}}-year-old {{ obj.race }} {{ obj.gender }} died in {{ obj.death_year }}.</p>
+            <p class="card-text">{{ obj.last_name }}, a {{ obj.age}}-year-old {{ obj.race }} {{ obj.gender }}, died in {{ obj.death_year }}.</p>
           </div>
         </div>
         {% endfor %}
@@ -739,7 +745,7 @@ Add the columns.
 PHOTO ONCE WE FINALIZE THE SENTENCE
 
 
-Write a headline.
+Let's write a headline for our cards section.
 
 .. code-block:: jinja
 
@@ -749,7 +755,7 @@ Write a headline.
 PHOTO
 
 
-Write the chatter.
+And now, some summary text.
 
 .. code-block:: jinja
 
