@@ -510,7 +510,7 @@ Add the `Harvard Park homicides data files <https://raw.githubusercontent.com/ir
 
 It includes a list with a dictionary of data about each homicide victim in the neighborhood since 2000.
 
-Using Yeoman, we can inject the data from this dictionary into the page we're building. 
+Using Yeoman, we can inject the data from this dictionary into the page we're building.
 
 .. code-block:: javascript
 
@@ -813,10 +813,6 @@ And now, some summary text.
     </div>
 
 
-.. image:: _static/card-chatter.png
-    :width: 100%
-
-
 Let's set up our card grid as it's own section by adding ``<section>`` tags.
 
 .. code-block:: jinja
@@ -840,6 +836,22 @@ Let's set up our card grid as it's own section by adding ``<section>`` tags.
 
 .. image:: _static/card-full-section.png
     :width: 100%
+
+
+Let's commit our work for this section.
+
+.. code-block:: bash
+
+    $ git add .
+    $ git commit -m "Created a victims card grid"
+
+
+Push it to GitHub.
+
+.. code-block:: bash
+
+    $ git push origin master
+
 
 
 ***********************
