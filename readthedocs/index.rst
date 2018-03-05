@@ -644,7 +644,7 @@ Push it to GitHub.
 Chapter 5: Hello cards
 **********************
 
-Bootstrap is an HTML, CSS and JavaScript framework that you can use as a basis to create websites and web applications. Bootstrap is made up of different pre-made, ready-to-use pieces called components. Think of Bootstrap as building blocks you can mix and match to help jumpstart your project. Bootstrap components can be used as-is or as a base to be customized by the developer.
+Bootstrap is an HTML, CSS and JavaScript toolkit that you can use to create the cosmetic front-end websites and web applications. Bootstrap is made up of different pre-made, ready-to-use pieces called components. Think of Bootstrap as building blocks you can mix and match to help jumpstart your project. Bootstrap components can be used as-is or as a base to be customized by the developer.
 
 The components library includes things that you might include in a project, like buttons, modals and dropdowns.
 
@@ -752,7 +752,7 @@ What we've got so far is a grid that doesn't look much like a grid. Let's give i
     </div>
 
 
-Let's say we want to be able to click on each card and be redirected to that victim's page in the L.A. Times' Homicide Report? Let's do it!
+Let's say we want to be able to click on each card and be redirected to that victim's page in the L.A. Times' Homicide Report? Let's do it! While we're at it, let's add some ``<strong>`` tags to the victims' names to make them stand out from the sentence about them.
 
 
 .. code-block:: jinja
@@ -762,7 +762,7 @@ Let's say we want to be able to click on each card and be redirected to that vic
         <div class="card">
           {% if obj.image %}<img class="card-img-top" src="{{ obj.image }}">{% endif %}
           <div class="card-body">
-            <a href="http://homicide.latimes.com/post/{{ obj.slug }}" target="_blank"><h5 class="card-title">{{ obj.first_name }} {{ obj.last_name }}</h5></a>
+            <a href="http://homicide.latimes.com/post/{{ obj.slug }}" target="_blank"><strong><h5 class="card-title">{{ obj.first_name }} {{ obj.last_name }}</h5></strong></a>
             <p class="card-text">{{ obj.last_name }}, a {{ obj.age}}-year-old {{ obj.race }} {{ obj.gender }}, died in {{ obj.death_year }}.</p>
           </div>
         </div>
@@ -782,7 +782,7 @@ Let's write a headline for our cards section.
         <div class="card">
           {% if obj.image %}<img class="card-img-top" src="{{ obj.image }}">{% endif %}
           <div class="card-body">
-            <a href="http://homicide.latimes.com/post/{{ obj.slug }}" target="_blank"><h5 class="card-title">{{ obj.first_name }} {{ obj.last_name }}</h5></a>
+            <a href="http://homicide.latimes.com/post/{{ obj.slug }}" target="_blank"><strong><h5 class="card-title">{{ obj.first_name }} {{ obj.last_name }}</h5></strong></a>
             <p class="card-text">{{ obj.last_name }}, a {{ obj.age}}-year-old {{ obj.race }} {{ obj.gender }}, died in {{ obj.death_year }}.</p>
           </div>
         </div>
@@ -805,7 +805,7 @@ And now, some summary text.
         <div class="card">
           {% if obj.image %}<img class="card-img-top" src="{{ obj.image }}">{% endif %}
           <div class="card-body">
-            <a href="http://homicide.latimes.com/post/{{ obj.slug }}" target="_blank"><h5 class="card-title">{{ obj.first_name }} {{ obj.last_name }}</h5></a>
+            <a href="http://homicide.latimes.com/post/{{ obj.slug }}" target="_blank"><strong><h5 class="card-title">{{ obj.first_name }} {{ obj.last_name }}</h5></strong></a>
             <p class="card-text">{{ obj.last_name }}, a {{ obj.age}}-year-old {{ obj.race }} {{ obj.gender }}, died in {{ obj.death_year }}.</p>
           </div>
         </div>
@@ -820,20 +820,20 @@ Let's set up our card grid as it's own section by adding ``<section>`` tags.
 
 .. code-block:: jinja
 
-    <section>
-        <h3>Lives lost</h3>
-        <p>The {{ site.data.harvard_park_homicides|length }} homicides in Harvard Park since 2000 were primarily black and Latino males, but the list includes husbands, wives, fathers, mothers of all ages, and even some small children.</p>
-        <div class="card-columns">
-            {% for obj in site.data.harvard_park_homicides %}
-            <a href="http://homicide.latimes.com/post/{{ obj.slug }}" target="_blank"><div class="card">
-              {% if obj.image %}<img class="card-img-top" src="{{ obj.image }}">{% endif %}
-              <div class="card-body">
-                <h5 class="card-title">{{ obj.first_name }} {{ obj.last_name }}</h5>
-                <p class="card-text">{{ obj.last_name }}, a {{ obj.age}}-year-old {{ obj.race }} {{ obj.gender }}, died in {{ obj.death_year }}.</p>
-              </div>
-            </div></a>
-            {% endfor %}
-        </div>
+  <section>
+    <h3>Lives lost</h3>
+    <p>The {{ site.data.harvard_park_homicides|length }} homicides in Harvard Park since 2000 were primarily black and Latino males, but the list includes husbands, wives, fathers, mothers of all ages, and even some small children.</p>
+    <div class="card-columns">
+        {% for obj in site.data.harvard_park_homicides %}
+        <a href="http://homicide.latimes.com/post/{{ obj.slug }}" target="_blank"><div class="card">
+          {% if obj.image %}<img class="card-img-top" src="{{ obj.image }}">{% endif %}
+          <div class="card-body">
+            <h5 class="card-title">{{ obj.first_name }} {{ obj.last_name }}</h5>
+            <p class="card-text">{{ obj.last_name }}, a {{ obj.age}}-year-old {{ obj.race }} {{ obj.gender }}, died in {{ obj.death_year }}.</p>
+          </div>
+        </div></a>
+        {% endfor %}
+    </div>
     </section>
 
 
