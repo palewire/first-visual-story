@@ -1,5 +1,5 @@
 var map = L.map('map')
-var osm = L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'. {
+var osm = L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     scrollWheelZoom: false,
     minZoom: 9
 });

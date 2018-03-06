@@ -547,6 +547,7 @@ Using Yeoman, we can inject the data from this dictionary into the page we're bu
        },
        ...
 
+
 Return to ``index.nunjucks`` and add the following to the bottom to print the data out on the page.
 
 .. code-block:: jinja
@@ -646,7 +647,7 @@ Push it to GitHub.
 Chapter 5: Hello cards
 **********************
 
-Bootstrap is an HTML, CSS and JavaScript toolkit that you can use to create the cosmetic front-end websites and web applications. Bootstrap is made up of different pre-made, ready-to-use pieces called components. Think of Bootstrap as building blocks you can mix and match to help jumpstart your project. Bootstrap components can be used as-is or as a base to be customized by the developer.
+Bootstrap is an HTML, CSS and JavaScript toolkit that you can use to create the cosmetic "front-end" of web applications. Bootstrap is made up of different pre-made, ready-to-use pieces called components. Think of Bootstrap as building blocks you can mix and match to help jumpstart a project. Its components can be used as-is or as a base to be customized by the developer.
 
 The components library includes things that you might include in a project, like buttons, modals and dropdowns.
 
@@ -739,7 +740,7 @@ To fix this, let's add an if clause around the image tag to check for an image i
 What we've got so far is a grid that doesn't look much like a grid. Let's give it some structure to make it neat and tidy. To do that, we're going to arrange our grid of cards using Bootstrap's card columns.
 
 .. code-block:: jinja
-    :emphasize-lines: 1,12
+    :emphasize-lines: 1,11
 
     <div class="card-columns">
         {% for obj in site.data.harvard_park_homicides %}
