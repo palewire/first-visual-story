@@ -254,7 +254,7 @@ There are a lot of different frameworks out there. Maybe you've heard of some th
     * The NPR Apps team's `dailygraphics <https://github.com/nprapps/dailygraphics>`_
     * Politico's `generator-politico-graphics  <https://github.com/The-Politico/generator-politico-graphics>`_
 
-Node.js is so fancy it has more than just plain old frameworks, it even includes a framework for create frameworks! It's called `Yeoman <http://yeoman.io>`_. It offers a "generator" system that makes it easier for publishers to tailor the framework to their site, without having to reinvent all the wheels themselves.
+Node.js is so fancy it has more than plain old frameworks. It even includes a framework for create frameworks! It's called `Yeoman <http://yeoman.io>`_. It offers a "generator" system that makes it easier for publishers to tailor the framework to their site, without having to reinvent all the wheels themselves.
 
 We start by installing that using the Node Package Manager (``npm``), which can visit the Internet to download and install any of the thousands of open-source Node.js packages listed in its directory.
 
