@@ -506,11 +506,13 @@ And, again, push it to GitHub.
 Chapter 4: Hello data
 *********************
 
-Add the `Harvard Park homicides data files <https://raw.githubusercontent.com/ireapps/first-graphics-app/master/src/_data/harvard_park_homicides.json>`_ to ``_data/harvard_park_homicides.json``
+We've got our page all set up. Now it's time to start telling our story. To do that, we need our data.
 
-It includes a list with a dictionary of data about each homicide victim in the neighborhood since 2000.
+If we were writing this application entirely in the browser with traditional JavaScript we'd have to pull it in with dynamic "AJAX" calls that retrieve data over the web as the page the is constructed. But since we're working with a Node.js system, running code here the backend, we can import our data directly into the template instead and lay it out before the page is rendered in the browser. This results in a faster experience for our users, and opens up new ways for us to be creative with our data.
 
-Using Yeoman, we can inject the data from this dictionary into the page we're building.
+Every newsroom's system will handle this differently. Our Yeoman generator is preconfigured to open all JSON data files in the ``_data`` and import them into our nunjucks template.
+
+Lets give it a try. God the the ` list of Harvard Park homicides <https://raw.githubusercontent.com/ireapps/first-graphics-app/master/src/_data/harvard_park_homicides.json>`_ published by the Los Angeles Times and save it to ``_data/harvard_park_homicides.json``. It includes every homicide victim in the neighborhood since 2000 in the `JSON data format <https://en.wikipedia.org/wiki/JSON>`_ favored by JavaScript.
 
 .. code-block:: javascript
 
@@ -548,7 +550,7 @@ Using Yeoman, we can inject the data from this dictionary into the page we're bu
        ...
 
 
-Return to ``index.nunjucks`` and add the following to the bottom to print the data out on the page.
+Return to ``index.nunjucks`` and add the following to the bottom to print the data out on the page. We can do that using the ``{{ }}`` print tags provided by nunjucks.
 
 .. code-block:: jinja
 
@@ -563,7 +565,7 @@ Here's what you should see.
     :width: 100%
 
 
-Loop through them and print them all.
+Loop through them and print them all. We'll use the ``{% %}`` template tags provided by nunjucks that let you use common computer programming logic when you're laying out a page.
 
 .. code-block:: jinja
     :emphasize-lines: 2-4
@@ -579,7 +581,7 @@ Loop through them and print them all.
     :width: 100%
 
 
-Add a line break with a ``<br>`` tag.
+Add a line break with a ``<br>`` tag. That's just boring old HTML. Writing pages with a templating language like nunjucks is typically nothing more than mixing traditional HTML with the programming and print tags that negotiate your data files and other settings variables.
 
 
 .. code-block:: jinja
@@ -596,7 +598,7 @@ Add a line break with a ``<br>`` tag.
     :width: 100%
 
 
-Print the last name.
+All of the fields found in the JSON dictionary for each homicide are available by adding a ``.`` after the object. Try it by printing the last name.
 
 .. code-block:: jinja
     :emphasize-lines: 3
