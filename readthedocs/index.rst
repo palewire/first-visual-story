@@ -1772,7 +1772,7 @@ Just for fun, let's add a couple creature comforts to map. By default, the scrol
     :emphasize-lines: 2-4
 
     var map = L.map('map')
-    var osm = L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'. {
+    var osm = L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         scrollWheelZoom: false
     });
     osm.addTo(map);
@@ -1797,7 +1797,7 @@ While we're at it, let's also restrict the zoom level so it you can't back too f
     :emphasize-lines: 4
 
     var map = L.map('map')
-    var osm = L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'. {
+    var osm = L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         scrollWheelZoom: false,
         minZoom: 9
     });
