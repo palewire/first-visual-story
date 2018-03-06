@@ -1,4 +1,4 @@
-var Plotly = require('plotly.js/lib/core');
+    var Plotly = require('plotly.js/lib/core');
 var Plotlybar = require('plotly.js/lib/bar');
 
 Plotly.register(Plotlybar);

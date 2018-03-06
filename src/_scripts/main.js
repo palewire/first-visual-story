@@ -13,7 +13,7 @@ $(function() {
   console.log('Welcome to Yeogurt!');
 });
 
-var chart = require('./_charts.js');
+// var chart = require('./_charts.js');
 var map = require("./_map.js");
 
 L.Icon.Default.imagePath = 'https://unpkg.com/leaflet@1.3.1/dist/images/';

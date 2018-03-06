@@ -666,6 +666,7 @@ This is how Bootstrap cards work. Each card is a container which has additional 
 Now that we understand divs, we can build the base of our grid. For this, we'll need a container div for each victim. We'll add just the name of the first and last name of each victim first.
 
 .. code-block:: jinja
+    :emphasize-lines: 3-7
 
     {% block content %}
     {% for obj in site.data.harvard_park_homicides %}
@@ -685,6 +686,7 @@ Now that we understand divs, we can build the base of our grid. For this, we'll 
 Let's add a sentence below the name we just printed to summarize who each victim was and when they died.
 
 .. code-block:: jinja
+    :emphasize-lines: 5
 
     {% for obj in site.data.harvard_park_homicides %}
         <div class="card">
@@ -699,6 +701,7 @@ Let's add a sentence below the name we just printed to summarize who each victim
 Let's add each victim's image to their card.
 
 .. code-block:: jinja
+    :emphasize-lines: 3
 
     {% for obj in site.data.harvard_park_homicides %}
         <div class="card">
@@ -720,6 +723,7 @@ What do we do if there is no image of the victim?  As soon as the code reaches a
 To fix this, let's add an if clause around the image tag to check for an image in the data. This way, our code will loop through the list of victims and <em>if</em> there is an image, it will add it to the right card. If there isn't, the code will move on to the next victim until it reaches the end of the list.
 
 .. code-block:: jinja
+    :emphasize-lines: 3
 
     {% for obj in site.data.harvard_park_homicides %}
         <div class="card">
@@ -732,10 +736,10 @@ To fix this, let's add an if clause around the image tag to check for an image i
     {% endfor %}
 
 
-
 What we've got so far is a grid that doesn't look much like a grid. Let's give it some structure to make it neat and tidy. To do that, we're going to arrange our grid of cards using Bootstrap's card columns.
 
 .. code-block:: jinja
+    :emphasize-lines: 1,12
 
     <div class="card-columns">
         {% for obj in site.data.harvard_park_homicides %}
@@ -750,10 +754,10 @@ What we've got so far is a grid that doesn't look much like a grid. Let's give i
     </div>
 
 
-Let's say we want to be able to click on each card and be redirected to that victim's page in the L.A. Times' Homicide Report? Let's do it! While we're at it, let's add some ``<strong>`` tags to the victims' names to make them stand out from the sentence about them.
-
+We want to be able to click on each card and be redirected to that victim's page in the Los Angeles Times' Homicide Report? Let's do it! While we're at it, let's add some ``<strong>`` tags to the victims' names to make them stand out from the sentence about them.
 
 .. code-block:: jinja
+    :emphasize-lines: 6
 
     <div class="card-columns">
         {% for obj in site.data.harvard_park_homicides %}
@@ -775,6 +779,7 @@ Let's say we want to be able to click on each card and be redirected to that vic
 Let's write a headline for our cards section.
 
 .. code-block:: jinja
+    :emphasize-lines: 1
 
     <h3>Lives lost</h3>
     <div class="card-columns">
@@ -797,6 +802,7 @@ Let's write a headline for our cards section.
 And now, some summary text.
 
 .. code-block:: jinja
+    :emphasize-lines: 2
 
     <h3>Lives lost in Harvard Park</h3>
     <p>The {{ site.data.harvard_park_homicides|length }} homicides in Harvard Park since 2000 were primarily black and Latino males, but the list includes husbands, wives, fathers, mothers of all ages, and even some small children.</p>
@@ -816,19 +822,20 @@ And now, some summary text.
 Let's set up our card grid as it's own section by adding ``<section>`` tags.
 
 .. code-block:: jinja
+    :emphasize-lines: 1,15
 
   <section>
     <h3>Lives lost in Harvard Park</h3>
     <p>The {{ site.data.harvard_park_homicides|length }} homicides in Harvard Park since 2000 were primarily black and Latino males, but the list includes husbands, wives, fathers, mothers of all ages, and even some small children.</p>
     <div class="card-columns">
         {% for obj in site.data.harvard_park_homicides %}
-        <a href="http://homicide.latimes.com/post/{{ obj.slug }}" target="_blank"><div class="card">
+        <div class="card">
           {% if obj.image %}<img class="card-img-top" src="{{ obj.image }}">{% endif %}
           <div class="card-body">
-            <h5 class="card-title">{{ obj.first_name }} {{ obj.last_name }}</h5>
+            <a href="http://homicide.latimes.com/post/{{ obj.slug }}" target="_blank"><strong><h5 class="card-title">{{ obj.first_name }} {{ obj.last_name }}</h5></strong></a>
             <p class="card-text">{{ obj.last_name }}, a {{ obj.age}}-year-old {{ obj.race }} {{ obj.gender }}, died in {{ obj.death_year }}.</p>
           </div>
-        </div></a>
+        </div>
         {% endfor %}
     </div>
     </section>
@@ -851,7 +858,6 @@ Push it to GitHub.
 .. code-block:: bash
 
     $ git push origin master
-
 
 
 ***********************
