@@ -265,7 +265,7 @@ We'll start by installing Yeoman using the Node Package Manager (``npm``), which
 
 The ``-g`` means that we're installing the packages globally. You'll be able to run these from any directory on your computer.
 
-Next we'll install Gulp, a helpful Node.js utility for running a framework on your computer as you develop a site. Again, we turn to npm.
+Next we'll install `Gulp <https://gulpjs.com/>`_, a helpful Node.js utility for running a framework on your computer as you develop a site. Again, we turn to npm.
 
 .. code-block:: bash
 
