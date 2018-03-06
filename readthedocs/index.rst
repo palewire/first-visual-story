@@ -238,18 +238,41 @@ You just created your first code commit! Reload your repository on GitHub and se
 Chapter 2: Hello framework
 **************************
 
-Now that we have our Git repository created, we're going to start building our framework. We'll use ``npm`` (Node Package Manager) to install the framework packages from the command line.
+Now that we have our Git repository created, we're going to start installing the tools we need to do our job.
 
-Use ``npm`` to install `yeoman <http://yeoman.io/>`_ (a tempate and scaffolding system) and `gulp <https://gulpjs.com/>`_ (a task runner).
+The first and more important is our framework. What's that? Nothing more than fancy name for a set of software tools that, working together, can stand up a website. Believe it or not, it takes dozens of different things to pull a good site together. Frameworks aim to make the challenge easier by organizing a curated set of tools into a system that saves programmers time.
+
+There are a lot of different frameworks out there. Maybe you've heard of some them, like `Django <https://www.djangoproject.com/>`_ for Python or `Rails <http://rubyonrails.org>`_ for Ruby.
+
+.. note::
+
+    While some frameworks are more popular than others, each newsroom tends to go its own way with a custom system for publishing pages. The programming languages and the details vary, but the fundamentals are almost all the same. Some of them have even been released as open-source software. They include:
+
+    * The Los Angeles Times Data Desk's `bigbuild <https://github.com/datadesk/django-bigbuild>`_
+    * The Dallas Morning News' `generator-dmninteractives <https://github.com/DallasMorningNews/generator-dmninteractives>`_
+    * The Seattle Times' `newsapp-template <https://github.com/seattletimes/newsapp-template/>`_
+    * The NPR Apps team's `dailygraphics <https://github.com/nprapps/dailygraphics>`_
+    * Politico's `generator-politico-graphics  <https://github.com/The-Politico/generator-politico-graphics>`_
+
+Node.js is so fancy it has more than just plain old frameworks, it even includes a framework for create frameworks! It's called `Yeoman <http://yeoman.io>`_. It offers a "generator" system that makes it easier for publishers to tailor the framework to their site, without having to reinvent all the wheels themselves.
+
+We start by installing that using the Node Package Manager (``npm``), which can visit the Internet to download and install any of the thousands of open-source Node.js packages listed in its directory.
 
 The ``-g`` means that we're installing the packages globally. You'll be able to run these from any directory on your computer.
 
 .. code-block:: bash
 
-    $ npm install -g yo gulp
+    $ npm install -g yo
 
 
-Use npm to install `yeogurt <https://github.com/larsonjj/generator-yeogurt>`_, our project generator that yeoman will build.
+Next we'll install Gulp, a helpful Node.js utility for running a framework on your computer as you develop a site. Again, we turn to npm.
+
+.. code-block:: bash
+
+    $ npm install -g yo
+
+
+Finally, we use npm to install `yeogurt <https://github.com/larsonjj/generator-yeogurt>`_, our project generator that yeoman will build. It includes dozens of customizations of the Yeoman system created by its author to help us build websites. It can't do everything a full-featured newsroom framework might. But it can do a lot, and enough for us to achieve our goals for this class.
 
 .. code-block:: bash
 
@@ -261,6 +284,7 @@ Create a new project using our yeogurt generator as the guide.
 .. code-block:: bash
 
     $ yo yeogurt
+
 
 After you run the command, you will be asked a series of questions. *Pay close attention* because you will need to choose the proper options to continue with our tutorial, and some of the correct selections are not the default choice.
 
@@ -276,7 +300,9 @@ After you run the command, you will be asked a series of questions. *Pay close a
 
 Don't sweat the rest. But make sure you get the above right.
 
-Yeoman will then use the generator to create a complete project that's ready for us to work in. Fire up its test server to see what it has to offer out of the box.
+Yeoman will then use the generator to create a complete project that's ready for us to work in. Take a look at the folders its created in the ``src`` directory. That's the framework offering your a comfortable place to do your work. Let's get in there set up shop.
+
+First, fire up its test server to see what it has to offer out of the box.
 
 .. code-block:: bash
 
@@ -290,17 +316,6 @@ Visit `localhost:3000 <http://localhost:3000>`_ in your browser. There you can s
 
 
 Congratulations, you've got your framework up and running. Let's save our work and then we'll be ready to start developing our own content.
-
-.. note::
-
-    While some frameworks are more popular than others, each newsroom tends to go its own way with a custom system for publishing pages. The programming languages and the details vary, but the fundamentals are almost all the same. Some of them have even been released as open-source software. They include:
-
-    * The Los Angeles Times Data Desk's `bigbuild <https://github.com/datadesk/django-bigbuild>`_
-    * The Dallas Morning News' `generator-dmninteractives <https://github.com/DallasMorningNews/generator-dmninteractives>`_
-    * The Seattle Times' `newsapp-template <https://github.com/seattletimes/newsapp-template/>`_
-    * The NPR Apps team's `dailygraphics <https://github.com/nprapps/dailygraphics>`_
-    * Politico's `generator-politico-graphics  <https://github.com/The-Politico/generator-politico-graphics>`_
-
 
 Open a second terminal (this way you can keep your server running) and navigate to your code folder.
 
