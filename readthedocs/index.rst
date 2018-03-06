@@ -240,7 +240,7 @@ Chapter 2: Hello framework
 
 Now that we have our Git repository created, we're going to start installing the tools we need to do our job.
 
-The first and more important is our framework. What's that? Nothing more than fancy name for a set of software tools that, working together, can stand up a website. Believe it or not, it takes dozens of different things to pull a good site together. Frameworks aim to make the challenge easier by organizing a curated set of tools into a system that saves programmers time.
+The first and more important is a `framework <https://en.wikipedia.org/wiki/Software_framework>`_. What's that? Nothing more than fancy name for a set of software tools that, working together, can stand up a website. Believe it or not, it takes dozens of different things to pull a good site together. Frameworks aim to make the challenge easier by organizing a curated set of tools into a system that saves programmers time.
 
 There are a lot of different frameworks out there. Maybe you've heard of some them, like `Django <https://www.djangoproject.com/>`_ for Python or `Rails <http://rubyonrails.org>`_ for Ruby.
 
