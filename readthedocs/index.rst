@@ -256,14 +256,14 @@ There are a lot of different frameworks out there. Maybe you've heard of some th
 
 Node.js is so fancy it has more than plain old frameworks. It even includes a framework for create frameworks! It's called `Yeoman <http://yeoman.io>`_. It offers a "generator" system that makes it easier for publishers to tailor the framework to their site, without having to reinvent all the wheels themselves.
 
-We start by installing that using the Node Package Manager (``npm``), which can visit the Internet to download and install any of the thousands of open-source Node.js packages listed in its directory.
-
-The ``-g`` means that we're installing the packages globally. You'll be able to run these from any directory on your computer.
+We'll start by installing Yeoman using the Node Package Manager (``npm``), which can visit the Internet to download and install any of the thousands of open-source Node.js packages listed in its directory.
 
 .. code-block:: bash
 
     $ npm install -g yo
 
+
+The ``-g`` means that we're installing the packages globally. You'll be able to run these from any directory on your computer.
 
 Next we'll install Gulp, a helpful Node.js utility for running a framework on your computer as you develop a site. Again, we turn to npm.
 
