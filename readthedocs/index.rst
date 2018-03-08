@@ -269,7 +269,7 @@ Next we'll install `Gulp <https://gulpjs.com/>`_, a helpful Node.js utility for 
 
 .. code-block:: bash
 
-    $ npm install -g yo
+    $ npm install --global gulp-cli
 
 
 Finally, we use npm to install `yeogurt <https://github.com/larsonjj/generator-yeogurt>`_, our project generator that yeoman will build. It includes dozens of customizations of the Yeoman system created by its author to help us build websites. It can't do everything a full-featured newsroom framework might. But it can do a lot, and enough for us to achieve our goals for this class.
@@ -1186,7 +1186,7 @@ Make sure you give the wrapping div a class of ``clearfix``, which will make sur
     </div>
 
 
-This gives us a structure that we can style with CSS. In the ``_scripts`` folder, create a file called ``_charts.scss``. In that file, copy or write the following:
+This gives us a structure that we can style with CSS. In the ``_styles`` folder, create a file called ``_charts.scss``. In that file, copy or write the following:
 
 .. code-block:: css
 
@@ -1651,7 +1651,7 @@ Here's what you should see after you do that.
     :width: 100%
 
 
-Next let's sprinkle some CSS in our page to make the circles match the orange color of the dots found on The Homicide Report. As we did with the charts, go to the ``_scripts`` folder and create a new file. We'll call this one ``_map.scss``. In that file, copy or write the following:
+Next let's sprinkle some CSS in our page to make the circles match the orange color of the dots found on The Homicide Report. As we did with the charts, go to the ``_styles`` folder and create a new file. We'll call this one ``_map.scss``. In that file, copy or write the following:
 
 .. code-block:: css
 
@@ -1933,6 +1933,19 @@ And let's a write a lead.
 .. image:: _static/final-lead.png
     :width: 100%
 
+Commit our work.
+
+.. code-block:: bash
+
+    $ git add .
+    $ git commit -m "Added map, headline and chatter"
+
+
+Push it to GitHub.
+
+.. code-block:: bash
+
+    $ git push origin master
 
 Now we're ready. Let's do it live.
 
@@ -1963,11 +1976,24 @@ That process — converting a dynamic, living website to simple files living on 
 
 Lucky for us, Yeogurt is pre-configured to flatten our dynamic site. And GitHub has a hosting service for publishing static pages. Here's all it takes.
 
-Go to GitHub's page for the repository. Click on the "Settings" tab. Scroll down to the "GitHub Pages" section. Select "master branch /docs folder" as the source. Hit save.
+Open the ``package.json`` file at the root of the project. Scroll toward the bottom. There are two locations where Gulp designates where to save the flattened file. We need to change those from from ``build`` to ``docs``.
 
-This will result in any files pushed to the "docs" directory of your repository being published on the web. For free.
+In the ``scripts`` section edit:
 
-Next, open the ``package.json`` file at the root of the project. Scroll to the bottom. In the ``config`` section edit it to instruct Gulp to flatten files to the ``docs`` directory.
+.. code-block:: javascript
+    :emphasize-lines: 7
+
+      "scripts": {
+        "clean-deps": "rimraf node_modules",
+        "clean": "gulp clean",
+        "lint": "gulp eslint",
+        "serve:prod": "NODE_ENV=development gulp serve",
+        "serve": "NODE_ENV=production gulp serve --production",
+        "docs": "NODE_ENV=production gulp --production"
+      },
+
+
+In the ``config`` section edit:
 
 .. code-block:: javascript
     :emphasize-lines: 8
@@ -2009,6 +2035,10 @@ Commit and push to GitHub.
     $ git commit -m "Built site to docs folder"
     $ git push origin master
 
+
+Go to GitHub's page for the repository. Click on the "Settings" tab. Scroll down to the "GitHub Pages" section. Select "master branch /docs folder" as the source. Hit save.
+
+This will result in any files pushed to the "docs" directory of your repository being published on the web. For free.
 
 Wait a few moments and visit `\<your_username\>.github.com/first-graphics-app/ <https://ireapps.github.io/first-graphics-app/>`_. You should see your app published live on the World Wide Web.
 
