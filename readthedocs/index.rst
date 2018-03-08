@@ -1186,7 +1186,7 @@ Make sure you give the wrapping div a class of ``clearfix``, which will make sur
     </div>
 
 
-This gives us a structure that we can style with CSS. In the ``_scripts`` folder, create a file called ``_charts.scss``. In that file, copy or write the following:
+This gives us a structure that we can style with CSS. In the ``_styles`` folder, create a file called ``_charts.scss``. In that file, copy or write the following:
 
 .. code-block:: css
 
