@@ -1651,7 +1651,7 @@ Here's what you should see after you do that.
     :width: 100%
 
 
-Next let's sprinkle some CSS in our page to make the circles match the orange color of the dots found on The Homicide Report. As we did with the charts, go to the ``_scripts`` folder and create a new file. We'll call this one ``_map.scss``. In that file, copy or write the following:
+Next let's sprinkle some CSS in our page to make the circles match the orange color of the dots found on The Homicide Report. As we did with the charts, go to the ``_styles`` folder and create a new file. We'll call this one ``_map.scss``. In that file, copy or write the following:
 
 .. code-block:: css
 
@@ -1933,6 +1933,19 @@ And let's a write a lead.
 .. image:: _static/final-lead.png
     :width: 100%
 
+Commit our work.
+
+.. code-block:: bash
+
+    $ git add .
+    $ git commit -m "Added map, headline and chatter"
+
+
+Push it to GitHub.
+
+.. code-block:: bash
+
+    $ git push origin master
 
 Now we're ready. Let's do it live.
 
@@ -1962,10 +1975,6 @@ That process — converting a dynamic, living website to simple files living on 
 
 
 Lucky for us, Yeogurt is pre-configured to flatten our dynamic site. And GitHub has a hosting service for publishing static pages. Here's all it takes.
-
-Go to GitHub's page for the repository. Click on the "Settings" tab. Scroll down to the "GitHub Pages" section. Select "master branch /docs folder" as the source. Hit save.
-
-This will result in any files pushed to the "docs" directory of your repository being published on the web. For free.
 
 Next, open the ``package.json`` file at the root of the project. Scroll to the bottom. In the ``config`` section edit it to instruct Gulp to flatten files to the ``docs`` directory.
 
@@ -2001,6 +2010,8 @@ Once you are back at the standard terminal, enter the following command to build
     $ gulp --production
 
 
+That saves the entire file to the `docs` folder. We're doing that because it's the folder expected by GitHub's free publishing system, called "Pages."
+
 Commit and push to GitHub.
 
 .. code-block:: bash
@@ -2009,6 +2020,10 @@ Commit and push to GitHub.
     $ git commit -m "Built site to docs folder"
     $ git push origin master
 
+
+To take advantage of it. Go to the repository on GitHub. Click on the "Settings" tab. Scroll down to the "GitHub Pages" section. Select "master branch /docs folder" as the source. Hit save.
+
+This will result in any files pushed to the "docs" directory of your repository being published on the web. For free.
 
 Wait a few moments and visit `\<your_username\>.github.com/first-graphics-app/ <https://ireapps.github.io/first-graphics-app/>`_. You should see your app published live on the World Wide Web.
 
