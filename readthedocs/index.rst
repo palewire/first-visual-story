@@ -8,17 +8,19 @@ A step-by-step guide to publishing a standalone story from a dataset.
 
 This tutorial will show you how journalists at America’s top news organizations escape rigid content-management systems to publish custom interactive graphics on deadline. You will get hands-on experience in every stage of the development process, writing JavaScript, HTML and CSS within a Node.js framework. You won't stop until you've deployed a working application on the World Wide Web.
 
+
 ******************
 What you will make
 ******************
 
 By the end of this lesson, you will publish a standalone page with a series of graphics examining the high homicide rate in Harvard Park, a small neighborhood in South Los Angeles. You will do so by repurposing data from `a 2017 Los Angeles Times story <http://www.latimes.com/projects/la-me-harvard-park-homicides/>`_ by Nicole Santa Cruz and Cindy Chang.
 
+A working example of what you will make can be found at `ireapps.github.io/first-graphics-app/ <https://ireapps.github.io/first-graphics-app/>`_
+
 .. image:: _static/preview.gif
    :width: 100%
    :target: https://ireapps.github.io/first-graphics-app/
 
-A working example of what you will make can be found at `ireapps.github.io/first-graphics-app/ <https://ireapps.github.io/first-graphics-app/>`_
 
 *****************
 About the authors
@@ -34,6 +36,7 @@ Their work was inspired by the footloose spirit of funk music. We urge you to bu
 .. raw:: html
 
     <iframe src="https://open.spotify.com/embed?uri=spotify:user:227b2koy2xxyb23qliakea75y:playlist:54NS8jCdrgUpzUppUpokSg&theme=white" width="300" height="380" frameborder="0" allowtransparency="true" style="margin: 20px 0;"></iframe>
+
 
 **********************
 Prelude: Prerequisites
@@ -69,30 +72,30 @@ A program like Microsoft Word, which can do all sorts of text formatting like ch
 
 You need a program that works with simple `"plain text" files <https://en.wikipedia.org/wiki/Text_file>`_, and is therefore capable of editing documents containing Python code, HTML markup and other languages without dressing them up by adding anything extra. Such programs are easy to find and some of the best ones are free, including those below.
 
-For Windows, we recommend installing `Notepad++ <http://notepad-plus-plus.org/>`_. For Apple computers, try `Atom <https://atom.io>`_ or `Sublime Text <https://www.sublimetext.com/>`_. In Ubuntu Linux you can stick with the pre-installed `gedit <https://help.ubuntu.com/community/gedit>`_ text editor or install a more sophisticated tool like `Atom <https://atom.io>`_
+For Windows, we recommend installing `Notepad++ <http://notepad-plus-plus.org/>`_ or `Visual Studio Code <https://code.visualstudio.com/>`_. For Apple computers, try `Atom <https://atom.io>`_ or `Sublime Text <https://www.sublimetext.com/>`_. In Ubuntu Linux you can stick with the pre-installed `gedit <https://help.ubuntu.com/community/gedit>`_ text editor or install a more sophisticated tool like `Atom <https://atom.io>`_.
 
 
 Node.js
 -------
 
-Node.js is an open-source programming framework built using JavaScript. Many programmers like it because it allows them to write JavaScript not just in their browser for "front-end" tasks, but also in terminal or on a server for "back-end" tasks.
+Node.js is an open-source programming framework built using JavaScript. Many programmers like it because it allows them to write JavaScript not just in their browser for "front-end" tasks, but also in the terminal or on a server for "back-end" tasks.
 
-You should be on the latest long-term support (LTS) version of Node, which at the time of this writing is ``8.9.4``. The `Node.js site <https://nodejs.org>`_ has `installer packages <https://nodejs.org/en/download/>`_ available for Windows and Mac OSX.
+You should be on the latest long-term support (LTS) version of Node, which at the time of this writing was ``8.9.4``. The `Node.js site <https://nodejs.org>`_ has `installer packages <https://nodejs.org/en/download/>`_ available for Windows and Mac OSX.
 
-You can verify if you have Node installed, and if so what version, by typing the following into your terminal.
+You can verify if you have Node installed, and if so what version, by typing the following into your terminal:
 
 .. code-block:: bash
 
     $ node --version
 
 
-The number you get back is the version you have installed. If you get an error, you don't have it installed and should start from scratch with an installer package. If you have a slightly older version, you are probably okay. But we make no guarantees. Consider upgrading.
+The number you get back is the version you have installed. If you get an error, you don't have Node.js installed and you should start from scratch with an installer package. If you have a slightly older version, you are probably okay. But we make no guarantees. Consider upgrading.
 
 
 npm
 ---
 
-Installing Node will also install ``npm`` on your computer, which stands for "Node Package Manager." We will use this to install open-source JavaScript packages that will help us draw charts and maps during the class.
+Installing Node will also install npm on your computer, which stands for "Node Package Manager." During the class, we will use it to install open-source JavaScript packages that will help us draw charts and maps.
 
 You can verify you have npm installed by running the following command on your terminal.
 
@@ -114,7 +117,7 @@ You can verify Git is installed from your command line like so:
 
     $ git --version
 
-Once that's done, you should create an account at GitHub, if you don't already have one. `The free plan <https://github.com/pricing>`_ is all that's required to complete this lesson.
+Once that's done, you should create an account at GitHub, if you don't already have one. `The free plan <https://github.com/pricing>`_ is all that's required to complete this lesson. If you make a new account, make sure to confirm your email address with GitHub. We'll need that for something later.
 
 
 ********************
@@ -177,7 +180,7 @@ Then connect your local directory to GitHub with the following command. Replace 
     $ git remote add origin https://github.com/<yourusername>/first-graphics-app.git
 
 
-Create your first file, a blank ``README`` with a `Markdown <https://en.wikipedia.org/wiki/Markdown>`_ file extension since that's `the preferred format of GitHub <https://help.github.com/articles/github-flavored-markdown>`_. The filename will be ``README.md``. Markdown is a simple way of writing nicely formatted text, complete with headlines, links, images, etc.
+Create your first file, a blank ``README`` with a `Markdown <https://en.wikipedia.org/wiki/Markdown>`_ file extension since that's `the preferred format of GitHub <https://help.github.com/articles/github-flavored-markdown>`_. The filename will be ``README.md``. Markdown is a simple way of writing nicely formatted text, complete with headlines, links and images.
 
 .. code-block:: bash
 
@@ -203,7 +206,7 @@ Make sure to save it. Then officially add the file to your repository for tracki
     $ git add README.md
 
 
-Log its creation with Git's ``commit`` command. You can include a personalized message after the ``-m`` flag.
+Log its creation with Git's ``commit`` command. You can include a personalized message after the ``-m`` flag. If you're on a Windows machine, make sure you use double quotes around your commit message.
 
 .. code-block:: bash
 
@@ -235,22 +238,45 @@ You just created your first code commit! Reload your repository on GitHub and se
 Chapter 2: Hello framework
 **************************
 
-Now that we have our Git repository created, we're going to start building our framework. We'll use ``npm`` (Node Package Manager) to install the framework packages from the command line.
+Now that we have our Git repository created, we're going to start installing the tools we need to do our job.
 
-Use ``npm`` to install `yeoman <http://yeoman.io/>`_ (a tempate and scaffolding system) and `gulp <https://gulpjs.com/>`_ (a task runner).
+The first and more important is a `framework <https://en.wikipedia.org/wiki/Software_framework>`_. What's that? Nothing more than fancy name for a set of software tools that, working together, can stand up a website. Believe it or not, it takes dozens of different things to pull a good site together. Frameworks aim to make the challenge easier by organizing a curated set of tools into a system that saves programmers time.
+
+There are a lot of different frameworks out there. Maybe you've heard of some them, like `Django <https://www.djangoproject.com/>`_ for Python or `Rails <http://rubyonrails.org>`_ for Ruby.
+
+.. note::
+
+    While some frameworks are more popular than others, each newsroom tends to go its own way with a custom system for publishing pages. The programming languages and the details vary, but the fundamentals are almost all the same. Some of them have even been released as open-source software. They include:
+
+    * The Los Angeles Times Data Desk's `bigbuild <https://github.com/datadesk/django-bigbuild>`_
+    * The Dallas Morning News' `generator-dmninteractives <https://github.com/DallasMorningNews/generator-dmninteractives>`_
+    * The Seattle Times' `newsapp-template <https://github.com/seattletimes/newsapp-template/>`_
+    * The NPR Apps team's `dailygraphics <https://github.com/nprapps/dailygraphics>`_
+    * Politico's `generator-politico-graphics  <https://github.com/The-Politico/generator-politico-graphics>`_
+
+Node.js is so fancy it has more than plain old frameworks. It even includes a framework for create frameworks! It's called `Yeoman <http://yeoman.io>`_. It offers a "generator" system that makes it easier for publishers to tailor the framework to their site, without having to reinvent all the wheels themselves.
+
+We'll start by installing Yeoman using the Node Package Manager (``npm``), which can visit the Internet to download and install any of the thousands of open-source Node.js packages listed in its directory.
+
+.. code-block:: bash
+
+    $ npm install -g yo
+
 
 The ``-g`` means that we're installing the packages globally. You'll be able to run these from any directory on your computer.
 
-.. code-block:: bash
-
-    $ sudo npm install -g yo gulp
-
-
-Use npm to install `yeogurt <https://github.com/larsonjj/generator-yeogurt>`_, our project generator that yeoman will build.
+Next we'll install `Gulp <https://gulpjs.com/>`_, a helpful Node.js utility for running a framework on your computer as you develop a site. Again, we turn to npm.
 
 .. code-block:: bash
 
-    $ sudo npm install -g generator-yeogurt
+    $ npm install -g gulp
+
+
+Finally, we use npm to install `yeogurt <https://github.com/larsonjj/generator-yeogurt>`_, our project generator that yeoman will build. It includes dozens of customizations of the Yeoman system created by its author to help us build websites. It can't do everything a full-featured newsroom framework might. But it can do a lot, and enough for us to achieve our goals for this class.
+
+.. code-block:: bash
+
+    $ npm install -g generator-yeogurt
 
 
 Create a new project using our yeogurt generator as the guide.
@@ -258,6 +284,7 @@ Create a new project using our yeogurt generator as the guide.
 .. code-block:: bash
 
     $ yo yeogurt
+
 
 After you run the command, you will be asked a series of questions. *Pay close attention* because you will need to choose the proper options to continue with our tutorial, and some of the correct selections are not the default choice.
 
@@ -273,7 +300,9 @@ After you run the command, you will be asked a series of questions. *Pay close a
 
 Don't sweat the rest. But make sure you get the above right.
 
-Yeoman will then use the generator to create a complete project that's ready for us to work in. Fire up its test server to see what it has to offer out of the box.
+Yeoman will then use the generator to create a complete project that's ready for us to work in. Take a look at the folders its created in the ``src`` directory. That's the framework offering your a comfortable place to do your work. Let's get in there set up shop.
+
+First, fire up its test server to see what it has to offer out of the box.
 
 .. code-block:: bash
 
@@ -287,16 +316,6 @@ Visit `localhost:3000 <http://localhost:3000>`_ in your browser. There you can s
 
 
 Congratulations, you've got your framework up and running. Let's save our work and then we'll be ready to start developing our own content.
-
-.. note::
-
-    While some frameworks are more popular than others, each newsroom tends to go its own way with a custom system for publishing pages. The programming languages and the details vary, but the fundamentals are almost all the same. Some of them have even been released as open-source software. They include:
-
-    * The Los Angeles Times Data Desk's `bigbuild <https://github.com/datadesk/django-bigbuild>`_
-    * The Seattle Times' `newsapp-template <https://github.com/seattletimes/newsapp-template/>`_
-    * The NPR Apps team's `dailygraphics <https://github.com/nprapps/dailygraphics>`_
-    * Politico's `generator-politico-graphics  <https://github.com/The-Politico/generator-politico-graphics>`_
-
 
 Open a second terminal (this way you can keep your server running) and navigate to your code folder.
 
@@ -312,6 +331,7 @@ Commit our work.
 
     $ git add .
     $ git commit -m "Installed framework"
+
 
 Push it to GitHub.
 
@@ -496,13 +516,18 @@ And, again, push it to GitHub.
 
     Instead, Gulp processes the contents of these folders when it builds the project and serves the files from a ``tmp/`` folder, where you'll see unprefixed ``images/``, ``scripts/`` and ``styles/`` directories.
 
+
 *********************
 Chapter 4: Hello data
 *********************
 
-Add the `Harvard Park homicides data files <https://raw.githubusercontent.com/ireapps/first-graphics-app/master/src/_data/harvard_park_homicides.json>`_ to ``_data/harvard_park_homicides.json``
+We've got our page all set up. Now it's time to start telling our story. To do that, we need our data.
 
-It includes a list with a dictionary of data about each homicide victim in the neighborhood since 2000.
+If we were writing this application entirely in the browser with traditional JavaScript we'd have to pull it in with dynamic "AJAX" calls that retrieve data over the web as the page is constructed. But since we're working with a Node.js system, running code here the backend, we can import our data directly into the template instead and lay it out before the page is rendered in the browser. This results in a faster experience for our users, and opens up new ways for us to be creative with our data.
+
+Every newsroom's system will handle this differently. Our Yeoman generator is preconfigured to open all JSON data files in the ``_data`` and import them into our nunjucks templates.
+
+Let's give it a try. Grab the `list of Harvard Park homicides <https://raw.githubusercontent.com/ireapps/first-graphics-app/master/src/_data/harvard_park_homicides.json>`_ published by the Los Angeles Times and save it to ``_data/harvard_park_homicides.json``. It includes every homicide victim in the neighborhood since 2000 in the `JSON data format <https://en.wikipedia.org/wiki/JSON>`_ favored by JavaScript.
 
 .. code-block:: javascript
 
@@ -539,7 +564,8 @@ It includes a list with a dictionary of data about each homicide victim in the n
        },
        ...
 
-Return to ``index.nunjucks`` and add the following to the bottom to print the data out on the page.
+
+Return to ``index.nunjucks`` and add the following to the bottom to print the data out on the page. We can do that using the ``{{ }}`` print tags provided by nunjucks.
 
 .. code-block:: jinja
 
@@ -554,9 +580,10 @@ Here's what you should see.
     :width: 100%
 
 
-Loop through them and print them all.
+Loop through them and print them all. We'll use the ``{% %}`` template tags provided by nunjucks that let you use common computer programming logic when you're laying out a page.
 
 .. code-block:: jinja
+    :emphasize-lines: 2-4
 
     {% block content %}
     {% for obj in site.data.harvard_park_homicides %}
@@ -569,10 +596,11 @@ Loop through them and print them all.
     :width: 100%
 
 
-Add a line break with a ``<br>`` tag.
+Add a line break with a ``<br>`` tag. That's just boring old HTML. Writing pages with a templating language like nunjucks is typically nothing more than mixing traditional HTML with the programming and print tags that negotiate your data files and other settings variables.
 
 
 .. code-block:: jinja
+    :emphasize-lines: 3
 
     {% block content %}
     {% for obj in site.data.harvard_park_homicides %}
@@ -585,9 +613,10 @@ Add a line break with a ``<br>`` tag.
     :width: 100%
 
 
-Print the last name.
+All of the fields found in the JSON dictionary for each homicide are available by adding a ``.`` after the object. Try it by printing the last name.
 
 .. code-block:: jinja
+    :emphasize-lines: 3
 
     {% block content %}
     {% for obj in site.data.harvard_park_homicides %}
@@ -603,6 +632,7 @@ Print the last name.
 Add the first name. To have them display more nicely, you can also add a line break in between each one.
 
 .. code-block:: jinja
+    :emphasize-lines: 3
 
     {% block content %}
     {% for obj in site.data.harvard_park_homicides %}
@@ -634,22 +664,27 @@ Push it to GitHub.
 Chapter 5: Hello cards
 **********************
 
-YO
-Explain Bootstrap. Show what we're trying to make.
+Bootstrap is an HTML, CSS and JavaScript toolkit that you can use to create the cosmetic "front-end" of web applications. Bootstrap is made up of different pre-made, ready-to-use pieces called components. Think of Bootstrap as building blocks you can mix and match to help jumpstart a project. Its components can be used as-is or as a base to be customized by the developer.
+
+The components library includes things that you might include in a project, like buttons, modals and dropdowns.
+
 
 .. image:: _static/bootstrap.png
     :width: 100%
 
-
-Talk about cards. Show Bootstrap docs.
+We're going to create a photo grid of the Harvard Park homicide victims' pictures. Each grid block will have a picture and some basic information about the victim. We're going to use the Bootstrap 4 "cards" component accomplish this. Cards are self-contained boxes of information which can be arranged and grouped on a page any way you want.
 
 .. image:: _static/bootstrap-cols.png
     :width: 100%
 
+First, need to set up our grid. To do that, we need to talk about divs, or the building blocks of HTML. The simplest way to think of a div is as container. Like any container, divs hold things. Divs can be nested inside of each other, like putting a box inside a box.
 
-Basic card with only a title. Talk about divs. etc.
+This is how Bootstrap cards work. Each card is a container which has additional containers inside it to hold, in this case, a picture, the victim's name, age, race and when he/she was killed.
+
+Now that we understand divs, we can build the base of our grid. For this, we'll need a container div for each victim. We'll add just the name of the first and last name of each victim first.
 
 .. code-block:: jinja
+    :emphasize-lines: 3-7
 
     {% block content %}
     {% for obj in site.data.harvard_park_homicides %}
@@ -666,62 +701,63 @@ Basic card with only a title. Talk about divs. etc.
     :width: 100%
 
 
-Add a sentence below the title.
+Let's add a sentence below the name we just printed to summarize who each victim was and when they died.
 
 .. code-block:: jinja
+    :emphasize-lines: 5
 
     {% for obj in site.data.harvard_park_homicides %}
         <div class="card">
           <div class="card-body">
             <h5 class="card-title">{{ obj.first_name }} {{ obj.last_name }}</h5>
-            <p class="card-text">A {{ obj.age}}-year-old {{ obj.race }} {{ obj.gender }} died in {{ obj.death_year }}.</p>
+            <p class="card-text">{{ obj.last_name }}, a {{ obj.age}}-year-old {{ obj.race }} {{ obj.gender }}, died in {{ obj.death_year }}.</p>
           </div>
         </div>
     {% endfor %}
 
 
-PHOTO ONCE WE FINALIZE THE SENTENCE
-
-
-Add an image.
+Let's add each victim's image to their card.
 
 .. code-block:: jinja
+    :emphasize-lines: 3
 
     {% for obj in site.data.harvard_park_homicides %}
         <div class="card">
           <img class="card-img-top" src="{{ obj.image }}">
           <div class="card-body">
             <h5 class="card-title">{{ obj.first_name }} {{ obj.last_name }}</h5>
-            <p class="card-text">A {{ obj.age}}-year-old {{ obj.race }} {{ obj.gender }} died in {{ obj.death_year }}.</p>
+            <p class="card-text">{{ obj.last_name }}, a {{ obj.age}}-year-old {{ obj.race }} {{ obj.gender }}, died in {{ obj.death_year }}.</p>
           </div>
         </div>
     {% endfor %}
 
 
-PHOTO ONCE WE FINALIZE THE SENTENCE
+.. image:: _static/card-no-columns.png
+    :width: 100%
 
 
-Add if clause around the image.
+What do we do if there is no image of the victim?  As soon as the code reaches a victim with no image, the code will break.
+
+To fix this, let's add an if clause around the image tag to check for an image in the data. This way, our code will loop through the list of victims and <em>if</em> there is an image, it will add it to the right card. If there isn't, the code will move on to the next victim until it reaches the end of the list.
 
 .. code-block:: jinja
+    :emphasize-lines: 3
 
     {% for obj in site.data.harvard_park_homicides %}
         <div class="card">
           {% if obj.image %}<img class="card-img-top" src="{{ obj.image }}">{% endif %}
           <div class="card-body">
             <h5 class="card-title">{{ obj.first_name }} {{ obj.last_name }}</h5>
-            <p class="card-text">A {{ obj.age}}-year-old {{ obj.race }} {{ obj.gender }} died in {{ obj.death_year }}.</p>
+            <p class="card-text">{{ obj.last_name }}, a {{ obj.age}}-year-old {{ obj.race }} {{ obj.gender }}, died in {{ obj.death_year }}.</p>
           </div>
         </div>
     {% endfor %}
 
 
-PHOTO ONCE WE FINALIZE THE SENTENCE
-
-
-Add the columns.
+What we've got so far is a grid that doesn't look much like a grid. Let's give it some structure to make it neat and tidy. To do that, we're going to arrange our grid of cards using Bootstrap's card columns.
 
 .. code-block:: jinja
+    :emphasize-lines: 1,11
 
     <div class="card-columns">
         {% for obj in site.data.harvard_park_homicides %}
@@ -729,44 +765,117 @@ Add the columns.
           {% if obj.image %}<img class="card-img-top" src="{{ obj.image }}">{% endif %}
           <div class="card-body">
             <h5 class="card-title">{{ obj.first_name }} {{ obj.last_name }}</h5>
-            <p class="card-text">A {{ obj.age}}-year-old {{ obj.race }} {{ obj.gender }} died in {{ obj.death_year }}.</p>
+            <p class="card-text">{{ obj.last_name }}, a {{ obj.age}}-year-old {{ obj.race }} {{ obj.gender }}, died in {{ obj.death_year }}.</p>
           </div>
         </div>
         {% endfor %}
     </div>
 
 
-PHOTO ONCE WE FINALIZE THE SENTENCE
-
-
-Write a headline.
+We want to be able to click on each card and be redirected to that victim's page in the Los Angeles Times' Homicide Report? Let's do it! While we're at it, let's add some ``<strong>`` tags to the victims' names to make them stand out from the sentence about them.
 
 .. code-block:: jinja
+    :emphasize-lines: 6
 
-    TK
+    <div class="card-columns">
+        {% for obj in site.data.harvard_park_homicides %}
+        <div class="card">
+          {% if obj.image %}<img class="card-img-top" src="{{ obj.image }}">{% endif %}
+          <div class="card-body">
+            <a href="http://homicide.latimes.com/post/{{ obj.slug }}" target="_blank"><strong><h5 class="card-title">{{ obj.first_name }} {{ obj.last_name }}</h5></strong></a>
+            <p class="card-text">{{ obj.last_name }}, a {{ obj.age}}-year-old {{ obj.race }} {{ obj.gender }}, died in {{ obj.death_year }}.</p>
+          </div>
+        </div>
+        {% endfor %}
+    </div>
 
 
-PHOTO
+.. image:: _static/card-slug.png
+    :width: 100%
 
 
-Write the chatter.
+Let's write a headline for our cards section.
 
 .. code-block:: jinja
+    :emphasize-lines: 1
 
-    TK
+    <h3>Lives lost</h3>
+    <div class="card-columns">
+        {% for obj in site.data.harvard_park_homicides %}
+        <div class="card">
+          {% if obj.image %}<img class="card-img-top" src="{{ obj.image }}">{% endif %}
+          <div class="card-body">
+            <a href="http://homicide.latimes.com/post/{{ obj.slug }}" target="_blank"><strong><h5 class="card-title">{{ obj.first_name }} {{ obj.last_name }}</h5></strong></a>
+            <p class="card-text">{{ obj.last_name }}, a {{ obj.age}}-year-old {{ obj.race }} {{ obj.gender }}, died in {{ obj.death_year }}.</p>
+          </div>
+        </div>
+        {% endfor %}
+    </div>
 
 
-PHOTO
+.. image:: _static/card-headline.png
+    :width: 100%
 
 
-Section tag.
+And now, some summary text.
 
 .. code-block:: jinja
+    :emphasize-lines: 2
 
-    TK
+    <h3>Lives lost in Harvard Park</h3>
+    <p>The {{ site.data.harvard_park_homicides|length }} homicides in Harvard Park since 2000 were primarily black and Latino males, but the list includes husbands, wives, fathers, mothers of all ages, and even some small children.</p>
+    <div class="card-columns">
+        {% for obj in site.data.harvard_park_homicides %}
+        <div class="card">
+          {% if obj.image %}<img class="card-img-top" src="{{ obj.image }}">{% endif %}
+          <div class="card-body">
+            <a href="http://homicide.latimes.com/post/{{ obj.slug }}" target="_blank"><strong><h5 class="card-title">{{ obj.first_name }} {{ obj.last_name }}</h5></strong></a>
+            <p class="card-text">{{ obj.last_name }}, a {{ obj.age}}-year-old {{ obj.race }} {{ obj.gender }}, died in {{ obj.death_year }}.</p>
+          </div>
+        </div>
+        {% endfor %}
+    </div>
 
 
-PHOTO
+Let's set up our card grid as it's own section by adding ``<section>`` tags.
+
+.. code-block:: jinja
+    :emphasize-lines: 1,15
+
+  <section>
+    <h3>Lives lost in Harvard Park</h3>
+    <p>The {{ site.data.harvard_park_homicides|length }} homicides in Harvard Park since 2000 were primarily black and Latino males, but the list includes husbands, wives, fathers, mothers of all ages, and even some small children.</p>
+    <div class="card-columns">
+        {% for obj in site.data.harvard_park_homicides %}
+        <div class="card">
+          {% if obj.image %}<img class="card-img-top" src="{{ obj.image }}">{% endif %}
+          <div class="card-body">
+            <a href="http://homicide.latimes.com/post/{{ obj.slug }}" target="_blank"><strong><h5 class="card-title">{{ obj.first_name }} {{ obj.last_name }}</h5></strong></a>
+            <p class="card-text">{{ obj.last_name }}, a {{ obj.age}}-year-old {{ obj.race }} {{ obj.gender }}, died in {{ obj.death_year }}.</p>
+          </div>
+        </div>
+        {% endfor %}
+    </div>
+    </section>
+
+
+.. image:: _static/card-full-section.png
+    :width: 100%
+
+
+Let's commit our work for this section.
+
+.. code-block:: bash
+
+    $ git add .
+    $ git commit -m "Created a victims card grid"
+
+
+Push it to GitHub.
+
+.. code-block:: bash
+
+    $ git push origin master
 
 
 ***********************
@@ -873,7 +982,7 @@ First, we need somewhere for our charts to go. In our ``index.nunjucks`` file, i
     {% endblock %}
 
 
-Meanwhile, we need data. Copy the `annual totals data <https://raw.githubusercontent.com/ireapps/first-graphics-app/master/src/_data/annual_totals.json>`_ to ``_data/annual_totals.json``. We can use nunjucks to include our data file directly in the template.
+Meanwhile, we need data. Copy the `annual totals data <https://raw.githubusercontent.com/ireapps/first-graphics-app/master/src/_data/annual_totals.json>`_ to ``_data/annual_totals.json``. This file contains annual homicide counts for Harvard Park and all of Los Angeles County. We can use nunjucks to include our data file directly in the template.
 
 Add a ``{% scripts %}`` block to the end of your ``index.nunjucks`` file:
 
@@ -977,7 +1086,7 @@ Then, add ``layout`` as a third argument to ``Plotly.newPlot()``
 .. image:: _static/charts-2.png
     :width: 100%
 
-Everything in plotly.js is handled by settings like this. For example, to change the markers to an light blue, update the ``settings`` variable.
+Everything in plotly.js is handled by settings like this. For example, to change the markers to an light blue, update the ``settings`` variable. Make sure you add a comma after ``type: 'bar'``.
 
 .. code-block:: javascript
     :emphasize-lines: 5-8
@@ -1062,13 +1171,14 @@ Now, we can make a second chart by using the Harvard Park data. Be sure to repla
 
 Not bad, right? By structuring our code this way, we'll be able to make multiple charts without repeating our code (known as `DRY <https://en.wikipedia.org/wiki/Don%27t_repeat_yourself>`_).
 
-Right now, our charts are stacked on top of each other, which isn't really a great layout. We can use HTML and CSS to lay out our charts side-by-side.
+Right now, our charts are stacked on top of each other, which isn't a great layout. We can use HTML and CSS to lay out our charts side-by-side.
 
 In ``index.nunjucks``, add a ``div`` element with a class of ``charts-holder`` and ``clearfix`` that wraps your charts, and add a ``class`` of ``inline-chart`` to each of your charts.
 
 Make sure you give the wrapping div a class of ``clearfix``, which will make sure that the rest of the page displays below these items.
 
 .. code-block:: html
+    :emphasize-lines: 1,4
 
     <div class="charts-holder clearfix">
         <div class="inline-chart" id="county-homicides"></div>
@@ -1076,7 +1186,7 @@ Make sure you give the wrapping div a class of ``clearfix``, which will make sur
     </div>
 
 
-This gives us a structure that we can style with CSS. In the ``_scripts`` folder, create a file called ``_charts.scss``. In that file, copy or write the following:
+This gives us a structure that we can style with CSS. In the ``_styles`` folder, create a file called ``_charts.scss``. In that file, copy or write the following:
 
 .. code-block:: css
 
@@ -1156,14 +1266,17 @@ We can also add a parameter to reduce the height, they're a bit tall.
         height: 250
     };
 
+
 Another nice modification - we can make the annoying toolbar go away by adjusting our call to ``Plotly.newPlot()``
 
 .. code-block:: javascript
 
     Plotly.newPlot(element, settings, layout, {displayModeBar: false});
 
+
 .. image:: _static/two-charts-styled.png
     :width: 100%
+
 
 Much better! There are a couple more customization options we can do with plotly. While it's useful to get the homicide numbers on hover, we don't really need those year label popups. We can turn those off by only displaying hovers for y-axis values.
 
@@ -1265,6 +1378,7 @@ Then, add the title you want to your function call. We'll assign them to variabl
     createChart(years, countyHomicides, 'county-homicides', countyChartTitle);
     createChart(years, harvardParkHomicides, 'harvard-park-homicides', hpChartTitle);
 
+
 These titles are a little light and blend in to the rest of the text. Let's make them bolder. The easiest way I've found to do this with Plotly is by wrapping them in bold tags.
 
 .. code-block:: javascript
@@ -1276,10 +1390,47 @@ These titles are a little light and blend in to the rest of the text. Let's make
     createChart(years, countyHomicides, 'county-homicides', countyChartTitle);
     createChart(years, harvardParkHomicides, 'harvard-park-homicides', hpChartTitle);
 
+
 .. image:: _static/two-charts-title.png
     :width: 100%
 
-Congratulations, you've made your charts! Let's move on to our next challenge.
+Last, let's add a headline to introduce our charts section.
+
+.. code-block:: html
+    :emphasize-lines: 1
+
+    <h3>A South L.A. neighborhood stands apart</h3>
+
+    <div class="charts-holder clearfix">
+        <div class="inline-chart" id="county-homicides"></div>
+        <div class="inline-chart" id="harvard-park-homicides"></div>
+    </div>
+
+.. image:: _static/two-charts-title.png
+    :width: 100%
+
+And an introductory paragraph to say a little bit about what we're looking at.
+
+.. code-block:: html
+    :emphasize-lines: 2
+
+    <h3>A South L.A. neighborhood stands apart</h3>
+    <p>Harvard Park's 2016 homicide total was its highest in at least 15 years despite a downward trend in killings across L.A. County.</p>
+
+    <div class="charts-holder clearfix">
+        <div class="inline-chart" id="county-homicides"></div>
+        <div class="inline-chart" id="harvard-park-homicides"></div>
+    </div>
+
+.. image:: _static/chart-intro-graf.png
+    :width: 100%
+
+Congratulations, you've made your charts! Let's commit our changes and move on to our next challenge.
+
+.. code-block:: bash
+
+    $ git commit -m "Made my first charts."
+    $ git push origin master
 
 .. note::
 
@@ -1294,7 +1445,6 @@ Congratulations, you've made your charts! Let's move on to our next challenge.
 
     - `Chartbuilder <https://quartz.github.io/Chartbuilder/>`_ from `Quartz <https://qz.com/>`_, is very good for basic, fast charts with light customization.
     - `DataWrapper <https://www.datawrapper.de/>`_ allows a range of visualizations beyond basic charts, including scatter plots and maps.
-
 
 
 ********************
@@ -1501,7 +1651,7 @@ Here's what you should see after you do that.
     :width: 100%
 
 
-Next let's sprinkle some CSS in our page to make the circles match the orange color of the dots found on The Homicide Report. As we did with the charts, go to the ``_scripts`` folder and create a new file. We'll call this one ``_map.scss``. In that file, copy or write the following:
+Next let's sprinkle some CSS in our page to make the circles match the orange color of the dots found on The Homicide Report. As we did with the charts, go to the ``_styles`` folder and create a new file. We'll call this one ``_map.scss``. In that file, copy or write the following:
 
 .. code-block:: css
 
@@ -1631,10 +1781,61 @@ Save the file and the inset map should appear on your page.
 .. image:: _static/hello-minimap.png
     :width: 100%
 
+Just for fun, let's add a couple creature comforts to map. By default, the scroll wheel on your mouse will trigger zooms on the map. Some people (Armand!) have strong feelings about this. Let's do them a favor and turn it off.
+
+.. code-block:: javascript
+    :emphasize-lines: 2-4
+
+    var map = L.map('map')
+    var osm = L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        scrollWheelZoom: false
+    });
+    osm.addTo(map);
+    map.setView([33.983265, -118.306799], 18);
+
+    homicides.forEach(function (obj) {
+        L.circleMarker([obj.latitude,  obj.longitude])
+          .addTo(map)
+          .bindTooltip(obj.first_name + " " + obj.last_name, {permanent: true});
+    })
+
+    var osm2 = L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 9
+    });
+    var mini = new L.Control.MiniMap(osm2, { toggleDisplay: true });
+    mini.addTo(map);
+
+
+While we're at it, let's also restrict the zoom level so it you can't back too far away from LA.
+
+.. code-block:: javascript
+    :emphasize-lines: 4
+
+    var map = L.map('map')
+    var osm = L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        scrollWheelZoom: false,
+        minZoom: 9
+    });
+    osm.addTo(map);
+    map.setView([33.983265, -118.306799], 18);
+
+    homicides.forEach(function (obj) {
+        L.circleMarker([obj.latitude,  obj.longitude])
+          .addTo(map)
+          .bindTooltip(obj.first_name + " " + obj.last_name, {permanent: true});
+    })
+
+    var osm2 = L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 9
+    });
+    var mini = new L.Control.MiniMap(osm2, { toggleDisplay: true });
+    mini.addTo(map);
+
 
 Finally, let's preface the map with so a headline.
 
 .. code-block:: html
+    :emphasize-lines: 1
 
     <h3>One corner. Four killings</h3>
     <div id="map"></div>
@@ -1647,6 +1848,7 @@ Finally, let's preface the map with so a headline.
 Then an introductory paragraph.
 
 .. code-block:: html
+    :emphasize-lines: 2
 
     <h3>One corner. Four killings</h3>
     <p>The southwest corner of Harvard Park, at West 62nd Street and Harvard Boulevard, has been especially deadly. In the last year-and-a-half, four men have been killed there — while sitting in a car, trying to defuse an argument or walking home from the barber shop or the corner store.</p>
@@ -1660,6 +1862,7 @@ Then an introductory paragraph.
 All wrapped up in a ``<section>`` tag.
 
 .. code-block:: html
+    :emphasize-lines: 1,5
 
     <section>
         <h3>One corner. Four killings</h3>
@@ -1688,7 +1891,7 @@ Hey. How about a headline?
     {% endblock %}
 
 
-.. image:: _static/final-headline.png
+.. image:: _static/final-hed.png
     :width: 100%
 
 
@@ -1713,7 +1916,7 @@ And a real byline.
 And let's a write a lead.
 
 .. code-block:: html
-    :emphasize-lines: 1-3
+    :emphasize-lines: 2-4
 
     {% block content %}
     <section>
@@ -1730,6 +1933,19 @@ And let's a write a lead.
 .. image:: _static/final-lead.png
     :width: 100%
 
+Commit our work.
+
+.. code-block:: bash
+
+    $ git add .
+    $ git commit -m "Added map, headline and chatter"
+
+
+Push it to GitHub.
+
+.. code-block:: bash
+
+    $ git push origin master
 
 Now we're ready. Let's do it live.
 
@@ -1759,10 +1975,6 @@ That process — converting a dynamic, living website to simple files living on 
 
 
 Lucky for us, Yeogurt is pre-configured to flatten our dynamic site. And GitHub has a hosting service for publishing static pages. Here's all it takes.
-
-Go to GitHub's page for the repository. Click on the "Settings" tab. Scroll down to the "GitHub Pages" section. Select "master branch /docs folder" as the source. Hit save.
-
-This will result in any files pushed to the "docs" directory of your repository being published on the web. For free.
 
 Next, open the ``package.json`` file at the root of the project. Scroll to the bottom. In the ``config`` section edit it to instruct Gulp to flatten files to the ``docs`` directory.
 
@@ -1798,6 +2010,8 @@ Once you are back at the standard terminal, enter the following command to build
     $ gulp --production
 
 
+That saves the entire file to the `docs` folder. We're doing that because it's the folder expected by GitHub's free publishing system, called "Pages."
+
 Commit and push to GitHub.
 
 .. code-block:: bash
@@ -1807,6 +2021,20 @@ Commit and push to GitHub.
     $ git push origin master
 
 
+To take advantage of it. Go to the repository on GitHub. Click on the "Settings" tab. Scroll down to the "GitHub Pages" section. Select "master branch /docs folder" as the source. Hit save.
+
+This will result in any files pushed to the "docs" directory of your repository being published on the web. For free.
+
 Wait a few moments and visit `\<your_username\>.github.com/first-graphics-app/ <https://ireapps.github.io/first-graphics-app/>`_. You should see your app published live on the World Wide Web.
+
+.. image:: _static/preview.gif
+   :width: 100%
+   :target: https://ireapps.github.io/first-graphics-app/
+
+
+.. warning::
+
+   If your page does not appear, make sure that you have verified your email address with GitHub. It is required before the site will allow publishing pages. And keep in mind there are many other options for publishing flat files, like `Amazon's S3 service <https://en.wikipedia.org/wiki/Amazon_S3>`_.
+
 
 Congratulations. You've finished this class.
