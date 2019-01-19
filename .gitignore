@@ -6,3 +6,6 @@ tmp
 .DS_Store
 
 _build/
+
+Pipfile
+Pipfile.lock
