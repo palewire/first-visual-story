@@ -5,7 +5,7 @@
 
 var $ = require('jquery');
 var Link = require('../_modules/link/link');
-var L = require("leaflet");
+var L = require('leaflet');
 var MiniMap = require('leaflet-minimap');
 
 $(function() {
@@ -14,6 +14,6 @@ $(function() {
 });
 
 var chart = require('./_charts.js');
-var map = require("./_map.js");
+var map = require('./_map.js');
 
 L.Icon.Default.imagePath = 'https://unpkg.com/leaflet@1.3.1/dist/images/';
