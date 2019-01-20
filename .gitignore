@@ -1,3 +1,4 @@
+gulp
 node_modules
 *.log
 build
