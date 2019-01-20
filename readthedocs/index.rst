@@ -1064,7 +1064,7 @@ Second, we should add a ``<g>``, or "group" tag, where everything else in our ch
             .append('g')
                 .attr('transform', `translate(${margin.left}, ${margin.top})`)
 
-
+At this point, we're ready to start drawing our chart. Let's start with by creating the "scales" for our data. D3 manages its data by mapping input values, also known as the domain, to output values, or the range.
 
 
 
@@ -1112,15 +1112,15 @@ Congratulations, you've made your charts! Let's commit our changes and move on t
 
 .. note::
 
-    We used Plotly.js in this class, but there are many other JavaScript charting libraries, each one slightly different. If you want to explore this on your own, here are some other options that we considered using for this class
+    We used D3.js in this class, but there are many other JavaScript charting libraries, each one slightly different. If you want to explore this on your own, here are some other options that generally abstract away the process we used in this class.
 
     - `Vega-lite <https://vega.github.io/vega-lite/>`_
     - `Charts.js <http://www.chartjs.org/>`_
     - `C3.js <http://c3js.org/>`_ Important to note that this does not seem to support the latest versions of D3.
-    - `D3.js <https://d3js.org/>`_ The granddaddy of them all.
 
     There are also tools that allow you to use a visual editor, creating charts and other visualizations that you can download and/or embed in your project.
 
+    - `Observable <https://beta.observablehq.com>`_ is a relatively new site that allows you to take a more exploratory approach to building your visualizations. Charts and maps update automatically as you update data or settings.
     - `Chartbuilder <https://quartz.github.io/Chartbuilder/>`_ from `Quartz <https://qz.com/>`_, is very good for basic, fast charts with light customization.
     - `DataWrapper <https://www.datawrapper.de/>`_ allows a range of visualizations beyond basic charts, including scatter plots and maps.
 
