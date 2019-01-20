@@ -1032,6 +1032,37 @@ Now we can use them to set the properties, or "attributes" of the SVG using D3's
                 .attr('width', width)
                 .attr('height', height)
 
+Now if you look, your SVG should be rendered at the appropriate height and width, filling the available space.
+
+[PICTURE OF EMPTY SVG]
+
+Two more setup steps before we actually start making our charts. First, if we simply start drawing data onto the SVG, we'll likely see areas where the data clips off the chart. We can avoid this by defining pre-set margins we'll use throughout the process. Add the below margins right under where you define the width and height.
+
+.. code-block:: javascript
+    :emphasize-lines: 7
+    var d3 = require('d3');
+
+    // Make sure you use the # here!
+    var container = d3.select('#county-homicides');
+    var width = container.node().offsetWidth;
+    var height = width * 0.66;
+    var margin = {top: 10, right: 10, bottom: 10, left: 10};
+
+    var svg = container.append('svg')
+                .attr('width', width)
+                .attr('height', height)
+
+Second, we should add a ``<g>``, or "group" tag, where everything else in our chart will go. Add this to the end of your ``svg`` declaration. We'll also want to give it a ``transform`` attribute that shifts it slightly according to the margins we set.
+
+.. code-block:: javascript
+    :emphasize-lines: 5-6
+
+    // ... more code is up here
+    var svg = container.append('svg')
+            .attr('width', width)
+            .attr('height', height)
+            .append('g')
+                .attr('transform', `translate(${margin.left}, ${margin.top})`)
 
 
 
