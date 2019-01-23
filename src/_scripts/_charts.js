@@ -1,16 +1,20 @@
 var d3 = require('d3');
 
+var annualTotals = require('../_data/annual_totals.json');
+console.log("ANNUAL TOTALS", annualTotals)
+
+
 // Make sure you use the # here!
 var container = d3.select('#county-homicides');
 var width = container.node().offsetWidth;
 var height = width * 0.66;
-var margin = {top: 10, right: 10, bottom: 10, left: 10};
+var margin = 10;
 
 var svg = container.append('svg')
             .attr('width', width)
             .attr('height', height)
             .append('g')
-                .attr('transform', `translate(${margin.left}, ${margin.top})`)
+                .attr('transform', `translate(${margin.left}, ${margin.top})`);
 
 
 // Initialize the arrays that will hold our lists of data

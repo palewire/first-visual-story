@@ -1036,7 +1036,7 @@ Now if you look, your SVG should be rendered at the appropriate height and width
 
 [PICTURE OF EMPTY SVG]
 
-Two more setup steps before we actually start making our charts. First, if we simply start drawing data onto the SVG, we'll likely see areas where the data clips off the chart. We can avoid this by defining pre-set margins we'll use throughout the process. Add the below margins right under where you define the width and height.
+Two more setup steps before we actually start making our charts. First, if we simply start drawing data onto the SVG, we'll likely see areas where the data clips off the chart. We can avoid this by defining a pre-set margin we'll use throughout the process. Add the below margin value right under where you define the width and height.
 
 .. code-block:: javascript
     :emphasize-lines: 7
@@ -1046,7 +1046,7 @@ Two more setup steps before we actually start making our charts. First, if we si
     var container = d3.select('#county-homicides');
     var width = container.node().offsetWidth;
     var height = width * 0.66;
-    var margin = {top: 10, right: 10, bottom: 10, left: 10};
+    var margin = 10;
 
     var svg = container.append('svg')
                 .attr('width', width)
@@ -1064,7 +1064,43 @@ Second, we should add a ``<g>``, or "group" tag, where everything else in our ch
             .append('g')
                 .attr('transform', `translate(${margin.left}, ${margin.top})`)
 
-At this point, we're ready to start drawing our chart. Let's start with by creating the "scales" for our data. D3 manages its data by mapping input values, also known as the domain, to output values, or the range.
+At this point, we're ready to start drawing our chart. Let's start with by creating the "scales" for our data. D3 manages its data by mapping input values, also known as the domain, to output values, or the range, into a scale that transforms the input into the output.
+
+D3 has many different types of scales, for linear, categorical and time-based data, but in this case, linear should work fine for both our x and y axes.
+
+I like to calculate the domain, or input, before creating the axes. The domain takes the form of an array with the minimum and maximum value that you want to map: e.g., ``[0, 100]`` if you're looking at a 100-point grade scale. We can use D3's ``min`` and ``max`` helper functions to find this.
+
+Looking at our data, since we're charting homicides for the entire county we want the ``homicides_total`` attribute in our data. The arrow ``=>`` is a shorthand method of saying "give me the homicides_total attribute of each object in the annualTotals array."
+
+.. code-block:: javascript
+
+  var xDomain = [
+    d3.min(annualTotals, d => d.homicides_total),
+    d3.max(annualTotals, d => d.homicides_total)
+  ];
+
+  var yDomain = [
+    d3.min(annualTotals, d => d.year),
+    d3.max(annualTotals, d => d.year)
+  ];
+
+If you know the min and max values, you can also set these manually.
+
+Setting the output, or range, is much easier so we can do that when we create the axes.
+
+At the bottom of your file, let's create an ``xScale`` and ``yScale`` now.
+
+.. code-block:: javascript
+
+    var xScale = d3.scaleLinear()
+                  .domain(xDomain)
+                  .range([0, width])
+    var yScale = d3.scaleLinear()
+                  .domain(yDomain)
+                  .range([height, 0])
+
+Pretty simple to start, but now we need to set the input values. Using the same chaining technique, we can use domain
+
 
 
 
