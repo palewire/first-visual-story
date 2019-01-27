@@ -1655,7 +1655,7 @@ Next let's sprinkle some CSS in our page to make the circles match the orange co
 
 .. code-block:: css
 
-    path {
+    #map path {
         fill: #e64d1f;
         fill-opacity: 0.5;
         stroke-opacity: 0;
