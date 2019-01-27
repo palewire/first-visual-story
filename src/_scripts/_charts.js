@@ -18,19 +18,18 @@ var svg = container.append('svg')
             .append('g')
                 .attr('transform', `translate(${margin.left}, ${margin.top})`);
 
-var xDomain = [
-    d3.min(annualTotals, d => d.year),
-    d3.max(annualTotals, d => d.year)
-];
+// There has to be a better way of doing this
+var xDomain = annualTotals.map(d => d.year);
 
 var yDomain = [
     d3.min(annualTotals, d => d.homicides_total),
     d3.max(annualTotals, d => d.homicides_total)
 ];
 
-var xScale = d3.scaleLinear()
+var xScale = d3.scaleBand()
                 .domain(xDomain)
-                .range([0, width]);
+                .range([0, width])
+                .padding(0.1);
 
 var yScale = d3.scaleLinear()
                 .domain(yDomain)
@@ -48,11 +47,15 @@ svg.append("g")
     .attr("class", "y axis")
     .call(yAxis);
 
-
-// Initialize the arrays that will hold our lists of data
-// var countyHomicides = annualTotals.map(a => a.homicides_total);
-// var harvardParkHomicides = annualTotals.map(a => a.homicides_harvard_park);
-// var years = annualTotals.map(a => a.year);
+svg.selectAll('.bar')
+    .data(annualTotals)
+    .enter()
+    .append('rect')
+    .attr('class', 'bar')
+    .attr('x', d => xScale(d.year))
+    .attr('y', d => yScale(d.homicides_total))
+    .attr('width', d => xScale.bandwidth())
+    .attr('height', d => height - yScale(d.homicides_total));
 
 
 // function createChart() {

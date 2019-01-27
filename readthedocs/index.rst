@@ -1083,14 +1083,13 @@ If you look at the data in ``src/_data/annual_totals.json``, you'll see that eac
 
 Since we're charting homicides for the entire county we want the ``homicides_total`` attribute in our data for the Y axis, and the X axis will be the year. The arrow ``=>`` is a shorthand method of accessing the ``homicides_total`` attribute of each object in the annualTotals array.
 
+Note that for the X axis, all we want is an array of the years, e.g.:``[2000, 2001, ...]`` so we can call ``.map()`` on our data to return the year value.
+
 .. code-block:: javascript
 
     // The rest of your code is up here
 
-  	var xDomain = [
-        d3.min(annualTotals, d => d.year),
-        d3.max(annualTotals, d => d.year)
-  	];
+  	var xDomain = annualTotals.map(d => d.year);
 
   	var yDomain = [
         d3.min(annualTotals, d => d.homicides_total),
@@ -1137,7 +1136,7 @@ Finally, we append those to the chart by appending a ``<g>`` tag and "calling" t
         .call(yAxis);
 
 
-[PHOTO OF CHART AXES]
+[PHOTO OF CHART AXES WITH X AXIS AT TOP]
 
 Well that doesn't look quite right. The reason the X axis is displaying at the top of the chart is that in SVGs, the coordinate 0,0 is at the top left. So we need to shift, or ``translate`` the X axis down by the height of the chart. The Y axis is fine where it is.
 
@@ -1151,6 +1150,47 @@ Well that doesn't look quite right. The reason the X axis is displaying at the t
         .call(xAxis);
 
 
+[PHOTO OF CORRECTED CHART AXES]
+
+Now that the axes are there, we're finally ready to draw our bars. D3 handles it's data by binding the data to the SVG elements - hence the name: "Data Driven Documents."
+
+The format seems a little strange at first, because you're selecting elements, then binding data to the selection, _then_ creating elements that are bound to the data. You do this by chaining two methods, ``.data()``, which determines the data set that you're binding, and ``.enter()``, which iterates over the data set.
+
+Since we're making a bar chart, we're going to create a ``<rect>`` element, and give it a class of ``bar``.
+
+.. note::
+
+    If you'd like to know more about how D3 data binding works, Scott Murray has an `excellent explanation and tutorial<https://alignedleft.com/tutorials/d3/binding-data>`_ on his website.
+
+Let's give it a try, by binding our ``annualTotals`` data to the bars on the chart. Start below the code for your axes. First, let's simply append the ``<rect>`` elements to the chart
+
+.. code-block:: javascript
+
+    // The rest of your code is up here
+    svg.selectAll('.bar')
+        .data(annualTotals)
+        .enter()
+        .append('rect')
+        .attr('class', 'bar')
+
+[PICTURE OF INSPECTOR SHOWING RECT ELEMENTS]
+
+Now if you look at your chart... nothing has changed! But open your inspector and look at your SVG - you'll see lots of ``<rect>`` elements, you just can't see them because they don't have any values for height and width, or x and y position values. Let's do this next.
+
+.. code-block:: javascript
+
+    // The rest of your code is up here
+    svg.selectAll('.bar')
+        .data(annualTotals)
+        .enter()
+        .append('rect')
+        .attr('class', 'bar')
+        .attr('x', d => xScale(d.year))
+        .attr('y', d => yScale(d.homicides_total))
+        .attr('width', d => xScale.bandWidth())
+        .attr('height', d => height - yScale(d.homicides_total))
+
+The X value will be determined by the year, and the Y by the ``homicides_total`` value of each object. The width of each bar is set by a method called ``.bandwidth()`` on our scale, and the height will be
 
 
 
