@@ -13,8 +13,8 @@ homicides.forEach(function (obj) {
       .bindTooltip(obj.first_name + " " + obj.last_name, {permanent: true});
 })
 
-var osm2 = L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/satellite-streets-v9/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibGF0aW1lcyIsImEiOiJjanJmNjg4ZzYweGtvNDNxa2ZpZ2lma3Z4In0.g0lYVIEs9Y5QcUOhXactHA', {
+var sat2 = L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/satellite-streets-v9/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibGF0aW1lcyIsImEiOiJjanJmNjg4ZzYweGtvNDNxa2ZpZ2lma3Z4In0.g0lYVIEs9Y5QcUOhXactHA', {
     maxZoom: 8
 });
-var mini = new L.Control.MiniMap(osm2, { toggleDisplay: true });
+var mini = new L.Control.MiniMap(sat2);
 mini.addTo(map);
