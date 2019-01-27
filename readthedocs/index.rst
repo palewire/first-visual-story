@@ -1784,12 +1784,12 @@ Save the file and the inset map should appear on your page.
 Just for fun, let's add a couple creature comforts to map. By default, the scroll wheel on your mouse will trigger zooms on the map. Some people (Armand!) have strong feelings about this. Let's do them a favor and turn it off.
 
 .. code-block:: javascript
-    :emphasize-lines: 2-4
+    :emphasize-lines: 1-3
 
-    var map = L.map('map')
-    var sat = L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/satellite-streets-v9/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibGF0aW1lcyIsImEiOiJjanJmNjg4ZzYweGtvNDNxa2ZpZ2lma3Z4In0.g0lYVIEs9Y5QcUOhXactHA', {
+    var map = L.map('map', {
         scrollWheelZoom: false
     });
+    var sat = L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/satellite-streets-v9/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibGF0aW1lcyIsImEiOiJjanJmNjg4ZzYweGtvNDNxa2ZpZ2lma3Z4In0.g0lYVIEs9Y5QcUOhXactHA');
     sat.addTo(map);
     map.setView([33.983265, -118.306799], 18);
 
@@ -1809,7 +1809,7 @@ Just for fun, let's add a couple creature comforts to map. By default, the scrol
 While we're at it, let's also restrict the zoom level so it you can't back too far away from LA.
 
 .. code-block:: javascript
-    :emphasize-lines: 1-3
+    :emphasize-lines: 4-6
 
     var map = L.map('map', {
         scrollWheelZoom: false
