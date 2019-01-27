@@ -1557,8 +1557,8 @@ Now in ``_scripts/_map.js`` paste in the following Leaflet code to generate a si
 .. code-block:: javascript
 
     var map = L.map('map');
-    var osm = L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/satellite-streets-v9/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibGF0aW1lcyIsImEiOiJjanJmNjg4ZzYweGtvNDNxa2ZpZ2lma3Z4In0.g0lYVIEs9Y5QcUOhXactHA');
-    osm.addTo(map);
+    var sat = L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/satellite-streets-v9/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibGF0aW1lcyIsImEiOiJjanJmNjg4ZzYweGtvNDNxa2ZpZ2lma3Z4In0.g0lYVIEs9Y5QcUOhXactHA');
+    sat.addTo(map);
 
 
 After you save, the index page should reload with a blank map.
@@ -1573,8 +1573,8 @@ To zero in on the area we're reporting on, we will need its longitude and latitu
     :emphasize-lines: 4
 
     var map = L.map('map')
-    var osm = L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/satellite-streets-v9/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibGF0aW1lcyIsImEiOiJjanJmNjg4ZzYweGtvNDNxa2ZpZ2lma3Z4In0.g0lYVIEs9Y5QcUOhXactHA');
-    osm.addTo(map);
+    var sat = L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/satellite-streets-v9/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibGF0aW1lcyIsImEiOiJjanJmNjg4ZzYweGtvNDNxa2ZpZ2lma3Z4In0.g0lYVIEs9Y5QcUOhXactHA');
+    sat.addTo(map);
     map.setView([33.983265, -118.306799], 15);
 
 .. image:: _static/first-map.png
@@ -1587,8 +1587,8 @@ After you save the file, your map should have relocated. Let's tighten up that z
     :emphasize-lines: 4
 
     var map = L.map('map')
-    var osm = L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/satellite-streets-v9/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibGF0aW1lcyIsImEiOiJjanJmNjg4ZzYweGtvNDNxa2ZpZ2lma3Z4In0.g0lYVIEs9Y5QcUOhXactHA');
-    osm.addTo(map);
+    var sat = L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/satellite-streets-v9/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibGF0aW1lcyIsImEiOiJjanJmNjg4ZzYweGtvNDNxa2ZpZ2lma3Z4In0.g0lYVIEs9Y5QcUOhXactHA');
+    sat.addTo(map);
     map.setView([33.983265, -118.306799], 18);
 
 
@@ -1617,8 +1617,8 @@ Now return to ``_scripts/_map.js``. At the bottom add some JavaScript code that 
     :emphasize-lines: 6-9
 
     var map = L.map('map')
-    var osm = L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/satellite-streets-v9/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibGF0aW1lcyIsImEiOiJjanJmNjg4ZzYweGtvNDNxa2ZpZ2lma3Z4In0.g0lYVIEs9Y5QcUOhXactHA');
-    osm.addTo(map);
+    var sat = L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/satellite-streets-v9/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibGF0aW1lcyIsImEiOiJjanJmNjg4ZzYweGtvNDNxa2ZpZ2lma3Z4In0.g0lYVIEs9Y5QcUOhXactHA');
+    sat.addTo(map);
     map.setView([33.983265, -118.306799], 18);
 
     homicides.forEach(function (obj) {
@@ -1759,8 +1759,8 @@ Now that everything is installed, return to ``scripts/_map.js`` and create an in
     :emphasize-lines: 12-16
 
     var map = L.map('map')
-    var osm = L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/satellite-streets-v9/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibGF0aW1lcyIsImEiOiJjanJmNjg4ZzYweGtvNDNxa2ZpZ2lma3Z4In0.g0lYVIEs9Y5QcUOhXactHA');
-    osm.addTo(map);
+    var sat = L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/satellite-streets-v9/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibGF0aW1lcyIsImEiOiJjanJmNjg4ZzYweGtvNDNxa2ZpZ2lma3Z4In0.g0lYVIEs9Y5QcUOhXactHA');
+    sat.addTo(map);
     map.setView([33.983265, -118.306799], 18);
 
     homicides.forEach(function (obj) {
@@ -1769,10 +1769,10 @@ Now that everything is installed, return to ``scripts/_map.js`` and create an in
           .bindTooltip(obj.first_name + " " + obj.last_name, {permanent: true});
     })
 
-    var osm2 = L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/satellite-streets-v9/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibGF0aW1lcyIsImEiOiJjanJmNjg4ZzYweGtvNDNxa2ZpZ2lma3Z4In0.g0lYVIEs9Y5QcUOhXactHA', {
+    var sat2 = L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/satellite-streets-v9/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibGF0aW1lcyIsImEiOiJjanJmNjg4ZzYweGtvNDNxa2ZpZ2lma3Z4In0.g0lYVIEs9Y5QcUOhXactHA', {
         maxZoom: 9
     });
-    var mini = new L.Control.MiniMap(osm2, { toggleDisplay: true });
+    var mini = new L.Control.MiniMap(sat2, { toggleDisplay: true });
     mini.addTo(map);
 
 
@@ -1787,10 +1787,10 @@ Just for fun, let's add a couple creature comforts to map. By default, the scrol
     :emphasize-lines: 2-4
 
     var map = L.map('map')
-    var osm = L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/satellite-streets-v9/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibGF0aW1lcyIsImEiOiJjanJmNjg4ZzYweGtvNDNxa2ZpZ2lma3Z4In0.g0lYVIEs9Y5QcUOhXactHA', {
+    var sat = L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/satellite-streets-v9/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibGF0aW1lcyIsImEiOiJjanJmNjg4ZzYweGtvNDNxa2ZpZ2lma3Z4In0.g0lYVIEs9Y5QcUOhXactHA', {
         scrollWheelZoom: false
     });
-    osm.addTo(map);
+    sat.addTo(map);
     map.setView([33.983265, -118.306799], 18);
 
     homicides.forEach(function (obj) {
@@ -1799,10 +1799,10 @@ Just for fun, let's add a couple creature comforts to map. By default, the scrol
           .bindTooltip(obj.first_name + " " + obj.last_name, {permanent: true});
     })
 
-    var osm2 = L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/satellite-streets-v9/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibGF0aW1lcyIsImEiOiJjanJmNjg4ZzYweGtvNDNxa2ZpZ2lma3Z4In0.g0lYVIEs9Y5QcUOhXactHA', {
+    var sat2 = L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/satellite-streets-v9/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibGF0aW1lcyIsImEiOiJjanJmNjg4ZzYweGtvNDNxa2ZpZ2lma3Z4In0.g0lYVIEs9Y5QcUOhXactHA', {
         maxZoom: 9
     });
-    var mini = new L.Control.MiniMap(osm2, { toggleDisplay: true });
+    var mini = new L.Control.MiniMap(sat2, { toggleDisplay: true });
     mini.addTo(map);
 
 
@@ -1812,11 +1812,11 @@ While we're at it, let's also restrict the zoom level so it you can't back too f
     :emphasize-lines: 4
 
     var map = L.map('map')
-    var osm = L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/satellite-streets-v9/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibGF0aW1lcyIsImEiOiJjanJmNjg4ZzYweGtvNDNxa2ZpZ2lma3Z4In0.g0lYVIEs9Y5QcUOhXactHA', {
+    var sat = L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/satellite-streets-v9/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibGF0aW1lcyIsImEiOiJjanJmNjg4ZzYweGtvNDNxa2ZpZ2lma3Z4In0.g0lYVIEs9Y5QcUOhXactHA', {
         scrollWheelZoom: false,
         minZoom: 9
     });
-    osm.addTo(map);
+    sat.addTo(map);
     map.setView([33.983265, -118.306799], 18);
 
     homicides.forEach(function (obj) {
@@ -1825,10 +1825,10 @@ While we're at it, let's also restrict the zoom level so it you can't back too f
           .bindTooltip(obj.first_name + " " + obj.last_name, {permanent: true});
     })
 
-    var osm2 = L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/satellite-streets-v9/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibGF0aW1lcyIsImEiOiJjanJmNjg4ZzYweGtvNDNxa2ZpZ2lma3Z4In0.g0lYVIEs9Y5QcUOhXactHA', {
+    var sat2 = L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/satellite-streets-v9/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibGF0aW1lcyIsImEiOiJjanJmNjg4ZzYweGtvNDNxa2ZpZ2lma3Z4In0.g0lYVIEs9Y5QcUOhXactHA', {
         maxZoom: 9
     });
-    var mini = new L.Control.MiniMap(osm2, { toggleDisplay: true });
+    var mini = new L.Control.MiniMap(sat2, { toggleDisplay: true });
     mini.addTo(map);
 
 
