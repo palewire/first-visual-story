@@ -1577,7 +1577,7 @@ To zero in on the area we're reporting on, we will need its longitude and latitu
     sat.addTo(map);
     map.setView([33.983265, -118.306799], 15);
 
-.. image:: _static/first-map.png
+.. image:: _static/first-map.png?v=2
     :width: 100%
 
 
@@ -1592,7 +1592,7 @@ After you save the file, your map should have relocated. Let's tighten up that z
     map.setView([33.983265, -118.306799], 18);
 
 
-.. image:: _static/corner-map.png
+.. image:: _static/corner-map.png?v=2
     :width: 100%
 
 
@@ -1629,7 +1629,7 @@ Now return to ``_scripts/_map.js``. At the bottom add some JavaScript code that 
 
 Save the file and you should now see all the homicides mapped on the page.
 
-.. image:: _static/hello-circles.png
+.. image:: _static/hello-circles.png?v=2
     :width: 100%
 
 
@@ -1647,7 +1647,7 @@ Next, extend the code in ``_scripts/_map.js`` to add a tooltip label on each poi
 
 Here's what you should see after you do that.
 
-.. image:: _static/hello-tooltips.gif
+.. image:: _static/hello-tooltips.gif?v=2
     :width: 100%
 
 
@@ -1679,7 +1679,7 @@ Just as before, that won't change anything until you import our new file into th
 
 After you save, here's what you'll get.
 
-.. image:: _static/orange-circles.png
+.. image:: _static/orange-circles.png?v=2
     :width: 100%
 
 
@@ -1696,7 +1696,7 @@ To make the tooltips visible all the time, edit the JavaScript in ``_scripts/_ma
 
 Here they are.
 
-.. image:: _static/permanent-tooltips.png
+.. image:: _static/permanent-tooltips.png?v=2
     :width: 100%
 
 
@@ -1778,7 +1778,7 @@ Now that everything is installed, return to ``scripts/_map.js`` and create an in
 
 Save the file and the inset map should appear on your page.
 
-.. image:: _static/hello-minimap.png
+.. image:: _static/hello-minimap.png?v=2
     :width: 100%
 
 Just for fun, let's add a couple creature comforts to map. By default, the scroll wheel on your mouse will trigger zooms on the map. Some people (Armand!) have strong feelings about this. Let's do them a favor and turn it off.
@@ -1841,7 +1841,7 @@ Finally, let's preface the map with so a headline.
     <div id="map"></div>
 
 
-.. image:: _static/map-hed.png
+.. image:: _static/map-hed.png?v=2
     :width: 100%
 
 
@@ -1855,7 +1855,7 @@ Then an introductory paragraph.
     <div id="map"></div>
 
 
-.. image:: _static/map-deck.png
+.. image:: _static/map-deck.png?v=2
     :width: 100%
 
 
@@ -1871,7 +1871,7 @@ All wrapped up in a ``<section>`` tag.
     </section>
 
 
-.. image:: _static/map-section.png
+.. image:: _static/map-section.png?v=2
     :width: 100%
 
 
@@ -1891,7 +1891,7 @@ Hey. How about a headline?
     {% endblock %}
 
 
-.. image:: _static/final-hed.png
+.. image:: _static/final-hed.png?v=2
     :width: 100%
 
 
@@ -1909,7 +1909,7 @@ And a real byline.
     {% endblock %}
 
 
-.. image:: _static/final-byline.png
+.. image:: _static/final-byline.png?v=2
     :width: 100%
 
 
@@ -1930,7 +1930,7 @@ And let's a write a lead.
     {% endblock %}
 
 
-.. image:: _static/final-lead.png
+.. image:: _static/final-lead.png?v=2
     :width: 100%
 
 Commit our work.
