@@ -1809,11 +1809,12 @@ Just for fun, let's add a couple creature comforts to map. By default, the scrol
 While we're at it, let's also restrict the zoom level so it you can't back too far away from LA.
 
 .. code-block:: javascript
-    :emphasize-lines: 4
+    :emphasize-lines: 1-3
 
-    var map = L.map('map')
+    var map = L.map('map', {
+        scrollWheelZoom: false
+    })
     var sat = L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/satellite-streets-v9/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibGF0aW1lcyIsImEiOiJjanJmNjg4ZzYweGtvNDNxa2ZpZ2lma3Z4In0.g0lYVIEs9Y5QcUOhXactHA', {
-        scrollWheelZoom: false,
         minZoom: 9
     });
     sat.addTo(map);
