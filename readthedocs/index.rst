@@ -1503,7 +1503,7 @@ We'll also need to add a little hack to the file so that Leaflet's images will l
     var chart = require('./charts.js');
     var L = require("leaflet");
 
-    L.Icon.Default.imagePath = 'https://unpkg.com/leaflet@1.3.1/dist/images/';
+    L.Icon.Default.imagePath = 'https://unpkg.com/leaflet@1.4.0/dist/images/';
 
 
 Next we import Leaflet's stylesheets in ``_styles/main.scss`` so that they are also included on our site.
@@ -1557,7 +1557,7 @@ Now in ``_scripts/_map.js`` paste in the following Leaflet code to generate a si
 .. code-block:: javascript
 
     var map = L.map('map');
-    var osm = L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png');
+    var osm = L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/satellite-streets-v9/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibGF0aW1lcyIsImEiOiJjanJmNjg4ZzYweGtvNDNxa2ZpZ2lma3Z4In0.g0lYVIEs9Y5QcUOhXactHA');
     osm.addTo(map);
 
 
@@ -1573,7 +1573,7 @@ To zero in on the area we're reporting on, we will need its longitude and latitu
     :emphasize-lines: 4
 
     var map = L.map('map')
-    var osm = L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png');
+    var osm = L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/satellite-streets-v9/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibGF0aW1lcyIsImEiOiJjanJmNjg4ZzYweGtvNDNxa2ZpZ2lma3Z4In0.g0lYVIEs9Y5QcUOhXactHA');
     osm.addTo(map);
     map.setView([33.983265, -118.306799], 15);
 
@@ -1587,7 +1587,7 @@ After you save the file, your map should have relocated. Let's tighten up that z
     :emphasize-lines: 4
 
     var map = L.map('map')
-    var osm = L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png');
+    var osm = L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/satellite-streets-v9/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibGF0aW1lcyIsImEiOiJjanJmNjg4ZzYweGtvNDNxa2ZpZ2lma3Z4In0.g0lYVIEs9Y5QcUOhXactHA');
     osm.addTo(map);
     map.setView([33.983265, -118.306799], 18);
 
@@ -1617,7 +1617,7 @@ Now return to ``_scripts/_map.js``. At the bottom add some JavaScript code that 
     :emphasize-lines: 6-9
 
     var map = L.map('map')
-    var osm = L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png');
+    var osm = L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/satellite-streets-v9/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibGF0aW1lcyIsImEiOiJjanJmNjg4ZzYweGtvNDNxa2ZpZ2lma3Z4In0.g0lYVIEs9Y5QcUOhXactHA');
     osm.addTo(map);
     map.setView([33.983265, -118.306799], 18);
 
@@ -1734,7 +1734,7 @@ Just as with other libraries, we need to import it into `_scripts/main.js`.
     var MiniMap = require('leaflet-minimap');
     var map = require("./_map.js");
 
-    L.Icon.Default.imagePath = 'https://unpkg.com/leaflet@1.3.1/dist/images/';
+    L.Icon.Default.imagePath = 'https://unpkg.com/leaflet@1.4.0/dist/images/';
 
 
 Its stylesheets also need to be imported to ``_styles/main.scss``.
@@ -1759,7 +1759,7 @@ Now that everything is installed, return to ``scripts/_map.js`` and create an in
     :emphasize-lines: 12-16
 
     var map = L.map('map')
-    var osm = L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png');
+    var osm = L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/satellite-streets-v9/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibGF0aW1lcyIsImEiOiJjanJmNjg4ZzYweGtvNDNxa2ZpZ2lma3Z4In0.g0lYVIEs9Y5QcUOhXactHA');
     osm.addTo(map);
     map.setView([33.983265, -118.306799], 18);
 
@@ -1769,7 +1769,7 @@ Now that everything is installed, return to ``scripts/_map.js`` and create an in
           .bindTooltip(obj.first_name + " " + obj.last_name, {permanent: true});
     })
 
-    var osm2 = L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    var osm2 = L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/satellite-streets-v9/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibGF0aW1lcyIsImEiOiJjanJmNjg4ZzYweGtvNDNxa2ZpZ2lma3Z4In0.g0lYVIEs9Y5QcUOhXactHA', {
         maxZoom: 9
     });
     var mini = new L.Control.MiniMap(osm2, { toggleDisplay: true });
@@ -1787,7 +1787,7 @@ Just for fun, let's add a couple creature comforts to map. By default, the scrol
     :emphasize-lines: 2-4
 
     var map = L.map('map')
-    var osm = L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    var osm = L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/satellite-streets-v9/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibGF0aW1lcyIsImEiOiJjanJmNjg4ZzYweGtvNDNxa2ZpZ2lma3Z4In0.g0lYVIEs9Y5QcUOhXactHA', {
         scrollWheelZoom: false
     });
     osm.addTo(map);
@@ -1799,7 +1799,7 @@ Just for fun, let's add a couple creature comforts to map. By default, the scrol
           .bindTooltip(obj.first_name + " " + obj.last_name, {permanent: true});
     })
 
-    var osm2 = L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    var osm2 = L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/satellite-streets-v9/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibGF0aW1lcyIsImEiOiJjanJmNjg4ZzYweGtvNDNxa2ZpZ2lma3Z4In0.g0lYVIEs9Y5QcUOhXactHA', {
         maxZoom: 9
     });
     var mini = new L.Control.MiniMap(osm2, { toggleDisplay: true });
@@ -1812,7 +1812,7 @@ While we're at it, let's also restrict the zoom level so it you can't back too f
     :emphasize-lines: 4
 
     var map = L.map('map')
-    var osm = L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    var osm = L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/satellite-streets-v9/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibGF0aW1lcyIsImEiOiJjanJmNjg4ZzYweGtvNDNxa2ZpZ2lma3Z4In0.g0lYVIEs9Y5QcUOhXactHA', {
         scrollWheelZoom: false,
         minZoom: 9
     });
@@ -1825,7 +1825,7 @@ While we're at it, let's also restrict the zoom level so it you can't back too f
           .bindTooltip(obj.first_name + " " + obj.last_name, {permanent: true});
     })
 
-    var osm2 = L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    var osm2 = L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/satellite-streets-v9/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibGF0aW1lcyIsImEiOiJjanJmNjg4ZzYweGtvNDNxa2ZpZ2lma3Z4In0.g0lYVIEs9Y5QcUOhXactHA', {
         maxZoom: 9
     });
     var mini = new L.Control.MiniMap(osm2, { toggleDisplay: true });
