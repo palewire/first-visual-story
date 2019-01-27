@@ -1772,7 +1772,7 @@ Now that everything is installed, return to ``scripts/_map.js`` and create an in
     var sat2 = L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/satellite-streets-v9/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibGF0aW1lcyIsImEiOiJjanJmNjg4ZzYweGtvNDNxa2ZpZ2lma3Z4In0.g0lYVIEs9Y5QcUOhXactHA', {
         maxZoom: 8
     });
-    var mini = new L.Control.MiniMap(sat2, { toggleDisplay: true });
+    var mini = new L.Control.MiniMap(sat2);
     mini.addTo(map);
 
 
@@ -1802,7 +1802,7 @@ Just for fun, let's add a couple creature comforts to map. By default, the scrol
     var sat2 = L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/satellite-streets-v9/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibGF0aW1lcyIsImEiOiJjanJmNjg4ZzYweGtvNDNxa2ZpZ2lma3Z4In0.g0lYVIEs9Y5QcUOhXactHA', {
         maxZoom: 8
     });
-    var mini = new L.Control.MiniMap(sat2, { toggleDisplay: true });
+    var mini = new L.Control.MiniMap(sat2);
     mini.addTo(map);
 
 
@@ -1829,7 +1829,7 @@ While we're at it, let's also restrict the zoom level so it you can't back too f
     var sat2 = L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/satellite-streets-v9/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibGF0aW1lcyIsImEiOiJjanJmNjg4ZzYweGtvNDNxa2ZpZ2lma3Z4In0.g0lYVIEs9Y5QcUOhXactHA', {
         maxZoom: 8
     });
-    var mini = new L.Control.MiniMap(sat2, { toggleDisplay: true });
+    var mini = new L.Control.MiniMap(sat2);
     mini.addTo(map);
 
 
