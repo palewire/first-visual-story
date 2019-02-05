@@ -1192,6 +1192,12 @@ Now if you look at your chart... nothing has changed! But open your inspector an
 
 The X value will be determined by the year, and the Y by the ``homicides_total`` value of each object. The width of each bar is set by a method called ``.bandwidth()`` on our scale, and the height will be
 
+[PICTURE OF CHARTS WITH BARS]
+
+You have a bar chart! At this point we can step back and style out the charts a little big, since the all black is a little overly minimalist.
+
+At this point, open up your
+
 
 
 Last, let's add a headline to introduce our charts section.
