@@ -1303,7 +1303,7 @@ We'll also need to add a little hack to the file so that Leaflet's images will l
     var chart = require('./charts.js');
     var L = require("leaflet");
 
-    L.Icon.Default.imagePath = 'https://unpkg.com/leaflet@1.3.1/dist/images/';
+    L.Icon.Default.imagePath = 'https://unpkg.com/leaflet@1.4.0/dist/images/';
 
 
 Next we import Leaflet's stylesheets in ``_styles/main.scss`` so that they are also included on our site.
@@ -1357,8 +1357,8 @@ Now in ``_scripts/_map.js`` paste in the following Leaflet code to generate a si
 .. code-block:: javascript
 
     var map = L.map('map');
-    var osm = L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png');
-    osm.addTo(map);
+    var sat = L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/satellite-streets-v9/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibGF0aW1lcyIsImEiOiJjanJmNjg4ZzYweGtvNDNxa2ZpZ2lma3Z4In0.g0lYVIEs9Y5QcUOhXactHA');
+    sat.addTo(map);
 
 
 After you save, the index page should reload with a blank map.
@@ -1373,11 +1373,11 @@ To zero in on the area we're reporting on, we will need its longitude and latitu
     :emphasize-lines: 4
 
     var map = L.map('map')
-    var osm = L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png');
-    osm.addTo(map);
+    var sat = L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/satellite-streets-v9/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibGF0aW1lcyIsImEiOiJjanJmNjg4ZzYweGtvNDNxa2ZpZ2lma3Z4In0.g0lYVIEs9Y5QcUOhXactHA');
+    sat.addTo(map);
     map.setView([33.983265, -118.306799], 15);
 
-.. image:: _static/first-map.png
+.. image:: _static/first-map.png?v=2
     :width: 100%
 
 
@@ -1387,12 +1387,12 @@ After you save the file, your map should have relocated. Let's tighten up that z
     :emphasize-lines: 4
 
     var map = L.map('map')
-    var osm = L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png');
-    osm.addTo(map);
+    var sat = L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/satellite-streets-v9/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibGF0aW1lcyIsImEiOiJjanJmNjg4ZzYweGtvNDNxa2ZpZ2lma3Z4In0.g0lYVIEs9Y5QcUOhXactHA');
+    sat.addTo(map);
     map.setView([33.983265, -118.306799], 18);
 
 
-.. image:: _static/corner-map.png
+.. image:: _static/corner-map.png?v=2
     :width: 100%
 
 
@@ -1417,8 +1417,8 @@ Now return to ``_scripts/_map.js``. At the bottom add some JavaScript code that 
     :emphasize-lines: 6-9
 
     var map = L.map('map')
-    var osm = L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png');
-    osm.addTo(map);
+    var sat = L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/satellite-streets-v9/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibGF0aW1lcyIsImEiOiJjanJmNjg4ZzYweGtvNDNxa2ZpZ2lma3Z4In0.g0lYVIEs9Y5QcUOhXactHA');
+    sat.addTo(map);
     map.setView([33.983265, -118.306799], 18);
 
     homicides.forEach(function (obj) {
@@ -1429,7 +1429,7 @@ Now return to ``_scripts/_map.js``. At the bottom add some JavaScript code that 
 
 Save the file and you should now see all the homicides mapped on the page.
 
-.. image:: _static/hello-circles.png
+.. image:: _static/hello-circles.png?v=2
     :width: 100%
 
 
@@ -1447,7 +1447,7 @@ Next, extend the code in ``_scripts/_map.js`` to add a tooltip label on each poi
 
 Here's what you should see after you do that.
 
-.. image:: _static/hello-tooltips.gif
+.. image:: _static/hello-tooltips.gif?v=2
     :width: 100%
 
 
@@ -1455,7 +1455,7 @@ Next let's sprinkle some CSS in our page to make the circles match the orange co
 
 .. code-block:: css
 
-    path {
+    #map path {
         fill: #e64d1f;
         fill-opacity: 0.5;
         stroke-opacity: 0;
@@ -1479,7 +1479,7 @@ Just as before, that won't change anything until you import our new file into th
 
 After you save, here's what you'll get.
 
-.. image:: _static/orange-circles.png
+.. image:: _static/orange-circles.png?v=2
     :width: 100%
 
 
@@ -1496,7 +1496,7 @@ To make the tooltips visible all the time, edit the JavaScript in ``_scripts/_ma
 
 Here they are.
 
-.. image:: _static/permanent-tooltips.png
+.. image:: _static/permanent-tooltips.png?v=2
     :width: 100%
 
 
@@ -1534,7 +1534,7 @@ Just as with other libraries, we need to import it into `_scripts/main.js`.
     var MiniMap = require('leaflet-minimap');
     var map = require("./_map.js");
 
-    L.Icon.Default.imagePath = 'https://unpkg.com/leaflet@1.3.1/dist/images/';
+    L.Icon.Default.imagePath = 'https://unpkg.com/leaflet@1.4.0/dist/images/';
 
 
 Its stylesheets also need to be imported to ``_styles/main.scss``.
@@ -1559,8 +1559,8 @@ Now that everything is installed, return to ``scripts/_map.js`` and create an in
     :emphasize-lines: 12-16
 
     var map = L.map('map')
-    var osm = L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png');
-    osm.addTo(map);
+    var sat = L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/satellite-streets-v9/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibGF0aW1lcyIsImEiOiJjanJmNjg4ZzYweGtvNDNxa2ZpZ2lma3Z4In0.g0lYVIEs9Y5QcUOhXactHA');
+    sat.addTo(map);
     map.setView([33.983265, -118.306799], 18);
 
     homicides.forEach(function (obj) {
@@ -1569,28 +1569,28 @@ Now that everything is installed, return to ``scripts/_map.js`` and create an in
           .bindTooltip(obj.first_name + " " + obj.last_name, {permanent: true});
     })
 
-    var osm2 = L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        maxZoom: 9
+    var sat2 = L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/satellite-streets-v9/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibGF0aW1lcyIsImEiOiJjanJmNjg4ZzYweGtvNDNxa2ZpZ2lma3Z4In0.g0lYVIEs9Y5QcUOhXactHA', {
+        maxZoom: 8
     });
-    var mini = new L.Control.MiniMap(osm2, { toggleDisplay: true });
+    var mini = new L.Control.MiniMap(sat2);
     mini.addTo(map);
 
 
 Save the file and the inset map should appear on your page.
 
-.. image:: _static/hello-minimap.png
+.. image:: _static/hello-minimap.png?v=2
     :width: 100%
 
 Just for fun, let's add a couple creature comforts to map. By default, the scroll wheel on your mouse will trigger zooms on the map. Some people (Armand!) have strong feelings about this. Let's do them a favor and turn it off.
 
 .. code-block:: javascript
-    :emphasize-lines: 2-4
+    :emphasize-lines: 1-3
 
-    var map = L.map('map')
-    var osm = L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    var map = L.map('map', {
         scrollWheelZoom: false
     });
-    osm.addTo(map);
+    var sat = L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/satellite-streets-v9/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibGF0aW1lcyIsImEiOiJjanJmNjg4ZzYweGtvNDNxa2ZpZ2lma3Z4In0.g0lYVIEs9Y5QcUOhXactHA');
+    sat.addTo(map);
     map.setView([33.983265, -118.306799], 18);
 
     homicides.forEach(function (obj) {
@@ -1599,24 +1599,25 @@ Just for fun, let's add a couple creature comforts to map. By default, the scrol
           .bindTooltip(obj.first_name + " " + obj.last_name, {permanent: true});
     })
 
-    var osm2 = L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        maxZoom: 9
+    var sat2 = L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/satellite-streets-v9/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibGF0aW1lcyIsImEiOiJjanJmNjg4ZzYweGtvNDNxa2ZpZ2lma3Z4In0.g0lYVIEs9Y5QcUOhXactHA', {
+        maxZoom: 8
     });
-    var mini = new L.Control.MiniMap(osm2, { toggleDisplay: true });
+    var mini = new L.Control.MiniMap(sat2);
     mini.addTo(map);
 
 
 While we're at it, let's also restrict the zoom level so it you can't back too far away from LA.
 
 .. code-block:: javascript
-    :emphasize-lines: 4
+    :emphasize-lines: 4-6
 
-    var map = L.map('map')
-    var osm = L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        scrollWheelZoom: false,
+    var map = L.map('map', {
+        scrollWheelZoom: false
+    })
+    var sat = L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/satellite-streets-v9/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibGF0aW1lcyIsImEiOiJjanJmNjg4ZzYweGtvNDNxa2ZpZ2lma3Z4In0.g0lYVIEs9Y5QcUOhXactHA', {
         minZoom: 9
     });
-    osm.addTo(map);
+    sat.addTo(map);
     map.setView([33.983265, -118.306799], 18);
 
     homicides.forEach(function (obj) {
@@ -1625,10 +1626,10 @@ While we're at it, let's also restrict the zoom level so it you can't back too f
           .bindTooltip(obj.first_name + " " + obj.last_name, {permanent: true});
     })
 
-    var osm2 = L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        maxZoom: 9
+    var sat2 = L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/satellite-streets-v9/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibGF0aW1lcyIsImEiOiJjanJmNjg4ZzYweGtvNDNxa2ZpZ2lma3Z4In0.g0lYVIEs9Y5QcUOhXactHA', {
+        maxZoom: 8
     });
-    var mini = new L.Control.MiniMap(osm2, { toggleDisplay: true });
+    var mini = new L.Control.MiniMap(sat2);
     mini.addTo(map);
 
 
@@ -1641,7 +1642,7 @@ Finally, let's preface the map with so a headline.
     <div id="map"></div>
 
 
-.. image:: _static/map-hed.png
+.. image:: _static/map-hed.png?v=2
     :width: 100%
 
 
@@ -1655,7 +1656,7 @@ Then an introductory paragraph.
     <div id="map"></div>
 
 
-.. image:: _static/map-deck.png
+.. image:: _static/map-deck.png?v=2
     :width: 100%
 
 
@@ -1671,7 +1672,7 @@ All wrapped up in a ``<section>`` tag.
     </section>
 
 
-.. image:: _static/map-section.png
+.. image:: _static/map-section.png?v=2
     :width: 100%
 
 
@@ -1691,7 +1692,7 @@ Hey. How about a headline?
     {% endblock %}
 
 
-.. image:: _static/final-hed.png
+.. image:: _static/final-hed.png?v=2
     :width: 100%
 
 
@@ -1709,7 +1710,7 @@ And a real byline.
     {% endblock %}
 
 
-.. image:: _static/final-byline.png
+.. image:: _static/final-byline.png?v=2
     :width: 100%
 
 
@@ -1730,7 +1731,7 @@ And let's a write a lead.
     {% endblock %}
 
 
-.. image:: _static/final-lead.png
+.. image:: _static/final-lead.png?v=2
     :width: 100%
 
 Commit our work.
