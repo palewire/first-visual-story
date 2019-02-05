@@ -486,7 +486,7 @@ And let's do the publication date too while we are at it.
     {% block headline %}My headline will go here{% endblock %}
     {% block byline %}By me{% endblock %}
     {% block pubdate %}
-        <time datetime="2018-03-10" pubdate>Mar. 10, 2018</time>
+        <time datetime="2019-03-09" pubdate>Mar. 9, 2019</time>
     {% endblock %}
 
 
