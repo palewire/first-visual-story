@@ -941,7 +941,7 @@ Now if you reload your page and go to your inspector (click on the three dots in
 
 What chart should we make? The story points out that Harvard Park experienced an increase in homicides as there was a decrease across the rest of the county. Let's try to visualize that.
 
-First, we need somewhere for our charts to go. In our ``index.nunjucks`` file, inside of ``{% block content %}`` where you want the chart to go, create a ``div`` element with an id of ``county-homicides``, and another with an id of ``harvard-park-homicides``.
+First, we need somewhere for our charts to go. In our ``index.nunjucks`` file, inside of ``{% block content %}`` where you want the chart to appear, create a ``div`` element with an id of ``county-homicides``, and another with an id of ``harvard-park-homicides``.
 
 .. code-block:: html
     :emphasize-lines: 11-12
@@ -958,6 +958,9 @@ First, we need somewhere for our charts to go. In our ``index.nunjucks`` file, i
 
     <div id="county-homicides"></div>
     <div id="harvard-park-homicides"></div>
+
+    <h3>Lives lost</h3>
+    <p>The {{ site.data.harvard_park_homicides|length }} homicides in Harvard Park since 2000 were primarily black and Latino males, but the list includes husbands, wives, fathers, mothers of all ages, and even some small children.</p>
 
     {% for obj in site.data.harvard_park_homicides %}
     <div class="card-columns">
@@ -976,7 +979,7 @@ First, we need somewhere for our charts to go. In our ``index.nunjucks`` file, i
     {% endblock %}
 
 
-Meanwhile, we need data. Copy the `annual totals data <https://raw.githubusercontent.com/ireapps/first-graphics-app/master/src/_data/annual_totals.json>`_ to ``_data/annual_totals.json``. This file contains annual homicide counts for Harvard Park and all of Los Angeles County. We can use nunjucks to include our data file directly in the template.
+Meanwhile, we need data. Copy the `annual totals data <https://raw.githubusercontent.com/ireapps/first-graphics-app/master/src/_data/annual_totals.json>`_ to a new file, ``_data/annual_totals.json``. This file contains annual homicide counts for Harvard Park and all of Los Angeles County. We can use nunjucks to include our data file directly in the template.
 
 Add a ``{% scripts %}`` block to the end of your ``index.nunjucks`` file:
 
@@ -1008,6 +1011,7 @@ Let's use ``.node()`` to access the HTML element and save the width and height o
 
 .. code-block:: javascript
     :emphasize-lines: 5-6
+
     var d3 = require('d3');
 
     // Make sure you use the # here!
@@ -1017,16 +1021,18 @@ Let's use ``.node()`` to access the HTML element and save the width and height o
 
     var svg = container.append('svg')
 
-Now we can use them to set the properties, or "attributes" of the SVG using D3's `.attr()` method. Notice that we can "chain" methods on a selection in D3, which allows our code to be a little more concise.
+Now we can use them to set the properties, or "attributes" of the SVG using D3's ``.attr()`` method. Notice that we can "chain" methods on a selection in D3, which allows our code to be a little more concise.
 
 .. code-block:: javascript
     :emphasize-lines: 9-10
+
     var d3 = require('d3');
 
     // Make sure you use the # here!
     var container = d3.select('#county-homicides');
     var containerWidth = container.node().offsetWidth;
     var containerHeight = containerWidth * 0.66;
+
     var svg = container.append('svg')
                 .attr('width', containerWidth)
                 .attr('height', containerHeight)
@@ -1035,10 +1041,11 @@ Now if you look, your SVG should be rendered at the appropriate height and width
 
 [PICTURE OF EMPTY SVG]
 
-Two more setup steps before we actually start making our charts. First, if we simply start drawing data onto the SVG, we'll likely see areas where the data clips off the chart. We can avoid this by defining a pre-set margin we'll use throughout the process. We also define two different height and width values - one that includes the margins, and one that doesn't.
+Two more setup steps before we actually start making our charts. First, if we simply start drawing data onto the SVG, we'll likely see areas where the data clips off the chart. We can avoid this by defining a pre-set margin we'll use throughout the process.
 
 .. code-block:: javascript
     :emphasize-lines: 3,8-9
+
     var d3 = require('d3');
 
     var margin = {top: 20, right:20, bottom:20, left:40} ;
@@ -1067,7 +1074,7 @@ Second, we should add a ``<g>``, or "group" tag, where everything else in our ch
 
 At this point, we're ready to start drawing our chart. Let's start with by creating the "scales" for our data. D3 manages its data by mapping input values from the data, also known as the domain, into output values on the screen, or the range. This creates a scale that transforms the input into the output.
 
-D3 has many different types of scales, for linear, categorical and time-based data, but in this case, linear should work fine for both our x and y axes.
+D3 has many different types of scales, for linear, categorical and time-based data. In this case, we'll want a linear scale for the Y axis, and a "band" scale, which is a type of categorical scale useful for bar charts, for the X axis.
 
 I like to calculate the input, or domain, before creating the axes. The domain takes the form of an array with the minimum and maximum value that you want to map: e.g., ``[0, 100]`` if you're looking at a 100-point grade scale. We can use D3's ``min`` and ``max`` helper functions to find this.
 
@@ -1083,7 +1090,9 @@ If you look at the data in ``src/_data/annual_totals.json``, you'll see that eac
 
 Since we're charting homicides for the entire county we want the ``homicides_total`` attribute in our data for the Y axis, and the X axis will be the year. The arrow ``=>`` is a shorthand method of accessing the ``homicides_total`` attribute of each object in the annualTotals array.
 
-Note that for the X axis, all we want is an array of the years, e.g.:``[2000, 2001, ...]`` so we can call ``.map()`` on our data to return the year value.
+Note that for the X axis, all we want is an array of the years, e.g.:``[2000, 2001, ...]`` so we can call ``.map()`` on our data to return the year value. ``.map()`` iterates over every value in an array and returns a value for every item.
+
+For the Y-axis, we want the domain to start at 0, so we can set that manually.
 
 .. code-block:: javascript
 
@@ -1092,7 +1101,7 @@ Note that for the X axis, all we want is an array of the years, e.g.:``[2000, 20
   	var xDomain = annualTotals.map(d => d.year);
 
   	var yDomain = [
-        d3.min(annualTotals, d => d.homicides_total),
+        0,
         d3.max(annualTotals, d => d.homicides_total)
   	];
 
@@ -1104,22 +1113,29 @@ At the bottom of your file, let's create an ``xScale`` and ``yScale`` now. Note 
 
     // The rest of your code is up here
 
-    var xScale = d3.scaleLinear()
+    var xScale = d3.scaleBand()
                   .domain(xDomain)
-                  .range([0, width]);
+                  .range([0, width])
+                  .padding(0.1);
 
     var yScale = d3.scaleLinear()
                   .domain(yDomain)
                   .range([height, 0]);
 
+Note that the X scale has an additional method, ``.padding()``, which specifies how far apart our bars are from one another.
+
 Now that we have scales, we can create our axes. D3 has helper functions for each side of the chart we want our axes on, in this case the left for the Y-axis and bottom for the X-axis. We also assign one of the scales we just created to each axis.
+
+For the Y-axis, we also want to add grid lines and limit the number of ticks that are shown.
 
 .. code-block:: javascript
 
     // The rest of your code is up here
 
     var xAxis = d3.axisBottom(xScale);
-    var yAxis = d3.axisLeft(yScale);
+    var yAxis = d3.axisLeft(yScale)
+                  .tickSize(-width)
+                  .ticks(4);
 
 Finally, we append those to the chart by appending a ``<g>`` tag and "calling" the axis function we just created. I like to give each axis element a class of "axis" and "x" or "y", depending on which axis we're creating.
 
@@ -1141,6 +1157,7 @@ Finally, we append those to the chart by appending a ``<g>`` tag and "calling" t
 Well that doesn't look quite right. The reason the X axis is displaying at the top of the chart is that in SVGs, the coordinate 0,0 is at the top left. So we need to shift, or ``translate`` the X axis down by the height of the chart. The Y axis is fine where it is.
 
 .. code-block:: javascript
+    :emphasize-lines: 5
 
     // The rest of your code is up here
 
@@ -1167,6 +1184,7 @@ Let's give it a try, by binding our ``annualTotals`` data to the bars on the cha
 .. code-block:: javascript
 
     // The rest of your code is up here
+
     svg.selectAll('.bar')
         .data(annualTotals)
         .enter()
@@ -1180,6 +1198,7 @@ Now if you look at your chart... nothing has changed! But open your inspector an
 .. code-block:: javascript
 
     // The rest of your code is up here
+
     svg.selectAll('.bar')
         .data(annualTotals)
         .enter()
@@ -1194,10 +1213,61 @@ The X value will be determined by the year, and the Y by the ``homicides_total``
 
 [PICTURE OF CHARTS WITH BARS]
 
-You have a bar chart! At this point we can step back and style out the charts a little big, since the all black is a little overly minimalist.
+You have a bar chart! At this point we can step back and style out the chart, and leave room for a second chart that shows Harvard Park homicides.
 
-At this point, open up your
+At this point, create a new file in the ``_styles`` folder, and call it ``_charts.scss``.
 
+The first thing we need to do is make the chart smaller - right now it's huge! Add the following CSS rule to ``_charts.scss`` which will allow the chart to display at roughly half width and leave room for a second chart.
+
+.. code-block:: css
+
+    .inline-chart {
+        width: 49%;
+        float: left;
+    }
+
+If you look at the page now, you'll see that nothing has changed. That's because we need to import the styles that we just created into our ``main.scss`` file.
+
+You can do that by adding the following line to ``main.scss``.
+
+.. code-block:: css
+    :emphasize-lines: 6
+
+    // Normalize Styles
+    @import 'node_modules/normalize.css/normalize';
+
+    // Import Modules
+    @import '../_modules/link/link';
+    @import './charts.scss';
+
+Let's also color the bars and clean up some of the lines. If you remember, the bars were ``<rect>`` elements, and if you use the inspector, you can find the x axis lines we want to remove. Back in ``_charts.scss``:
+
+.. code-block:: css
+
+  rect {
+    fill: #86C7DF;
+  }
+
+  .y .domain {
+    display: none;
+  }
+
+  .x .domain {
+    display: none;
+  }
+
+  .x .tick line {
+    display: none;
+  }
+
+The last thing we want to style is the grid lines - they're too heavy and should fade into the background more. Note that we want to keep the baseline black to indicate that we're starting at 0, so we'll use a fancy CSS selector.
+
+.. code-block:: css
+
+    // The rest of your styles are up here
+    .y .tick:not(:first-of-type) line {
+      stroke: #e7e7e7;
+    }
 
 
 Last, let's add a headline to introduce our charts section.

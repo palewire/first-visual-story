@@ -743,7 +743,7 @@ $ git commit -m <span class="s2">&quot;Created a victims card grid&quot;</span>
 <p>Now if you reload your page and go to your inspector (click on the three dots in the top right of Chrome, go down to “More tools” and select “Developer tools”), you should see <code class="docutils literal notranslate"><span class="pre">hello,</span> <span class="pre">this</span> <span class="pre">is</span> <span class="pre">my</span> <span class="pre">charts</span> <span class="pre">file!</span></code> in the console.</p>
 <a class="reference internal image-reference" href="_images/hello-charts.png"><img alt="_images/hello-charts.png" src="_images/hello-charts.png" style="width: 100%;" /></a>
 <p>What chart should we make? The story points out that Harvard Park experienced an increase in homicides as there was a decrease across the rest of the county. Let’s try to visualize that.</p>
-<p>First, we need somewhere for our charts to go. In our <code class="docutils literal notranslate"><span class="pre">index.nunjucks</span></code> file, inside of <code class="docutils literal notranslate"><span class="pre">{%</span> <span class="pre">block</span> <span class="pre">content</span> <span class="pre">%}</span></code> where you want the chart to go, create a <code class="docutils literal notranslate"><span class="pre">div</span></code> element with an id of <code class="docutils literal notranslate"><span class="pre">county-homicides</span></code>, and another with an id of <code class="docutils literal notranslate"><span class="pre">harvard-park-homicides</span></code>.</p>
+<p>First, we need somewhere for our charts to go. In our <code class="docutils literal notranslate"><span class="pre">index.nunjucks</span></code> file, inside of <code class="docutils literal notranslate"><span class="pre">{%</span> <span class="pre">block</span> <span class="pre">content</span> <span class="pre">%}</span></code> where you want the chart to appear, create a <code class="docutils literal notranslate"><span class="pre">div</span></code> element with an id of <code class="docutils literal notranslate"><span class="pre">county-homicides</span></code>, and another with an id of <code class="docutils literal notranslate"><span class="pre">harvard-park-homicides</span></code>.</p>
 <div class="highlight-html notranslate"><div class="highlight"><pre><span></span>{% extends &#39;_layouts/base.nunjucks&#39; %}
 
 {% block headline %}My headline will go here{% endblock %}
@@ -757,6 +757,9 @@ $ git commit -m <span class="s2">&quot;Created a victims card grid&quot;</span>
 <span class="hll"><span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;county-homicides&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
 </span><span class="hll"><span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;harvard-park-homicides&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
 </span>
+<span class="p">&lt;</span><span class="nt">h3</span><span class="p">&gt;</span>Lives lost<span class="p">&lt;/</span><span class="nt">h3</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>The {{ site.data.harvard_park_homicides|length }} homicides in Harvard Park since 2000 were primarily black and Latino males, but the list includes husbands, wives, fathers, mothers of all ages, and even some small children.<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+
 {% for obj in site.data.harvard_park_homicides %}
 <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;card-columns&quot;</span><span class="p">&gt;</span>
     {% for obj in site.data.harvard_park_homicides %}
@@ -774,7 +777,7 @@ $ git commit -m <span class="s2">&quot;Created a victims card grid&quot;</span>
 {% endblock %}
 </pre></div>
 </div>
-<p>Meanwhile, we need data. Copy the <a class="reference external" href="https://raw.githubusercontent.com/ireapps/first-graphics-app/master/src/_data/annual_totals.json">annual totals data</a> to <code class="docutils literal notranslate"><span class="pre">_data/annual_totals.json</span></code>. This file contains annual homicide counts for Harvard Park and all of Los Angeles County. We can use nunjucks to include our data file directly in the template.</p>
+<p>Meanwhile, we need data. Copy the <a class="reference external" href="https://raw.githubusercontent.com/ireapps/first-graphics-app/master/src/_data/annual_totals.json">annual totals data</a> to a new file, <code class="docutils literal notranslate"><span class="pre">_data/annual_totals.json</span></code>. This file contains annual homicide counts for Harvard Park and all of Los Angeles County. We can use nunjucks to include our data file directly in the template.</p>
 <p>Add a <code class="docutils literal notranslate"><span class="pre">{%</span> <span class="pre">scripts</span> <span class="pre">%}</span></code> block to the end of your <code class="docutils literal notranslate"><span class="pre">index.nunjucks</span></code> file:</p>
 <div class="highlight-html notranslate"><div class="highlight"><pre><span></span>{% block scripts %}
 <span class="p">&lt;</span><span class="nt">script</span><span class="p">&gt;</span>
@@ -794,10 +797,47 @@ $ git commit -m <span class="s2">&quot;Created a victims card grid&quot;</span>
 </div>
 <p>Now if you look in your inspector, you’ll see that we’ve appended an <code class="docutils literal notranslate"><span class="pre">&lt;svg&gt;</span></code> to the element with an ID of <code class="docutils literal notranslate"><span class="pre">county-homicides</span></code>. However, we also need to specify a height and width for the SVG, otherwise it will always just have default dimensions of 300x150, no matter how large our screen or device is.</p>
 <p>Let’s use <code class="docutils literal notranslate"><span class="pre">.node()</span></code> to access the HTML element and save the width and height of the container to variables. I like to specify the height as a percentage of the width, to get an aspect ratio.</p>
-<p>Now we can use them to set the properties, or “attributes” of the SVG using D3’s <cite>.attr()</cite> method. Notice that we can “chain” methods on a selection in D3, which allows our code to be a little more concise.</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">d3</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;d3&#39;</span><span class="p">);</span>
+
+<span class="c1">// Make sure you use the # here!</span>
+<span class="kd">var</span> <span class="nx">container</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">select</span><span class="p">(</span><span class="s1">&#39;#county-homicides&#39;</span><span class="p">);</span>
+<span class="hll"><span class="kd">var</span> <span class="nx">containerWidth</span> <span class="o">=</span> <span class="nx">container</span><span class="p">.</span><span class="nx">node</span><span class="p">().</span><span class="nx">offsetWidth</span><span class="p">;</span>
+</span><span class="hll"><span class="kd">var</span> <span class="nx">containerHeight</span> <span class="o">=</span> <span class="nx">containerWidth</span> <span class="o">*</span> <span class="mf">0.66</span><span class="p">;</span>
+</span>
+<span class="kd">var</span> <span class="nx">svg</span> <span class="o">=</span> <span class="nx">container</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="s1">&#39;svg&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Now we can use them to set the properties, or “attributes” of the SVG using D3’s <code class="docutils literal notranslate"><span class="pre">.attr()</span></code> method. Notice that we can “chain” methods on a selection in D3, which allows our code to be a little more concise.</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">d3</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;d3&#39;</span><span class="p">);</span>
+
+<span class="c1">// Make sure you use the # here!</span>
+<span class="kd">var</span> <span class="nx">container</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">select</span><span class="p">(</span><span class="s1">&#39;#county-homicides&#39;</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">containerWidth</span> <span class="o">=</span> <span class="nx">container</span><span class="p">.</span><span class="nx">node</span><span class="p">().</span><span class="nx">offsetWidth</span><span class="p">;</span>
+<span class="kd">var</span> <span class="nx">containerHeight</span> <span class="o">=</span> <span class="nx">containerWidth</span> <span class="o">*</span> <span class="mf">0.66</span><span class="p">;</span>
+
+<span class="kd">var</span> <span class="nx">svg</span> <span class="o">=</span> <span class="nx">container</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="s1">&#39;svg&#39;</span><span class="p">)</span>
+<span class="hll">            <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;width&#39;</span><span class="p">,</span> <span class="nx">containerWidth</span><span class="p">)</span>
+</span><span class="hll">            <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;height&#39;</span><span class="p">,</span> <span class="nx">containerHeight</span><span class="p">)</span>
+</span></pre></div>
+</div>
 <p>Now if you look, your SVG should be rendered at the appropriate height and width, filling the available space.</p>
 <p>[PICTURE OF EMPTY SVG]</p>
-<p>Two more setup steps before we actually start making our charts. First, if we simply start drawing data onto the SVG, we’ll likely see areas where the data clips off the chart. We can avoid this by defining a pre-set margin we’ll use throughout the process. We also define two different height and width values - one that includes the margins, and one that doesn’t.</p>
+<p>Two more setup steps before we actually start making our charts. First, if we simply start drawing data onto the SVG, we’ll likely see areas where the data clips off the chart. We can avoid this by defining a pre-set margin we’ll use throughout the process.</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">d3</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;d3&#39;</span><span class="p">);</span>
+
+<span class="hll"><span class="kd">var</span> <span class="nx">margin</span> <span class="o">=</span> <span class="p">{</span><span class="nx">top</span><span class="o">:</span> <span class="mi">20</span><span class="p">,</span> <span class="nx">right</span><span class="o">:</span><span class="mi">20</span><span class="p">,</span> <span class="nx">bottom</span><span class="o">:</span><span class="mi">20</span><span class="p">,</span> <span class="nx">left</span><span class="o">:</span><span class="mi">40</span><span class="p">}</span> <span class="p">;</span>
+</span><span class="c1">// Make sure you use the # here!</span>
+<span class="kd">var</span> <span class="nx">container</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">select</span><span class="p">(</span><span class="s1">&#39;#county-homicides&#39;</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">containerWidth</span> <span class="o">=</span> <span class="nx">container</span><span class="p">.</span><span class="nx">node</span><span class="p">().</span><span class="nx">offsetWidth</span><span class="p">;</span>
+<span class="kd">var</span> <span class="nx">containerHeight</span> <span class="o">=</span> <span class="nx">containerWidth</span> <span class="o">*</span> <span class="mf">0.66</span><span class="p">;</span>
+<span class="hll"><span class="kd">var</span> <span class="nx">width</span> <span class="o">=</span> <span class="nx">containerWidth</span> <span class="o">-</span> <span class="nx">margin</span><span class="p">.</span><span class="nx">right</span> <span class="o">-</span> <span class="nx">margin</span><span class="p">.</span><span class="nx">left</span><span class="p">;</span>
+</span><span class="hll"><span class="kd">var</span> <span class="nx">height</span> <span class="o">=</span> <span class="nx">containerHeight</span> <span class="o">-</span> <span class="nx">margin</span><span class="p">.</span><span class="nx">top</span> <span class="o">-</span> <span class="nx">margin</span><span class="p">.</span><span class="nx">bottom</span><span class="p">;</span>
+</span>
+<span class="kd">var</span> <span class="nx">svg</span> <span class="o">=</span> <span class="nx">container</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="s1">&#39;svg&#39;</span><span class="p">)</span>
+            <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;width&#39;</span><span class="p">,</span> <span class="nx">containerWidth</span><span class="p">)</span>
+            <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;height&#39;</span><span class="p">,</span> <span class="nx">containerHeight</span><span class="p">)</span>
+</pre></div>
+</div>
 <p>Second, we should add a <code class="docutils literal notranslate"><span class="pre">&lt;g&gt;</span></code>, or “group” tag, where everything else in our chart will go. Add this to the end of your <code class="docutils literal notranslate"><span class="pre">svg</span></code> declaration. We’ll also want to give it a <code class="docutils literal notranslate"><span class="pre">transform</span></code> attribute that shifts it slightly according to the margins we set.</p>
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="c1">// ... more code is up here</span>
 <span class="kd">var</span> <span class="nx">svg</span> <span class="o">=</span> <span class="nx">container</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="s1">&#39;svg&#39;</span><span class="p">)</span>
@@ -808,7 +848,7 @@ $ git commit -m <span class="s2">&quot;Created a victims card grid&quot;</span>
 </span></pre></div>
 </div>
 <p>At this point, we’re ready to start drawing our chart. Let’s start with by creating the “scales” for our data. D3 manages its data by mapping input values from the data, also known as the domain, into output values on the screen, or the range. This creates a scale that transforms the input into the output.</p>
-<p>D3 has many different types of scales, for linear, categorical and time-based data, but in this case, linear should work fine for both our x and y axes.</p>
+<p>D3 has many different types of scales, for linear, categorical and time-based data. In this case, we’ll want a linear scale for the Y axis, and a “band” scale, which is a type of categorical scale useful for bar charts, for the X axis.</p>
 <p>I like to calculate the input, or domain, before creating the axes. The domain takes the form of an array with the minimum and maximum value that you want to map: e.g., <code class="docutils literal notranslate"><span class="pre">[0,</span> <span class="pre">100]</span></code> if you’re looking at a 100-point grade scale. We can use D3’s <code class="docutils literal notranslate"><span class="pre">min</span></code> and <code class="docutils literal notranslate"><span class="pre">max</span></code> helper functions to find this.</p>
 <p>If you look at the data in <code class="docutils literal notranslate"><span class="pre">src/_data/annual_totals.json</span></code>, you’ll see that each year’s data is organized like this:</p>
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
@@ -819,13 +859,14 @@ $ git commit -m <span class="s2">&quot;Created a victims card grid&quot;</span>
 </pre></div>
 </div>
 <p>Since we’re charting homicides for the entire county we want the <code class="docutils literal notranslate"><span class="pre">homicides_total</span></code> attribute in our data for the Y axis, and the X axis will be the year. The arrow <code class="docutils literal notranslate"><span class="pre">=&gt;</span></code> is a shorthand method of accessing the <code class="docutils literal notranslate"><span class="pre">homicides_total</span></code> attribute of each object in the annualTotals array.</p>
-<p>Note that for the X axis, all we want is an array of the years, e.g.:<code class="docutils literal notranslate"><span class="pre">[2000,</span> <span class="pre">2001,</span> <span class="pre">...]</span></code> so we can call <code class="docutils literal notranslate"><span class="pre">.map()</span></code> on our data to return the year value.</p>
+<p>Note that for the X axis, all we want is an array of the years, e.g.:<code class="docutils literal notranslate"><span class="pre">[2000,</span> <span class="pre">2001,</span> <span class="pre">...]</span></code> so we can call <code class="docutils literal notranslate"><span class="pre">.map()</span></code> on our data to return the year value. <code class="docutils literal notranslate"><span class="pre">.map()</span></code> iterates over every value in an array and returns a value for every item.</p>
+<p>For the Y-axis, we want the domain to start at 0, so we can set that manually.</p>
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="c1">// The rest of your code is up here</span>
 
     <span class="kd">var</span> <span class="nx">xDomain</span> <span class="o">=</span> <span class="nx">annualTotals</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="nx">d</span> <span class="p">=&gt;</span> <span class="nx">d</span><span class="p">.</span><span class="nx">year</span><span class="p">);</span>
 
     <span class="kd">var</span> <span class="nx">yDomain</span> <span class="o">=</span> <span class="p">[</span>
-    <span class="nx">d3</span><span class="p">.</span><span class="nx">min</span><span class="p">(</span><span class="nx">annualTotals</span><span class="p">,</span> <span class="nx">d</span> <span class="p">=&gt;</span> <span class="nx">d</span><span class="p">.</span><span class="nx">homicides_total</span><span class="p">),</span>
+    <span class="mi">0</span><span class="p">,</span>
     <span class="nx">d3</span><span class="p">.</span><span class="nx">max</span><span class="p">(</span><span class="nx">annualTotals</span><span class="p">,</span> <span class="nx">d</span> <span class="p">=&gt;</span> <span class="nx">d</span><span class="p">.</span><span class="nx">homicides_total</span><span class="p">)</span>
     <span class="p">];</span>
 </pre></div>
@@ -834,20 +875,25 @@ $ git commit -m <span class="s2">&quot;Created a victims card grid&quot;</span>
 <p>At the bottom of your file, let’s create an <code class="docutils literal notranslate"><span class="pre">xScale</span></code> and <code class="docutils literal notranslate"><span class="pre">yScale</span></code> now. Note that at this point we’re also setting the range, or output values, to the range between 0 and the height and width of our SVG.</p>
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="c1">// The rest of your code is up here</span>
 
-<span class="kd">var</span> <span class="nx">xScale</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">scaleLinear</span><span class="p">()</span>
+<span class="kd">var</span> <span class="nx">xScale</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">scaleBand</span><span class="p">()</span>
               <span class="p">.</span><span class="nx">domain</span><span class="p">(</span><span class="nx">xDomain</span><span class="p">)</span>
-              <span class="p">.</span><span class="nx">range</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="nx">width</span><span class="p">]);</span>
+              <span class="p">.</span><span class="nx">range</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="nx">width</span><span class="p">])</span>
+              <span class="p">.</span><span class="nx">padding</span><span class="p">(</span><span class="mf">0.1</span><span class="p">);</span>
 
 <span class="kd">var</span> <span class="nx">yScale</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">scaleLinear</span><span class="p">()</span>
               <span class="p">.</span><span class="nx">domain</span><span class="p">(</span><span class="nx">yDomain</span><span class="p">)</span>
               <span class="p">.</span><span class="nx">range</span><span class="p">([</span><span class="nx">height</span><span class="p">,</span> <span class="mi">0</span><span class="p">]);</span>
 </pre></div>
 </div>
+<p>Note that the X scale has an additional method, <code class="docutils literal notranslate"><span class="pre">.padding()</span></code>, which specifies how far apart our bars are from one another.</p>
 <p>Now that we have scales, we can create our axes. D3 has helper functions for each side of the chart we want our axes on, in this case the left for the Y-axis and bottom for the X-axis. We also assign one of the scales we just created to each axis.</p>
+<p>For the Y-axis, we also want to add grid lines and limit the number of ticks that are shown.</p>
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="c1">// The rest of your code is up here</span>
 
 <span class="kd">var</span> <span class="nx">xAxis</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">axisBottom</span><span class="p">(</span><span class="nx">xScale</span><span class="p">);</span>
-<span class="kd">var</span> <span class="nx">yAxis</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">axisLeft</span><span class="p">(</span><span class="nx">yScale</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">yAxis</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">axisLeft</span><span class="p">(</span><span class="nx">yScale</span><span class="p">)</span>
+              <span class="p">.</span><span class="nx">tickSize</span><span class="p">(</span><span class="o">-</span><span class="nx">width</span><span class="p">)</span>
+              <span class="p">.</span><span class="nx">ticks</span><span class="p">(</span><span class="mi">4</span><span class="p">);</span>
 </pre></div>
 </div>
 <p>Finally, we append those to the chart by appending a <code class="docutils literal notranslate"><span class="pre">&lt;g&gt;</span></code> tag and “calling” the axis function we just created. I like to give each axis element a class of “axis” and “x” or “y”, depending on which axis we’re creating.</p>
@@ -868,8 +914,8 @@ $ git commit -m <span class="s2">&quot;Created a victims card grid&quot;</span>
 
 <span class="nx">svg</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="s2">&quot;g&quot;</span><span class="p">)</span>
     <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;class&quot;</span><span class="p">,</span> <span class="s2">&quot;x axis&quot;</span><span class="p">)</span>
-    <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;transform&quot;</span><span class="p">,</span> <span class="sb">`translate(0,</span><span class="si">${</span><span class="nx">height</span><span class="si">}</span><span class="sb">)`</span><span class="p">)</span>
-    <span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="nx">xAxis</span><span class="p">);</span>
+<span class="hll">    <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;transform&quot;</span><span class="p">,</span> <span class="sb">`translate(0,</span><span class="si">${</span><span class="nx">height</span><span class="si">}</span><span class="sb">)`</span><span class="p">)</span>
+</span>    <span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="nx">xAxis</span><span class="p">);</span>
 </pre></div>
 </div>
 <p>[PHOTO OF CORRECTED CHART AXES]</p>
@@ -882,6 +928,7 @@ $ git commit -m <span class="s2">&quot;Created a victims card grid&quot;</span>
 </div>
 <p>Let’s give it a try, by binding our <code class="docutils literal notranslate"><span class="pre">annualTotals</span></code> data to the bars on the chart. Start below the code for your axes. First, let’s simply append the <code class="docutils literal notranslate"><span class="pre">&lt;rect&gt;</span></code> elements to the chart</p>
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="c1">// The rest of your code is up here</span>
+
 <span class="nx">svg</span><span class="p">.</span><span class="nx">selectAll</span><span class="p">(</span><span class="s1">&#39;.bar&#39;</span><span class="p">)</span>
     <span class="p">.</span><span class="nx">data</span><span class="p">(</span><span class="nx">annualTotals</span><span class="p">)</span>
     <span class="p">.</span><span class="nx">enter</span><span class="p">()</span>
@@ -892,6 +939,7 @@ $ git commit -m <span class="s2">&quot;Created a victims card grid&quot;</span>
 <p>[PICTURE OF INSPECTOR SHOWING RECT ELEMENTS]</p>
 <p>Now if you look at your chart… nothing has changed! But open your inspector and look at your SVG - you’ll see lots of <code class="docutils literal notranslate"><span class="pre">&lt;rect&gt;</span></code> elements, you just can’t see them because they don’t have any values for height and width, or x and y position values. Let’s do this next.</p>
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="c1">// The rest of your code is up here</span>
+
 <span class="nx">svg</span><span class="p">.</span><span class="nx">selectAll</span><span class="p">(</span><span class="s1">&#39;.bar&#39;</span><span class="p">)</span>
     <span class="p">.</span><span class="nx">data</span><span class="p">(</span><span class="nx">annualTotals</span><span class="p">)</span>
     <span class="p">.</span><span class="nx">enter</span><span class="p">()</span>
@@ -905,8 +953,50 @@ $ git commit -m <span class="s2">&quot;Created a victims card grid&quot;</span>
 </div>
 <p>The X value will be determined by the year, and the Y by the <code class="docutils literal notranslate"><span class="pre">homicides_total</span></code> value of each object. The width of each bar is set by a method called <code class="docutils literal notranslate"><span class="pre">.bandwidth()</span></code> on our scale, and the height will be</p>
 <p>[PICTURE OF CHARTS WITH BARS]</p>
-<p>You have a bar chart! At this point we can step back and style out the charts a little big, since the all black is a little overly minimalist.</p>
-<p>At this point, open up your</p>
+<p>You have a bar chart! At this point we can step back and style out the chart, and leave room for a second chart that shows Harvard Park homicides.</p>
+<p>At this point, create a new file in the <code class="docutils literal notranslate"><span class="pre">_styles</span></code> folder, and call it <code class="docutils literal notranslate"><span class="pre">_charts.scss</span></code>.</p>
+<p>The first thing we need to do is make the chart smaller - right now it’s huge! Add the following CSS rule to <code class="docutils literal notranslate"><span class="pre">_charts.scss</span></code> which will allow the chart to display at roughly half width and leave room for a second chart.</p>
+<div class="highlight-css notranslate"><div class="highlight"><pre><span></span><span class="p">.</span><span class="nc">inline-chart</span> <span class="p">{</span>
+    <span class="k">width</span><span class="p">:</span> <span class="mi">49</span><span class="kt">%</span><span class="p">;</span>
+    <span class="k">float</span><span class="p">:</span> <span class="kc">left</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>If you look at the page now, you’ll see that nothing has changed. That’s because we need to import the styles that we just created into our <code class="docutils literal notranslate"><span class="pre">main.scss</span></code> file.</p>
+<p>You can do that by adding the following line to <code class="docutils literal notranslate"><span class="pre">main.scss</span></code>.</p>
+<div class="highlight-css notranslate"><div class="highlight"><pre><span></span><span class="o">//</span> <span class="nt">Normalize</span> <span class="nt">Styles</span>
+<span class="p">@</span><span class="k">import</span> <span class="s1">&#39;node_modules/normalize.css/normalize&#39;</span><span class="p">;</span>
+
+<span class="o">//</span> <span class="nt">Import</span> <span class="nt">Modules</span>
+<span class="p">@</span><span class="k">import</span> <span class="s1">&#39;../_modules/link/link&#39;</span><span class="p">;</span>
+<span class="hll"><span class="p">@</span><span class="k">import</span> <span class="s1">&#39;./charts.scss&#39;</span><span class="p">;</span>
+</span></pre></div>
+</div>
+<p>Let’s also color the bars and clean up some of the lines. If you remember, the bars were <code class="docutils literal notranslate"><span class="pre">&lt;rect&gt;</span></code> elements, and if you use the inspector, you can find the x axis lines we want to remove. Back in <code class="docutils literal notranslate"><span class="pre">_charts.scss</span></code>:</p>
+<div class="highlight-css notranslate"><div class="highlight"><pre><span></span><span class="nt">rect</span> <span class="p">{</span>
+  <span class="n">fill</span><span class="p">:</span> <span class="mh">#86C7DF</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="p">.</span><span class="nc">y</span> <span class="p">.</span><span class="nc">domain</span> <span class="p">{</span>
+  <span class="k">display</span><span class="p">:</span> <span class="kc">none</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="p">.</span><span class="nc">x</span> <span class="p">.</span><span class="nc">domain</span> <span class="p">{</span>
+  <span class="k">display</span><span class="p">:</span> <span class="kc">none</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="p">.</span><span class="nc">x</span> <span class="p">.</span><span class="nc">tick</span> <span class="nt">line</span> <span class="p">{</span>
+  <span class="k">display</span><span class="p">:</span> <span class="kc">none</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>The last thing we want to style is the grid lines - they’re too heavy and should fade into the background more. Note that we want to keep the baseline black to indicate that we’re starting at 0, so we’ll use a fancy CSS selector.</p>
+<div class="highlight-css notranslate"><div class="highlight"><pre><span></span><span class="o">//</span> <span class="nt">The</span> <span class="nt">rest</span> <span class="nt">of</span> <span class="nt">your</span> <span class="nt">styles</span> <span class="nt">are</span> <span class="nt">up</span> <span class="nt">here</span>
+<span class="p">.</span><span class="nc">y</span> <span class="p">.</span><span class="nc">tick</span><span class="p">:</span><span class="nd">not</span><span class="o">(</span><span class="p">:</span><span class="nd">first-of-type</span><span class="o">)</span> <span class="nt">line</span> <span class="p">{</span>
+  <span class="n">stroke</span><span class="p">:</span> <span class="mh">#e7e7e7</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
 <p>Last, let’s add a headline to introduce our charts section.</p>
 <div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="hll"><span class="p">&lt;</span><span class="nt">h3</span><span class="p">&gt;</span>A South L.A. neighborhood stands apart<span class="p">&lt;/</span><span class="nt">h3</span><span class="p">&gt;</span>
 </span>
