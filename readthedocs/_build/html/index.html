@@ -754,9 +754,11 @@ $ git commit -m <span class="s2">&quot;Created a victims card grid&quot;</span>
 
 {% block content %}
 
-<span class="hll"><span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;county-homicides&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-</span><span class="hll"><span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;harvard-park-homicides&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-</span>
+<span class="hll"><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;charts&quot;</span><span class="p">&gt;</span>
+</span><span class="hll">  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;inline-chart&quot;</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;county-homicides&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</span>  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;inline-chart&quot;</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;harvard-park-homicides&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+
 <span class="p">&lt;</span><span class="nt">h3</span><span class="p">&gt;</span>Lives lost<span class="p">&lt;/</span><span class="nt">h3</span><span class="p">&gt;</span>
 <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>The {{ site.data.harvard_park_homicides|length }} homicides in Harvard Park since 2000 were primarily black and Latino males, but the list includes husbands, wives, fathers, mothers of all ages, and even some small children.<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
 
@@ -958,7 +960,7 @@ $ git commit -m <span class="s2">&quot;Created a victims card grid&quot;</span>
 <p>The first thing we need to do is make the chart smaller - right now it’s huge! Add the following CSS rule to <code class="docutils literal notranslate"><span class="pre">_charts.scss</span></code> which will allow the chart to display at roughly half width and leave room for a second chart.</p>
 <div class="highlight-css notranslate"><div class="highlight"><pre><span></span><span class="p">.</span><span class="nc">inline-chart</span> <span class="p">{</span>
     <span class="k">width</span><span class="p">:</span> <span class="mi">49</span><span class="kt">%</span><span class="p">;</span>
-    <span class="k">float</span><span class="p">:</span> <span class="kc">left</span><span class="p">;</span>
+    <span class="k">display</span><span class="p">:</span> <span class="kc">inline-block</span><span class="p">;</span>
 <span class="p">}</span>
 </pre></div>
 </div>
@@ -990,7 +992,7 @@ $ git commit -m <span class="s2">&quot;Created a victims card grid&quot;</span>
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>The last thing we want to style is the grid lines - they’re too heavy and should fade into the background more. Note that we want to keep the baseline black to indicate that we’re starting at 0, so we’ll use a fancy CSS selector.</p>
+<p>The last thing we want to style is the grid lines - they’re too heavy and should fade into the background more. Note that we want to keep the baseline black to indicate that we’re starting at 0, so we’ll use a fancy CSS selector that says to style every tick line that’s not the baseline.</p>
 <div class="highlight-css notranslate"><div class="highlight"><pre><span></span><span class="o">//</span> <span class="nt">The</span> <span class="nt">rest</span> <span class="nt">of</span> <span class="nt">your</span> <span class="nt">styles</span> <span class="nt">are</span> <span class="nt">up</span> <span class="nt">here</span>
 <span class="p">.</span><span class="nc">y</span> <span class="p">.</span><span class="nc">tick</span><span class="p">:</span><span class="nd">not</span><span class="o">(</span><span class="p">:</span><span class="nd">first-of-type</span><span class="o">)</span> <span class="nt">line</span> <span class="p">{</span>
   <span class="n">stroke</span><span class="p">:</span> <span class="mh">#e7e7e7</span><span class="p">;</span>

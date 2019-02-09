@@ -956,8 +956,10 @@ First, we need somewhere for our charts to go. In our ``index.nunjucks`` file, i
 
     {% block content %}
 
-    <div id="county-homicides"></div>
-    <div id="harvard-park-homicides"></div>
+    <div class="charts">
+      <div class="inline-chart" id="county-homicides"></div>
+      <div class="inline-chart" id="harvard-park-homicides"></div>
+    </div>
 
     <h3>Lives lost</h3>
     <p>The {{ site.data.harvard_park_homicides|length }} homicides in Harvard Park since 2000 were primarily black and Latino males, but the list includes husbands, wives, fathers, mothers of all ages, and even some small children.</p>
@@ -1223,7 +1225,7 @@ The first thing we need to do is make the chart smaller - right now it's huge! A
 
     .inline-chart {
         width: 49%;
-        float: left;
+        display: inline-block;
     }
 
 If you look at the page now, you'll see that nothing has changed. That's because we need to import the styles that we just created into our ``main.scss`` file.
@@ -1260,7 +1262,7 @@ Let's also color the bars and clean up some of the lines. If you remember, the b
     display: none;
   }
 
-The last thing we want to style is the grid lines - they're too heavy and should fade into the background more. Note that we want to keep the baseline black to indicate that we're starting at 0, so we'll use a fancy CSS selector.
+The last thing we want to style is the grid lines - they're too heavy and should fade into the background more. Note that we want to keep the baseline black to indicate that we're starting at 0, so we'll use a fancy CSS selector that says to style every tick line that's not the baseline.
 
 .. code-block:: css
 
