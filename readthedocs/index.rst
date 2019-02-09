@@ -944,7 +944,7 @@ What chart should we make? The story points out that Harvard Park experienced an
 First, we need somewhere for our charts to go. In our ``index.nunjucks`` file, inside of ``{% block content %}`` where you want the chart to appear, create a ``div`` element with an id of ``county-homicides``, and another with an id of ``harvard-park-homicides``.
 
 .. code-block:: html
-    :emphasize-lines: 11-12
+    :emphasize-lines: 11-14
 
     {% extends '_layouts/base.nunjucks' %}
 
@@ -1271,8 +1271,203 @@ The last thing we want to style is the grid lines - they're too heavy and should
       stroke: #e7e7e7;
     }
 
+Now we have a nicely styled chart, and we're ready to start on our second one. Do we want to copy everything all over again? No! Instead, we can pull the JavaScript we just wrote into a function that will take our data and an element, and create the chart for us!
 
-Last, let's add a headline to introduce our charts section.
+Open up ``_charts.js`` again, and create a function, ``createChart``. We'll need to think about this for a second - what are the values that are going to change between the two charts?
+
+- Container element
+- Data field used for the homicide counts
+- Y-axis values
+
+If we calculate the domain values correctly the Y-axis values should automatically update so we shouldn't have to worry about that too much. So our function should have two arguments - the ID of the container element, and the data field we're using.
+
+.. code-block:: javascript
+
+    // the rest of your code is up here
+    function createChart(el, fieldname) {
+
+    }
+
+Now, you can copy everything we wrote in ``_charts.js`` under the ``require('d3')`` line into this function. Your file should look like this now.
+
+.. code-block:: javascript
+
+    var d3 = require('d3');
+
+    function createChart(el, fieldname) {
+      var margin = {top: 20, right:20, bottom:20, left:40} ;
+      var container = d3.select('#county-homicides');
+      var containerWidth = container.node().offsetWidth;
+      var containerHeight = containerWidth * 0.66;
+      var width = containerWidth - margin.right - margin.left;
+      var height = containerHeight - margin.top - margin.bottom;
+
+      var svg = container.append('svg')
+          .attr('width', containerWidth)
+          .attr('height', containerHeight)
+          .append('g')
+            .attr('transform', `translate(${margin.left}, ${margin.top})`)
+
+      var xDomain = annualTotals.map(d => d.year);
+
+      var yDomain = [
+          0,
+          d3.max(annualTotals, d => d.homicides_total)
+      ];
+
+      var xScale = d3.scaleBand()
+                    .domain(xDomain)
+                    .range([0, width])
+                    .padding(0.1);
+
+      var yScale = d3.scaleLinear()
+                    .domain(yDomain)
+                    .range([height, 0]);
+
+      var xAxis = d3.axisBottom(xScale);
+      var yAxis = d3.axisLeft(yScale)
+                      .tickSize(-width)
+                      .ticks(4);
+
+      svg.append("g")
+          .attr("class", "x axis")
+          .attr("transform", `translate(0,${height})`)
+          .call(xAxis);
+
+      svg.append("g")
+          .attr("class", "y axis")
+          .call(yAxis);
+
+      svg.selectAll('.bar')
+          .data(annualTotals)
+          .enter()
+          .append('rect')
+          .attr('class', 'bar')
+          .attr('x', d => xScale(d.year))
+          .attr('y', d => yScale(d.homicides_total))
+          .attr('width', d => xScale.bandwidth())
+          .attr('height', d => height - yScale(d.homicides_total));
+    }
+
+Now, if you reload your page, your chart will have disappeared! That's because our code is no longer running since it's in a function, but we're not calling that function.
+
+At the end of the file, let's call the function with the arguments necessary for the countywide homicides chart. Remember the element id is ``county-homicides``, and the field we're using is ``homicides_total``.
+
+.. code-block:: javascript
+
+    // the rest of your code is up here
+    createChart("#county-homicides", "homicides_total")
+
+You'll see that your chart is back! But the only reason this is actually working is because we've already hard-coded our variables into the script. Let's abstract it out to use the arguments that we're providing.
+
+First, let's change the ``container`` variable to use the ID we're providing.
+
+.. code-block:: javascript
+    :emphasize-lines: 3
+
+    function createChart(el, fieldname) {
+      var margin = {top: 20, right:20, bottom:20, left:40} ;
+      var container = d3.select(el);
+
+      //... the function continues down here
+    }
+
+Now try calling it on the second element we created, with the ``homicides_harvard_park`` variable as the second argument.
+
+.. code-block:: javascript
+    :emphasize-lines: 2
+
+    createChart("#county-homicides", "homicides_total")
+    createChart("#harvard-park-homicides", "homicides_harvard_park")
+
+[PICTURE OF SAME CHART TWICE]
+
+This gives us the same chart twice, which is expected since we still have the data values hard-coded.
+
+To change this, we'll have to find every instance where we reference the ``homicides_total`` field directly in the function, and change it to reference the argument we are passing in for the data field.
+
+Note that in many cases we'll have to change the syntax from ``d.homicides_total`` to ``d[fieldname]`` - this is because we're referencing a variable and not a specific field.
+
+Luckily, we only have to do this a few times, once where we're calculating the domain, and then where we're setting the y position and heights of the bars.
+
+.. code-block:: javascript
+    :emphasize-lines: 19,51,53
+
+    function createChart(el, fieldname) {
+      var margin = {top: 20, right:20, bottom:20, left:40} ;
+      var container = d3.select('#county-homicides');
+      var containerWidth = container.node().offsetWidth;
+      var containerHeight = containerWidth * 0.66;
+      var width = containerWidth - margin.right - margin.left;
+      var height = containerHeight - margin.top - margin.bottom;
+
+      var svg = container.append('svg')
+          .attr('width', containerWidth)
+          .attr('height', containerHeight)
+          .append('g')
+            .attr('transform', `translate(${margin.left}, ${margin.top})`)
+
+      var xDomain = annualTotals.map(d => d.year);
+
+      var yDomain = [
+          0,
+          d3.max(annualTotals, d => d[fieldname])
+      ];
+
+      var xScale = d3.scaleBand()
+                    .domain(xDomain)
+                    .range([0, width])
+                    .padding(0.1);
+
+      var yScale = d3.scaleLinear()
+                    .domain(yDomain)
+                    .range([height, 0]);
+
+      var xAxis = d3.axisBottom(xScale);
+      var yAxis = d3.axisLeft(yScale)
+                      .tickSize(-width)
+                      .ticks(4);
+
+      svg.append("g")
+          .attr("class", "x axis")
+          .attr("transform", `translate(0,${height})`)
+          .call(xAxis);
+
+      svg.append("g")
+          .attr("class", "y axis")
+          .call(yAxis);
+
+      svg.selectAll('.bar')
+          .data(annualTotals)
+          .enter()
+          .append('rect')
+          .attr('class', 'bar')
+          .attr('x', d => xScale(d.year))
+          .attr('y', d => yScale(d[fieldname]))
+          .attr('width', d => xScale.bandwidth())
+          .attr('height', d => height - yScale(d[fieldname]));
+    }
+
+[PICTURE OF TWO DIFFERENT CHARTS]
+
+Now that our charts are smaller and they're right next to each other, we need to clean up those year labels. Since our years are the same in both charts, we can set this manually when we're creating the X axis.
+
+Let's update the ``xAxis`` variable in ``createCharts`` to label the first and last bars on the chart, and the 5-year intervals.
+
+.. code-block:: javascript
+    :emphasize-lines: 3
+
+      // ... more code is up here
+      var xAxis = d3.axisBottom(xScale)
+                  .tickValues([2000, 2005, 2010, 2015, 2017]);
+
+      var yAxis = d3.axisLeft(yScale)
+                      .tickSize(-width)
+                      .ticks(4);
+
+      // ... more code is down here
+
+This cleans things up a lot! We have some pretty good-looking charts. Last, let's add a headline to introduce our charts section.
 
 .. code-block:: html
     :emphasize-lines: 1
