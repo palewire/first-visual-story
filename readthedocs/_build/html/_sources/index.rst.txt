@@ -884,40 +884,34 @@ Chapter 6: Hello charts
 
 We have data, but what does it look like?
 
-To visualize our data, we're going to use `plotly.js <https://plot.ly/javascript/>`_. Plotly.js is an open source library built on top of the popular `D3 <https://d3js.org/>`_ library, which powers a lot of the news graphics made with JavaScript you see online.
+To visualize our data, we're going to use `D3.js <https://d3js.org/>`_ library, which has become the industry standard for data visualization. Since it is so flexible for data vizualization and mapping applications, D3 powers many of the news graphics made with JavaScript you see online.
 
-.. note::
-
-    You've probably heard of the `D3 <https://d3js.org>`_, the data visualization library by Mike Bostock. Why aren't we using it? It's an incredibly powerful tool, but a little too complex for making simple bar charts on your first day writing JavaScript. Instead we're going to use a library that simplifies the tools provided by D3 into something that's easier to use.
-
-
-First, use npm to install plotly.js.
+First, use npm to install D3.
 
 .. code-block:: bash
 
-    $ npm install -s plotly.js
+    $ npm install -s d3
 
 
-The ``-s`` argument saves plotly to a dependencies file. That way, if you ever need to go through the install steps for your app again, you can do so easily.
+The ``-s`` argument saves plotly to a dependencies file. That way, if you ever need to go through the install steps for your app again, you can do so easily by simply running ``npm install``.
 
 From here, we'll be working in our ``_scripts`` folder. Create a file called ``_charts.js`` inside of ``_scripts/``.
 
-You can include the libraries we installed (or any JavaScript file!) by using ``require()``. Plotly is a HUGE library, so we're only going to import the parts of it that we need.
+You can include the libraries we installed (or any JavaScript file!) by using ``require()``. While with modern versions of D3 you can import specific parts of the library that are most relevant to your app, we're just going to import the whole library for simplicity.
 
 .. code-block:: javascript
 
-    var Plotly = require('plotly.js/lib/core');
-    var Plotlybar = require('plotly.js/lib/bar');
-
-    Plotly.register(Plotlybar);
+    var d3 = require('d3');
 
     // At the end of the _charts.js file
-    console.log('hello, this is my charts file!')
+    console.log('hello, this is my charts file!');
 
 
 Remember our underscore coding convention? Here, ``_charts.js`` has an underscore (``_``) in front of it because it will be compiled into ``main.js`` when the site is baked.
 
 That is, if we tell it to. Use the same ``require()`` method to pull our code into ``main.js``. Unlike ``_charts.js``, ``main.js`` doesn't have an underscore, because it is the file that the other scripts will be pulled into.
+
+You don't have to use this convention, but it's handy as a visual marker of what files are dependent on others.
 
 .. code-block:: javascript
     :emphasize-lines: 14
@@ -947,10 +941,10 @@ Now if you reload your page and go to your inspector (click on the three dots in
 
 What chart should we make? The story points out that Harvard Park experienced an increase in homicides as there was a decrease across the rest of the county. Let's try to visualize that.
 
-First, we need somewhere for our charts to go. In our ``index.nunjucks`` file, inside of ``{% block content %}`` where you want the chart to go, create a ``div`` element with an id of ``county-homicides``, and another with an id of ``harvard-park-homicides``.
+First, we need somewhere for our charts to go. In our ``index.nunjucks`` file, inside of ``{% block content %}`` where you want the chart to appear, create a ``div`` element with an id of ``county-homicides``, and another with an id of ``harvard-park-homicides``.
 
 .. code-block:: html
-    :emphasize-lines: 11-12
+    :emphasize-lines: 11-14
 
     {% extends '_layouts/base.nunjucks' %}
 
@@ -962,8 +956,13 @@ First, we need somewhere for our charts to go. In our ``index.nunjucks`` file, i
 
     {% block content %}
 
-    <div id="county-homicides"></div>
-    <div id="harvard-park-homicides"></div>
+    <div class="charts">
+      <div class="inline-chart" id="county-homicides"></div>
+      <div class="inline-chart" id="harvard-park-homicides"></div>
+    </div>
+
+    <h3>Lives lost</h3>
+    <p>The {{ site.data.harvard_park_homicides|length }} homicides in Harvard Park since 2000 were primarily black and Latino males, but the list includes husbands, wives, fathers, mothers of all ages, and even some small children.</p>
 
     {% for obj in site.data.harvard_park_homicides %}
     <div class="card-columns">
@@ -982,7 +981,7 @@ First, we need somewhere for our charts to go. In our ``index.nunjucks`` file, i
     {% endblock %}
 
 
-Meanwhile, we need data. Copy the `annual totals data <https://raw.githubusercontent.com/ireapps/first-graphics-app/master/src/_data/annual_totals.json>`_ to ``_data/annual_totals.json``. This file contains annual homicide counts for Harvard Park and all of Los Angeles County. We can use nunjucks to include our data file directly in the template.
+Meanwhile, we need data. Copy the `annual totals data <https://raw.githubusercontent.com/ireapps/first-graphics-app/master/src/_data/annual_totals.json>`_ to a new file, ``_data/annual_totals.json``. This file contains annual homicide counts for Harvard Park and all of Los Angeles County. We can use nunjucks to include our data file directly in the template.
 
 Add a ``{% scripts %}`` block to the end of your ``index.nunjucks`` file:
 
@@ -995,208 +994,243 @@ Add a ``{% scripts %}`` block to the end of your ``index.nunjucks`` file:
     {% endblock %}
 
 
-Making a chart in Plotly is simple, but we have to do some data transformation first. Plotly wants the x and y values of the chart to be in arrays, which are like a list of values. Meanwhle, if you look in ``_data/annual_totals.json``, you'll see that the data is structured in JavaScript objects, like this:
+We want to make two charts - one of county homicides and one of killings in Harvard Park. Let's start with county homicides. D3 requires us to do a bit of house work before we get started. The first thing we need is a container for our chart to go in. We'll be making these charts in an ``<svg>`` element, which stands for Scalable Vector Graphic.
+
+The first thing we'll want to do is select the HTML container of the chart with D3, and "append" an ``svg`` element to it.
+
+.. code-block:: javascript
+    :emphasize-lines: 3-5
+
+    var d3 = require('d3');
+
+    // Make sure you use the # here!
+    var container = d3.select('#county-homicides');
+    var svg = container.append('svg')
+
+Now if you look in your inspector, you'll see that we've appended an ``<svg>`` to the element with an ID of ``county-homicides``. However, we also need to specify a height and width for the SVG, otherwise it will always just have default dimensions of 300x150, no matter how large our screen or device is.
+
+Let's use ``.node()`` to access the HTML element and save the width and height of the container to variables. I like to specify the height as a percentage of the width, to get an aspect ratio.
+
+.. code-block:: javascript
+    :emphasize-lines: 5-6
+
+    var d3 = require('d3');
+
+    // Make sure you use the # here!
+    var container = d3.select('#county-homicides');
+    var containerWidth = container.node().offsetWidth;
+    var containerHeight = containerWidth * 0.66;
+
+    var svg = container.append('svg')
+
+Now we can use them to set the properties, or "attributes" of the SVG using D3's ``.attr()`` method. Notice that we can "chain" methods on a selection in D3, which allows our code to be a little more concise.
+
+.. code-block:: javascript
+    :emphasize-lines: 9-10
+
+    var d3 = require('d3');
+
+    // Make sure you use the # here!
+    var container = d3.select('#county-homicides');
+    var containerWidth = container.node().offsetWidth;
+    var containerHeight = containerWidth * 0.66;
+
+    var svg = container.append('svg')
+                .attr('width', containerWidth)
+                .attr('height', containerHeight)
+
+Now if you look, your SVG should be rendered at the appropriate height and width, filling the available space.
+
+[PICTURE OF EMPTY SVG]
+
+Two more setup steps before we actually start making our charts. First, if we simply start drawing data onto the SVG, we'll likely see areas where the data clips off the chart. We can avoid this by defining a pre-set margin we'll use throughout the process.
+
+.. code-block:: javascript
+    :emphasize-lines: 3,8-9
+
+    var d3 = require('d3');
+
+    var margin = {top: 20, right:20, bottom:20, left:40} ;
+    // Make sure you use the # here!
+    var container = d3.select('#county-homicides');
+    var containerWidth = container.node().offsetWidth;
+    var containerHeight = containerWidth * 0.66;
+    var width = containerWidth - margin.right - margin.left;
+    var height = containerHeight - margin.top - margin.bottom;
+
+    var svg = container.append('svg')
+                .attr('width', containerWidth)
+                .attr('height', containerHeight)
+
+Second, we should add a ``<g>``, or "group" tag, where everything else in our chart will go. Add this to the end of your ``svg`` declaration. We'll also want to give it a ``transform`` attribute that shifts it slightly according to the margins we set.
+
+.. code-block:: javascript
+    :emphasize-lines: 5-6
+
+    // ... more code is up here
+    var svg = container.append('svg')
+            .attr('width', width)
+            .attr('height', height)
+            .append('g')
+                .attr('transform', `translate(${margin.left}, ${margin.top})`)
+
+At this point, we're ready to start drawing our chart. Let's start with by creating the "scales" for our data. D3 manages its data by mapping input values from the data, also known as the domain, into output values on the screen, or the range. This creates a scale that transforms the input into the output.
+
+D3 has many different types of scales, for linear, categorical and time-based data. In this case, we'll want a linear scale for the Y axis, and a "band" scale, which is a type of categorical scale useful for bar charts, for the X axis.
+
+I like to calculate the input, or domain, before creating the axes. The domain takes the form of an array with the minimum and maximum value that you want to map: e.g., ``[0, 100]`` if you're looking at a 100-point grade scale. We can use D3's ``min`` and ``max`` helper functions to find this.
+
+If you look at the data in ``src/_data/annual_totals.json``, you'll see that each year's data is organized like this:
 
 .. code-block:: javascript
 
-    {
-       "year":2000,
-       "homicides_total":1036,
-       "homicides_harvard_park":3
-    },
-    {
-       "year":2001,
-       "homicides_total":1125,
-       "homicides_harvard_park":2
-    },
-    ...
+  {
+    "year":2000,
+    "homicides_total":1036,
+    "homicides_harvard_park":3
+  }
 
+Since we're charting homicides for the entire county we want the ``homicides_total`` attribute in our data for the Y axis, and the X axis will be the year. The arrow ``=>`` is a shorthand method of accessing the ``homicides_total`` attribute of each object in the annualTotals array.
 
-We want to make two charts - one of county homicides and one of killings in Harvard Park. So let's make arrays that will hold those values that we will then provide to our function, as well as the years. We can use a little bit of JavaScript shorthand for this, using the ``.map()`` method and "arrow" functions.
+Note that for the X axis, all we want is an array of the years, e.g.:``[2000, 2001, ...]`` so we can call ``.map()`` on our data to return the year value. ``.map()`` iterates over every value in an array and returns a value for every item.
 
-.. code-block:: javascript
-    :emphasize-lines: 6-9
-
-    var Plotly = require('plotly.js/lib/core');
-    var Plotlybar = require('plotly.js/lib/bar');
-
-    Plotly.register(Plotlybar);
-
-    // Initialize the arrays that will hold our lists of data
-    var countyHomicides = annualTotals.map(a => a.homicides_total);
-    var harvardParkHomicides = annualTotals.map(a => a.homicides_harvard_park);
-    var years = annualTotals.map(a => a.year);
-
-
-The ``.map()`` creates and returns an array, and the arrow (``=>``) function returns the value for each object. Think of it as "plucking" the values we want to form a list.
-
-Now that we've populated our data, we're ready to make our chart. Right now, it's pretty simple, with a single variable ``settings`` providing options for the x axis, which we want to be our ``years`` array, and y axis, which is our homicide counts, and specifying the type of the chart.
-
-Below ``settings`` we call ``Plotly.newPlot()`` with the id of the element where we want the chart to go and settings to create the chart.
-
-.. code-block:: javascript
-
-    // The rest of your code is up here.
-    // Add the below lines to the bottom of your file
-
-    // Use our x and y arrays for the values of the chart
-    var settings = [{
-        x: years,
-        y: countyHomicides,
-        type: 'bar'
-    }];
-
-    // Create the chart
-    Plotly.newPlot('county-homicides', settings);
-
-You should see something like this on your page.
-
-.. image:: _static/first-chart.png
-    :width: 100%
-
-This is a good start, but we can further customize this chart so it fits better with the rest of the page. Now, let's try to:
-
-- Add axis labels
-- Change the colors of the bars
-- Give the charts titles
-- Display the two charts alongside one another
-
-Let's add labels to our axes. Create a new variable, ``layout``. Here, we can specify display properties for ``xaxis`` and ``yaxis``. We don't have a homicide label on the Y axis because we'll add a title to the charts later that will take care of that.
-
-.. code-block:: javascript
-
-    var layout = {
-        xaxis: {
-            title: 'Year',
-            fixedrange: true
-        },
-        yaxis: {
-            fixedrange: true
-        }
-    };
-
-The option ``fixedrange`` prevents clicking to zoom in on the chart, which I find mildly annoying.
-
-Then, add ``layout`` as a third argument to ``Plotly.newPlot()``
-
-.. code-block:: javascript
-
-    Plotly.newPlot('county-homicides', settings, layout);
-
-.. image:: _static/charts-2.png
-    :width: 100%
-
-Everything in plotly.js is handled by settings like this. For example, to change the markers to an light blue, update the ``settings`` variable. Make sure you add a comma after ``type: 'bar'``.
-
-.. code-block:: javascript
-    :emphasize-lines: 5-8
-
-    var settings = [{
-      x: years,
-      y: countyHomicides,
-      type: 'bar',
-      // Add the new settings for marker here
-      marker: {
-        color: '#86c7df'
-      }
-    }];
-
-
-.. image:: _static/charts-light-blue.png
-    :width: 100%
-
-
-But wait, what if you want to make another chart? You'd have to copy and paste all that code over again.
-
-Before we get to far, let's abstract all of this into a function.
-
-.. code-block:: javascript
-
-    function createChart(x, y, element) {
-        // The code that creates our chart will go here.
-    }
-
-This is the start of a function that will take values for the x and y axes, and an HTML element, and create a chart with the data inside the element.
-
-Now copy and paste the ``settings``, ``layout`` and the call to ``Plotly.newPlot()`` into the createChart function. Change the variables ``years`` and ``countyHomicides`` to ``x`` and ``y``.
-
-Note also that we change ``'county-homicides'`` to ``element`` in the call to ``Plotly.newPlot()``.
-
-.. code-block:: javascript
-    :emphasize-lines: 4,5,23
-
-    function createChart(x, y, element) {
-        // The code that creates our chart will go here.
-        var settings = [{
-          x: x,
-          y: y,
-          type: 'bar',
-          marker: {
-            color: '#86c7df'
-          }
-        }];
-
-        var layout = {
-          xaxis: {
-            title: 'Year',
-            fixedrange: true
-          },
-          yaxis: {
-            fixedrange: true
-          }
-        };
-
-        // Create the chart
-        Plotly.newPlot(element, settings, layout);
-    }
-
-Now, if you reload the page, you won't see your chart anymore! That's because we've defined the function, but we haven't called it.
-
-To call the function, add this line to the end of your file.
+For the Y-axis, we want the domain to start at 0, so we can set that manually.
 
 .. code-block:: javascript
 
     // The rest of your code is up here
-    createChart(years, countyHomicides, 'county-homicides');
 
-Now, we can make a second chart by using the Harvard Park data. Be sure to replace the ID of the element you're building the chart in.
+  	var xDomain = annualTotals.map(d => d.year);
+
+  	var yDomain = [
+        0,
+        d3.max(annualTotals, d => d.homicides_total)
+  	];
+
+If you know the min and max values, you can also set these manually.
+
+At the bottom of your file, let's create an ``xScale`` and ``yScale`` now. Note that at this point we're also setting the range, or output values, to the range between 0 and the height and width of our SVG.
 
 .. code-block:: javascript
 
     // The rest of your code is up here
-    createChart(years, harvardParkHomicides, 'harvard-park-homicides');
 
-.. image:: _static/two-charts.png
-    :width: 100%
+    var xScale = d3.scaleBand()
+                  .domain(xDomain)
+                  .range([0, width])
+                  .padding(0.1);
 
-Not bad, right? By structuring our code this way, we'll be able to make multiple charts without repeating our code (known as `DRY <https://en.wikipedia.org/wiki/Don%27t_repeat_yourself>`_).
+    var yScale = d3.scaleLinear()
+                  .domain(yDomain)
+                  .range([height, 0]);
 
-Right now, our charts are stacked on top of each other, which isn't a great layout. We can use HTML and CSS to lay out our charts side-by-side.
+Note that the X scale has an additional method, ``.padding()``, which specifies how far apart our bars are from one another.
 
-In ``index.nunjucks``, add a ``div`` element with a class of ``charts-holder`` and ``clearfix`` that wraps your charts, and add a ``class`` of ``inline-chart`` to each of your charts.
+Now that we have scales, we can create our axes. D3 has helper functions for each side of the chart we want our axes on, in this case the left for the Y-axis and bottom for the X-axis. We also assign one of the scales we just created to each axis.
 
-Make sure you give the wrapping div a class of ``clearfix``, which will make sure that the rest of the page displays below these items.
+For the Y-axis, we also want to add grid lines and limit the number of ticks that are shown.
 
-.. code-block:: html
-    :emphasize-lines: 1,4
+.. code-block:: javascript
 
-    <div class="charts-holder clearfix">
-        <div class="inline-chart" id="county-homicides"></div>
-        <div class="inline-chart" id="harvard-park-homicides"></div>
-    </div>
+    // The rest of your code is up here
+
+    var xAxis = d3.axisBottom(xScale);
+    var yAxis = d3.axisLeft(yScale)
+                  .tickSize(-width)
+                  .ticks(4);
+
+Finally, we append those to the chart by appending a ``<g>`` tag and "calling" the axis function we just created. I like to give each axis element a class of "axis" and "x" or "y", depending on which axis we're creating.
+
+.. code-block:: javascript
+
+    // The rest of your code is up here
+
+    svg.append("g")
+        .attr("class", "x axis")
+        .call(xAxis);
+
+    svg.append("g")
+        .attr("class", "y axis")
+        .call(yAxis);
 
 
-This gives us a structure that we can style with CSS. In the ``_styles`` folder, create a file called ``_charts.scss``. In that file, copy or write the following:
+[PHOTO OF CHART AXES WITH X AXIS AT TOP]
+
+Well that doesn't look quite right. The reason the X axis is displaying at the top of the chart is that in SVGs, the coordinate 0,0 is at the top left. So we need to shift, or ``translate`` the X axis down by the height of the chart. The Y axis is fine where it is.
+
+.. code-block:: javascript
+    :emphasize-lines: 5
+
+    // The rest of your code is up here
+
+    svg.append("g")
+        .attr("class", "x axis")
+        .attr("transform", `translate(0,${height})`)
+        .call(xAxis);
+
+
+[PHOTO OF CORRECTED CHART AXES]
+
+Now that the axes are there, we're finally ready to draw our bars. D3 handles it's data by binding the data to the SVG elements - hence the name: "Data Driven Documents."
+
+The format seems a little strange at first, because you're selecting elements, then binding data to the selection, _then_ creating elements that are bound to the data. You do this by chaining two methods, ``.data()``, which determines the data set that you're binding, and ``.enter()``, which iterates over the data set.
+
+Since we're making a bar chart, we're going to create a ``<rect>`` element, and give it a class of ``bar``.
+
+.. note::
+
+    If you'd like to know more about how D3 data binding works, Scott Murray has an `excellent explanation and tutorial<https://alignedleft.com/tutorials/d3/binding-data>`_ on his website.
+
+Let's give it a try, by binding our ``annualTotals`` data to the bars on the chart. Start below the code for your axes. First, let's simply append the ``<rect>`` elements to the chart
+
+.. code-block:: javascript
+
+    // The rest of your code is up here
+
+    svg.selectAll('.bar')
+        .data(annualTotals)
+        .enter()
+        .append('rect')
+        .attr('class', 'bar')
+
+[PICTURE OF INSPECTOR SHOWING RECT ELEMENTS]
+
+Now if you look at your chart... nothing has changed! But open your inspector and look at your SVG - you'll see lots of ``<rect>`` elements, you just can't see them because they don't have any values for height and width, or x and y position values. Let's do this next.
+
+.. code-block:: javascript
+
+    // The rest of your code is up here
+
+    svg.selectAll('.bar')
+        .data(annualTotals)
+        .enter()
+        .append('rect')
+        .attr('class', 'bar')
+        .attr('x', d => xScale(d.year))
+        .attr('y', d => yScale(d.homicides_total))
+        .attr('width', d => xScale.bandWidth())
+        .attr('height', d => height - yScale(d.homicides_total))
+
+The X value will be determined by the year, and the Y by the ``homicides_total`` value of each object. The width of each bar is set by a method called ``.bandwidth()`` on our scale, and the height will be
+
+[PICTURE OF CHARTS WITH BARS]
+
+You have a bar chart! At this point we can step back and style out the chart, and leave room for a second chart that shows Harvard Park homicides.
+
+At this point, create a new file in the ``_styles`` folder, and call it ``_charts.scss``.
+
+The first thing we need to do is make the chart smaller - right now it's huge! Add the following CSS rule to ``_charts.scss`` which will allow the chart to display at roughly half width and leave room for a second chart.
 
 .. code-block:: css
 
     .inline-chart {
         width: 49%;
-        float: left;
+        display: inline-block;
     }
 
+If you look at the page now, you'll see that nothing has changed. That's because we need to import the styles that we just created into our ``main.scss`` file.
 
-You won't see anything yet, because we haven't imported it into our main stylesheet. Use ``@import`` to bring your CSS file into ``main.css``
+You can do that by adding the following line to ``main.scss``.
 
 .. code-block:: css
     :emphasize-lines: 6
@@ -1206,195 +1240,234 @@ You won't see anything yet, because we haven't imported it into our main stylesh
 
     // Import Modules
     @import '../_modules/link/link';
-    @import '_charts.scss';
+    @import './charts.scss';
 
+Let's also color the bars and clean up some of the lines. If you remember, the bars were ``<rect>`` elements, and if you use the inspector, you can find the x axis lines we want to remove. Back in ``_charts.scss``:
 
-Again, this is the same modular structure that allows us to organize our chart styles in a different place from our map styles, for example.
+.. code-block:: css
 
-Reload the page to see your changes.
+  rect {
+    fill: #86C7DF;
+  }
 
-.. image:: _static/inline-charts.png
-    :width: 100%
+  .y .domain {
+    display: none;
+  }
 
-The charts are laid out side-by-side like we want them, but there's way too much space in between them. Luckily, we can adjust the margins in the chart layout. Back in ``_scripts/charts.js``, the following settings should work.
+  .x .domain {
+    display: none;
+  }
 
-``l``, ``r``, ``t`` and ``b`` stand for left, right, top and bottom margins, respectively. Make sure you add a comma after the ``yaxis`` value!
+  .x .tick line {
+    display: none;
+  }
 
-.. code-block:: javascript
-    :emphasize-lines: 8-16
+The last thing we want to style is the grid lines - they're too heavy and should fade into the background more. Note that we want to keep the baseline black to indicate that we're starting at 0, so we'll use a fancy CSS selector that says to style every tick line that's not the baseline.
 
-    var layout = {
-        xaxis: {
-            title: 'Year',
-            fixedrange: true
-        },
-        yaxis: {
-            fixedrange: true
-        },
-        // Add the margin here
-        // Don't forget the comma above!
-        margin: {
-            l: 30,
-            r: 15,
-            t: 45,
-            b: 30
-        }
-    };
+.. code-block:: css
 
-
-We can also add a parameter to reduce the height, they're a bit tall.
-
-.. code-block:: javascript
-    :emphasize-lines: 16-17
-
-    var chartLayout = {
-        xaxis: {
-            title: 'Year',
-            fixedrange: true
-        },
-        yaxis: {
-            fixedrange: true
-        },
-        // Add the margin here
-        margin: {
-            l: 45,
-            r: 15,
-            t: 45,
-            b: 30
-        },
-        // Add a height parameter to the bottom of your file
-        height: 250
-    };
-
-
-Another nice modification - we can make the annoying toolbar go away by adjusting our call to ``Plotly.newPlot()``
-
-.. code-block:: javascript
-
-    Plotly.newPlot(element, settings, layout, {displayModeBar: false});
-
-
-.. image:: _static/two-charts-styled.png
-    :width: 100%
-
-
-Much better! There are a couple more customization options we can do with plotly. While it's useful to get the homicide numbers on hover, we don't really need those year label popups. We can turn those off by only displaying hovers for y-axis values.
-
-.. code-block:: javascript
-    :emphasize-lines: 9-10
-
-    function createChart(x, y, element) {
-      var settings = [{
-        x: x,
-        y: y,
-        type: 'bar',
-        marker: {
-          color: '#86c7df'
-        },
-        // Add this to your chart settings
-        hoverinfo: 'y'
-      }];
-
-      // the rest of your code is down here
-      ...
+    // The rest of your styles are up here
+    .y .tick:not(:first-of-type) line {
+      stroke: #e7e7e7;
     }
 
+Now we have a nicely styled chart, and we're ready to start on our second one. Do we want to copy everything all over again? No! Instead, we can pull the JavaScript we just wrote into a function that will take our data and an element, and create the chart for us!
 
-You can also slightly customize the label. For example, let's change the background color.
+Open up ``_charts.js`` again, and create a function, ``createChart``. We'll need to think about this for a second - what are the values that are going to change between the two charts?
+
+- Container element
+- Data field used for the homicide counts
+- Y-axis values
+
+If we calculate the domain values correctly the Y-axis values should automatically update so we shouldn't have to worry about that too much. So our function should have two arguments - the ID of the container element, and the data field we're using.
 
 .. code-block:: javascript
-    :emphasize-lines: 11-13
 
-    function createChart(x, y, element) {
-      var settings = [{
-        x: x,
-        y: y,
-        type: 'bar',
-        marker: {
-          color: '#86c7df'
-        },
-        // Add this to your chart settings
-        hoverinfo: 'y',
-        hoverlabel: {
-          bgcolor: '#777777'
-        }
-      }];
+    // the rest of your code is up here
+    function createChart(el, fieldname) {
 
-      // the rest of your code is down here
-      ...
     }
 
-
-.. image:: _static/two-charts-label.png
-    :width: 100%
-
-Last, our charts need titles! Since we want each chart to have a different title, we'll need to update our function a bit.
-
-We're going to
- - add an argument to our ``createChart`` function for the title,
- - send that title to our chart options,
- - update our calls to provide that title
+Now, you can copy everything we wrote in ``_charts.js`` under the ``require('d3')`` line into this function. Your file should look like this now.
 
 .. code-block:: javascript
-    :emphasize-lines: 2,8
 
-    // Note the new 'title' argument
-    function createChart(x, y, element, title) {
-        // More of the function is up here
-        ...
+    var d3 = require('d3');
 
-        // Add a 'title' parameter to the layout properties
-        var layout = {
-          title: title,
-          xaxis: {
-            title: 'Year',
-            fixedrange: true
-          },
-          yaxis: {
-            fixedrange: true
-          },
-          // Add the margin here
-          margin: {
-            l: 30,
-            r: 15,
-            t: 45,
-            b: 30
-          },
-          height: 250
-        };
+    function createChart(el, fieldname) {
+      var margin = {top: 20, right:20, bottom:20, left:40} ;
+      var container = d3.select('#county-homicides');
+      var containerWidth = container.node().offsetWidth;
+      var containerHeight = containerWidth * 0.66;
+      var width = containerWidth - margin.right - margin.left;
+      var height = containerHeight - margin.top - margin.bottom;
 
-        // Create the chart
-        Plotly.newPlot(element, settings, layout, {displayModeBar: false});
+      var svg = container.append('svg')
+          .attr('width', containerWidth)
+          .attr('height', containerHeight)
+          .append('g')
+            .attr('transform', `translate(${margin.left}, ${margin.top})`)
+
+      var xDomain = annualTotals.map(d => d.year);
+
+      var yDomain = [
+          0,
+          d3.max(annualTotals, d => d.homicides_total)
+      ];
+
+      var xScale = d3.scaleBand()
+                    .domain(xDomain)
+                    .range([0, width])
+                    .padding(0.1);
+
+      var yScale = d3.scaleLinear()
+                    .domain(yDomain)
+                    .range([height, 0]);
+
+      var xAxis = d3.axisBottom(xScale);
+      var yAxis = d3.axisLeft(yScale)
+                      .tickSize(-width)
+                      .ticks(4);
+
+      svg.append("g")
+          .attr("class", "x axis")
+          .attr("transform", `translate(0,${height})`)
+          .call(xAxis);
+
+      svg.append("g")
+          .attr("class", "y axis")
+          .call(yAxis);
+
+      svg.selectAll('.bar')
+          .data(annualTotals)
+          .enter()
+          .append('rect')
+          .attr('class', 'bar')
+          .attr('x', d => xScale(d.year))
+          .attr('y', d => yScale(d.homicides_total))
+          .attr('width', d => xScale.bandwidth())
+          .attr('height', d => height - yScale(d.homicides_total));
     }
 
+Now, if you reload your page, your chart will have disappeared! That's because our code is no longer running since it's in a function, but we're not calling that function.
 
-Then, add the title you want to your function call. We'll assign them to variables first for cleanliness.
-
-.. code-block:: javascript
-
-    var countyChartTitle = "County Homicides, 2000-2017";
-    var hpChartTitle = "Harvard Park Homicides, 2000-2017";
-
-    createChart(years, countyHomicides, 'county-homicides', countyChartTitle);
-    createChart(years, harvardParkHomicides, 'harvard-park-homicides', hpChartTitle);
-
-
-These titles are a little light and blend in to the rest of the text. Let's make them bolder. The easiest way I've found to do this with Plotly is by wrapping them in bold tags.
+At the end of the file, let's call the function with the arguments necessary for the countywide homicides chart. Remember the element id is ``county-homicides``, and the field we're using is ``homicides_total``.
 
 .. code-block:: javascript
-    :emphasize-lines: 1,2
 
-    var countyChartTitle = "<b>County Homicides, 2000-2017</b>";
-    var hpChartTitle = "<b>Harvard Park Homicides, 2000-2017</b>";
+    // the rest of your code is up here
+    createChart("#county-homicides", "homicides_total")
 
-    createChart(years, countyHomicides, 'county-homicides', countyChartTitle);
-    createChart(years, harvardParkHomicides, 'harvard-park-homicides', hpChartTitle);
+You'll see that your chart is back! But the only reason this is actually working is because we've already hard-coded our variables into the script. Let's abstract it out to use the arguments that we're providing.
 
+First, let's change the ``container`` variable to use the ID we're providing.
 
-.. image:: _static/two-charts-title.png
-    :width: 100%
+.. code-block:: javascript
+    :emphasize-lines: 3
 
-Last, let's add a headline to introduce our charts section.
+    function createChart(el, fieldname) {
+      var margin = {top: 20, right:20, bottom:20, left:40} ;
+      var container = d3.select(el);
+
+      //... the function continues down here
+    }
+
+Now try calling it on the second element we created, with the ``homicides_harvard_park`` variable as the second argument.
+
+.. code-block:: javascript
+    :emphasize-lines: 2
+
+    createChart("#county-homicides", "homicides_total")
+    createChart("#harvard-park-homicides", "homicides_harvard_park")
+
+[PICTURE OF SAME CHART TWICE]
+
+This gives us the same chart twice, which is expected since we still have the data values hard-coded.
+
+To change this, we'll have to find every instance where we reference the ``homicides_total`` field directly in the function, and change it to reference the argument we are passing in for the data field.
+
+Note that in many cases we'll have to change the syntax from ``d.homicides_total`` to ``d[fieldname]`` - this is because we're referencing a variable and not a specific field.
+
+Luckily, we only have to do this a few times, once where we're calculating the domain, and then where we're setting the y position and heights of the bars.
+
+.. code-block:: javascript
+    :emphasize-lines: 19,51,53
+
+    function createChart(el, fieldname) {
+      var margin = {top: 20, right:20, bottom:20, left:40} ;
+      var container = d3.select('#county-homicides');
+      var containerWidth = container.node().offsetWidth;
+      var containerHeight = containerWidth * 0.66;
+      var width = containerWidth - margin.right - margin.left;
+      var height = containerHeight - margin.top - margin.bottom;
+
+      var svg = container.append('svg')
+          .attr('width', containerWidth)
+          .attr('height', containerHeight)
+          .append('g')
+            .attr('transform', `translate(${margin.left}, ${margin.top})`)
+
+      var xDomain = annualTotals.map(d => d.year);
+
+      var yDomain = [
+          0,
+          d3.max(annualTotals, d => d[fieldname])
+      ];
+
+      var xScale = d3.scaleBand()
+                    .domain(xDomain)
+                    .range([0, width])
+                    .padding(0.1);
+
+      var yScale = d3.scaleLinear()
+                    .domain(yDomain)
+                    .range([height, 0]);
+
+      var xAxis = d3.axisBottom(xScale);
+      var yAxis = d3.axisLeft(yScale)
+                      .tickSize(-width)
+                      .ticks(4);
+
+      svg.append("g")
+          .attr("class", "x axis")
+          .attr("transform", `translate(0,${height})`)
+          .call(xAxis);
+
+      svg.append("g")
+          .attr("class", "y axis")
+          .call(yAxis);
+
+      svg.selectAll('.bar')
+          .data(annualTotals)
+          .enter()
+          .append('rect')
+          .attr('class', 'bar')
+          .attr('x', d => xScale(d.year))
+          .attr('y', d => yScale(d[fieldname]))
+          .attr('width', d => xScale.bandwidth())
+          .attr('height', d => height - yScale(d[fieldname]));
+    }
+
+[PICTURE OF TWO DIFFERENT CHARTS]
+
+Now that our charts are smaller and they're right next to each other, we need to clean up those year labels. Since our years are the same in both charts, we can set this manually when we're creating the X axis.
+
+Let's update the ``xAxis`` variable in ``createCharts`` to label the first and last bars on the chart, and the 5-year intervals.
+
+.. code-block:: javascript
+    :emphasize-lines: 3
+
+      // ... more code is up here
+      var xAxis = d3.axisBottom(xScale)
+                  .tickValues([2000, 2005, 2010, 2015, 2017]);
+
+      var yAxis = d3.axisLeft(yScale)
+                      .tickSize(-width)
+                      .ticks(4);
+
+      // ... more code is down here
+
+This cleans things up a lot! We have some pretty good-looking charts. Last, let's add a headline to introduce our charts section.
 
 .. code-block:: html
     :emphasize-lines: 1
@@ -1434,15 +1507,15 @@ Congratulations, you've made your charts! Let's commit our changes and move on t
 
 .. note::
 
-    We used Plotly.js in this class, but there are many other JavaScript charting libraries, each one slightly different. If you want to explore this on your own, here are some other options that we considered using for this class
+    We used D3.js in this class, but there are many other JavaScript charting libraries, each one slightly different. If you want to explore this on your own, here are some other options that generally abstract away the process we used in this class.
 
     - `Vega-lite <https://vega.github.io/vega-lite/>`_
     - `Charts.js <http://www.chartjs.org/>`_
     - `C3.js <http://c3js.org/>`_ Important to note that this does not seem to support the latest versions of D3.
-    - `D3.js <https://d3js.org/>`_ The granddaddy of them all.
 
     There are also tools that allow you to use a visual editor, creating charts and other visualizations that you can download and/or embed in your project.
 
+    - `Observable <https://beta.observablehq.com>`_ is a relatively new site that allows you to take a more exploratory approach to building your visualizations. Charts and maps update automatically as you update data or settings.
     - `Chartbuilder <https://quartz.github.io/Chartbuilder/>`_ from `Quartz <https://qz.com/>`_, is very good for basic, fast charts with light customization.
     - `DataWrapper <https://www.datawrapper.de/>`_ allows a range of visualizations beyond basic charts, including scatter plots and maps.
 

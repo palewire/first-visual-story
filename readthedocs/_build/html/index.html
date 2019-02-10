@@ -706,29 +706,23 @@ $ git commit -m <span class="s2">&quot;Created a victims card grid&quot;</span>
 <div class="section" id="chapter-6-hello-charts">
 <h2>Chapter 6: Hello charts<a class="headerlink" href="#chapter-6-hello-charts" title="Permalink to this headline">¶</a></h2>
 <p>We have data, but what does it look like?</p>
-<p>To visualize our data, we’re going to use <a class="reference external" href="https://plot.ly/javascript/">plotly.js</a>. Plotly.js is an open source library built on top of the popular <a class="reference external" href="https://d3js.org/">D3</a> library, which powers a lot of the news graphics made with JavaScript you see online.</p>
-<div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">You’ve probably heard of the <a class="reference external" href="https://d3js.org">D3</a>, the data visualization library by Mike Bostock. Why aren’t we using it? It’s an incredibly powerful tool, but a little too complex for making simple bar charts on your first day writing JavaScript. Instead we’re going to use a library that simplifies the tools provided by D3 into something that’s easier to use.</p>
-</div>
-<p>First, use npm to install plotly.js.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ npm install -s plotly.js
+<p>To visualize our data, we’re going to use <a class="reference external" href="https://d3js.org/">D3.js</a> library, which has become the industry standard for data visualization. Since it is so flexible for data vizualization and mapping applications, D3 powers many of the news graphics made with JavaScript you see online.</p>
+<p>First, use npm to install D3.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ npm install -s d3
 </pre></div>
 </div>
-<p>The <code class="docutils literal notranslate"><span class="pre">-s</span></code> argument saves plotly to a dependencies file. That way, if you ever need to go through the install steps for your app again, you can do so easily.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">-s</span></code> argument saves plotly to a dependencies file. That way, if you ever need to go through the install steps for your app again, you can do so easily by simply running <code class="docutils literal notranslate"><span class="pre">npm</span> <span class="pre">install</span></code>.</p>
 <p>From here, we’ll be working in our <code class="docutils literal notranslate"><span class="pre">_scripts</span></code> folder. Create a file called <code class="docutils literal notranslate"><span class="pre">_charts.js</span></code> inside of <code class="docutils literal notranslate"><span class="pre">_scripts/</span></code>.</p>
-<p>You can include the libraries we installed (or any JavaScript file!) by using <code class="docutils literal notranslate"><span class="pre">require()</span></code>. Plotly is a HUGE library, so we’re only going to import the parts of it that we need.</p>
-<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">Plotly</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;plotly.js/lib/core&#39;</span><span class="p">);</span>
-<span class="kd">var</span> <span class="nx">Plotlybar</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;plotly.js/lib/bar&#39;</span><span class="p">);</span>
-
-<span class="nx">Plotly</span><span class="p">.</span><span class="nx">register</span><span class="p">(</span><span class="nx">Plotlybar</span><span class="p">);</span>
+<p>You can include the libraries we installed (or any JavaScript file!) by using <code class="docutils literal notranslate"><span class="pre">require()</span></code>. While with modern versions of D3 you can import specific parts of the library that are most relevant to your app, we’re just going to import the whole library for simplicity.</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">d3</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;d3&#39;</span><span class="p">);</span>
 
 <span class="c1">// At the end of the _charts.js file</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;hello, this is my charts file!&#39;</span><span class="p">)</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;hello, this is my charts file!&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
 <p>Remember our underscore coding convention? Here, <code class="docutils literal notranslate"><span class="pre">_charts.js</span></code> has an underscore (<code class="docutils literal notranslate"><span class="pre">_</span></code>) in front of it because it will be compiled into <code class="docutils literal notranslate"><span class="pre">main.js</span></code> when the site is baked.</p>
 <p>That is, if we tell it to. Use the same <code class="docutils literal notranslate"><span class="pre">require()</span></code> method to pull our code into <code class="docutils literal notranslate"><span class="pre">main.js</span></code>. Unlike <code class="docutils literal notranslate"><span class="pre">_charts.js</span></code>, <code class="docutils literal notranslate"><span class="pre">main.js</span></code> doesn’t have an underscore, because it is the file that the other scripts will be pulled into.</p>
+<p>You don’t have to use this convention, but it’s handy as a visual marker of what files are dependent on others.</p>
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="c1">// Main javascript entry point</span>
 <span class="c1">// Should handle bootstrapping/starting application</span>
 
@@ -749,7 +743,7 @@ $ git commit -m <span class="s2">&quot;Created a victims card grid&quot;</span>
 <p>Now if you reload your page and go to your inspector (click on the three dots in the top right of Chrome, go down to “More tools” and select “Developer tools”), you should see <code class="docutils literal notranslate"><span class="pre">hello,</span> <span class="pre">this</span> <span class="pre">is</span> <span class="pre">my</span> <span class="pre">charts</span> <span class="pre">file!</span></code> in the console.</p>
 <a class="reference internal image-reference" href="_images/hello-charts.png"><img alt="_images/hello-charts.png" src="_images/hello-charts.png" style="width: 100%;" /></a>
 <p>What chart should we make? The story points out that Harvard Park experienced an increase in homicides as there was a decrease across the rest of the county. Let’s try to visualize that.</p>
-<p>First, we need somewhere for our charts to go. In our <code class="docutils literal notranslate"><span class="pre">index.nunjucks</span></code> file, inside of <code class="docutils literal notranslate"><span class="pre">{%</span> <span class="pre">block</span> <span class="pre">content</span> <span class="pre">%}</span></code> where you want the chart to go, create a <code class="docutils literal notranslate"><span class="pre">div</span></code> element with an id of <code class="docutils literal notranslate"><span class="pre">county-homicides</span></code>, and another with an id of <code class="docutils literal notranslate"><span class="pre">harvard-park-homicides</span></code>.</p>
+<p>First, we need somewhere for our charts to go. In our <code class="docutils literal notranslate"><span class="pre">index.nunjucks</span></code> file, inside of <code class="docutils literal notranslate"><span class="pre">{%</span> <span class="pre">block</span> <span class="pre">content</span> <span class="pre">%}</span></code> where you want the chart to appear, create a <code class="docutils literal notranslate"><span class="pre">div</span></code> element with an id of <code class="docutils literal notranslate"><span class="pre">county-homicides</span></code>, and another with an id of <code class="docutils literal notranslate"><span class="pre">harvard-park-homicides</span></code>.</p>
 <div class="highlight-html notranslate"><div class="highlight"><pre><span></span>{% extends &#39;_layouts/base.nunjucks&#39; %}
 
 {% block headline %}My headline will go here{% endblock %}
@@ -760,9 +754,14 @@ $ git commit -m <span class="s2">&quot;Created a victims card grid&quot;</span>
 
 {% block content %}
 
-<span class="hll"><span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;county-homicides&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-</span><span class="hll"><span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;harvard-park-homicides&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="hll"><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;charts&quot;</span><span class="p">&gt;</span>
+</span><span class="hll">  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;inline-chart&quot;</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;county-homicides&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</span><span class="hll">  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;inline-chart&quot;</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;harvard-park-homicides&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</span><span class="hll"><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
 </span>
+<span class="p">&lt;</span><span class="nt">h3</span><span class="p">&gt;</span>Lives lost<span class="p">&lt;/</span><span class="nt">h3</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>The {{ site.data.harvard_park_homicides|length }} homicides in Harvard Park since 2000 were primarily black and Latino males, but the list includes husbands, wives, fathers, mothers of all ages, and even some small children.<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+
 {% for obj in site.data.harvard_park_homicides %}
 <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;card-columns&quot;</span><span class="p">&gt;</span>
     {% for obj in site.data.harvard_park_homicides %}
@@ -780,7 +779,7 @@ $ git commit -m <span class="s2">&quot;Created a victims card grid&quot;</span>
 {% endblock %}
 </pre></div>
 </div>
-<p>Meanwhile, we need data. Copy the <a class="reference external" href="https://raw.githubusercontent.com/ireapps/first-graphics-app/master/src/_data/annual_totals.json">annual totals data</a> to <code class="docutils literal notranslate"><span class="pre">_data/annual_totals.json</span></code>. This file contains annual homicide counts for Harvard Park and all of Los Angeles County. We can use nunjucks to include our data file directly in the template.</p>
+<p>Meanwhile, we need data. Copy the <a class="reference external" href="https://raw.githubusercontent.com/ireapps/first-graphics-app/master/src/_data/annual_totals.json">annual totals data</a> to a new file, <code class="docutils literal notranslate"><span class="pre">_data/annual_totals.json</span></code>. This file contains annual homicide counts for Harvard Park and all of Los Angeles County. We can use nunjucks to include our data file directly in the template.</p>
 <p>Add a <code class="docutils literal notranslate"><span class="pre">{%</span> <span class="pre">scripts</span> <span class="pre">%}</span></code> block to the end of your <code class="docutils literal notranslate"><span class="pre">index.nunjucks</span></code> file:</p>
 <div class="highlight-html notranslate"><div class="highlight"><pre><span></span>{% block scripts %}
 <span class="p">&lt;</span><span class="nt">script</span><span class="p">&gt;</span>
@@ -789,311 +788,387 @@ $ git commit -m <span class="s2">&quot;Created a victims card grid&quot;</span>
 {% endblock %}
 </pre></div>
 </div>
-<p>Making a chart in Plotly is simple, but we have to do some data transformation first. Plotly wants the x and y values of the chart to be in arrays, which are like a list of values. Meanwhle, if you look in <code class="docutils literal notranslate"><span class="pre">_data/annual_totals.json</span></code>, you’ll see that the data is structured in JavaScript objects, like this:</p>
-<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
-   <span class="s2">&quot;year&quot;</span><span class="o">:</span><span class="mi">2000</span><span class="p">,</span>
-   <span class="s2">&quot;homicides_total&quot;</span><span class="o">:</span><span class="mi">1036</span><span class="p">,</span>
-   <span class="s2">&quot;homicides_harvard_park&quot;</span><span class="o">:</span><span class="mi">3</span>
-<span class="p">},</span>
-<span class="p">{</span>
-   <span class="s2">&quot;year&quot;</span><span class="o">:</span><span class="mi">2001</span><span class="p">,</span>
-   <span class="s2">&quot;homicides_total&quot;</span><span class="o">:</span><span class="mi">1125</span><span class="p">,</span>
-   <span class="s2">&quot;homicides_harvard_park&quot;</span><span class="o">:</span><span class="mi">2</span>
-<span class="p">},</span>
-<span class="p">...</span>
-</pre></div>
-</div>
-<p>We want to make two charts - one of county homicides and one of killings in Harvard Park. So let’s make arrays that will hold those values that we will then provide to our function, as well as the years. We can use a little bit of JavaScript shorthand for this, using the <code class="docutils literal notranslate"><span class="pre">.map()</span></code> method and “arrow” functions.</p>
-<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">Plotly</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;plotly.js/lib/core&#39;</span><span class="p">);</span>
-<span class="kd">var</span> <span class="nx">Plotlybar</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;plotly.js/lib/bar&#39;</span><span class="p">);</span>
+<p>We want to make two charts - one of county homicides and one of killings in Harvard Park. Let’s start with county homicides. D3 requires us to do a bit of house work before we get started. The first thing we need is a container for our chart to go in. We’ll be making these charts in an <code class="docutils literal notranslate"><span class="pre">&lt;svg&gt;</span></code> element, which stands for Scalable Vector Graphic.</p>
+<p>The first thing we’ll want to do is select the HTML container of the chart with D3, and “append” an <code class="docutils literal notranslate"><span class="pre">svg</span></code> element to it.</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">d3</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;d3&#39;</span><span class="p">);</span>
 
-<span class="nx">Plotly</span><span class="p">.</span><span class="nx">register</span><span class="p">(</span><span class="nx">Plotlybar</span><span class="p">);</span>
-
-<span class="hll"><span class="c1">// Initialize the arrays that will hold our lists of data</span>
-</span><span class="hll"><span class="kd">var</span> <span class="nx">countyHomicides</span> <span class="o">=</span> <span class="nx">annualTotals</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="nx">a</span> <span class="p">=&gt;</span> <span class="nx">a</span><span class="p">.</span><span class="nx">homicides_total</span><span class="p">);</span>
-</span><span class="hll"><span class="kd">var</span> <span class="nx">harvardParkHomicides</span> <span class="o">=</span> <span class="nx">annualTotals</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="nx">a</span> <span class="p">=&gt;</span> <span class="nx">a</span><span class="p">.</span><span class="nx">homicides_harvard_park</span><span class="p">);</span>
-</span><span class="hll"><span class="kd">var</span> <span class="nx">years</span> <span class="o">=</span> <span class="nx">annualTotals</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="nx">a</span> <span class="p">=&gt;</span> <span class="nx">a</span><span class="p">.</span><span class="nx">year</span><span class="p">);</span>
+<span class="hll"><span class="c1">// Make sure you use the # here!</span>
+</span><span class="hll"><span class="kd">var</span> <span class="nx">container</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">select</span><span class="p">(</span><span class="s1">&#39;#county-homicides&#39;</span><span class="p">);</span>
+</span><span class="hll"><span class="kd">var</span> <span class="nx">svg</span> <span class="o">=</span> <span class="nx">container</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="s1">&#39;svg&#39;</span><span class="p">)</span>
 </span></pre></div>
 </div>
-<p>The <code class="docutils literal notranslate"><span class="pre">.map()</span></code> creates and returns an array, and the arrow (<code class="docutils literal notranslate"><span class="pre">=&gt;</span></code>) function returns the value for each object. Think of it as “plucking” the values we want to form a list.</p>
-<p>Now that we’ve populated our data, we’re ready to make our chart. Right now, it’s pretty simple, with a single variable <code class="docutils literal notranslate"><span class="pre">settings</span></code> providing options for the x axis, which we want to be our <code class="docutils literal notranslate"><span class="pre">years</span></code> array, and y axis, which is our homicide counts, and specifying the type of the chart.</p>
-<p>Below <code class="docutils literal notranslate"><span class="pre">settings</span></code> we call <code class="docutils literal notranslate"><span class="pre">Plotly.newPlot()</span></code> with the id of the element where we want the chart to go and settings to create the chart.</p>
-<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="c1">// The rest of your code is up here.</span>
-<span class="c1">// Add the below lines to the bottom of your file</span>
+<p>Now if you look in your inspector, you’ll see that we’ve appended an <code class="docutils literal notranslate"><span class="pre">&lt;svg&gt;</span></code> to the element with an ID of <code class="docutils literal notranslate"><span class="pre">county-homicides</span></code>. However, we also need to specify a height and width for the SVG, otherwise it will always just have default dimensions of 300x150, no matter how large our screen or device is.</p>
+<p>Let’s use <code class="docutils literal notranslate"><span class="pre">.node()</span></code> to access the HTML element and save the width and height of the container to variables. I like to specify the height as a percentage of the width, to get an aspect ratio.</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">d3</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;d3&#39;</span><span class="p">);</span>
 
-<span class="c1">// Use our x and y arrays for the values of the chart</span>
-<span class="kd">var</span> <span class="nx">settings</span> <span class="o">=</span> <span class="p">[{</span>
-    <span class="nx">x</span><span class="o">:</span> <span class="nx">years</span><span class="p">,</span>
-    <span class="nx">y</span><span class="o">:</span> <span class="nx">countyHomicides</span><span class="p">,</span>
-    <span class="nx">type</span><span class="o">:</span> <span class="s1">&#39;bar&#39;</span>
-<span class="p">}];</span>
+<span class="c1">// Make sure you use the # here!</span>
+<span class="kd">var</span> <span class="nx">container</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">select</span><span class="p">(</span><span class="s1">&#39;#county-homicides&#39;</span><span class="p">);</span>
+<span class="hll"><span class="kd">var</span> <span class="nx">containerWidth</span> <span class="o">=</span> <span class="nx">container</span><span class="p">.</span><span class="nx">node</span><span class="p">().</span><span class="nx">offsetWidth</span><span class="p">;</span>
+</span><span class="hll"><span class="kd">var</span> <span class="nx">containerHeight</span> <span class="o">=</span> <span class="nx">containerWidth</span> <span class="o">*</span> <span class="mf">0.66</span><span class="p">;</span>
+</span>
+<span class="kd">var</span> <span class="nx">svg</span> <span class="o">=</span> <span class="nx">container</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="s1">&#39;svg&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Now we can use them to set the properties, or “attributes” of the SVG using D3’s <code class="docutils literal notranslate"><span class="pre">.attr()</span></code> method. Notice that we can “chain” methods on a selection in D3, which allows our code to be a little more concise.</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">d3</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;d3&#39;</span><span class="p">);</span>
 
-<span class="c1">// Create the chart</span>
-<span class="nx">Plotly</span><span class="p">.</span><span class="nx">newPlot</span><span class="p">(</span><span class="s1">&#39;county-homicides&#39;</span><span class="p">,</span> <span class="nx">settings</span><span class="p">);</span>
+<span class="c1">// Make sure you use the # here!</span>
+<span class="kd">var</span> <span class="nx">container</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">select</span><span class="p">(</span><span class="s1">&#39;#county-homicides&#39;</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">containerWidth</span> <span class="o">=</span> <span class="nx">container</span><span class="p">.</span><span class="nx">node</span><span class="p">().</span><span class="nx">offsetWidth</span><span class="p">;</span>
+<span class="kd">var</span> <span class="nx">containerHeight</span> <span class="o">=</span> <span class="nx">containerWidth</span> <span class="o">*</span> <span class="mf">0.66</span><span class="p">;</span>
+
+<span class="kd">var</span> <span class="nx">svg</span> <span class="o">=</span> <span class="nx">container</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="s1">&#39;svg&#39;</span><span class="p">)</span>
+<span class="hll">            <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;width&#39;</span><span class="p">,</span> <span class="nx">containerWidth</span><span class="p">)</span>
+</span><span class="hll">            <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;height&#39;</span><span class="p">,</span> <span class="nx">containerHeight</span><span class="p">)</span>
+</span></pre></div>
+</div>
+<p>Now if you look, your SVG should be rendered at the appropriate height and width, filling the available space.</p>
+<p>[PICTURE OF EMPTY SVG]</p>
+<p>Two more setup steps before we actually start making our charts. First, if we simply start drawing data onto the SVG, we’ll likely see areas where the data clips off the chart. We can avoid this by defining a pre-set margin we’ll use throughout the process.</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">d3</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;d3&#39;</span><span class="p">);</span>
+
+<span class="hll"><span class="kd">var</span> <span class="nx">margin</span> <span class="o">=</span> <span class="p">{</span><span class="nx">top</span><span class="o">:</span> <span class="mi">20</span><span class="p">,</span> <span class="nx">right</span><span class="o">:</span><span class="mi">20</span><span class="p">,</span> <span class="nx">bottom</span><span class="o">:</span><span class="mi">20</span><span class="p">,</span> <span class="nx">left</span><span class="o">:</span><span class="mi">40</span><span class="p">}</span> <span class="p">;</span>
+</span><span class="c1">// Make sure you use the # here!</span>
+<span class="kd">var</span> <span class="nx">container</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">select</span><span class="p">(</span><span class="s1">&#39;#county-homicides&#39;</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">containerWidth</span> <span class="o">=</span> <span class="nx">container</span><span class="p">.</span><span class="nx">node</span><span class="p">().</span><span class="nx">offsetWidth</span><span class="p">;</span>
+<span class="kd">var</span> <span class="nx">containerHeight</span> <span class="o">=</span> <span class="nx">containerWidth</span> <span class="o">*</span> <span class="mf">0.66</span><span class="p">;</span>
+<span class="hll"><span class="kd">var</span> <span class="nx">width</span> <span class="o">=</span> <span class="nx">containerWidth</span> <span class="o">-</span> <span class="nx">margin</span><span class="p">.</span><span class="nx">right</span> <span class="o">-</span> <span class="nx">margin</span><span class="p">.</span><span class="nx">left</span><span class="p">;</span>
+</span><span class="hll"><span class="kd">var</span> <span class="nx">height</span> <span class="o">=</span> <span class="nx">containerHeight</span> <span class="o">-</span> <span class="nx">margin</span><span class="p">.</span><span class="nx">top</span> <span class="o">-</span> <span class="nx">margin</span><span class="p">.</span><span class="nx">bottom</span><span class="p">;</span>
+</span>
+<span class="kd">var</span> <span class="nx">svg</span> <span class="o">=</span> <span class="nx">container</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="s1">&#39;svg&#39;</span><span class="p">)</span>
+            <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;width&#39;</span><span class="p">,</span> <span class="nx">containerWidth</span><span class="p">)</span>
+            <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;height&#39;</span><span class="p">,</span> <span class="nx">containerHeight</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>You should see something like this on your page.</p>
-<a class="reference internal image-reference" href="_images/first-chart.png"><img alt="_images/first-chart.png" src="_images/first-chart.png" style="width: 100%;" /></a>
-<p>This is a good start, but we can further customize this chart so it fits better with the rest of the page. Now, let’s try to:</p>
-<ul class="simple">
-<li>Add axis labels</li>
-<li>Change the colors of the bars</li>
-<li>Give the charts titles</li>
-<li>Display the two charts alongside one another</li>
-</ul>
-<p>Let’s add labels to our axes. Create a new variable, <code class="docutils literal notranslate"><span class="pre">layout</span></code>. Here, we can specify display properties for <code class="docutils literal notranslate"><span class="pre">xaxis</span></code> and <code class="docutils literal notranslate"><span class="pre">yaxis</span></code>. We don’t have a homicide label on the Y axis because we’ll add a title to the charts later that will take care of that.</p>
-<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">layout</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="nx">xaxis</span><span class="o">:</span> <span class="p">{</span>
-        <span class="nx">title</span><span class="o">:</span> <span class="s1">&#39;Year&#39;</span><span class="p">,</span>
-        <span class="nx">fixedrange</span><span class="o">:</span> <span class="kc">true</span>
-    <span class="p">},</span>
-    <span class="nx">yaxis</span><span class="o">:</span> <span class="p">{</span>
-        <span class="nx">fixedrange</span><span class="o">:</span> <span class="kc">true</span>
-    <span class="p">}</span>
-<span class="p">};</span>
-</pre></div>
+<p>Second, we should add a <code class="docutils literal notranslate"><span class="pre">&lt;g&gt;</span></code>, or “group” tag, where everything else in our chart will go. Add this to the end of your <code class="docutils literal notranslate"><span class="pre">svg</span></code> declaration. We’ll also want to give it a <code class="docutils literal notranslate"><span class="pre">transform</span></code> attribute that shifts it slightly according to the margins we set.</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="c1">// ... more code is up here</span>
+<span class="kd">var</span> <span class="nx">svg</span> <span class="o">=</span> <span class="nx">container</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="s1">&#39;svg&#39;</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;width&#39;</span><span class="p">,</span> <span class="nx">width</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;height&#39;</span><span class="p">,</span> <span class="nx">height</span><span class="p">)</span>
+<span class="hll">        <span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="s1">&#39;g&#39;</span><span class="p">)</span>
+</span><span class="hll">            <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;transform&#39;</span><span class="p">,</span> <span class="sb">`translate(</span><span class="si">${</span><span class="nx">margin</span><span class="p">.</span><span class="nx">left</span><span class="si">}</span><span class="sb">, </span><span class="si">${</span><span class="nx">margin</span><span class="p">.</span><span class="nx">top</span><span class="si">}</span><span class="sb">)`</span><span class="p">)</span>
+</span></pre></div>
 </div>
-<p>The option <code class="docutils literal notranslate"><span class="pre">fixedrange</span></code> prevents clicking to zoom in on the chart, which I find mildly annoying.</p>
-<p>Then, add <code class="docutils literal notranslate"><span class="pre">layout</span></code> as a third argument to <code class="docutils literal notranslate"><span class="pre">Plotly.newPlot()</span></code></p>
-<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">Plotly</span><span class="p">.</span><span class="nx">newPlot</span><span class="p">(</span><span class="s1">&#39;county-homicides&#39;</span><span class="p">,</span> <span class="nx">settings</span><span class="p">,</span> <span class="nx">layout</span><span class="p">);</span>
-</pre></div>
-</div>
-<a class="reference internal image-reference" href="_images/charts-2.png"><img alt="_images/charts-2.png" src="_images/charts-2.png" style="width: 100%;" /></a>
-<p>Everything in plotly.js is handled by settings like this. For example, to change the markers to an light blue, update the <code class="docutils literal notranslate"><span class="pre">settings</span></code> variable. Make sure you add a comma after <code class="docutils literal notranslate"><span class="pre">type:</span> <span class="pre">'bar'</span></code>.</p>
-<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">settings</span> <span class="o">=</span> <span class="p">[{</span>
-  <span class="nx">x</span><span class="o">:</span> <span class="nx">years</span><span class="p">,</span>
-  <span class="nx">y</span><span class="o">:</span> <span class="nx">countyHomicides</span><span class="p">,</span>
-  <span class="nx">type</span><span class="o">:</span> <span class="s1">&#39;bar&#39;</span><span class="p">,</span>
-<span class="hll">  <span class="c1">// Add the new settings for marker here</span>
-</span><span class="hll">  <span class="nx">marker</span><span class="o">:</span> <span class="p">{</span>
-</span><span class="hll">    <span class="nx">color</span><span class="o">:</span> <span class="s1">&#39;#86c7df&#39;</span>
-</span><span class="hll">  <span class="p">}</span>
-</span><span class="p">}];</span>
-</pre></div>
-</div>
-<a class="reference internal image-reference" href="_images/charts-light-blue.png"><img alt="_images/charts-light-blue.png" src="_images/charts-light-blue.png" style="width: 100%;" /></a>
-<p>But wait, what if you want to make another chart? You’d have to copy and paste all that code over again.</p>
-<p>Before we get to far, let’s abstract all of this into a function.</p>
-<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">function</span> <span class="nx">createChart</span><span class="p">(</span><span class="nx">x</span><span class="p">,</span> <span class="nx">y</span><span class="p">,</span> <span class="nx">element</span><span class="p">)</span> <span class="p">{</span>
-    <span class="c1">// The code that creates our chart will go here.</span>
+<p>At this point, we’re ready to start drawing our chart. Let’s start with by creating the “scales” for our data. D3 manages its data by mapping input values from the data, also known as the domain, into output values on the screen, or the range. This creates a scale that transforms the input into the output.</p>
+<p>D3 has many different types of scales, for linear, categorical and time-based data. In this case, we’ll want a linear scale for the Y axis, and a “band” scale, which is a type of categorical scale useful for bar charts, for the X axis.</p>
+<p>I like to calculate the input, or domain, before creating the axes. The domain takes the form of an array with the minimum and maximum value that you want to map: e.g., <code class="docutils literal notranslate"><span class="pre">[0,</span> <span class="pre">100]</span></code> if you’re looking at a 100-point grade scale. We can use D3’s <code class="docutils literal notranslate"><span class="pre">min</span></code> and <code class="docutils literal notranslate"><span class="pre">max</span></code> helper functions to find this.</p>
+<p>If you look at the data in <code class="docutils literal notranslate"><span class="pre">src/_data/annual_totals.json</span></code>, you’ll see that each year’s data is organized like this:</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="s2">&quot;year&quot;</span><span class="o">:</span><span class="mi">2000</span><span class="p">,</span>
+  <span class="s2">&quot;homicides_total&quot;</span><span class="o">:</span><span class="mi">1036</span><span class="p">,</span>
+  <span class="s2">&quot;homicides_harvard_park&quot;</span><span class="o">:</span><span class="mi">3</span>
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>This is the start of a function that will take values for the x and y axes, and an HTML element, and create a chart with the data inside the element.</p>
-<p>Now copy and paste the <code class="docutils literal notranslate"><span class="pre">settings</span></code>, <code class="docutils literal notranslate"><span class="pre">layout</span></code> and the call to <code class="docutils literal notranslate"><span class="pre">Plotly.newPlot()</span></code> into the createChart function. Change the variables <code class="docutils literal notranslate"><span class="pre">years</span></code> and <code class="docutils literal notranslate"><span class="pre">countyHomicides</span></code> to <code class="docutils literal notranslate"><span class="pre">x</span></code> and <code class="docutils literal notranslate"><span class="pre">y</span></code>.</p>
-<p>Note also that we change <code class="docutils literal notranslate"><span class="pre">'county-homicides'</span></code> to <code class="docutils literal notranslate"><span class="pre">element</span></code> in the call to <code class="docutils literal notranslate"><span class="pre">Plotly.newPlot()</span></code>.</p>
-<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">function</span> <span class="nx">createChart</span><span class="p">(</span><span class="nx">x</span><span class="p">,</span> <span class="nx">y</span><span class="p">,</span> <span class="nx">element</span><span class="p">)</span> <span class="p">{</span>
-    <span class="c1">// The code that creates our chart will go here.</span>
-    <span class="kd">var</span> <span class="nx">settings</span> <span class="o">=</span> <span class="p">[{</span>
-<span class="hll">      <span class="nx">x</span><span class="o">:</span> <span class="nx">x</span><span class="p">,</span>
-</span><span class="hll">      <span class="nx">y</span><span class="o">:</span> <span class="nx">y</span><span class="p">,</span>
-</span>      <span class="nx">type</span><span class="o">:</span> <span class="s1">&#39;bar&#39;</span><span class="p">,</span>
-      <span class="nx">marker</span><span class="o">:</span> <span class="p">{</span>
-        <span class="nx">color</span><span class="o">:</span> <span class="s1">&#39;#86c7df&#39;</span>
-      <span class="p">}</span>
-    <span class="p">}];</span>
-
-    <span class="kd">var</span> <span class="nx">layout</span> <span class="o">=</span> <span class="p">{</span>
-      <span class="nx">xaxis</span><span class="o">:</span> <span class="p">{</span>
-        <span class="nx">title</span><span class="o">:</span> <span class="s1">&#39;Year&#39;</span><span class="p">,</span>
-        <span class="nx">fixedrange</span><span class="o">:</span> <span class="kc">true</span>
-      <span class="p">},</span>
-      <span class="nx">yaxis</span><span class="o">:</span> <span class="p">{</span>
-        <span class="nx">fixedrange</span><span class="o">:</span> <span class="kc">true</span>
-      <span class="p">}</span>
-    <span class="p">};</span>
-
-    <span class="c1">// Create the chart</span>
-<span class="hll">    <span class="nx">Plotly</span><span class="p">.</span><span class="nx">newPlot</span><span class="p">(</span><span class="nx">element</span><span class="p">,</span> <span class="nx">settings</span><span class="p">,</span> <span class="nx">layout</span><span class="p">);</span>
-</span><span class="p">}</span>
-</pre></div>
-</div>
-<p>Now, if you reload the page, you won’t see your chart anymore! That’s because we’ve defined the function, but we haven’t called it.</p>
-<p>To call the function, add this line to the end of your file.</p>
+<p>Since we’re charting homicides for the entire county we want the <code class="docutils literal notranslate"><span class="pre">homicides_total</span></code> attribute in our data for the Y axis, and the X axis will be the year. The arrow <code class="docutils literal notranslate"><span class="pre">=&gt;</span></code> is a shorthand method of accessing the <code class="docutils literal notranslate"><span class="pre">homicides_total</span></code> attribute of each object in the annualTotals array.</p>
+<p>Note that for the X axis, all we want is an array of the years, e.g.:<code class="docutils literal notranslate"><span class="pre">[2000,</span> <span class="pre">2001,</span> <span class="pre">...]</span></code> so we can call <code class="docutils literal notranslate"><span class="pre">.map()</span></code> on our data to return the year value. <code class="docutils literal notranslate"><span class="pre">.map()</span></code> iterates over every value in an array and returns a value for every item.</p>
+<p>For the Y-axis, we want the domain to start at 0, so we can set that manually.</p>
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="c1">// The rest of your code is up here</span>
-<span class="nx">createChart</span><span class="p">(</span><span class="nx">years</span><span class="p">,</span> <span class="nx">countyHomicides</span><span class="p">,</span> <span class="s1">&#39;county-homicides&#39;</span><span class="p">);</span>
+
+    <span class="kd">var</span> <span class="nx">xDomain</span> <span class="o">=</span> <span class="nx">annualTotals</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="nx">d</span> <span class="p">=&gt;</span> <span class="nx">d</span><span class="p">.</span><span class="nx">year</span><span class="p">);</span>
+
+    <span class="kd">var</span> <span class="nx">yDomain</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="mi">0</span><span class="p">,</span>
+    <span class="nx">d3</span><span class="p">.</span><span class="nx">max</span><span class="p">(</span><span class="nx">annualTotals</span><span class="p">,</span> <span class="nx">d</span> <span class="p">=&gt;</span> <span class="nx">d</span><span class="p">.</span><span class="nx">homicides_total</span><span class="p">)</span>
+    <span class="p">];</span>
 </pre></div>
 </div>
-<p>Now, we can make a second chart by using the Harvard Park data. Be sure to replace the ID of the element you’re building the chart in.</p>
+<p>If you know the min and max values, you can also set these manually.</p>
+<p>At the bottom of your file, let’s create an <code class="docutils literal notranslate"><span class="pre">xScale</span></code> and <code class="docutils literal notranslate"><span class="pre">yScale</span></code> now. Note that at this point we’re also setting the range, or output values, to the range between 0 and the height and width of our SVG.</p>
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="c1">// The rest of your code is up here</span>
-<span class="nx">createChart</span><span class="p">(</span><span class="nx">years</span><span class="p">,</span> <span class="nx">harvardParkHomicides</span><span class="p">,</span> <span class="s1">&#39;harvard-park-homicides&#39;</span><span class="p">);</span>
+
+<span class="kd">var</span> <span class="nx">xScale</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">scaleBand</span><span class="p">()</span>
+              <span class="p">.</span><span class="nx">domain</span><span class="p">(</span><span class="nx">xDomain</span><span class="p">)</span>
+              <span class="p">.</span><span class="nx">range</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="nx">width</span><span class="p">])</span>
+              <span class="p">.</span><span class="nx">padding</span><span class="p">(</span><span class="mf">0.1</span><span class="p">);</span>
+
+<span class="kd">var</span> <span class="nx">yScale</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">scaleLinear</span><span class="p">()</span>
+              <span class="p">.</span><span class="nx">domain</span><span class="p">(</span><span class="nx">yDomain</span><span class="p">)</span>
+              <span class="p">.</span><span class="nx">range</span><span class="p">([</span><span class="nx">height</span><span class="p">,</span> <span class="mi">0</span><span class="p">]);</span>
 </pre></div>
 </div>
-<a class="reference internal image-reference" href="_images/two-charts.png"><img alt="_images/two-charts.png" src="_images/two-charts.png" style="width: 100%;" /></a>
-<p>Not bad, right? By structuring our code this way, we’ll be able to make multiple charts without repeating our code (known as <a class="reference external" href="https://en.wikipedia.org/wiki/Don%27t_repeat_yourself">DRY</a>).</p>
-<p>Right now, our charts are stacked on top of each other, which isn’t a great layout. We can use HTML and CSS to lay out our charts side-by-side.</p>
-<p>In <code class="docutils literal notranslate"><span class="pre">index.nunjucks</span></code>, add a <code class="docutils literal notranslate"><span class="pre">div</span></code> element with a class of <code class="docutils literal notranslate"><span class="pre">charts-holder</span></code> and <code class="docutils literal notranslate"><span class="pre">clearfix</span></code> that wraps your charts, and add a <code class="docutils literal notranslate"><span class="pre">class</span></code> of <code class="docutils literal notranslate"><span class="pre">inline-chart</span></code> to each of your charts.</p>
-<p>Make sure you give the wrapping div a class of <code class="docutils literal notranslate"><span class="pre">clearfix</span></code>, which will make sure that the rest of the page displays below these items.</p>
-<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="hll"><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;charts-holder clearfix&quot;</span><span class="p">&gt;</span>
-</span>    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;inline-chart&quot;</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;county-homicides&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;inline-chart&quot;</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;harvard-park-homicides&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-<span class="hll"><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-</span></pre></div>
+<p>Note that the X scale has an additional method, <code class="docutils literal notranslate"><span class="pre">.padding()</span></code>, which specifies how far apart our bars are from one another.</p>
+<p>Now that we have scales, we can create our axes. D3 has helper functions for each side of the chart we want our axes on, in this case the left for the Y-axis and bottom for the X-axis. We also assign one of the scales we just created to each axis.</p>
+<p>For the Y-axis, we also want to add grid lines and limit the number of ticks that are shown.</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="c1">// The rest of your code is up here</span>
+
+<span class="kd">var</span> <span class="nx">xAxis</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">axisBottom</span><span class="p">(</span><span class="nx">xScale</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">yAxis</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">axisLeft</span><span class="p">(</span><span class="nx">yScale</span><span class="p">)</span>
+              <span class="p">.</span><span class="nx">tickSize</span><span class="p">(</span><span class="o">-</span><span class="nx">width</span><span class="p">)</span>
+              <span class="p">.</span><span class="nx">ticks</span><span class="p">(</span><span class="mi">4</span><span class="p">);</span>
+</pre></div>
 </div>
-<p>This gives us a structure that we can style with CSS. In the <code class="docutils literal notranslate"><span class="pre">_styles</span></code> folder, create a file called <code class="docutils literal notranslate"><span class="pre">_charts.scss</span></code>. In that file, copy or write the following:</p>
+<p>Finally, we append those to the chart by appending a <code class="docutils literal notranslate"><span class="pre">&lt;g&gt;</span></code> tag and “calling” the axis function we just created. I like to give each axis element a class of “axis” and “x” or “y”, depending on which axis we’re creating.</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="c1">// The rest of your code is up here</span>
+
+<span class="nx">svg</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="s2">&quot;g&quot;</span><span class="p">)</span>
+    <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;class&quot;</span><span class="p">,</span> <span class="s2">&quot;x axis&quot;</span><span class="p">)</span>
+    <span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="nx">xAxis</span><span class="p">);</span>
+
+<span class="nx">svg</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="s2">&quot;g&quot;</span><span class="p">)</span>
+    <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;class&quot;</span><span class="p">,</span> <span class="s2">&quot;y axis&quot;</span><span class="p">)</span>
+    <span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="nx">yAxis</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>[PHOTO OF CHART AXES WITH X AXIS AT TOP]</p>
+<p>Well that doesn’t look quite right. The reason the X axis is displaying at the top of the chart is that in SVGs, the coordinate 0,0 is at the top left. So we need to shift, or <code class="docutils literal notranslate"><span class="pre">translate</span></code> the X axis down by the height of the chart. The Y axis is fine where it is.</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="c1">// The rest of your code is up here</span>
+
+<span class="nx">svg</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="s2">&quot;g&quot;</span><span class="p">)</span>
+    <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;class&quot;</span><span class="p">,</span> <span class="s2">&quot;x axis&quot;</span><span class="p">)</span>
+<span class="hll">    <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;transform&quot;</span><span class="p">,</span> <span class="sb">`translate(0,</span><span class="si">${</span><span class="nx">height</span><span class="si">}</span><span class="sb">)`</span><span class="p">)</span>
+</span>    <span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="nx">xAxis</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>[PHOTO OF CORRECTED CHART AXES]</p>
+<p>Now that the axes are there, we’re finally ready to draw our bars. D3 handles it’s data by binding the data to the SVG elements - hence the name: “Data Driven Documents.”</p>
+<p>The format seems a little strange at first, because you’re selecting elements, then binding data to the selection, _then_ creating elements that are bound to the data. You do this by chaining two methods, <code class="docutils literal notranslate"><span class="pre">.data()</span></code>, which determines the data set that you’re binding, and <code class="docutils literal notranslate"><span class="pre">.enter()</span></code>, which iterates over the data set.</p>
+<p>Since we’re making a bar chart, we’re going to create a <code class="docutils literal notranslate"><span class="pre">&lt;rect&gt;</span></code> element, and give it a class of <code class="docutils literal notranslate"><span class="pre">bar</span></code>.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">If you’d like to know more about how D3 data binding works, Scott Murray has an <a href="#id11"><span class="problematic" id="id12">`excellent explanation and tutorial&lt;https://alignedleft.com/tutorials/d3/binding-data&gt;`_</span></a> on his website.</p>
+</div>
+<p>Let’s give it a try, by binding our <code class="docutils literal notranslate"><span class="pre">annualTotals</span></code> data to the bars on the chart. Start below the code for your axes. First, let’s simply append the <code class="docutils literal notranslate"><span class="pre">&lt;rect&gt;</span></code> elements to the chart</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="c1">// The rest of your code is up here</span>
+
+<span class="nx">svg</span><span class="p">.</span><span class="nx">selectAll</span><span class="p">(</span><span class="s1">&#39;.bar&#39;</span><span class="p">)</span>
+    <span class="p">.</span><span class="nx">data</span><span class="p">(</span><span class="nx">annualTotals</span><span class="p">)</span>
+    <span class="p">.</span><span class="nx">enter</span><span class="p">()</span>
+    <span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="s1">&#39;rect&#39;</span><span class="p">)</span>
+    <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;class&#39;</span><span class="p">,</span> <span class="s1">&#39;bar&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>[PICTURE OF INSPECTOR SHOWING RECT ELEMENTS]</p>
+<p>Now if you look at your chart… nothing has changed! But open your inspector and look at your SVG - you’ll see lots of <code class="docutils literal notranslate"><span class="pre">&lt;rect&gt;</span></code> elements, you just can’t see them because they don’t have any values for height and width, or x and y position values. Let’s do this next.</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="c1">// The rest of your code is up here</span>
+
+<span class="nx">svg</span><span class="p">.</span><span class="nx">selectAll</span><span class="p">(</span><span class="s1">&#39;.bar&#39;</span><span class="p">)</span>
+    <span class="p">.</span><span class="nx">data</span><span class="p">(</span><span class="nx">annualTotals</span><span class="p">)</span>
+    <span class="p">.</span><span class="nx">enter</span><span class="p">()</span>
+    <span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="s1">&#39;rect&#39;</span><span class="p">)</span>
+    <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;class&#39;</span><span class="p">,</span> <span class="s1">&#39;bar&#39;</span><span class="p">)</span>
+    <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="nx">d</span> <span class="p">=&gt;</span> <span class="nx">xScale</span><span class="p">(</span><span class="nx">d</span><span class="p">.</span><span class="nx">year</span><span class="p">))</span>
+    <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="nx">d</span> <span class="p">=&gt;</span> <span class="nx">yScale</span><span class="p">(</span><span class="nx">d</span><span class="p">.</span><span class="nx">homicides_total</span><span class="p">))</span>
+    <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;width&#39;</span><span class="p">,</span> <span class="nx">d</span> <span class="p">=&gt;</span> <span class="nx">xScale</span><span class="p">.</span><span class="nx">bandWidth</span><span class="p">())</span>
+    <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;height&#39;</span><span class="p">,</span> <span class="nx">d</span> <span class="p">=&gt;</span> <span class="nx">height</span> <span class="o">-</span> <span class="nx">yScale</span><span class="p">(</span><span class="nx">d</span><span class="p">.</span><span class="nx">homicides_total</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>The X value will be determined by the year, and the Y by the <code class="docutils literal notranslate"><span class="pre">homicides_total</span></code> value of each object. The width of each bar is set by a method called <code class="docutils literal notranslate"><span class="pre">.bandwidth()</span></code> on our scale, and the height will be</p>
+<p>[PICTURE OF CHARTS WITH BARS]</p>
+<p>You have a bar chart! At this point we can step back and style out the chart, and leave room for a second chart that shows Harvard Park homicides.</p>
+<p>At this point, create a new file in the <code class="docutils literal notranslate"><span class="pre">_styles</span></code> folder, and call it <code class="docutils literal notranslate"><span class="pre">_charts.scss</span></code>.</p>
+<p>The first thing we need to do is make the chart smaller - right now it’s huge! Add the following CSS rule to <code class="docutils literal notranslate"><span class="pre">_charts.scss</span></code> which will allow the chart to display at roughly half width and leave room for a second chart.</p>
 <div class="highlight-css notranslate"><div class="highlight"><pre><span></span><span class="p">.</span><span class="nc">inline-chart</span> <span class="p">{</span>
     <span class="k">width</span><span class="p">:</span> <span class="mi">49</span><span class="kt">%</span><span class="p">;</span>
-    <span class="k">float</span><span class="p">:</span> <span class="kc">left</span><span class="p">;</span>
+    <span class="k">display</span><span class="p">:</span> <span class="kc">inline-block</span><span class="p">;</span>
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>You won’t see anything yet, because we haven’t imported it into our main stylesheet. Use <code class="docutils literal notranslate"><span class="pre">&#64;import</span></code> to bring your CSS file into <code class="docutils literal notranslate"><span class="pre">main.css</span></code></p>
+<p>If you look at the page now, you’ll see that nothing has changed. That’s because we need to import the styles that we just created into our <code class="docutils literal notranslate"><span class="pre">main.scss</span></code> file.</p>
+<p>You can do that by adding the following line to <code class="docutils literal notranslate"><span class="pre">main.scss</span></code>.</p>
 <div class="highlight-css notranslate"><div class="highlight"><pre><span></span><span class="o">//</span> <span class="nt">Normalize</span> <span class="nt">Styles</span>
 <span class="p">@</span><span class="k">import</span> <span class="s1">&#39;node_modules/normalize.css/normalize&#39;</span><span class="p">;</span>
 
 <span class="o">//</span> <span class="nt">Import</span> <span class="nt">Modules</span>
 <span class="p">@</span><span class="k">import</span> <span class="s1">&#39;../_modules/link/link&#39;</span><span class="p">;</span>
-<span class="hll"><span class="p">@</span><span class="k">import</span> <span class="s1">&#39;_charts.scss&#39;</span><span class="p">;</span>
+<span class="hll"><span class="p">@</span><span class="k">import</span> <span class="s1">&#39;./charts.scss&#39;</span><span class="p">;</span>
 </span></pre></div>
 </div>
-<p>Again, this is the same modular structure that allows us to organize our chart styles in a different place from our map styles, for example.</p>
-<p>Reload the page to see your changes.</p>
-<a class="reference internal image-reference" href="_images/inline-charts.png"><img alt="_images/inline-charts.png" src="_images/inline-charts.png" style="width: 100%;" /></a>
-<p>The charts are laid out side-by-side like we want them, but there’s way too much space in between them. Luckily, we can adjust the margins in the chart layout. Back in <code class="docutils literal notranslate"><span class="pre">_scripts/charts.js</span></code>, the following settings should work.</p>
-<p><code class="docutils literal notranslate"><span class="pre">l</span></code>, <code class="docutils literal notranslate"><span class="pre">r</span></code>, <code class="docutils literal notranslate"><span class="pre">t</span></code> and <code class="docutils literal notranslate"><span class="pre">b</span></code> stand for left, right, top and bottom margins, respectively. Make sure you add a comma after the <code class="docutils literal notranslate"><span class="pre">yaxis</span></code> value!</p>
-<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">layout</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="nx">xaxis</span><span class="o">:</span> <span class="p">{</span>
-        <span class="nx">title</span><span class="o">:</span> <span class="s1">&#39;Year&#39;</span><span class="p">,</span>
-        <span class="nx">fixedrange</span><span class="o">:</span> <span class="kc">true</span>
-    <span class="p">},</span>
-    <span class="nx">yaxis</span><span class="o">:</span> <span class="p">{</span>
-        <span class="nx">fixedrange</span><span class="o">:</span> <span class="kc">true</span>
-<span class="hll">    <span class="p">},</span>
-</span><span class="hll">    <span class="c1">// Add the margin here</span>
-</span><span class="hll">    <span class="c1">// Don&#39;t forget the comma above!</span>
-</span><span class="hll">    <span class="nx">margin</span><span class="o">:</span> <span class="p">{</span>
-</span><span class="hll">        <span class="nx">l</span><span class="o">:</span> <span class="mi">30</span><span class="p">,</span>
-</span><span class="hll">        <span class="nx">r</span><span class="o">:</span> <span class="mi">15</span><span class="p">,</span>
-</span><span class="hll">        <span class="nx">t</span><span class="o">:</span> <span class="mi">45</span><span class="p">,</span>
-</span><span class="hll">        <span class="nx">b</span><span class="o">:</span> <span class="mi">30</span>
-</span><span class="hll">    <span class="p">}</span>
-</span><span class="p">};</span>
-</pre></div>
-</div>
-<p>We can also add a parameter to reduce the height, they’re a bit tall.</p>
-<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">chartLayout</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="nx">xaxis</span><span class="o">:</span> <span class="p">{</span>
-        <span class="nx">title</span><span class="o">:</span> <span class="s1">&#39;Year&#39;</span><span class="p">,</span>
-        <span class="nx">fixedrange</span><span class="o">:</span> <span class="kc">true</span>
-    <span class="p">},</span>
-    <span class="nx">yaxis</span><span class="o">:</span> <span class="p">{</span>
-        <span class="nx">fixedrange</span><span class="o">:</span> <span class="kc">true</span>
-    <span class="p">},</span>
-    <span class="c1">// Add the margin here</span>
-    <span class="nx">margin</span><span class="o">:</span> <span class="p">{</span>
-        <span class="nx">l</span><span class="o">:</span> <span class="mi">45</span><span class="p">,</span>
-        <span class="nx">r</span><span class="o">:</span> <span class="mi">15</span><span class="p">,</span>
-        <span class="nx">t</span><span class="o">:</span> <span class="mi">45</span><span class="p">,</span>
-        <span class="nx">b</span><span class="o">:</span> <span class="mi">30</span>
-    <span class="p">},</span>
-<span class="hll">    <span class="c1">// Add a height parameter to the bottom of your file</span>
-</span><span class="hll">    <span class="nx">height</span><span class="o">:</span> <span class="mi">250</span>
-</span><span class="p">};</span>
-</pre></div>
-</div>
-<p>Another nice modification - we can make the annoying toolbar go away by adjusting our call to <code class="docutils literal notranslate"><span class="pre">Plotly.newPlot()</span></code></p>
-<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">Plotly</span><span class="p">.</span><span class="nx">newPlot</span><span class="p">(</span><span class="nx">element</span><span class="p">,</span> <span class="nx">settings</span><span class="p">,</span> <span class="nx">layout</span><span class="p">,</span> <span class="p">{</span><span class="nx">displayModeBar</span><span class="o">:</span> <span class="kc">false</span><span class="p">});</span>
-</pre></div>
-</div>
-<a class="reference internal image-reference" href="_images/two-charts-styled.png"><img alt="_images/two-charts-styled.png" src="_images/two-charts-styled.png" style="width: 100%;" /></a>
-<p>Much better! There are a couple more customization options we can do with plotly. While it’s useful to get the homicide numbers on hover, we don’t really need those year label popups. We can turn those off by only displaying hovers for y-axis values.</p>
-<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">function</span> <span class="nx">createChart</span><span class="p">(</span><span class="nx">x</span><span class="p">,</span> <span class="nx">y</span><span class="p">,</span> <span class="nx">element</span><span class="p">)</span> <span class="p">{</span>
-  <span class="kd">var</span> <span class="nx">settings</span> <span class="o">=</span> <span class="p">[{</span>
-    <span class="nx">x</span><span class="o">:</span> <span class="nx">x</span><span class="p">,</span>
-    <span class="nx">y</span><span class="o">:</span> <span class="nx">y</span><span class="p">,</span>
-    <span class="nx">type</span><span class="o">:</span> <span class="s1">&#39;bar&#39;</span><span class="p">,</span>
-    <span class="nx">marker</span><span class="o">:</span> <span class="p">{</span>
-      <span class="nx">color</span><span class="o">:</span> <span class="s1">&#39;#86c7df&#39;</span>
-    <span class="p">},</span>
-<span class="hll">    <span class="c1">// Add this to your chart settings</span>
-</span><span class="hll">    <span class="nx">hoverinfo</span><span class="o">:</span> <span class="s1">&#39;y&#39;</span>
-</span>  <span class="p">}];</span>
+<p>Let’s also color the bars and clean up some of the lines. If you remember, the bars were <code class="docutils literal notranslate"><span class="pre">&lt;rect&gt;</span></code> elements, and if you use the inspector, you can find the x axis lines we want to remove. Back in <code class="docutils literal notranslate"><span class="pre">_charts.scss</span></code>:</p>
+<div class="highlight-css notranslate"><div class="highlight"><pre><span></span><span class="nt">rect</span> <span class="p">{</span>
+  <span class="n">fill</span><span class="p">:</span> <span class="mh">#86C7DF</span><span class="p">;</span>
+<span class="p">}</span>
 
-  <span class="c1">// the rest of your code is down here</span>
-  <span class="p">...</span>
+<span class="p">.</span><span class="nc">y</span> <span class="p">.</span><span class="nc">domain</span> <span class="p">{</span>
+  <span class="k">display</span><span class="p">:</span> <span class="kc">none</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="p">.</span><span class="nc">x</span> <span class="p">.</span><span class="nc">domain</span> <span class="p">{</span>
+  <span class="k">display</span><span class="p">:</span> <span class="kc">none</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="p">.</span><span class="nc">x</span> <span class="p">.</span><span class="nc">tick</span> <span class="nt">line</span> <span class="p">{</span>
+  <span class="k">display</span><span class="p">:</span> <span class="kc">none</span><span class="p">;</span>
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>You can also slightly customize the label. For example, let’s change the background color.</p>
-<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">function</span> <span class="nx">createChart</span><span class="p">(</span><span class="nx">x</span><span class="p">,</span> <span class="nx">y</span><span class="p">,</span> <span class="nx">element</span><span class="p">)</span> <span class="p">{</span>
-  <span class="kd">var</span> <span class="nx">settings</span> <span class="o">=</span> <span class="p">[{</span>
-    <span class="nx">x</span><span class="o">:</span> <span class="nx">x</span><span class="p">,</span>
-    <span class="nx">y</span><span class="o">:</span> <span class="nx">y</span><span class="p">,</span>
-    <span class="nx">type</span><span class="o">:</span> <span class="s1">&#39;bar&#39;</span><span class="p">,</span>
-    <span class="nx">marker</span><span class="o">:</span> <span class="p">{</span>
-      <span class="nx">color</span><span class="o">:</span> <span class="s1">&#39;#86c7df&#39;</span>
-    <span class="p">},</span>
-    <span class="c1">// Add this to your chart settings</span>
-    <span class="nx">hoverinfo</span><span class="o">:</span> <span class="s1">&#39;y&#39;</span><span class="p">,</span>
-<span class="hll">    <span class="nx">hoverlabel</span><span class="o">:</span> <span class="p">{</span>
-</span><span class="hll">      <span class="nx">bgcolor</span><span class="o">:</span> <span class="s1">&#39;#777777&#39;</span>
-</span><span class="hll">    <span class="p">}</span>
-</span>  <span class="p">}];</span>
-
-  <span class="c1">// the rest of your code is down here</span>
-  <span class="p">...</span>
+<p>The last thing we want to style is the grid lines - they’re too heavy and should fade into the background more. Note that we want to keep the baseline black to indicate that we’re starting at 0, so we’ll use a fancy CSS selector that says to style every tick line that’s not the baseline.</p>
+<div class="highlight-css notranslate"><div class="highlight"><pre><span></span><span class="o">//</span> <span class="nt">The</span> <span class="nt">rest</span> <span class="nt">of</span> <span class="nt">your</span> <span class="nt">styles</span> <span class="nt">are</span> <span class="nt">up</span> <span class="nt">here</span>
+<span class="p">.</span><span class="nc">y</span> <span class="p">.</span><span class="nc">tick</span><span class="p">:</span><span class="nd">not</span><span class="o">(</span><span class="p">:</span><span class="nd">first-of-type</span><span class="o">)</span> <span class="nt">line</span> <span class="p">{</span>
+  <span class="n">stroke</span><span class="p">:</span> <span class="mh">#e7e7e7</span><span class="p">;</span>
 <span class="p">}</span>
 </pre></div>
 </div>
-<a class="reference internal image-reference" href="_images/two-charts-label.png"><img alt="_images/two-charts-label.png" src="_images/two-charts-label.png" style="width: 100%;" /></a>
-<p>Last, our charts need titles! Since we want each chart to have a different title, we’ll need to update our function a bit.</p>
-<dl class="docutils">
-<dt>We’re going to</dt>
-<dd><ul class="first last simple">
-<li>add an argument to our <code class="docutils literal notranslate"><span class="pre">createChart</span></code> function for the title,</li>
-<li>send that title to our chart options,</li>
-<li>update our calls to provide that title</li>
+<p>Now we have a nicely styled chart, and we’re ready to start on our second one. Do we want to copy everything all over again? No! Instead, we can pull the JavaScript we just wrote into a function that will take our data and an element, and create the chart for us!</p>
+<p>Open up <code class="docutils literal notranslate"><span class="pre">_charts.js</span></code> again, and create a function, <code class="docutils literal notranslate"><span class="pre">createChart</span></code>. We’ll need to think about this for a second - what are the values that are going to change between the two charts?</p>
+<ul class="simple">
+<li>Container element</li>
+<li>Data field used for the homicide counts</li>
+<li>Y-axis values</li>
 </ul>
-</dd>
-</dl>
-<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="c1">// Note the new &#39;title&#39; argument</span>
-<span class="hll"><span class="kd">function</span> <span class="nx">createChart</span><span class="p">(</span><span class="nx">x</span><span class="p">,</span> <span class="nx">y</span><span class="p">,</span> <span class="nx">element</span><span class="p">,</span> <span class="nx">title</span><span class="p">)</span> <span class="p">{</span>
-</span>    <span class="c1">// More of the function is up here</span>
-    <span class="p">...</span>
+<p>If we calculate the domain values correctly the Y-axis values should automatically update so we shouldn’t have to worry about that too much. So our function should have two arguments - the ID of the container element, and the data field we’re using.</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="c1">// the rest of your code is up here</span>
+<span class="kd">function</span> <span class="nx">createChart</span><span class="p">(</span><span class="nx">el</span><span class="p">,</span> <span class="nx">fieldname</span><span class="p">)</span> <span class="p">{</span>
 
-    <span class="c1">// Add a &#39;title&#39; parameter to the layout properties</span>
-    <span class="kd">var</span> <span class="nx">layout</span> <span class="o">=</span> <span class="p">{</span>
-<span class="hll">      <span class="nx">title</span><span class="o">:</span> <span class="nx">title</span><span class="p">,</span>
-</span>      <span class="nx">xaxis</span><span class="o">:</span> <span class="p">{</span>
-        <span class="nx">title</span><span class="o">:</span> <span class="s1">&#39;Year&#39;</span><span class="p">,</span>
-        <span class="nx">fixedrange</span><span class="o">:</span> <span class="kc">true</span>
-      <span class="p">},</span>
-      <span class="nx">yaxis</span><span class="o">:</span> <span class="p">{</span>
-        <span class="nx">fixedrange</span><span class="o">:</span> <span class="kc">true</span>
-      <span class="p">},</span>
-      <span class="c1">// Add the margin here</span>
-      <span class="nx">margin</span><span class="o">:</span> <span class="p">{</span>
-        <span class="nx">l</span><span class="o">:</span> <span class="mi">30</span><span class="p">,</span>
-        <span class="nx">r</span><span class="o">:</span> <span class="mi">15</span><span class="p">,</span>
-        <span class="nx">t</span><span class="o">:</span> <span class="mi">45</span><span class="p">,</span>
-        <span class="nx">b</span><span class="o">:</span> <span class="mi">30</span>
-      <span class="p">},</span>
-      <span class="nx">height</span><span class="o">:</span> <span class="mi">250</span>
-    <span class="p">};</span>
-
-    <span class="c1">// Create the chart</span>
-    <span class="nx">Plotly</span><span class="p">.</span><span class="nx">newPlot</span><span class="p">(</span><span class="nx">element</span><span class="p">,</span> <span class="nx">settings</span><span class="p">,</span> <span class="nx">layout</span><span class="p">,</span> <span class="p">{</span><span class="nx">displayModeBar</span><span class="o">:</span> <span class="kc">false</span><span class="p">});</span>
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>Then, add the title you want to your function call. We’ll assign them to variables first for cleanliness.</p>
-<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">countyChartTitle</span> <span class="o">=</span> <span class="s2">&quot;County Homicides, 2000-2017&quot;</span><span class="p">;</span>
-<span class="kd">var</span> <span class="nx">hpChartTitle</span> <span class="o">=</span> <span class="s2">&quot;Harvard Park Homicides, 2000-2017&quot;</span><span class="p">;</span>
+<p>Now, you can copy everything we wrote in <code class="docutils literal notranslate"><span class="pre">_charts.js</span></code> under the <code class="docutils literal notranslate"><span class="pre">require('d3')</span></code> line into this function. Your file should look like this now.</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">d3</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;d3&#39;</span><span class="p">);</span>
 
-<span class="nx">createChart</span><span class="p">(</span><span class="nx">years</span><span class="p">,</span> <span class="nx">countyHomicides</span><span class="p">,</span> <span class="s1">&#39;county-homicides&#39;</span><span class="p">,</span> <span class="nx">countyChartTitle</span><span class="p">);</span>
-<span class="nx">createChart</span><span class="p">(</span><span class="nx">years</span><span class="p">,</span> <span class="nx">harvardParkHomicides</span><span class="p">,</span> <span class="s1">&#39;harvard-park-homicides&#39;</span><span class="p">,</span> <span class="nx">hpChartTitle</span><span class="p">);</span>
+<span class="kd">function</span> <span class="nx">createChart</span><span class="p">(</span><span class="nx">el</span><span class="p">,</span> <span class="nx">fieldname</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="nx">margin</span> <span class="o">=</span> <span class="p">{</span><span class="nx">top</span><span class="o">:</span> <span class="mi">20</span><span class="p">,</span> <span class="nx">right</span><span class="o">:</span><span class="mi">20</span><span class="p">,</span> <span class="nx">bottom</span><span class="o">:</span><span class="mi">20</span><span class="p">,</span> <span class="nx">left</span><span class="o">:</span><span class="mi">40</span><span class="p">}</span> <span class="p">;</span>
+  <span class="kd">var</span> <span class="nx">container</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">select</span><span class="p">(</span><span class="s1">&#39;#county-homicides&#39;</span><span class="p">);</span>
+  <span class="kd">var</span> <span class="nx">containerWidth</span> <span class="o">=</span> <span class="nx">container</span><span class="p">.</span><span class="nx">node</span><span class="p">().</span><span class="nx">offsetWidth</span><span class="p">;</span>
+  <span class="kd">var</span> <span class="nx">containerHeight</span> <span class="o">=</span> <span class="nx">containerWidth</span> <span class="o">*</span> <span class="mf">0.66</span><span class="p">;</span>
+  <span class="kd">var</span> <span class="nx">width</span> <span class="o">=</span> <span class="nx">containerWidth</span> <span class="o">-</span> <span class="nx">margin</span><span class="p">.</span><span class="nx">right</span> <span class="o">-</span> <span class="nx">margin</span><span class="p">.</span><span class="nx">left</span><span class="p">;</span>
+  <span class="kd">var</span> <span class="nx">height</span> <span class="o">=</span> <span class="nx">containerHeight</span> <span class="o">-</span> <span class="nx">margin</span><span class="p">.</span><span class="nx">top</span> <span class="o">-</span> <span class="nx">margin</span><span class="p">.</span><span class="nx">bottom</span><span class="p">;</span>
+
+  <span class="kd">var</span> <span class="nx">svg</span> <span class="o">=</span> <span class="nx">container</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="s1">&#39;svg&#39;</span><span class="p">)</span>
+      <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;width&#39;</span><span class="p">,</span> <span class="nx">containerWidth</span><span class="p">)</span>
+      <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;height&#39;</span><span class="p">,</span> <span class="nx">containerHeight</span><span class="p">)</span>
+      <span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="s1">&#39;g&#39;</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;transform&#39;</span><span class="p">,</span> <span class="sb">`translate(</span><span class="si">${</span><span class="nx">margin</span><span class="p">.</span><span class="nx">left</span><span class="si">}</span><span class="sb">, </span><span class="si">${</span><span class="nx">margin</span><span class="p">.</span><span class="nx">top</span><span class="si">}</span><span class="sb">)`</span><span class="p">)</span>
+
+  <span class="kd">var</span> <span class="nx">xDomain</span> <span class="o">=</span> <span class="nx">annualTotals</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="nx">d</span> <span class="p">=&gt;</span> <span class="nx">d</span><span class="p">.</span><span class="nx">year</span><span class="p">);</span>
+
+  <span class="kd">var</span> <span class="nx">yDomain</span> <span class="o">=</span> <span class="p">[</span>
+      <span class="mi">0</span><span class="p">,</span>
+      <span class="nx">d3</span><span class="p">.</span><span class="nx">max</span><span class="p">(</span><span class="nx">annualTotals</span><span class="p">,</span> <span class="nx">d</span> <span class="p">=&gt;</span> <span class="nx">d</span><span class="p">.</span><span class="nx">homicides_total</span><span class="p">)</span>
+  <span class="p">];</span>
+
+  <span class="kd">var</span> <span class="nx">xScale</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">scaleBand</span><span class="p">()</span>
+                <span class="p">.</span><span class="nx">domain</span><span class="p">(</span><span class="nx">xDomain</span><span class="p">)</span>
+                <span class="p">.</span><span class="nx">range</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="nx">width</span><span class="p">])</span>
+                <span class="p">.</span><span class="nx">padding</span><span class="p">(</span><span class="mf">0.1</span><span class="p">);</span>
+
+  <span class="kd">var</span> <span class="nx">yScale</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">scaleLinear</span><span class="p">()</span>
+                <span class="p">.</span><span class="nx">domain</span><span class="p">(</span><span class="nx">yDomain</span><span class="p">)</span>
+                <span class="p">.</span><span class="nx">range</span><span class="p">([</span><span class="nx">height</span><span class="p">,</span> <span class="mi">0</span><span class="p">]);</span>
+
+  <span class="kd">var</span> <span class="nx">xAxis</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">axisBottom</span><span class="p">(</span><span class="nx">xScale</span><span class="p">);</span>
+  <span class="kd">var</span> <span class="nx">yAxis</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">axisLeft</span><span class="p">(</span><span class="nx">yScale</span><span class="p">)</span>
+                  <span class="p">.</span><span class="nx">tickSize</span><span class="p">(</span><span class="o">-</span><span class="nx">width</span><span class="p">)</span>
+                  <span class="p">.</span><span class="nx">ticks</span><span class="p">(</span><span class="mi">4</span><span class="p">);</span>
+
+  <span class="nx">svg</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="s2">&quot;g&quot;</span><span class="p">)</span>
+      <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;class&quot;</span><span class="p">,</span> <span class="s2">&quot;x axis&quot;</span><span class="p">)</span>
+      <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;transform&quot;</span><span class="p">,</span> <span class="sb">`translate(0,</span><span class="si">${</span><span class="nx">height</span><span class="si">}</span><span class="sb">)`</span><span class="p">)</span>
+      <span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="nx">xAxis</span><span class="p">);</span>
+
+  <span class="nx">svg</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="s2">&quot;g&quot;</span><span class="p">)</span>
+      <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;class&quot;</span><span class="p">,</span> <span class="s2">&quot;y axis&quot;</span><span class="p">)</span>
+      <span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="nx">yAxis</span><span class="p">);</span>
+
+  <span class="nx">svg</span><span class="p">.</span><span class="nx">selectAll</span><span class="p">(</span><span class="s1">&#39;.bar&#39;</span><span class="p">)</span>
+      <span class="p">.</span><span class="nx">data</span><span class="p">(</span><span class="nx">annualTotals</span><span class="p">)</span>
+      <span class="p">.</span><span class="nx">enter</span><span class="p">()</span>
+      <span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="s1">&#39;rect&#39;</span><span class="p">)</span>
+      <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;class&#39;</span><span class="p">,</span> <span class="s1">&#39;bar&#39;</span><span class="p">)</span>
+      <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="nx">d</span> <span class="p">=&gt;</span> <span class="nx">xScale</span><span class="p">(</span><span class="nx">d</span><span class="p">.</span><span class="nx">year</span><span class="p">))</span>
+      <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="nx">d</span> <span class="p">=&gt;</span> <span class="nx">yScale</span><span class="p">(</span><span class="nx">d</span><span class="p">.</span><span class="nx">homicides_total</span><span class="p">))</span>
+      <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;width&#39;</span><span class="p">,</span> <span class="nx">d</span> <span class="p">=&gt;</span> <span class="nx">xScale</span><span class="p">.</span><span class="nx">bandwidth</span><span class="p">())</span>
+      <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;height&#39;</span><span class="p">,</span> <span class="nx">d</span> <span class="p">=&gt;</span> <span class="nx">height</span> <span class="o">-</span> <span class="nx">yScale</span><span class="p">(</span><span class="nx">d</span><span class="p">.</span><span class="nx">homicides_total</span><span class="p">));</span>
+<span class="p">}</span>
 </pre></div>
 </div>
-<p>These titles are a little light and blend in to the rest of the text. Let’s make them bolder. The easiest way I’ve found to do this with Plotly is by wrapping them in bold tags.</p>
-<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="hll"><span class="kd">var</span> <span class="nx">countyChartTitle</span> <span class="o">=</span> <span class="s2">&quot;&lt;b&gt;County Homicides, 2000-2017&lt;/b&gt;&quot;</span><span class="p">;</span>
-</span><span class="hll"><span class="kd">var</span> <span class="nx">hpChartTitle</span> <span class="o">=</span> <span class="s2">&quot;&lt;b&gt;Harvard Park Homicides, 2000-2017&lt;/b&gt;&quot;</span><span class="p">;</span>
+<p>Now, if you reload your page, your chart will have disappeared! That’s because our code is no longer running since it’s in a function, but we’re not calling that function.</p>
+<p>At the end of the file, let’s call the function with the arguments necessary for the countywide homicides chart. Remember the element id is <code class="docutils literal notranslate"><span class="pre">county-homicides</span></code>, and the field we’re using is <code class="docutils literal notranslate"><span class="pre">homicides_total</span></code>.</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="c1">// the rest of your code is up here</span>
+<span class="nx">createChart</span><span class="p">(</span><span class="s2">&quot;#county-homicides&quot;</span><span class="p">,</span> <span class="s2">&quot;homicides_total&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>You’ll see that your chart is back! But the only reason this is actually working is because we’ve already hard-coded our variables into the script. Let’s abstract it out to use the arguments that we’re providing.</p>
+<p>First, let’s change the <code class="docutils literal notranslate"><span class="pre">container</span></code> variable to use the ID we’re providing.</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">function</span> <span class="nx">createChart</span><span class="p">(</span><span class="nx">el</span><span class="p">,</span> <span class="nx">fieldname</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="nx">margin</span> <span class="o">=</span> <span class="p">{</span><span class="nx">top</span><span class="o">:</span> <span class="mi">20</span><span class="p">,</span> <span class="nx">right</span><span class="o">:</span><span class="mi">20</span><span class="p">,</span> <span class="nx">bottom</span><span class="o">:</span><span class="mi">20</span><span class="p">,</span> <span class="nx">left</span><span class="o">:</span><span class="mi">40</span><span class="p">}</span> <span class="p">;</span>
+<span class="hll">  <span class="kd">var</span> <span class="nx">container</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">select</span><span class="p">(</span><span class="nx">el</span><span class="p">);</span>
 </span>
-<span class="nx">createChart</span><span class="p">(</span><span class="nx">years</span><span class="p">,</span> <span class="nx">countyHomicides</span><span class="p">,</span> <span class="s1">&#39;county-homicides&#39;</span><span class="p">,</span> <span class="nx">countyChartTitle</span><span class="p">);</span>
-<span class="nx">createChart</span><span class="p">(</span><span class="nx">years</span><span class="p">,</span> <span class="nx">harvardParkHomicides</span><span class="p">,</span> <span class="s1">&#39;harvard-park-homicides&#39;</span><span class="p">,</span> <span class="nx">hpChartTitle</span><span class="p">);</span>
+  <span class="c1">//... the function continues down here</span>
+<span class="p">}</span>
 </pre></div>
 </div>
-<a class="reference internal image-reference" href="_images/two-charts-title.png"><img alt="_images/two-charts-title.png" src="_images/two-charts-title.png" style="width: 100%;" /></a>
-<p>Last, let’s add a headline to introduce our charts section.</p>
+<p>Now try calling it on the second element we created, with the <code class="docutils literal notranslate"><span class="pre">homicides_harvard_park</span></code> variable as the second argument.</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">createChart</span><span class="p">(</span><span class="s2">&quot;#county-homicides&quot;</span><span class="p">,</span> <span class="s2">&quot;homicides_total&quot;</span><span class="p">)</span>
+<span class="hll"><span class="nx">createChart</span><span class="p">(</span><span class="s2">&quot;#harvard-park-homicides&quot;</span><span class="p">,</span> <span class="s2">&quot;homicides_harvard_park&quot;</span><span class="p">)</span>
+</span></pre></div>
+</div>
+<p>[PICTURE OF SAME CHART TWICE]</p>
+<p>This gives us the same chart twice, which is expected since we still have the data values hard-coded.</p>
+<p>To change this, we’ll have to find every instance where we reference the <code class="docutils literal notranslate"><span class="pre">homicides_total</span></code> field directly in the function, and change it to reference the argument we are passing in for the data field.</p>
+<p>Note that in many cases we’ll have to change the syntax from <code class="docutils literal notranslate"><span class="pre">d.homicides_total</span></code> to <code class="docutils literal notranslate"><span class="pre">d[fieldname]</span></code> - this is because we’re referencing a variable and not a specific field.</p>
+<p>Luckily, we only have to do this a few times, once where we’re calculating the domain, and then where we’re setting the y position and heights of the bars.</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">function</span> <span class="nx">createChart</span><span class="p">(</span><span class="nx">el</span><span class="p">,</span> <span class="nx">fieldname</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="nx">margin</span> <span class="o">=</span> <span class="p">{</span><span class="nx">top</span><span class="o">:</span> <span class="mi">20</span><span class="p">,</span> <span class="nx">right</span><span class="o">:</span><span class="mi">20</span><span class="p">,</span> <span class="nx">bottom</span><span class="o">:</span><span class="mi">20</span><span class="p">,</span> <span class="nx">left</span><span class="o">:</span><span class="mi">40</span><span class="p">}</span> <span class="p">;</span>
+  <span class="kd">var</span> <span class="nx">container</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">select</span><span class="p">(</span><span class="s1">&#39;#county-homicides&#39;</span><span class="p">);</span>
+  <span class="kd">var</span> <span class="nx">containerWidth</span> <span class="o">=</span> <span class="nx">container</span><span class="p">.</span><span class="nx">node</span><span class="p">().</span><span class="nx">offsetWidth</span><span class="p">;</span>
+  <span class="kd">var</span> <span class="nx">containerHeight</span> <span class="o">=</span> <span class="nx">containerWidth</span> <span class="o">*</span> <span class="mf">0.66</span><span class="p">;</span>
+  <span class="kd">var</span> <span class="nx">width</span> <span class="o">=</span> <span class="nx">containerWidth</span> <span class="o">-</span> <span class="nx">margin</span><span class="p">.</span><span class="nx">right</span> <span class="o">-</span> <span class="nx">margin</span><span class="p">.</span><span class="nx">left</span><span class="p">;</span>
+  <span class="kd">var</span> <span class="nx">height</span> <span class="o">=</span> <span class="nx">containerHeight</span> <span class="o">-</span> <span class="nx">margin</span><span class="p">.</span><span class="nx">top</span> <span class="o">-</span> <span class="nx">margin</span><span class="p">.</span><span class="nx">bottom</span><span class="p">;</span>
+
+  <span class="kd">var</span> <span class="nx">svg</span> <span class="o">=</span> <span class="nx">container</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="s1">&#39;svg&#39;</span><span class="p">)</span>
+      <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;width&#39;</span><span class="p">,</span> <span class="nx">containerWidth</span><span class="p">)</span>
+      <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;height&#39;</span><span class="p">,</span> <span class="nx">containerHeight</span><span class="p">)</span>
+      <span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="s1">&#39;g&#39;</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;transform&#39;</span><span class="p">,</span> <span class="sb">`translate(</span><span class="si">${</span><span class="nx">margin</span><span class="p">.</span><span class="nx">left</span><span class="si">}</span><span class="sb">, </span><span class="si">${</span><span class="nx">margin</span><span class="p">.</span><span class="nx">top</span><span class="si">}</span><span class="sb">)`</span><span class="p">)</span>
+
+  <span class="kd">var</span> <span class="nx">xDomain</span> <span class="o">=</span> <span class="nx">annualTotals</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="nx">d</span> <span class="p">=&gt;</span> <span class="nx">d</span><span class="p">.</span><span class="nx">year</span><span class="p">);</span>
+
+  <span class="kd">var</span> <span class="nx">yDomain</span> <span class="o">=</span> <span class="p">[</span>
+      <span class="mi">0</span><span class="p">,</span>
+<span class="hll">      <span class="nx">d3</span><span class="p">.</span><span class="nx">max</span><span class="p">(</span><span class="nx">annualTotals</span><span class="p">,</span> <span class="nx">d</span> <span class="p">=&gt;</span> <span class="nx">d</span><span class="p">[</span><span class="nx">fieldname</span><span class="p">])</span>
+</span>  <span class="p">];</span>
+
+  <span class="kd">var</span> <span class="nx">xScale</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">scaleBand</span><span class="p">()</span>
+                <span class="p">.</span><span class="nx">domain</span><span class="p">(</span><span class="nx">xDomain</span><span class="p">)</span>
+                <span class="p">.</span><span class="nx">range</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="nx">width</span><span class="p">])</span>
+                <span class="p">.</span><span class="nx">padding</span><span class="p">(</span><span class="mf">0.1</span><span class="p">);</span>
+
+  <span class="kd">var</span> <span class="nx">yScale</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">scaleLinear</span><span class="p">()</span>
+                <span class="p">.</span><span class="nx">domain</span><span class="p">(</span><span class="nx">yDomain</span><span class="p">)</span>
+                <span class="p">.</span><span class="nx">range</span><span class="p">([</span><span class="nx">height</span><span class="p">,</span> <span class="mi">0</span><span class="p">]);</span>
+
+  <span class="kd">var</span> <span class="nx">xAxis</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">axisBottom</span><span class="p">(</span><span class="nx">xScale</span><span class="p">);</span>
+  <span class="kd">var</span> <span class="nx">yAxis</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">axisLeft</span><span class="p">(</span><span class="nx">yScale</span><span class="p">)</span>
+                  <span class="p">.</span><span class="nx">tickSize</span><span class="p">(</span><span class="o">-</span><span class="nx">width</span><span class="p">)</span>
+                  <span class="p">.</span><span class="nx">ticks</span><span class="p">(</span><span class="mi">4</span><span class="p">);</span>
+
+  <span class="nx">svg</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="s2">&quot;g&quot;</span><span class="p">)</span>
+      <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;class&quot;</span><span class="p">,</span> <span class="s2">&quot;x axis&quot;</span><span class="p">)</span>
+      <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;transform&quot;</span><span class="p">,</span> <span class="sb">`translate(0,</span><span class="si">${</span><span class="nx">height</span><span class="si">}</span><span class="sb">)`</span><span class="p">)</span>
+      <span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="nx">xAxis</span><span class="p">);</span>
+
+  <span class="nx">svg</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="s2">&quot;g&quot;</span><span class="p">)</span>
+      <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;class&quot;</span><span class="p">,</span> <span class="s2">&quot;y axis&quot;</span><span class="p">)</span>
+      <span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="nx">yAxis</span><span class="p">);</span>
+
+  <span class="nx">svg</span><span class="p">.</span><span class="nx">selectAll</span><span class="p">(</span><span class="s1">&#39;.bar&#39;</span><span class="p">)</span>
+      <span class="p">.</span><span class="nx">data</span><span class="p">(</span><span class="nx">annualTotals</span><span class="p">)</span>
+      <span class="p">.</span><span class="nx">enter</span><span class="p">()</span>
+      <span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="s1">&#39;rect&#39;</span><span class="p">)</span>
+      <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;class&#39;</span><span class="p">,</span> <span class="s1">&#39;bar&#39;</span><span class="p">)</span>
+      <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="nx">d</span> <span class="p">=&gt;</span> <span class="nx">xScale</span><span class="p">(</span><span class="nx">d</span><span class="p">.</span><span class="nx">year</span><span class="p">))</span>
+<span class="hll">      <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="nx">d</span> <span class="p">=&gt;</span> <span class="nx">yScale</span><span class="p">(</span><span class="nx">d</span><span class="p">[</span><span class="nx">fieldname</span><span class="p">]))</span>
+</span>      <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;width&#39;</span><span class="p">,</span> <span class="nx">d</span> <span class="p">=&gt;</span> <span class="nx">xScale</span><span class="p">.</span><span class="nx">bandwidth</span><span class="p">())</span>
+<span class="hll">      <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;height&#39;</span><span class="p">,</span> <span class="nx">d</span> <span class="p">=&gt;</span> <span class="nx">height</span> <span class="o">-</span> <span class="nx">yScale</span><span class="p">(</span><span class="nx">d</span><span class="p">[</span><span class="nx">fieldname</span><span class="p">]));</span>
+</span><span class="p">}</span>
+</pre></div>
+</div>
+<p>[PICTURE OF TWO DIFFERENT CHARTS]</p>
+<p>Now that our charts are smaller and they’re right next to each other, we need to clean up those year labels. Since our years are the same in both charts, we can set this manually when we’re creating the X axis.</p>
+<p>Let’s update the <code class="docutils literal notranslate"><span class="pre">xAxis</span></code> variable in <code class="docutils literal notranslate"><span class="pre">createCharts</span></code> to label the first and last bars on the chart, and the 5-year intervals.</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span>  <span class="c1">// ... more code is up here</span>
+  <span class="kd">var</span> <span class="nx">xAxis</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">axisBottom</span><span class="p">(</span><span class="nx">xScale</span><span class="p">)</span>
+<span class="hll">              <span class="p">.</span><span class="nx">tickValues</span><span class="p">([</span><span class="mi">2000</span><span class="p">,</span> <span class="mi">2005</span><span class="p">,</span> <span class="mi">2010</span><span class="p">,</span> <span class="mi">2015</span><span class="p">,</span> <span class="mi">2017</span><span class="p">]);</span>
+</span>
+  <span class="kd">var</span> <span class="nx">yAxis</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">axisLeft</span><span class="p">(</span><span class="nx">yScale</span><span class="p">)</span>
+                  <span class="p">.</span><span class="nx">tickSize</span><span class="p">(</span><span class="o">-</span><span class="nx">width</span><span class="p">)</span>
+                  <span class="p">.</span><span class="nx">ticks</span><span class="p">(</span><span class="mi">4</span><span class="p">);</span>
+
+  <span class="c1">// ... more code is down here</span>
+</pre></div>
+</div>
+<p>This cleans things up a lot! We have some pretty good-looking charts. Last, let’s add a headline to introduce our charts section.</p>
 <div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="hll"><span class="p">&lt;</span><span class="nt">h3</span><span class="p">&gt;</span>A South L.A. neighborhood stands apart<span class="p">&lt;/</span><span class="nt">h3</span><span class="p">&gt;</span>
 </span>
 <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;charts-holder clearfix&quot;</span><span class="p">&gt;</span>
@@ -1121,15 +1196,15 @@ $ git push origin master
 </div>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p>We used Plotly.js in this class, but there are many other JavaScript charting libraries, each one slightly different. If you want to explore this on your own, here are some other options that we considered using for this class</p>
+<p>We used D3.js in this class, but there are many other JavaScript charting libraries, each one slightly different. If you want to explore this on your own, here are some other options that generally abstract away the process we used in this class.</p>
 <ul class="simple">
 <li><a class="reference external" href="https://vega.github.io/vega-lite/">Vega-lite</a></li>
 <li><a class="reference external" href="http://www.chartjs.org/">Charts.js</a></li>
 <li><a class="reference external" href="http://c3js.org/">C3.js</a> Important to note that this does not seem to support the latest versions of D3.</li>
-<li><a class="reference external" href="https://d3js.org/">D3.js</a> The granddaddy of them all.</li>
 </ul>
 <p>There are also tools that allow you to use a visual editor, creating charts and other visualizations that you can download and/or embed in your project.</p>
 <ul class="last simple">
+<li><a class="reference external" href="https://beta.observablehq.com">Observable</a> is a relatively new site that allows you to take a more exploratory approach to building your visualizations. Charts and maps update automatically as you update data or settings.</li>
 <li><a class="reference external" href="https://quartz.github.io/Chartbuilder/">Chartbuilder</a> from <a class="reference external" href="https://qz.com/">Quartz</a>, is very good for basic, fast charts with light customization.</li>
 <li><a class="reference external" href="https://www.datawrapper.de/">DataWrapper</a> allows a range of visualizations beyond basic charts, including scatter plots and maps.</li>
 </ul>

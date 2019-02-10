@@ -10,3 +10,4 @@ _build/
 
 Pipfile
 Pipfile.lock
+.python-version
