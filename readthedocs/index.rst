@@ -260,7 +260,7 @@ We'll start by installing Yeoman using the Node Package Manager (``npm``), which
 
 .. code-block:: bash
 
-    $ npm install -g yo
+    $ npm install -g yo@2.0.5
 
 
 The ``-g`` means that we're installing the packages globally. You'll be able to run these from any directory on your computer.
