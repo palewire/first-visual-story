@@ -1457,7 +1457,7 @@ To draw the map we will rely on `Leaflet <http://leafletjs.com>`_, a JavaScript 
 
 .. code-block:: base
 
-    $ npm install -s leaflet
+    $ npm install -s leaflet@1.4.0
 
 
 After it's been installed, we should import Leaflet into ``_scripts/main.js`` so that its tools are available on our site.
@@ -1708,7 +1708,7 @@ To put it to use, we'll need to return to our friend ``npm``.
 
 .. code-block:: bash
 
-    $ npm install -s leaflet-minimap
+    $ npm install -g leaflet-minimap@3.6.1
 
 
 Just as with other libraries, we need to import it into `_scripts/main.js`.
