@@ -1708,7 +1708,7 @@ To put it to use, we'll need to return to our friend ``npm``.
 
 .. code-block:: bash
 
-    $ npm install -g leaflet-minimap@3.6.1
+    $ npm install -s leaflet-minimap@3.6.1
 
 
 Just as with other libraries, we need to import it into `_scripts/main.js`.
