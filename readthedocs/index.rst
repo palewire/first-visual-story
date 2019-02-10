@@ -269,7 +269,7 @@ Next we'll install `Gulp <https://gulpjs.com/>`_, a helpful Node.js utility for 
 
 .. code-block:: bash
 
-    $ npm install -g gulp
+    $ npm install -g gulp@3.9.1
 
 
 Finally, we use npm to install `yeogurt <https://github.com/larsonjj/generator-yeogurt>`_, our project generator that yeoman will build. It includes dozens of customizations of the Yeoman system created by its author to help us build websites. It can't do everything a full-featured newsroom framework might. But it can do a lot, and enough for us to achieve our goals for this class.
