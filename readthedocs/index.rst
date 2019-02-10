@@ -276,7 +276,7 @@ Finally, we use npm to install `yeogurt <https://github.com/larsonjj/generator-y
 
 .. code-block:: bash
 
-    $ npm install -g generator-yeogurt
+    $ npm install -g generator-yeogurt@2.0.1
 
 
 Create a new project using our yeogurt generator as the guide.
