@@ -722,7 +722,7 @@ $ git commit -m <span class="s2">&quot;Created a victims card grid&quot;</span>
 </pre></div>
 </div>
 <p>Remember our underscore coding convention? Here, <code class="docutils literal notranslate"><span class="pre">_charts.js</span></code> has an underscore (<code class="docutils literal notranslate"><span class="pre">_</span></code>) in front of it because it will be compiled into <code class="docutils literal notranslate"><span class="pre">main.js</span></code> when the site is baked.</p>
-<p>That is, if we tell it to. Use the same <code class="docutils literal notranslate"><span class="pre">require()</span></code> method to pull our code into <code class="docutils literal notranslate"><span class="pre">main.js</span></code>. Unlike <code class="docutils literal notranslate"><span class="pre">_charts.js</span></code>, <code class="docutils literal notranslate"><span class="pre">main.js</span></code> doesn’t have an underscore, because it is the file that the other scripts will be pulled into.</p>
+<p>That is, if we tell it to. Use the same <code class="docutils literal notranslate"><span class="pre">require()</span></code> method to pull our code into <code class="docutils literal notranslate"><span class="pre">main.js</span></code>. Unlike <code class="docutils literal notranslate"><span class="pre">_charts.js</span></code>, <code class="docutils literal notranslate"><span class="pre">main.js</span></code> doesn’t have an underscore, because it is the file pulls in all the other scripts.</p>
 <p>You don’t have to use this convention, but it’s handy as a visual marker of what files are dependent on others.</p>
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="c1">// Main javascript entry point</span>
 <span class="c1">// Should handle bootstrapping/starting application</span>
@@ -799,6 +799,7 @@ $ git commit -m <span class="s2">&quot;Created a victims card grid&quot;</span>
 </span></pre></div>
 </div>
 <p>Now if you look in your inspector, you’ll see that we’ve appended an <code class="docutils literal notranslate"><span class="pre">&lt;svg&gt;</span></code> to the element with an ID of <code class="docutils literal notranslate"><span class="pre">county-homicides</span></code>. However, we also need to specify a height and width for the SVG, otherwise it will always just have default dimensions of 300x150, no matter how large our screen or device is.</p>
+<a class="reference internal image-reference" href="_images/chart-empty-svg.png"><img alt="_images/chart-empty-svg.png" src="_images/chart-empty-svg.png" style="width: 100%;" /></a>
 <p>Let’s use <code class="docutils literal notranslate"><span class="pre">.node()</span></code> to access the HTML element and save the width and height of the container to variables. I like to specify the height as a percentage of the width, to get an aspect ratio.</p>
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">d3</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;d3&#39;</span><span class="p">);</span>
 
@@ -824,11 +825,12 @@ $ git commit -m <span class="s2">&quot;Created a victims card grid&quot;</span>
 </span></pre></div>
 </div>
 <p>Now if you look, your SVG should be rendered at the appropriate height and width, filling the available space.</p>
-<p>[PICTURE OF EMPTY SVG]</p>
+<a class="reference internal image-reference" href="_images/chart-empty-svg-2.png"><img alt="_images/chart-empty-svg-2.png" src="_images/chart-empty-svg-2.png" style="width: 100%;" /></a>
 <p>Two more setup steps before we actually start making our charts. First, if we simply start drawing data onto the SVG, we’ll likely see areas where the data clips off the chart. We can avoid this by defining a pre-set margin we’ll use throughout the process.</p>
+<p>We also create two variables, <code class="docutils literal notranslate"><span class="pre">width</span></code> and <code class="docutils literal notranslate"><span class="pre">height</span></code> that refer to the dimensions of the chart with the margins included.</p>
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">d3</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;d3&#39;</span><span class="p">);</span>
 
-<span class="hll"><span class="kd">var</span> <span class="nx">margin</span> <span class="o">=</span> <span class="p">{</span><span class="nx">top</span><span class="o">:</span> <span class="mi">20</span><span class="p">,</span> <span class="nx">right</span><span class="o">:</span><span class="mi">20</span><span class="p">,</span> <span class="nx">bottom</span><span class="o">:</span><span class="mi">20</span><span class="p">,</span> <span class="nx">left</span><span class="o">:</span><span class="mi">40</span><span class="p">}</span> <span class="p">;</span>
+<span class="hll"><span class="kd">var</span> <span class="nx">margin</span> <span class="o">=</span> <span class="p">{</span><span class="nx">top</span><span class="o">:</span> <span class="mi">20</span><span class="p">,</span> <span class="nx">right</span><span class="o">:</span><span class="mi">20</span><span class="p">,</span> <span class="nx">bottom</span><span class="o">:</span><span class="mi">20</span><span class="p">,</span> <span class="nx">left</span><span class="o">:</span><span class="mi">40</span><span class="p">};</span>
 </span><span class="c1">// Make sure you use the # here!</span>
 <span class="kd">var</span> <span class="nx">container</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">select</span><span class="p">(</span><span class="s1">&#39;#county-homicides&#39;</span><span class="p">);</span>
 <span class="kd">var</span> <span class="nx">containerWidth</span> <span class="o">=</span> <span class="nx">container</span><span class="p">.</span><span class="nx">node</span><span class="p">().</span><span class="nx">offsetWidth</span><span class="p">;</span>
@@ -841,7 +843,7 @@ $ git commit -m <span class="s2">&quot;Created a victims card grid&quot;</span>
             <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;height&#39;</span><span class="p">,</span> <span class="nx">containerHeight</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>Second, we should add a <code class="docutils literal notranslate"><span class="pre">&lt;g&gt;</span></code>, or “group” tag, where everything else in our chart will go. Add this to the end of your <code class="docutils literal notranslate"><span class="pre">svg</span></code> declaration. We’ll also want to give it a <code class="docutils literal notranslate"><span class="pre">transform</span></code> attribute that shifts it slightly according to the margins we set.</p>
+<p>Second, we should add a <code class="docutils literal notranslate"><span class="pre">&lt;g&gt;</span></code>, or “group” tag, where everything else in our chart will go. Add this to the end of your <code class="docutils literal notranslate"><span class="pre">svg</span></code> declaration. We’ll also want to give it a <code class="docutils literal notranslate"><span class="pre">transform</span></code> attribute that shifts it slightly according to our margins.</p>
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="c1">// ... more code is up here</span>
 <span class="kd">var</span> <span class="nx">svg</span> <span class="o">=</span> <span class="nx">container</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="s1">&#39;svg&#39;</span><span class="p">)</span>
         <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;width&#39;</span><span class="p">,</span> <span class="nx">width</span><span class="p">)</span>
@@ -911,7 +913,7 @@ $ git commit -m <span class="s2">&quot;Created a victims card grid&quot;</span>
     <span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="nx">yAxis</span><span class="p">);</span>
 </pre></div>
 </div>
-<p>[PHOTO OF CHART AXES WITH X AXIS AT TOP]</p>
+<a class="reference internal image-reference" href="_images/chart-xaxis-top.png"><img alt="_images/chart-xaxis-top.png" src="_images/chart-xaxis-top.png" style="width: 100%;" /></a>
 <p>Well that doesn’t look quite right. The reason the X axis is displaying at the top of the chart is that in SVGs, the coordinate 0,0 is at the top left. So we need to shift, or <code class="docutils literal notranslate"><span class="pre">translate</span></code> the X axis down by the height of the chart. The Y axis is fine where it is.</p>
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="c1">// The rest of your code is up here</span>
 
@@ -921,9 +923,9 @@ $ git commit -m <span class="s2">&quot;Created a victims card grid&quot;</span>
 </span>    <span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="nx">xAxis</span><span class="p">);</span>
 </pre></div>
 </div>
-<p>[PHOTO OF CORRECTED CHART AXES]</p>
+<a class="reference internal image-reference" href="_images/chart-xaxis-bottom.png"><img alt="_images/chart-xaxis-bottom.png" src="_images/chart-xaxis-bottom.png" style="width: 100%;" /></a>
 <p>Now that the axes are there, we’re finally ready to draw our bars. D3 handles it’s data by binding the data to the SVG elements - hence the name: “Data Driven Documents.”</p>
-<p>The format seems a little strange at first, because you’re selecting elements, then binding data to the selection, _then_ creating elements that are bound to the data. You do this by chaining two methods, <code class="docutils literal notranslate"><span class="pre">.data()</span></code>, which determines the data set that you’re binding, and <code class="docutils literal notranslate"><span class="pre">.enter()</span></code>, which iterates over the data set.</p>
+<p>The format seems a little strange at first, because you’re selecting elements, then binding data to the selection, then creating elements that are bound to the data. You do this by chaining two methods, <code class="docutils literal notranslate"><span class="pre">.data()</span></code>, which determines the data set that you’re binding, and <code class="docutils literal notranslate"><span class="pre">.enter()</span></code>, which iterates over the data set.</p>
 <p>Since we’re making a bar chart, we’re going to create a <code class="docutils literal notranslate"><span class="pre">&lt;rect&gt;</span></code> element, and give it a class of <code class="docutils literal notranslate"><span class="pre">bar</span></code>.</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
@@ -1178,7 +1180,7 @@ $ git commit -m <span class="s2">&quot;Created a victims card grid&quot;</span>
 <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
 </pre></div>
 </div>
-<a class="reference internal image-reference" href="_images/two-charts-title.png"><img alt="_images/two-charts-title.png" src="_images/two-charts-title.png" style="width: 100%;" /></a>
+<a class="reference internal image-reference" href="_static/two-charts-title.png"><img alt="_static/two-charts-title.png" src="_static/two-charts-title.png" style="width: 100%;" /></a>
 <p>And an introductory paragraph to say a little bit about what we’re looking at.</p>
 <div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">h3</span><span class="p">&gt;</span>A South L.A. neighborhood stands apart<span class="p">&lt;/</span><span class="nt">h3</span><span class="p">&gt;</span>
 <span class="hll"><span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>Harvard Park&#39;s 2016 homicide total was its highest in at least 15 years despite a downward trend in killings across L.A. County.<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
@@ -1189,7 +1191,7 @@ $ git commit -m <span class="s2">&quot;Created a victims card grid&quot;</span>
 <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
 </pre></div>
 </div>
-<a class="reference internal image-reference" href="_images/chart-intro-graf.png"><img alt="_images/chart-intro-graf.png" src="_images/chart-intro-graf.png" style="width: 100%;" /></a>
+<a class="reference internal image-reference" href="_static/chart-intro-graf.png"><img alt="_static/chart-intro-graf.png" src="_static/chart-intro-graf.png" style="width: 100%;" /></a>
 <p>Congratulations, you’ve made your charts! Let’s commit our changes and move on to our next challenge.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ git commit -m <span class="s2">&quot;Made my first charts.&quot;</span>
 $ git push origin master

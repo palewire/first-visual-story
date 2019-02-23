@@ -911,7 +911,7 @@ You can include the libraries we installed (or any JavaScript file!) by using ``
 
 Remember our underscore coding convention? Here, ``_charts.js`` has an underscore (``_``) in front of it because it will be compiled into ``main.js`` when the site is baked.
 
-That is, if we tell it to. Use the same ``require()`` method to pull our code into ``main.js``. Unlike ``_charts.js``, ``main.js`` doesn't have an underscore, because it is the file that the other scripts will be pulled into.
+That is, if we tell it to. Use the same ``require()`` method to pull our code into ``main.js``. Unlike ``_charts.js``, ``main.js`` doesn't have an underscore, because it is the file pulls in all the other scripts.
 
 You don't have to use this convention, but it's handy as a visual marker of what files are dependent on others.
 
@@ -1011,6 +1011,9 @@ The first thing we'll want to do is select the HTML container of the chart with 
 
 Now if you look in your inspector, you'll see that we've appended an ``<svg>`` to the element with an ID of ``county-homicides``. However, we also need to specify a height and width for the SVG, otherwise it will always just have default dimensions of 300x150, no matter how large our screen or device is.
 
+.. image:: _static/chart-empty-svg.png
+    :width: 100%
+
 Let's use ``.node()`` to access the HTML element and save the width and height of the container to variables. I like to specify the height as a percentage of the width, to get an aspect ratio.
 
 .. code-block:: javascript
@@ -1043,16 +1046,19 @@ Now we can use them to set the properties, or "attributes" of the SVG using D3's
 
 Now if you look, your SVG should be rendered at the appropriate height and width, filling the available space.
 
-[PICTURE OF EMPTY SVG]
+.. image:: _static/chart-empty-svg-2.png
+    :width: 100%
 
 Two more setup steps before we actually start making our charts. First, if we simply start drawing data onto the SVG, we'll likely see areas where the data clips off the chart. We can avoid this by defining a pre-set margin we'll use throughout the process.
+
+We also create two variables, ``width`` and ``height`` that refer to the dimensions of the chart with the margins included.
 
 .. code-block:: javascript
     :emphasize-lines: 3,8-9
 
     var d3 = require('d3');
 
-    var margin = {top: 20, right:20, bottom:20, left:40} ;
+    var margin = {top: 20, right:20, bottom:20, left:40};
     // Make sure you use the # here!
     var container = d3.select('#county-homicides');
     var containerWidth = container.node().offsetWidth;
@@ -1064,7 +1070,7 @@ Two more setup steps before we actually start making our charts. First, if we si
                 .attr('width', containerWidth)
                 .attr('height', containerHeight)
 
-Second, we should add a ``<g>``, or "group" tag, where everything else in our chart will go. Add this to the end of your ``svg`` declaration. We'll also want to give it a ``transform`` attribute that shifts it slightly according to the margins we set.
+Second, we should add a ``<g>``, or "group" tag, where everything else in our chart will go. Add this to the end of your ``svg`` declaration. We'll also want to give it a ``transform`` attribute that shifts it slightly according to our margins.
 
 .. code-block:: javascript
     :emphasize-lines: 5-6
@@ -1156,7 +1162,9 @@ Finally, we append those to the chart by appending a ``<g>`` tag and "calling" t
         .call(yAxis);
 
 
-[PHOTO OF CHART AXES WITH X AXIS AT TOP]
+.. image:: _static/chart-xaxis-top.png
+    :width: 100%
+
 
 Well that doesn't look quite right. The reason the X axis is displaying at the top of the chart is that in SVGs, the coordinate 0,0 is at the top left. So we need to shift, or ``translate`` the X axis down by the height of the chart. The Y axis is fine where it is.
 
@@ -1171,11 +1179,13 @@ Well that doesn't look quite right. The reason the X axis is displaying at the t
         .call(xAxis);
 
 
-[PHOTO OF CORRECTED CHART AXES]
+.. image:: _static/chart-xaxis-bottom.png
+    :width: 100%
+
 
 Now that the axes are there, we're finally ready to draw our bars. D3 handles it's data by binding the data to the SVG elements - hence the name: "Data Driven Documents."
 
-The format seems a little strange at first, because you're selecting elements, then binding data to the selection, _then_ creating elements that are bound to the data. You do this by chaining two methods, ``.data()``, which determines the data set that you're binding, and ``.enter()``, which iterates over the data set.
+The format seems a little strange at first, because you're selecting elements, then binding data to the selection, then creating elements that are bound to the data. You do this by chaining two methods, ``.data()``, which determines the data set that you're binding, and ``.enter()``, which iterates over the data set.
 
 Since we're making a bar chart, we're going to create a ``<rect>`` element, and give it a class of ``bar``.
 
