@@ -892,7 +892,7 @@ First, use npm to install D3.
 
 .. code-block:: bash
 
-    $ npm install -s d3
+    $ npm install -s d3@5
 
 
 The ``-s`` argument saves plotly to a dependencies file. That way, if you ever need to go through the install steps for your app again, you can do so easily by simply running ``npm install``.
