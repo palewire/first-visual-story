@@ -265,6 +265,8 @@ We'll start by installing Yeoman using the Node Package Manager (``npm``), which
 
 The ``-g`` means that we're installing the packages globally. You'll be able to run these from any directory on your computer.
 
+The ``@`` followed by numbers after the ``yo`` package means we're installing a specific version. Codebases often change quickly, and by specifying a version, you're protecting yourself against future changes that could break your code.
+
 Next we'll install `Gulp <https://gulpjs.com/>`_, a helpful Node.js utility for running a framework on your computer as you develop a site. Again, we turn to npm.
 
 .. code-block:: bash
@@ -330,6 +332,7 @@ Commit our work.
 .. code-block:: bash
 
     $ git add .
+    # ☝️ A fun trick to add *all* of the pages you've changed with one command. ☝️
     $ git commit -m "Installed framework"
 
 
@@ -499,7 +502,6 @@ Congratulations, you've installed a base template and started in on creating you
 .. code-block:: bash
 
     $ git add .
-    # ☝️ A fun trick to add *all* of the pages you've changed with one command. ☝️
     $ git commit -m "Started editing templates"
 
 

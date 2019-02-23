@@ -317,6 +317,7 @@ $ git config --global user.name <span class="s2">&quot;your name&quot;</span>
 </pre></div>
 </div>
 <p>The <code class="docutils literal notranslate"><span class="pre">-g</span></code> means that we’re installing the packages globally. You’ll be able to run these from any directory on your computer.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">&#64;</span></code> followed by numbers after the <code class="docutils literal notranslate"><span class="pre">yo</span></code> package means we’re installing a specific version. Codebases often change quickly, and by specifying a version, you’re protecting yourself against future changes that could break your code.</p>
 <p>Next we’ll install <a class="reference external" href="https://gulpjs.com/">Gulp</a>, a helpful Node.js utility for running a framework on your computer as you develop a site. Again, we turn to npm.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ npm install -g gulp@3.9.1
 </pre></div>
@@ -354,6 +355,7 @@ $ <span class="nb">cd</span> first-graphics-app
 </div>
 <p>Commit our work.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ git add .
+<span class="c1"># ☝️ A fun trick to add *all* of the pages you&#39;ve changed with one command. ☝️</span>
 $ git commit -m <span class="s2">&quot;Installed framework&quot;</span>
 </pre></div>
 </div>
@@ -463,7 +465,6 @@ $ git commit -m <span class="s2">&quot;Installed framework&quot;</span>
 <a class="reference internal image-reference" href="_images/pubdate.png"><img alt="_images/pubdate.png" src="_images/pubdate.png" style="width: 100%;" /></a>
 <p>Congratulations, you’ve installed a base template and started in on creating your first custom page. Now is another good time to pause and commit our work.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ git add .
-<span class="c1"># ☝️ A fun trick to add *all* of the pages you&#39;ve changed with one command. ☝️</span>
 $ git commit -m <span class="s2">&quot;Started editing templates&quot;</span>
 </pre></div>
 </div>
