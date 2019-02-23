@@ -1205,11 +1205,13 @@ Let's give it a try, by binding our ``annualTotals`` data to the bars on the cha
         .append('rect')
         .attr('class', 'bar')
 
-[PICTURE OF INSPECTOR SHOWING RECT ELEMENTS]
+.. image:: _static/chart-empty-rects.png
+    :width: 100%
 
 Now if you look at your chart... nothing has changed! But open your inspector and look at your SVG - you'll see lots of ``<rect>`` elements, you just can't see them because they don't have any values for height and width, or x and y position values. Let's do this next.
 
 .. code-block:: javascript
+    :emphasize-lines: 8-11
 
     // The rest of your code is up here
 
@@ -1220,12 +1222,13 @@ Now if you look at your chart... nothing has changed! But open your inspector an
         .attr('class', 'bar')
         .attr('x', d => xScale(d.year))
         .attr('y', d => yScale(d.homicides_total))
-        .attr('width', d => xScale.bandWidth())
+        .attr('width', d => xScale.bandwidth())
         .attr('height', d => height - yScale(d.homicides_total))
 
 The X value will be determined by the year, and the Y by the ``homicides_total`` value of each object. The width of each bar is set by a method called ``.bandwidth()`` on our scale, and the height will be
 
-[PICTURE OF CHARTS WITH BARS]
+.. image:: _static/chart-bars.png
+    :width: 100%
 
 You have a bar chart! At this point we can step back and style out the chart, and leave room for a second chart that shows Harvard Park homicides.
 
@@ -1240,7 +1243,7 @@ The first thing we need to do is make the chart smaller - right now it's huge! A
         display: inline-block;
     }
 
-If you look at the page now, you'll see that nothing has changed. That's because we need to import the styles that we just created into our ``main.scss`` file.
+If you look at the page now, you'll see that nothing has changed. That's because, like the JavaScript, we need to import the styles that we just created into our ``main.scss`` file.
 
 You can do that by adding the following line to ``main.scss``.
 
@@ -1253,6 +1256,10 @@ You can do that by adding the following line to ``main.scss``.
     // Import Modules
     @import '../_modules/link/link';
     @import './charts.scss';
+
+
+.. image:: _static/chart-half-width.png
+    :width: 100%
 
 Let's also color the bars and clean up some of the lines. If you remember, the bars were ``<rect>`` elements, and if you use the inspector, you can find the x axis lines we want to remove. Back in ``_charts.scss``:
 
@@ -1282,6 +1289,10 @@ The last thing we want to style is the grid lines - they're too heavy and should
     .y .tick:not(:first-of-type) line {
       stroke: #e7e7e7;
     }
+
+
+.. image:: _static/chart-styled.png
+    :width: 100%
 
 Now we have a nicely styled chart, and we're ready to start on our second one. Do we want to copy everything all over again? No! Instead, we can pull the JavaScript we just wrote into a function that will take our data and an element, and create the chart for us!
 
@@ -1392,7 +1403,8 @@ Now try calling it on the second element we created, with the ``homicides_harvar
     createChart("#county-homicides", "homicides_total")
     createChart("#harvard-park-homicides", "homicides_harvard_park")
 
-[PICTURE OF SAME CHART TWICE]
+.. image:: _static/chart-twice.png
+    :width: 100%
 
 This gives us the same chart twice, which is expected since we still have the data values hard-coded.
 
@@ -1460,7 +1472,9 @@ Luckily, we only have to do this a few times, once where we're calculating the d
           .attr('height', d => height - yScale(d[fieldname]));
     }
 
-[PICTURE OF TWO DIFFERENT CHARTS]
+
+.. image:: _static/chart-side-by-side.png
+    :width: 100%
 
 Now that our charts are smaller and they're right next to each other, we need to clean up those year labels. Since our years are the same in both charts, we can set this manually when we're creating the X axis.
 
@@ -1479,19 +1493,56 @@ Let's update the ``xAxis`` variable in ``createCharts`` to label the first and l
 
       // ... more code is down here
 
-This cleans things up a lot! We have some pretty good-looking charts. Last, let's add a headline to introduce our charts section.
+.. image:: _static/chart-clean-axes.png
+    :width: 100%
+
+This cleans things up a lot! We have some pretty good-looking charts. Our charts need titles, which we can add directly to the HTML. Going back to the ``index.nunjucks`` file, add the titles in ``<h4>`` tags inside your chart containers
+
+.. code-block:: html
+    :emphasize-lines: 3,6
+
+    <div class="charts">
+      <div class="inline-chart" id="county-homicides">
+        <h4 class="chart-title">County homicides, 2000-2017</h4>
+      </div>
+      <div class="inline-chart" id="harvard-park-homicides">
+        <h4 class="chart-title">Harvard Park homicides, 2000-2017</h4>
+      </div>
+    </div>
+
+Let's style those a bit too, add these rules to the bottom of ``_styles/_charts.scss``.
+
+.. code-block:: css
+
+    .chart-title {
+      font-weight: bold;
+      font-size: 16px;
+      text-align: center;
+    }
+
+
+.. image:: _static/chart-with-title.png
+    :width: 100%
+
+
+Last, let's add a headline to introduce our charts section.
 
 .. code-block:: html
     :emphasize-lines: 1
 
     <h3>A South L.A. neighborhood stands apart</h3>
 
-    <div class="charts-holder clearfix">
-        <div class="inline-chart" id="county-homicides"></div>
-        <div class="inline-chart" id="harvard-park-homicides"></div>
+    <div class="charts">
+      <div class="inline-chart" id="county-homicides">
+        <h4 class="chart-title">County homicides, 2000-2017</h4>
+      </div>
+      <div class="inline-chart" id="harvard-park-homicides">
+        <h4 class="chart-title">Harvard Park homicides, 2000-2017</h4>
+      </div>
     </div>
 
-.. image:: _static/two-charts-title.png
+
+.. image:: _static/chart-section-headline.png
     :width: 100%
 
 And an introductory paragraph to say a little bit about what we're looking at.
@@ -1509,6 +1560,7 @@ And an introductory paragraph to say a little bit about what we're looking at.
 
 .. image:: _static/chart-intro-graf.png
     :width: 100%
+
 
 Congratulations, you've made your charts! Let's commit our changes and move on to our next challenge.
 
