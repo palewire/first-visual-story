@@ -12,7 +12,7 @@
 
 {% block content %}
 <section>
-    <p>The area around Harvard Park was the deadliest place for African Americans in Los Angeles County last year, according to <a href="http://homicide.latimes.com/">The Times’ Homicide Report</a>. So far this year, six people have been killed. Most of the victims were black men.</p>
+    <p>The area around Harvard Park was the deadliest place for blacks in Los Angeles County last year, according to <a href="http://homicide.latimes.com/">The Times’ Homicide Report</a>. So far this year, six people have been killed. Most of the victims were black men.</p>
 </section>
 
 <section>
@@ -35,13 +35,13 @@
   <p>The {{ site.data.harvard_park_homicides|length }} homicides in Harvard Park since 2000 were primarily black and Latino males, but the list includes husbands, wives, fathers, mothers of all ages, and even some small children.</p>
   <div class="card-columns">
       {% for obj in site.data.harvard_park_homicides %}
-      <div class="card">
+      <a href="http://homicide.latimes.com/post/{{ obj.slug }}" target="_blank"><div class="card">
         {% if obj.image %}<img class="card-img-top" src="{{ obj.image }}">{% endif %}
         <div class="card-body">
-          <a href="http://homicide.latimes.com/post/{{ obj.slug }}" target="_blank"><strong><h5 class="card-title">{{ obj.first_name }} {{ obj.last_name }}</h5></strong></a>
+          <strong><h5 class="card-title">{{ obj.first_name }} {{ obj.last_name }}</h5></strong>
           <p class="card-text">{{ obj.last_name }}, a {{ obj.age}}-year-old {{ obj.race }} {{ obj.gender }}, died in {{ obj.death_year }}.</p>
         </div>
-      </div>
+      </div></a>
       {% endfor %}
   </div>
 </section>
