@@ -1051,7 +1051,7 @@ Now if you look, your SVG should be rendered at the appropriate height and width
 
 Two more setup steps before we actually start making our charts. First, if we simply start drawing data onto the SVG, we'll likely see areas where the data clips off the chart. We can avoid this by defining a pre-set margin we'll use throughout the process.
 
-We also create two variables, ``width`` and ``height`` that refer to the dimensions of the chart with the margins included.
+We also create two variables, ``chartWidth`` and ``chartHeight`` that refer to the dimensions of the chart with the margins included.
 
 .. code-block:: javascript
     :emphasize-lines: 3,8-9
@@ -1063,8 +1063,8 @@ We also create two variables, ``width`` and ``height`` that refer to the dimensi
     var container = d3.select('#county-homicides');
     var containerWidth = container.node().offsetWidth;
     var containerHeight = containerWidth * 0.66;
-    var width = containerWidth - margin.right - margin.left;
-    var height = containerHeight - margin.top - margin.bottom;
+    var chartWidth = containerWidth - margin.right - margin.left;
+    var chartHeight = containerHeight - margin.top - margin.bottom;
 
     var svg = container.append('svg')
                 .attr('width', containerWidth)
@@ -1077,8 +1077,8 @@ Second, we should add a ``<g>``, or "group" tag, where everything else in our ch
 
     // ... more code is up here
     var svg = container.append('svg')
-            .attr('width', width)
-            .attr('height', height)
+            .attr('width', chartWidth)
+            .attr('height', chartHeight)
             .append('g')
                 .attr('transform', `translate(${margin.left}, ${margin.top})`)
 
@@ -1112,10 +1112,10 @@ For the Y-axis, we want the domain to start at 0, so we can set that manually.
 
   	var yDomain = [
         0,
-        d3.max(annualTotals, d => d.homicides_total)
+        d3.max(annualTotals.map(d => d.homicides_total))
   	];
 
-If you know the min and max values, you can also set these manually.
+If you know the min and max values, you can also set these manually, which can be useful if you want your chart max to be a nice even number.
 
 At the bottom of your file, let's create an ``xScale`` and ``yScale`` now. Note that at this point we're also setting the range, or output values, to the range between 0 and the height and width of our SVG.
 
@@ -1125,12 +1125,12 @@ At the bottom of your file, let's create an ``xScale`` and ``yScale`` now. Note 
 
     var xScale = d3.scaleBand()
                   .domain(xDomain)
-                  .range([0, width])
+                  .range([0, chartWidth])
                   .padding(0.1);
 
     var yScale = d3.scaleLinear()
                   .domain(yDomain)
-                  .range([height, 0]);
+                  .range([chartHeight, 0]);
 
 Note that the X scale has an additional method, ``.padding()``, which specifies how far apart our bars are from one another.
 
@@ -1144,7 +1144,7 @@ For the Y-axis, we also want to add grid lines and limit the number of ticks tha
 
     var xAxis = d3.axisBottom(xScale);
     var yAxis = d3.axisLeft(yScale)
-                  .tickSize(-width)
+                  .tickSize(-chartWidth)
                   .ticks(4);
 
 Finally, we append those to the chart by appending a ``<g>`` tag and "calling" the axis function we just created. I like to give each axis element a class of "axis" and "x" or "y", depending on which axis we're creating.
@@ -1175,7 +1175,7 @@ Well that doesn't look quite right. The reason the X axis is displaying at the t
 
     svg.append("g")
         .attr("class", "x axis")
-        .attr("transform", `translate(0,${height})`)
+        .attr("transform", `translate(0,${chartHeight})`)
         .call(xAxis);
 
 
@@ -1223,9 +1223,9 @@ Now if you look at your chart... nothing has changed! But open your inspector an
         .attr('x', d => xScale(d.year))
         .attr('y', d => yScale(d.homicides_total))
         .attr('width', d => xScale.bandwidth())
-        .attr('height', d => height - yScale(d.homicides_total))
+        .attr('height', d => chartHeight - yScale(d.homicides_total))
 
-The X value will be determined by the year, and the Y by the ``homicides_total`` value of each object. The width of each bar is set by a method called ``.bandwidth()`` on our scale, and the height will be
+The X value will be determined by the year, and the Y by the ``homicides_total`` value of each object. The width of each bar is set by a method called ``.bandwidth()`` on our scale, and the height will scaled corresponding to the number of homicides.
 
 .. image:: _static/chart-bars.png
     :width: 100%
@@ -1322,8 +1322,8 @@ Now, you can copy everything we wrote in ``_charts.js`` under the ``require('d3'
       var container = d3.select('#county-homicides');
       var containerWidth = container.node().offsetWidth;
       var containerHeight = containerWidth * 0.66;
-      var width = containerWidth - margin.right - margin.left;
-      var height = containerHeight - margin.top - margin.bottom;
+      var chartWidth = containerWidth - margin.right - margin.left;
+      var chartHeight = containerHeight - margin.top - margin.bottom;
 
       var svg = container.append('svg')
           .attr('width', containerWidth)
@@ -1335,26 +1335,26 @@ Now, you can copy everything we wrote in ``_charts.js`` under the ``require('d3'
 
       var yDomain = [
           0,
-          d3.max(annualTotals, d => d.homicides_total)
+          d3.max(annualTotals.map(d => d.homicides_total))
       ];
 
       var xScale = d3.scaleBand()
                     .domain(xDomain)
-                    .range([0, width])
+                    .range([0, chartWidth])
                     .padding(0.1);
 
       var yScale = d3.scaleLinear()
                     .domain(yDomain)
-                    .range([height, 0]);
+                    .range([chartHeight, 0]);
 
       var xAxis = d3.axisBottom(xScale);
       var yAxis = d3.axisLeft(yScale)
-                      .tickSize(-width)
+                      .tickSize(-chartWidth)
                       .ticks(4);
 
       svg.append("g")
           .attr("class", "x axis")
-          .attr("transform", `translate(0,${height})`)
+          .attr("transform", `translate(0,${chartHeight})`)
           .call(xAxis);
 
       svg.append("g")
@@ -1369,7 +1369,7 @@ Now, you can copy everything we wrote in ``_charts.js`` under the ``require('d3'
           .attr('x', d => xScale(d.year))
           .attr('y', d => yScale(d.homicides_total))
           .attr('width', d => xScale.bandwidth())
-          .attr('height', d => height - yScale(d.homicides_total));
+          .attr('height', d => chartHeight - yScale(d.homicides_total));
     }
 
 Now, if you reload your page, your chart will have disappeared! That's because our code is no longer running since it's in a function, but we're not calling that function.
@@ -1422,8 +1422,8 @@ Luckily, we only have to do this a few times, once where we're calculating the d
       var container = d3.select('#county-homicides');
       var containerWidth = container.node().offsetWidth;
       var containerHeight = containerWidth * 0.66;
-      var width = containerWidth - margin.right - margin.left;
-      var height = containerHeight - margin.top - margin.bottom;
+      var chartWidth = containerWidth - margin.right - margin.left;
+      var chartHeight = containerHeight - margin.top - margin.bottom;
 
       var svg = container.append('svg')
           .attr('width', containerWidth)
@@ -1435,26 +1435,26 @@ Luckily, we only have to do this a few times, once where we're calculating the d
 
       var yDomain = [
           0,
-          d3.max(annualTotals, d => d[fieldname])
+          d3.max(annualTotals.map(d => d[fieldname]))
       ];
 
       var xScale = d3.scaleBand()
                     .domain(xDomain)
-                    .range([0, width])
+                    .range([0, chartWidth])
                     .padding(0.1);
 
       var yScale = d3.scaleLinear()
                     .domain(yDomain)
-                    .range([height, 0]);
+                    .range([chartHeight, 0]);
 
       var xAxis = d3.axisBottom(xScale);
       var yAxis = d3.axisLeft(yScale)
-                      .tickSize(-width)
+                      .tickSize(-chartWidth)
                       .ticks(4);
 
       svg.append("g")
           .attr("class", "x axis")
-          .attr("transform", `translate(0,${height})`)
+          .attr("transform", `translate(0,${chartHeight})`)
           .call(xAxis);
 
       svg.append("g")
@@ -1469,7 +1469,7 @@ Luckily, we only have to do this a few times, once where we're calculating the d
           .attr('x', d => xScale(d.year))
           .attr('y', d => yScale(d[fieldname]))
           .attr('width', d => xScale.bandwidth())
-          .attr('height', d => height - yScale(d[fieldname]));
+          .attr('height', d => chartHeight - yScale(d[fieldname]));
     }
 
 
@@ -1488,7 +1488,7 @@ Let's update the ``xAxis`` variable in ``createCharts`` to label the first and l
                   .tickValues([2000, 2005, 2010, 2015, 2017]);
 
       var yAxis = d3.axisLeft(yScale)
-                      .tickSize(-width)
+                      .tickSize(-chartWidth)
                       .ticks(4);
 
       // ... more code is down here
