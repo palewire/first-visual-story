@@ -1574,7 +1574,7 @@ Congratulations, you've made your charts! Let's commit our changes and move on t
     We used D3.js in this class, but there are many other JavaScript charting libraries, each one slightly different. If you want to explore this on your own, here are some other options that generally abstract away the process we used in this class.
 
     - `Vega-lite <https://vega.github.io/vega-lite/>`_
-    - `Charts.js <http://www.chartjs.org/>`_
+    - `Charts.js <http://www.chartjs.org/>`_ Looks really awesome and abstracts a lot of the pain points of D3 away, but as it only draws to ``<canvas>`` and we wanted to be able to individually inspect SVG elements, we didn't use it for this class.
     - `C3.js <http://c3js.org/>`_ Important to note that this does not seem to support the latest versions of D3.
 
     There are also tools that allow you to use a visual editor, creating charts and other visualizations that you can download and/or embed in your project.
