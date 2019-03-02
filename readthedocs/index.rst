@@ -1577,6 +1577,21 @@ And an introductory paragraph to say a little bit about what we're looking at.
 .. image:: _static/chart-intro-graf.png
     :width: 100%
 
+Last, let's wrap our charts HTML in ``<section>`` tags to keep things orderly.
+
+.. code-block:: html
+    :emphasize-lines: 1,9
+
+    <section>
+        <h3>A South L.A. neighborhood stands apart</h3>
+        <p>Harvard Park's 2016 homicide total was its highest in at least 15 years despite a downward trend in killings across L.A. County.</p>
+
+        <div class="charts-holder clearfix">
+            <div class="inline-chart" id="county-homicides"></div>
+            <div class="inline-chart" id="harvard-park-homicides"></div>
+        </div>
+    </section>
+
 
 Congratulations, you've made your charts! Let's commit our changes and move on to our next challenge.
 
@@ -2074,11 +2089,12 @@ And let's a write a lead.
 
     {% block content %}
     <section>
-        <p>The area around Harvard Park was the deadliest place for African Americans in Los Angeles County last year, according to <a href="http://homicide.latimes.com/">The Times’ Homicide Report</a>. So far this year, six people have been killed. Most of the victims were black men.</p> </section>
+        <p>The area around Harvard Park was the deadliest place for African Americans in Los Angeles County last year, according to <a href="http://homicide.latimes.com/">The Times’ Homicide Report</a>. So far this year, six people have been killed. Most of the victims were black men.</p>
+    </section>
     <section>
-    <h3>One corner. Four killings</h3>
-    <p>The southwest corner of Harvard Park, at West 62nd Street and Harvard Boulevard, has been especially deadly. In the last year-and-a-half, four men have been killed there — while sitting in a car, trying to defuse an argument or walking home from the barber shop or the corner store.</p>
-    <div id="map"></div>
+        <h3>One corner. Four killings</h3>
+        <p>The southwest corner of Harvard Park, at West 62nd Street and Harvard Boulevard, has been especially deadly. In the last year-and-a-half, four men have been killed there — while sitting in a car, trying to defuse an argument or walking home from the barber shop or the corner store.</p>
+        <div id="map"></div>
     </section>
     ...
     {% endblock %}

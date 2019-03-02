@@ -1228,6 +1228,18 @@ $ git commit -m <span class="s2">&quot;Created a victims card grid&quot;</span>
 </pre></div>
 </div>
 <a class="reference internal image-reference" href="_images/chart-intro-graf.png"><img alt="_images/chart-intro-graf.png" src="_images/chart-intro-graf.png" style="width: 100%;" /></a>
+<p>Last, let’s wrap our charts HTML in <code class="docutils literal notranslate"><span class="pre">&lt;section&gt;</span></code> tags to keep things orderly.</p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="hll"><span class="p">&lt;</span><span class="nt">section</span><span class="p">&gt;</span>
+</span>    <span class="p">&lt;</span><span class="nt">h3</span><span class="p">&gt;</span>A South L.A. neighborhood stands apart<span class="p">&lt;/</span><span class="nt">h3</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>Harvard Park&#39;s 2016 homicide total was its highest in at least 15 years despite a downward trend in killings across L.A. County.<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+
+    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;charts-holder clearfix&quot;</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;inline-chart&quot;</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;county-homicides&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;inline-chart&quot;</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;harvard-park-homicides&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="hll"><span class="p">&lt;/</span><span class="nt">section</span><span class="p">&gt;</span>
+</span></pre></div>
+</div>
 <p>Congratulations, you’ve made your charts! Let’s commit our changes and move on to our next challenge.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ git commit -m <span class="s2">&quot;Made my first charts.&quot;</span>
 $ git push origin master
@@ -1571,11 +1583,12 @@ $ git push origin master
 <p>And let’s a write a lead.</p>
 <div class="highlight-html notranslate"><div class="highlight"><pre><span></span>{% block content %}
 <span class="hll"><span class="p">&lt;</span><span class="nt">section</span><span class="p">&gt;</span>
-</span><span class="hll">    <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>The area around Harvard Park was the deadliest place for African Americans in Los Angeles County last year, according to <span class="p">&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;http://homicide.latimes.com/&quot;</span><span class="p">&gt;</span>The Times’ Homicide Report<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>. So far this year, six people have been killed. Most of the victims were black men.<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span> <span class="p">&lt;/</span><span class="nt">section</span><span class="p">&gt;</span>
-</span><span class="hll"><span class="p">&lt;</span><span class="nt">section</span><span class="p">&gt;</span>
-</span><span class="p">&lt;</span><span class="nt">h3</span><span class="p">&gt;</span>One corner. Four killings<span class="p">&lt;/</span><span class="nt">h3</span><span class="p">&gt;</span>
-<span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>The southwest corner of Harvard Park, at West 62nd Street and Harvard Boulevard, has been especially deadly. In the last year-and-a-half, four men have been killed there — while sitting in a car, trying to defuse an argument or walking home from the barber shop or the corner store.<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
-<span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;map&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</span><span class="hll">    <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>The area around Harvard Park was the deadliest place for African Americans in Los Angeles County last year, according to <span class="p">&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;http://homicide.latimes.com/&quot;</span><span class="p">&gt;</span>The Times’ Homicide Report<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>. So far this year, six people have been killed. Most of the victims were black men.<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+</span><span class="hll"><span class="p">&lt;/</span><span class="nt">section</span><span class="p">&gt;</span>
+</span><span class="p">&lt;</span><span class="nt">section</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">h3</span><span class="p">&gt;</span>One corner. Four killings<span class="p">&lt;/</span><span class="nt">h3</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>The southwest corner of Harvard Park, at West 62nd Street and Harvard Boulevard, has been especially deadly. In the last year-and-a-half, four men have been killed there — while sitting in a car, trying to defuse an argument or walking home from the barber shop or the corner store.<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;map&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
 <span class="p">&lt;/</span><span class="nt">section</span><span class="p">&gt;</span>
 ...
 {% endblock %}
