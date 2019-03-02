@@ -888,6 +888,10 @@ We have data, but what does it look like?
 
 To visualize our data, we're going to use `D3.js <https://d3js.org/>`_ library, which has become the industry standard for data visualization. Since it is so flexible for data vizualization and mapping applications, D3 powers many of the news graphics made with JavaScript you see online.
 
+.. note::
+
+    We're going to dive straight into the deep end with creating a D3 chart from scratch in this section. There is a lot of setup involved with this, and it'll probably seem like overkill at points. And it is! But we wanted to use this section as an introduction to D3 and give you a foothold into the `many, many different types of visualizations you can make with it <https://github.com/d3/d3/wiki/Gallery>`_.
+
 First, use npm to install D3.
 
 .. code-block:: bash
