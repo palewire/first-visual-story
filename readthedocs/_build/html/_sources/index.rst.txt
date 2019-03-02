@@ -890,7 +890,9 @@ To visualize our data, we're going to use `D3.js <https://d3js.org/>`_ library, 
 
 .. note::
 
-    We're going to dive straight into the deep end with creating a D3 chart from scratch in this section. There is a lot of setup involved with this, and it'll probably seem like overkill at points. And it is! But we wanted to use this section as an introduction to D3 and give you a foothold into the `many, many different types of visualizations you can make with it <https://github.com/d3/d3/wiki/Gallery>`_.
+    We're going to dive straight into the deep end with creating a D3 chart from scratch in this section. There is a lot of setup involved with this, and it'll probably seem like overkill at points. And it is! D3 gives you a very high level of control over your graphics, which makes all this setup necessary.
+
+    We wanted to use this section as an introduction to D3 and give you a foothold into the `many, many different types of visualizations you can make with it <https://github.com/d3/d3/wiki/Gallery>`_.
 
 First, use npm to install D3.
 
@@ -1226,7 +1228,7 @@ Now if you look at your chart... nothing has changed! But open your inspector an
         .attr('class', 'bar')
         .attr('x', d => xScale(d.year))
         .attr('y', d => yScale(d.homicides_total))
-        .attr('width', d => xScale.bandwidth())
+        .attr('width', xScale.bandwidth())
         .attr('height', d => chartHeight - yScale(d.homicides_total))
 
 The X value will be determined by the year, and the Y by the ``homicides_total`` value of each object. The width of each bar is set by a method called ``.bandwidth()`` on our scale, and the height will scaled corresponding to the number of homicides.
@@ -1372,7 +1374,7 @@ Now, you can copy everything we wrote in ``_charts.js`` under the ``require('d3'
           .attr('class', 'bar')
           .attr('x', d => xScale(d.year))
           .attr('y', d => yScale(d.homicides_total))
-          .attr('width', d => xScale.bandwidth())
+          .attr('width', xScale.bandwidth())
           .attr('height', d => chartHeight - yScale(d.homicides_total));
     }
 
@@ -1472,7 +1474,7 @@ Luckily, we only have to do this a few times, once where we're calculating the d
           .attr('class', 'bar')
           .attr('x', d => xScale(d.year))
           .attr('y', d => yScale(d[fieldname]))
-          .attr('width', d => xScale.bandwidth())
+          .attr('width', xScale.bandwidth())
           .attr('height', d => chartHeight - yScale(d[fieldname]));
     }
 
