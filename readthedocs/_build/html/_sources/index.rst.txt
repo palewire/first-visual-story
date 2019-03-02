@@ -1088,6 +1088,16 @@ Second, we should add a ``<g>``, or "group" tag, where everything else in our ch
             .append('g')
                 .attr('transform', `translate(${margin.left}, ${margin.top})`)
 
+Adding the ``g`` tag and shifting it may seem like a weird step, but it's an important step to take to make sure the value labels aren't going to clip off the edges of our charts. To show what this does, this example skips a few steps ahead so you can see elements inside the ``g`` tag shifted by the margins of the chart.
+
+.. image:: _static/chart-g-margins.png
+    :width: 100%
+
+And here's what it looks like without the margins, see how the labels are clipped?
+
+.. image:: _static/chart-g-nomargins.png
+    :width: 100%
+
 At this point, we're ready to start drawing our chart. Let's start with by creating the "scales" for our data. D3 manages its data by mapping input values from the data, also known as the domain, into output values on the screen, or the range. This creates a scale that transforms the input into the output.
 
 D3 has many different types of scales, for linear, categorical and time-based data. In this case, we'll want a linear scale for the Y axis, and a "band" scale, which is a type of categorical scale useful for bar charts, for the X axis.
