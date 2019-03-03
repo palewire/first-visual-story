@@ -1688,11 +1688,22 @@ Next we import Leaflet's stylesheets in ``_styles/main.scss`` so that they are a
     @import 'node_modules/leaflet/dist/leaflet';
 
 
-Now, back in the ``index.nunjucks`` template, we should create a placeholder in the page template where the map will live.
+Now, back in the ``index.nunjucks`` template, we should create a placeholder in the page template where the map will live. Let's set it right above the charts section we've just finished.
 
 .. code-block:: jinja
+    :emphasize-lines: 1
 
     <div id="map"></div>
+
+    <section>
+        <h3>A South L.A. neighborhood stands apart</h3>
+        <p>Harvard Park's 2016 homicide total was its highest in at least 15 years despite a downward trend in killings across L.A. County.</p>
+
+        <div class="charts-holder clearfix">
+            <div class="inline-chart" id="county-homicides"></div>
+            <div class="inline-chart" id="harvard-park-homicides"></div>
+        </div>
+    </section>
 
 
 To bring the map to life, add a new file named ``_map.js`` to the ``_scripts`` directory. Import it in ``main.js``.
