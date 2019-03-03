@@ -29,7 +29,7 @@ About the authors
 This guide was prepared for training sessions of `Investigative Reporters and Editors (IRE) <http://www.ire.org/>`_
 and the `National Institute for Computer-Assisted Reporting (NICAR) <http://data.nicar.org/>`_
 by `Dana Amihere <http://damihere.com>`_, `Armand Emamdjomeh <http://emamd.net>`_ and `Ben Welsh <http://palewi.re/who-is-ben-welsh/>`_. It debuted in March 2018 `at NICAR's conference
-in Chicago <https://www.ire.org/events-and-training/event/3189/3508/>`_.
+in Chicago <https://www.ire.org/events-and-training/event/3189/3508/>`_. It returned for `a second run <https://www.ire.org/events-and-training/event/3433/4111/>`_ at the 2019 edition of the conference in Newport Beach, California.
 
 Their work was inspired by the footloose spirit of funk music. We urge you to bust free of the computer systems that constrain your creativity. Hit play and get into the groove.
 
