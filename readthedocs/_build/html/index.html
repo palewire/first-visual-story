@@ -708,11 +708,16 @@ $ git commit -m <span class="s2">&quot;Created a victims card grid&quot;</span>
 <h2>Chapter 6: Hello charts<a class="headerlink" href="#chapter-6-hello-charts" title="Permalink to this headline">¶</a></h2>
 <p>We have data, but what does it look like?</p>
 <p>To visualize our data, we’re going to use <a class="reference external" href="https://d3js.org/">D3.js</a> library, which has become the industry standard for data visualization. Since it is so flexible for data vizualization and mapping applications, D3 powers many of the news graphics made with JavaScript you see online.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>We’re going to dive straight into the deep end with creating a D3 chart from scratch in this section. There is a lot of setup involved with this, and it’ll probably seem like overkill at points. And it is! D3 gives you a very high level of control over your graphics, which makes all this setup necessary.</p>
+<p class="last">We wanted to use this section as an introduction to D3 and give you a foothold into the <a class="reference external" href="https://github.com/d3/d3/wiki/Gallery">many, many different types of visualizations you can make with it</a>.</p>
+</div>
 <p>First, use npm to install D3.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ npm install -s d3@5
 </pre></div>
 </div>
-<p>The <code class="docutils literal notranslate"><span class="pre">-s</span></code> argument saves plotly to a dependencies file. That way, if you ever need to go through the install steps for your app again, you can do so easily by simply running <code class="docutils literal notranslate"><span class="pre">npm</span> <span class="pre">install</span></code>.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">-s</span></code> argument saves d3 to a dependencies file. That way, if you ever need to go through the install steps for your app again, you can do so easily by simply running <code class="docutils literal notranslate"><span class="pre">npm</span> <span class="pre">install</span></code>.</p>
 <p>From here, we’ll be working in our <code class="docutils literal notranslate"><span class="pre">_scripts</span></code> folder. Create a file called <code class="docutils literal notranslate"><span class="pre">_charts.js</span></code> inside of <code class="docutils literal notranslate"><span class="pre">_scripts/</span></code>.</p>
 <p>You can include the libraries we installed (or any JavaScript file!) by using <code class="docutils literal notranslate"><span class="pre">require()</span></code>. While with modern versions of D3 you can import specific parts of the library that are most relevant to your app, we’re just going to import the whole library for simplicity.</p>
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">d3</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;d3&#39;</span><span class="p">);</span>
@@ -827,7 +832,7 @@ $ git commit -m <span class="s2">&quot;Created a victims card grid&quot;</span>
 <p>Now if you look, your SVG should be rendered at the appropriate height and width, filling the available space.</p>
 <a class="reference internal image-reference" href="_images/chart-empty-svg-2.png"><img alt="_images/chart-empty-svg-2.png" src="_images/chart-empty-svg-2.png" style="width: 100%;" /></a>
 <p>Two more setup steps before we actually start making our charts. First, if we simply start drawing data onto the SVG, we’ll likely see areas where the data clips off the chart. We can avoid this by defining a pre-set margin we’ll use throughout the process.</p>
-<p>We also create two variables, <code class="docutils literal notranslate"><span class="pre">width</span></code> and <code class="docutils literal notranslate"><span class="pre">height</span></code> that refer to the dimensions of the chart with the margins included.</p>
+<p>We also create two variables, <code class="docutils literal notranslate"><span class="pre">chartWidth</span></code> and <code class="docutils literal notranslate"><span class="pre">chartHeight</span></code> that refer to the dimensions of the chart with the margins included.</p>
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">d3</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;d3&#39;</span><span class="p">);</span>
 
 <span class="hll"><span class="kd">var</span> <span class="nx">margin</span> <span class="o">=</span> <span class="p">{</span><span class="nx">top</span><span class="o">:</span> <span class="mi">20</span><span class="p">,</span> <span class="nx">right</span><span class="o">:</span><span class="mi">20</span><span class="p">,</span> <span class="nx">bottom</span><span class="o">:</span><span class="mi">20</span><span class="p">,</span> <span class="nx">left</span><span class="o">:</span><span class="mi">40</span><span class="p">};</span>
@@ -835,8 +840,8 @@ $ git commit -m <span class="s2">&quot;Created a victims card grid&quot;</span>
 <span class="kd">var</span> <span class="nx">container</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">select</span><span class="p">(</span><span class="s1">&#39;#county-homicides&#39;</span><span class="p">);</span>
 <span class="kd">var</span> <span class="nx">containerWidth</span> <span class="o">=</span> <span class="nx">container</span><span class="p">.</span><span class="nx">node</span><span class="p">().</span><span class="nx">offsetWidth</span><span class="p">;</span>
 <span class="kd">var</span> <span class="nx">containerHeight</span> <span class="o">=</span> <span class="nx">containerWidth</span> <span class="o">*</span> <span class="mf">0.66</span><span class="p">;</span>
-<span class="hll"><span class="kd">var</span> <span class="nx">width</span> <span class="o">=</span> <span class="nx">containerWidth</span> <span class="o">-</span> <span class="nx">margin</span><span class="p">.</span><span class="nx">right</span> <span class="o">-</span> <span class="nx">margin</span><span class="p">.</span><span class="nx">left</span><span class="p">;</span>
-</span><span class="hll"><span class="kd">var</span> <span class="nx">height</span> <span class="o">=</span> <span class="nx">containerHeight</span> <span class="o">-</span> <span class="nx">margin</span><span class="p">.</span><span class="nx">top</span> <span class="o">-</span> <span class="nx">margin</span><span class="p">.</span><span class="nx">bottom</span><span class="p">;</span>
+<span class="hll"><span class="kd">var</span> <span class="nx">chartWidth</span> <span class="o">=</span> <span class="nx">containerWidth</span> <span class="o">-</span> <span class="nx">margin</span><span class="p">.</span><span class="nx">right</span> <span class="o">-</span> <span class="nx">margin</span><span class="p">.</span><span class="nx">left</span><span class="p">;</span>
+</span><span class="hll"><span class="kd">var</span> <span class="nx">chartHeight</span> <span class="o">=</span> <span class="nx">containerHeight</span> <span class="o">-</span> <span class="nx">margin</span><span class="p">.</span><span class="nx">top</span> <span class="o">-</span> <span class="nx">margin</span><span class="p">.</span><span class="nx">bottom</span><span class="p">;</span>
 </span>
 <span class="kd">var</span> <span class="nx">svg</span> <span class="o">=</span> <span class="nx">container</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="s1">&#39;svg&#39;</span><span class="p">)</span>
             <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;width&#39;</span><span class="p">,</span> <span class="nx">containerWidth</span><span class="p">)</span>
@@ -846,12 +851,16 @@ $ git commit -m <span class="s2">&quot;Created a victims card grid&quot;</span>
 <p>Second, we should add a <code class="docutils literal notranslate"><span class="pre">&lt;g&gt;</span></code>, or “group” tag, where everything else in our chart will go. Add this to the end of your <code class="docutils literal notranslate"><span class="pre">svg</span></code> declaration. We’ll also want to give it a <code class="docutils literal notranslate"><span class="pre">transform</span></code> attribute that shifts it slightly according to our margins.</p>
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="c1">// ... more code is up here</span>
 <span class="kd">var</span> <span class="nx">svg</span> <span class="o">=</span> <span class="nx">container</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="s1">&#39;svg&#39;</span><span class="p">)</span>
-        <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;width&#39;</span><span class="p">,</span> <span class="nx">width</span><span class="p">)</span>
-        <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;height&#39;</span><span class="p">,</span> <span class="nx">height</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;width&#39;</span><span class="p">,</span> <span class="nx">chartWidth</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;height&#39;</span><span class="p">,</span> <span class="nx">chartHeight</span><span class="p">)</span>
 <span class="hll">        <span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="s1">&#39;g&#39;</span><span class="p">)</span>
 </span><span class="hll">            <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;transform&#39;</span><span class="p">,</span> <span class="sb">`translate(</span><span class="si">${</span><span class="nx">margin</span><span class="p">.</span><span class="nx">left</span><span class="si">}</span><span class="sb">, </span><span class="si">${</span><span class="nx">margin</span><span class="p">.</span><span class="nx">top</span><span class="si">}</span><span class="sb">)`</span><span class="p">)</span>
 </span></pre></div>
 </div>
+<p>Adding the <code class="docutils literal notranslate"><span class="pre">g</span></code> tag and shifting it may seem like a weird step, but it’s an important step to take to make sure the value labels aren’t going to clip off the edges of our charts. To show what this does, this example skips a few steps ahead so you can see elements inside the <code class="docutils literal notranslate"><span class="pre">g</span></code> tag shifted by the margins of the chart.</p>
+<a class="reference internal image-reference" href="_images/chart-g-margins.png"><img alt="_images/chart-g-margins.png" src="_images/chart-g-margins.png" style="width: 100%;" /></a>
+<p>And here’s what it looks like without the margins, see how the labels are clipped?</p>
+<a class="reference internal image-reference" href="_images/chart-g-nomargins.png"><img alt="_images/chart-g-nomargins.png" src="_images/chart-g-nomargins.png" style="width: 100%;" /></a>
 <p>At this point, we’re ready to start drawing our chart. Let’s start with by creating the “scales” for our data. D3 manages its data by mapping input values from the data, also known as the domain, into output values on the screen, or the range. This creates a scale that transforms the input into the output.</p>
 <p>D3 has many different types of scales, for linear, categorical and time-based data. In this case, we’ll want a linear scale for the Y axis, and a “band” scale, which is a type of categorical scale useful for bar charts, for the X axis.</p>
 <p>I like to calculate the input, or domain, before creating the axes. The domain takes the form of an array with the minimum and maximum value that you want to map: e.g., <code class="docutils literal notranslate"><span class="pre">[0,</span> <span class="pre">100]</span></code> if you’re looking at a 100-point grade scale. We can use D3’s <code class="docutils literal notranslate"><span class="pre">min</span></code> and <code class="docutils literal notranslate"><span class="pre">max</span></code> helper functions to find this.</p>
@@ -872,22 +881,22 @@ $ git commit -m <span class="s2">&quot;Created a victims card grid&quot;</span>
 
     <span class="kd">var</span> <span class="nx">yDomain</span> <span class="o">=</span> <span class="p">[</span>
     <span class="mi">0</span><span class="p">,</span>
-    <span class="nx">d3</span><span class="p">.</span><span class="nx">max</span><span class="p">(</span><span class="nx">annualTotals</span><span class="p">,</span> <span class="nx">d</span> <span class="p">=&gt;</span> <span class="nx">d</span><span class="p">.</span><span class="nx">homicides_total</span><span class="p">)</span>
+    <span class="nx">d3</span><span class="p">.</span><span class="nx">max</span><span class="p">(</span><span class="nx">annualTotals</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="nx">d</span> <span class="p">=&gt;</span> <span class="nx">d</span><span class="p">.</span><span class="nx">homicides_total</span><span class="p">))</span>
     <span class="p">];</span>
 </pre></div>
 </div>
-<p>If you know the min and max values, you can also set these manually.</p>
+<p>If you know the min and max values, you can also set these manually, which can be useful if you want your chart max to be a nice even number.</p>
 <p>At the bottom of your file, let’s create an <code class="docutils literal notranslate"><span class="pre">xScale</span></code> and <code class="docutils literal notranslate"><span class="pre">yScale</span></code> now. Note that at this point we’re also setting the range, or output values, to the range between 0 and the height and width of our SVG.</p>
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="c1">// The rest of your code is up here</span>
 
 <span class="kd">var</span> <span class="nx">xScale</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">scaleBand</span><span class="p">()</span>
               <span class="p">.</span><span class="nx">domain</span><span class="p">(</span><span class="nx">xDomain</span><span class="p">)</span>
-              <span class="p">.</span><span class="nx">range</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="nx">width</span><span class="p">])</span>
+              <span class="p">.</span><span class="nx">range</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="nx">chartWidth</span><span class="p">])</span>
               <span class="p">.</span><span class="nx">padding</span><span class="p">(</span><span class="mf">0.1</span><span class="p">);</span>
 
 <span class="kd">var</span> <span class="nx">yScale</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">scaleLinear</span><span class="p">()</span>
               <span class="p">.</span><span class="nx">domain</span><span class="p">(</span><span class="nx">yDomain</span><span class="p">)</span>
-              <span class="p">.</span><span class="nx">range</span><span class="p">([</span><span class="nx">height</span><span class="p">,</span> <span class="mi">0</span><span class="p">]);</span>
+              <span class="p">.</span><span class="nx">range</span><span class="p">([</span><span class="nx">chartHeight</span><span class="p">,</span> <span class="mi">0</span><span class="p">]);</span>
 </pre></div>
 </div>
 <p>Note that the X scale has an additional method, <code class="docutils literal notranslate"><span class="pre">.padding()</span></code>, which specifies how far apart our bars are from one another.</p>
@@ -897,7 +906,7 @@ $ git commit -m <span class="s2">&quot;Created a victims card grid&quot;</span>
 
 <span class="kd">var</span> <span class="nx">xAxis</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">axisBottom</span><span class="p">(</span><span class="nx">xScale</span><span class="p">);</span>
 <span class="kd">var</span> <span class="nx">yAxis</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">axisLeft</span><span class="p">(</span><span class="nx">yScale</span><span class="p">)</span>
-              <span class="p">.</span><span class="nx">tickSize</span><span class="p">(</span><span class="o">-</span><span class="nx">width</span><span class="p">)</span>
+              <span class="p">.</span><span class="nx">tickSize</span><span class="p">(</span><span class="o">-</span><span class="nx">chartWidth</span><span class="p">)</span>
               <span class="p">.</span><span class="nx">ticks</span><span class="p">(</span><span class="mi">4</span><span class="p">);</span>
 </pre></div>
 </div>
@@ -919,7 +928,7 @@ $ git commit -m <span class="s2">&quot;Created a victims card grid&quot;</span>
 
 <span class="nx">svg</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="s2">&quot;g&quot;</span><span class="p">)</span>
     <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;class&quot;</span><span class="p">,</span> <span class="s2">&quot;x axis&quot;</span><span class="p">)</span>
-<span class="hll">    <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;transform&quot;</span><span class="p">,</span> <span class="sb">`translate(0,</span><span class="si">${</span><span class="nx">height</span><span class="si">}</span><span class="sb">)`</span><span class="p">)</span>
+<span class="hll">    <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;transform&quot;</span><span class="p">,</span> <span class="sb">`translate(0,</span><span class="si">${</span><span class="nx">chartHeight</span><span class="si">}</span><span class="sb">)`</span><span class="p">)</span>
 </span>    <span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="nx">xAxis</span><span class="p">);</span>
 </pre></div>
 </div>
@@ -952,11 +961,11 @@ $ git commit -m <span class="s2">&quot;Created a victims card grid&quot;</span>
     <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;class&#39;</span><span class="p">,</span> <span class="s1">&#39;bar&#39;</span><span class="p">)</span>
 <span class="hll">    <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="nx">d</span> <span class="p">=&gt;</span> <span class="nx">xScale</span><span class="p">(</span><span class="nx">d</span><span class="p">.</span><span class="nx">year</span><span class="p">))</span>
 </span><span class="hll">    <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="nx">d</span> <span class="p">=&gt;</span> <span class="nx">yScale</span><span class="p">(</span><span class="nx">d</span><span class="p">.</span><span class="nx">homicides_total</span><span class="p">))</span>
-</span><span class="hll">    <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;width&#39;</span><span class="p">,</span> <span class="nx">d</span> <span class="p">=&gt;</span> <span class="nx">xScale</span><span class="p">.</span><span class="nx">bandwidth</span><span class="p">())</span>
-</span><span class="hll">    <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;height&#39;</span><span class="p">,</span> <span class="nx">d</span> <span class="p">=&gt;</span> <span class="nx">height</span> <span class="o">-</span> <span class="nx">yScale</span><span class="p">(</span><span class="nx">d</span><span class="p">.</span><span class="nx">homicides_total</span><span class="p">))</span>
+</span><span class="hll">    <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;width&#39;</span><span class="p">,</span> <span class="nx">xScale</span><span class="p">.</span><span class="nx">bandwidth</span><span class="p">())</span>
+</span><span class="hll">    <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;height&#39;</span><span class="p">,</span> <span class="nx">d</span> <span class="p">=&gt;</span> <span class="nx">chartHeight</span> <span class="o">-</span> <span class="nx">yScale</span><span class="p">(</span><span class="nx">d</span><span class="p">.</span><span class="nx">homicides_total</span><span class="p">))</span>
 </span></pre></div>
 </div>
-<p>The X value will be determined by the year, and the Y by the <code class="docutils literal notranslate"><span class="pre">homicides_total</span></code> value of each object. The width of each bar is set by a method called <code class="docutils literal notranslate"><span class="pre">.bandwidth()</span></code> on our scale, and the height will be</p>
+<p>The X value will be determined by the year, and the Y by the <code class="docutils literal notranslate"><span class="pre">homicides_total</span></code> value of each object. The width of each bar is set by a method called <code class="docutils literal notranslate"><span class="pre">.bandwidth()</span></code> on our scale, and the height will scaled corresponding to the number of homicides.</p>
 <a class="reference internal image-reference" href="_images/chart-bars.png"><img alt="_images/chart-bars.png" src="_images/chart-bars.png" style="width: 100%;" /></a>
 <p>You have a bar chart! At this point we can step back and style out the chart, and leave room for a second chart that shows Harvard Park homicides.</p>
 <p>At this point, create a new file in the <code class="docutils literal notranslate"><span class="pre">_styles</span></code> folder, and call it <code class="docutils literal notranslate"><span class="pre">_charts.scss</span></code>.</p>
@@ -1026,8 +1035,8 @@ $ git commit -m <span class="s2">&quot;Created a victims card grid&quot;</span>
   <span class="kd">var</span> <span class="nx">container</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">select</span><span class="p">(</span><span class="s1">&#39;#county-homicides&#39;</span><span class="p">);</span>
   <span class="kd">var</span> <span class="nx">containerWidth</span> <span class="o">=</span> <span class="nx">container</span><span class="p">.</span><span class="nx">node</span><span class="p">().</span><span class="nx">offsetWidth</span><span class="p">;</span>
   <span class="kd">var</span> <span class="nx">containerHeight</span> <span class="o">=</span> <span class="nx">containerWidth</span> <span class="o">*</span> <span class="mf">0.66</span><span class="p">;</span>
-  <span class="kd">var</span> <span class="nx">width</span> <span class="o">=</span> <span class="nx">containerWidth</span> <span class="o">-</span> <span class="nx">margin</span><span class="p">.</span><span class="nx">right</span> <span class="o">-</span> <span class="nx">margin</span><span class="p">.</span><span class="nx">left</span><span class="p">;</span>
-  <span class="kd">var</span> <span class="nx">height</span> <span class="o">=</span> <span class="nx">containerHeight</span> <span class="o">-</span> <span class="nx">margin</span><span class="p">.</span><span class="nx">top</span> <span class="o">-</span> <span class="nx">margin</span><span class="p">.</span><span class="nx">bottom</span><span class="p">;</span>
+  <span class="kd">var</span> <span class="nx">chartWidth</span> <span class="o">=</span> <span class="nx">containerWidth</span> <span class="o">-</span> <span class="nx">margin</span><span class="p">.</span><span class="nx">right</span> <span class="o">-</span> <span class="nx">margin</span><span class="p">.</span><span class="nx">left</span><span class="p">;</span>
+  <span class="kd">var</span> <span class="nx">chartHeight</span> <span class="o">=</span> <span class="nx">containerHeight</span> <span class="o">-</span> <span class="nx">margin</span><span class="p">.</span><span class="nx">top</span> <span class="o">-</span> <span class="nx">margin</span><span class="p">.</span><span class="nx">bottom</span><span class="p">;</span>
 
   <span class="kd">var</span> <span class="nx">svg</span> <span class="o">=</span> <span class="nx">container</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="s1">&#39;svg&#39;</span><span class="p">)</span>
       <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;width&#39;</span><span class="p">,</span> <span class="nx">containerWidth</span><span class="p">)</span>
@@ -1039,26 +1048,26 @@ $ git commit -m <span class="s2">&quot;Created a victims card grid&quot;</span>
 
   <span class="kd">var</span> <span class="nx">yDomain</span> <span class="o">=</span> <span class="p">[</span>
       <span class="mi">0</span><span class="p">,</span>
-      <span class="nx">d3</span><span class="p">.</span><span class="nx">max</span><span class="p">(</span><span class="nx">annualTotals</span><span class="p">,</span> <span class="nx">d</span> <span class="p">=&gt;</span> <span class="nx">d</span><span class="p">.</span><span class="nx">homicides_total</span><span class="p">)</span>
+      <span class="nx">d3</span><span class="p">.</span><span class="nx">max</span><span class="p">(</span><span class="nx">annualTotals</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="nx">d</span> <span class="p">=&gt;</span> <span class="nx">d</span><span class="p">.</span><span class="nx">homicides_total</span><span class="p">))</span>
   <span class="p">];</span>
 
   <span class="kd">var</span> <span class="nx">xScale</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">scaleBand</span><span class="p">()</span>
                 <span class="p">.</span><span class="nx">domain</span><span class="p">(</span><span class="nx">xDomain</span><span class="p">)</span>
-                <span class="p">.</span><span class="nx">range</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="nx">width</span><span class="p">])</span>
+                <span class="p">.</span><span class="nx">range</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="nx">chartWidth</span><span class="p">])</span>
                 <span class="p">.</span><span class="nx">padding</span><span class="p">(</span><span class="mf">0.1</span><span class="p">);</span>
 
   <span class="kd">var</span> <span class="nx">yScale</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">scaleLinear</span><span class="p">()</span>
                 <span class="p">.</span><span class="nx">domain</span><span class="p">(</span><span class="nx">yDomain</span><span class="p">)</span>
-                <span class="p">.</span><span class="nx">range</span><span class="p">([</span><span class="nx">height</span><span class="p">,</span> <span class="mi">0</span><span class="p">]);</span>
+                <span class="p">.</span><span class="nx">range</span><span class="p">([</span><span class="nx">chartHeight</span><span class="p">,</span> <span class="mi">0</span><span class="p">]);</span>
 
   <span class="kd">var</span> <span class="nx">xAxis</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">axisBottom</span><span class="p">(</span><span class="nx">xScale</span><span class="p">);</span>
   <span class="kd">var</span> <span class="nx">yAxis</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">axisLeft</span><span class="p">(</span><span class="nx">yScale</span><span class="p">)</span>
-                  <span class="p">.</span><span class="nx">tickSize</span><span class="p">(</span><span class="o">-</span><span class="nx">width</span><span class="p">)</span>
+                  <span class="p">.</span><span class="nx">tickSize</span><span class="p">(</span><span class="o">-</span><span class="nx">chartWidth</span><span class="p">)</span>
                   <span class="p">.</span><span class="nx">ticks</span><span class="p">(</span><span class="mi">4</span><span class="p">);</span>
 
   <span class="nx">svg</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="s2">&quot;g&quot;</span><span class="p">)</span>
       <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;class&quot;</span><span class="p">,</span> <span class="s2">&quot;x axis&quot;</span><span class="p">)</span>
-      <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;transform&quot;</span><span class="p">,</span> <span class="sb">`translate(0,</span><span class="si">${</span><span class="nx">height</span><span class="si">}</span><span class="sb">)`</span><span class="p">)</span>
+      <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;transform&quot;</span><span class="p">,</span> <span class="sb">`translate(0,</span><span class="si">${</span><span class="nx">chartHeight</span><span class="si">}</span><span class="sb">)`</span><span class="p">)</span>
       <span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="nx">xAxis</span><span class="p">);</span>
 
   <span class="nx">svg</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="s2">&quot;g&quot;</span><span class="p">)</span>
@@ -1072,8 +1081,8 @@ $ git commit -m <span class="s2">&quot;Created a victims card grid&quot;</span>
       <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;class&#39;</span><span class="p">,</span> <span class="s1">&#39;bar&#39;</span><span class="p">)</span>
       <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="nx">d</span> <span class="p">=&gt;</span> <span class="nx">xScale</span><span class="p">(</span><span class="nx">d</span><span class="p">.</span><span class="nx">year</span><span class="p">))</span>
       <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="nx">d</span> <span class="p">=&gt;</span> <span class="nx">yScale</span><span class="p">(</span><span class="nx">d</span><span class="p">.</span><span class="nx">homicides_total</span><span class="p">))</span>
-      <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;width&#39;</span><span class="p">,</span> <span class="nx">d</span> <span class="p">=&gt;</span> <span class="nx">xScale</span><span class="p">.</span><span class="nx">bandwidth</span><span class="p">())</span>
-      <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;height&#39;</span><span class="p">,</span> <span class="nx">d</span> <span class="p">=&gt;</span> <span class="nx">height</span> <span class="o">-</span> <span class="nx">yScale</span><span class="p">(</span><span class="nx">d</span><span class="p">.</span><span class="nx">homicides_total</span><span class="p">));</span>
+      <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;width&#39;</span><span class="p">,</span> <span class="nx">xScale</span><span class="p">.</span><span class="nx">bandwidth</span><span class="p">())</span>
+      <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;height&#39;</span><span class="p">,</span> <span class="nx">d</span> <span class="p">=&gt;</span> <span class="nx">chartHeight</span> <span class="o">-</span> <span class="nx">yScale</span><span class="p">(</span><span class="nx">d</span><span class="p">.</span><span class="nx">homicides_total</span><span class="p">));</span>
 <span class="p">}</span>
 </pre></div>
 </div>
@@ -1108,8 +1117,8 @@ $ git commit -m <span class="s2">&quot;Created a victims card grid&quot;</span>
   <span class="kd">var</span> <span class="nx">container</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">select</span><span class="p">(</span><span class="s1">&#39;#county-homicides&#39;</span><span class="p">);</span>
   <span class="kd">var</span> <span class="nx">containerWidth</span> <span class="o">=</span> <span class="nx">container</span><span class="p">.</span><span class="nx">node</span><span class="p">().</span><span class="nx">offsetWidth</span><span class="p">;</span>
   <span class="kd">var</span> <span class="nx">containerHeight</span> <span class="o">=</span> <span class="nx">containerWidth</span> <span class="o">*</span> <span class="mf">0.66</span><span class="p">;</span>
-  <span class="kd">var</span> <span class="nx">width</span> <span class="o">=</span> <span class="nx">containerWidth</span> <span class="o">-</span> <span class="nx">margin</span><span class="p">.</span><span class="nx">right</span> <span class="o">-</span> <span class="nx">margin</span><span class="p">.</span><span class="nx">left</span><span class="p">;</span>
-  <span class="kd">var</span> <span class="nx">height</span> <span class="o">=</span> <span class="nx">containerHeight</span> <span class="o">-</span> <span class="nx">margin</span><span class="p">.</span><span class="nx">top</span> <span class="o">-</span> <span class="nx">margin</span><span class="p">.</span><span class="nx">bottom</span><span class="p">;</span>
+  <span class="kd">var</span> <span class="nx">chartWidth</span> <span class="o">=</span> <span class="nx">containerWidth</span> <span class="o">-</span> <span class="nx">margin</span><span class="p">.</span><span class="nx">right</span> <span class="o">-</span> <span class="nx">margin</span><span class="p">.</span><span class="nx">left</span><span class="p">;</span>
+  <span class="kd">var</span> <span class="nx">chartHeight</span> <span class="o">=</span> <span class="nx">containerHeight</span> <span class="o">-</span> <span class="nx">margin</span><span class="p">.</span><span class="nx">top</span> <span class="o">-</span> <span class="nx">margin</span><span class="p">.</span><span class="nx">bottom</span><span class="p">;</span>
 
   <span class="kd">var</span> <span class="nx">svg</span> <span class="o">=</span> <span class="nx">container</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="s1">&#39;svg&#39;</span><span class="p">)</span>
       <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;width&#39;</span><span class="p">,</span> <span class="nx">containerWidth</span><span class="p">)</span>
@@ -1121,26 +1130,26 @@ $ git commit -m <span class="s2">&quot;Created a victims card grid&quot;</span>
 
   <span class="kd">var</span> <span class="nx">yDomain</span> <span class="o">=</span> <span class="p">[</span>
       <span class="mi">0</span><span class="p">,</span>
-<span class="hll">      <span class="nx">d3</span><span class="p">.</span><span class="nx">max</span><span class="p">(</span><span class="nx">annualTotals</span><span class="p">,</span> <span class="nx">d</span> <span class="p">=&gt;</span> <span class="nx">d</span><span class="p">[</span><span class="nx">fieldname</span><span class="p">])</span>
+<span class="hll">      <span class="nx">d3</span><span class="p">.</span><span class="nx">max</span><span class="p">(</span><span class="nx">annualTotals</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="nx">d</span> <span class="p">=&gt;</span> <span class="nx">d</span><span class="p">[</span><span class="nx">fieldname</span><span class="p">]))</span>
 </span>  <span class="p">];</span>
 
   <span class="kd">var</span> <span class="nx">xScale</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">scaleBand</span><span class="p">()</span>
                 <span class="p">.</span><span class="nx">domain</span><span class="p">(</span><span class="nx">xDomain</span><span class="p">)</span>
-                <span class="p">.</span><span class="nx">range</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="nx">width</span><span class="p">])</span>
+                <span class="p">.</span><span class="nx">range</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="nx">chartWidth</span><span class="p">])</span>
                 <span class="p">.</span><span class="nx">padding</span><span class="p">(</span><span class="mf">0.1</span><span class="p">);</span>
 
   <span class="kd">var</span> <span class="nx">yScale</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">scaleLinear</span><span class="p">()</span>
                 <span class="p">.</span><span class="nx">domain</span><span class="p">(</span><span class="nx">yDomain</span><span class="p">)</span>
-                <span class="p">.</span><span class="nx">range</span><span class="p">([</span><span class="nx">height</span><span class="p">,</span> <span class="mi">0</span><span class="p">]);</span>
+                <span class="p">.</span><span class="nx">range</span><span class="p">([</span><span class="nx">chartHeight</span><span class="p">,</span> <span class="mi">0</span><span class="p">]);</span>
 
   <span class="kd">var</span> <span class="nx">xAxis</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">axisBottom</span><span class="p">(</span><span class="nx">xScale</span><span class="p">);</span>
   <span class="kd">var</span> <span class="nx">yAxis</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">axisLeft</span><span class="p">(</span><span class="nx">yScale</span><span class="p">)</span>
-                  <span class="p">.</span><span class="nx">tickSize</span><span class="p">(</span><span class="o">-</span><span class="nx">width</span><span class="p">)</span>
+                  <span class="p">.</span><span class="nx">tickSize</span><span class="p">(</span><span class="o">-</span><span class="nx">chartWidth</span><span class="p">)</span>
                   <span class="p">.</span><span class="nx">ticks</span><span class="p">(</span><span class="mi">4</span><span class="p">);</span>
 
   <span class="nx">svg</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="s2">&quot;g&quot;</span><span class="p">)</span>
       <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;class&quot;</span><span class="p">,</span> <span class="s2">&quot;x axis&quot;</span><span class="p">)</span>
-      <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;transform&quot;</span><span class="p">,</span> <span class="sb">`translate(0,</span><span class="si">${</span><span class="nx">height</span><span class="si">}</span><span class="sb">)`</span><span class="p">)</span>
+      <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;transform&quot;</span><span class="p">,</span> <span class="sb">`translate(0,</span><span class="si">${</span><span class="nx">chartHeight</span><span class="si">}</span><span class="sb">)`</span><span class="p">)</span>
       <span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="nx">xAxis</span><span class="p">);</span>
 
   <span class="nx">svg</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="s2">&quot;g&quot;</span><span class="p">)</span>
@@ -1154,8 +1163,8 @@ $ git commit -m <span class="s2">&quot;Created a victims card grid&quot;</span>
       <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;class&#39;</span><span class="p">,</span> <span class="s1">&#39;bar&#39;</span><span class="p">)</span>
       <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="nx">d</span> <span class="p">=&gt;</span> <span class="nx">xScale</span><span class="p">(</span><span class="nx">d</span><span class="p">.</span><span class="nx">year</span><span class="p">))</span>
 <span class="hll">      <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="nx">d</span> <span class="p">=&gt;</span> <span class="nx">yScale</span><span class="p">(</span><span class="nx">d</span><span class="p">[</span><span class="nx">fieldname</span><span class="p">]))</span>
-</span>      <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;width&#39;</span><span class="p">,</span> <span class="nx">d</span> <span class="p">=&gt;</span> <span class="nx">xScale</span><span class="p">.</span><span class="nx">bandwidth</span><span class="p">())</span>
-<span class="hll">      <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;height&#39;</span><span class="p">,</span> <span class="nx">d</span> <span class="p">=&gt;</span> <span class="nx">height</span> <span class="o">-</span> <span class="nx">yScale</span><span class="p">(</span><span class="nx">d</span><span class="p">[</span><span class="nx">fieldname</span><span class="p">]));</span>
+</span>      <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;width&#39;</span><span class="p">,</span> <span class="nx">xScale</span><span class="p">.</span><span class="nx">bandwidth</span><span class="p">())</span>
+<span class="hll">      <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;height&#39;</span><span class="p">,</span> <span class="nx">d</span> <span class="p">=&gt;</span> <span class="nx">chartHeight</span> <span class="o">-</span> <span class="nx">yScale</span><span class="p">(</span><span class="nx">d</span><span class="p">[</span><span class="nx">fieldname</span><span class="p">]));</span>
 </span><span class="p">}</span>
 </pre></div>
 </div>
@@ -1167,7 +1176,7 @@ $ git commit -m <span class="s2">&quot;Created a victims card grid&quot;</span>
 <span class="hll">              <span class="p">.</span><span class="nx">tickValues</span><span class="p">([</span><span class="mi">2000</span><span class="p">,</span> <span class="mi">2005</span><span class="p">,</span> <span class="mi">2010</span><span class="p">,</span> <span class="mi">2015</span><span class="p">,</span> <span class="mi">2017</span><span class="p">]);</span>
 </span>
   <span class="kd">var</span> <span class="nx">yAxis</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">axisLeft</span><span class="p">(</span><span class="nx">yScale</span><span class="p">)</span>
-                  <span class="p">.</span><span class="nx">tickSize</span><span class="p">(</span><span class="o">-</span><span class="nx">width</span><span class="p">)</span>
+                  <span class="p">.</span><span class="nx">tickSize</span><span class="p">(</span><span class="o">-</span><span class="nx">chartWidth</span><span class="p">)</span>
                   <span class="p">.</span><span class="nx">ticks</span><span class="p">(</span><span class="mi">4</span><span class="p">);</span>
 
   <span class="c1">// ... more code is down here</span>
@@ -1219,6 +1228,18 @@ $ git commit -m <span class="s2">&quot;Created a victims card grid&quot;</span>
 </pre></div>
 </div>
 <a class="reference internal image-reference" href="_images/chart-intro-graf.png"><img alt="_images/chart-intro-graf.png" src="_images/chart-intro-graf.png" style="width: 100%;" /></a>
+<p>Last, let’s wrap our charts HTML in <code class="docutils literal notranslate"><span class="pre">&lt;section&gt;</span></code> tags to keep things orderly.</p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="hll"><span class="p">&lt;</span><span class="nt">section</span><span class="p">&gt;</span>
+</span>    <span class="p">&lt;</span><span class="nt">h3</span><span class="p">&gt;</span>A South L.A. neighborhood stands apart<span class="p">&lt;/</span><span class="nt">h3</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>Harvard Park&#39;s 2016 homicide total was its highest in at least 15 years despite a downward trend in killings across L.A. County.<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+
+    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;charts-holder clearfix&quot;</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;inline-chart&quot;</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;county-homicides&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;inline-chart&quot;</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;harvard-park-homicides&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="hll"><span class="p">&lt;/</span><span class="nt">section</span><span class="p">&gt;</span>
+</span></pre></div>
+</div>
 <p>Congratulations, you’ve made your charts! Let’s commit our changes and move on to our next challenge.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ git commit -m <span class="s2">&quot;Made my first charts.&quot;</span>
 $ git push origin master
@@ -1229,7 +1250,7 @@ $ git push origin master
 <p>We used D3.js in this class, but there are many other JavaScript charting libraries, each one slightly different. If you want to explore this on your own, here are some other options that generally abstract away the process we used in this class.</p>
 <ul class="simple">
 <li><a class="reference external" href="https://vega.github.io/vega-lite/">Vega-lite</a></li>
-<li><a class="reference external" href="http://www.chartjs.org/">Charts.js</a></li>
+<li><a class="reference external" href="http://www.chartjs.org/">Charts.js</a> Looks really awesome and abstracts a lot of the pain points of D3 away, but as it only draws to <code class="docutils literal notranslate"><span class="pre">&lt;canvas&gt;</span></code> and we wanted to be able to individually inspect SVG elements, we didn’t use it for this class.</li>
 <li><a class="reference external" href="http://c3js.org/">C3.js</a> Important to note that this does not seem to support the latest versions of D3.</li>
 </ul>
 <p>There are also tools that allow you to use a visual editor, creating charts and other visualizations that you can download and/or embed in your project.</p>
@@ -1562,11 +1583,12 @@ $ git push origin master
 <p>And let’s a write a lead.</p>
 <div class="highlight-html notranslate"><div class="highlight"><pre><span></span>{% block content %}
 <span class="hll"><span class="p">&lt;</span><span class="nt">section</span><span class="p">&gt;</span>
-</span><span class="hll">    <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>The area around Harvard Park was the deadliest place for African Americans in Los Angeles County last year, according to <span class="p">&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;http://homicide.latimes.com/&quot;</span><span class="p">&gt;</span>The Times’ Homicide Report<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>. So far this year, six people have been killed. Most of the victims were black men.<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span> <span class="p">&lt;/</span><span class="nt">section</span><span class="p">&gt;</span>
-</span><span class="hll"><span class="p">&lt;</span><span class="nt">section</span><span class="p">&gt;</span>
-</span><span class="p">&lt;</span><span class="nt">h3</span><span class="p">&gt;</span>One corner. Four killings<span class="p">&lt;/</span><span class="nt">h3</span><span class="p">&gt;</span>
-<span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>The southwest corner of Harvard Park, at West 62nd Street and Harvard Boulevard, has been especially deadly. In the last year-and-a-half, four men have been killed there — while sitting in a car, trying to defuse an argument or walking home from the barber shop or the corner store.<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
-<span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;map&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</span><span class="hll">    <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>The area around Harvard Park was the deadliest place for African Americans in Los Angeles County last year, according to <span class="p">&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;http://homicide.latimes.com/&quot;</span><span class="p">&gt;</span>The Times’ Homicide Report<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>. So far this year, six people have been killed. Most of the victims were black men.<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+</span><span class="hll"><span class="p">&lt;/</span><span class="nt">section</span><span class="p">&gt;</span>
+</span><span class="p">&lt;</span><span class="nt">section</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">h3</span><span class="p">&gt;</span>One corner. Four killings<span class="p">&lt;/</span><span class="nt">h3</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>The southwest corner of Harvard Park, at West 62nd Street and Harvard Boulevard, has been especially deadly. In the last year-and-a-half, four men have been killed there — while sitting in a car, trying to defuse an argument or walking home from the barber shop or the corner store.<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;map&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
 <span class="p">&lt;/</span><span class="nt">section</span><span class="p">&gt;</span>
 ...
 {% endblock %}

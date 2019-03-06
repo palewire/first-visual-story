@@ -29,7 +29,7 @@ About the authors
 This guide was prepared for training sessions of `Investigative Reporters and Editors (IRE) <http://www.ire.org/>`_
 and the `National Institute for Computer-Assisted Reporting (NICAR) <http://data.nicar.org/>`_
 by `Dana Amihere <http://damihere.com>`_, `Armand Emamdjomeh <http://emamd.net>`_ and `Ben Welsh <http://palewi.re/who-is-ben-welsh/>`_. It debuted in March 2018 `at NICAR's conference
-in Chicago <https://www.ire.org/events-and-training/event/3189/3508/>`_.
+in Chicago <https://www.ire.org/events-and-training/event/3189/3508/>`_. It returned for `a second run <https://www.ire.org/events-and-training/event/3433/4111/>`_ at the 2019 edition of the conference in Newport Beach, California.
 
 Their work was inspired by the footloose spirit of funk music. We urge you to bust free of the computer systems that constrain your creativity. Hit play and get into the groove.
 
@@ -888,6 +888,12 @@ We have data, but what does it look like?
 
 To visualize our data, we're going to use `D3.js <https://d3js.org/>`_ library, which has become the industry standard for data visualization. Since it is so flexible for data vizualization and mapping applications, D3 powers many of the news graphics made with JavaScript you see online.
 
+.. note::
+
+    We're going to dive straight into the deep end with creating a D3 chart from scratch in this section. There is a lot of setup involved with this, and it'll probably seem like overkill at points. And it is! D3 gives you a very high level of control over your graphics, which makes all this setup necessary.
+
+    We wanted to use this section as an introduction to D3 and give you a foothold into the `many, many different types of visualizations you can make with it <https://github.com/d3/d3/wiki/Gallery>`_.
+
 First, use npm to install D3.
 
 .. code-block:: bash
@@ -895,7 +901,7 @@ First, use npm to install D3.
     $ npm install -s d3@5
 
 
-The ``-s`` argument saves plotly to a dependencies file. That way, if you ever need to go through the install steps for your app again, you can do so easily by simply running ``npm install``.
+The ``-s`` argument saves d3 to a dependencies file. That way, if you ever need to go through the install steps for your app again, you can do so easily by simply running ``npm install``.
 
 From here, we'll be working in our ``_scripts`` folder. Create a file called ``_charts.js`` inside of ``_scripts/``.
 
@@ -1051,7 +1057,7 @@ Now if you look, your SVG should be rendered at the appropriate height and width
 
 Two more setup steps before we actually start making our charts. First, if we simply start drawing data onto the SVG, we'll likely see areas where the data clips off the chart. We can avoid this by defining a pre-set margin we'll use throughout the process.
 
-We also create two variables, ``width`` and ``height`` that refer to the dimensions of the chart with the margins included.
+We also create two variables, ``chartWidth`` and ``chartHeight`` that refer to the dimensions of the chart with the margins included.
 
 .. code-block:: javascript
     :emphasize-lines: 3,8-9
@@ -1063,8 +1069,8 @@ We also create two variables, ``width`` and ``height`` that refer to the dimensi
     var container = d3.select('#county-homicides');
     var containerWidth = container.node().offsetWidth;
     var containerHeight = containerWidth * 0.66;
-    var width = containerWidth - margin.right - margin.left;
-    var height = containerHeight - margin.top - margin.bottom;
+    var chartWidth = containerWidth - margin.right - margin.left;
+    var chartHeight = containerHeight - margin.top - margin.bottom;
 
     var svg = container.append('svg')
                 .attr('width', containerWidth)
@@ -1077,10 +1083,20 @@ Second, we should add a ``<g>``, or "group" tag, where everything else in our ch
 
     // ... more code is up here
     var svg = container.append('svg')
-            .attr('width', width)
-            .attr('height', height)
+            .attr('width', chartWidth)
+            .attr('height', chartHeight)
             .append('g')
                 .attr('transform', `translate(${margin.left}, ${margin.top})`)
+
+Adding the ``g`` tag and shifting it may seem like a weird step, but it's an important step to take to make sure the value labels aren't going to clip off the edges of our charts. To show what this does, this example skips a few steps ahead so you can see elements inside the ``g`` tag shifted by the margins of the chart.
+
+.. image:: _static/chart-g-margins.png
+    :width: 100%
+
+And here's what it looks like without the margins, see how the labels are clipped?
+
+.. image:: _static/chart-g-nomargins.png
+    :width: 100%
 
 At this point, we're ready to start drawing our chart. Let's start with by creating the "scales" for our data. D3 manages its data by mapping input values from the data, also known as the domain, into output values on the screen, or the range. This creates a scale that transforms the input into the output.
 
@@ -1112,10 +1128,10 @@ For the Y-axis, we want the domain to start at 0, so we can set that manually.
 
   	var yDomain = [
         0,
-        d3.max(annualTotals, d => d.homicides_total)
+        d3.max(annualTotals.map(d => d.homicides_total))
   	];
 
-If you know the min and max values, you can also set these manually.
+If you know the min and max values, you can also set these manually, which can be useful if you want your chart max to be a nice even number.
 
 At the bottom of your file, let's create an ``xScale`` and ``yScale`` now. Note that at this point we're also setting the range, or output values, to the range between 0 and the height and width of our SVG.
 
@@ -1125,12 +1141,12 @@ At the bottom of your file, let's create an ``xScale`` and ``yScale`` now. Note 
 
     var xScale = d3.scaleBand()
                   .domain(xDomain)
-                  .range([0, width])
+                  .range([0, chartWidth])
                   .padding(0.1);
 
     var yScale = d3.scaleLinear()
                   .domain(yDomain)
-                  .range([height, 0]);
+                  .range([chartHeight, 0]);
 
 Note that the X scale has an additional method, ``.padding()``, which specifies how far apart our bars are from one another.
 
@@ -1144,7 +1160,7 @@ For the Y-axis, we also want to add grid lines and limit the number of ticks tha
 
     var xAxis = d3.axisBottom(xScale);
     var yAxis = d3.axisLeft(yScale)
-                  .tickSize(-width)
+                  .tickSize(-chartWidth)
                   .ticks(4);
 
 Finally, we append those to the chart by appending a ``<g>`` tag and "calling" the axis function we just created. I like to give each axis element a class of "axis" and "x" or "y", depending on which axis we're creating.
@@ -1175,7 +1191,7 @@ Well that doesn't look quite right. The reason the X axis is displaying at the t
 
     svg.append("g")
         .attr("class", "x axis")
-        .attr("transform", `translate(0,${height})`)
+        .attr("transform", `translate(0,${chartHeight})`)
         .call(xAxis);
 
 
@@ -1222,10 +1238,10 @@ Now if you look at your chart... nothing has changed! But open your inspector an
         .attr('class', 'bar')
         .attr('x', d => xScale(d.year))
         .attr('y', d => yScale(d.homicides_total))
-        .attr('width', d => xScale.bandwidth())
-        .attr('height', d => height - yScale(d.homicides_total))
+        .attr('width', xScale.bandwidth())
+        .attr('height', d => chartHeight - yScale(d.homicides_total))
 
-The X value will be determined by the year, and the Y by the ``homicides_total`` value of each object. The width of each bar is set by a method called ``.bandwidth()`` on our scale, and the height will be
+The X value will be determined by the year, and the Y by the ``homicides_total`` value of each object. The width of each bar is set by a method called ``.bandwidth()`` on our scale, and the height will scaled corresponding to the number of homicides.
 
 .. image:: _static/chart-bars.png
     :width: 100%
@@ -1322,8 +1338,8 @@ Now, you can copy everything we wrote in ``_charts.js`` under the ``require('d3'
       var container = d3.select('#county-homicides');
       var containerWidth = container.node().offsetWidth;
       var containerHeight = containerWidth * 0.66;
-      var width = containerWidth - margin.right - margin.left;
-      var height = containerHeight - margin.top - margin.bottom;
+      var chartWidth = containerWidth - margin.right - margin.left;
+      var chartHeight = containerHeight - margin.top - margin.bottom;
 
       var svg = container.append('svg')
           .attr('width', containerWidth)
@@ -1335,26 +1351,26 @@ Now, you can copy everything we wrote in ``_charts.js`` under the ``require('d3'
 
       var yDomain = [
           0,
-          d3.max(annualTotals, d => d.homicides_total)
+          d3.max(annualTotals.map(d => d.homicides_total))
       ];
 
       var xScale = d3.scaleBand()
                     .domain(xDomain)
-                    .range([0, width])
+                    .range([0, chartWidth])
                     .padding(0.1);
 
       var yScale = d3.scaleLinear()
                     .domain(yDomain)
-                    .range([height, 0]);
+                    .range([chartHeight, 0]);
 
       var xAxis = d3.axisBottom(xScale);
       var yAxis = d3.axisLeft(yScale)
-                      .tickSize(-width)
+                      .tickSize(-chartWidth)
                       .ticks(4);
 
       svg.append("g")
           .attr("class", "x axis")
-          .attr("transform", `translate(0,${height})`)
+          .attr("transform", `translate(0,${chartHeight})`)
           .call(xAxis);
 
       svg.append("g")
@@ -1368,8 +1384,8 @@ Now, you can copy everything we wrote in ``_charts.js`` under the ``require('d3'
           .attr('class', 'bar')
           .attr('x', d => xScale(d.year))
           .attr('y', d => yScale(d.homicides_total))
-          .attr('width', d => xScale.bandwidth())
-          .attr('height', d => height - yScale(d.homicides_total));
+          .attr('width', xScale.bandwidth())
+          .attr('height', d => chartHeight - yScale(d.homicides_total));
     }
 
 Now, if you reload your page, your chart will have disappeared! That's because our code is no longer running since it's in a function, but we're not calling that function.
@@ -1422,8 +1438,8 @@ Luckily, we only have to do this a few times, once where we're calculating the d
       var container = d3.select('#county-homicides');
       var containerWidth = container.node().offsetWidth;
       var containerHeight = containerWidth * 0.66;
-      var width = containerWidth - margin.right - margin.left;
-      var height = containerHeight - margin.top - margin.bottom;
+      var chartWidth = containerWidth - margin.right - margin.left;
+      var chartHeight = containerHeight - margin.top - margin.bottom;
 
       var svg = container.append('svg')
           .attr('width', containerWidth)
@@ -1435,26 +1451,26 @@ Luckily, we only have to do this a few times, once where we're calculating the d
 
       var yDomain = [
           0,
-          d3.max(annualTotals, d => d[fieldname])
+          d3.max(annualTotals.map(d => d[fieldname]))
       ];
 
       var xScale = d3.scaleBand()
                     .domain(xDomain)
-                    .range([0, width])
+                    .range([0, chartWidth])
                     .padding(0.1);
 
       var yScale = d3.scaleLinear()
                     .domain(yDomain)
-                    .range([height, 0]);
+                    .range([chartHeight, 0]);
 
       var xAxis = d3.axisBottom(xScale);
       var yAxis = d3.axisLeft(yScale)
-                      .tickSize(-width)
+                      .tickSize(-chartWidth)
                       .ticks(4);
 
       svg.append("g")
           .attr("class", "x axis")
-          .attr("transform", `translate(0,${height})`)
+          .attr("transform", `translate(0,${chartHeight})`)
           .call(xAxis);
 
       svg.append("g")
@@ -1468,8 +1484,8 @@ Luckily, we only have to do this a few times, once where we're calculating the d
           .attr('class', 'bar')
           .attr('x', d => xScale(d.year))
           .attr('y', d => yScale(d[fieldname]))
-          .attr('width', d => xScale.bandwidth())
-          .attr('height', d => height - yScale(d[fieldname]));
+          .attr('width', xScale.bandwidth())
+          .attr('height', d => chartHeight - yScale(d[fieldname]));
     }
 
 
@@ -1488,7 +1504,7 @@ Let's update the ``xAxis`` variable in ``createCharts`` to label the first and l
                   .tickValues([2000, 2005, 2010, 2015, 2017]);
 
       var yAxis = d3.axisLeft(yScale)
-                      .tickSize(-width)
+                      .tickSize(-chartWidth)
                       .ticks(4);
 
       // ... more code is down here
@@ -1561,6 +1577,21 @@ And an introductory paragraph to say a little bit about what we're looking at.
 .. image:: _static/chart-intro-graf.png
     :width: 100%
 
+Last, let's wrap our charts HTML in ``<section>`` tags to keep things orderly.
+
+.. code-block:: html
+    :emphasize-lines: 1,9
+
+    <section>
+        <h3>A South L.A. neighborhood stands apart</h3>
+        <p>Harvard Park's 2016 homicide total was its highest in at least 15 years despite a downward trend in killings across L.A. County.</p>
+
+        <div class="charts-holder clearfix">
+            <div class="inline-chart" id="county-homicides"></div>
+            <div class="inline-chart" id="harvard-park-homicides"></div>
+        </div>
+    </section>
+
 
 Congratulations, you've made your charts! Let's commit our changes and move on to our next challenge.
 
@@ -1574,7 +1605,7 @@ Congratulations, you've made your charts! Let's commit our changes and move on t
     We used D3.js in this class, but there are many other JavaScript charting libraries, each one slightly different. If you want to explore this on your own, here are some other options that generally abstract away the process we used in this class.
 
     - `Vega-lite <https://vega.github.io/vega-lite/>`_
-    - `Charts.js <http://www.chartjs.org/>`_
+    - `Charts.js <http://www.chartjs.org/>`_ Looks really awesome and abstracts a lot of the pain points of D3 away, but as it only draws to ``<canvas>`` and we wanted to be able to individually inspect SVG elements, we didn't use it for this class.
     - `C3.js <http://c3js.org/>`_ Important to note that this does not seem to support the latest versions of D3.
 
     There are also tools that allow you to use a visual editor, creating charts and other visualizations that you can download and/or embed in your project.
@@ -1657,11 +1688,22 @@ Next we import Leaflet's stylesheets in ``_styles/main.scss`` so that they are a
     @import 'node_modules/leaflet/dist/leaflet';
 
 
-Now, back in the ``index.nunjucks`` template, we should create a placeholder in the page template where the map will live.
+Now, back in the ``index.nunjucks`` template, we should create a placeholder in the page template where the map will live. Let's set it right above the charts section we've just finished.
 
 .. code-block:: jinja
+    :emphasize-lines: 1
 
     <div id="map"></div>
+
+    <section>
+        <h3>A South L.A. neighborhood stands apart</h3>
+        <p>Harvard Park's 2016 homicide total was its highest in at least 15 years despite a downward trend in killings across L.A. County.</p>
+
+        <div class="charts-holder clearfix">
+            <div class="inline-chart" id="county-homicides"></div>
+            <div class="inline-chart" id="harvard-park-homicides"></div>
+        </div>
+    </section>
 
 
 To bring the map to life, add a new file named ``_map.js`` to the ``_scripts`` directory. Import it in ``main.js``.
@@ -2058,11 +2100,12 @@ And let's a write a lead.
 
     {% block content %}
     <section>
-        <p>The area around Harvard Park was the deadliest place for African Americans in Los Angeles County last year, according to <a href="http://homicide.latimes.com/">The Times’ Homicide Report</a>. So far this year, six people have been killed. Most of the victims were black men.</p> </section>
+        <p>The area around Harvard Park was the deadliest place for African Americans in Los Angeles County last year, according to <a href="http://homicide.latimes.com/">The Times’ Homicide Report</a>. So far this year, six people have been killed. Most of the victims were black men.</p>
+    </section>
     <section>
-    <h3>One corner. Four killings</h3>
-    <p>The southwest corner of Harvard Park, at West 62nd Street and Harvard Boulevard, has been especially deadly. In the last year-and-a-half, four men have been killed there — while sitting in a car, trying to defuse an argument or walking home from the barber shop or the corner store.</p>
-    <div id="map"></div>
+        <h3>One corner. Four killings</h3>
+        <p>The southwest corner of Harvard Park, at West 62nd Street and Harvard Boulevard, has been especially deadly. In the last year-and-a-half, four men have been killed there — while sitting in a car, trying to defuse an argument or walking home from the barber shop or the corner store.</p>
+        <div id="map"></div>
     </section>
     ...
     {% endblock %}
