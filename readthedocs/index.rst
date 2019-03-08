@@ -951,7 +951,7 @@ What chart should we make? The story points out that Harvard Park experienced an
 
 First, we need somewhere for our charts to go. In our ``index.nunjucks`` file, inside of ``{% block content %}`` where you want the chart to appear, create a ``div`` element with an id of ``county-homicides``, and another with an id of ``harvard-park-homicides``.
 
-.. code-block:: html
+.. code-block:: jinja
     :emphasize-lines: 11-14
 
     {% extends '_layouts/base.nunjucks' %}
@@ -993,7 +993,7 @@ Meanwhile, we need data. Copy the `annual totals data <https://raw.githubusercon
 
 Add a ``{% scripts %}`` block to the end of your ``index.nunjucks`` file:
 
-.. code-block:: html
+.. code-block:: jinja
 
     {% block scripts %}
     <script>
@@ -1514,7 +1514,7 @@ Let's update the ``xAxis`` variable in ``createCharts`` to label the first and l
 
 This cleans things up a lot! We have some pretty good-looking charts. Our charts need titles, which we can add directly to the HTML. Going back to the ``index.nunjucks`` file, add the titles in ``<h4>`` tags inside your chart containers
 
-.. code-block:: html
+.. code-block:: jinja
     :emphasize-lines: 3,6
 
     <div class="charts">
@@ -1543,7 +1543,7 @@ Let's style those a bit too, add these rules to the bottom of ``_styles/_charts.
 
 Last, let's add a headline to introduce our charts section.
 
-.. code-block:: html
+.. code-block:: jinja
     :emphasize-lines: 1
 
     <h3>A South L.A. neighborhood stands apart</h3>
@@ -1563,7 +1563,7 @@ Last, let's add a headline to introduce our charts section.
 
 And an introductory paragraph to say a little bit about what we're looking at.
 
-.. code-block:: html
+.. code-block:: jinja
     :emphasize-lines: 2
 
     <h3>A South L.A. neighborhood stands apart</h3>
@@ -1579,7 +1579,7 @@ And an introductory paragraph to say a little bit about what we're looking at.
 
 Last, let's wrap our charts HTML in ``<section>`` tags to keep things orderly.
 
-.. code-block:: html
+.. code-block:: jinja
     :emphasize-lines: 1,9
 
     <section>

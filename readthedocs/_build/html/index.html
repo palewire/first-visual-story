@@ -171,7 +171,7 @@
 <p>This guide was prepared for training sessions of <a class="reference external" href="http://www.ire.org/">Investigative Reporters and Editors (IRE)</a>
 and the <a class="reference external" href="http://data.nicar.org/">National Institute for Computer-Assisted Reporting (NICAR)</a>
 by <a class="reference external" href="http://damihere.com">Dana Amihere</a>, <a class="reference external" href="http://emamd.net">Armand Emamdjomeh</a> and <a class="reference external" href="http://palewi.re/who-is-ben-welsh/">Ben Welsh</a>. It debuted in March 2018 <a class="reference external" href="https://www.ire.org/events-and-training/event/3189/3508/">at NICAR’s conference
-in Chicago</a>.</p>
+in Chicago</a>. It returned for <a class="reference external" href="https://www.ire.org/events-and-training/event/3433/4111/">a second run</a> at the 2019 edition of the conference in Newport Beach, California.</p>
 <p>Their work was inspired by the footloose spirit of funk music. We urge you to bust free of the computer systems that constrain your creativity. Hit play and get into the groove.</p>
 <iframe src="https://open.spotify.com/embed?uri=spotify:user:227b2koy2xxyb23qliakea75y:playlist:54NS8jCdrgUpzUppUpokSg&theme=white" width="300" height="380" frameborder="0" allowtransparency="true" style="margin: 20px 0;"></iframe></div>
 <div class="section" id="prelude-prerequisites">
@@ -750,48 +750,48 @@ $ git commit -m <span class="s2">&quot;Created a victims card grid&quot;</span>
 <a class="reference internal image-reference" href="_images/hello-charts.png"><img alt="_images/hello-charts.png" src="_images/hello-charts.png" style="width: 100%;" /></a>
 <p>What chart should we make? The story points out that Harvard Park experienced an increase in homicides as there was a decrease across the rest of the county. Let’s try to visualize that.</p>
 <p>First, we need somewhere for our charts to go. In our <code class="docutils literal notranslate"><span class="pre">index.nunjucks</span></code> file, inside of <code class="docutils literal notranslate"><span class="pre">{%</span> <span class="pre">block</span> <span class="pre">content</span> <span class="pre">%}</span></code> where you want the chart to appear, create a <code class="docutils literal notranslate"><span class="pre">div</span></code> element with an id of <code class="docutils literal notranslate"><span class="pre">county-homicides</span></code>, and another with an id of <code class="docutils literal notranslate"><span class="pre">harvard-park-homicides</span></code>.</p>
-<div class="highlight-html notranslate"><div class="highlight"><pre><span></span>{% extends &#39;_layouts/base.nunjucks&#39; %}
+<div class="highlight-jinja notranslate"><div class="highlight"><pre><span></span><span class="cp">{%</span> <span class="k">extends</span> <span class="s1">&#39;_layouts/base.nunjucks&#39;</span> <span class="cp">%}</span><span class="x"></span>
 
-{% block headline %}My headline will go here{% endblock %}
-{% block byline %}By me{% endblock %}
-{% block pubdate %}
-    <span class="p">&lt;</span><span class="nt">time</span> <span class="na">datetime</span><span class="o">=</span><span class="s">&quot;2018-03-10&quot;</span> <span class="na">pubdate</span><span class="p">&gt;</span>Mar. 10, 2018<span class="p">&lt;/</span><span class="nt">time</span><span class="p">&gt;</span>
-{% endblock %}
+<span class="cp">{%</span> <span class="k">block</span> <span class="nv">headline</span> <span class="cp">%}</span><span class="x">My headline will go here</span><span class="cp">{%</span> <span class="k">endblock</span> <span class="cp">%}</span><span class="x"></span>
+<span class="cp">{%</span> <span class="k">block</span> <span class="nv">byline</span> <span class="cp">%}</span><span class="x">By me</span><span class="cp">{%</span> <span class="k">endblock</span> <span class="cp">%}</span><span class="x"></span>
+<span class="cp">{%</span> <span class="k">block</span> <span class="nv">pubdate</span> <span class="cp">%}</span><span class="x"></span>
+<span class="x">    &lt;time datetime=&quot;2018-03-10&quot; pubdate&gt;Mar. 10, 2018&lt;/time&gt;</span>
+<span class="cp">{%</span> <span class="k">endblock</span> <span class="cp">%}</span><span class="x"></span>
 
-{% block content %}
+<span class="cp">{%</span> <span class="k">block</span> <span class="nv">content</span> <span class="cp">%}</span><span class="x"></span>
 
-<span class="hll"><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;charts&quot;</span><span class="p">&gt;</span>
-</span><span class="hll">  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;inline-chart&quot;</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;county-homicides&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-</span><span class="hll">  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;inline-chart&quot;</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;harvard-park-homicides&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-</span><span class="hll"><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="hll"><span class="x">&lt;div class=&quot;charts&quot;&gt;</span>
+</span><span class="hll"><span class="x">  &lt;div class=&quot;inline-chart&quot; id=&quot;county-homicides&quot;&gt;&lt;/div&gt;</span>
+</span><span class="hll"><span class="x">  &lt;div class=&quot;inline-chart&quot; id=&quot;harvard-park-homicides&quot;&gt;&lt;/div&gt;</span>
+</span><span class="hll"><span class="x">&lt;/div&gt;</span>
 </span>
-<span class="p">&lt;</span><span class="nt">h3</span><span class="p">&gt;</span>Lives lost<span class="p">&lt;/</span><span class="nt">h3</span><span class="p">&gt;</span>
-<span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>The {{ site.data.harvard_park_homicides|length }} homicides in Harvard Park since 2000 were primarily black and Latino males, but the list includes husbands, wives, fathers, mothers of all ages, and even some small children.<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+<span class="x">&lt;h3&gt;Lives lost&lt;/h3&gt;</span>
+<span class="x">&lt;p&gt;The </span><span class="cp">{{</span> <span class="nv">site.data.harvard_park_homicides</span><span class="o">|</span><span class="nf">length</span> <span class="cp">}}</span><span class="x"> homicides in Harvard Park since 2000 were primarily black and Latino males, but the list includes husbands, wives, fathers, mothers of all ages, and even some small children.&lt;/p&gt;</span>
 
-{% for obj in site.data.harvard_park_homicides %}
-<span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;card-columns&quot;</span><span class="p">&gt;</span>
-    {% for obj in site.data.harvard_park_homicides %}
-    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;card&quot;</span><span class="p">&gt;</span>
-      {% if obj.image %}<span class="p">&lt;</span><span class="nt">img</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;card-img-top&quot;</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;{{ obj.image }}&quot;</span><span class="p">&gt;</span>{% endif %}
-      <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;card-body&quot;</span><span class="p">&gt;</span>
-        <span class="p">&lt;</span><span class="nt">h5</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;card-title&quot;</span><span class="p">&gt;</span>{{ obj.first_name }} {{ obj.last_name }}<span class="p">&lt;/</span><span class="nt">h5</span><span class="p">&gt;</span>
-        <span class="p">&lt;</span><span class="nt">p</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;card-text&quot;</span><span class="p">&gt;</span>A {{ obj.age}}-year-old {{ obj.race }} {{ obj.gender }} died in {{ obj.death_year }}.<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
-      <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-    <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-    {% endfor %}
-<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-{% endfor %}
+<span class="cp">{%</span> <span class="k">for</span> <span class="nv">obj</span> <span class="k">in</span> <span class="nv">site.data.harvard_park_homicides</span> <span class="cp">%}</span><span class="x"></span>
+<span class="x">&lt;div class=&quot;card-columns&quot;&gt;</span>
+<span class="x">    </span><span class="cp">{%</span> <span class="k">for</span> <span class="nv">obj</span> <span class="k">in</span> <span class="nv">site.data.harvard_park_homicides</span> <span class="cp">%}</span><span class="x"></span>
+<span class="x">    &lt;div class=&quot;card&quot;&gt;</span>
+<span class="x">      </span><span class="cp">{%</span> <span class="k">if</span> <span class="nv">obj.image</span> <span class="cp">%}</span><span class="x">&lt;img class=&quot;card-img-top&quot; src=&quot;</span><span class="cp">{{</span> <span class="nv">obj.image</span> <span class="cp">}}</span><span class="x">&quot;&gt;</span><span class="cp">{%</span> <span class="k">endif</span> <span class="cp">%}</span><span class="x"></span>
+<span class="x">      &lt;div class=&quot;card-body&quot;&gt;</span>
+<span class="x">        &lt;h5 class=&quot;card-title&quot;&gt;</span><span class="cp">{{</span> <span class="nv">obj.first_name</span> <span class="cp">}}</span><span class="x"> </span><span class="cp">{{</span> <span class="nv">obj.last_name</span> <span class="cp">}}</span><span class="x">&lt;/h5&gt;</span>
+<span class="x">        &lt;p class=&quot;card-text&quot;&gt;A </span><span class="cp">{{</span> <span class="nv">obj.age</span><span class="cp">}}</span><span class="x">-year-old </span><span class="cp">{{</span> <span class="nv">obj.race</span> <span class="cp">}}</span><span class="x"> </span><span class="cp">{{</span> <span class="nv">obj.gender</span> <span class="cp">}}</span><span class="x"> died in </span><span class="cp">{{</span> <span class="nv">obj.death_year</span> <span class="cp">}}</span><span class="x">.&lt;/p&gt;</span>
+<span class="x">      &lt;/div&gt;</span>
+<span class="x">    &lt;/div&gt;</span>
+<span class="x">    </span><span class="cp">{%</span> <span class="k">endfor</span> <span class="cp">%}</span><span class="x"></span>
+<span class="x">&lt;/div&gt;</span>
+<span class="cp">{%</span> <span class="k">endfor</span> <span class="cp">%}</span><span class="x"></span>
 
-{% endblock %}
+<span class="cp">{%</span> <span class="k">endblock</span> <span class="cp">%}</span><span class="x"></span>
 </pre></div>
 </div>
 <p>Meanwhile, we need data. Copy the <a class="reference external" href="https://raw.githubusercontent.com/ireapps/first-graphics-app/master/src/_data/annual_totals.json">annual totals data</a> to a new file, <code class="docutils literal notranslate"><span class="pre">_data/annual_totals.json</span></code>. This file contains annual homicide counts for Harvard Park and all of Los Angeles County. We can use nunjucks to include our data file directly in the template.</p>
 <p>Add a <code class="docutils literal notranslate"><span class="pre">{%</span> <span class="pre">scripts</span> <span class="pre">%}</span></code> block to the end of your <code class="docutils literal notranslate"><span class="pre">index.nunjucks</span></code> file:</p>
-<div class="highlight-html notranslate"><div class="highlight"><pre><span></span>{% block scripts %}
-<span class="p">&lt;</span><span class="nt">script</span><span class="p">&gt;</span>
-<span class="kd">var</span> <span class="nx">annualTotals</span> <span class="o">=</span> <span class="p">{</span><span class="o">%</span> <span class="nx">include</span> <span class="s1">&#39;_data/annual_totals.json&#39;</span> <span class="o">%</span><span class="p">};</span>
-<span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
-{% endblock %}
+<div class="highlight-jinja notranslate"><div class="highlight"><pre><span></span><span class="cp">{%</span> <span class="k">block</span> <span class="nv">scripts</span> <span class="cp">%}</span><span class="x"></span>
+<span class="x">&lt;script&gt;</span>
+<span class="x">var annualTotals = </span><span class="cp">{%</span> <span class="k">include</span> <span class="s1">&#39;_data/annual_totals.json&#39;</span> <span class="cp">%}</span><span class="x">;</span>
+<span class="x">&lt;/script&gt;</span>
+<span class="cp">{%</span> <span class="k">endblock</span> <span class="cp">%}</span><span class="x"></span>
 </pre></div>
 </div>
 <p>We want to make two charts - one of county homicides and one of killings in Harvard Park. Let’s start with county homicides. D3 requires us to do a bit of house work before we get started. The first thing we need is a container for our chart to go in. We’ll be making these charts in an <code class="docutils literal notranslate"><span class="pre">&lt;svg&gt;</span></code> element, which stands for Scalable Vector Graphic.</p>
@@ -1184,14 +1184,14 @@ $ git commit -m <span class="s2">&quot;Created a victims card grid&quot;</span>
 </div>
 <a class="reference internal image-reference" href="_images/chart-clean-axes.png"><img alt="_images/chart-clean-axes.png" src="_images/chart-clean-axes.png" style="width: 100%;" /></a>
 <p>This cleans things up a lot! We have some pretty good-looking charts. Our charts need titles, which we can add directly to the HTML. Going back to the <code class="docutils literal notranslate"><span class="pre">index.nunjucks</span></code> file, add the titles in <code class="docutils literal notranslate"><span class="pre">&lt;h4&gt;</span></code> tags inside your chart containers</p>
-<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;charts&quot;</span><span class="p">&gt;</span>
-  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;inline-chart&quot;</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;county-homicides&quot;</span><span class="p">&gt;</span>
-<span class="hll">    <span class="p">&lt;</span><span class="nt">h4</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;chart-title&quot;</span><span class="p">&gt;</span>County homicides, 2000-2017<span class="p">&lt;/</span><span class="nt">h4</span><span class="p">&gt;</span>
-</span>  <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;inline-chart&quot;</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;harvard-park-homicides&quot;</span><span class="p">&gt;</span>
-<span class="hll">    <span class="p">&lt;</span><span class="nt">h4</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;chart-title&quot;</span><span class="p">&gt;</span>Harvard Park homicides, 2000-2017<span class="p">&lt;/</span><span class="nt">h4</span><span class="p">&gt;</span>
-</span>  <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<div class="highlight-jinja notranslate"><div class="highlight"><pre><span></span><span class="x">&lt;div class=&quot;charts&quot;&gt;</span>
+<span class="x">  &lt;div class=&quot;inline-chart&quot; id=&quot;county-homicides&quot;&gt;</span>
+<span class="hll"><span class="x">    &lt;h4 class=&quot;chart-title&quot;&gt;County homicides, 2000-2017&lt;/h4&gt;</span>
+</span><span class="x">  &lt;/div&gt;</span>
+<span class="x">  &lt;div class=&quot;inline-chart&quot; id=&quot;harvard-park-homicides&quot;&gt;</span>
+<span class="hll"><span class="x">    &lt;h4 class=&quot;chart-title&quot;&gt;Harvard Park homicides, 2000-2017&lt;/h4&gt;</span>
+</span><span class="x">  &lt;/div&gt;</span>
+<span class="x">&lt;/div&gt;</span>
 </pre></div>
 </div>
 <p>Let’s style those a bit too, add these rules to the bottom of <code class="docutils literal notranslate"><span class="pre">_styles/_charts.scss</span></code>.</p>
@@ -1204,40 +1204,40 @@ $ git commit -m <span class="s2">&quot;Created a victims card grid&quot;</span>
 </div>
 <a class="reference internal image-reference" href="_images/chart-with-title.png"><img alt="_images/chart-with-title.png" src="_images/chart-with-title.png" style="width: 100%;" /></a>
 <p>Last, let’s add a headline to introduce our charts section.</p>
-<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="hll"><span class="p">&lt;</span><span class="nt">h3</span><span class="p">&gt;</span>A South L.A. neighborhood stands apart<span class="p">&lt;/</span><span class="nt">h3</span><span class="p">&gt;</span>
+<div class="highlight-jinja notranslate"><div class="highlight"><pre><span></span><span class="hll"><span class="x">&lt;h3&gt;A South L.A. neighborhood stands apart&lt;/h3&gt;</span>
 </span>
-<span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;charts&quot;</span><span class="p">&gt;</span>
-  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;inline-chart&quot;</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;county-homicides&quot;</span><span class="p">&gt;</span>
-    <span class="p">&lt;</span><span class="nt">h4</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;chart-title&quot;</span><span class="p">&gt;</span>County homicides, 2000-2017<span class="p">&lt;/</span><span class="nt">h4</span><span class="p">&gt;</span>
-  <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;inline-chart&quot;</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;harvard-park-homicides&quot;</span><span class="p">&gt;</span>
-    <span class="p">&lt;</span><span class="nt">h4</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;chart-title&quot;</span><span class="p">&gt;</span>Harvard Park homicides, 2000-2017<span class="p">&lt;/</span><span class="nt">h4</span><span class="p">&gt;</span>
-  <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="x">&lt;div class=&quot;charts&quot;&gt;</span>
+<span class="x">  &lt;div class=&quot;inline-chart&quot; id=&quot;county-homicides&quot;&gt;</span>
+<span class="x">    &lt;h4 class=&quot;chart-title&quot;&gt;County homicides, 2000-2017&lt;/h4&gt;</span>
+<span class="x">  &lt;/div&gt;</span>
+<span class="x">  &lt;div class=&quot;inline-chart&quot; id=&quot;harvard-park-homicides&quot;&gt;</span>
+<span class="x">    &lt;h4 class=&quot;chart-title&quot;&gt;Harvard Park homicides, 2000-2017&lt;/h4&gt;</span>
+<span class="x">  &lt;/div&gt;</span>
+<span class="x">&lt;/div&gt;</span>
 </pre></div>
 </div>
 <a class="reference internal image-reference" href="_images/chart-section-headline.png"><img alt="_images/chart-section-headline.png" src="_images/chart-section-headline.png" style="width: 100%;" /></a>
 <p>And an introductory paragraph to say a little bit about what we’re looking at.</p>
-<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">h3</span><span class="p">&gt;</span>A South L.A. neighborhood stands apart<span class="p">&lt;/</span><span class="nt">h3</span><span class="p">&gt;</span>
-<span class="hll"><span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>Harvard Park&#39;s 2016 homicide total was its highest in at least 15 years despite a downward trend in killings across L.A. County.<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+<div class="highlight-jinja notranslate"><div class="highlight"><pre><span></span><span class="x">&lt;h3&gt;A South L.A. neighborhood stands apart&lt;/h3&gt;</span>
+<span class="hll"><span class="x">&lt;p&gt;Harvard Park&#39;s 2016 homicide total was its highest in at least 15 years despite a downward trend in killings across L.A. County.&lt;/p&gt;</span>
 </span>
-<span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;charts-holder clearfix&quot;</span><span class="p">&gt;</span>
-    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;inline-chart&quot;</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;county-homicides&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;inline-chart&quot;</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;harvard-park-homicides&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="x">&lt;div class=&quot;charts-holder clearfix&quot;&gt;</span>
+<span class="x">    &lt;div class=&quot;inline-chart&quot; id=&quot;county-homicides&quot;&gt;&lt;/div&gt;</span>
+<span class="x">    &lt;div class=&quot;inline-chart&quot; id=&quot;harvard-park-homicides&quot;&gt;&lt;/div&gt;</span>
+<span class="x">&lt;/div&gt;</span>
 </pre></div>
 </div>
 <a class="reference internal image-reference" href="_images/chart-intro-graf.png"><img alt="_images/chart-intro-graf.png" src="_images/chart-intro-graf.png" style="width: 100%;" /></a>
 <p>Last, let’s wrap our charts HTML in <code class="docutils literal notranslate"><span class="pre">&lt;section&gt;</span></code> tags to keep things orderly.</p>
-<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="hll"><span class="p">&lt;</span><span class="nt">section</span><span class="p">&gt;</span>
-</span>    <span class="p">&lt;</span><span class="nt">h3</span><span class="p">&gt;</span>A South L.A. neighborhood stands apart<span class="p">&lt;/</span><span class="nt">h3</span><span class="p">&gt;</span>
-    <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>Harvard Park&#39;s 2016 homicide total was its highest in at least 15 years despite a downward trend in killings across L.A. County.<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+<div class="highlight-jinja notranslate"><div class="highlight"><pre><span></span><span class="hll"><span class="x">&lt;section&gt;</span>
+</span><span class="x">    &lt;h3&gt;A South L.A. neighborhood stands apart&lt;/h3&gt;</span>
+<span class="x">    &lt;p&gt;Harvard Park&#39;s 2016 homicide total was its highest in at least 15 years despite a downward trend in killings across L.A. County.&lt;/p&gt;</span>
 
-    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;charts-holder clearfix&quot;</span><span class="p">&gt;</span>
-        <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;inline-chart&quot;</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;county-homicides&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-        <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;inline-chart&quot;</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;harvard-park-homicides&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-    <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-<span class="hll"><span class="p">&lt;/</span><span class="nt">section</span><span class="p">&gt;</span>
+<span class="x">    &lt;div class=&quot;charts-holder clearfix&quot;&gt;</span>
+<span class="x">        &lt;div class=&quot;inline-chart&quot; id=&quot;county-homicides&quot;&gt;&lt;/div&gt;</span>
+<span class="x">        &lt;div class=&quot;inline-chart&quot; id=&quot;harvard-park-homicides&quot;&gt;&lt;/div&gt;</span>
+<span class="x">    &lt;/div&gt;</span>
+<span class="hll"><span class="x">&lt;/section&gt;</span>
 </span></pre></div>
 </div>
 <p>Congratulations, you’ve made your charts! Let’s commit our changes and move on to our next challenge.</p>
@@ -1316,8 +1316,18 @@ $ git push origin master
 <span class="hll"><span class="p">@</span><span class="k">import</span> <span class="s1">&#39;node_modules/leaflet/dist/leaflet&#39;</span><span class="p">;</span>
 </span></pre></div>
 </div>
-<p>Now, back in the <code class="docutils literal notranslate"><span class="pre">index.nunjucks</span></code> template, we should create a placeholder in the page template where the map will live.</p>
-<div class="highlight-jinja notranslate"><div class="highlight"><pre><span></span><span class="x">&lt;div id=&quot;map&quot;&gt;&lt;/div&gt;</span>
+<p>Now, back in the <code class="docutils literal notranslate"><span class="pre">index.nunjucks</span></code> template, we should create a placeholder in the page template where the map will live. Let’s set it right above the charts section we’ve just finished.</p>
+<div class="highlight-jinja notranslate"><div class="highlight"><pre><span></span><span class="hll"><span class="x">&lt;div id=&quot;map&quot;&gt;&lt;/div&gt;</span>
+</span>
+<span class="x">&lt;section&gt;</span>
+<span class="x">    &lt;h3&gt;A South L.A. neighborhood stands apart&lt;/h3&gt;</span>
+<span class="x">    &lt;p&gt;Harvard Park&#39;s 2016 homicide total was its highest in at least 15 years despite a downward trend in killings across L.A. County.&lt;/p&gt;</span>
+
+<span class="x">    &lt;div class=&quot;charts-holder clearfix&quot;&gt;</span>
+<span class="x">        &lt;div class=&quot;inline-chart&quot; id=&quot;county-homicides&quot;&gt;&lt;/div&gt;</span>
+<span class="x">        &lt;div class=&quot;inline-chart&quot; id=&quot;harvard-park-homicides&quot;&gt;&lt;/div&gt;</span>
+<span class="x">    &lt;/div&gt;</span>
+<span class="x">&lt;/section&gt;</span>
 </pre></div>
 </div>
 <p>To bring the map to life, add a new file named <code class="docutils literal notranslate"><span class="pre">_map.js</span></code> to the <code class="docutils literal notranslate"><span class="pre">_scripts</span></code> directory. Import it in <code class="docutils literal notranslate"><span class="pre">main.js</span></code>.</p>
