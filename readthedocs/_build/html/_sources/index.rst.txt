@@ -1614,6 +1614,123 @@ Congratulations, you've made your charts! Let's commit our changes and move on t
     - `Chartbuilder <https://quartz.github.io/Chartbuilder/>`_ from `Quartz <https://qz.com/>`_, is very good for basic, fast charts with light customization.
     - `DataWrapper <https://www.datawrapper.de/>`_ allows a range of visualizations beyond basic charts, including scatter plots and maps.
 
+**Extra credit**
+
+Now let's try and make these charts interactive. We want to highlight a bar and display its value whenever a user hovers over it. To do this, we're going to use D3's "event binding."
+
+In our ``createChart()`` function, we'll want to add a new method, ``.on()` to the code snippet where we create out bars.
+
+For now, let's log the value to our console.
+
+.. code-block:: javascript
+    :emphasize-lines: 10-12
+
+    svg.selectAll('.bar')
+      .data(annualTotals)
+      .enter()
+      .append('rect')
+      .attr('class', 'bar')
+      .attr('x', d => xScale(d.year))
+      .attr('y', d => yScale(d[fieldname]))
+      .attr('width', d => xScale.bandwidth())
+      .attr('height', d => chartHeight - yScale(d[fieldname]))
+      .on('mouseenter', d => {
+        console.log(d[fieldname])
+      });
+
+Now if you look in your console, you should see the values for each bar being logged when you mouse over.
+
+Now let's use this change each bar's color, and the ``mouseleave`` event to remove that highlight when the mouse exit.
+
+.. code-block:: javascript
+    :emphasize-lines: 10-15
+
+    svg.selectAll('.bar')
+        .data(annualTotals)
+        .enter()
+        .append('rect')
+        .attr('class', 'bar')
+        .attr('x', d => xScale(d.year))
+        .attr('y', d => yScale(d[fieldname]))
+        .attr('width', d => xScale.bandwidth())
+        .attr('height', d => chartHeight - yScale(d[fieldname]))
+        .on('mouseenter', function(d) {
+            d3.select(this).classed('highlight', true);
+        })
+        .on('mouseleave', function(d) {
+            d3.select(this).classed('highlight', false);
+        });
+
+And add the rule for ``.highlight`` to the CSS.
+
+.. code-block:: css
+
+    .highlight {
+      fill: #2AB2E4;
+    }
+
+We have interactivity!
+
+.. image:: _static/chart-highlighting.gif
+
+Now let's add a tooltip. First, in the ``createCharts`` function, add a line that appends a ``<text>`` element to the SVG. Place this under the lines where you append your axes to the SVG, but before you add the bars.
+
+.. code-block:: javascript
+    :emphasize-lines: 5-6
+
+    svg.append("g")
+        .attr("class", "y axis")
+        .call(yAxis);
+
+    var tooltip = svg.append('text')
+        .attr('class', 'chart-tooltip');
+
+
+Now in ``_charts.js``, let's go back to our ``.on()`` statement and try filling out the text element with the proper value, and positioning it. Let's also clear the div when the mouse leaves.
+
+.. code-block:: javascript
+    :emphasize-lines: 11-18,21-22
+
+    svg.selectAll('.bar')
+        .data(annualTotals)
+        .enter()
+        .append('rect')
+        .attr('class', 'bar')
+        .attr('x', d => xScale(d.year))
+        .attr('y', d => yScale(d[fieldname]))
+        .attr('width', d => xScale.bandwidth())
+        .attr('height', d => chartHeight - yScale(d[fieldname]))
+        .on('mouseenter', function(d) {
+            // centers the text above each bar
+            var x = xScale(d.year) + xScale.bandwidth() / 2;
+            // the - 5 bumps up the text a bit so it's not directly over the bar
+            var y = yScale(d[fieldname]) - 5;
+
+            d3.select(this).classed('highlight', true);
+            tooltip.text(d[fieldname])
+                .attr('transform', `translate(${x}, ${y})`)
+        })
+        .on('mouseleave', function(d) {
+            d3.select(this).classed('highlight', false);
+            tooltip.text('');
+        });
+
+Now back in our CSS, we can style this out a bit.
+
+.. code-block:: css
+
+    .chart-tooltip {
+      font-family: Helvetica;
+      font-size: 12px;
+      text-anchor: middle;
+    }
+
+You have an interactive chart!
+
+.. image:: _static/chart-tooltip.gif
+    :width: 100%
+
+
 
 ********************
 Chapter 7: Hello map

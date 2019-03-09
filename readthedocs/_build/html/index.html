@@ -938,7 +938,7 @@ $ git commit -m <span class="s2">&quot;Created a victims card grid&quot;</span>
 <p>Since we’re making a bar chart, we’re going to create a <code class="docutils literal notranslate"><span class="pre">&lt;rect&gt;</span></code> element, and give it a class of <code class="docutils literal notranslate"><span class="pre">bar</span></code>.</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">If you’d like to know more about how D3 data binding works, Scott Murray has an <a href="#id11"><span class="problematic" id="id12">`excellent explanation and tutorial&lt;https://alignedleft.com/tutorials/d3/binding-data&gt;`_</span></a> on his website.</p>
+<p class="last">If you’d like to know more about how D3 data binding works, Scott Murray has an <a href="#id13"><span class="problematic" id="id14">`excellent explanation and tutorial&lt;https://alignedleft.com/tutorials/d3/binding-data&gt;`_</span></a> on his website.</p>
 </div>
 <p>Let’s give it a try, by binding our <code class="docutils literal notranslate"><span class="pre">annualTotals</span></code> data to the bars on the chart. Start below the code for your axes. First, let’s simply append the <code class="docutils literal notranslate"><span class="pre">&lt;rect&gt;</span></code> elements to the chart</p>
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="c1">// The rest of your code is up here</span>
@@ -1260,6 +1260,96 @@ $ git push origin master
 <li><a class="reference external" href="https://www.datawrapper.de/">DataWrapper</a> allows a range of visualizations beyond basic charts, including scatter plots and maps.</li>
 </ul>
 </div>
+<p><strong>Extra credit</strong></p>
+<p>Now let’s try and make these charts interactive. We want to highlight a bar and display its value whenever a user hovers over it. To do this, we’re going to use D3’s “event binding.”</p>
+<p>In our <code class="docutils literal notranslate"><span class="pre">createChart()</span></code> function, we’ll want to add a new method, <a href="#id11"><span class="problematic" id="id12">``</span></a>.on()` to the code snippet where we create out bars.</p>
+<p>For now, let’s log the value to our console.</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">svg</span><span class="p">.</span><span class="nx">selectAll</span><span class="p">(</span><span class="s1">&#39;.bar&#39;</span><span class="p">)</span>
+  <span class="p">.</span><span class="nx">data</span><span class="p">(</span><span class="nx">annualTotals</span><span class="p">)</span>
+  <span class="p">.</span><span class="nx">enter</span><span class="p">()</span>
+  <span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="s1">&#39;rect&#39;</span><span class="p">)</span>
+  <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;class&#39;</span><span class="p">,</span> <span class="s1">&#39;bar&#39;</span><span class="p">)</span>
+  <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="nx">d</span> <span class="p">=&gt;</span> <span class="nx">xScale</span><span class="p">(</span><span class="nx">d</span><span class="p">.</span><span class="nx">year</span><span class="p">))</span>
+  <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="nx">d</span> <span class="p">=&gt;</span> <span class="nx">yScale</span><span class="p">(</span><span class="nx">d</span><span class="p">[</span><span class="nx">fieldname</span><span class="p">]))</span>
+  <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;width&#39;</span><span class="p">,</span> <span class="nx">d</span> <span class="p">=&gt;</span> <span class="nx">xScale</span><span class="p">.</span><span class="nx">bandwidth</span><span class="p">())</span>
+  <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;height&#39;</span><span class="p">,</span> <span class="nx">d</span> <span class="p">=&gt;</span> <span class="nx">chartHeight</span> <span class="o">-</span> <span class="nx">yScale</span><span class="p">(</span><span class="nx">d</span><span class="p">[</span><span class="nx">fieldname</span><span class="p">]))</span>
+<span class="hll">  <span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;mouseenter&#39;</span><span class="p">,</span> <span class="nx">d</span> <span class="p">=&gt;</span> <span class="p">{</span>
+</span><span class="hll">    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">d</span><span class="p">[</span><span class="nx">fieldname</span><span class="p">])</span>
+</span><span class="hll">  <span class="p">});</span>
+</span></pre></div>
+</div>
+<p>Now if you look in your console, you should see the values for each bar being logged when you mouse over.</p>
+<p>Now let’s use this change each bar’s color, and the <code class="docutils literal notranslate"><span class="pre">mouseleave</span></code> event to remove that highlight when the mouse exit.</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">svg</span><span class="p">.</span><span class="nx">selectAll</span><span class="p">(</span><span class="s1">&#39;.bar&#39;</span><span class="p">)</span>
+    <span class="p">.</span><span class="nx">data</span><span class="p">(</span><span class="nx">annualTotals</span><span class="p">)</span>
+    <span class="p">.</span><span class="nx">enter</span><span class="p">()</span>
+    <span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="s1">&#39;rect&#39;</span><span class="p">)</span>
+    <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;class&#39;</span><span class="p">,</span> <span class="s1">&#39;bar&#39;</span><span class="p">)</span>
+    <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="nx">d</span> <span class="p">=&gt;</span> <span class="nx">xScale</span><span class="p">(</span><span class="nx">d</span><span class="p">.</span><span class="nx">year</span><span class="p">))</span>
+    <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="nx">d</span> <span class="p">=&gt;</span> <span class="nx">yScale</span><span class="p">(</span><span class="nx">d</span><span class="p">[</span><span class="nx">fieldname</span><span class="p">]))</span>
+    <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;width&#39;</span><span class="p">,</span> <span class="nx">d</span> <span class="p">=&gt;</span> <span class="nx">xScale</span><span class="p">.</span><span class="nx">bandwidth</span><span class="p">())</span>
+    <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;height&#39;</span><span class="p">,</span> <span class="nx">d</span> <span class="p">=&gt;</span> <span class="nx">chartHeight</span> <span class="o">-</span> <span class="nx">yScale</span><span class="p">(</span><span class="nx">d</span><span class="p">[</span><span class="nx">fieldname</span><span class="p">]))</span>
+<span class="hll">    <span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;mouseenter&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">d</span><span class="p">)</span> <span class="p">{</span>
+</span><span class="hll">        <span class="nx">d3</span><span class="p">.</span><span class="nx">select</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">classed</span><span class="p">(</span><span class="s1">&#39;highlight&#39;</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span>
+</span><span class="hll">    <span class="p">})</span>
+</span><span class="hll">    <span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;mouseleave&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">d</span><span class="p">)</span> <span class="p">{</span>
+</span><span class="hll">        <span class="nx">d3</span><span class="p">.</span><span class="nx">select</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">classed</span><span class="p">(</span><span class="s1">&#39;highlight&#39;</span><span class="p">,</span> <span class="kc">false</span><span class="p">);</span>
+</span><span class="hll">    <span class="p">});</span>
+</span></pre></div>
+</div>
+<p>And add the rule for <code class="docutils literal notranslate"><span class="pre">.highlight</span></code> to the CSS.</p>
+<div class="highlight-css notranslate"><div class="highlight"><pre><span></span><span class="p">.</span><span class="nc">highlight</span> <span class="p">{</span>
+  <span class="n">fill</span><span class="p">:</span> <span class="mh">#2AB2E4</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>We have interactivity!</p>
+<img alt="_images/chart-highlighting.gif" src="_images/chart-highlighting.gif" />
+<p>Now let’s add a tooltip. First, in the <code class="docutils literal notranslate"><span class="pre">createCharts</span></code> function, add a line that appends a <code class="docutils literal notranslate"><span class="pre">&lt;text&gt;</span></code> element to the SVG. Place this under the lines where you append your axes to the SVG, but before you add the bars.</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">svg</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="s2">&quot;g&quot;</span><span class="p">)</span>
+    <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;class&quot;</span><span class="p">,</span> <span class="s2">&quot;y axis&quot;</span><span class="p">)</span>
+    <span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="nx">yAxis</span><span class="p">);</span>
+
+<span class="hll"><span class="kd">var</span> <span class="nx">tooltip</span> <span class="o">=</span> <span class="nx">svg</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="s1">&#39;text&#39;</span><span class="p">)</span>
+</span><span class="hll">    <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;class&#39;</span><span class="p">,</span> <span class="s1">&#39;chart-tooltip&#39;</span><span class="p">);</span>
+</span></pre></div>
+</div>
+<p>Now in <code class="docutils literal notranslate"><span class="pre">_charts.js</span></code>, let’s go back to our <code class="docutils literal notranslate"><span class="pre">.on()</span></code> statement and try filling out the text element with the proper value, and positioning it. Let’s also clear the div when the mouse leaves.</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">svg</span><span class="p">.</span><span class="nx">selectAll</span><span class="p">(</span><span class="s1">&#39;.bar&#39;</span><span class="p">)</span>
+    <span class="p">.</span><span class="nx">data</span><span class="p">(</span><span class="nx">annualTotals</span><span class="p">)</span>
+    <span class="p">.</span><span class="nx">enter</span><span class="p">()</span>
+    <span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="s1">&#39;rect&#39;</span><span class="p">)</span>
+    <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;class&#39;</span><span class="p">,</span> <span class="s1">&#39;bar&#39;</span><span class="p">)</span>
+    <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="nx">d</span> <span class="p">=&gt;</span> <span class="nx">xScale</span><span class="p">(</span><span class="nx">d</span><span class="p">.</span><span class="nx">year</span><span class="p">))</span>
+    <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="nx">d</span> <span class="p">=&gt;</span> <span class="nx">yScale</span><span class="p">(</span><span class="nx">d</span><span class="p">[</span><span class="nx">fieldname</span><span class="p">]))</span>
+    <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;width&#39;</span><span class="p">,</span> <span class="nx">d</span> <span class="p">=&gt;</span> <span class="nx">xScale</span><span class="p">.</span><span class="nx">bandwidth</span><span class="p">())</span>
+    <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;height&#39;</span><span class="p">,</span> <span class="nx">d</span> <span class="p">=&gt;</span> <span class="nx">chartHeight</span> <span class="o">-</span> <span class="nx">yScale</span><span class="p">(</span><span class="nx">d</span><span class="p">[</span><span class="nx">fieldname</span><span class="p">]))</span>
+    <span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;mouseenter&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">d</span><span class="p">)</span> <span class="p">{</span>
+<span class="hll">        <span class="c1">// centers the text above each bar</span>
+</span><span class="hll">        <span class="kd">var</span> <span class="nx">x</span> <span class="o">=</span> <span class="nx">xScale</span><span class="p">(</span><span class="nx">d</span><span class="p">.</span><span class="nx">year</span><span class="p">)</span> <span class="o">+</span> <span class="nx">xScale</span><span class="p">.</span><span class="nx">bandwidth</span><span class="p">()</span> <span class="o">/</span> <span class="mi">2</span><span class="p">;</span>
+</span><span class="hll">        <span class="c1">// the - 5 bumps up the text a bit so it&#39;s not directly over the bar</span>
+</span><span class="hll">        <span class="kd">var</span> <span class="nx">y</span> <span class="o">=</span> <span class="nx">yScale</span><span class="p">(</span><span class="nx">d</span><span class="p">[</span><span class="nx">fieldname</span><span class="p">])</span> <span class="o">-</span> <span class="mi">5</span><span class="p">;</span>
+</span><span class="hll">
+</span><span class="hll">        <span class="nx">d3</span><span class="p">.</span><span class="nx">select</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">classed</span><span class="p">(</span><span class="s1">&#39;highlight&#39;</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span>
+</span><span class="hll">        <span class="nx">tooltip</span><span class="p">.</span><span class="nx">text</span><span class="p">(</span><span class="nx">d</span><span class="p">[</span><span class="nx">fieldname</span><span class="p">])</span>
+</span><span class="hll">            <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;transform&#39;</span><span class="p">,</span> <span class="sb">`translate(</span><span class="si">${</span><span class="nx">x</span><span class="si">}</span><span class="sb">, </span><span class="si">${</span><span class="nx">y</span><span class="si">}</span><span class="sb">)`</span><span class="p">)</span>
+</span>    <span class="p">})</span>
+    <span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;mouseleave&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">d</span><span class="p">)</span> <span class="p">{</span>
+<span class="hll">        <span class="nx">d3</span><span class="p">.</span><span class="nx">select</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">classed</span><span class="p">(</span><span class="s1">&#39;highlight&#39;</span><span class="p">,</span> <span class="kc">false</span><span class="p">);</span>
+</span><span class="hll">        <span class="nx">tooltip</span><span class="p">.</span><span class="nx">text</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">);</span>
+</span>    <span class="p">});</span>
+</pre></div>
+</div>
+<p>Now back in our CSS, we can style this out a bit.</p>
+<div class="highlight-css notranslate"><div class="highlight"><pre><span></span><span class="p">.</span><span class="nc">chart-tooltip</span> <span class="p">{</span>
+  <span class="k">font-family</span><span class="p">:</span> <span class="n">Helvetica</span><span class="p">;</span>
+  <span class="k">font-size</span><span class="p">:</span> <span class="mi">12</span><span class="kt">px</span><span class="p">;</span>
+  <span class="n">text-anchor</span><span class="p">:</span> <span class="kc">middle</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>You have an interactive chart!</p>
+<a class="reference internal image-reference" href="_images/chart-tooltip.gif"><img alt="_images/chart-tooltip.gif" src="_images/chart-tooltip.gif" style="width: 100%;" /></a>
 </div>
 <div class="section" id="chapter-7-hello-map">
 <h2>Chapter 7: Hello map<a class="headerlink" href="#chapter-7-hello-map" title="Permalink to this headline">¶</a></h2>
