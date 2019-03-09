@@ -693,6 +693,23 @@ $ git commit -m <span class="s2">&quot;Printed a list of names from data&quot;</
 </pre></div>
 </div>
 <p>Let’s set up our card grid as it’s own section by adding <code class="docutils literal notranslate"><span class="pre">&lt;section&gt;</span></code> tags.</p>
+<div class="highlight-jinja notranslate"><div class="highlight"><pre><span></span><span class="hll"><span class="x">&lt;section&gt;</span>
+</span><span class="x">    &lt;h3&gt;Lives lost in Harvard Park&lt;/h3&gt;</span>
+<span class="x">    &lt;p&gt;The </span><span class="cp">{{</span> <span class="nv">site.data.harvard_park_homicides</span><span class="o">|</span><span class="nf">length</span> <span class="cp">}}</span><span class="x"> homicides in Harvard Park since 2000 were primarily black and Latino males, but the list includes husbands, wives, fathers, mothers of all ages, and even some small children.&lt;/p&gt;</span>
+<span class="x">    &lt;div class=&quot;card-columns&quot;&gt;</span>
+<span class="x">        </span><span class="cp">{%</span> <span class="k">for</span> <span class="nv">obj</span> <span class="k">in</span> <span class="nv">site.data.harvard_park_homicides</span> <span class="cp">%}</span><span class="x"></span>
+<span class="x">        &lt;div class=&quot;card&quot;&gt;</span>
+<span class="x">          </span><span class="cp">{%</span> <span class="k">if</span> <span class="nv">obj.image</span> <span class="cp">%}</span><span class="x">&lt;img class=&quot;card-img-top&quot; src=&quot;</span><span class="cp">{{</span> <span class="nv">obj.image</span> <span class="cp">}}</span><span class="x">&quot;&gt;</span><span class="cp">{%</span> <span class="k">endif</span> <span class="cp">%}</span><span class="x"></span>
+<span class="x">          &lt;div class=&quot;card-body&quot;&gt;</span>
+<span class="x">            &lt;a href=&quot;http://homicide.latimes.com/post/</span><span class="cp">{{</span> <span class="nv">obj.slug</span> <span class="cp">}}</span><span class="x">&quot; target=&quot;_blank&quot;&gt;&lt;strong&gt;&lt;h5 class=&quot;card-title&quot;&gt;</span><span class="cp">{{</span> <span class="nv">obj.first_name</span> <span class="cp">}}</span><span class="x"> </span><span class="cp">{{</span> <span class="nv">obj.last_name</span> <span class="cp">}}</span><span class="x">&lt;/h5&gt;&lt;/strong&gt;&lt;/a&gt;</span>
+<span class="x">            &lt;p class=&quot;card-text&quot;&gt;</span><span class="cp">{{</span> <span class="nv">obj.last_name</span> <span class="cp">}}</span><span class="x">, a </span><span class="cp">{{</span> <span class="nv">obj.age</span><span class="cp">}}</span><span class="x">-year-old </span><span class="cp">{{</span> <span class="nv">obj.race</span> <span class="cp">}}</span><span class="x"> </span><span class="cp">{{</span> <span class="nv">obj.gender</span> <span class="cp">}}</span><span class="x">, died in </span><span class="cp">{{</span> <span class="nv">obj.death_year</span> <span class="cp">}}</span><span class="x">.&lt;/p&gt;</span>
+<span class="x">          &lt;/div&gt;</span>
+<span class="x">        &lt;/div&gt;</span>
+<span class="x">        </span><span class="cp">{%</span> <span class="k">endfor</span> <span class="cp">%}</span><span class="x"></span>
+<span class="x">    &lt;/div&gt;</span>
+<span class="hll"><span class="x">&lt;/section&gt;</span>
+</span></pre></div>
+</div>
 <a class="reference internal image-reference" href="_images/card-full-section.png"><img alt="_images/card-full-section.png" src="_images/card-full-section.png" style="width: 100%;" /></a>
 <p>Let’s commit our work for this section.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ git add .
