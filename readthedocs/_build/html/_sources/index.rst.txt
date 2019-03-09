@@ -290,7 +290,7 @@ Create a new project using our yeogurt generator as the guide.
 
 After you run the command, you will be asked a series of questions. *Pay close attention* because you will need to choose the proper options to continue with our tutorial, and some of the correct selections are not the default choice.
 
-.. image:: _static/yo.png
+.. image:: _static/yeogurt-setup.png
    :width: 100%
 
 
