@@ -662,222 +662,222 @@ Push it to GitHub.
     $ git push origin master
 
 
-    **********************
-    Chapter 5: Hello cards
-    **********************
+**********************
+Chapter 5: Hello cards
+**********************
 
-    Bootstrap is an HTML, CSS and JavaScript toolkit that you can use to create the cosmetic "front-end" of web applications. Bootstrap is made up of different pre-made, ready-to-use pieces called components. Think of Bootstrap as building blocks you can mix and match to help jumpstart a project. Its components can be used as-is or as a base to be customized by the developer.
+Bootstrap is an HTML, CSS and JavaScript toolkit that you can use to create the cosmetic "front-end" of web applications. Bootstrap is made up of different pre-made, ready-to-use pieces called components. Think of Bootstrap as building blocks you can mix and match to help jumpstart a project. Its components can be used as-is or as a base to be customized by the developer.
 
-    The components library includes things that you might include in a project, like buttons, modals and dropdowns.
+The components library includes things that you might include in a project, like buttons, modals and dropdowns.
 
 
-    .. image:: _static/bootstrap.png
-        :width: 100%
+.. image:: _static/bootstrap.png
+    :width: 100%
 
-    We're going to create a photo grid of the Harvard Park homicide victims' pictures. Each grid block will have a picture and some basic information about the victim. We're going to use the Bootstrap 4 "cards" component accomplish this. Cards are self-contained boxes of information which can be arranged and grouped on a page any way you want.
+We're going to create a photo grid of the Harvard Park homicide victims' pictures. Each grid block will have a picture and some basic information about the victim. We're going to use the Bootstrap 4 "cards" component accomplish this. Cards are self-contained boxes of information which can be arranged and grouped on a page any way you want.
 
-    .. image:: _static/bootstrap-cols.png
-        :width: 100%
+.. image:: _static/bootstrap-cols.png
+    :width: 100%
 
-    First, need to set up our grid. To do that, we need to talk about divs, or the building blocks of HTML. The simplest way to think of a div is as container. Like any container, divs hold things. Divs can be nested inside of each other, like putting a box inside a box.
+First, need to set up our grid. To do that, we need to talk about divs, or the building blocks of HTML. The simplest way to think of a div is as container. Like any container, divs hold things. Divs can be nested inside of each other, like putting a box inside a box.
 
-    This is how Bootstrap cards work. Each card is a container which has additional containers inside it to hold, in this case, a picture, the victim's name, age, race and when he/she was killed.
+This is how Bootstrap cards work. Each card is a container which has additional containers inside it to hold, in this case, a picture, the victim's name, age, race and when he/she was killed.
 
-    Now that we understand divs, we can build the base of our grid. For this, we'll need a container div for each victim. We'll add just the name of the first and last name of each victim first.
+Now that we understand divs, we can build the base of our grid. For this, we'll need a container div for each victim. We'll add just the name of the first and last name of each victim first.
 
-    .. code-block:: jinja
-        :emphasize-lines: 3-7
+.. code-block:: jinja
+    :emphasize-lines: 3-7
 
-        {% block content %}
+    {% block content %}
+    {% for obj in site.data.harvard_park_homicides %}
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">{{ obj.first_name }} {{ obj.last_name }}</h5>
+          </div>
+        </div>
+    {% endfor %}
+    {% endblock %}
+
+
+.. image:: _static/cards-first.png
+    :width: 100%
+
+
+Let's add a sentence below the name we just printed to summarize who each victim was and when they died.
+
+.. code-block:: jinja
+    :emphasize-lines: 5
+
+    {% for obj in site.data.harvard_park_homicides %}
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">{{ obj.first_name }} {{ obj.last_name }}</h5>
+            <p class="card-text">{{ obj.last_name }}, a {{ obj.age}}-year-old {{ obj.race }} {{ obj.gender }}, died in {{ obj.death_year }}.</p>
+          </div>
+        </div>
+    {% endfor %}
+
+
+Let's add each victim's image to their card.
+
+.. code-block:: jinja
+    :emphasize-lines: 3
+
+    {% for obj in site.data.harvard_park_homicides %}
+        <div class="card">
+          <img class="card-img-top" src="{{ obj.image }}">
+          <div class="card-body">
+            <h5 class="card-title">{{ obj.first_name }} {{ obj.last_name }}</h5>
+            <p class="card-text">{{ obj.last_name }}, a {{ obj.age}}-year-old {{ obj.race }} {{ obj.gender }}, died in {{ obj.death_year }}.</p>
+          </div>
+        </div>
+    {% endfor %}
+
+
+.. image:: _static/card-no-columns.png
+    :width: 100%
+
+
+What do we do if there is no image of the victim?  As soon as the code reaches a victim with no image, the code will break.
+
+To fix this, let's add an if clause around the image tag to check for an image in the data. This way, our code will loop through the list of victims and <em>if</em> there is an image, it will add it to the right card. If there isn't, the code will move on to the next victim until it reaches the end of the list.
+
+.. code-block:: jinja
+    :emphasize-lines: 3
+
+    {% for obj in site.data.harvard_park_homicides %}
+        <div class="card">
+          {% if obj.image %}<img class="card-img-top" src="{{ obj.image }}">{% endif %}
+          <div class="card-body">
+            <h5 class="card-title">{{ obj.first_name }} {{ obj.last_name }}</h5>
+            <p class="card-text">{{ obj.last_name }}, a {{ obj.age}}-year-old {{ obj.race }} {{ obj.gender }}, died in {{ obj.death_year }}.</p>
+          </div>
+        </div>
+    {% endfor %}
+
+
+What we've got so far is a grid that doesn't look much like a grid. Let's give it some structure to make it neat and tidy. To do that, we're going to arrange our grid of cards using Bootstrap's card columns.
+
+.. code-block:: jinja
+    :emphasize-lines: 1,11
+
+    <div class="card-columns">
         {% for obj in site.data.harvard_park_homicides %}
-            <div class="card">
-              <div class="card-body">
-                <h5 class="card-title">{{ obj.first_name }} {{ obj.last_name }}</h5>
-              </div>
-            </div>
+        <div class="card">
+          {% if obj.image %}<img class="card-img-top" src="{{ obj.image }}">{% endif %}
+          <div class="card-body">
+            <h5 class="card-title">{{ obj.first_name }} {{ obj.last_name }}</h5>
+            <p class="card-text">{{ obj.last_name }}, a {{ obj.age}}-year-old {{ obj.race }} {{ obj.gender }}, died in {{ obj.death_year }}.</p>
+          </div>
+        </div>
         {% endfor %}
-        {% endblock %}
+    </div>
 
 
-    .. image:: _static/cards-first.png
-        :width: 100%
+We want to be able to click on each card and be redirected to that victim's page in the Los Angeles Times' Homicide Report? Let's do it! While we're at it, let's add some ``<strong>`` tags to the victims' names to make them stand out from the sentence about them.
 
+.. code-block:: jinja
+    :emphasize-lines: 6
 
-    Let's add a sentence below the name we just printed to summarize who each victim was and when they died.
-
-    .. code-block:: jinja
-        :emphasize-lines: 5
-
+    <div class="card-columns">
         {% for obj in site.data.harvard_park_homicides %}
-            <div class="card">
-              <div class="card-body">
-                <h5 class="card-title">{{ obj.first_name }} {{ obj.last_name }}</h5>
-                <p class="card-text">{{ obj.last_name }}, a {{ obj.age}}-year-old {{ obj.race }} {{ obj.gender }}, died in {{ obj.death_year }}.</p>
-              </div>
-            </div>
+        <div class="card">
+          {% if obj.image %}<img class="card-img-top" src="{{ obj.image }}">{% endif %}
+          <div class="card-body">
+            <a href="http://homicide.latimes.com/post/{{ obj.slug }}" target="_blank"><strong><h5 class="card-title">{{ obj.first_name }} {{ obj.last_name }}</h5></strong></a>
+            <p class="card-text">{{ obj.last_name }}, a {{ obj.age}}-year-old {{ obj.race }} {{ obj.gender }}, died in {{ obj.death_year }}.</p>
+          </div>
+        </div>
         {% endfor %}
+    </div>
 
 
-    Let's add each victim's image to their card.
+.. image:: _static/card-slug.png
+    :width: 100%
 
-    .. code-block:: jinja
-        :emphasize-lines: 3
 
+Let's write a headline for our cards section.
+
+.. code-block:: jinja
+    :emphasize-lines: 1
+
+    <h3>Lives lost</h3>
+    <div class="card-columns">
         {% for obj in site.data.harvard_park_homicides %}
-            <div class="card">
-              <img class="card-img-top" src="{{ obj.image }}">
-              <div class="card-body">
-                <h5 class="card-title">{{ obj.first_name }} {{ obj.last_name }}</h5>
-                <p class="card-text">{{ obj.last_name }}, a {{ obj.age}}-year-old {{ obj.race }} {{ obj.gender }}, died in {{ obj.death_year }}.</p>
-              </div>
-            </div>
+        <div class="card">
+          {% if obj.image %}<img class="card-img-top" src="{{ obj.image }}">{% endif %}
+          <div class="card-body">
+            <a href="http://homicide.latimes.com/post/{{ obj.slug }}" target="_blank"><strong><h5 class="card-title">{{ obj.first_name }} {{ obj.last_name }}</h5></strong></a>
+            <p class="card-text">{{ obj.last_name }}, a {{ obj.age}}-year-old {{ obj.race }} {{ obj.gender }}, died in {{ obj.death_year }}.</p>
+          </div>
+        </div>
         {% endfor %}
+    </div>
 
 
-    .. image:: _static/card-no-columns.png
-        :width: 100%
+.. image:: _static/card-headline.png
+    :width: 100%
 
 
-    What do we do if there is no image of the victim?  As soon as the code reaches a victim with no image, the code will break.
+And now, some summary text.
 
-    To fix this, let's add an if clause around the image tag to check for an image in the data. This way, our code will loop through the list of victims and <em>if</em> there is an image, it will add it to the right card. If there isn't, the code will move on to the next victim until it reaches the end of the list.
+.. code-block:: jinja
+    :emphasize-lines: 2
 
-    .. code-block:: jinja
-        :emphasize-lines: 3
-
+    <h3>Lives lost in Harvard Park</h3>
+    <p>The {{ site.data.harvard_park_homicides|length }} homicides in Harvard Park since 2000 were primarily black and Latino males, but the list includes husbands, wives, fathers, mothers of all ages, and even some small children.</p>
+    <div class="card-columns">
         {% for obj in site.data.harvard_park_homicides %}
-            <div class="card">
-              {% if obj.image %}<img class="card-img-top" src="{{ obj.image }}">{% endif %}
-              <div class="card-body">
-                <h5 class="card-title">{{ obj.first_name }} {{ obj.last_name }}</h5>
-                <p class="card-text">{{ obj.last_name }}, a {{ obj.age}}-year-old {{ obj.race }} {{ obj.gender }}, died in {{ obj.death_year }}.</p>
-              </div>
-            </div>
+        <div class="card">
+          {% if obj.image %}<img class="card-img-top" src="{{ obj.image }}">{% endif %}
+          <div class="card-body">
+            <a href="http://homicide.latimes.com/post/{{ obj.slug }}" target="_blank"><strong><h5 class="card-title">{{ obj.first_name }} {{ obj.last_name }}</h5></strong></a>
+            <p class="card-text">{{ obj.last_name }}, a {{ obj.age}}-year-old {{ obj.race }} {{ obj.gender }}, died in {{ obj.death_year }}.</p>
+          </div>
+        </div>
         {% endfor %}
+    </div>
 
 
-    What we've got so far is a grid that doesn't look much like a grid. Let's give it some structure to make it neat and tidy. To do that, we're going to arrange our grid of cards using Bootstrap's card columns.
+Let's set up our card grid as it's own section by adding ``<section>`` tags.
 
-    .. code-block:: jinja
-        :emphasize-lines: 1,11
+.. code-block:: jinja
+    :emphasize-lines: 1,15
 
-        <div class="card-columns">
-            {% for obj in site.data.harvard_park_homicides %}
-            <div class="card">
-              {% if obj.image %}<img class="card-img-top" src="{{ obj.image }}">{% endif %}
-              <div class="card-body">
-                <h5 class="card-title">{{ obj.first_name }} {{ obj.last_name }}</h5>
-                <p class="card-text">{{ obj.last_name }}, a {{ obj.age}}-year-old {{ obj.race }} {{ obj.gender }}, died in {{ obj.death_year }}.</p>
-              </div>
-            </div>
-            {% endfor %}
+  <section>
+    <h3>Lives lost in Harvard Park</h3>
+    <p>The {{ site.data.harvard_park_homicides|length }} homicides in Harvard Park since 2000 were primarily black and Latino males, but the list includes husbands, wives, fathers, mothers of all ages, and even some small children.</p>
+    <div class="card-columns">
+        {% for obj in site.data.harvard_park_homicides %}
+        <div class="card">
+          {% if obj.image %}<img class="card-img-top" src="{{ obj.image }}">{% endif %}
+          <div class="card-body">
+            <a href="http://homicide.latimes.com/post/{{ obj.slug }}" target="_blank"><strong><h5 class="card-title">{{ obj.first_name }} {{ obj.last_name }}</h5></strong></a>
+            <p class="card-text">{{ obj.last_name }}, a {{ obj.age}}-year-old {{ obj.race }} {{ obj.gender }}, died in {{ obj.death_year }}.</p>
+          </div>
         </div>
+        {% endfor %}
+    </div>
+    </section>
 
 
-    We want to be able to click on each card and be redirected to that victim's page in the Los Angeles Times' Homicide Report? Let's do it! While we're at it, let's add some ``<strong>`` tags to the victims' names to make them stand out from the sentence about them.
-
-    .. code-block:: jinja
-        :emphasize-lines: 6
-
-        <div class="card-columns">
-            {% for obj in site.data.harvard_park_homicides %}
-            <div class="card">
-              {% if obj.image %}<img class="card-img-top" src="{{ obj.image }}">{% endif %}
-              <div class="card-body">
-                <a href="http://homicide.latimes.com/post/{{ obj.slug }}" target="_blank"><strong><h5 class="card-title">{{ obj.first_name }} {{ obj.last_name }}</h5></strong></a>
-                <p class="card-text">{{ obj.last_name }}, a {{ obj.age}}-year-old {{ obj.race }} {{ obj.gender }}, died in {{ obj.death_year }}.</p>
-              </div>
-            </div>
-            {% endfor %}
-        </div>
+.. image:: _static/card-full-section.png
+    :width: 100%
 
 
-    .. image:: _static/card-slug.png
-        :width: 100%
+Let's commit our work for this section.
+
+.. code-block:: bash
+
+    $ git add .
+    $ git commit -m "Created a victims card grid"
 
 
-    Let's write a headline for our cards section.
+Push it to GitHub.
 
-    .. code-block:: jinja
-        :emphasize-lines: 1
+.. code-block:: bash
 
-        <h3>Lives lost</h3>
-        <div class="card-columns">
-            {% for obj in site.data.harvard_park_homicides %}
-            <div class="card">
-              {% if obj.image %}<img class="card-img-top" src="{{ obj.image }}">{% endif %}
-              <div class="card-body">
-                <a href="http://homicide.latimes.com/post/{{ obj.slug }}" target="_blank"><strong><h5 class="card-title">{{ obj.first_name }} {{ obj.last_name }}</h5></strong></a>
-                <p class="card-text">{{ obj.last_name }}, a {{ obj.age}}-year-old {{ obj.race }} {{ obj.gender }}, died in {{ obj.death_year }}.</p>
-              </div>
-            </div>
-            {% endfor %}
-        </div>
-
-
-    .. image:: _static/card-headline.png
-        :width: 100%
-
-
-    And now, some summary text.
-
-    .. code-block:: jinja
-        :emphasize-lines: 2
-
-        <h3>Lives lost in Harvard Park</h3>
-        <p>The {{ site.data.harvard_park_homicides|length }} homicides in Harvard Park since 2000 were primarily black and Latino males, but the list includes husbands, wives, fathers, mothers of all ages, and even some small children.</p>
-        <div class="card-columns">
-            {% for obj in site.data.harvard_park_homicides %}
-            <div class="card">
-              {% if obj.image %}<img class="card-img-top" src="{{ obj.image }}">{% endif %}
-              <div class="card-body">
-                <a href="http://homicide.latimes.com/post/{{ obj.slug }}" target="_blank"><strong><h5 class="card-title">{{ obj.first_name }} {{ obj.last_name }}</h5></strong></a>
-                <p class="card-text">{{ obj.last_name }}, a {{ obj.age}}-year-old {{ obj.race }} {{ obj.gender }}, died in {{ obj.death_year }}.</p>
-              </div>
-            </div>
-            {% endfor %}
-        </div>
-
-
-    Let's set up our card grid as it's own section by adding ``<section>`` tags.
-
-    .. code-block:: jinja
-        :emphasize-lines: 1,15
-
-      <section>
-        <h3>Lives lost in Harvard Park</h3>
-        <p>The {{ site.data.harvard_park_homicides|length }} homicides in Harvard Park since 2000 were primarily black and Latino males, but the list includes husbands, wives, fathers, mothers of all ages, and even some small children.</p>
-        <div class="card-columns">
-            {% for obj in site.data.harvard_park_homicides %}
-            <div class="card">
-              {% if obj.image %}<img class="card-img-top" src="{{ obj.image }}">{% endif %}
-              <div class="card-body">
-                <a href="http://homicide.latimes.com/post/{{ obj.slug }}" target="_blank"><strong><h5 class="card-title">{{ obj.first_name }} {{ obj.last_name }}</h5></strong></a>
-                <p class="card-text">{{ obj.last_name }}, a {{ obj.age}}-year-old {{ obj.race }} {{ obj.gender }}, died in {{ obj.death_year }}.</p>
-              </div>
-            </div>
-            {% endfor %}
-        </div>
-        </section>
-
-
-    .. image:: _static/card-full-section.png
-        :width: 100%
-
-
-    Let's commit our work for this section.
-
-    .. code-block:: bash
-
-        $ git add .
-        $ git commit -m "Created a victims card grid"
-
-
-    Push it to GitHub.
-
-    .. code-block:: bash
-
-        $ git push origin master
+    $ git push origin master
 
 
 
