@@ -390,7 +390,7 @@ That "base" file, sometimes called the "layout," can be inherited by other pages
 
 You can find the base layout packaged with our framework in the ``_layouts/base.nunjucks`` file. It includes a set of block tags, like ``content``, that act as placeholders for use in templates that extend it.
 
-Make a small change above the block and save the file.
+Make a small change to ``_layouts/base.nunjucks`` above the ``content`` block and save the file.
 
 .. code-block:: jinja
     :emphasize-lines: 1
@@ -405,7 +405,7 @@ You should see the change on our site, with the new line appearing above the par
     :width: 100%
 
 
-Most newsrooms that use a similar system have a own base template for all of their custom pages. Graphic artists and designers install and extend it as the first step in their work. They develop their custom page within its confines and largely accept the furniture it provides, like the site's header and footer, fonts, common color schemes. This allows them to work more quickly because they do not have to bother with reinventing their site's most common elements.
+Most newsrooms that use a similar system have a own base template for all of their custom pages. Graphic artists and designers install and extend it as the first step in their work. They develop their custom page within its confines and largely accept the furniture it provides, like the site's header and footer, fonts and common color schemes. This allows them to work more quickly because they do not have to bother with reinventing their site's most common elements.
 
 .. note::
 
@@ -495,7 +495,7 @@ And let's do the publication date too while we are at it.
     {% block headline %}My headline will go here{% endblock %}
     {% block byline %}By me{% endblock %}
     {% block pubdate %}
-        <time datetime="2019-03-09" pubdate>Mar. 9, 2019</time>
+        <time datetime="2020-03-07" pubdate>Mar. 7, 2020</time>
     {% endblock %}
 
 
