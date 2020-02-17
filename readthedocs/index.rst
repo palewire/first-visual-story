@@ -86,7 +86,7 @@ You can verify if you have Node installed, and if so what version, by typing the
 
 .. code-block:: bash
 
-    $ nodejs --version
+    $ node --version
 
 
 The number you get back is the version you have installed. If you get an error, you don't have Node.js installed and you should start from scratch with an installer package. If you have a slightly older version, you are probably okay. But we make no guarantees. Consider upgrading.
