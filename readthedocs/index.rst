@@ -80,7 +80,7 @@ Node.js
 
 Node.js is an open-source programming framework built using JavaScript. Many programmers like it because it allows them to write JavaScript not just in their browser for "front-end" tasks, but also in the terminal or on a server for "back-end" tasks.
 
-You should be on the latest long-term support (LTS) version of Node, which at the time of this writing was ``10.15.1``. The `Node.js site <https://nodejs.org>`_ has `installer packages <https://nodejs.org/en/download/>`_ available for Windows and Mac OSX.
+You should be on the latest long-term support (LTS) version of Node, which at the time of this writing was ``12.16.0``. The `Node.js site <https://nodejs.org>`_ has `installer packages <https://nodejs.org/en/download/>`_ available for Windows and Mac OSX.
 
 You can verify if you have Node installed, and if so what version, by typing the following into your terminal:
 
@@ -199,7 +199,7 @@ Open up the README in your text editor and type something in it. Maybe something
     =====================
 
 
-Make sure to save it. Then officially add the file to your repository for tracking with Git's ``add`` command.
+Make sure to save it. Then officially add the file to your repository for tracking with Git's ``add`` command. Note that usually you can use the ``tab`` key to autocomplete a filename.
 
 .. code-block:: bash
 
@@ -260,17 +260,21 @@ We'll start by installing Yeoman using the Node Package Manager (``npm``), which
 
 .. code-block:: bash
 
+    $ npm install -g yo@3.1.1
+    # old version I'm keeping in here for now
     $ npm install -g yo@2.0.5
 
 
 The ``-g`` means that we're installing the packages globally. You'll be able to run these from any directory on your computer.
 
-The ``@`` followed by numbers after the ``yo`` package means we're installing a specific version. Codebases often change quickly, and by specifying a version, you're protecting yourself against future changes that could break your code.
+The ``@`` followed by numbers after the ``yo`` package means we're installing a specific version. Codebases often change quickly, and by specifying a version, we're protecting against future changes that could break the code of this lesson. If you don't care what version you're installing, you could just use the name of the package, i.e, ``npm install -g yo``.
 
 Next we'll install `Gulp <https://gulpjs.com/>`_, a helpful Node.js utility for running a framework on your computer as you develop a site. Again, we turn to npm.
 
 .. code-block:: bash
 
+    $ npm install -g gulp@4.0.2
+    # old version I'm keeping in here for now.
     $ npm install -g gulp@3.9.1
 
 
@@ -278,6 +282,8 @@ Finally, we use npm to install `yeogurt <https://github.com/larsonjj/generator-y
 
 .. code-block:: bash
 
+    $ npm install -g generator-yeogurt@3.1.2
+    # keeping old version for now
     $ npm install -g generator-yeogurt@2.0.1
 
 
@@ -291,7 +297,7 @@ Create a new project using our yeogurt generator as the guide.
 After you run the command, you will be asked a series of questions. *Pay close attention* because you will need to choose the proper options to continue with our tutorial, and some of the correct selections are not the default choice.
 
 .. image:: _static/yeogurt-setup.png
-   :width: 100%
+    :width: 100%
 
 
 1. Your project name should be the slug "first-graphics-app"
@@ -314,7 +320,7 @@ First, fire up its test server to see what it has to offer out of the box.
 Visit `localhost:3000 <http://localhost:3000>`_ in your browser. There you can see the generic website offered as a starting point by our Yeoman generator.
 
 .. image:: _static/welcome.png
-   :width: 100%
+    :width: 100%
 
 
 Congratulations, you've got your framework up and running. Let's save our work and then we'll be ready to start developing our own content.
