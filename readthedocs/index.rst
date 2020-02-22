@@ -527,7 +527,7 @@ We've got our page all set up. Now it's time to start telling our story. To do t
 
 If we were writing this application entirely in the browser with traditional JavaScript we'd have to pull it in with dynamic "AJAX" calls that retrieve data over the web as the page is constructed. But since we're working with a Node.js system, running code here the backend, we can import our data directly into the template instead and lay it out before the page is rendered in the browser. This results in a faster experience for our users, and opens up new ways for us to be creative with our data.
 
-Every newsroom's system will handle this differently. Our Yeoman generator is preconfigured to open all JSON data files in the ``_data`` and import them into our nunjucks templates.
+Every newsroom's system will handle this differently. Our Yeoman generator is preconfigured to open all JSON data files in the ``_data`` folder and import them into our nunjucks templates.
 
 Let's give it a try. Grab the `list of Harvard Park homicides <https://raw.githubusercontent.com/ireapps/first-graphics-app/master/src/_data/harvard_park_homicides.json>`_ published by the Los Angeles Times and save it to ``_data/harvard_park_homicides.json``. It includes every homicide victim in the neighborhood since 2000 in the `JSON data format <https://en.wikipedia.org/wiki/JSON>`_ favored by JavaScript.
 
@@ -582,7 +582,7 @@ Here's what you should see.
     :width: 100%
 
 
-Loop through them and print them all. We'll use the ``{% %}`` template tags provided by nunjucks that let you use common computer programming logic when you're laying out a page.
+Instead of just printing them in one big block, let's loop through them and print them all one by one. We'll use the ``{% %}`` template tags provided by nunjucks that let you use common computer programming logic when you're laying out a page.
 
 .. code-block:: jinja
     :emphasize-lines: 2-4
@@ -598,7 +598,7 @@ Loop through them and print them all. We'll use the ``{% %}`` template tags prov
     :width: 100%
 
 
-Add a line break with a ``<br>`` tag. That's just boring old HTML. Writing pages with a templating language like nunjucks is typically nothing more than mixing traditional HTML with the programming and print tags that negotiate your data files and other settings variables.
+It looks the same! To put each one on its own line, add a line break with a ``<br>`` tag. That's just boring old HTML. Writing pages with a templating language like nunjucks is typically nothing more than mixing traditional HTML with the programming and print tags that negotiate your data files and other settings variables.
 
 
 .. code-block:: jinja
@@ -615,7 +615,7 @@ Add a line break with a ``<br>`` tag. That's just boring old HTML. Writing pages
     :width: 100%
 
 
-All of the fields found in the JSON dictionary for each homicide are available by adding a ``.`` after the object. Try it by printing the last name.
+You can access all of the fields found in the JSON dictionary for each homicide are available by adding a ``.`` after the object. Try it by printing the last name.
 
 .. code-block:: jinja
     :emphasize-lines: 3
@@ -631,7 +631,7 @@ All of the fields found in the JSON dictionary for each homicide are available b
     :width: 100%
 
 
-Add the first name. To have them display more nicely, you can also add a line break in between each one.
+Now add the first name.
 
 .. code-block:: jinja
     :emphasize-lines: 3
@@ -718,6 +718,8 @@ Let's add a sentence below the name we just printed to summarize who each victim
     {% endfor %}
 
 
+Congratulations! You just wrote your first robotext.
+
 Let's add each victim's image to their card.
 
 .. code-block:: jinja
@@ -738,9 +740,9 @@ Let's add each victim's image to their card.
     :width: 100%
 
 
-What do we do if there is no image of the victim?  As soon as the code reaches a victim with no image, the code will break.
+What do we do if there is no image of the victim?  As soon as the code reaches a victim with no image, the code will render broken images.
 
-To fix this, let's add an if clause around the image tag to check for an image in the data. This way, our code will loop through the list of victims and <em>if</em> there is an image, it will add it to the right card. If there isn't, the code will move on to the next victim until it reaches the end of the list.
+To fix this, let's add an if clause around the image tag to check for an image in the data. This way, our code will loop through the list of victims and _if_ there is an image, it will add it to the right card. If there isn't, the code will move on to the next victim until it reaches the end of the list.
 
 .. code-block:: jinja
     :emphasize-lines: 3
