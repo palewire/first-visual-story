@@ -308,7 +308,7 @@ First, fire up its test server to see what it has to offer out of the box.
 
 .. code-block:: bash
 
-    $ gulp serve
+    $ npm run serve
 
 
 Visit `localhost:3000 <http://localhost:3000>`_ in your browser. There you can see the generic website offered as a starting point by our Yeoman generator.
