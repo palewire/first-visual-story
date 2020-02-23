@@ -803,7 +803,7 @@ Let's write a headline for our cards section.
 .. code-block:: jinja
     :emphasize-lines: 1
 
-    <h3>Lives lost</h3>
+    <h3>Lives lost in Harvard Park</h3>
     <div class="card-columns">
         {% for obj in site.data.harvard_park_homicides %}
         <div class="card">
