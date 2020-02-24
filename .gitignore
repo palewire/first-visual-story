@@ -5,9 +5,6 @@ build
 tmp
 .grunt
 .DS_Store
-
 _build/
-
-Pipfile
-Pipfile.lock
-.python-version
+src/
+*.pyc
