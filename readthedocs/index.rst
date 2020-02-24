@@ -528,7 +528,7 @@ If we were writing this application entirely in the browser with traditional Jav
 
 Every newsroom's system will handle this differently. Our Yeoman generator is preconfigured to open all JSON data files in the ``_data`` folder and import them into our Nunjucks templates.
 
-Let's give it a try. Grab the `list of Harvard Park homicides <https://raw.githubusercontent.com/ireapps/first-graphics-app/master/src/_data/harvard_park_homicides.json>`_ published by the Los Angeles Times and save it to ``_data/harvard_park_homicides.json``. It includes every homicide victim in the neighborhood since 2000 in the `JSON data format <https://en.wikipedia.org/wiki/JSON>`_ favored by JavaScript.
+Let's give it a try. Grab the `list of Harvard Park homicides <https://raw.githubusercontent.com/ireapps/first-graphics-app/master/data/harvard_park_homicides.json>`_ published by the Los Angeles Times and save it to ``_data/harvard_park_homicides.json``. It includes every homicide victim in the neighborhood since 2000 in the `JSON data format <https://en.wikipedia.org/wiki/JSON>`_ favored by JavaScript.
 
 .. code-block:: javascript
 
@@ -566,7 +566,7 @@ Let's give it a try. Grab the `list of Harvard Park homicides <https://raw.githu
        ...
 
 
-Return to ``index.nunjucks`` and add the following to the bottom to print the data out on the page. We can do that using the ``{{ }}`` print tags provided by nunjucks.
+Return to ``index.nunjucks`` and add the following to the bottom to print the data out on the page. We can do that using the ``{{ }}`` print tags provided by Nunjucks.
 
 .. code-block:: jinja
 
@@ -574,14 +574,7 @@ Return to ``index.nunjucks`` and add the following to the bottom to print the da
         {{ site.data.harvard_park_homicides }}
     {% endblock %}
 
-
-Here's what you should see.
-
-.. image:: _static/data-dump.png
-    :width: 100%
-
-
-Instead of just printing them in one big block, let's loop through them and print them all one by one. We'll use the ``{% %}`` template tags provided by nunjucks that let you use common computer programming logic when you're laying out a page.
+Instead of just printing the data in one big block, let's loop through the records and print them one by one. We'll use the ``{% %}`` template tags provided by Nunjucks, which allow you to use common computer programming logic when you're laying out a page.
 
 .. code-block:: jinja
     :emphasize-lines: 2-4
@@ -597,8 +590,7 @@ Instead of just printing them in one big block, let's loop through them and prin
     :width: 100%
 
 
-It looks the same! To put each one on its own line, add a line break with a ``<br>`` tag. That's just boring old HTML. Writing pages with a templating language like nunjucks is typically nothing more than mixing traditional HTML with the programming and print tags that negotiate your data files and other settings variables.
-
+To put each one on its own line, add a line break with a ``<br>`` tag. That's just boring old HTML. Writing pages with a templating language like Nunjucks is typically nothing more than mixing traditional HTML with the template tags that negotiate your data files and other variables.
 
 .. code-block:: jinja
     :emphasize-lines: 3
@@ -614,7 +606,7 @@ It looks the same! To put each one on its own line, add a line break with a ``<b
     :width: 100%
 
 
-You can access all of the fields found in the JSON dictionary for each homicide are available by adding a ``.`` after the object. Try it by printing the last name.
+That's good, but hardly informative. How do we start printing out the contents of the data? The fields in the JSON dictionary for each homicide are available by adding a ``.`` after the object. For instance, here's how to print the contents of the ``last_name`` field.
 
 .. code-block:: jinja
     :emphasize-lines: 3
@@ -630,7 +622,7 @@ You can access all of the fields found in the JSON dictionary for each homicide 
     :width: 100%
 
 
-Now add the first name.
+Now the first name.
 
 .. code-block:: jinja
     :emphasize-lines: 3
@@ -646,7 +638,7 @@ Now add the first name.
     :width: 100%
 
 
-Commit our work.
+Not bad. We've actually got some data on the page. Seems like a good moment to stop, take a break and commit our work.
 
 .. code-block:: bash
 
