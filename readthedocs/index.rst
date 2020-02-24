@@ -522,11 +522,11 @@ And, again, push it to GitHub.
 Chapter 4: Hello data
 *********************
 
-We've got our page all set up. Now it's time to start telling our story. To do that, we need our data.
+We've got our system set up. Now it's time to start telling our story. To do that, we need our data.
 
-If we were writing this application entirely in the browser with traditional JavaScript we'd have to pull it in with dynamic "AJAX" calls that retrieve data over the web as the page is constructed. But since we're working with a Node.js system, running code here the backend, we can import our data directly into the template instead and lay it out before the page is rendered in the browser. This results in a faster experience for our users, and opens up new ways for us to be creative with our data.
+If we were writing this application entirely in the browser with traditional JavaScript we'd have to pull it in with dynamic "AJAX" calls that retrieve data over the web as the page is constructed. But since we're working with a Node.js system, running code here on the backend, we can import data directly into the template instead and lay it out before the page is rendered in the browser. This results in a faster experience for our users, and opens up new ways for us to be creative with our data.
 
-Every newsroom's system will handle this differently. Our Yeoman generator is preconfigured to open all JSON data files in the ``_data`` folder and import them into our nunjucks templates.
+Every newsroom's system will handle this differently. Our Yeoman generator is preconfigured to open all JSON data files in the ``_data`` folder and import them into our Nunjucks templates.
 
 Let's give it a try. Grab the `list of Harvard Park homicides <https://raw.githubusercontent.com/ireapps/first-graphics-app/master/src/_data/harvard_park_homicides.json>`_ published by the Los Angeles Times and save it to ``_data/harvard_park_homicides.json``. It includes every homicide victim in the neighborhood since 2000 in the `JSON data format <https://en.wikipedia.org/wiki/JSON>`_ favored by JavaScript.
 
