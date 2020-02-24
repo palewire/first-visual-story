@@ -657,7 +657,7 @@ Push it to GitHub.
 Chapter 5: Hello cards
 **********************
 
-Bootstrap is an HTML, CSS and JavaScript toolkit that you can use to create the cosmetic "front-end" of web applications. Bootstrap is made up of different pre-made, ready-to-use pieces called components. Think of Bootstrap as building blocks you can mix and match to help jumpstart a project. Its components can be used as-is or as a base to be customized by the developer.
+`Bootstrap <https://getbootstrap.com/docs/4.4/getting-started/introduction/>`_ is an HTML, CSS and JavaScript toolkit that you can use to create the cosmetic "front-end" of web applications. It is a collection of ready-to-use pieces called components, which are building blocks you can mix and match to help jumpstart a project. Its components can be used as-is or as a base to be customized by the developer.
 
 The components library includes things that you might include in a project, like buttons, modals and dropdowns.
 
@@ -665,16 +665,18 @@ The components library includes things that you might include in a project, like
 .. image:: _static/bootstrap.png
     :width: 100%
 
-We're going to create a photo grid of the Harvard Park homicide victims' pictures. Each grid block will have a picture and some basic information about the victim. We're going to use the Bootstrap 4 "cards" component accomplish this. Cards are self-contained boxes of information which can be arranged and grouped on a page any way you want.
+We're going to create a photo grid of pictures of Harvard Park homicide victims. Each grid block will have a picture and some basic information. We're going to use `the "cards" component <https://getbootstrap.com/docs/4.4/components/card/>`_ included in Bootstrap's version 4 to accomplish this. Cards are self-contained boxes of information which can be arranged and grouped on a page any way you want.
 
 .. image:: _static/bootstrap-cols.png
     :width: 100%
 
-First, need to set up our grid. To do that, we need to talk about divs, or the building blocks of HTML. The simplest way to think of a div is as container. Like any container, divs hold things. Divs can be nested inside of each other, like putting a box inside a box.
+First, we need to set up our grid. To do that, we need to talk about `HTML's division tag <https://www.w3schools.com/Tags/tag_div.asp>`_, also known as a ``<div>``. The simplest way to think of a div is as container. Like any container, divs hold things. Divs can be nested inside of each other, like putting a box inside a box.
 
-This is how Bootstrap cards work. Each card is a container which has additional containers inside it to hold, in this case, a picture, the victim's name, age, race and when he/she was killed.
+This is how Bootstrap cards work. Each card is a container which has additional containers inside it to hold, in this case, a picture, the victim's name, age, race and when he or she was killed.
 
-Now that we understand divs, we can build the base of our grid. For this, we'll need a container div for each victim. We'll add just the name of the first and last name of each victim first.
+Like other HTML tags, divs can have ``class`` attributes that help identify their function and link them to cosmetic styles. Bootstrap provides us with a standard layout of divs that, if structured and labeled properly, will instantly snap together to look like cards.
+
+Let's give it a try. We will start by creating a container div for each victim. We'll add just the name of the first and last name of each victim first.
 
 .. code-block:: jinja
     :emphasize-lines: 3-7
