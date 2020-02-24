@@ -696,7 +696,7 @@ Let's give it a try. We will start by creating a container div for each victim. 
     :width: 100%
 
 
-Let's add a sentence below the name we just printed to summarize who each victim was and when they died.
+Let's add a sentence below the name that summarizes who each victim was and when they died.
 
 .. code-block:: jinja
     :emphasize-lines: 5
@@ -710,17 +710,14 @@ Let's add a sentence below the name we just printed to summarize who each victim
         </div>
     {% endfor %}
 
-
-Congratulations! You just wrote your first robotext.
-
-Let's add each victim's image to their card.
+Now let's add each victim's image to their card.
 
 .. code-block:: jinja
     :emphasize-lines: 3
 
     {% for obj in site.data.harvard_park_homicides %}
         <div class="card">
-          <img class="card-img-top" src="{{ obj.image }}">
+          <img class="card-img-top" src="{{ obj.image }}" alt="{{ obj.first_name }} {{ obj.last_name }}">
           <div class="card-body">
             <h5 class="card-title">{{ obj.first_name }} {{ obj.last_name }}</h5>
             <p class="card-text">{{ obj.last_name }}, a {{ obj.age}}-year-old {{ obj.race }} {{ obj.gender }}, died in {{ obj.death_year }}.</p>
@@ -733,16 +730,14 @@ Let's add each victim's image to their card.
     :width: 100%
 
 
-What do we do if there is no image of the victim?  As soon as the code reaches a victim with no image, the code will render broken images.
-
-To fix this, let's add an if clause around the image tag to check for an image in the data. This way, our code will loop through the list of victims and _if_ there is an image, it will add it to the right card. If there isn't, the code will move on to the next victim until it reaches the end of the list.
+Ugh. That's a lot of broken images. To fix it, let's add an ``if`` clause around the image tag to check for an image in the data. This way, our code will loop through the list of victims and _if_ there is an image it will add it to the right card. If not, the code will move on to the next row in the data.
 
 .. code-block:: jinja
     :emphasize-lines: 3
 
     {% for obj in site.data.harvard_park_homicides %}
         <div class="card">
-          {% if obj.image %}<img class="card-img-top" src="{{ obj.image }}">{% endif %}
+          {% if obj.image %}<img class="card-img-top" src="{{ obj.image }}" alt="{{ obj.first_name }} {{ obj.last_name }}">{% endif %}
           <div class="card-body">
             <h5 class="card-title">{{ obj.first_name }} {{ obj.last_name }}</h5>
             <p class="card-text">{{ obj.last_name }}, a {{ obj.age}}-year-old {{ obj.race }} {{ obj.gender }}, died in {{ obj.death_year }}.</p>
@@ -751,7 +746,9 @@ To fix this, let's add an if clause around the image tag to check for an image i
     {% endfor %}
 
 
-What we've got so far is a grid that doesn't look much like a grid. Let's give it some structure to make it neat and tidy. To do that, we're going to arrange our grid of cards using Bootstrap's card columns.
+Phew. Better. But what we've got so far is a grid that doesn't look much like a grid. In fact it's not a grid at all. It's just a big stack.
+
+To arrange our cards using Bootstrap's system, we need to play by Bootstrap's rules. Look at its documentation and you'll see that Bootstrap asks us to wrap our cards in a div with the class ``card-columns`` if we want a grid. Like this:
 
 .. code-block:: jinja
     :emphasize-lines: 1,11
@@ -759,7 +756,7 @@ What we've got so far is a grid that doesn't look much like a grid. Let's give i
     <div class="card-columns">
         {% for obj in site.data.harvard_park_homicides %}
         <div class="card">
-          {% if obj.image %}<img class="card-img-top" src="{{ obj.image }}">{% endif %}
+          {% if obj.image %}<img class="card-img-top" src="{{ obj.image }}" alt="{{ obj.first_name }} {{ obj.last_name }}">{% endif %}
           <div class="card-body">
             <h5 class="card-title">{{ obj.first_name }} {{ obj.last_name }}</h5>
             <p class="card-text">{{ obj.last_name }}, a {{ obj.age}}-year-old {{ obj.race }} {{ obj.gender }}, died in {{ obj.death_year }}.</p>
@@ -768,18 +765,23 @@ What we've got so far is a grid that doesn't look much like a grid. Let's give i
         {% endfor %}
     </div>
 
+Note that the new div is outside of our ``for`` loop, meaning it only appears on the page once with all of the card divs inside of it.
 
-We want to be able to click on each card and be redirected to that victim's page in the Los Angeles Times' Homicide Report? Let's do it! While we're at it, let's add some ``<strong>`` tags to the victims' names to make them stand out from the sentence about them.
+We're not done yet. We want to be able to click on each card and be redirected to the victim's page on the Los Angeles Times Homicide Report site. While we're at it, let's add some ``<strong>`` tags to the victims' names to make them stand out from the sentence about them.
 
 .. code-block:: jinja
-    :emphasize-lines: 6
+    :emphasize-lines: 6-10
 
     <div class="card-columns">
         {% for obj in site.data.harvard_park_homicides %}
         <div class="card">
           {% if obj.image %}<img class="card-img-top" src="{{ obj.image }}">{% endif %}
           <div class="card-body">
-            <a href="http://homicide.latimes.com/post/{{ obj.slug }}" target="_blank"><strong><h5 class="card-title">{{ obj.first_name }} {{ obj.last_name }}</h5></strong></a>
+            <a href="http://homicide.latimes.com/post/{{ obj.slug }}" target="_blank">
+                <strong>
+                    <h5 class="card-title">{{ obj.first_name }} {{ obj.last_name }}</h5>
+                </strong>
+            </a>
             <p class="card-text">{{ obj.last_name }}, a {{ obj.age}}-year-old {{ obj.race }} {{ obj.gender }}, died in {{ obj.death_year }}.</p>
           </div>
         </div>
@@ -791,7 +793,7 @@ We want to be able to click on each card and be redirected to that victim's page
     :width: 100%
 
 
-Let's write a headline for our cards section.
+Now let's start to wrap things up by writing a headline for our cards section.
 
 .. code-block:: jinja
     :emphasize-lines: 1
@@ -802,7 +804,11 @@ Let's write a headline for our cards section.
         <div class="card">
           {% if obj.image %}<img class="card-img-top" src="{{ obj.image }}">{% endif %}
           <div class="card-body">
-            <a href="http://homicide.latimes.com/post/{{ obj.slug }}" target="_blank"><strong><h5 class="card-title">{{ obj.first_name }} {{ obj.last_name }}</h5></strong></a>
+            <a href="http://homicide.latimes.com/post/{{ obj.slug }}" target="_blank">
+                <strong>
+                    <h5 class="card-title">{{ obj.first_name }} {{ obj.last_name }}</h5>
+                </strong>
+            </a>
             <p class="card-text">{{ obj.last_name }}, a {{ obj.age}}-year-old {{ obj.race }} {{ obj.gender }}, died in {{ obj.death_year }}.</p>
           </div>
         </div>
@@ -814,7 +820,7 @@ Let's write a headline for our cards section.
     :width: 100%
 
 
-And now, some summary text.
+And now, some introductory text. We can use a new templating trick, the ``length`` filter, to insert some automatically generated statistics into the text.
 
 .. code-block:: jinja
     :emphasize-lines: 2
@@ -826,7 +832,11 @@ And now, some summary text.
         <div class="card">
           {% if obj.image %}<img class="card-img-top" src="{{ obj.image }}">{% endif %}
           <div class="card-body">
-            <a href="http://homicide.latimes.com/post/{{ obj.slug }}" target="_blank"><strong><h5 class="card-title">{{ obj.first_name }} {{ obj.last_name }}</h5></strong></a>
+            <a href="http://homicide.latimes.com/post/{{ obj.slug }}" target="_blank">
+                <strong>
+                    <h5 class="card-title">{{ obj.first_name }} {{ obj.last_name }}</h5>
+                </strong>
+            </a>
             <p class="card-text">{{ obj.last_name }}, a {{ obj.age}}-year-old {{ obj.race }} {{ obj.gender }}, died in {{ obj.death_year }}.</p>
           </div>
         </div>
@@ -834,10 +844,10 @@ And now, some summary text.
     </div>
 
 
-Let's set up our card grid as it's own section by adding ``<section>`` tags.
+Let's set up our card grid as it's own section by adding ``<section>`` tags. This is simple example of adding some hidden stucture to your page so its easier for search engines and other spiders to parse. 
 
 .. code-block:: jinja
-    :emphasize-lines: 1,15
+    :emphasize-lines: 1,19
 
     <section>
         <h3>Lives lost in Harvard Park</h3>
@@ -847,7 +857,11 @@ Let's set up our card grid as it's own section by adding ``<section>`` tags.
             <div class="card">
               {% if obj.image %}<img class="card-img-top" src="{{ obj.image }}">{% endif %}
               <div class="card-body">
-                <a href="http://homicide.latimes.com/post/{{ obj.slug }}" target="_blank"><strong><h5 class="card-title">{{ obj.first_name }} {{ obj.last_name }}</h5></strong></a>
+                <a href="http://homicide.latimes.com/post/{{ obj.slug }}" target="_blank">
+                    <strong>
+                        <h5 class="card-title">{{ obj.first_name }} {{ obj.last_name }}</h5>
+                    </strong>
+                </a>
                 <p class="card-text">{{ obj.last_name }}, a {{ obj.age}}-year-old {{ obj.race }} {{ obj.gender }}, died in {{ obj.death_year }}.</p>
               </div>
             </div>
@@ -860,7 +874,7 @@ Let's set up our card grid as it's own section by adding ``<section>`` tags.
     :width: 100%
 
 
-Let's commit our work for this section.
+We're all done here. So let's commit our work for this chapter.
 
 .. code-block:: bash
 
