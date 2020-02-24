@@ -308,7 +308,7 @@ First, fire up its test server to see what it has to offer out of the box.
 
 .. code-block:: bash
 
-    $ gulp serve
+    $ npm run serve
 
 
 Visit `localhost:3000 <http://localhost:3000>`_ in your browser. There you can see the generic website offered as a starting point by our Yeoman generator.
@@ -803,7 +803,7 @@ Let's write a headline for our cards section.
 .. code-block:: jinja
     :emphasize-lines: 1
 
-    <h3>Lives lost</h3>
+    <h3>Lives lost in Harvard Park</h3>
     <div class="card-columns">
         {% for obj in site.data.harvard_park_homicides %}
         <div class="card">
@@ -925,15 +925,17 @@ That is, if we tell it to. Use the same ``require()`` method to pull our code in
 You don't have to use this convention, but it's handy as a visual marker of what files are dependent on others.
 
 .. code-block:: javascript
-    :emphasize-lines: 14
-
+    :emphasize-lines: 16
+    
     // Main javascript entry point
     // Should handle bootstrapping/starting application
 
     'use strict';
 
+    import 'core-js';
+    import 'regenerator-runtime/runtime';
     import $ from 'jquery';
-    import Link from '../_modules/link/link';
+    import { Link } from '../_modules/link/link';
 
     $(() => {
       new Link(); // Activate Link modules logic
