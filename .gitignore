@@ -8,3 +8,12 @@ tmp
 _build/
 src/
 *.pyc
+.babelrc
+.editorconfig
+.eslintrc
+.gitattributes
+.npmignore
+.yo-rc.json
+gulpfile.babel.js
+package.json
+package-lock.json

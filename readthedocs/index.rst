@@ -15,7 +15,7 @@ What you will make
 
 By the end of this lesson, you will publish a standalone page with a series of graphics examining the high homicide rate in Harvard Park, a small neighborhood in South Los Angeles. You will do so by repurposing data from `a 2017 Los Angeles Times story <http://www.latimes.com/projects/la-me-harvard-park-homicides/>`_ by Nicole Santa Cruz and Cindy Chang.
 
-A working example of what you will make can be found at `ireapps.github.io/first-graphics-app/ <https://ireapps.github.io/first-graphics-app/>`_
+A working example of what you will make can be found at `ireapps.github.io/first-graphics-app <https://ireapps.github.io/first-graphics-app/>`_
 
 .. image:: _static/preview.gif
    :width: 100%
@@ -29,9 +29,9 @@ About the authors
 This guide was prepared for training sessions of `Investigative Reporters and Editors (IRE) <http://www.ire.org/>`_
 and the `National Institute for Computer-Assisted Reporting (NICAR) <http://data.nicar.org/>`_
 by `Dana Amihere <http://damihere.com>`_, `Armand Emamdjomeh <http://emamd.net>`_ and `Ben Welsh <http://palewi.re/who-is-ben-welsh/>`_. It debuted in March 2018 `at NICAR's conference
-in Chicago <https://www.ire.org/events-and-training/event/3189/3508/>`_. It returned for `a second run <https://www.ire.org/events-and-training/event/3433/4111/>`_ at the 2019 edition of the conference in Newport Beach, California.
+in Chicago <https://www.ire.org/events-and-training/event/3189/3508/>`_. It returned for `a second run <https://www.ire.org/events-and-training/event/3433/4111/>`_ at the 2019 edition of the conference in Newport Beach, Calif. A third session `is planned <https://www.ire.org/events-and-training/conferences/nicar-2020/hands-on-workshops#graphics-app>`_ at the 2020 conference in New Orleans.
 
-Their work was inspired by the footloose spirit of funk music. We urge you to bust free of the computer systems that constrain your creativity. Hit play and get into the groove.
+The course's development was inspired by the footloose spirit of funk music. We urge you to bust free of the computer systems that constrain your creativity. Hit play and get into the groove.
 
 .. raw:: html
 
@@ -60,19 +60,19 @@ Before you can begin, your computer needs the following tools installed and work
 Command-line interface
 ----------------------
 
-Unless something is wrong with your computer, there should be a way to open a window that lets you type in commands. Different operating systems give this tool slightly different names, but they all have some form of it.
+Unless something is wrong with your computer, there should be a way to open a special window that lets you type in commands. Different operating systems give this tool slightly different names, but they all have some form of it. The generic term for it is the "command-line interface."
 
-On Windows you can find the command-line interface by opening the "command prompt." Here are `instructions <https://www.bleepingcomputer.com/tutorials/windows-command-prompt-introduction/>`_. On Apple computers, you open the `"Terminal" application <http://blog.teamtreehouse.com/introduction-to-the-mac-os-x-command-line>`_. Ubuntu Linux comes with a program of the `same name <http://askubuntu.com/questions/38162/what-is-a-terminal-and-how-do-i-open-and-use-it>`_.
+On Windows you can find it by opening the "command prompt." Here are `instructions <https://www.bleepingcomputer.com/tutorials/windows-command-prompt-introduction/>`_. On Apple computers, you open the `"Terminal" application <http://blog.teamtreehouse.com/introduction-to-the-mac-os-x-command-line>`_. Ubuntu Linux comes with a program of the `same name <http://askubuntu.com/questions/38162/what-is-a-terminal-and-how-do-i-open-and-use-it>`_.
 
 
 Text editor
 -----------
 
-A program like Microsoft Word, which can do all sorts of text formatting like change the size and color of words, is not what you need. Do not try to use it.
+A program like Microsoft Word, which can do all sorts of text formatting, like change the size and color of words, is not what you need. Do not try to use it.
 
-You need a program that works with simple `"plain text" files <https://en.wikipedia.org/wiki/Text_file>`_, and is therefore capable of editing documents containing Python code, HTML markup and other languages without dressing them up by adding anything extra. Such programs are easy to find and some of the best ones are free, including those below.
+You need a program that works with simple `"plain text" files <https://en.wikipedia.org/wiki/Text_file>`_, and is therefore capable of editing documents containing Python code, HTML markup and other languages without dressing them up. Such programs are easy to find and some of the best ones are free, including those below.
 
-For Windows, we recommend installing `Notepad++ <http://notepad-plus-plus.org/>`_ or `Visual Studio Code <https://code.visualstudio.com/>`_. For Apple computers, try `Atom <https://atom.io>`_ or `Sublime Text <https://www.sublimetext.com/>`_. In Ubuntu Linux you can stick with the pre-installed `gedit <https://help.ubuntu.com/community/gedit>`_ text editor or install a more sophisticated tool like `Atom <https://atom.io>`_.
+Regardless of your operating system, we recommend installing `Visual Studio Code <https://code.visualstudio.com/>`_. `Atom <https://atom.io>`_ and `Sublime Text <https://www.sublimetext.com/>`_ are also excellent options.
 
 
 Node.js
@@ -80,7 +80,7 @@ Node.js
 
 Node.js is an open-source programming framework built using JavaScript. Many programmers like it because it allows them to write JavaScript not just in their browser for "front-end" tasks, but also in the terminal or on a server for "back-end" tasks.
 
-You should be on the latest long-term support (LTS) version of Node, which at the time of this writing was ``12.16.0``. The `Node.js site <https://nodejs.org>`_ has `installer packages <https://nodejs.org/en/download/>`_ available for Windows and Mac OSX.
+We recommend you use the latest "long-term support" version, which at the time of this writing was ``12.16.1``. The `Node.js site <https://nodejs.org>`_ has `installer packages <https://nodejs.org/en/download/>`_ available for Windows and Mac OSX.
 
 You can verify if you have Node installed, and if so what version, by typing the following into your terminal:
 
@@ -187,8 +187,8 @@ Create your first file, a blank ``README`` with a `Markdown <https://en.wikipedi
     # Macs or Linux:
     $ touch README.md
 
-    # On Windows, fire it up in your text editor right away:
-    $ start notepad++ README.md
+    # If you're using Visual Studio Code, fire it up in your text editor right away:
+    $ code README.md
 
 
 Open up the README in your text editor and type something in it. Maybe something like:
@@ -199,7 +199,7 @@ Open up the README in your text editor and type something in it. Maybe something
     =====================
 
 
-Make sure to save it. Then officially add the file to your repository for tracking with Git's ``add`` command. Note that usually you can use the ``tab`` key to autocomplete a filename.
+Make sure to save it. Then officially add the file to your repository for tracking with Git's ``add`` command.
 
 .. code-block:: bash
 
@@ -254,7 +254,7 @@ There are a lot of different frameworks out there. Maybe you've heard of some th
     * The NPR Apps team's `dailygraphics <https://github.com/nprapps/dailygraphics>`_
     * Politico's `generator-politico-graphics  <https://github.com/The-Politico/generator-politico-graphics>`_
 
-Node.js is so fancy it has more than plain old frameworks. It even includes a framework for create frameworks! It's called `Yeoman <http://yeoman.io>`_. It offers a "generator" system that makes it easier for publishers to tailor the framework to their site, without having to reinvent all the wheels themselves.
+Node.js is so fancy it has more than plain old frameworks. It even includes a framework for creating frameworks! It's called `Yeoman <http://yeoman.io>`_. Its "generator" system makes it easier for publishers to tailor a framework to their site without having to reinvent all the wheels themselves.
 
 We'll start by installing Yeoman using the Node Package Manager (``npm``), which can visit the Internet to download and install any of the thousands of open-source Node.js packages listed in its directory.
 
@@ -265,7 +265,7 @@ We'll start by installing Yeoman using the Node Package Manager (``npm``), which
 
 The ``-g`` means that we're installing the packages globally. You'll be able to run these from any directory on your computer.
 
-The ``@`` followed by numbers after the ``yo`` package means we're installing a specific version. Codebases often change quickly, and by specifying a version, we're protecting against future changes that could break the code of this lesson. If you don't care what version you're installing, you could just use the name of the package, i.e, ``npm install -g yo``.
+The ``@`` followed by numbers after the ``yo`` package means we're installing a specific version. Code libraries often change quickly. By specifying a version, we're protecting ourselves against future changes that could break the code of this lesson. If you don't care what version you're installing, you could just use the name of the package, i.e, ``npm install -g yo``.
 
 Next we'll install `Gulp <https://gulpjs.com/>`_, a helpful Node.js utility for running a framework on your computer as you develop a site. Again, we turn to npm.
 
@@ -274,7 +274,7 @@ Next we'll install `Gulp <https://gulpjs.com/>`_, a helpful Node.js utility for 
     $ npm install -g gulp@4.0.2
 
 
-Finally, we use npm to install `yeogurt <https://github.com/larsonjj/generator-yeogurt>`_, our project generator that yeoman will build. It includes dozens of customizations of the Yeoman system created by its author to help us build websites. It can't do everything a full-featured newsroom framework might. But it can do a lot, and enough for us to achieve our goals for this class.
+Finally, we use npm to install `yeogurt <https://github.com/larsonjj/generator-yeogurt>`_, our project generator for Yeoman. It includes dozens of customizations created by its author to help us build websites. It can't do everything a full-featured newsroom framework might, but it can do enough for us to achieve our goals for this class.
 
 .. code-block:: bash
 
@@ -296,9 +296,8 @@ After you run the command, you will be asked a series of questions. *Pay close a
 
 1. Your project name should be the slug "first-graphics-app"
 2. The HTML preprocessor you choose must be "Nunjucks."
-3. The JavaScript preprocessor your choose must be "ES6 (Using Babel)"
-4. Styles must be written with "Sass"
-5. The Sass syntax must be "Scss"
+3. Styles must be written with "Sass"
+4. The Sass syntax must be "Scss"
 
 Don't sweat the rest. But make sure you get the above right.
 
@@ -926,7 +925,7 @@ You don't have to use this convention, but it's handy as a visual marker of what
 
 .. code-block:: javascript
     :emphasize-lines: 16
-    
+
     // Main javascript entry point
     // Should handle bootstrapping/starting application
 
