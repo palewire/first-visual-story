@@ -894,26 +894,28 @@ Push it to GitHub.
 Chapter 6: Hello charts
 ***********************
 
-We have data, but what does it look like?
-
-To visualize our data, we're going to use `D3.js <https://d3js.org/>`_ library, which has become the industry standard for data visualization. Since it is so flexible for data vizualization and mapping applications, D3 powers many of the news graphics made with JavaScript you see online.
+To visualize our data, we're going to use the `D3.js <https://d3js.org/>`_ library, which has become the industry standard for creating custom data visualizations. Because it is so flexible and allows for so many different data-driven expressions, D3 powers many of the news graphics made with JavaScript you see online.
 
 .. note::
 
-    We're going to dive straight into the deep end with creating a D3 chart from scratch in this section. There is a lot of setup involved with this, and it'll probably seem like overkill at points. And it is! D3 gives you a very high level of control over your graphics, which makes all this setup necessary.
+    We're going to dive straight into the deep end by creating a D3 chart from scratch. It involves a lot of code and will probably seem like overkill.
 
-    We wanted to use this section as an introduction to D3 and give you a foothold into the `many, many different types of visualizations you can make with it <https://github.com/d3/d3/wiki/Gallery>`_.
+    In fact, it is. D3 gives you a very high level of control over your graphics. It takes a long period of study to master. No one can do in a day.
 
-First, use npm to install D3.
+    Our goal in this class is to instead quickly introduce you to D3's basic outlines so you can see how it is being used in the field.
+
+
+First, return to your terminal and use npm to install D3.
 
 .. code-block:: bash
 
-    $ npm install -s d3@5
+    $ npm install -g d3@5
 
+From here, we'll be working in our ``_scripts`` folder, where our framework expects us to write JavaScript.
 
-The ``-s`` argument saves d3 to a dependencies file. That way, if you ever need to go through the install steps for your app again, you can do so easily by simply running ``npm install``.
+INTRODUCE THE BOOT FILE HERE
 
-From here, we'll be working in our ``_scripts`` folder. Create a file called ``_charts.js`` inside of ``_scripts/``.
+Create a file called ``_charts.js`` inside of ``_scripts/``.
 
 You can include the libraries we installed (or any JavaScript file!) by using ``require()``. While with modern versions of D3 you can import specific parts of the library that are most relevant to your app, we're just going to import the whole library for simplicity.
 
