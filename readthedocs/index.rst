@@ -670,7 +670,7 @@ We're going to create a photo grid of pictures of Harvard Park homicide victims.
 .. image:: _static/bootstrap-cols.png
     :width: 100%
 
-First, we need to set up our grid. To do that, we need to talk about `HTML's division tag <https://www.w3schools.com/Tags/tag_div.asp>`_, also known as a ``<div>``. The simplest way to think of a div is as container. Like any container, divs hold things. Divs can be nested inside of each other, like putting a box inside a box.
+First, we need to set up our grid. To do that, we need to talk about `HTML's division tag <https://www.w3schools.com/Tags/tag_div.asp>`_, also known as a ``<>``. The simplest way to think of a div is as container. Like any container, divs hold things. Divs can be nested inside of each other, like putting a box inside a box.
 
 This is how Bootstrap cards work. Each card is a container which has additional containers inside it to hold, in this case, a picture, the victim's name, age, race and when he or she was killed.
 
@@ -983,22 +983,24 @@ First, we need somewhere for our charts to go. In our ``index.nunjucks`` file, i
       <div class="inline-chart" id="harvard-park-homicides"></div>
     </div>
 
-    <h3>Lives lost</h3>
-    <p>The {{ site.data.harvard_park_homicides|length }} homicides in Harvard Park since 2000 were primarily black and Latino males, but the list includes husbands, wives, fathers, mothers of all ages, and even some small children.</p>
+    <section>
+        <h3>Lives lost</h3>
+        <p>The {{ site.data.harvard_park_homicides|length }} homicides in Harvard Park since 2000 were primarily black and Latino males, but the list includes husbands, wives, fathers, mothers of all ages, and even some small children.</p>
 
-    {% for obj in site.data.harvard_park_homicides %}
-    <div class="card-columns">
         {% for obj in site.data.harvard_park_homicides %}
-        <div class="card">
-          {% if obj.image %}<img class="card-img-top" src="{{ obj.image }}">{% endif %}
-          <div class="card-body">
-            <h5 class="card-title">{{ obj.first_name }} {{ obj.last_name }}</h5>
-            <p class="card-text">A {{ obj.age}}-year-old {{ obj.race }} {{ obj.gender }} died in {{ obj.death_year }}.</p>
-          </div>
+        <div class="card-columns">
+            {% for obj in site.data.harvard_park_homicides %}
+            <div class="card">
+            {% if obj.image %}<img class="card-img-top" src="{{ obj.image }}">{% endif %}
+            <div class="card-body">
+                <h5 class="card-title">{{ obj.first_name }} {{ obj.last_name }}</h5>
+                <p class="card-text">A {{ obj.age}}-year-old {{ obj.race }} {{ obj.gender }} died in {{ obj.death_year }}.</p>
+            </div>
+            </div>
+            {% endfor %}
         </div>
         {% endfor %}
-    </div>
-    {% endfor %}
+    </section>
 
     {% endblock %}
 
