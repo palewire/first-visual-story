@@ -844,7 +844,7 @@ And now, some introductory text. We can use a new templating trick, the ``length
     </div>
 
 
-Let's set up our card grid as it's own section by adding ``<section>`` tags. This is simple example of adding some hidden stucture to your page so its easier for search engines and other spiders to parse. 
+Let's set up our card grid as it's own section by adding ``<section>`` tags. This is simple example of adding some hidden stucture to your page so its easier for search engines and other spiders to parse.
 
 .. code-block:: jinja
     :emphasize-lines: 1,19
@@ -909,7 +909,7 @@ First, return to your terminal and use npm to install D3.
 
 .. code-block:: bash
 
-    $ npm install -g d3@5
+    $ npm install d3@5
 
 From here, we'll be working in our ``_scripts`` folder, where our framework expects us to write JavaScript.
 
