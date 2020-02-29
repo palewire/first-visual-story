@@ -1200,6 +1200,8 @@ Finally, we append those to the chart by appending a ``<g>`` tag and "calling" t
 
 Well that doesn't look quite right. The reason the X axis is displaying at the top of the chart is that in SVGs, the coordinate 0,0 is at the top left. So we need to shift, or ``translate`` the X axis down by the height of the chart. The Y axis is fine where it is.
 
+Replace the code for the X axis with the below.
+
 .. code-block:: javascript
     :emphasize-lines: 5
 
@@ -1287,7 +1289,7 @@ You can do that by adding the following line to ``main.scss``.
 
     // Import Modules
     @import '../_modules/link/link';
-    @import './charts.scss';
+    @import './_charts.scss';
 
 
 .. image:: _static/chart-half-width.png
