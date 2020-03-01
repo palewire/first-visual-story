@@ -1808,30 +1808,6 @@ After it's been installed, we should import Leaflet into ``_scripts/main.js`` so
     var L = require("leaflet");
 
 
-We'll also need to add a little hack to the file so that Leaflet's images will load. Don't ask. It's a long story.
-
-.. code-block:: javascript
-    :emphasize-lines: 17
-
-    // Main javascript entry point
-    // Should handle bootstrapping/starting application
-
-    'use strict';
-
-    var $ = require('jquery');
-    var Link = require('../_modules/link/link');
-
-    $(function() {
-      new Link(); // Activate Link modules logic
-      console.log('Welcome to Yeogurt!');
-    });
-
-    var chart = require('./charts.js');
-    var L = require("leaflet");
-
-    L.Icon.Default.imagePath = 'https://unpkg.com/leaflet@1.6.0/dist/images/';
-
-
 Next we import Leaflet's stylesheets in ``_styles/main.scss`` so that they are also included on our site.
 
 .. code-block:: css
@@ -1885,8 +1861,6 @@ To bring the map to life, add a new file named ``_map.js`` to the ``_scripts`` d
     var chart = require('./charts.js');
     var L = require("leaflet");
     var map = require("./_map.js");
-
-    L.Icon.Default.imagePath = 'https://unpkg.com/leaflet@1.6.0/dist/images/';
 
 
 Now in ``_scripts/_map.js`` paste in the following Leaflet code to generate a simple map. It does three things: create a new map in the HTML element we made with "map" set as its ID; add a new map layer with roads, borders, water and other features from OpenStreetMap; finally, add the layer to the map.
