@@ -9,6 +9,7 @@ verify_ssl = true
 sphinx-rtd-theme = "*"
 Sphinx = "==2.4.3"
 doc8 = "*"
+sphinx-autobuild = "*"
 
 [requires]
 python_version = "3.6"

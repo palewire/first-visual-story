@@ -15,7 +15,7 @@ What you will make
 
 By the end of this lesson, you will publish a standalone page with a series of graphics examining the high homicide rate in Harvard Park, a small neighborhood in South Los Angeles. You will do so by repurposing data from `a 2017 Los Angeles Times story <http://www.latimes.com/projects/la-me-harvard-park-homicides/>`_ by Nicole Santa Cruz and Cindy Chang.
 
-A working example of what you will make can be found at `ireapps.github.io/first-graphics-app/ <https://ireapps.github.io/first-graphics-app/>`_
+A working example of what you will make can be found at `ireapps.github.io/first-graphics-app <https://ireapps.github.io/first-graphics-app/>`_
 
 .. image:: _static/preview.gif
    :width: 100%
@@ -26,12 +26,11 @@ A working example of what you will make can be found at `ireapps.github.io/first
 About the authors
 *****************
 
-This guide was prepared for training sessions of `Investigative Reporters and Editors (IRE) <http://www.ire.org/>`_
-and the `National Institute for Computer-Assisted Reporting (NICAR) <http://data.nicar.org/>`_
+This guide was prepared for training sessions of `Investigative Reporters and Editors (IRE) <http://www.ire.org/>`_ and the `National Institute for Computer-Assisted Reporting (NICAR) <http://data.nicar.org/>`_
 by `Dana Amihere <http://damihere.com>`_, `Armand Emamdjomeh <http://emamd.net>`_ and `Ben Welsh <http://palewi.re/who-is-ben-welsh/>`_. It debuted in March 2018 `at NICAR's conference
-in Chicago <https://www.ire.org/events-and-training/event/3189/3508/>`_. It returned for `a second run <https://www.ire.org/events-and-training/event/3433/4111/>`_ at the 2019 edition of the conference in Newport Beach, California.
+in Chicago <https://www.ire.org/events-and-training/event/3189/3508/>`_. It returned for `a second run <https://www.ire.org/events-and-training/event/3433/4111/>`_ at the 2019 edition of the conference in Newport Beach, Calif. A third session `is planned <https://www.ire.org/events-and-training/conferences/nicar-2020/hands-on-workshops#graphics-app>`_ at the 2020 conference in New Orleans.
 
-Their work was inspired by the footloose spirit of funk music. We urge you to bust free of the computer systems that constrain your creativity. Hit play and get into the groove.
+The course's development was inspired by the footloose spirit of funk music. We urge you to bust free of the computer systems that constrain your creativity. Hit play and get into the groove.
 
 .. raw:: html
 
@@ -60,19 +59,19 @@ Before you can begin, your computer needs the following tools installed and work
 Command-line interface
 ----------------------
 
-Unless something is wrong with your computer, there should be a way to open a window that lets you type in commands. Different operating systems give this tool slightly different names, but they all have some form of it.
+Unless something is wrong with your computer, there should be a way to open a special window that lets you type in commands. Different operating systems give this tool slightly different names, but they all have some form of it. The generic term for it is the "command-line interface."
 
-On Windows you can find the command-line interface by opening the "command prompt." Here are `instructions <https://www.bleepingcomputer.com/tutorials/windows-command-prompt-introduction/>`_. On Apple computers, you open the `"Terminal" application <http://blog.teamtreehouse.com/introduction-to-the-mac-os-x-command-line>`_. Ubuntu Linux comes with a program of the `same name <http://askubuntu.com/questions/38162/what-is-a-terminal-and-how-do-i-open-and-use-it>`_.
+On Windows you can find it by opening the "command prompt." Here are `instructions <https://www.bleepingcomputer.com/tutorials/windows-command-prompt-introduction/>`_. On Apple computers, you open the `"Terminal" application <http://blog.teamtreehouse.com/introduction-to-the-mac-os-x-command-line>`_. Ubuntu Linux comes with a program of the `same name <http://askubuntu.com/questions/38162/what-is-a-terminal-and-how-do-i-open-and-use-it>`_.
 
 
 Text editor
 -----------
 
-A program like Microsoft Word, which can do all sorts of text formatting like change the size and color of words, is not what you need. Do not try to use it.
+A program like Microsoft Word, which can do all sorts of text formatting, like change the size and color of words, is not what you need. Do not try to use it.
 
-You need a program that works with simple `"plain text" files <https://en.wikipedia.org/wiki/Text_file>`_, and is therefore capable of editing documents containing Python code, HTML markup and other languages without dressing them up by adding anything extra. Such programs are easy to find and some of the best ones are free, including those below.
+You need a program that works with simple `"plain text" files <https://en.wikipedia.org/wiki/Text_file>`_, and is therefore capable of editing documents containing Python code, HTML markup and other languages without dressing them up. Such programs are easy to find and some of the best ones are free, including those below.
 
-For Windows, we recommend installing `Notepad++ <http://notepad-plus-plus.org/>`_ or `Visual Studio Code <https://code.visualstudio.com/>`_. For Apple computers, try `Atom <https://atom.io>`_ or `Sublime Text <https://www.sublimetext.com/>`_. In Ubuntu Linux you can stick with the pre-installed `gedit <https://help.ubuntu.com/community/gedit>`_ text editor or install a more sophisticated tool like `Atom <https://atom.io>`_.
+Regardless of your operating system, we recommend installing `Visual Studio Code <https://code.visualstudio.com/>`_. `Atom <https://atom.io>`_ and `Sublime Text <https://www.sublimetext.com/>`_ are also excellent options.
 
 
 Node.js
@@ -80,13 +79,13 @@ Node.js
 
 Node.js is an open-source programming framework built using JavaScript. Many programmers like it because it allows them to write JavaScript not just in their browser for "front-end" tasks, but also in the terminal or on a server for "back-end" tasks.
 
-You should be on the latest long-term support (LTS) version of Node, which at the time of this writing was ``10.15.1``. The `Node.js site <https://nodejs.org>`_ has `installer packages <https://nodejs.org/en/download/>`_ available for Windows and Mac OSX.
+We recommend you use the latest "long-term support" version, which at the time of this writing was ``12.16.1``. The `Node.js site <https://nodejs.org>`_ has `installer packages <https://nodejs.org/en/download/>`_ available for Windows and Mac OSX.
 
 You can verify if you have Node installed, and if so what version, by typing the following into your terminal:
 
 .. code-block:: bash
 
-    $ nodejs --version
+    $ node --version
 
 
 The number you get back is the version you have installed. If you get an error, you don't have Node.js installed and you should start from scratch with an installer package. If you have a slightly older version, you are probably okay. But we make no guarantees. Consider upgrading.
@@ -187,13 +186,13 @@ Create your first file, a blank ``README`` with a `Markdown <https://en.wikipedi
     # Macs or Linux:
     $ touch README.md
 
-    # On Windows, fire it up in your text editor right away:
-    $ start notepad++ README.md
+    # If you're using Visual Studio Code, fire it up in your text editor right away:
+    $ code README.md
 
 
 Open up the README in your text editor and type something in it. Maybe something like:
 
-.. code-block:: markdown
+.. code-block::
 
     My first graphics app
     =====================
@@ -254,31 +253,31 @@ There are a lot of different frameworks out there. Maybe you've heard of some th
     * The NPR Apps team's `dailygraphics <https://github.com/nprapps/dailygraphics>`_
     * Politico's `generator-politico-graphics  <https://github.com/The-Politico/generator-politico-graphics>`_
 
-Node.js is so fancy it has more than plain old frameworks. It even includes a framework for create frameworks! It's called `Yeoman <http://yeoman.io>`_. It offers a "generator" system that makes it easier for publishers to tailor the framework to their site, without having to reinvent all the wheels themselves.
+Node.js is so fancy it has more than plain old frameworks. It even includes a framework for creating frameworks! It's called `Yeoman <http://yeoman.io>`_. Its "generator" system makes it easier for publishers to tailor a framework to their site without having to reinvent all the wheels themselves.
 
 We'll start by installing Yeoman using the Node Package Manager (``npm``), which can visit the Internet to download and install any of the thousands of open-source Node.js packages listed in its directory.
 
 .. code-block:: bash
 
-    $ npm install -g yo@2.0.5
+    $ npm install -g yo@3.1.1
 
 
 The ``-g`` means that we're installing the packages globally. You'll be able to run these from any directory on your computer.
 
-The ``@`` followed by numbers after the ``yo`` package means we're installing a specific version. Codebases often change quickly, and by specifying a version, you're protecting yourself against future changes that could break your code.
+The ``@`` followed by numbers after the ``yo`` package means we're installing a specific version. Code libraries often change quickly. By specifying a version, we're protecting ourselves against future changes that could break the code of this lesson. If you don't care what version you're installing, you could just use the name of the package, i.e, ``npm install -g yo``.
 
 Next we'll install `Gulp <https://gulpjs.com/>`_, a helpful Node.js utility for running a framework on your computer as you develop a site. Again, we turn to npm.
 
 .. code-block:: bash
 
-    $ npm install -g gulp@3.9.1
+    $ npm install -g gulp@4.0.2
 
 
-Finally, we use npm to install `yeogurt <https://github.com/larsonjj/generator-yeogurt>`_, our project generator that yeoman will build. It includes dozens of customizations of the Yeoman system created by its author to help us build websites. It can't do everything a full-featured newsroom framework might. But it can do a lot, and enough for us to achieve our goals for this class.
+Finally, we use npm to install `yeogurt <https://github.com/larsonjj/generator-yeogurt>`_, our project generator for Yeoman. It includes dozens of customizations created by its author to help us build websites. It can't do everything a full-featured newsroom framework might, but it can do enough for us to achieve our goals for this class.
 
 .. code-block:: bash
 
-    $ npm install -g generator-yeogurt@2.0.1
+    $ npm install -g generator-yeogurt@3.1.2
 
 
 Create a new project using our yeogurt generator as the guide.
@@ -291,14 +290,13 @@ Create a new project using our yeogurt generator as the guide.
 After you run the command, you will be asked a series of questions. *Pay close attention* because you will need to choose the proper options to continue with our tutorial, and some of the correct selections are not the default choice.
 
 .. image:: _static/yeogurt-setup.png
-   :width: 100%
+    :width: 100%
 
 
 1. Your project name should be the slug "first-graphics-app"
 2. The HTML preprocessor you choose must be "Nunjucks."
-3. The JavaScript preprocessor your choose must be "ES6 (Using Babel)"
-4. Styles must be written with "Sass"
-5. The Sass syntax must be "Scss"
+3. Styles must be written with "Sass"
+4. The Sass syntax must be "Scss"
 
 Don't sweat the rest. But make sure you get the above right.
 
@@ -308,16 +306,22 @@ First, fire up its test server to see what it has to offer out of the box.
 
 .. code-block:: bash
 
-    $ gulp serve
+    $ npm run-script serve
 
 
 Visit `localhost:3000 <http://localhost:3000>`_ in your browser. There you can see the generic website offered as a starting point by our Yeoman generator.
 
 .. image:: _static/welcome.png
-   :width: 100%
+    :width: 100%
 
 
 Congratulations, you've got your framework up and running. Let's save our work and then we'll be ready to start developing our own content.
+
+.. note::
+
+    You'll notice that the all of the sub folders in the ``src/`` directory of your project have underscores ``_`` in front of their name. This convention is used to note that these files are **private**, and won't be deployed to your live site.
+
+    Instead, Gulp processes the contents of these folders when it builds the project and serves the files from a ``tmp/`` folder, where you'll see unprefixed ``images/``, ``scripts/`` and ``styles/`` directories.
 
 Open a second terminal (this way you can keep your server running) and navigate to your code folder.
 
@@ -371,7 +375,7 @@ You should see it immediately show up thanks to a `BrowserSync <https://browsers
    :width: 100%
 
 
-Look closely at the index file you and will notice that it doesn't include code for much of what you can see on the live page. For instance, you won't see the HTML of the navigation bar or the stylesheets that dicatate how the page looks.
+Now, look closely at the ``index.nunjucks`` file. You will notice that it doesn't include code for much of what you expect from an HTML  page. For instance, you won't see the class ``<html>`` or ``<body>`` tags. Nor will you find the stylesheets that dicatate how a page looks.
 
 That's because that boilerplate has been moved back into a parent template "extended" by the index file with a line of Nunjucks code at the top of the page.
 
@@ -380,11 +384,13 @@ That's because that boilerplate has been moved back into a parent template "exte
     {% extends '_layouts/base.nunjucks' %}
 
 
-That "base" file, sometimes called the "layout," can be inherited by other pages on your site to avoid duplication and share common code. One change to a parent file instantly ripples out to all pages the extend it. This approach to "template inheritance" is not just found in Nunjucks. It can be found in other templating systems, including Python ones like `Django <https://docs.djangoproject.com/en/1.7/topics/templates/>`_ and `Jinja <http://jinja.pocoo.org>`_.
+That "base" file, sometimes called the "layout," can be inherited by other pages on your site to avoid duplication and share common code. One change to a parent file instantly ripples out to all pages the extend it.
 
-You can find the base layout packaged with our framework in the ``_layouts/base.nunjucks`` file. It includes a set of block tags, like ``content``, that act as placeholders for use in templates that extend it.
+This approach to "template inheritance" is not just found in Nunjucks. It can be found in other templating systems, including Python ones like `Django <https://docs.djangoproject.com/en/1.7/topics/templates/>`_ and `Jinja <http://jinja.pocoo.org>`_. It's probably even used at some level in your organization's CMS.
 
-Make a small change above the block and save the file.
+You can find the base layout packaged with our framework by following the path and opening the ``_layouts/base.nunjucks`` file. You'll see it includes a set of block tags, like ``content``, that act as placeholders for use in templates that extend it.
+
+Make a small change to ``_layouts/base.nunjucks`` above the ``content`` block and save the file.
 
 .. code-block:: jinja
     :emphasize-lines: 1
@@ -399,18 +405,18 @@ You should see the change on our site, with the new line appearing above the par
     :width: 100%
 
 
-Most newsrooms that use a similar system have a own base template for all of their custom pages. Graphic artists and designers install and extend it as the first step in their work. They develop their custom page within its confines and largely accept the furniture it provides, like the site's header and footer, fonts, common color schemes. This allows them to work more quickly because they do not have to bother with reinventing their site's most common elements.
+Most newsrooms that use a similar system have their own base template for their custom pages. Graphic artists and designers install and extend it as the first step in their work. They develop their custom page within its confines and largely accept the furniture it provides, like the site's header and footer, fonts and common color schemes. This allows them to work more quickly because they do not have to bother with reinventing their site's most common elements.
 
 .. note::
 
     While most newsrooms keep their base templates to themselves, a few have published them as open-source software. You can find them online, if you know where to look. They include:
 
-    * The Los Angeles Times Data Desk's `HTML Cookbook <http://cookbook.latimes.com>`_
-    * The Texas Tribune News App team's `style guide <https://apps.texastribune.org/styles/>`_
+    * The Los Angeles Times's `HTML Cookbook <http://cookbook.latimes.com>`_
+    * The Texas Tribune's `style guide <https://apps.texastribune.org/styles/>`_
     * Politico's `style guide <https://github.com/The-Politico/politico-style>`_
 
 
-For this class, we have developed a base template that will act as a proxy for a real newsroom's base template. It is not as sophisticated or complete as a real-world example, but it will provide all of the basic elements we will need for this class.
+For this class, we have developed a simpelified base template that will act as a stand-in for a real newsroom's base template. It is not as sophisticated or complete as a real-world example, but it will provide all of the basic elements we will need.
 
 You can find it in the code block below. Copy all of its contents and paste them into ``_layouts/base.nunjucks``, replacing everything.
 
@@ -489,7 +495,7 @@ And let's do the publication date too while we are at it.
     {% block headline %}My headline will go here{% endblock %}
     {% block byline %}By me{% endblock %}
     {% block pubdate %}
-        <time datetime="2019-03-09" pubdate>Mar. 9, 2019</time>
+        <time datetime="2020-03-07" pubdate>Mar. 7, 2020</time>
     {% endblock %}
 
 
@@ -497,7 +503,7 @@ And let's do the publication date too while we are at it.
     :width: 100%
 
 
-Congratulations, you've installed a base template and started in on creating your first custom page. Now is another good time to pause and commit our work.
+Congratulations, you've installed a base template and started in on creating your first custom page. Now is another good time to pause and commit your work.
 
 .. code-block:: bash
 
@@ -512,24 +518,17 @@ And, again, push it to GitHub.
     $ git push origin master
 
 
-.. note::
-
-    You'll notice that the all of the sub folders in the ``src/`` directory of your project have underscores ``_`` in front of their name. This convention is used to note that these files are **private**, and won't be deployed.
-
-    Instead, Gulp processes the contents of these folders when it builds the project and serves the files from a ``tmp/`` folder, where you'll see unprefixed ``images/``, ``scripts/`` and ``styles/`` directories.
-
-
 *********************
 Chapter 4: Hello data
 *********************
 
-We've got our page all set up. Now it's time to start telling our story. To do that, we need our data.
+We've got our system set up. Now it's time to start telling our story. To do that, we need our data.
 
-If we were writing this application entirely in the browser with traditional JavaScript we'd have to pull it in with dynamic "AJAX" calls that retrieve data over the web as the page is constructed. But since we're working with a Node.js system, running code here the backend, we can import our data directly into the template instead and lay it out before the page is rendered in the browser. This results in a faster experience for our users, and opens up new ways for us to be creative with our data.
+If we were writing this application entirely in the browser with traditional JavaScript we'd have to pull it in with dynamic "AJAX" calls that retrieve data over the web as the page is constructed. But since we're working with a Node.js system, running code here on the backend, we can import data directly into the template instead and lay it out before the page is rendered in the browser. This results in a faster experience for our users, and opens up new ways for us to be creative with our data.
 
-Every newsroom's system will handle this differently. Our Yeoman generator is preconfigured to open all JSON data files in the ``_data`` and import them into our nunjucks templates.
+Every newsroom's system will handle this differently. Our Yeoman generator is preconfigured to open all JSON data files in the ``_data`` folder and import them into our Nunjucks templates.
 
-Let's give it a try. Grab the `list of Harvard Park homicides <https://raw.githubusercontent.com/ireapps/first-graphics-app/master/src/_data/harvard_park_homicides.json>`_ published by the Los Angeles Times and save it to ``_data/harvard_park_homicides.json``. It includes every homicide victim in the neighborhood since 2000 in the `JSON data format <https://en.wikipedia.org/wiki/JSON>`_ favored by JavaScript.
+Let's give it a try. Grab the `list of Harvard Park homicides <https://raw.githubusercontent.com/ireapps/first-graphics-app/master/data/harvard_park_homicides.json>`_ published by the Los Angeles Times and save it to ``_data/harvard_park_homicides.json``. It includes every homicide victim in the neighborhood since 2000 in the `JSON data format <https://en.wikipedia.org/wiki/JSON>`_ favored by JavaScript.
 
 .. code-block:: javascript
 
@@ -567,7 +566,7 @@ Let's give it a try. Grab the `list of Harvard Park homicides <https://raw.githu
        ...
 
 
-Return to ``index.nunjucks`` and add the following to the bottom to print the data out on the page. We can do that using the ``{{ }}`` print tags provided by nunjucks.
+Return to ``index.nunjucks`` and add the following to the bottom to print the data out on the page. We can do that using the ``{{ }}`` print tags provided by Nunjucks.
 
 .. code-block:: jinja
 
@@ -575,14 +574,7 @@ Return to ``index.nunjucks`` and add the following to the bottom to print the da
         {{ site.data.harvard_park_homicides }}
     {% endblock %}
 
-
-Here's what you should see.
-
-.. image:: _static/data-dump.png
-    :width: 100%
-
-
-Loop through them and print them all. We'll use the ``{% %}`` template tags provided by nunjucks that let you use common computer programming logic when you're laying out a page.
+Instead of just printing the data in one big block, let's loop through the records and print them one by one. We'll use the ``{% %}`` template tags provided by Nunjucks, which allow you to use common computer programming logic when you're laying out a page.
 
 .. code-block:: jinja
     :emphasize-lines: 2-4
@@ -598,8 +590,7 @@ Loop through them and print them all. We'll use the ``{% %}`` template tags prov
     :width: 100%
 
 
-Add a line break with a ``<br>`` tag. That's just boring old HTML. Writing pages with a templating language like nunjucks is typically nothing more than mixing traditional HTML with the programming and print tags that negotiate your data files and other settings variables.
-
+To put each one on its own line, add a line break with a ``<br>`` tag. That's just boring old HTML. Writing pages with a templating language like Nunjucks is typically nothing more than mixing traditional HTML with the template tags that negotiate your data files and other variables.
 
 .. code-block:: jinja
     :emphasize-lines: 3
@@ -615,7 +606,7 @@ Add a line break with a ``<br>`` tag. That's just boring old HTML. Writing pages
     :width: 100%
 
 
-All of the fields found in the JSON dictionary for each homicide are available by adding a ``.`` after the object. Try it by printing the last name.
+That's good, but hardly informative. How do we start printing out the contents of the data? The fields in the JSON dictionary for each homicide are available by adding a ``.`` after the object. For instance, here's how to print the contents of the ``last_name`` field.
 
 .. code-block:: jinja
     :emphasize-lines: 3
@@ -631,7 +622,7 @@ All of the fields found in the JSON dictionary for each homicide are available b
     :width: 100%
 
 
-Add the first name. To have them display more nicely, you can also add a line break in between each one.
+Now the first name.
 
 .. code-block:: jinja
     :emphasize-lines: 3
@@ -647,7 +638,7 @@ Add the first name. To have them display more nicely, you can also add a line br
     :width: 100%
 
 
-Commit our work.
+Not bad. We've actually got some data on the page. Seems like a good moment to stop, take a break and commit our work.
 
 .. code-block:: bash
 
@@ -666,7 +657,7 @@ Push it to GitHub.
 Chapter 5: Hello cards
 **********************
 
-Bootstrap is an HTML, CSS and JavaScript toolkit that you can use to create the cosmetic "front-end" of web applications. Bootstrap is made up of different pre-made, ready-to-use pieces called components. Think of Bootstrap as building blocks you can mix and match to help jumpstart a project. Its components can be used as-is or as a base to be customized by the developer.
+`Bootstrap <https://getbootstrap.com/docs/4.4/getting-started/introduction/>`_ is an HTML, CSS and JavaScript toolkit that you can use to create the cosmetic "front-end" of web applications. It is a collection of ready-to-use pieces called components, which are building blocks you can mix and match to help jumpstart a project. Its components can be used as-is or as a base to be customized by the developer.
 
 The components library includes things that you might include in a project, like buttons, modals and dropdowns.
 
@@ -674,16 +665,18 @@ The components library includes things that you might include in a project, like
 .. image:: _static/bootstrap.png
     :width: 100%
 
-We're going to create a photo grid of the Harvard Park homicide victims' pictures. Each grid block will have a picture and some basic information about the victim. We're going to use the Bootstrap 4 "cards" component accomplish this. Cards are self-contained boxes of information which can be arranged and grouped on a page any way you want.
+We're going to create a photo grid of pictures of Harvard Park homicide victims. Each grid block will have a picture and some basic information. We're going to use `the "cards" component <https://getbootstrap.com/docs/4.4/components/card/>`_ included in Bootstrap's version 4 to accomplish this. Cards are self-contained boxes of information which can be arranged and grouped on a page any way you want.
 
 .. image:: _static/bootstrap-cols.png
     :width: 100%
 
-First, need to set up our grid. To do that, we need to talk about divs, or the building blocks of HTML. The simplest way to think of a div is as container. Like any container, divs hold things. Divs can be nested inside of each other, like putting a box inside a box.
+First, we need to set up our grid. To do that, we need to talk about `HTML's division tag <https://www.w3schools.com/Tags/tag_div.asp>`_, also known as a ``<>``. The simplest way to think of a div is as container. Like any container, divs hold things. Divs can be nested inside of each other, like putting a box inside a box.
 
-This is how Bootstrap cards work. Each card is a container which has additional containers inside it to hold, in this case, a picture, the victim's name, age, race and when he/she was killed.
+This is how Bootstrap cards work. Each card is a container which has additional containers inside it to hold, in this case, a picture, the victim's name, age, race and when he or she was killed.
 
-Now that we understand divs, we can build the base of our grid. For this, we'll need a container div for each victim. We'll add just the name of the first and last name of each victim first.
+Like other HTML tags, divs can have ``class`` attributes that help identify their function and link them to cosmetic styles. Bootstrap provides us with a standard layout of divs that, if structured and labeled properly, will instantly snap together to look like cards.
+
+Let's give it a try. We will start by creating a container div for each victim. We'll add just the name of the first and last name of each victim first.
 
 .. code-block:: jinja
     :emphasize-lines: 3-7
@@ -703,7 +696,7 @@ Now that we understand divs, we can build the base of our grid. For this, we'll 
     :width: 100%
 
 
-Let's add a sentence below the name we just printed to summarize who each victim was and when they died.
+Let's add a sentence below the name that summarizes who each victim was and when they died.
 
 .. code-block:: jinja
     :emphasize-lines: 5
@@ -717,15 +710,14 @@ Let's add a sentence below the name we just printed to summarize who each victim
         </div>
     {% endfor %}
 
-
-Let's add each victim's image to their card.
+Now let's add each victim's image to their card.
 
 .. code-block:: jinja
     :emphasize-lines: 3
 
     {% for obj in site.data.harvard_park_homicides %}
         <div class="card">
-          <img class="card-img-top" src="{{ obj.image }}">
+          <img class="card-img-top" src="{{ obj.image }}" alt="{{ obj.first_name }} {{ obj.last_name }}">
           <div class="card-body">
             <h5 class="card-title">{{ obj.first_name }} {{ obj.last_name }}</h5>
             <p class="card-text">{{ obj.last_name }}, a {{ obj.age}}-year-old {{ obj.race }} {{ obj.gender }}, died in {{ obj.death_year }}.</p>
@@ -738,16 +730,14 @@ Let's add each victim's image to their card.
     :width: 100%
 
 
-What do we do if there is no image of the victim?  As soon as the code reaches a victim with no image, the code will break.
-
-To fix this, let's add an if clause around the image tag to check for an image in the data. This way, our code will loop through the list of victims and <em>if</em> there is an image, it will add it to the right card. If there isn't, the code will move on to the next victim until it reaches the end of the list.
+Ugh. That's a lot of broken images. To fix it, let's add an ``if`` clause around the image tag to check for an image in the data. This way, our code will loop through the list of victims and _if_ there is an image it will add it to the right card. If not, the code will move on to the next row in the data.
 
 .. code-block:: jinja
     :emphasize-lines: 3
 
     {% for obj in site.data.harvard_park_homicides %}
         <div class="card">
-          {% if obj.image %}<img class="card-img-top" src="{{ obj.image }}">{% endif %}
+          {% if obj.image %}<img class="card-img-top" src="{{ obj.image }}" alt="{{ obj.first_name }} {{ obj.last_name }}">{% endif %}
           <div class="card-body">
             <h5 class="card-title">{{ obj.first_name }} {{ obj.last_name }}</h5>
             <p class="card-text">{{ obj.last_name }}, a {{ obj.age}}-year-old {{ obj.race }} {{ obj.gender }}, died in {{ obj.death_year }}.</p>
@@ -756,7 +746,9 @@ To fix this, let's add an if clause around the image tag to check for an image i
     {% endfor %}
 
 
-What we've got so far is a grid that doesn't look much like a grid. Let's give it some structure to make it neat and tidy. To do that, we're going to arrange our grid of cards using Bootstrap's card columns.
+Phew. Better. But what we've got so far is a grid that doesn't look much like a grid. In fact it's not a grid at all. It's just a big stack.
+
+To arrange our cards using Bootstrap's system, we need to play by Bootstrap's rules. Look at its documentation and you'll see that Bootstrap asks us to wrap our cards in a div with the class ``card-columns`` if we want a grid. Like this:
 
 .. code-block:: jinja
     :emphasize-lines: 1,11
@@ -764,7 +756,7 @@ What we've got so far is a grid that doesn't look much like a grid. Let's give i
     <div class="card-columns">
         {% for obj in site.data.harvard_park_homicides %}
         <div class="card">
-          {% if obj.image %}<img class="card-img-top" src="{{ obj.image }}">{% endif %}
+          {% if obj.image %}<img class="card-img-top" src="{{ obj.image }}" alt="{{ obj.first_name }} {{ obj.last_name }}">{% endif %}
           <div class="card-body">
             <h5 class="card-title">{{ obj.first_name }} {{ obj.last_name }}</h5>
             <p class="card-text">{{ obj.last_name }}, a {{ obj.age}}-year-old {{ obj.race }} {{ obj.gender }}, died in {{ obj.death_year }}.</p>
@@ -773,18 +765,23 @@ What we've got so far is a grid that doesn't look much like a grid. Let's give i
         {% endfor %}
     </div>
 
+Note that the new div is outside of our ``for`` loop, meaning it only appears on the page once with all of the card divs inside of it.
 
-We want to be able to click on each card and be redirected to that victim's page in the Los Angeles Times' Homicide Report? Let's do it! While we're at it, let's add some ``<strong>`` tags to the victims' names to make them stand out from the sentence about them.
+We're not done yet. We want to be able to click on each card and be redirected to the victim's page on the Los Angeles Times Homicide Report site. While we're at it, let's add some ``<strong>`` tags to the victims' names to make them stand out from the sentence about them.
 
 .. code-block:: jinja
-    :emphasize-lines: 6
+    :emphasize-lines: 6-10
 
     <div class="card-columns">
         {% for obj in site.data.harvard_park_homicides %}
         <div class="card">
           {% if obj.image %}<img class="card-img-top" src="{{ obj.image }}">{% endif %}
           <div class="card-body">
-            <a href="http://homicide.latimes.com/post/{{ obj.slug }}" target="_blank"><strong><h5 class="card-title">{{ obj.first_name }} {{ obj.last_name }}</h5></strong></a>
+            <a href="http://homicide.latimes.com/post/{{ obj.slug }}" target="_blank">
+                <strong>
+                    <h5 class="card-title">{{ obj.first_name }} {{ obj.last_name }}</h5>
+                </strong>
+            </a>
             <p class="card-text">{{ obj.last_name }}, a {{ obj.age}}-year-old {{ obj.race }} {{ obj.gender }}, died in {{ obj.death_year }}.</p>
           </div>
         </div>
@@ -796,18 +793,22 @@ We want to be able to click on each card and be redirected to that victim's page
     :width: 100%
 
 
-Let's write a headline for our cards section.
+Now let's start to wrap things up by writing a headline for our cards section.
 
 .. code-block:: jinja
     :emphasize-lines: 1
 
-    <h3>Lives lost</h3>
+    <h3>Lives lost in Harvard Park</h3>
     <div class="card-columns">
         {% for obj in site.data.harvard_park_homicides %}
         <div class="card">
           {% if obj.image %}<img class="card-img-top" src="{{ obj.image }}">{% endif %}
           <div class="card-body">
-            <a href="http://homicide.latimes.com/post/{{ obj.slug }}" target="_blank"><strong><h5 class="card-title">{{ obj.first_name }} {{ obj.last_name }}</h5></strong></a>
+            <a href="http://homicide.latimes.com/post/{{ obj.slug }}" target="_blank">
+                <strong>
+                    <h5 class="card-title">{{ obj.first_name }} {{ obj.last_name }}</h5>
+                </strong>
+            </a>
             <p class="card-text">{{ obj.last_name }}, a {{ obj.age}}-year-old {{ obj.race }} {{ obj.gender }}, died in {{ obj.death_year }}.</p>
           </div>
         </div>
@@ -819,7 +820,7 @@ Let's write a headline for our cards section.
     :width: 100%
 
 
-And now, some summary text.
+And now, some introductory text. We can use a new templating trick, the ``length`` filter, to insert some automatically generated statistics into the text.
 
 .. code-block:: jinja
     :emphasize-lines: 2
@@ -831,7 +832,11 @@ And now, some summary text.
         <div class="card">
           {% if obj.image %}<img class="card-img-top" src="{{ obj.image }}">{% endif %}
           <div class="card-body">
-            <a href="http://homicide.latimes.com/post/{{ obj.slug }}" target="_blank"><strong><h5 class="card-title">{{ obj.first_name }} {{ obj.last_name }}</h5></strong></a>
+            <a href="http://homicide.latimes.com/post/{{ obj.slug }}" target="_blank">
+                <strong>
+                    <h5 class="card-title">{{ obj.first_name }} {{ obj.last_name }}</h5>
+                </strong>
+            </a>
             <p class="card-text">{{ obj.last_name }}, a {{ obj.age}}-year-old {{ obj.race }} {{ obj.gender }}, died in {{ obj.death_year }}.</p>
           </div>
         </div>
@@ -839,10 +844,10 @@ And now, some summary text.
     </div>
 
 
-Let's set up our card grid as it's own section by adding ``<section>`` tags.
+Let's set up our card grid as it's own section by adding ``<section>`` tags. This is simple example of adding some hidden stucture to your page so its easier for search engines and other spiders to parse.
 
 .. code-block:: jinja
-    :emphasize-lines: 1,15
+    :emphasize-lines: 1,19
 
     <section>
         <h3>Lives lost in Harvard Park</h3>
@@ -852,7 +857,11 @@ Let's set up our card grid as it's own section by adding ``<section>`` tags.
             <div class="card">
               {% if obj.image %}<img class="card-img-top" src="{{ obj.image }}">{% endif %}
               <div class="card-body">
-                <a href="http://homicide.latimes.com/post/{{ obj.slug }}" target="_blank"><strong><h5 class="card-title">{{ obj.first_name }} {{ obj.last_name }}</h5></strong></a>
+                <a href="http://homicide.latimes.com/post/{{ obj.slug }}" target="_blank">
+                    <strong>
+                        <h5 class="card-title">{{ obj.first_name }} {{ obj.last_name }}</h5>
+                    </strong>
+                </a>
                 <p class="card-text">{{ obj.last_name }}, a {{ obj.age}}-year-old {{ obj.race }} {{ obj.gender }}, died in {{ obj.death_year }}.</p>
               </div>
             </div>
@@ -865,7 +874,7 @@ Let's set up our card grid as it's own section by adding ``<section>`` tags.
     :width: 100%
 
 
-Let's commit our work for this section.
+We're all done here. So let's commit our work for this chapter.
 
 .. code-block:: bash
 
@@ -885,28 +894,53 @@ Push it to GitHub.
 Chapter 6: Hello charts
 ***********************
 
-We have data, but what does it look like?
-
-To visualize our data, we're going to use `D3.js <https://d3js.org/>`_ library, which has become the industry standard for data visualization. Since it is so flexible for data vizualization and mapping applications, D3 powers many of the news graphics made with JavaScript you see online.
+To visualize our data, we're going to use the `D3.js <https://d3js.org/>`_ library, which has become the industry standard for creating custom data visualizations. Because it is so flexible and allows for so many different data-driven expressions, D3 powers many of the news graphics made with JavaScript you see online.
 
 .. note::
 
-    We're going to dive straight into the deep end with creating a D3 chart from scratch in this section. There is a lot of setup involved with this, and it'll probably seem like overkill at points. And it is! D3 gives you a very high level of control over your graphics, which makes all this setup necessary.
+    We're going to dive straight into the deep end by creating a D3 chart from scratch. It involves a lot of code and will probably seem like overkill.
 
-    We wanted to use this section as an introduction to D3 and give you a foothold into the `many, many different types of visualizations you can make with it <https://github.com/d3/d3/wiki/Gallery>`_.
+    In fact, it is. D3 gives you a very high level of control over your graphics. It takes a long period of study to master. No one can do in a day.
 
-First, use npm to install D3.
+    Our goal in this class is to instead quickly introduce you to D3's basic outlines so you can see how it is being used in the field.
+
+
+First, return to your terminal and use npm to install D3.
 
 .. code-block:: bash
 
-    $ npm install -s d3@5
+    $ npm install d3@5
 
+From here, we'll be working in our ``_scripts`` folder, where our framework expects us to write JavaScript.
 
-The ``-s`` argument saves d3 to a dependencies file. That way, if you ever need to go through the install steps for your app again, you can do so easily by simply running ``npm install``.
+It includes a file called ``main.js`` which is run every time the page loads. Our framework starts us out with some boilerplate there.
 
-From here, we'll be working in our ``_scripts`` folder. Create a file called ``_charts.js`` inside of ``_scripts/``.
+.. code-block:: javascript
 
-You can include the libraries we installed (or any JavaScript file!) by using ``require()``. While with modern versions of D3 you can import specific parts of the library that are most relevant to your app, we're just going to import the whole library for simplicity.
+    // Main javascript entry point
+    // Should handle bootstrapping/starting application
+
+    'use strict';
+
+    import 'core-js';
+    import 'regenerator-runtime/runtime';
+    import $ from 'jquery';
+    import { Link } from '../_modules/link/link';
+
+    $(() => {
+        new Link(); // Activate Link modules logic
+        console.log('Welcome to Yeogurt!');
+    });
+
+Rather than write our code directly in there, we are going to create a separate file for our charts. We will call it ``_charts.js`` and save it inside of ``_scripts/``.
+
+.. note::
+
+    Remember the underscore coding convention we talked about befre? Here it is again. We named our new file ``_charts.js`` with an underscore (``_``) in front because its code will be compiled into ``main.js`` when the site is baked. Unlike ``_charts.js``, ``main.js`` doesn't have an underscore, because it is the master file that pulls in all the other scripts.
+
+    Structuring our code this way helps keep things organized, as each file controls one specific part of the page. Need to make an adjustment to your chart? Go to ``_charts.js``.
+
+You can include the libraries we installed (or any JavaScript file!) by using ``require()``. While with modern versions of D3 you can import only the specific parts of the library needed by your app, we're just going to import the whole library for simplicity.
 
 .. code-block:: javascript
 
@@ -915,23 +949,22 @@ You can include the libraries we installed (or any JavaScript file!) by using ``
     // At the end of the _charts.js file
     console.log('hello, this is my charts file!');
 
-
-Remember our underscore coding convention? Here, ``_charts.js`` has an underscore (``_``) in front of it because it will be compiled into ``main.js`` when the site is baked.
-
-That is, if we tell it to. Use the same ``require()`` method to pull our code into ``main.js``. Unlike ``_charts.js``, ``main.js`` doesn't have an underscore, because it is the file pulls in all the other scripts.
+Now we can use the same ``require()`` method to pull our charts code into ``main.js``.
 
 You don't have to use this convention, but it's handy as a visual marker of what files are dependent on others.
 
 .. code-block:: javascript
-    :emphasize-lines: 14
+    :emphasize-lines: 16
 
     // Main javascript entry point
     // Should handle bootstrapping/starting application
 
     'use strict';
 
+    import 'core-js';
+    import 'regenerator-runtime/runtime';
     import $ from 'jquery';
-    import Link from '../_modules/link/link';
+    import { Link } from '../_modules/link/link';
 
     $(() => {
       new Link(); // Activate Link modules logic
@@ -940,17 +973,14 @@ You don't have to use this convention, but it's handy as a visual marker of what
 
     var chart = require('./_charts.js');
 
-
-Structuring our code this way helps keep things organized, as each file controls one specific part of the page. Need to make an adjustment to your chart? Go to ``_charts.js``.
-
-Now if you reload your page and go to your inspector (click on the three dots in the top right of Chrome, go down to "More tools" and select "Developer tools"), you should see ``hello, this is my charts file!`` in the console.
+Now if you reload your page and go to your inspector by right clicking on the page and selecting "inspect", you should see ``hello, this is my charts file!`` in the console.
 
 .. image:: _static/hello-charts.png
     :width: 100%
 
-What chart should we make? The story points out that Harvard Park experienced an increase in homicides as there was a decrease across the rest of the county. Let's try to visualize that.
+Now that we have our tools, it's time for the real work. What chart should we make? The story points out that Harvard Park experienced an increase in homicides at the same time there was a decrease across the rest of the county. Let's try to visualize that.
 
-First, we need somewhere for our charts to go. In our ``index.nunjucks`` file, inside of ``{% block content %}`` where you want the chart to appear, create a ``div`` element with an id of ``county-homicides``, and another with an id of ``harvard-park-homicides``.
+First, we need somewhere for our charts to live on the page. In our ``index.nunjucks`` file, inside of ``{% block content %}`` where you want the chart to appear, create a ``div`` element with an id of ``county-homicides``, and another with an id of ``harvard-park-homicides``.
 
 .. code-block:: jinja
     :emphasize-lines: 11-14
@@ -970,27 +1000,29 @@ First, we need somewhere for our charts to go. In our ``index.nunjucks`` file, i
       <div class="inline-chart" id="harvard-park-homicides"></div>
     </div>
 
-    <h3>Lives lost</h3>
-    <p>The {{ site.data.harvard_park_homicides|length }} homicides in Harvard Park since 2000 were primarily black and Latino males, but the list includes husbands, wives, fathers, mothers of all ages, and even some small children.</p>
-
-    {% for obj in site.data.harvard_park_homicides %}
-    <div class="card-columns">
+    <section>
+        <h3>Lives lost</h3>
+        <p>The {{ site.data.harvard_park_homicides|length }} homicides in Harvard Park since 2000 were primarily black and Latino males, but the list includes husbands, wives, fathers, mothers of all ages, and even some small children.</p>
+        <div class="card-columns">
         {% for obj in site.data.harvard_park_homicides %}
-        <div class="card">
-          {% if obj.image %}<img class="card-img-top" src="{{ obj.image }}">{% endif %}
-          <div class="card-body">
-            <h5 class="card-title">{{ obj.first_name }} {{ obj.last_name }}</h5>
-            <p class="card-text">A {{ obj.age}}-year-old {{ obj.race }} {{ obj.gender }} died in {{ obj.death_year }}.</p>
-          </div>
-        </div>
+            <div class="card">
+            {% if obj.image %}<img class="card-img-top" src="{{ obj.image }}" alt="{{ obj.first_name }} {{ obj.last_name }}">{% endif %}
+            <div class="card-body">
+                <a href="http://homicide.latimes.com/post/{{ obj.slug }}" target="_blank">
+                        <strong>
+                            <h5 class="card-title">{{ obj.first_name }} {{ obj.last_name }}</h5>
+                        </strong>
+                    </a>
+                <p class="card-text">{{ obj.last_name }}, a {{ obj.age}}-year-old {{ obj.race }} {{ obj.gender }}, died in {{ obj.death_year }}.</p>
+            </div>
+            </div>
         {% endfor %}
-    </div>
-    {% endfor %}
-
+        </div>
+    </section>
     {% endblock %}
 
 
-Meanwhile, we need data. Copy the `annual totals data <https://raw.githubusercontent.com/ireapps/first-graphics-app/master/src/_data/annual_totals.json>`_ to a new file, ``_data/annual_totals.json``. This file contains annual homicide counts for Harvard Park and all of Los Angeles County. We can use nunjucks to include our data file directly in the template.
+That's nice, but we can't make a chart without data. Copy the `annual totals data <https://raw.githubusercontent.com/ireapps/first-graphics-app/master/data/annual_totals.json>`_ on GitHub to a new file at ``_data/annual_totals.json``. This file contains annual homicide counts for Harvard Park and all of Los Angeles County. We can use nunjucks to include our data file directly in the template. Since it's a JSON file it will work right away.
 
 Add a ``{% scripts %}`` block to the end of your ``index.nunjucks`` file:
 
@@ -1005,7 +1037,7 @@ Add a ``{% scripts %}`` block to the end of your ``index.nunjucks`` file:
 
 We want to make two charts - one of county homicides and one of killings in Harvard Park. Let's start with county homicides. D3 requires us to do a bit of house work before we get started. The first thing we need is a container for our chart to go in. We'll be making these charts in an ``<svg>`` element, which stands for Scalable Vector Graphic.
 
-The first thing we'll want to do is select the HTML container of the chart with D3, and "append" an ``svg`` element to it.
+The first thing we'll want to do is select the HTML container of the chart with D3, and "append" an ``svg`` element to it. So, back in ``_charts.js``, lets add the following:
 
 .. code-block:: javascript
     :emphasize-lines: 3-5
@@ -1099,7 +1131,7 @@ And here's what it looks like without the margins, see how the labels are clippe
 .. image:: _static/chart-g-nomargins.png
     :width: 100%
 
-At this point, we're ready to start drawing our chart. Let's start with by creating the "scales" for our data. D3 manages its data by mapping input values from the data, also known as the domain, into output values on the screen, or the range. This creates a scale that transforms the input into the output.
+At this point, we're ready to start drawing our chart. Let's start by creating the "scales" for our data. D3 manages its data by mapping input values from the data, also known as the domain, into output values on the screen, or the range. This creates a scale that transforms the input into the output.
 
 D3 has many different types of scales, for linear, categorical and time-based data. In this case, we'll want a linear scale for the Y axis, and a "band" scale, which is a type of categorical scale useful for bar charts, for the X axis.
 
@@ -1117,9 +1149,7 @@ If you look at the data in ``src/_data/annual_totals.json``, you'll see that eac
 
 Since we're charting homicides for the entire county we want the ``homicides_total`` attribute in our data for the Y axis, and the X axis will be the year. The arrow ``=>`` is a shorthand method of accessing the ``homicides_total`` attribute of each object in the annualTotals array.
 
-Note that for the X axis, all we want is an array of the years, e.g.:``[2000, 2001, ...]`` so we can call ``.map()`` on our data to return the year value. ``.map()`` iterates over every value in an array and returns a value for every item.
-
-For the Y-axis, we want the domain to start at 0, so we can set that manually.
+For the X axis, all we want is an array of the years, e.g.:``[2000, 2001, ...]`` so we can call ``.map()`` on our data to return the year value. ``.map()`` iterates over every value in an array and returns a value for every item.
 
 .. code-block:: javascript
 
@@ -1127,7 +1157,13 @@ For the Y-axis, we want the domain to start at 0, so we can set that manually.
 
   	var xDomain = annualTotals.map(d => d.year);
 
-  	var yDomain = [
+For the Y-axis, we want the domain to start at 0, so we can set that manually. We can use D3's ``max`` method to get the largest value in the dataset.
+
+.. code-block:: javascript
+
+    // The rest of your code is up here
+
+    var yDomain = [
         0,
         d3.max(annualTotals.map(d => d.homicides_total))
   	];
@@ -1185,6 +1221,8 @@ Finally, we append those to the chart by appending a ``<g>`` tag and "calling" t
 
 Well that doesn't look quite right. The reason the X axis is displaying at the top of the chart is that in SVGs, the coordinate 0,0 is at the top left. So we need to shift, or ``translate`` the X axis down by the height of the chart. The Y axis is fine where it is.
 
+Replace the code for the X axis with the below.
+
 .. code-block:: javascript
     :emphasize-lines: 5
 
@@ -1200,7 +1238,7 @@ Well that doesn't look quite right. The reason the X axis is displaying at the t
     :width: 100%
 
 
-Now that the axes are there, we're finally ready to draw our bars. D3 handles it's data by binding the data to the SVG elements - hence the name: "Data Driven Documents."
+Now that the axes are there, we're finally ready to draw our bars. D3 handles its data by binding the records to the SVG elements - hence the name: "Data Driven Documents."
 
 The format seems a little strange at first, because you're selecting elements, then binding data to the selection, then creating elements that are bound to the data. You do this by chaining two methods, ``.data()``, which determines the data set that you're binding, and ``.enter()``, which iterates over the data set.
 
@@ -1208,7 +1246,7 @@ Since we're making a bar chart, we're going to create a ``<rect>`` element, and 
 
 .. note::
 
-    If you'd like to know more about how D3 data binding works, Scott Murray has an `excellent explanation and tutorial<https://alignedleft.com/tutorials/d3/binding-data>`_ on his website.
+    If you'd like to know more about how D3 data binding works, Scott Murray has an `excellent explanation and tutorial <https://alignedleft.com/tutorials/d3/binding-data>`_ on his website.
 
 Let's give it a try, by binding our ``annualTotals`` data to the bars on the chart. Start below the code for your axes. First, let's simply append the ``<rect>`` elements to the chart
 
@@ -1272,7 +1310,7 @@ You can do that by adding the following line to ``main.scss``.
 
     // Import Modules
     @import '../_modules/link/link';
-    @import './charts.scss';
+    @import './_charts.scss';
 
 
 .. image:: _static/chart-half-width.png
@@ -1315,9 +1353,9 @@ Now we have a nicely styled chart, and we're ready to start on our second one. D
 
 Open up ``_charts.js`` again, and create a function, ``createChart``. We'll need to think about this for a second - what are the values that are going to change between the two charts?
 
-- Container element
-- Data field used for the homicide counts
-- Y-axis values
+- The container element
+- The data field used for the homicide counts
+- The y-axis values
 
 If we calculate the domain values correctly the Y-axis values should automatically update so we shouldn't have to worry about that too much. So our function should have two arguments - the ID of the container element, and the data field we're using.
 
@@ -1331,10 +1369,11 @@ If we calculate the domain values correctly the Y-axis values should automatical
 Now, you can copy everything we wrote in ``_charts.js`` under the ``require('d3')`` line into this function. Your file should look like this now.
 
 .. code-block:: javascript
+    :emphasize-lines: 3,56
 
     var d3 = require('d3');
 
-    function createChart(el, fieldname) {
+    var createChart = (el, fieldname) => {
       var margin = {top: 20, right:20, bottom:20, left:40} ;
       var container = d3.select('#county-homicides');
       var containerWidth = container.node().offsetWidth;
@@ -1389,9 +1428,9 @@ Now, you can copy everything we wrote in ``_charts.js`` under the ``require('d3'
           .attr('height', d => chartHeight - yScale(d.homicides_total));
     }
 
-Now, if you reload your page, your chart will have disappeared! That's because our code is no longer running since it's in a function, but we're not calling that function.
+Now, if you reload your page, your chart will have disappeared! That's because our code is packed away inside a function, which won't run until we call on it.
 
-At the end of the file, let's call the function with the arguments necessary for the countywide homicides chart. Remember the element id is ``county-homicides``, and the field we're using is ``homicides_total``.
+At the end of the file, let's return to ``_charts.js`` and call the function with the arguments necessary for the countywide homicides chart. Remember the element id is ``county-homicides``, and the field we're using is ``homicides_total``.
 
 .. code-block:: javascript
 
@@ -1405,7 +1444,7 @@ First, let's change the ``container`` variable to use the ID we're providing.
 .. code-block:: javascript
     :emphasize-lines: 3
 
-    function createChart(el, fieldname) {
+    var createChart = (el, fieldname) => {
       var margin = {top: 20, right:20, bottom:20, left:40} ;
       var container = d3.select(el);
 
@@ -1434,9 +1473,9 @@ Luckily, we only have to do this a few times, once where we're calculating the d
 .. code-block:: javascript
     :emphasize-lines: 19,51,53
 
-    function createChart(el, fieldname) {
-      var margin = {top: 20, right:20, bottom:20, left:40} ;
-      var container = d3.select('#county-homicides');
+    var createChart = (el, fieldname) => {
+      var margin = {top: 20, right:20, bottom:20, left:40};
+      var container = d3.select(el);
       var containerWidth = container.node().offsetWidth;
       var containerHeight = containerWidth * 0.66;
       var chartWidth = containerWidth - margin.right - margin.left;
@@ -1615,7 +1654,7 @@ Congratulations, you've made your charts! Let's commit our changes and move on t
     - `Chartbuilder <https://quartz.github.io/Chartbuilder/>`_ from `Quartz <https://qz.com/>`_, is very good for basic, fast charts with light customization.
     - `DataWrapper <https://www.datawrapper.de/>`_ allows a range of visualizations beyond basic charts, including scatter plots and maps.
 
-**Extra credit**
+**Extra credit - interactivity!**
 
 Now let's try and make these charts interactive. We want to highlight a bar and display its value whenever a user hovers over it. To do this, we're going to use D3's "event binding."
 
@@ -1690,7 +1729,7 @@ Now let's add a tooltip. First, in the ``createCharts`` function, add a line tha
 Now in ``_charts.js``, let's go back to our ``.on()`` statement and try filling out the text element with the proper value, and positioning it. Let's also clear the div when the mouse leaves.
 
 .. code-block:: javascript
-    :emphasize-lines: 11-18,21-22
+    :emphasize-lines: 13-19,22-23
 
     svg.selectAll('.bar')
         .data(annualTotals)
@@ -1702,12 +1741,13 @@ Now in ``_charts.js``, let's go back to our ``.on()`` statement and try filling 
         .attr('width', d => xScale.bandwidth())
         .attr('height', d => chartHeight - yScale(d[fieldname]))
         .on('mouseenter', function(d) {
+            d3.select(this).classed('highlight', true);
+
             // centers the text above each bar
             var x = xScale(d.year) + xScale.bandwidth() / 2;
             // the - 5 bumps up the text a bit so it's not directly over the bar
             var y = yScale(d[fieldname]) - 5;
 
-            d3.select(this).classed('highlight', true);
             tooltip.text(d[fieldname])
                 .attr('transform', `translate(${x}, ${y})`)
         })
@@ -1743,7 +1783,7 @@ To draw the map we will rely on `Leaflet <http://leafletjs.com>`_, a JavaScript 
 
 .. code-block:: base
 
-    $ npm install -s leaflet@1.4.0
+    $ npm install leaflet@1.6.0
 
 
 After it's been installed, we should import Leaflet into ``_scripts/main.js`` so that its tools are available on our site.
@@ -1766,30 +1806,6 @@ After it's been installed, we should import Leaflet into ``_scripts/main.js`` so
 
     var chart = require('./charts.js');
     var L = require("leaflet");
-
-
-We'll also need to add a little hack to the file so that Leaflet's images will load. Don't ask. It's a long story.
-
-.. code-block:: javascript
-    :emphasize-lines: 17
-
-    // Main javascript entry point
-    // Should handle bootstrapping/starting application
-
-    'use strict';
-
-    var $ = require('jquery');
-    var Link = require('../_modules/link/link');
-
-    $(function() {
-      new Link(); // Activate Link modules logic
-      console.log('Welcome to Yeogurt!');
-    });
-
-    var chart = require('./charts.js');
-    var L = require("leaflet");
-
-    L.Icon.Default.imagePath = 'https://unpkg.com/leaflet@1.4.0/dist/images/';
 
 
 Next we import Leaflet's stylesheets in ``_styles/main.scss`` so that they are also included on our site.
@@ -1846,10 +1862,12 @@ To bring the map to life, add a new file named ``_map.js`` to the ``_scripts`` d
     var L = require("leaflet");
     var map = require("./_map.js");
 
-    L.Icon.Default.imagePath = 'https://unpkg.com/leaflet@1.3.1/dist/images/';
 
+Now in ``_scripts/_map.js`` paste in the following Leaflet code to generate a simple map. It does three things:
 
-Now in ``_scripts/_map.js`` paste in the following Leaflet code to generate a simple map. It does three things: create a new map in the HTML element we made with "map" set as its ID; add a new map layer with roads, borders, water and other features from OpenStreetMap; finally, add the layer to the map.
+- create a new map in the HTML element we made with "map" set as its ID;
+- add a new map layer with roads, borders, water and other features from OpenStreetMap;
+- finally, add the layer to the map.
 
 .. code-block:: javascript
 
@@ -1907,6 +1925,26 @@ Open ``index.nunjucks`` and add a new variable to the ``scripts`` block where th
     </script>
     {% endblock %}
 
+If you look in the ``_data/harvard_park_homicides.json`` file, you'll see that every record has a latitude and longitude associated with it. We can use these to place each homicide as a point on the map.
+
+.. code-block:: javascript
+
+    {
+        "case_number":"2017-04514",
+        "slug":"eddie-rosendo-lino",
+        "first_name":"Eddie",
+        "middle_name":"Rosendo",
+        "last_name":"Lino",
+        "death_date":"2017-06-18T00:00:00.000Z",
+        "death_year":2017,
+        "age":23.0,
+        "race":"black",
+        "gender":"male",
+        "image":null,
+        "longitude":-118.304107484,
+        "latitude":33.9904336958
+    },
+
 
 Now return to ``_scripts/_map.js``. At the bottom add some JavaScript code that steps through the homicide list and adds each one to the map as a circle, just like the real Homicide Report.
 
@@ -1918,9 +1956,9 @@ Now return to ``_scripts/_map.js``. At the bottom add some JavaScript code that 
     sat.addTo(map);
     map.setView([33.983265, -118.306799], 18);
 
-    homicides.forEach(function (obj) {
+    homicides.forEach(obj => {
         L.circleMarker([obj.latitude,  obj.longitude])
-          .addTo(map);
+          .addTo(map)
     });
 
 
@@ -1935,7 +1973,7 @@ Next, extend the code in ``_scripts/_map.js`` to add a tooltip label on each poi
 .. code-block:: javascript
     :emphasize-lines: 4
 
-    homicides.forEach(function (obj) {
+    homicides.forEach(obj => {
         L.circleMarker([obj.latitude,  obj.longitude])
           .addTo(map)
           .bindTooltip(obj.first_name + " " + obj.last_name);
@@ -1985,7 +2023,7 @@ To make the tooltips visible all the time, edit the JavaScript in ``_scripts/_ma
 .. code-block:: javascript
     :emphasize-lines: 4
 
-    homicides.forEach(function (obj) {
+    homicides.forEach(obj => {
         L.circleMarker([obj.latitude,  obj.longitude])
           .addTo(map)
           .bindTooltip(obj.first_name + " " + obj.last_name, {permanent: true});
@@ -2005,10 +2043,10 @@ To put it to use, we'll need to return to our friend ``npm``.
 
 .. code-block:: bash
 
-    $ npm install -s leaflet-minimap@3.6.1
+    $ npm install leaflet-minimap@3.6.1
 
 
-Just as with other libraries, we need to import it into `_scripts/main.js`.
+Just as with other libraries, we need to import it into `_scripts/main.js`. Make sure you import it above our ``map.js`` code.
 
 .. code-block:: javascript
     :emphasize-lines: 16
@@ -2030,8 +2068,6 @@ Just as with other libraries, we need to import it into `_scripts/main.js`.
     var L = require("leaflet");
     var MiniMap = require('leaflet-minimap');
     var map = require("./_map.js");
-
-    L.Icon.Default.imagePath = 'https://unpkg.com/leaflet@1.4.0/dist/images/';
 
 
 Its stylesheets also need to be imported to ``_styles/main.scss``.
@@ -2060,7 +2096,7 @@ Now that everything is installed, return to ``scripts/_map.js`` and create an in
     sat.addTo(map);
     map.setView([33.983265, -118.306799], 18);
 
-    homicides.forEach(function (obj) {
+    homicides.forEach(obj => {
         L.circleMarker([obj.latitude,  obj.longitude])
           .addTo(map)
           .bindTooltip(obj.first_name + " " + obj.last_name, {permanent: true});
@@ -2078,7 +2114,7 @@ Save the file and the inset map should appear on your page.
 .. image:: _static/hello-minimap.png?v=2
     :width: 100%
 
-Just for fun, let's add a couple creature comforts to map. By default, the scroll wheel on your mouse will trigger zooms on the map. Some people (Armand!) have strong feelings about this. Let's do them a favor and turn it off.
+Just for fun, let's add a couple creature comforts to map. By default, the scroll wheel on your mouse or laptop trackpad will trigger zooms on the map. Some people (Armand!) have strong feelings about this. Let's do them a favor and turn it off.
 
 .. code-block:: javascript
     :emphasize-lines: 1-3
@@ -2090,7 +2126,7 @@ Just for fun, let's add a couple creature comforts to map. By default, the scrol
     sat.addTo(map);
     map.setView([33.983265, -118.306799], 18);
 
-    homicides.forEach(function (obj) {
+    homicides.forEach(obj => {
         L.circleMarker([obj.latitude,  obj.longitude])
           .addTo(map)
           .bindTooltip(obj.first_name + " " + obj.last_name, {permanent: true});
@@ -2185,7 +2221,7 @@ Hey. How about a headline?
     {% block headline %}A South L.A. neighborhood grapples with a wave of violence{% endblock %}
     {% block byline %}By me{% endblock %}
     {% block pubdate %}
-        <time datetime="2018-03-10" pubdate>Mar. 10, 2018</time>
+        <time datetime="2020-03-07" pubdate>Mar. 7, 2020</time>
     {% endblock %}
 
 
@@ -2201,9 +2237,9 @@ And a real byline.
     {% extends '_layouts/base.nunjucks' %}
 
     {% block headline %}A South L.A. neighborhood grapples with a wave of violence{% endblock %}
-    {% block byline %}By <a href="http://www.firstgraphicsapp.org/">The First Graphics App Tutorial</a>{% endblock %}
+    {% block byline %}By <a href="https://www.firstgraphics.app/">The First Graphics App Tutorial</a>{% endblock %}
     {% block pubdate %}
-        <time datetime="2018-03-10" pubdate>Mar. 10, 2018</time>
+        <time datetime="2020-03-07" pubdate>Mar. 7, 2020</time>
     {% endblock %}
 
 
@@ -2257,7 +2293,7 @@ In in our last chapter, all the work we've done will finally be published online
 
 Our Yeoman framework, with its tools, structure and shortcuts, has served us well. It's been a great place to experiment, organize and develop our work. But it's useless to our readers.
 
-The HTML, JavaScript and CSS files the framework generates are all they need. Without all the code running our terminal, those files aren't be able to take advantage of Yeogurt, Gulp, BrowserSync and all our other tricks. But it won't matter. We can upload the simple files our framework renders to the web and they'll be enough for anyone who wants them.
+The HTML, JavaScript and CSS files the framework generates are all they need. Without all the code running in our terminal, those files aren't be able to take advantage of Yeogurt, Gulp, BrowserSync and all our other tricks. But it won't matter. We can upload the simple files our framework renders to the web and they'll be enough for anyone who wants them.
 
 That process — converting a dynamic, living website to simple files living on the filesystem — is a common strategy for publishing news sites. It goes by different names, like "flattening," "freezing" or "baking."  Whatever you call it, it’s a solid path to cheap­, stable host­ing for simple sites. It is used across the industry for pub­lish­ing elec­tion res­ults, longform stories, spe­cial pro­jects and numerous other things.
 
@@ -2273,7 +2309,7 @@ That process — converting a dynamic, living website to simple files living on 
     * Data downloads from the `California Civic Data Coalition <https://calaccess.californiacivicdata.org/downloads/latest/>`_
 
 
-Lucky for us, Yeogurt is pre-configured to flatten our dynamic site. And GitHub has a hosting service for publishing static pages. Here's all it takes.
+Lucky for us, Yeogurt is pre-configured to flatten our dynamic site. And GitHub has a hosting service for publishing static pages.
 
 Next, open the ``package.json`` file at the root of the project. Scroll to the bottom. In the ``config`` section edit it to instruct Gulp to flatten files to the ``docs`` directory.
 
@@ -2306,7 +2342,7 @@ Once you are back at the standard terminal, enter the following command to build
 
 .. code-block:: bash
 
-    $ gulp --production
+    $ npm run-script build
 
 
 That saves the entire file to the `docs` folder. We're doing that because it's the folder expected by GitHub's free publishing system, called "Pages."

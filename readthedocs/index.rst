@@ -1863,7 +1863,11 @@ To bring the map to life, add a new file named ``_map.js`` to the ``_scripts`` d
     var map = require("./_map.js");
 
 
-Now in ``_scripts/_map.js`` paste in the following Leaflet code to generate a simple map. It does three things: create a new map in the HTML element we made with "map" set as its ID; add a new map layer with roads, borders, water and other features from OpenStreetMap; finally, add the layer to the map.
+Now in ``_scripts/_map.js`` paste in the following Leaflet code to generate a simple map. It does three things:
+
+- create a new map in the HTML element we made with "map" set as its ID;
+- add a new map layer with roads, borders, water and other features from OpenStreetMap;
+- finally, add the layer to the map.
 
 .. code-block:: javascript
 
@@ -1920,6 +1924,26 @@ Open ``index.nunjucks`` and add a new variable to the ``scripts`` block where th
     var homicides = {% include '_data/harvard_park_homicides.json' %};
     </script>
     {% endblock %}
+
+If you look in the ``_data/harvard_park_homicides.json`` file, you'll see that every record has a latitude and longitude associated with it. We can use these to place each homicide as a point on the map.
+
+.. code-block:: javascript
+
+    {
+        "case_number":"2017-04514",
+        "slug":"eddie-rosendo-lino",
+        "first_name":"Eddie",
+        "middle_name":"Rosendo",
+        "last_name":"Lino",
+        "death_date":"2017-06-18T00:00:00.000Z",
+        "death_year":2017,
+        "age":23.0,
+        "race":"black",
+        "gender":"male",
+        "image":null,
+        "longitude":-118.304107484,
+        "latitude":33.9904336958
+    },
 
 
 Now return to ``_scripts/_map.js``. At the bottom add some JavaScript code that steps through the homicide list and adds each one to the map as a circle, just like the real Homicide Report.
@@ -2022,7 +2046,7 @@ To put it to use, we'll need to return to our friend ``npm``.
     $ npm install leaflet-minimap@3.6.1
 
 
-Just as with other libraries, we need to import it into `_scripts/main.js`.
+Just as with other libraries, we need to import it into `_scripts/main.js`. Make sure you import it above our ``map.js`` code.
 
 .. code-block:: javascript
     :emphasize-lines: 16
@@ -2090,7 +2114,7 @@ Save the file and the inset map should appear on your page.
 .. image:: _static/hello-minimap.png?v=2
     :width: 100%
 
-Just for fun, let's add a couple creature comforts to map. By default, the scroll wheel on your mouse will trigger zooms on the map. Some people (Armand!) have strong feelings about this. Let's do them a favor and turn it off.
+Just for fun, let's add a couple creature comforts to map. By default, the scroll wheel on your mouse or laptop trackpad will trigger zooms on the map. Some people (Armand!) have strong feelings about this. Let's do them a favor and turn it off.
 
 .. code-block:: javascript
     :emphasize-lines: 1-3
