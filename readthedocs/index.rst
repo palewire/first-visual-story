@@ -1729,7 +1729,7 @@ Now let's add a tooltip. First, in the ``createCharts`` function, add a line tha
 Now in ``_charts.js``, let's go back to our ``.on()`` statement and try filling out the text element with the proper value, and positioning it. Let's also clear the div when the mouse leaves.
 
 .. code-block:: javascript
-    :emphasize-lines: 14-21,23-24
+    :emphasize-lines: 13-19,22-23
 
     svg.selectAll('.bar')
         .data(annualTotals)
