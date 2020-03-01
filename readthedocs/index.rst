@@ -940,21 +940,21 @@ Rather than write our code directly in there, we are going to create a separate 
 
     Structuring our code this way helps keep things organized, as each file controls one specific part of the page. Need to make an adjustment to your chart? Go to ``_charts.js``.
 
-You can include the libraries we installed (or any JavaScript file!) by using ``require()``. While with modern versions of D3 you can import only the specific parts of the library needed by your app, we're just going to import the whole library for simplicity.
+You can include the libraries we installed (or any JavaScript file!) by using ``import``. While with modern versions of D3 you can import only the specific parts of the library needed by your app, we're just going to import the whole library for simplicity.
 
 .. code-block:: javascript
 
-    var d3 = require('d3');
+    import * as d3 from "d3";
 
     // At the end of the _charts.js file
     console.log('hello, this is my charts file!');
 
-Now we can use the same ``require()`` method to pull our charts code into ``main.js``.
+Now we can use the same ``import`` method to pull our charts code into ``main.js``.
 
 You don't have to use this convention, but it's handy as a visual marker of what files are dependent on others.
 
 .. code-block:: javascript
-    :emphasize-lines: 16
+    :emphasize-lines: 10
 
     // Main javascript entry point
     // Should handle bootstrapping/starting application
@@ -965,13 +965,13 @@ You don't have to use this convention, but it's handy as a visual marker of what
     import 'regenerator-runtime/runtime';
     import $ from 'jquery';
     import { Link } from '../_modules/link/link';
+    import './_charts.js';
 
     $(() => {
       new Link(); // Activate Link modules logic
       console.log('Welcome to Yeogurt!');
     });
 
-    var chart = require('./_charts.js');
 
 Now if you reload your page and go to your inspector by right clicking on the page and selecting "inspect", you should see ``hello, this is my charts file!`` in the console.
 
@@ -1022,17 +1022,14 @@ First, we need somewhere for our charts to live on the page. In our ``index.nunj
     {% endblock %}
 
 
-That's nice, but we can't make a chart without data. Copy the `annual totals data <https://raw.githubusercontent.com/ireapps/first-graphics-app/master/data/annual_totals.json>`_ on GitHub to a new file at ``_data/annual_totals.json``. This file contains annual homicide counts for Harvard Park and all of Los Angeles County. We can use nunjucks to include our data file directly in the template. Since it's a JSON file it will work right away.
+That's nice, but we can't make a chart without data. Copy the `annual totals data <https://raw.githubusercontent.com/ireapps/first-graphics-app/master/data/annual_totals.json>`_ on GitHub to a new file at ``_data/annual_totals.json``. This file contains annual homicide counts for Harvard Park and all of Los Angeles County. 
 
-Add a ``{% scripts %}`` block to the end of your ``index.nunjucks`` file:
+We can use the same import syntax to include the data in our ``_charts.js`` file. Since it's a JSON file it will work right away.
 
-.. code-block:: jinja
+.. code-block:: javascript
 
-    {% block scripts %}
-    <script>
-    var annualTotals = {% include '_data/annual_totals.json' %};
-    </script>
-    {% endblock %}
+    import * as d3 from "d3";
+    import annualTotals from "../_data/annual_totals";
 
 
 We want to make two charts - one of county homicides and one of killings in Harvard Park. Let's start with county homicides. D3 requires us to do a bit of house work before we get started. The first thing we need is a container for our chart to go in. We'll be making these charts in an ``<svg>`` element, which stands for Scalable Vector Graphic.
@@ -1040,9 +1037,10 @@ We want to make two charts - one of county homicides and one of killings in Harv
 The first thing we'll want to do is select the HTML container of the chart with D3, and "append" an ``svg`` element to it. So, back in ``_charts.js``, lets add the following:
 
 .. code-block:: javascript
-    :emphasize-lines: 3-5
+    :emphasize-lines: 4-6   
 
-    var d3 = require('d3');
+    import * as d3 from "d3";
+    import annualTotals from "../_data/annual_totals";
 
     // Make sure you use the # here!
     var container = d3.select('#county-homicides');
@@ -1056,9 +1054,10 @@ Now if you look in your inspector, you'll see that we've appended an ``<svg>`` t
 Let's use ``.node()`` to access the HTML element and save the width and height of the container to variables. I like to specify the height as a percentage of the width, to get an aspect ratio.
 
 .. code-block:: javascript
-    :emphasize-lines: 5-6
+    :emphasize-lines: 6-7
 
-    var d3 = require('d3');
+    import * as d3 from "d3";
+    import annualTotals from "../_data/annual_totals";
 
     // Make sure you use the # here!
     var container = d3.select('#county-homicides');
@@ -1070,9 +1069,10 @@ Let's use ``.node()`` to access the HTML element and save the width and height o
 Now we can use them to set the properties, or "attributes" of the SVG using D3's ``.attr()`` method. Notice that we can "chain" methods on a selection in D3, which allows our code to be a little more concise.
 
 .. code-block:: javascript
-    :emphasize-lines: 9-10
+    :emphasize-lines: 10-11
 
-    var d3 = require('d3');
+    import * as d3 from "d3";
+    import annualTotals from "../_data/annual_totals";
 
     // Make sure you use the # here!
     var container = d3.select('#county-homicides');
@@ -1093,9 +1093,10 @@ Two more setup steps before we actually start making our charts. First, if we si
 We also create two variables, ``chartWidth`` and ``chartHeight`` that refer to the dimensions of the chart with the margins included.
 
 .. code-block:: javascript
-    :emphasize-lines: 3,8-9
+    :emphasize-lines: 4,9-10
 
-    var d3 = require('d3');
+    import * as d3 from "d3";
+    import annualTotals from "../_data/annual_totals";
 
     var margin = {top: 20, right:20, bottom:20, left:40};
     // Make sure you use the # here!
@@ -1119,7 +1120,7 @@ Second, we should add a ``<g>``, or "group" tag, where everything else in our ch
             .attr('width', chartWidth)
             .attr('height', chartHeight)
             .append('g')
-                .attr('transform', `translate(${margin.left}, ${margin.top})`)
+            .attr('transform', `translate(${margin.left}, ${margin.top})`)
 
 Adding the ``g`` tag and shifting it may seem like a weird step, but it's an important step to take to make sure the value labels aren't going to clip off the edges of our charts. To show what this does, this example skips a few steps ahead so you can see elements inside the ``g`` tag shifted by the margins of the chart.
 
@@ -1155,7 +1156,7 @@ For the X axis, all we want is an array of the years, e.g.:``[2000, 2001, ...]``
 
     // The rest of your code is up here
 
-  	var xDomain = annualTotals.map(d => d.year);
+    var xDomain = annualTotals.map(d => d.year);
 
 For the Y-axis, we want the domain to start at 0, so we can set that manually. We can use D3's ``max`` method to get the largest value in the dataset.
 
@@ -1163,10 +1164,7 @@ For the Y-axis, we want the domain to start at 0, so we can set that manually. W
 
     // The rest of your code is up here
 
-    var yDomain = [
-        0,
-        d3.max(annualTotals.map(d => d.homicides_total))
-  	];
+    var yDomain = [0, d3.max(annualTotals.map(d => d.homicides_total))];
 
 If you know the min and max values, you can also set these manually, which can be useful if you want your chart max to be a nice even number.
 
@@ -1177,13 +1175,13 @@ At the bottom of your file, let's create an ``xScale`` and ``yScale`` now. Note 
     // The rest of your code is up here
 
     var xScale = d3.scaleBand()
-                  .domain(xDomain)
-                  .range([0, chartWidth])
-                  .padding(0.1);
+        .domain(xDomain)
+        .range([0, chartWidth])
+        .padding(0.1);
 
     var yScale = d3.scaleLinear()
-                  .domain(yDomain)
-                  .range([chartHeight, 0]);
+        .domain(yDomain)
+        .range([chartHeight, 0]);
 
 Note that the X scale has an additional method, ``.padding()``, which specifies how far apart our bars are from one another.
 
@@ -1197,8 +1195,8 @@ For the Y-axis, we also want to add grid lines and limit the number of ticks tha
 
     var xAxis = d3.axisBottom(xScale);
     var yAxis = d3.axisLeft(yScale)
-                  .tickSize(-chartWidth)
-                  .ticks(4);
+        .tickSize(-chartWidth)
+        .ticks(4);
 
 Finally, we append those to the chart by appending a ``<g>`` tag and "calling" the axis function we just created. I like to give each axis element a class of "axis" and "x" or "y", depending on which axis we're creating.
 
@@ -1266,11 +1264,14 @@ Let's give it a try, by binding our ``annualTotals`` data to the bars on the cha
 Now if you look at your chart... nothing has changed! But open your inspector and look at your SVG - you'll see lots of ``<rect>`` elements, you just can't see them because they don't have any values for height and width, or x and y position values. Let's do this next.
 
 .. code-block:: javascript
-    :emphasize-lines: 8-11
+    :emphasize-lines: 10-13
 
     // The rest of your code is up here
 
-    svg.selectAll('.bar')
+    svg
+        .append('g')
+        .attr('class', 'bars')
+        .selectAll('.bar')
         .data(annualTotals)
         .enter()
         .append('rect')
@@ -1366,12 +1367,13 @@ If we calculate the domain values correctly the Y-axis values should automatical
 
     }
 
-Now, you can copy everything we wrote in ``_charts.js`` under the ``require('d3')`` line into this function. Your file should look like this now.
+Now, you can copy everything we wrote in ``_charts.js`` under the ``import * as d3 from "d3";`` line into this function. Your file should look like this now.
 
 .. code-block:: javascript
-    :emphasize-lines: 3,56
+    :emphasize-lines: 4,57
 
-    var d3 = require('d3');
+    import * as d3 from "d3";
+    import annualTotals from "../_data/annual_totals";
 
     var createChart = (el, fieldname) => {
       var margin = {top: 20, right:20, bottom:20, left:40} ;
@@ -1405,8 +1407,8 @@ Now, you can copy everything we wrote in ``_charts.js`` under the ``require('d3'
 
       var xAxis = d3.axisBottom(xScale);
       var yAxis = d3.axisLeft(yScale)
-                      .tickSize(-chartWidth)
-                      .ticks(4);
+        .tickSize(-chartWidth)
+        .ticks(4);
 
       svg.append("g")
           .attr("class", "x axis")
@@ -1658,7 +1660,7 @@ Congratulations, you've made your charts! Let's commit our changes and move on t
 
 Now let's try and make these charts interactive. We want to highlight a bar and display its value whenever a user hovers over it. To do this, we're going to use D3's "event binding."
 
-In our ``createChart()`` function, we'll want to add a new method, ``.on()` to the code snippet where we create out bars.
+In our ``createChart()`` function, we'll want to add a new method, ``.on()`` to the code snippet where we create out bars.
 
 For now, let's log the value to our console.
 
@@ -1781,31 +1783,9 @@ Next we'll move on to creating a map focused on West 62nd Street and Harvard Bou
 
 To draw the map we will rely on `Leaflet <http://leafletjs.com>`_, a JavaScript library for creating interactive maps. We will install it just as before by using ``npm`` from our terminal.
 
-.. code-block:: base
+.. code-block:: bash
 
     $ npm install leaflet@1.6.0
-
-
-After it's been installed, we should import Leaflet into ``_scripts/main.js`` so that its tools are available on our site.
-
-.. code-block:: javascript
-    :emphasize-lines: 15
-
-    // Main javascript entry point
-    // Should handle bootstrapping/starting application
-
-    'use strict';
-
-    var $ = require('jquery');
-    var Link = require('../_modules/link/link');
-
-    $(function() {
-      new Link(); // Activate Link modules logic
-      console.log('Welcome to Yeogurt!');
-    });
-
-    var chart = require('./charts.js');
-    var L = require("leaflet");
 
 
 Next we import Leaflet's stylesheets in ``_styles/main.scss`` so that they are also included on our site.
@@ -1843,29 +1823,35 @@ Now, back in the ``index.nunjucks`` template, we should create a placeholder in 
 To bring the map to life, add a new file named ``_map.js`` to the ``_scripts`` directory. Import it in ``main.js``.
 
 .. code-block:: javascript
-    :emphasize-lines: 16
+    :emphasize-lines: 10
 
     // Main javascript entry point
     // Should handle bootstrapping/starting application
+    "use strict";
 
-    'use strict';
-
-    var $ = require('jquery');
-    var Link = require('../_modules/link/link');
+    import "core-js";
+    import "regenerator-runtime/runtime";
+    import $ from "jquery";
+    import { Link } from "../_modules/link/link";
+    import "./_charts";
+    import "./_map";
 
     $(function() {
       new Link(); // Activate Link modules logic
       console.log('Welcome to Yeogurt!');
     });
 
-    var chart = require('./charts.js');
-    var L = require("leaflet");
-    var map = require("./_map.js");
+After Leaflet has been installed, we should import Leaflet into ``_scripts/map.js`` so that its tools are available in this file.
 
+.. code-block:: javascript
+
+    import * as L from "leaflet";
 
 Now in ``_scripts/_map.js`` paste in the following Leaflet code to generate a simple map. It does three things: create a new map in the HTML element we made with "map" set as its ID; add a new map layer with roads, borders, water and other features from OpenStreetMap; finally, add the layer to the map.
 
 .. code-block:: javascript
+
+    import * as L from "leaflet";
 
     var map = L.map('map');
     var sat = L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/satellite-streets-v9/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibGF0aW1lcyIsImEiOiJjanJmNjg4ZzYweGtvNDNxa2ZpZ2lma3Z4In0.g0lYVIEs9Y5QcUOhXactHA');
@@ -1909,20 +1895,16 @@ After you save the file, your map should have relocated. Let's tighten up that z
 
 Now let's load some data on the map. We will return to the list of all homicides already stored in ``_data/harvard_park_homicides.json``.
 
-Open ``index.nunjucks`` and add a new variable to the ``scripts`` block where the homicides list is stored.
+Import the homicides data into ``_map.js``.
 
-.. code-block:: jinja
-    :emphasize-lines: 4
+.. code-block:: javascript
+    :emphasize-lines: 2
 
-    {% block scripts %}
-    <script>
-    var annualTotals = {% include '_data/annual_totals.json' %};
-    var homicides = {% include '_data/harvard_park_homicides.json' %};
-    </script>
-    {% endblock %}
+    import * as L from "leaflet";
+    import homicides from "../_data/harvard_park_homicides.json";
 
 
-Now return to ``_scripts/_map.js``. At the bottom add some JavaScript code that steps through the homicide list and adds each one to the map as a circle, just like the real Homicide Report.
+At the bottom add some JavaScript code that steps through the homicide list and adds each one to the map as a circle, just like the real Homicide Report.
 
 .. code-block:: javascript
     :emphasize-lines: 6-9
@@ -2022,28 +2004,13 @@ To put it to use, we'll need to return to our friend ``npm``.
     $ npm install leaflet-minimap@3.6.1
 
 
-Just as with other libraries, we need to import it into `_scripts/main.js`.
+Just as with other libraries, we need to import it into `_scripts/_map.js`.
 
 .. code-block:: javascript
-    :emphasize-lines: 16
+    :emphasize-lines: 2
 
-    // Main javascript entry point
-    // Should handle bootstrapping/starting application
-
-    'use strict';
-
-    var $ = require('jquery');
-    var Link = require('../_modules/link/link');
-
-    $(function() {
-      new Link(); // Activate Link modules logic
-      console.log('Welcome to Yeogurt!');
-    });
-
-    var chart = require('./charts.js');
-    var L = require("leaflet");
-    var MiniMap = require('leaflet-minimap');
-    var map = require("./_map.js");
+    import * as L from "leaflet";
+    import MiniMap from "leaflet-minimap";
 
 
 Its stylesheets also need to be imported to ``_styles/main.scss``.
