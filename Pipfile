@@ -6,9 +6,8 @@ verify_ssl = true
 [dev-packages]
 
 [packages]
-sphinx-autobuild = "*"
 sphinx-rtd-theme = "*"
-Sphinx = "*"
+Sphinx = "==2.4.3"
 doc8 = "*"
 
 [requires]
