@@ -2301,7 +2301,7 @@ That process — converting a dynamic, living website to simple files living on 
 
     Examples of static news pages in the wild include:
 
-    * `A wide array of interactive graphics <https://www.washingtonpost.com/graphics/2017/ns/year-in-graphics/>`_ by The Washington Post
+    * `A wide array of interactive graphics <https://twitter.com/PostGraphics/status/1207035549527236609>`_ by The Washington Post
     * Hundreds of Los Angeles Times stories at `latimes.com/projects <http://www.latimes.com/projects/>`_
     * Dozens more from The Seattle Times at `projects.seattletimes.com <https://projects.seattletimes.com>`_
     * Interactive apps by `The Dallas Morning News <https://interactives.dallasnews.com/2018/secrets-dallas-dead/>`_
@@ -2311,7 +2311,7 @@ That process — converting a dynamic, living website to simple files living on 
 
 Lucky for us, Yeogurt is pre-configured to flatten our dynamic site. And GitHub has a hosting service for publishing static pages.
 
-Next, open the ``package.json`` file at the root of the project. Scroll to the bottom. In the ``config`` section edit it to instruct Gulp to flatten files to the ``docs`` directory.
+Open the ``package.json`` file at the root of the project. Scroll to the bottom. In the ``config`` section edit it to instruct Gulp to flatten files to the ``docs`` directory instead of ``build``.
 
 .. code-block:: javascript
     :emphasize-lines: 8
