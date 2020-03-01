@@ -306,7 +306,7 @@ First, fire up its test server to see what it has to offer out of the box.
 
 .. code-block:: bash
 
-    $ npm run serve
+    $ npm run-script serve
 
 
 Visit `localhost:3000 <http://localhost:3000>`_ in your browser. There you can see the generic website offered as a starting point by our Yeoman generator.
@@ -1782,7 +1782,7 @@ To draw the map we will rely on `Leaflet <http://leafletjs.com>`_, a JavaScript 
 
 .. code-block:: base
 
-    $ npm install -s leaflet@1.4.0
+    $ npm install leaflet@1.6.0
 
 
 After it's been installed, we should import Leaflet into ``_scripts/main.js`` so that its tools are available on our site.
@@ -1828,7 +1828,7 @@ We'll also need to add a little hack to the file so that Leaflet's images will l
     var chart = require('./charts.js');
     var L = require("leaflet");
 
-    L.Icon.Default.imagePath = 'https://unpkg.com/leaflet@1.4.0/dist/images/';
+    L.Icon.Default.imagePath = 'https://unpkg.com/leaflet@1.6.0/dist/images/';
 
 
 Next we import Leaflet's stylesheets in ``_styles/main.scss`` so that they are also included on our site.
@@ -1885,7 +1885,7 @@ To bring the map to life, add a new file named ``_map.js`` to the ``_scripts`` d
     var L = require("leaflet");
     var map = require("./_map.js");
 
-    L.Icon.Default.imagePath = 'https://unpkg.com/leaflet@1.3.1/dist/images/';
+    L.Icon.Default.imagePath = 'https://unpkg.com/leaflet@1.6.0/dist/images/';
 
 
 Now in ``_scripts/_map.js`` paste in the following Leaflet code to generate a simple map. It does three things: create a new map in the HTML element we made with "map" set as its ID; add a new map layer with roads, borders, water and other features from OpenStreetMap; finally, add the layer to the map.
@@ -1957,9 +1957,9 @@ Now return to ``_scripts/_map.js``. At the bottom add some JavaScript code that 
     sat.addTo(map);
     map.setView([33.983265, -118.306799], 18);
 
-    homicides.forEach(function (obj) {
+    homicides.forEach(obj => {
         L.circleMarker([obj.latitude,  obj.longitude])
-          .addTo(map);
+          .addTo(map)
     });
 
 
@@ -1974,7 +1974,7 @@ Next, extend the code in ``_scripts/_map.js`` to add a tooltip label on each poi
 .. code-block:: javascript
     :emphasize-lines: 4
 
-    homicides.forEach(function (obj) {
+    homicides.forEach(obj => {
         L.circleMarker([obj.latitude,  obj.longitude])
           .addTo(map)
           .bindTooltip(obj.first_name + " " + obj.last_name);
@@ -2024,7 +2024,7 @@ To make the tooltips visible all the time, edit the JavaScript in ``_scripts/_ma
 .. code-block:: javascript
     :emphasize-lines: 4
 
-    homicides.forEach(function (obj) {
+    homicides.forEach(obj => {
         L.circleMarker([obj.latitude,  obj.longitude])
           .addTo(map)
           .bindTooltip(obj.first_name + " " + obj.last_name, {permanent: true});
@@ -2044,7 +2044,7 @@ To put it to use, we'll need to return to our friend ``npm``.
 
 .. code-block:: bash
 
-    $ npm install -s leaflet-minimap@3.6.1
+    $ npm install leaflet-minimap@3.6.1
 
 
 Just as with other libraries, we need to import it into `_scripts/main.js`.
@@ -2099,7 +2099,7 @@ Now that everything is installed, return to ``scripts/_map.js`` and create an in
     sat.addTo(map);
     map.setView([33.983265, -118.306799], 18);
 
-    homicides.forEach(function (obj) {
+    homicides.forEach(obj => {
         L.circleMarker([obj.latitude,  obj.longitude])
           .addTo(map)
           .bindTooltip(obj.first_name + " " + obj.last_name, {permanent: true});
@@ -2129,7 +2129,7 @@ Just for fun, let's add a couple creature comforts to map. By default, the scrol
     sat.addTo(map);
     map.setView([33.983265, -118.306799], 18);
 
-    homicides.forEach(function (obj) {
+    homicides.forEach(obj => {
         L.circleMarker([obj.latitude,  obj.longitude])
           .addTo(map)
           .bindTooltip(obj.first_name + " " + obj.last_name, {permanent: true});
@@ -2224,7 +2224,7 @@ Hey. How about a headline?
     {% block headline %}A South L.A. neighborhood grapples with a wave of violence{% endblock %}
     {% block byline %}By me{% endblock %}
     {% block pubdate %}
-        <time datetime="2018-03-10" pubdate>Mar. 10, 2018</time>
+        <time datetime="2020-03-07" pubdate>Mar. 7, 2020</time>
     {% endblock %}
 
 
@@ -2240,9 +2240,9 @@ And a real byline.
     {% extends '_layouts/base.nunjucks' %}
 
     {% block headline %}A South L.A. neighborhood grapples with a wave of violence{% endblock %}
-    {% block byline %}By <a href="http://www.firstgraphicsapp.org/">The First Graphics App Tutorial</a>{% endblock %}
+    {% block byline %}By <a href="https://www.firstgraphics.app/">The First Graphics App Tutorial</a>{% endblock %}
     {% block pubdate %}
-        <time datetime="2018-03-10" pubdate>Mar. 10, 2018</time>
+        <time datetime="2020-03-07" pubdate>Mar. 7, 2020</time>
     {% endblock %}
 
 
@@ -2296,7 +2296,7 @@ In in our last chapter, all the work we've done will finally be published online
 
 Our Yeoman framework, with its tools, structure and shortcuts, has served us well. It's been a great place to experiment, organize and develop our work. But it's useless to our readers.
 
-The HTML, JavaScript and CSS files the framework generates are all they need. Without all the code running our terminal, those files aren't be able to take advantage of Yeogurt, Gulp, BrowserSync and all our other tricks. But it won't matter. We can upload the simple files our framework renders to the web and they'll be enough for anyone who wants them.
+The HTML, JavaScript and CSS files the framework generates are all they need. Without all the code running in our terminal, those files aren't be able to take advantage of Yeogurt, Gulp, BrowserSync and all our other tricks. But it won't matter. We can upload the simple files our framework renders to the web and they'll be enough for anyone who wants them.
 
 That process — converting a dynamic, living website to simple files living on the filesystem — is a common strategy for publishing news sites. It goes by different names, like "flattening," "freezing" or "baking."  Whatever you call it, it’s a solid path to cheap­, stable host­ing for simple sites. It is used across the industry for pub­lish­ing elec­tion res­ults, longform stories, spe­cial pro­jects and numerous other things.
 
@@ -2312,7 +2312,7 @@ That process — converting a dynamic, living website to simple files living on 
     * Data downloads from the `California Civic Data Coalition <https://calaccess.californiacivicdata.org/downloads/latest/>`_
 
 
-Lucky for us, Yeogurt is pre-configured to flatten our dynamic site. And GitHub has a hosting service for publishing static pages. Here's all it takes.
+Lucky for us, Yeogurt is pre-configured to flatten our dynamic site. And GitHub has a hosting service for publishing static pages.
 
 Next, open the ``package.json`` file at the root of the project. Scroll to the bottom. In the ``config`` section edit it to instruct Gulp to flatten files to the ``docs`` directory.
 
@@ -2345,7 +2345,7 @@ Once you are back at the standard terminal, enter the following command to build
 
 .. code-block:: bash
 
-    $ gulp --production
+    $ npm run-script build
 
 
 That saves the entire file to the `docs` folder. We're doing that because it's the folder expected by GitHub's free publishing system, called "Pages."
