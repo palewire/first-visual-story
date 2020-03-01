@@ -1654,7 +1654,7 @@ Congratulations, you've made your charts! Let's commit our changes and move on t
     - `Chartbuilder <https://quartz.github.io/Chartbuilder/>`_ from `Quartz <https://qz.com/>`_, is very good for basic, fast charts with light customization.
     - `DataWrapper <https://www.datawrapper.de/>`_ allows a range of visualizations beyond basic charts, including scatter plots and maps.
 
-**Extra credit**
+**Extra credit - interactivity!**
 
 Now let's try and make these charts interactive. We want to highlight a bar and display its value whenever a user hovers over it. To do this, we're going to use D3's "event binding."
 
@@ -1729,7 +1729,7 @@ Now let's add a tooltip. First, in the ``createCharts`` function, add a line tha
 Now in ``_charts.js``, let's go back to our ``.on()`` statement and try filling out the text element with the proper value, and positioning it. Let's also clear the div when the mouse leaves.
 
 .. code-block:: javascript
-    :emphasize-lines: 11-18,21-22
+    :emphasize-lines: 13-20,23-24
 
     svg.selectAll('.bar')
         .data(annualTotals)
@@ -1741,12 +1741,13 @@ Now in ``_charts.js``, let's go back to our ``.on()`` statement and try filling 
         .attr('width', d => xScale.bandwidth())
         .attr('height', d => chartHeight - yScale(d[fieldname]))
         .on('mouseenter', function(d) {
+            d3.select(this).classed('highlight', true);
+
             // centers the text above each bar
             var x = xScale(d.year) + xScale.bandwidth() / 2;
             // the - 5 bumps up the text a bit so it's not directly over the bar
             var y = yScale(d[fieldname]) - 5;
 
-            d3.select(this).classed('highlight', true);
             tooltip.text(d[fieldname])
                 .attr('transform', `translate(${x}, ${y})`)
         })
