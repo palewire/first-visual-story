@@ -2045,8 +2045,6 @@ Just as with other libraries, we need to import it into `_scripts/main.js`.
     var MiniMap = require('leaflet-minimap');
     var map = require("./_map.js");
 
-    L.Icon.Default.imagePath = 'https://unpkg.com/leaflet@1.4.0/dist/images/';
-
 
 Its stylesheets also need to be imported to ``_styles/main.scss``.
 
