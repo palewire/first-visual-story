@@ -46,7 +46,7 @@ master_doc = 'index'
 
 # General information about the project.
 project = u'First Graphics App'
-copyright = u'2018, IRE/NICAR'
+copyright = u'2020, IRE/NICAR'
 author = u'IRE/NICAR'
 
 # The version info for the project you're documenting, acts as replacement for
