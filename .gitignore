@@ -1,3 +1,4 @@
+.vscode
 gulp
 node_modules
 *.log

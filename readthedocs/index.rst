@@ -913,11 +913,34 @@ First, return to your terminal and use npm to install D3.
 
 From here, we'll be working in our ``_scripts`` folder, where our framework expects us to write JavaScript.
 
-INTRODUCE THE BOOT FILE HERE
+It includes a file called ``main.js`` which is run every time the page loads. Our framework starts us out with some boilerplate there.
 
-Create a file called ``_charts.js`` inside of ``_scripts/``.
+.. code-block:: javascript
 
-You can include the libraries we installed (or any JavaScript file!) by using ``require()``. While with modern versions of D3 you can import specific parts of the library that are most relevant to your app, we're just going to import the whole library for simplicity.
+    // Main javascript entry point
+    // Should handle bootstrapping/starting application
+
+    'use strict';
+
+    import 'core-js';
+    import 'regenerator-runtime/runtime';
+    import $ from 'jquery';
+    import { Link } from '../_modules/link/link';
+
+    $(() => {
+        new Link(); // Activate Link modules logic
+        console.log('Welcome to Yeogurt!');
+    });
+
+Rather than write our code directly in there, we are going to create a separate file for our charts. We will call it ``_charts.js`` and save it inside of ``_scripts/``.
+
+.. note::
+
+    Remember the underscore coding convention we talked about befre? Here it is again. We named our new file ``_charts.js`` with an underscore (``_``) in front because its code will be compiled into ``main.js`` when the site is baked. Unlike ``_charts.js``, ``main.js`` doesn't have an underscore, because it is the master file that pulls in all the other scripts.
+
+    Structuring our code this way helps keep things organized, as each file controls one specific part of the page. Need to make an adjustment to your chart? Go to ``_charts.js``.
+
+You can include the libraries we installed (or any JavaScript file!) by using ``require()``. While with modern versions of D3 you can import only the specific parts of the library needed by your app, we're just going to import the whole library for simplicity.
 
 .. code-block:: javascript
 
@@ -926,10 +949,7 @@ You can include the libraries we installed (or any JavaScript file!) by using ``
     // At the end of the _charts.js file
     console.log('hello, this is my charts file!');
 
-
-Remember our underscore coding convention? Here, ``_charts.js`` has an underscore (``_``) in front of it because it will be compiled into ``main.js`` when the site is baked.
-
-That is, if we tell it to. Use the same ``require()`` method to pull our code into ``main.js``. Unlike ``_charts.js``, ``main.js`` doesn't have an underscore, because it is the file pulls in all the other scripts.
+Now we can use the same ``require()`` method to pull our charts code into ``main.js``.
 
 You don't have to use this convention, but it's handy as a visual marker of what files are dependent on others.
 
@@ -953,17 +973,14 @@ You don't have to use this convention, but it's handy as a visual marker of what
 
     var chart = require('./_charts.js');
 
-
-Structuring our code this way helps keep things organized, as each file controls one specific part of the page. Need to make an adjustment to your chart? Go to ``_charts.js``.
-
-Now if you reload your page and go to your inspector (click on the three dots in the top right of Chrome, go down to "More tools" and select "Developer tools"), you should see ``hello, this is my charts file!`` in the console.
+Now if you reload your page and go to your inspector by right clicking on the page and selecting "inspect", you should see ``hello, this is my charts file!`` in the console.
 
 .. image:: _static/hello-charts.png
     :width: 100%
 
-What chart should we make? The story points out that Harvard Park experienced an increase in homicides as there was a decrease across the rest of the county. Let's try to visualize that.
+Now that we have our tools, it's time for the real work. What chart should we make? The story points out that Harvard Park experienced an increase in homicides at the same time there was a decrease across the rest of the county. Let's try to visualize that.
 
-First, we need somewhere for our charts to go. In our ``index.nunjucks`` file, inside of ``{% block content %}`` where you want the chart to appear, create a ``div`` element with an id of ``county-homicides``, and another with an id of ``harvard-park-homicides``.
+First, we need somewhere for our charts to live on the page. In our ``index.nunjucks`` file, inside of ``{% block content %}`` where you want the chart to appear, create a ``div`` element with an id of ``county-homicides``, and another with an id of ``harvard-park-homicides``.
 
 .. code-block:: jinja
     :emphasize-lines: 11-14
@@ -986,26 +1003,26 @@ First, we need somewhere for our charts to go. In our ``index.nunjucks`` file, i
     <section>
         <h3>Lives lost</h3>
         <p>The {{ site.data.harvard_park_homicides|length }} homicides in Harvard Park since 2000 were primarily black and Latino males, but the list includes husbands, wives, fathers, mothers of all ages, and even some small children.</p>
-
-        {% for obj in site.data.harvard_park_homicides %}
         <div class="card-columns">
-            {% for obj in site.data.harvard_park_homicides %}
+        {% for obj in site.data.harvard_park_homicides %}
             <div class="card">
-            {% if obj.image %}<img class="card-img-top" src="{{ obj.image }}">{% endif %}
+            {% if obj.image %}<img class="card-img-top" src="{{ obj.image }}" alt="{{ obj.first_name }} {{ obj.last_name }}">{% endif %}
             <div class="card-body">
-                <h5 class="card-title">{{ obj.first_name }} {{ obj.last_name }}</h5>
-                <p class="card-text">A {{ obj.age}}-year-old {{ obj.race }} {{ obj.gender }} died in {{ obj.death_year }}.</p>
+                <a href="http://homicide.latimes.com/post/{{ obj.slug }}" target="_blank">
+                        <strong>
+                            <h5 class="card-title">{{ obj.first_name }} {{ obj.last_name }}</h5>
+                        </strong>
+                    </a>
+                <p class="card-text">{{ obj.last_name }}, a {{ obj.age}}-year-old {{ obj.race }} {{ obj.gender }}, died in {{ obj.death_year }}.</p>
             </div>
             </div>
-            {% endfor %}
-        </div>
         {% endfor %}
+        </div>
     </section>
-
     {% endblock %}
 
 
-Meanwhile, we need data. Copy the `annual totals data <https://raw.githubusercontent.com/ireapps/first-graphics-app/master/data/annual_totals.json>`_ to a new file, ``_data/annual_totals.json``. This file contains annual homicide counts for Harvard Park and all of Los Angeles County. We can use nunjucks to include our data file directly in the template.
+That's nice, but we can't make a chart without data. Copy the `annual totals data <https://raw.githubusercontent.com/ireapps/first-graphics-app/master/data/annual_totals.json>`_ on GitHub to a new file at ``_data/annual_totals.json``. This file contains annual homicide counts for Harvard Park and all of Los Angeles County. We can use nunjucks to include our data file directly in the template. Since it's a JSON file it will work right away.
 
 Add a ``{% scripts %}`` block to the end of your ``index.nunjucks`` file:
 
@@ -1020,7 +1037,7 @@ Add a ``{% scripts %}`` block to the end of your ``index.nunjucks`` file:
 
 We want to make two charts - one of county homicides and one of killings in Harvard Park. Let's start with county homicides. D3 requires us to do a bit of house work before we get started. The first thing we need is a container for our chart to go in. We'll be making these charts in an ``<svg>`` element, which stands for Scalable Vector Graphic.
 
-The first thing we'll want to do is select the HTML container of the chart with D3, and "append" an ``svg`` element to it.
+The first thing we'll want to do is select the HTML container of the chart with D3, and "append" an ``svg`` element to it. So, back in ``_charts.js``, lets add the following:
 
 .. code-block:: javascript
     :emphasize-lines: 3-5
@@ -1114,7 +1131,7 @@ And here's what it looks like without the margins, see how the labels are clippe
 .. image:: _static/chart-g-nomargins.png
     :width: 100%
 
-At this point, we're ready to start drawing our chart. Let's start with by creating the "scales" for our data. D3 manages its data by mapping input values from the data, also known as the domain, into output values on the screen, or the range. This creates a scale that transforms the input into the output.
+At this point, we're ready to start drawing our chart. Let's start by creating the "scales" for our data. D3 manages its data by mapping input values from the data, also known as the domain, into output values on the screen, or the range. This creates a scale that transforms the input into the output.
 
 D3 has many different types of scales, for linear, categorical and time-based data. In this case, we'll want a linear scale for the Y axis, and a "band" scale, which is a type of categorical scale useful for bar charts, for the X axis.
 
@@ -1132,9 +1149,7 @@ If you look at the data in ``src/_data/annual_totals.json``, you'll see that eac
 
 Since we're charting homicides for the entire county we want the ``homicides_total`` attribute in our data for the Y axis, and the X axis will be the year. The arrow ``=>`` is a shorthand method of accessing the ``homicides_total`` attribute of each object in the annualTotals array.
 
-Note that for the X axis, all we want is an array of the years, e.g.:``[2000, 2001, ...]`` so we can call ``.map()`` on our data to return the year value. ``.map()`` iterates over every value in an array and returns a value for every item.
-
-For the Y-axis, we want the domain to start at 0, so we can set that manually.
+For the X axis, all we want is an array of the years, e.g.:``[2000, 2001, ...]`` so we can call ``.map()`` on our data to return the year value. ``.map()`` iterates over every value in an array and returns a value for every item.
 
 .. code-block:: javascript
 
@@ -1142,7 +1157,13 @@ For the Y-axis, we want the domain to start at 0, so we can set that manually.
 
   	var xDomain = annualTotals.map(d => d.year);
 
-  	var yDomain = [
+For the Y-axis, we want the domain to start at 0, so we can set that manually. We can use D3's ``max`` method to get the largest value in the dataset.
+
+.. code-block:: javascript
+
+    // The rest of your code is up here
+
+    var yDomain = [
         0,
         d3.max(annualTotals.map(d => d.homicides_total))
   	];
@@ -1217,7 +1238,7 @@ Replace the code for the X axis with the below.
     :width: 100%
 
 
-Now that the axes are there, we're finally ready to draw our bars. D3 handles it's data by binding the data to the SVG elements - hence the name: "Data Driven Documents."
+Now that the axes are there, we're finally ready to draw our bars. D3 handles its data by binding the records to the SVG elements - hence the name: "Data Driven Documents."
 
 The format seems a little strange at first, because you're selecting elements, then binding data to the selection, then creating elements that are bound to the data. You do this by chaining two methods, ``.data()``, which determines the data set that you're binding, and ``.enter()``, which iterates over the data set.
 
@@ -1225,7 +1246,7 @@ Since we're making a bar chart, we're going to create a ``<rect>`` element, and 
 
 .. note::
 
-    If you'd like to know more about how D3 data binding works, Scott Murray has an `excellent explanation and tutorial<https://alignedleft.com/tutorials/d3/binding-data>`_ on his website.
+    If you'd like to know more about how D3 data binding works, Scott Murray has an `excellent explanation and tutorial <https://alignedleft.com/tutorials/d3/binding-data>`_ on his website.
 
 Let's give it a try, by binding our ``annualTotals`` data to the bars on the chart. Start below the code for your axes. First, let's simply append the ``<rect>`` elements to the chart
 
@@ -1332,9 +1353,9 @@ Now we have a nicely styled chart, and we're ready to start on our second one. D
 
 Open up ``_charts.js`` again, and create a function, ``createChart``. We'll need to think about this for a second - what are the values that are going to change between the two charts?
 
-- Container element
-- Data field used for the homicide counts
-- Y-axis values
+- The container element
+- The data field used for the homicide counts
+- The y-axis values
 
 If we calculate the domain values correctly the Y-axis values should automatically update so we shouldn't have to worry about that too much. So our function should have two arguments - the ID of the container element, and the data field we're using.
 
@@ -1348,10 +1369,11 @@ If we calculate the domain values correctly the Y-axis values should automatical
 Now, you can copy everything we wrote in ``_charts.js`` under the ``require('d3')`` line into this function. Your file should look like this now.
 
 .. code-block:: javascript
+    :emphasize-lines: 3,56
 
     var d3 = require('d3');
 
-    function createChart(el, fieldname) {
+    var createChart = (el, fieldname) => {
       var margin = {top: 20, right:20, bottom:20, left:40} ;
       var container = d3.select('#county-homicides');
       var containerWidth = container.node().offsetWidth;
@@ -1406,9 +1428,9 @@ Now, you can copy everything we wrote in ``_charts.js`` under the ``require('d3'
           .attr('height', d => chartHeight - yScale(d.homicides_total));
     }
 
-Now, if you reload your page, your chart will have disappeared! That's because our code is no longer running since it's in a function, but we're not calling that function.
+Now, if you reload your page, your chart will have disappeared! That's because our code is packed away inside a function, which won't run until we call on it.
 
-At the end of the file, let's call the function with the arguments necessary for the countywide homicides chart. Remember the element id is ``county-homicides``, and the field we're using is ``homicides_total``.
+At the end of the file, let's return to ``_charts.js`` and call the function with the arguments necessary for the countywide homicides chart. Remember the element id is ``county-homicides``, and the field we're using is ``homicides_total``.
 
 .. code-block:: javascript
 
@@ -1422,7 +1444,7 @@ First, let's change the ``container`` variable to use the ID we're providing.
 .. code-block:: javascript
     :emphasize-lines: 3
 
-    function createChart(el, fieldname) {
+    var createChart = (el, fieldname) => {
       var margin = {top: 20, right:20, bottom:20, left:40} ;
       var container = d3.select(el);
 
@@ -1451,9 +1473,9 @@ Luckily, we only have to do this a few times, once where we're calculating the d
 .. code-block:: javascript
     :emphasize-lines: 19,51,53
 
-    function createChart(el, fieldname) {
-      var margin = {top: 20, right:20, bottom:20, left:40} ;
-      var container = d3.select('#county-homicides');
+    var createChart = (el, fieldname) => {
+      var margin = {top: 20, right:20, bottom:20, left:40};
+      var container = d3.select(el);
       var containerWidth = container.node().offsetWidth;
       var containerHeight = containerWidth * 0.66;
       var chartWidth = containerWidth - margin.right - margin.left;
