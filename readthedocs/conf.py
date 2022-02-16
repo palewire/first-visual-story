@@ -1,8 +1,8 @@
 from datetime import datetime
 
 extensions = [
-    "myst_nb",
     "sphinx_multitoc_numbering",
+    "myst_parser"
 ]
 templates_path = ["_templates"]
 source_suffix = ".rst"

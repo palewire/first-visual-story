@@ -9,6 +9,7 @@ verify_ssl = true
 Sphinx = "*"
 sphinx-autobuild = "*"
 sphinx-multitoc-numbering = "*"
+myst-parser = "*"
 
 [requires]
 python_version = "3.9"
