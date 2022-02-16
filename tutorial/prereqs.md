@@ -51,9 +51,9 @@ Before you can begin, your computer needs the following tools installed and work
 4. The [npm](https://www.npmjs.com) package manager
 5. [Git](http://git-scm.com/) version control software and an account at [GitHub.com](http://www.github.com)
 
-:::{warning}
+```{warning}
 Stop and make sure you have all these tools installed and working properly. Otherwise, [you're gonna have a bad time](https://www.youtube.com/watch?v=ynxPshq8ERo).
-:::
+```
 
 (command-line-prereq)=
 
