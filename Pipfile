@@ -6,10 +6,9 @@ verify_ssl = true
 [dev-packages]
 
 [packages]
-sphinx-rtd-theme = "*"
-Sphinx = "==2.4.3"
-doc8 = "*"
+Sphinx = "*"
 sphinx-autobuild = "*"
+sphinx-multitoc-numbering = "*"
 
 [requires]
-python_version = "3.6"
+python_version = "3.9"
