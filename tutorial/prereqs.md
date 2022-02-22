@@ -67,3 +67,24 @@ git --version
 ```
 
 Once that's done, you should create an account at GitHub, if you don't already have one. [The free plan](https://github.com/pricing) is all that's required to complete this lesson. If you make a new account, make sure to confirm your email address with GitHub. We'll need that for something later.
+
+There are numerous methods for connect with GitHub from your terminal, covered thoroughly in [GitHub’s documentation](https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository). This tutorial will demonstrate how to use the [`gh`](https://cli.github.com/) command-line utility. If you don't have it installed, visit [cli.github.com](https://cli.github.com/) and follow the instructions there.
+
+You can verify you’re ready by executing the following command, which should print out the version of `gh` you have installed.
+
+```bash
+gh --version
+```
+
+The output should look something like this:
+
+```bash
+gh version 2.5.1 (2022-02-15)
+https://github.com/cli/cli/releases/tag/v2.5.1
+```
+
+```{note}
+If you get an error instead, open a fresh terminal and try again. If it’s still not working, revisit [cli.github.com](https://cli.github.com) to make sure you've followed all the necessary steps.
+```
+
+With all that installed, you’re ready to get to work.

@@ -5,42 +5,68 @@
 
 First things first. It always helps to store all your code in the same place, instead of haphazard folders around your computer. This way, you always know where to look if you need to find a project.
 
-In this case, let's call that directory `Code`.
-
-```bash
-# You don't have to type the "$" It's just a generic symbol
-# geeks use to show they're working on the command line.
-$ mkdir Code
+```{contents} Sections
+  :depth: 1
+  :local:
 ```
 
-You can use the `cd` command to "change directory" into the directory we created.
+## Create a repository
+
+Once you have your terminal open, it will start you off in your computer’s home directory, much like your file explorer.
+
+Let’s verify that using a command called [`pwd`](https://en.wikipedia.org/wiki/Pwd), which stands for present working directory. The output is the full path of your terminal’s current location in the file system. You should get back something like `/Users/palewire/`, the path to your home directory.
 
 ```bash
-# You don't have to type the "$" It's just a generic symbol
-# geeks use to show they're working on the command line.
-$ cd Code
+pwd
+```
+
+Next let’s enter the [`ls`](https://en.wikipedia.org/wiki/Ls) command to see all of its subdirectories. The terminal should print out the same list of folders you can see in your home directory via the file explorer.
+
+```bash
+ls
+```
+
+Our first task is to create a folder to store our code.
+
+Use the [`mkdir`](https://en.wikipedia.org/wiki/Mkdir) command to create a new directory in the same style as the Desktop, Documents and Downloads folders included by most operating systems.
+
+We will name this folder `Code`. To verify the command works, open the file explorer and navigate to your home folder. After it’s run, you should see the new directory alongside the rest.
+
+```bash
+mkdir Code
+```
+
+Now jump into the new directory with the [`cd`](https://en.wikipedia.org/wiki/Cd_(command)) command, which operates the same as double clicking on a folder in your file explorer.
+
+```bash
+cd Code
 ```
 
 Then, create a new directory where we can store the code for the project we're going to build today. Name it after our application.
 
 ```bash
-$ mkdir first-graphics-app
+mkdir first-visual-story
 ```
 
 Now, use `cd` again to enter the the directory you just created.
 
 ```bash
-$ cd first-graphics-app
+cd first-graphics-app
 ```
 
-Use the command `git init` to create a new Git repository in the current directory. This will be the root of our version-controlled project.
+Use the command [`git init`](https://git-scm.com/docs/git-init) to create a new repository in the current directory. This will be the root of our version-controlled project.
 
 ```bash
-# "." is a common shortcut to refer to the current directory from the terminal
-$ git init .
+git init .
 ```
 
-Visit [GitHub](http://www.github.com) and [create](https://github.com/new) a new public repository named `first-graphics-app`. Don't check "Initialize with README." You'll want to start with a blank repository.
+```{note}
+The `.` symbol is a common shortcut to refer to the current directory from the terminal
+```
+
+## Connect to GitHub
+
+Visit [GitHub](http://www.github.com) and [create](https://github.com/new) a new public repository named `first-visual-story`. Don't check "Initialize with README." You'll want to start with a blank repository.
 
 ```{image} _static/new-repo.png
 :target: https://github.com/new
