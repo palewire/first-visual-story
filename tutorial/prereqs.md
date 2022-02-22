@@ -3,44 +3,43 @@
 
 # Prerequisites
 
-Before you can begin, your computer needs the following tools installed and working:
+This chapter will help you prepare your computer with the required software. Stop and make sure you have all these tools installed and working properly. Otherwise, [you're gonna have a bad time](https://www.youtube.com/watch?v=ynxPshq8ERo).
 
-1. A [command-line interface](https://en.wikipedia.org/wiki/Command-line_interface) to interact with your computer
-2. A [text editor](https://en.wikipedia.org/wiki/Text_editor) to work with plain text files
-3. Version 8.9.4 or greater of the [Node.js](https://nodejs.org/en/) JavaScript runtime
-4. The [npm](https://www.npmjs.com) package manager
-5. [Git](http://git-scm.com/) version control software and an account at [GitHub.com](http://www.github.com)
-
-```{warning}
-Stop and make sure you have all these tools installed and working properly. Otherwise, [you're gonna have a bad time](https://www.youtube.com/watch?v=ynxPshq8ERo).
+```{contents} Sections
+  :depth: 1
+  :local:
 ```
-
-(command-line-prereq)=
 
 ## Command-line interface
 
-Unless something is wrong with your computer, there should be a way to open a special window that lets you type in commands. Different operating systems give this tool slightly different names, but they all have some form of it. The generic term for it is the "command-line interface."
+Whether you know it or not, there is a way to open a special window and directly issue commands to your operating system. Different systems give this tool slightly different names, but they all have some form of it.
 
-On Windows you can find it by opening the "command prompt." Here are [instructions](https://www.bleepingcomputer.com/tutorials/windows-command-prompt-introduction/). On Apple computers, you open the ["Terminal" application](http://blog.teamtreehouse.com/introduction-to-the-mac-os-x-command-line). Ubuntu Linux comes with a program of the [same name](http://askubuntu.com/questions/38162/what-is-a-terminal-and-how-do-i-open-and-use-it).
+On Windows this is called the “command prompt.” On MacOS it is called the “terminal.” Others may call it the “command line.” They’re the same thing, just in different slightly shapes.
+
+```{note}
+If you're a Windows user, we recommend you avoid the standard command line provided by the operating system. Instead, you'd be well served by the [Windows Subsystem for Linux](https://docs.microsoft.com/en-us/windows/wsl/install-win10), which will create a development environment better suited for open-source software work.
+
+We recommend you install the Ubuntu distribution from the Windows Store. This will give you access to a generic terminal without all the complications and quirks of Windows.
+```
 
 ## Text editor
 
-A program like Microsoft Word, which can do all sorts of text formatting, like change the size and color of words, is not what you need. Do not try to use it.
+A program like Microsoft Word, which can do all sorts of text formatting like change the size and color of words, is not what you need. Do not try to use it.
 
 You need a program that works with simple ["plain text" files](https://en.wikipedia.org/wiki/Text_file), and is therefore capable of editing documents containing Python code, HTML markup and other languages without dressing them up. Such programs are easy to find and some of the best ones are free, including those below.
 
-Regardless of your operating system, we recommend installing [Visual Studio Code](https://code.visualstudio.com/). [Atom](https://atom.io) and [Sublime Text](https://www.sublimetext.com/) are also excellent options.
+Regardless of your operating system, we recommend newcomers begin by installing [Visual Studio Code](https://code.visualstudio.com/). [Atom](https://atom.io) and [Sublime Text](https://www.sublimetext.com/) are also excellent options. They're all free.
 
 ## Node.js
 
-Node.js is an open-source programming framework built using JavaScript. Many programmers like it because it allows them to write JavaScript not just in their browser for "front-end" tasks, but also in the terminal or on a server for "back-end" tasks.
+[Node.js](https://nodejs.org/en/) is an open-source programming framework built using JavaScript. Many programmers like it because it allows them to write JavaScript not just in their browser for "front-end" tasks, but also in the terminal or on a server for "back-end" tasks.
 
-We recommend you use the latest "long-term support" version, which at the time of this writing was `12.16.1`. The [Node.js site](https://nodejs.org) has [installer packages](https://nodejs.org/en/download/) available for Windows and Mac OSX.
+We recommend you use the latest "long-term support" version, which at the time of this writing was `16.14.0`. The [Node.js site](https://nodejs.org) has [installer packages](https://nodejs.org/en/download/) available for Windows and Mac OSX.
 
 You can verify if you have Node installed, and if so what version, by typing the following into your terminal:
 
 ```bash
-$ node --version
+node --version
 ```
 
 The number you get back is the version you have installed. If you get an error, you don't have Node.js installed and you should start from scratch with an installer package. If you have a slightly older version, you are probably okay. But we make no guarantees. Consider upgrading.
@@ -52,7 +51,7 @@ Installing Node will also install npm on your computer, which stands for "Node P
 You can verify you have npm installed by running the following command on your terminal.
 
 ```bash
-$ npm --version
+npm --version
 ```
 
 ## Git and GitHub
@@ -64,7 +63,7 @@ $ npm --version
 You can verify Git is installed from your command line like so:
 
 ```bash
-$ git --version
+git --version
 ```
 
 Once that's done, you should create an account at GitHub, if you don't already have one. [The free plan](https://github.com/pricing) is all that's required to complete this lesson. If you make a new account, make sure to confirm your email address with GitHub. We'll need that for something later.
