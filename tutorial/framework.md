@@ -10,19 +10,24 @@ Now that we have our Git repository created, we're going to start installing the
   :local:
 ```
 
-The first and more important is a [framework](https://en.wikipedia.org/wiki/Software_framework). What's that? Nothing more than fancy name for a set of software tools that, working together, can stand up a website. Believe it or not, it takes dozens of different things to pull a good site together. Frameworks aim to make the challenge easier by organizing a curated set of tools into a system that saves programmers time.
+The first and more important is our [framework](https://en.wikipedia.org/wiki/Software_framework).
 
-There are a lot of different frameworks out there. Maybe you've heard of some them, like [Django](https://www.djangoproject.com/) for Python or [Rails](http://rubyonrails.org) for Ruby.
+What's that? Nothing more than fancy name for a set of software tools that, working together, can stand up a website. Believe it or not, it takes dozens of different software tricks to pull a good site together.
 
-:::{note}
+Frameworks aim to make the challenge easier by organizing a curated set of tools into a simplified system that saves time.
+
+There are a lot of different frameworks out there. Maybe you've heard of some them, like [Django](https://www.djangoproject.com/) for Python, [Rails](http://rubyonrails.org) for Ruby or [React](https://reactjs.org/) for Node.js.
+
+```{note}
 While some frameworks are more popular than others, each newsroom tends to go its own way with a custom system for publishing pages. The programming languages and the details vary, but the fundamentals are almost all the same. Some of them have even been released as open-source software. They include:
 
-- The Los Angeles Times Data Desk's [bigbuild](https://github.com/datadesk/django-bigbuild)
-- The Dallas Morning News' [generator-dmninteractives](https://github.com/DallasMorningNews/generator-dmninteractives)
+- The Los Angeles Times’ [baker](https://github.com/datadesk/baker)
+- Reuters’ [bluprint](https://github.com/reuters-graphics/bluprint_graphics-kit)
+- The Texas Tribune’s [data-visuals-create](https://github.com/texastribune/data-visuals-create)
 - The Seattle Times' [newsapp-template](https://github.com/seattletimes/newsapp-template/)
 - The NPR Apps team's [dailygraphics](https://github.com/nprapps/dailygraphics)
 - Politico's [generator-politico-graphics](https://github.com/The-Politico/generator-politico-graphics)
-:::
+```
 
 Node.js is so fancy it has more than plain old frameworks. It even includes a framework for creating frameworks! It's called [Yeoman](http://yeoman.io). Its "generator" system makes it easier for publishers to tailor a framework to their site without having to reinvent all the wheels themselves.
 

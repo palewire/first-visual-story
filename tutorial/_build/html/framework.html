@@ -87,18 +87,22 @@
 <li><p><a class="reference internal" href="#push-to-github" id="id1">Push to GitHub</a></p></li>
 </ul>
 </div>
-<p>The first and more important is a <a class="reference external" href="https://en.wikipedia.org/wiki/Software_framework">framework</a>. What’s that? Nothing more than fancy name for a set of software tools that, working together, can stand up a website. Believe it or not, it takes dozens of different things to pull a good site together. Frameworks aim to make the challenge easier by organizing a curated set of tools into a system that saves programmers time.</p>
-<p>There are a lot of different frameworks out there. Maybe you’ve heard of some them, like <a class="reference external" href="https://www.djangoproject.com/">Django</a> for Python or <a class="reference external" href="http://rubyonrails.org">Rails</a> for Ruby.</p>
-<p>:::{note}
-While some frameworks are more popular than others, each newsroom tends to go its own way with a custom system for publishing pages. The programming languages and the details vary, but the fundamentals are almost all the same. Some of them have even been released as open-source software. They include:</p>
+<p>The first and more important is our <a class="reference external" href="https://en.wikipedia.org/wiki/Software_framework">framework</a>.</p>
+<p>What’s that? Nothing more than fancy name for a set of software tools that, working together, can stand up a website. Believe it or not, it takes dozens of different software tricks to pull a good site together.</p>
+<p>Frameworks aim to make the challenge easier by organizing a curated set of tools into a simplified system that saves time.</p>
+<p>There are a lot of different frameworks out there. Maybe you’ve heard of some them, like <a class="reference external" href="https://www.djangoproject.com/">Django</a> for Python, <a class="reference external" href="http://rubyonrails.org">Rails</a> for Ruby or <a class="reference external" href="https://reactjs.org/">React</a> for Node.js.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>While some frameworks are more popular than others, each newsroom tends to go its own way with a custom system for publishing pages. The programming languages and the details vary, but the fundamentals are almost all the same. Some of them have even been released as open-source software. They include:</p>
 <ul class="simple">
-<li><p>The Los Angeles Times Data Desk’s <a class="reference external" href="https://github.com/datadesk/django-bigbuild">bigbuild</a></p></li>
-<li><p>The Dallas Morning News’ <a class="reference external" href="https://github.com/DallasMorningNews/generator-dmninteractives">generator-dmninteractives</a></p></li>
+<li><p>The Los Angeles Times’ <a class="reference external" href="https://github.com/datadesk/baker">baker</a></p></li>
+<li><p>Reuters’ <a class="reference external" href="https://github.com/reuters-graphics/bluprint_graphics-kit">bluprint</a></p></li>
+<li><p>The Texas Tribune’s <a class="reference external" href="https://github.com/texastribune/data-visuals-create">data-visuals-create</a></p></li>
 <li><p>The Seattle Times’ <a class="reference external" href="https://github.com/seattletimes/newsapp-template/">newsapp-template</a></p></li>
 <li><p>The NPR Apps team’s <a class="reference external" href="https://github.com/nprapps/dailygraphics">dailygraphics</a></p></li>
-<li><p>Politico’s <a class="reference external" href="https://github.com/The-Politico/generator-politico-graphics">generator-politico-graphics</a>
-:::</p></li>
+<li><p>Politico’s <a class="reference external" href="https://github.com/The-Politico/generator-politico-graphics">generator-politico-graphics</a></p></li>
 </ul>
+</div>
 <p>Node.js is so fancy it has more than plain old frameworks. It even includes a framework for creating frameworks! It’s called <a class="reference external" href="http://yeoman.io">Yeoman</a>. Its “generator” system makes it easier for publishers to tailor a framework to their site without having to reinvent all the wheels themselves.</p>
 <p>We’ll start by installing Yeoman using the Node Package Manager (<code class="docutils literal notranslate"><span class="pre">npm</span></code>), which can visit the Internet to download and install any of the thousands of open-source Node.js packages listed in its directory.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ npm install -g yo@3.1.1
