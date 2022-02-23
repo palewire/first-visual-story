@@ -3,7 +3,7 @@
 
 # Git
 
-First things first. It always helps to store all your code in the same place, instead of haphazard folders around your computer. This way, you always know where to look if you need to find a project.
+This chapter will show you how to get a code repository up and running on your computer.
 
 ```{contents} Sections
   :depth: 1
@@ -12,7 +12,9 @@ First things first. It always helps to store all your code in the same place, in
 
 ## Create a code directory
 
-Once you have your terminal open, it will start you off in your computer’s home directory, much like your file explorer.
+First things first. It always helps to store all your code in the same place, instead of haphazard folders around your computer. This way, you always know where to look if you need to find a project.
+
+Let's sette the issue on the command-line. Open the terminal of your choice. It will start you off in your computer’s home directory, much like your file explorer.
 
 Let’s verify that using a command called [`pwd`](https://en.wikipedia.org/wiki/Pwd), which stands for present working directory. The output is the full path of your terminal’s current location in the file system. You should get back something like `/Users/palewire/`, the path to your home directory.
 
