@@ -1,7 +1,7 @@
 ```{include} _templates/nav.html
 ```
 
-# Git
+# GitHub
 
 First things first. It always helps to store all your code in the same place, instead of haphazard folders around your computer. This way, you always know where to look if you need to find a project.
 
