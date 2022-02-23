@@ -1,4 +1,5 @@
 ```{include} _templates/nav.html
+
 ```
 
 # Framework
@@ -10,6 +11,8 @@ Now that we have our Git repository created, we're going to start installing the
   :local:
 ```
 
+## What is a framework?
+
 The first and more important is our [framework](https://en.wikipedia.org/wiki/Software_framework).
 
 What's that? Nothing more than fancy name for a set of software tools that, working together, can stand up a website. Believe it or not, it takes dozens of different software tricks to pull a good site together.
@@ -20,19 +23,24 @@ There are a lot of different frameworks out there. Maybe you've heard of some th
 
 While some frameworks are more popular than others, each newsroom tends to go its own way with a custom system for publishing pages. The programming languages and the details vary, but the fundamentals are almost all the same. Some of them have even been released as open-source software. They include:
 
-- The Los Angeles Times’ [baker](https://github.com/datadesk/baker)
 - Reuters’ [bluprint](https://github.com/reuters-graphics/bluprint_graphics-kit)
 - The Texas Tribune’s [data-visuals-create](https://github.com/texastribune/data-visuals-create)
 - The Seattle Times' [newsapp-template](https://github.com/seattletimes/newsapp-template/)
 - The NPR Apps team's [dailygraphics](https://github.com/nprapps/dailygraphics)
 - Politico's [generator-politico-graphics](https://github.com/The-Politico/generator-politico-graphics)
 
-Node.js is so fancy it has more than plain old frameworks. It even includes a framework for creating frameworks! It's called [Yeoman](http://yeoman.io). Its "generator" system makes it easier for publishers to tailor a framework to their site without having to reinvent all the wheels themselves.
+The GitHub template we cloned in the last chapter is a demonstration of the Los Angeles Times’s tool, which is known as [baker](https://github.com/datadesk/baker) and published as free and open software that anyone can easily reuse at [github.com/datadesk/baker-example-page-template](https://github.com/datadesk/baker-example-page-template).
 
-We'll start by installing Yeoman using the Node Package Manager (`npm`), which can visit the Internet to download and install any of the thousands of open-source Node.js packages listed in its directory.
+The remainder of this tutorial will demonstrate how to use The Times’ tool to publish a page to the web. While many of the particulars are specific to the choices made but Times developers, the overall principles are shared by the frameworks employed at other newsrooms.
+
+## Install our system
+
+The Times’ baker framework — like most of its peers — is developed using the Node.js JavaScript programming language. Now that you have the fundamentals cloned to your computer, installing the underlying dependencies necessary to develop a page requires that you use Node.js’s package manager `npm`.
+
+From your terminal positioned inside of the repository’s directory on your computer, run the following to get everything necessary to start work:
 
 ```bash
-$ npm install -g yo@3.1.1
+npm install
 ```
 
 The `-g` means that we're installing the packages globally. You'll be able to run these from any directory on your computer.
@@ -57,7 +65,7 @@ Create a new project using our yeogurt generator as the guide.
 $ yo yeogurt
 ```
 
-After you run the command, you will be asked a series of questions. *Pay close attention* because you will need to choose the proper options to continue with our tutorial, and some of the correct selections are not the default choice.
+After you run the command, you will be asked a series of questions. _Pay close attention_ because you will need to choose the proper options to continue with our tutorial, and some of the correct selections are not the default choice.
 
 ```{image} _static/yeogurt-setup.png
 :width: 100%
@@ -111,7 +119,7 @@ git commit -m "First commit"
 ```
 
 ````{warning}
-If this is your first time using Git, you may be prompted to configure you name and email. If so, take the time now. 
+If this is your first time using Git, you may be prompted to configure you name and email. If so, take the time now.
 
 ```bash
 git config --global user.email "your@email.com"
@@ -125,8 +133,8 @@ The final step is to syncronize the changes we’ve made on our computer with th
 
 First, the command asks for the name of the remote repository where you’d like to send your changes. In the parlance of `git`, the default name is `origin`.
 
-Second, you need to provide the [branch](https://en.wikipedia.org/wiki/Branching_(version_control)) of the code you’d like to syncronize. Branching is a tool for maintaining parallel versions of your code within the same respository. We won't get that sophisticated in this tutorial, so you can stick to the default code branch, which is called `main`.
+Second, you need to provide the [branch](<https://en.wikipedia.org/wiki/Branching_(version_control)>) of the code you’d like to syncronize. Branching is a tool for maintaining parallel versions of your code within the same respository. We won't get that sophisticated in this tutorial, so you can stick to the default code branch, which is called `main`.
 
-Taking all that into account, the command to push local changes to GitHub is typically the following. Try it. 
+Taking all that into account, the command to push local changes to GitHub is typically the following. Try it.
 
 You just created your first code commit! Reload your repository on GitHub and see your handiwork.
