@@ -80,25 +80,33 @@
 </div>
 <section id="template">
 <h1><span class="section-number">5. </span>Template<a class="headerlink" href="#template" title="Permalink to this headline">¶</a></h1>
-<p>Navigate back to <a class="reference external" href="http://localhost:3000/">localhost:3000</a> in your browser. You should see the same default homepage as before.</p>
-<a class="reference internal image-reference" href="_images/welcome.png"><img alt="_images/welcome.png" src="_images/welcome.png" style="width: 100%;" /></a>
-<p>Its contents is configured in the <code class="docutils literal notranslate"><span class="pre">index.nunjucks</span></code> file found in the directory Yeoman created. It uses a templating language for JavaScript invented at Mozilla called <a class="reference external" href="https://mozilla.github.io/nunjucks/">Nunjucks</a>.</p>
-<p>You can edit the page by changing what’s found inside of the <code class="docutils literal notranslate"><span class="pre">content</span></code> block. Make a change and save the file.</p>
+<p>This chapter will show you how to start editing content and customizing your page.</p>
+<div class="contents local topic" id="sections">
+<p class="topic-title">Sections</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#edit-the-index" id="id1">Edit the index</a></p></li>
+</ul>
+</div>
+<section id="edit-the-index">
+<h2><a class="toc-backref" href="#id1"><span class="section-number">5.1. </span>Edit the index</a><a class="headerlink" href="#edit-the-index" title="Permalink to this headline">¶</a></h2>
+<p>The contents of the page you see at <a class="reference external" href="https://localhost:3000">localhost:3000</a> is configured in the <code class="docutils literal notranslate"><span class="pre">index.html</span></code> file found in the repository’s root directory. It uses a templating language invented at Mozilla called <a class="reference external" href="https://mozilla.github.io/nunjucks/">Nunjucks</a>.</p>
+<p>You can edit the page by changing what’s found inside of the <code class="docutils literal notranslate"><span class="pre">content</span></code> block. Delete everything you see there now and replace it with something simple like:</p>
 <div class="highlight-jinja notranslate"><div class="highlight"><pre><span></span><span class="cp">{%</span> <span class="k">block</span> <span class="nv">content</span> <span class="cp">%}</span><span class="x"></span>
 <span class="hll"><span class="x">&lt;p&gt;Hello World&lt;/p&gt;</span>
 </span><span class="cp">{%</span> <span class="k">endblock</span> <span class="cp">%}</span><span class="x"></span>
 </pre></div>
 </div>
-<p>You should see it immediately show up thanks to a <a class="reference external" href="https://browsersync.io">BrowserSync</a>, a popular feature of Gulp that automatically updates your test site after you make a change.</p>
-<a class="reference internal image-reference" href="_images/hello-world.png"><img alt="_images/hello-world.png" src="_images/hello-world.png" style="width: 100%;" /></a>
-<p>Now, look closely at the <code class="docutils literal notranslate"><span class="pre">index.nunjucks</span></code> file. You will notice that it doesn’t include code for much of what you expect from an HTML  page. For instance, you won’t see the class <code class="docutils literal notranslate"><span class="pre">&lt;html&gt;</span></code> or <code class="docutils literal notranslate"><span class="pre">&lt;body&gt;</span></code> tags. Nor will you find the stylesheets that dicatate how a page looks.</p>
+<p>You should see it immediately show up thanks a feature of baker that automatically updates your test site after you make a change.</p>
+<p><img alt="hello world" src="_images/hello-world.png" /></p>
+<p>Now, look closely at the <code class="docutils literal notranslate"><span class="pre">index.html</span></code> file. You will notice that it doesn’t include code for much of what you might expect from an HTML page.</p>
+<p>For instance, you won’t see the class <code class="docutils literal notranslate"><span class="pre">&lt;html&gt;</span></code> or <code class="docutils literal notranslate"><span class="pre">&lt;body&gt;</span></code> tags. Nor do you find the stylesheets that typically dicatate how a page looks.</p>
 <p>That’s because that boilerplate has been moved back into a parent template “extended” by the index file with a line of Nunjucks code at the top of the page.</p>
-<div class="highlight-jinja notranslate"><div class="highlight"><pre><span></span><span class="cp">{%</span> <span class="k">extends</span> <span class="s1">&#39;_layouts/base.nunjucks&#39;</span> <span class="cp">%}</span><span class="x"></span>
+<div class="highlight-jinja notranslate"><div class="highlight"><pre><span></span><span class="cp">{%</span> <span class="k">extends</span> <span class="s1">&#39;base.html&#39;</span> <span class="cp">%}</span><span class="x"></span>
 </pre></div>
 </div>
 <p>That “base” file, sometimes called the “layout,” can be inherited by other pages on your site to avoid duplication and share common code. One change to a parent file instantly ripples out to all pages the extend it.</p>
-<p>This approach to “template inheritance” is not just found in Nunjucks. It can be found in other templating systems, including Python ones like <a class="reference external" href="https://docs.djangoproject.com/en/1.7/topics/templates/">Django</a> and <a class="reference external" href="http://jinja.pocoo.org">Jinja</a>. It’s probably even used at some level in your organization’s CMS.</p>
-<p>You can find the base layout packaged with our framework by following the path and opening the <code class="docutils literal notranslate"><span class="pre">_layouts/base.nunjucks</span></code> file. You’ll see it includes a set of block tags, like <code class="docutils literal notranslate"><span class="pre">content</span></code>, that act as placeholders for use in templates that extend it.</p>
+<p>This approach to “template inheritance” is not just found in Nunjucks. It can be found in other templating systems, including Python ones like <a class="reference external" href="https://docs.djangoproject.com/en/1.7/topics/templates/">Django</a> and <a class="reference external" href="http://jinja.pocoo.org">Jinja</a>. It’s probably even used at some level in your organization’s content-management system.</p>
+<p>You can find baker’s base layout packaged with our framework by following the path and opening the <code class="docutils literal notranslate"><span class="pre">_layouts/base.html</span></code> file. You’ll see it includes a set of block tags, like <code class="docutils literal notranslate"><span class="pre">content</span></code>, that act as placeholders for use in templates that extend it.</p>
 <p>Make a small change to <code class="docutils literal notranslate"><span class="pre">_layouts/base.nunjucks</span></code> above the <code class="docutils literal notranslate"><span class="pre">content</span></code> block and save the file.</p>
 <div class="highlight-jinja notranslate"><div class="highlight"><pre><span></span><span class="hll"><span class="x">Above content</span>
 </span><span class="cp">{%</span> <span class="k">block</span> <span class="nv">content</span> <span class="cp">%}{%</span> <span class="k">endblock</span> <span class="cp">%}</span><span class="x"></span>
@@ -106,95 +114,76 @@
 </div>
 <p>You should see the change on our site, with the new line appearing above the paragraph we added earlier to the index file.</p>
 <a class="reference internal image-reference" href="_images/above-content.png"><img alt="_images/above-content.png" src="_images/above-content.png" style="width: 100%;" /></a>
-<p>Most newsrooms that use a similar system have their own base template for their custom pages. Graphic artists and designers install and extend it as the first step in their work. They develop their custom page within its confines and largely accept the furniture it provides, like the site’s header and footer, fonts and common color schemes. This allows them to work more quickly because they do not have to bother with reinventing their site’s most common elements.</p>
-<p>:::{note}
-While most newsrooms keep their base templates to themselves, a few have published them as open-source software. You can find them online, if you know where to look. They include:</p>
-<ul class="simple">
-<li><p>The Los Angeles Times’s <a class="reference external" href="http://cookbook.latimes.com">HTML Cookbook</a></p></li>
-<li><p>The Texas Tribune’s <a class="reference external" href="https://apps.texastribune.org/styles/">style guide</a></p></li>
-<li><p>Politico’s <a class="reference external" href="https://github.com/The-Politico/politico-style">style guide</a>
-:::</p></li>
-</ul>
-<p>For this class, we have developed a simpelified base template that will act as a stand-in for a real newsroom’s base template. It is not as sophisticated or complete as a real-world example, but it will provide all of the basic elements we will need.</p>
+<p>Most newsrooms that use a similar system have their own base template for their custom pages. Graphic artists and designers install and extend it as the first step in their work.</p>
+<p>They then develop their custom page within its confines and largely accept the furniture it provides, like the site’s header and footer, fonts and common color schemes. This allows them to work more quickly, because they do not have to bother with reinventing their site’s most common elements.</p>
+<p>For this example, we have developed a simplified base template that will act as a stand-in for a real newsroom’s base template. It is not as sophisticated or complete as a real-world example, but it will provide all of the basic elements we will need.</p>
 <p>You can find it in the code block below. Copy all of its contents and paste them into <code class="docutils literal notranslate"><span class="pre">_layouts/base.nunjucks</span></code>, replacing everything.</p>
-<div class="highlight-jinja notranslate"><div class="highlight"><pre><span></span><span class="x">&lt;!doctype html&gt;</span>
-<span class="x">&lt;html lang=&quot;en&quot;&gt;</span>
+<div class="highlight-jinja notranslate"><div class="highlight"><pre><span></span><span class="x">&lt;!DOCTYPE html&gt;</span>
+<span class="x">&lt;html lang=&quot;</span><span class="cp">{%</span> <span class="k">block</span> <span class="nv">lang</span> <span class="cp">%}</span><span class="x">en</span><span class="cp">{%</span> <span class="k">endblock</span> <span class="nv">lang</span> <span class="cp">%}</span><span class="x">&quot;&gt;</span>
 <span class="x">&lt;head&gt;</span>
-<span class="x">    &lt;meta charset=&quot;utf-8&quot;&gt;</span>
-<span class="x">    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;</span>
-<span class="x">    &lt;title&gt;First Graphics App&lt;/title&gt;</span>
-<span class="x">    &lt;link rel=&quot;stylesheet&quot; href=&quot;https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css&quot;&gt;</span>
-<span class="x">    &lt;link rel=&quot;stylesheet&quot; href=&quot;styles/main.css&quot;&gt;</span>
-<span class="x">    &lt;link rel=&quot;stylesheet&quot; href=&quot;https://bl.ocks.org/palewire/raw/1035cd306a2f85b362b1a20ce315b8eb/base.css?rev=8&quot;&gt;</span>
-<span class="x">    </span><span class="cp">{%</span> <span class="k">block</span> <span class="nv">stylesheets</span> <span class="cp">%}{%</span> <span class="k">endblock</span> <span class="cp">%}</span><span class="x"></span>
+<span class="x">  &lt;meta charset=&quot;utf-8&quot;&gt;</span>
+<span class="x">  &lt;title&gt;First Visual Story&lt;/title&gt;</span>
+<span class="x">  &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1&quot;&gt;</span>
+<span class="x">  </span><span class="cp">{%</span> <span class="k">block</span> <span class="nv">styles</span> <span class="cp">%}</span><span class="x"></span>
+<span class="x">  </span><span class="cp">{%</span> <span class="k">endblock</span> <span class="nv">styles</span> <span class="cp">%}</span><span class="x"></span>
+<span class="x">  &lt;link rel=&quot;stylesheet&quot; href=&quot;https://bl.ocks.org/palewire/raw/1035cd306a2f85b362b1a20ce315b8eb/base.css?rev=8&quot;&gt;</span>
+<span class="x">  </span><span class="cp">{%</span> <span class="k">block</span> <span class="nv">scripts</span> <span class="cp">%}</span><span class="x"></span>
+<span class="x">  </span><span class="cp">{%</span> <span class="k">endblock</span> <span class="nv">scripts</span> <span class="cp">%}</span><span class="x"></span>
 <span class="x">&lt;/head&gt;</span>
 <span class="x">&lt;body&gt;</span>
 <span class="x">    &lt;nav&gt;</span>
-<span class="x">        &lt;a href=&quot;http://first-graphics-app.readthedocs.org/&quot;&gt;</span>
-<span class="x">            &lt;img src=&quot;https://bl.ocks.org/palewire/raw/1035cd306a2f85b362b1a20ce315b8eb/ire-logo.png&quot;&gt;</span>
-<span class="x">        &lt;/a&gt;</span>
+<span class="x">        &lt;img src=&quot;https://bl.ocks.org/palewire/raw/1035cd306a2f85b362b1a20ce315b8eb/ire-logo.png&quot;&gt;</span>
 <span class="x">    &lt;/nav&gt;</span>
-<span class="x">    &lt;header&gt;</span>
-<span class="x">        &lt;h1&gt;</span><span class="cp">{%</span> <span class="k">block</span> <span class="nv">headline</span> <span class="cp">%}{%</span> <span class="k">endblock</span> <span class="cp">%}</span><span class="x">&lt;/h1&gt;</span>
-<span class="x">        &lt;div class=&quot;byline&quot;&gt;</span>
-<span class="x">            </span><span class="cp">{%</span> <span class="k">block</span> <span class="nv">byline</span> <span class="cp">%}{%</span> <span class="k">endblock</span> <span class="cp">%}</span><span class="x"></span>
-<span class="x">        &lt;/div&gt;</span>
-<span class="x">        &lt;div class=&quot;pubdate&quot;&gt;</span>
-<span class="x">            </span><span class="cp">{%</span> <span class="k">block</span> <span class="nv">pubdate</span> <span class="cp">%}{%</span> <span class="k">endblock</span> <span class="cp">%}</span><span class="x"></span>
-<span class="x">        &lt;/div&gt;</span>
-<span class="x">    &lt;/header&gt;</span>
-<span class="x">    </span><span class="cp">{%</span> <span class="k">block</span> <span class="nv">content</span> <span class="cp">%}{%</span> <span class="k">endblock</span> <span class="cp">%}</span><span class="x"></span>
-<span class="x">    </span><span class="cp">{%</span> <span class="k">block</span> <span class="nv">scripts</span> <span class="cp">%}{%</span> <span class="k">endblock</span> <span class="cp">%}</span><span class="x"></span>
-<span class="x">    &lt;script src=&quot;scripts/main.js&quot;&gt;&lt;/script&gt;</span>
+<span class="x">  &lt;header&gt;</span>
+<span class="x">    &lt;h1&gt;</span><span class="cp">{%</span> <span class="k">block</span> <span class="nv">headline</span> <span class="cp">%}{%</span> <span class="k">endblock</span> <span class="cp">%}</span><span class="x">&lt;/h1&gt;</span>
+<span class="x">    &lt;div class=&quot;byline&quot;&gt;</span>
+<span class="x">        </span><span class="cp">{%</span> <span class="k">block</span> <span class="nv">byline</span> <span class="cp">%}{%</span> <span class="k">endblock</span> <span class="cp">%}</span><span class="x"></span>
+<span class="x">    &lt;/div&gt;</span>
+<span class="x">    &lt;div class=&quot;pubdate&quot;&gt;</span>
+<span class="x">        </span><span class="cp">{%</span> <span class="k">block</span> <span class="nv">pubdate</span> <span class="cp">%}{%</span> <span class="k">endblock</span> <span class="cp">%}</span><span class="x"></span>
+<span class="x">    &lt;/div&gt;</span>
+<span class="x">  &lt;/header&gt;</span>
+<span class="x">  </span><span class="cp">{%</span> <span class="k">block</span> <span class="nv">content</span> <span class="cp">%}</span><span class="x"></span>
+<span class="x">  </span><span class="cp">{%</span> <span class="k">endblock</span> <span class="nv">content</span> <span class="cp">%}</span><span class="x"></span>
 <span class="x">&lt;/body&gt;</span>
 <span class="x">&lt;/html&gt;</span>
 </pre></div>
 </div>
 <p>As you can see, it includes all of the standard HTML tags, with our custom stylesheets and content blocks mixed in.</p>
-<p>To see the effects, return to <code class="docutils literal notranslate"><span class="pre">index.nunjucks</span></code> and fill in a headline using the <code class="docutils literal notranslate"><span class="pre">headline</span></code> block introduced by our base template. Save the page and you should quickly see it appear on the page.</p>
-<div class="highlight-jinja notranslate"><div class="highlight"><pre><span></span><span class="cp">{%</span> <span class="k">extends</span> <span class="s1">&#39;_layouts/base.nunjucks&#39;</span> <span class="cp">%}</span><span class="x"></span>
+<p>To see the effects, return to <code class="docutils literal notranslate"><span class="pre">index.html</span></code> and fill in a headline using the <code class="docutils literal notranslate"><span class="pre">headline</span></code> block introduced by our base template. Save the page and you should quickly see it appear on the page.</p>
+<div class="highlight-jinja notranslate"><div class="highlight"><pre><span></span><span class="cp">{%</span> <span class="k">extends</span> <span class="s1">&#39;_layouts/base.html&#39;</span> <span class="cp">%}</span><span class="x"></span>
 
 <span class="hll"><span class="cp">{%</span> <span class="k">block</span> <span class="nv">headline</span> <span class="cp">%}</span><span class="x">My headline will go here</span><span class="cp">{%</span> <span class="k">endblock</span> <span class="cp">%}</span><span class="x"></span>
 </span></pre></div>
 </div>
-<a class="reference internal image-reference" href="_images/headline.png"><img alt="_images/headline.png" src="_images/headline.png" style="width: 100%;" /></a>
+<p><img alt="headline" src="_images/headline.png" /></p>
 <p>Now fill in a byline.</p>
-<div class="highlight-jinja notranslate"><div class="highlight"><pre><span></span><span class="cp">{%</span> <span class="k">extends</span> <span class="s1">&#39;_layouts/base.nunjucks&#39;</span> <span class="cp">%}</span><span class="x"></span>
+<div class="highlight-jinja notranslate"><div class="highlight"><pre><span></span><span class="cp">{%</span> <span class="k">extends</span> <span class="s1">&#39;_layouts/base.html&#39;</span> <span class="cp">%}</span><span class="x"></span>
 
 <span class="cp">{%</span> <span class="k">block</span> <span class="nv">headline</span> <span class="cp">%}</span><span class="x">My headline will go here</span><span class="cp">{%</span> <span class="k">endblock</span> <span class="cp">%}</span><span class="x"></span>
 <span class="hll"><span class="cp">{%</span> <span class="k">block</span> <span class="nv">byline</span> <span class="cp">%}</span><span class="x">By me</span><span class="cp">{%</span> <span class="k">endblock</span> <span class="cp">%}</span><span class="x"></span>
 </span></pre></div>
 </div>
-<a class="reference internal image-reference" href="_images/byline.png"><img alt="_images/byline.png" src="_images/byline.png" style="width: 100%;" /></a>
+<p><img alt="headline" src="_images/byline.png" /></p>
 <p>And let’s do the publication date too while we are at it.</p>
-<div class="highlight-jinja notranslate"><div class="highlight"><pre><span></span><span class="cp">{%</span> <span class="k">extends</span> <span class="s1">&#39;_layouts/base.nunjucks&#39;</span> <span class="cp">%}</span><span class="x"></span>
+<div class="highlight-jinja notranslate"><div class="highlight"><pre><span></span><span class="cp">{%</span> <span class="k">extends</span> <span class="s1">&#39;_layouts/base.html&#39;</span> <span class="cp">%}</span><span class="x"></span>
 
 <span class="cp">{%</span> <span class="k">block</span> <span class="nv">headline</span> <span class="cp">%}</span><span class="x">My headline will go here</span><span class="cp">{%</span> <span class="k">endblock</span> <span class="cp">%}</span><span class="x"></span>
 <span class="cp">{%</span> <span class="k">block</span> <span class="nv">byline</span> <span class="cp">%}</span><span class="x">By me</span><span class="cp">{%</span> <span class="k">endblock</span> <span class="cp">%}</span><span class="x"></span>
 <span class="hll"><span class="cp">{%</span> <span class="k">block</span> <span class="nv">pubdate</span> <span class="cp">%}</span><span class="x"></span>
-</span><span class="hll"><span class="x">    &lt;time datetime=&quot;2020-03-07&quot; pubdate&gt;Mar. 7, 2020&lt;/time&gt;</span>
+</span><span class="hll"><span class="x">  &lt;time datetime=&quot;2022-03-05&quot; pubdate&gt;Mar. 5, 2022&lt;/time&gt;</span>
 </span><span class="hll"><span class="cp">{%</span> <span class="k">endblock</span> <span class="cp">%}</span><span class="x"></span>
 </span></pre></div>
 </div>
-<a class="reference internal image-reference" href="_images/pubdate.png"><img alt="_images/pubdate.png" src="_images/pubdate.png" style="width: 100%;" /></a>
-<p>Congratulations, you’ve installed a base template and started in on creating your first custom page. Now is another good time to pause and commit your work.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ git add .
-$ git commit -m <span class="s2">&quot;Started editing templates&quot;</span>
+<p><img alt="pubdate" src="_images/pubdate.png" /></p>
+<p>Congratulations. You’ve installed a base template and started in on creating your first custom page. Now is a good time to pause and log our work with GitHub.</p>
+<p>The first command to learn is <a class="reference external" href="https://git-scm.com/docs/git-status"><code class="docutils literal notranslate"><span class="pre">status</span></code></a>, which prints out a report card on the current state of your repository.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git status
 </pre></div>
 </div>
-<p>And, again, push it to GitHub.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ git push origin master
+<p>The next step is to instruct <code class="docutils literal notranslate"><span class="pre">git</span></code> to track the new files with the <a class="reference external" href="https://git-scm.com/docs/git-add"><code class="docutils literal notranslate"><span class="pre">add</span></code></a> command. Rather than introduce files one by one, you can add more than one file by using a <a class="reference external" href="https://en.wikipedia.org/wiki/Wildcard_character">wildcard character</a> in your command. One common shortcut is <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">add</span> <span class="pre">.</span></code>, which will add all of the files in your repository at once.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git add .
 </pre></div>
-</div>
-<section id="push-to-github">
-<h2><span class="section-number">5.1. </span>Push to GitHub<a class="headerlink" href="#push-to-github" title="Permalink to this headline">¶</a></h2>
-<p>The next step is to instruct <code class="docutils literal notranslate"><span class="pre">git</span></code> to track the new files with the <a class="reference external" href="https://git-scm.com/docs/git-add"><code class="docutils literal notranslate"><span class="pre">add</span></code></a> command.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git add README.md
-</pre></div>
-</div>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>Rather than introduce files one by one, you can add more than one file by using a <a class="reference external" href="https://en.wikipedia.org/wiki/Wildcard_character">wildcard character</a> in your command. One common shortcut is <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">add</span> <span class="pre">.</span></code>, which will add all of the files in your repository at once.</p>
 </div>
 <p>Logging changes also requires using the <a class="reference external" href="https://git-scm.com/docs/git-commit"><code class="docutils literal notranslate"><span class="pre">commit</span></code></a> command, which expects a summary of your work after the <code class="docutils literal notranslate"><span class="pre">-m</span></code> flag.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git commit -m <span class="s2">&quot;First commit&quot;</span>
@@ -213,6 +202,9 @@ git config --global user.name <span class="s2">&quot;your name&quot;</span>
 <p>First, the command asks for the name of the remote repository where you’d like to send your changes. In the parlance of <code class="docutils literal notranslate"><span class="pre">git</span></code>, the default name is <code class="docutils literal notranslate"><span class="pre">origin</span></code>.</p>
 <p>Second, you need to provide the <a class="reference external" href="https://en.wikipedia.org/wiki/Branching_(version_control)">branch</a> of the code you’d like to syncronize. Branching is a tool for maintaining parallel versions of your code within the same respository. We won’t get that sophisticated in this tutorial, so you can stick to the default code branch, which is called <code class="docutils literal notranslate"><span class="pre">main</span></code>.</p>
 <p>Taking all that into account, the command to push local changes to GitHub is typically the following. Try it.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git push origin main
+</pre></div>
+</div>
 <p>You just created your first code commit! Reload your repository on GitHub and see your handiwork.</p>
 </section>
 </section>
