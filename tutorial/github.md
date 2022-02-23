@@ -10,7 +10,7 @@ First things first. It always helps to store all your code in the same place, in
   :local:
 ```
 
-## Create a repository
+## Create a code directory
 
 Once you have your terminal open, it will start you off in your computer’s home directory, much like your file explorer.
 
@@ -42,87 +42,50 @@ Now jump into the new directory with the [`cd`](https://en.wikipedia.org/wiki/Cd
 cd Code
 ```
 
-Then, create a new directory where we can store the code for the project we're going to build today. Name it after our application.
+## Create a repository
+
+Visit [GitHub](http://www.github.com) and find the homepage for `baker-example-page-template` repository published the Los Angeles Times’s `datadesk` account. It can be found at [github.com/datadesk/baker-example-page-template](https://github.com/datadesk/baker-example-page-template).
+
+[![new repo button](_static/template-page.png)](https://github.com/datadesk/baker-example-page-template)
+
+This is a special kind of repository known as a template. It’s designed to serve as a starting point for new projects.  Click the [green "use this template" button](https://github.com/datadesk/baker-example-page-template/generate) near the middle of the page to get started.
+
+[![click it](_static/template-button.png)](https://github.com/datadesk/baker-example-page-template/generate)
+
+On the next page, fill in a name for your copy of the repository. You can pick anything. Our example will use `my-first-visual-story`.
+
+![new repo](_static/new-repo.png)
+
+## Clone the repository
+
+Return to your terminal. Use `gh` to login to GitHub, which will verify that your computer has permission to access and edit the repositories owned by your account.
 
 ```bash
-mkdir first-visual-story
+gh auth login
 ```
 
-Now, use `cd` again to enter the the directory you just created.
+After you authenticate, it’s time to clone the new repository we created. Edit the code below by inserting your user name and repository. Then run it.
 
 ```bash
-cd first-graphics-app
+gh clone <your-username>/<your-repo>
 ```
 
-Use the command [`git init`](https://git-scm.com/docs/git-init) to create a new repository in the current directory. This will be the root of our version-controlled project.
+In my case, the command looks like this:
 
 ```bash
-git init .
+gh repo clone palewire/my-first-visual-story
 ```
 
-```{note}
-The `.` symbol is a common shortcut to refer to the current directory from the terminal
-```
-
-## Connect to GitHub
-
-Visit [GitHub](http://www.github.com) and [create](https://github.com/new) a new public repository named `first-visual-story`. Don't check "Initialize with README." You'll want to start with a blank repository.
-
-```{image} _static/new-repo.png
-:target: https://github.com/new
-:width: 100%
-```
-
-Then connect your local directory to GitHub with the following command. Replace `<yourusername>` with your GitHub user name.
+After clone completes, run the `ls` command again. You should see a new folder created by `gh`.
 
 ```bash
-$ git remote add origin https://github.com/<yourusername>/first-graphics-app.git
+ls
 ```
 
-Create your first file, a blank `README` with a [Markdown](https://en.wikipedia.org/wiki/Markdown) file extension since that's [the preferred format of GitHub](https://help.github.com/articles/github-flavored-markdown). The filename will be `README.md`. Markdown is a simple way of writing nicely formatted text, complete with headlines, links and images.
+Use `cd` to move into the directory, where we can begin work.
 
 ```bash
-# Macs or Linux:
-$ touch README.md
-
-# If you're using Visual Studio Code, fire it up in your text editor right away:
-$ code README.md
+cd my-first-visual-scraper
 ```
 
-Open up the README in your text editor and type something in it. Maybe something like:
-
-```
-My first graphics app
-=====================
-```
-
-Make sure to save it. Then officially add the file to your repository for tracking with Git's `add` command.
-
-```bash
-$ git add README.md
-```
-
-Log its creation with Git's `commit` command. You can include a personalized message after the `-m` flag. If you're on a Windows machine, make sure you use double quotes around your commit message.
-
-```bash
-$ git commit -m "First commit"
-```
-
-If this is your first time using Git, you may be prompted to configure you name and email. If so, take the time now. Then run the `commit` command above again.
-
-```bash
-$ git config --global user.email "your@email.com"
-$ git config --global user.name "your name"
-```
-
-Now, finally, push your commit up to GitHub.
-
-```bash
-$ git push origin master
-```
-
-You just created your first code commit! Reload your repository on GitHub and see your handiwork.
-
-```{image} _static/first-commit.png
-:width: 100%
-```
+We've got our starter kit installed. Let’s get it up and running.
