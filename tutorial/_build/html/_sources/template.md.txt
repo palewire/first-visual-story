@@ -186,4 +186,4 @@ Taking all that into account, the command to push local changes to GitHub is typ
 git push origin main
 ```
 
-You just created your first code commit! Reload your repository on GitHub and see your handiwork.
+You just created your first code commit. Reload your repository on GitHub and see your handiwork. Now it’s time to load in some real data and start sculpting it on the page.
