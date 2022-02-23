@@ -18,7 +18,6 @@ Frameworks aim to make the challenge easier by organizing a curated set of tools
 
 There are a lot of different frameworks out there. Maybe you've heard of some them, like [Django](https://www.djangoproject.com/) for Python, [Rails](http://rubyonrails.org) for Ruby or [React](https://reactjs.org/) for Node.js.
 
-```{note}
 While some frameworks are more popular than others, each newsroom tends to go its own way with a custom system for publishing pages. The programming languages and the details vary, but the fundamentals are almost all the same. Some of them have even been released as open-source software. They include:
 
 - The Los Angeles Times’ [baker](https://github.com/datadesk/baker)
@@ -27,7 +26,6 @@ While some frameworks are more popular than others, each newsroom tends to go it
 - The Seattle Times' [newsapp-template](https://github.com/seattletimes/newsapp-template/)
 - The NPR Apps team's [dailygraphics](https://github.com/nprapps/dailygraphics)
 - Politico's [generator-politico-graphics](https://github.com/The-Politico/generator-politico-graphics)
-```
 
 Node.js is so fancy it has more than plain old frameworks. It even includes a framework for creating frameworks! It's called [Yeoman](http://yeoman.io). Its "generator" system makes it easier for publishers to tailor a framework to their site without having to reinvent all the wheels themselves.
 
