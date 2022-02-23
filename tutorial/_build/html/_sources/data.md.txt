@@ -1,4 +1,5 @@
 ```{include} _templates/nav.html
+
 ```
 
 # Data
@@ -10,7 +11,7 @@ We've got our system set up. Now it's time to start telling our story. To do tha
   :local:
 ```
 
-If we were writing this application entirely in the browser with traditional JavaScript we'd have to pull it in with dynamic ["AJAX"](https://en.wikipedia.org/wiki/Ajax_(programming)) calls that retrieve data over the web as the page is constructed.
+If we were writing this application entirely in the browser with traditional JavaScript we'd have to pull it in with dynamic ["AJAX"](<https://en.wikipedia.org/wiki/Ajax_(programming)>) calls that retrieve data over the web as the page is constructed.
 
 Since we're working with a Node.js system, running JavaScript code on the backend, we can import data directly into the template instead and lay it out before the page is rendered in the browser. This results in a faster experience for our users and opens up new ways for us to be creative with our data.
 

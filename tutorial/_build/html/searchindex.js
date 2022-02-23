@@ -622,7 +622,6 @@ Search.setIndex({
     'y': 2,
     'year': 2,
     'yeogurt': 2,
-    'yeoman': [],
     'you': [0, 1, 2],
     'your': [0, 2],
     'z': 2,
