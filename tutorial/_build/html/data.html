@@ -1,0 +1,262 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>6. Data &#8212; First Visual Story  documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css" />
+    <link rel="stylesheet" type="text/css" href="_static/css/custom.css" />
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="7. Cards" href="cards.html" />
+    <link rel="prev" title="5. Template" href="template.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+    <link rel="canonical" href="https://palewi.re/docs/First Visual Story/data.html"/>
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <nav>
+    <div class="row">
+        <div class="sevencol">
+            <div class="shingle">
+                <a href="https://palewi.re/">
+                    <div rel="rnews:copyrightedBy rnews:hasSource rnews:providedBy">
+                        <div about="http://palewi.re/" typeof="rnews:Organization">
+                            <div property="rnews:name">palewire</div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="fivecol last links">
+            <ul>
+                <li>
+                    <a href="http://palewi.re/posts/" title="Posts">
+                        Posts
+                    </a>
+                </li>
+                <li>
+                    <a href="http://palewi.re/work/" title="Work">
+                        Work
+                    </a>
+                </li>
+                <li>
+                    <a href="http://palewi.re/talks/" title="Talks">
+                        Talks
+                    </a>
+                </li>
+                <li>
+                    <a href="http://palewi.re/who-is-ben-welsh/" title="Who is Ben Welsh?">
+                        About
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<div class="row topbar">
+    <div class="twelvecol last"></div>
+</div>
+<section id="data">
+<h1><span class="section-number">6. </span>Data<a class="headerlink" href="#data" title="Permalink to this headline">¶</a></h1>
+<p>We’ve got our system set up. Now it’s time to start telling our story. To do that, we need our data.</p>
+<p>If we were writing this application entirely in the browser with traditional JavaScript we’d have to pull it in with dynamic “AJAX” calls that retrieve data over the web as the page is constructed. But since we’re working with a Node.js system, running code here on the backend, we can import data directly into the template instead and lay it out before the page is rendered in the browser. This results in a faster experience for our users, and opens up new ways for us to be creative with our data.</p>
+<p>Every newsroom’s system will handle this differently. Our Yeoman generator is preconfigured to open all JSON data files in the <code class="docutils literal notranslate"><span class="pre">_data</span></code> folder and import them into our Nunjucks templates.</p>
+<p>Let’s give it a try. Grab the <a class="reference external" href="https://raw.githubusercontent.com/ireapps/first-graphics-app/master/data/harvard_park_homicides.json">list of Harvard Park homicides</a> published by the Los Angeles Times and save it to <code class="docutils literal notranslate"><span class="pre">_data/harvard_park_homicides.json</span></code>. It includes every homicide victim in the neighborhood since 2000 in the <a class="reference external" href="https://en.wikipedia.org/wiki/JSON">JSON data format</a> favored by JavaScript.</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="p">[</span>
+   <span class="p">{</span>
+      <span class="s2">&quot;case_number&quot;</span><span class="o">:</span><span class="s2">&quot;2017-04514&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;slug&quot;</span><span class="o">:</span><span class="s2">&quot;eddie-rosendo-lino&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;first_name&quot;</span><span class="o">:</span><span class="s2">&quot;Eddie&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;middle_name&quot;</span><span class="o">:</span><span class="s2">&quot;Rosendo&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;last_name&quot;</span><span class="o">:</span><span class="s2">&quot;Lino&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;death_date&quot;</span><span class="o">:</span><span class="s2">&quot;2017-06-18T00:00:00.000Z&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;death_year&quot;</span><span class="o">:</span><span class="mf">2017</span><span class="p">,</span>
+      <span class="s2">&quot;age&quot;</span><span class="o">:</span><span class="mf">23.0</span><span class="p">,</span>
+      <span class="s2">&quot;race&quot;</span><span class="o">:</span><span class="s2">&quot;black&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;gender&quot;</span><span class="o">:</span><span class="s2">&quot;male&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;image&quot;</span><span class="o">:</span><span class="kc">null</span><span class="p">,</span>
+      <span class="s2">&quot;longitude&quot;</span><span class="o">:-</span><span class="mf">118.304107484</span><span class="p">,</span>
+      <span class="s2">&quot;latitude&quot;</span><span class="o">:</span><span class="mf">33.9904336958</span>
+   <span class="p">},</span>
+   <span class="p">{</span>
+      <span class="s2">&quot;case_number&quot;</span><span class="o">:</span><span class="s2">&quot;2017-03454&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;slug&quot;</span><span class="o">:</span><span class="s2">&quot;alex-david-lomeli&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;first_name&quot;</span><span class="o">:</span><span class="s2">&quot;Alex&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;middle_name&quot;</span><span class="o">:</span><span class="s2">&quot;David&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;last_name&quot;</span><span class="o">:</span><span class="s2">&quot;Lomeli&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;death_date&quot;</span><span class="o">:</span><span class="s2">&quot;2017-05-07T00:00:00.000Z&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;death_year&quot;</span><span class="o">:</span><span class="mf">2017</span><span class="p">,</span>
+      <span class="s2">&quot;age&quot;</span><span class="o">:</span><span class="mf">18.0</span><span class="p">,</span>
+      <span class="s2">&quot;race&quot;</span><span class="o">:</span><span class="s2">&quot;latino&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;gender&quot;</span><span class="o">:</span><span class="s2">&quot;male&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;image&quot;</span><span class="o">:</span><span class="kc">null</span><span class="p">,</span>
+      <span class="s2">&quot;longitude&quot;</span><span class="o">:-</span><span class="mf">118.300290584</span><span class="p">,</span>
+      <span class="s2">&quot;latitude&quot;</span><span class="o">:</span><span class="mf">33.9793646958</span>
+   <span class="p">},</span>
+   <span class="p">...</span>
+</pre></div>
+</div>
+<p>Return to <code class="docutils literal notranslate"><span class="pre">index.nunjucks</span></code> and add the following to the bottom to print the data out on the page. We can do that using the <code class="docutils literal notranslate"><span class="pre">{{</span> <span class="pre">}}</span></code> print tags provided by Nunjucks.</p>
+<div class="highlight-jinja notranslate"><div class="highlight"><pre><span></span><span class="cp">{%</span> <span class="k">block</span> <span class="nv">content</span> <span class="cp">%}</span><span class="x"></span>
+<span class="x">    </span><span class="cp">{{</span> <span class="nv">site.data.harvard_park_homicides</span> <span class="cp">}}</span><span class="x"></span>
+<span class="cp">{%</span> <span class="k">endblock</span> <span class="cp">%}</span><span class="x"></span>
+</pre></div>
+</div>
+<p>Instead of just printing the data in one big block, let’s loop through the records and print them one by one. We’ll use the <code class="docutils literal notranslate"><span class="pre">{%</span> <span class="pre">%}</span></code> template tags provided by Nunjucks, which allow you to use common computer programming logic when you’re laying out a page.</p>
+<div class="highlight-jinja notranslate"><div class="highlight"><pre><span></span><span class="cp">{%</span> <span class="k">block</span> <span class="nv">content</span> <span class="cp">%}</span><span class="x"></span>
+<span class="hll"><span class="cp">{%</span> <span class="k">for</span> <span class="nv">obj</span> <span class="k">in</span> <span class="nv">site.data.harvard_park_homicides</span> <span class="cp">%}</span><span class="x"></span>
+</span><span class="hll"><span class="x">    </span><span class="cp">{{</span> <span class="nv">obj</span> <span class="cp">}}</span><span class="x"></span>
+</span><span class="hll"><span class="cp">{%</span> <span class="k">endfor</span> <span class="cp">%}</span><span class="x"></span>
+</span><span class="cp">{%</span> <span class="k">endblock</span> <span class="cp">%}</span><span class="x"></span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="_images/data-dump.png"><img alt="_images/data-dump.png" src="_images/data-dump.png" style="width: 100%;" /></a>
+<p>To put each one on its own line, add a line break with a <code class="docutils literal notranslate"><span class="pre">&lt;br&gt;</span></code> tag. That’s just boring old HTML. Writing pages with a templating language like Nunjucks is typically nothing more than mixing traditional HTML with the template tags that negotiate your data files and other variables.</p>
+<div class="highlight-jinja notranslate"><div class="highlight"><pre><span></span><span class="cp">{%</span> <span class="k">block</span> <span class="nv">content</span> <span class="cp">%}</span><span class="x"></span>
+<span class="cp">{%</span> <span class="k">for</span> <span class="nv">obj</span> <span class="k">in</span> <span class="nv">site.data.harvard_park_homicides</span> <span class="cp">%}</span><span class="x"></span>
+<span class="hll"><span class="x">    </span><span class="cp">{{</span> <span class="nv">obj</span> <span class="cp">}}</span><span class="x">&lt;br&gt;</span>
+</span><span class="cp">{%</span> <span class="k">endfor</span> <span class="cp">%}</span><span class="x"></span>
+<span class="cp">{%</span> <span class="k">endblock</span> <span class="cp">%}</span><span class="x"></span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="_images/hello-loop.png"><img alt="_images/hello-loop.png" src="_images/hello-loop.png" style="width: 100%;" /></a>
+<p>That’s good, but hardly informative. How do we start printing out the contents of the data? The fields in the JSON dictionary for each homicide are available by adding a <code class="docutils literal notranslate"><span class="pre">.</span></code> after the object. For instance, here’s how to print the contents of the <code class="docutils literal notranslate"><span class="pre">last_name</span></code> field.</p>
+<div class="highlight-jinja notranslate"><div class="highlight"><pre><span></span><span class="cp">{%</span> <span class="k">block</span> <span class="nv">content</span> <span class="cp">%}</span><span class="x"></span>
+<span class="cp">{%</span> <span class="k">for</span> <span class="nv">obj</span> <span class="k">in</span> <span class="nv">site.data.harvard_park_homicides</span> <span class="cp">%}</span><span class="x"></span>
+<span class="hll"><span class="x">    </span><span class="cp">{{</span> <span class="nv">obj.last_name</span> <span class="cp">}}</span><span class="x">&lt;br&gt;</span>
+</span><span class="cp">{%</span> <span class="k">endfor</span> <span class="cp">%}</span><span class="x"></span>
+<span class="cp">{%</span> <span class="k">endblock</span> <span class="cp">%}</span><span class="x"></span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="_images/hello-last-name.png"><img alt="_images/hello-last-name.png" src="_images/hello-last-name.png" style="width: 100%;" /></a>
+<p>Now the first name.</p>
+<div class="highlight-jinja notranslate"><div class="highlight"><pre><span></span><span class="cp">{%</span> <span class="k">block</span> <span class="nv">content</span> <span class="cp">%}</span><span class="x"></span>
+<span class="cp">{%</span> <span class="k">for</span> <span class="nv">obj</span> <span class="k">in</span> <span class="nv">site.data.harvard_park_homicides</span> <span class="cp">%}</span><span class="x"></span>
+<span class="hll"><span class="x">    </span><span class="cp">{{</span> <span class="nv">obj.first_name</span> <span class="cp">}}</span><span class="x"> </span><span class="cp">{{</span> <span class="nv">obj.last_name</span> <span class="cp">}}</span><span class="x">&lt;br&gt;</span>
+</span><span class="cp">{%</span> <span class="k">endfor</span> <span class="cp">%}</span><span class="x"></span>
+<span class="cp">{%</span> <span class="k">endblock</span> <span class="cp">%}</span><span class="x"></span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="_images/hello-full-name.png"><img alt="_images/hello-full-name.png" src="_images/hello-full-name.png" style="width: 100%;" /></a>
+<p>Not bad. We’ve actually got some data on the page. Seems like a good moment to stop, take a break and commit our work.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ git add .
+$ git commit -m <span class="s2">&quot;Printed a list of names from data&quot;</span>
+</pre></div>
+</div>
+<p>Push it to GitHub.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ git push origin master
+</pre></div>
+</div>
+</section>
+
+
+          </div>
+              <div class="related bottom">
+                &nbsp;
+  <nav id="rellinks">
+    <ul>
+        <li>
+          &larr;
+          <a href="template.html" title="Previous document"><span class="section-number">5. </span>Template</a>
+        </li>
+        <li>
+          <a href="cards.html" title="Next document"><span class="section-number">7. </span>Cards</a>
+          &rarr;
+        </li>
+    </ul>
+  </nav>
+              </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">First Visual Story</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="what.html">1. What you will make</a></li>
+<li class="toctree-l1"><a class="reference internal" href="prereqs.html">2. Prerequisites</a></li>
+<li class="toctree-l1"><a class="reference internal" href="github.html">3. Git</a></li>
+<li class="toctree-l1"><a class="reference internal" href="framework.html">4. Framework</a></li>
+<li class="toctree-l1"><a class="reference internal" href="template.html">5. Template</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">6. Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cards.html">7. Cards</a></li>
+<li class="toctree-l1"><a class="reference internal" href="charts.html">8. Charts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="map.html">9. Map</a></li>
+<li class="toctree-l1"><a class="reference internal" href="internet.html">10. Internet</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="template.html" title="previous chapter"><span class="section-number">5. </span>Template</a></li>
+      <li>Next: <a href="cards.html" title="next chapter"><span class="section-number">7. </span>Cards</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2022.
+      
+      |
+      <a href="_sources/data.md.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

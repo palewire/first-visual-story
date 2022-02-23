@@ -1,0 +1,92 @@
+name: Deploy to production
+
+concurrency:
+  group: deploy-prod-${{ github.ref }}
+  cancel-in-progress: true
+
+on:
+  workflow_dispatch:
+  release:
+    types: [published,]
+
+jobs:
+  deploy:
+    name: Deploy
+    runs-on: ubuntu-latest
+    steps:
+      - id: checkout
+        name: Checkout the repo
+        uses: actions/checkout@v2
+
+      - id: install-node
+        name: Use Node.js 14.x
+        uses: actions/setup-node@v2
+        with:
+          node-version: 14
+
+      - id: install-npm
+        name: Use npm v7
+        run: npm install --global npm@7
+
+      - id: cache-node-modules
+        name: Cache node modules
+        uses: actions/cache@v2
+        with:
+          path: ~/.npm # npm cache files are stored in `~/.npm` on Linux/macOS
+          key: ${{ runner.os }}-build-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-build-
+            ${{ runner.os }}-
+
+      - id: install-project-modules
+        name: Install project dependencies
+        run: npm ci --production   ## For the app's build routine
+
+      - id: install-action-modules
+        name: Install action dependencies
+        run: npm install archieml  ## For the deployment routine
+
+      - id: get-slug
+        name: Get slug
+        uses: actions/github-script@v4
+        with:
+          result-encoding: string
+          script: |
+            // import modules
+            const fs = require('fs');
+            const archieml = require('archieml');
+
+            // Read in the slug file
+            const meta = archieml.load(fs.readFileSync('_data/meta.aml', 'utf8'));
+
+            // Pull the slug
+            const slug = meta.slug.trim();
+            console.log(`slug -> ${slug}`);
+
+            // If we get this far, we're good to go.
+            return meta.slug;
+
+      - id: npm-build
+        name: Build project distribution
+        run: npm run build
+        env:
+          BAKER_PATH_PREFIX: ${{ steps.get-slug.outputs.result }}
+
+      - id: configure-aws
+        name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.BAKER_AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.BAKER_AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ secrets.BAKER_AWS_S3_PRODUCTION_REGION }}
+
+      - id: npm-deploy
+        name: Upload the prepared files
+        uses: datadesk/delivery-deploy-action@master
+        with:
+          bucket: ${{ secrets.BAKER_AWS_S3_PRODUCTION_BUCKET }}
+          base-path: ${{ steps.get-slug.outputs.result }}
+          dir: _dist
+          should-cache: true
+          use-accelerate-endpoint: false
+          public: true

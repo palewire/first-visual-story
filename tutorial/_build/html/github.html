@@ -1,0 +1,238 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>3. Git &#8212; First Visual Story  documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css" />
+    <link rel="stylesheet" type="text/css" href="_static/css/custom.css" />
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="4. Framework" href="framework.html" />
+    <link rel="prev" title="2. Prerequisites" href="prereqs.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+    <link rel="canonical" href="https://palewi.re/docs/First Visual Story/github.html"/>
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <nav>
+    <div class="row">
+        <div class="sevencol">
+            <div class="shingle">
+                <a href="https://palewi.re/">
+                    <div rel="rnews:copyrightedBy rnews:hasSource rnews:providedBy">
+                        <div about="http://palewi.re/" typeof="rnews:Organization">
+                            <div property="rnews:name">palewire</div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="fivecol last links">
+            <ul>
+                <li>
+                    <a href="http://palewi.re/posts/" title="Posts">
+                        Posts
+                    </a>
+                </li>
+                <li>
+                    <a href="http://palewi.re/work/" title="Work">
+                        Work
+                    </a>
+                </li>
+                <li>
+                    <a href="http://palewi.re/talks/" title="Talks">
+                        Talks
+                    </a>
+                </li>
+                <li>
+                    <a href="http://palewi.re/who-is-ben-welsh/" title="Who is Ben Welsh?">
+                        About
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<div class="row topbar">
+    <div class="twelvecol last"></div>
+</div>
+<section id="git">
+<h1><span class="section-number">3. </span>Git<a class="headerlink" href="#git" title="Permalink to this headline">¶</a></h1>
+<p>This chapter will show you how to get a code repository up and running on your computer.</p>
+<div class="contents local topic" id="sections">
+<p class="topic-title">Sections</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#create-a-code-directory" id="id1">Create a code directory</a></p></li>
+<li><p><a class="reference internal" href="#create-a-repository" id="id2">Create a repository</a></p></li>
+<li><p><a class="reference internal" href="#clone-the-repository" id="id3">Clone the repository</a></p></li>
+</ul>
+</div>
+<section id="create-a-code-directory">
+<h2><a class="toc-backref" href="#id1"><span class="section-number">3.1. </span>Create a code directory</a><a class="headerlink" href="#create-a-code-directory" title="Permalink to this headline">¶</a></h2>
+<p>First things first. It always helps to store all your code in the same place, instead of haphazard folders around your computer. This way, you always know where to look if you need to find a project.</p>
+<p>Let’s settle the issue on the command-line. Open the terminal of your choice. It will start you off in your computer’s home directory, much like your file explorer.</p>
+<p>Let’s verify that using a command called <a class="reference external" href="https://en.wikipedia.org/wiki/Pwd"><code class="docutils literal notranslate"><span class="pre">pwd</span></code></a>, which stands for present working directory. The output is the full path of your terminal’s current location in the file system. You should get back something like <code class="docutils literal notranslate"><span class="pre">/Users/palewire/</span></code>, the path to your home directory.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">pwd</span>
+</pre></div>
+</div>
+<p>Next let’s enter the <a class="reference external" href="https://en.wikipedia.org/wiki/Ls"><code class="docutils literal notranslate"><span class="pre">ls</span></code></a> command to see all of its subdirectories. The terminal should print out the same list of folders you can see in your home directory via the file explorer.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ls
+</pre></div>
+</div>
+<p>Our first task is to create a folder to store our code.</p>
+<p>Use the <a class="reference external" href="https://en.wikipedia.org/wiki/Mkdir"><code class="docutils literal notranslate"><span class="pre">mkdir</span></code></a> command to create a new directory in the same style as the Desktop, Documents and Downloads folders included by most operating systems.</p>
+<p>We will name this folder <code class="docutils literal notranslate"><span class="pre">Code</span></code>. To verify the command works, open the file explorer and navigate to your home folder. After it’s run, you should see the new directory alongside the rest.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mkdir Code
+</pre></div>
+</div>
+<p>Now jump into the new directory with the <a class="reference external" href="https://en.wikipedia.org/wiki/Cd_(command)"><code class="docutils literal notranslate"><span class="pre">cd</span></code></a> command, which operates the same as double clicking on a folder in your file explorer.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> Code
+</pre></div>
+</div>
+</section>
+<section id="create-a-repository">
+<h2><a class="toc-backref" href="#id2"><span class="section-number">3.2. </span>Create a repository</a><a class="headerlink" href="#create-a-repository" title="Permalink to this headline">¶</a></h2>
+<p>Visit <a class="reference external" href="http://www.github.com">GitHub</a> and find the homepage for <code class="docutils literal notranslate"><span class="pre">baker-example-page-template</span></code> repository published the Los Angeles Times’s <code class="docutils literal notranslate"><span class="pre">datadesk</span></code> account. It can be found at <a class="reference external" href="https://github.com/datadesk/baker-example-page-template">github.com/datadesk/baker-example-page-template</a>.</p>
+<p><a class="reference external" href="https://github.com/datadesk/baker-example-page-template"><img alt="new repo button" src="_images/template-page.png" /></a></p>
+<p>This is a special kind of repository known as a template. It’s designed to serve as a starting point for new projects.  Click the <a class="reference external" href="https://github.com/datadesk/baker-example-page-template/generate">green “use this template” button</a> near the middle of the page to get started.</p>
+<p><a class="reference external" href="https://github.com/datadesk/baker-example-page-template/generate"><img alt="click it" src="_images/template-button.png" /></a></p>
+<p>On the next page, fill in a name for your copy of the repository. You can pick anything. Our example will use <code class="docutils literal notranslate"><span class="pre">my-first-visual-story</span></code>.</p>
+<p><img alt="new repo" src="_images/new-repo.png" /></p>
+</section>
+<section id="clone-the-repository">
+<h2><a class="toc-backref" href="#id3"><span class="section-number">3.3. </span>Clone the repository</a><a class="headerlink" href="#clone-the-repository" title="Permalink to this headline">¶</a></h2>
+<p>Return to your terminal. Use <code class="docutils literal notranslate"><span class="pre">gh</span></code> to login to GitHub, which will verify that your computer has permission to access and edit the repositories owned by your account.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gh auth login
+</pre></div>
+</div>
+<p>After you authenticate, it’s time to clone the new repository we created. Edit the code below by inserting your user name and repository. Then run it.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gh clone &lt;your-username&gt;/&lt;your-repo&gt;
+</pre></div>
+</div>
+<p>In my case, the command looks like this:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gh repo clone palewire/my-first-visual-story
+</pre></div>
+</div>
+<p>After clone completes, run the <code class="docutils literal notranslate"><span class="pre">ls</span></code> command again. You should see a new folder created by <code class="docutils literal notranslate"><span class="pre">gh</span></code>.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ls
+</pre></div>
+</div>
+<p>Use <code class="docutils literal notranslate"><span class="pre">cd</span></code> to move into the directory, where we can begin work.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> my-first-visual-scraper
+</pre></div>
+</div>
+<p>We’ve got our starter kit installed. Let’s get it up and running.</p>
+</section>
+</section>
+
+
+          </div>
+              <div class="related bottom">
+                &nbsp;
+  <nav id="rellinks">
+    <ul>
+        <li>
+          &larr;
+          <a href="prereqs.html" title="Previous document"><span class="section-number">2. </span>Prerequisites</a>
+        </li>
+        <li>
+          <a href="framework.html" title="Next document"><span class="section-number">4. </span>Framework</a>
+          &rarr;
+        </li>
+    </ul>
+  </nav>
+              </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">First Visual Story</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="what.html">1. What you will make</a></li>
+<li class="toctree-l1"><a class="reference internal" href="prereqs.html">2. Prerequisites</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">3. Git</a></li>
+<li class="toctree-l1"><a class="reference internal" href="framework.html">4. Framework</a></li>
+<li class="toctree-l1"><a class="reference internal" href="template.html">5. Template</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data.html">6. Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cards.html">7. Cards</a></li>
+<li class="toctree-l1"><a class="reference internal" href="charts.html">8. Charts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="map.html">9. Map</a></li>
+<li class="toctree-l1"><a class="reference internal" href="internet.html">10. Internet</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="prereqs.html" title="previous chapter"><span class="section-number">2. </span>Prerequisites</a></li>
+      <li>Next: <a href="framework.html" title="next chapter"><span class="section-number">4. </span>Framework</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2022.
+      
+      |
+      <a href="_sources/github.md.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

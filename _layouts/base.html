@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="{% block lang %}en{% endblock lang %}">
+<head>
+  <meta charset="utf-8">
+  <title>{% block title %}{% endblock title %}</title>
+  <meta name="description" content="{% block description %}{{ meta.seo_description }}{% endblock description %}">
+
+  {% block viewport %}
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  {% endblock viewport %}
+
+  {% block canonical_url %}<link rel="canonical" href="{{ page.absoluteUrl }}">{% endblock canonical_url %}
+
+  {% block meta %}
+  {% endblock meta %}
+
+  {% block opengraph %}
+  <meta property="og:title" content="{{ meta.social_headline }}">
+  <meta property="og:description" content="{{ meta.social_description }}">
+  <meta property="og:url" content="{{ page.absoluteUrl }}">
+  <meta property="og:image" content="{% staticabsolute meta.social_image %}">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="{{ meta.site_name }}">
+  <meta property="og:locale" content="{{ meta.locale }}">
+  {% endblock opengraph %}
+
+  {% block twitter %}
+  <meta property="twitter:title" content="{{ meta.social_headline }}">
+  <meta property="twitter:description" content="{{ meta.social_description }}">
+  <meta property="twitter:url" content="{{ page.absoluteUrl }}">
+  <meta property="twitter:image" content="{% staticabsolute meta.social_image %}">
+  <meta property="twitter:card" content="summary_large_image">
+  {% endblock twitter %}
+
+  {% block ldjson %}
+  <script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "NewsArticle",
+    "headline": "{{ meta.seo_headline }}",
+    "image": {
+      "@type": "ImageObject",
+      "contentUrl": "{% staticabsolute meta.social_image %}",
+      "url": "{% staticabsolute meta.social_image %}",
+      "representativeOfPage": true
+    },
+    "dateCreated": "{{ meta.pub_date|date("yyyy-MM-dd HH:mm:ss") }}",
+    "datePublished": "{{ meta.pub_date|date("yyyy-MM-dd HH:mm:ss") }}",
+    {% if meta.update_date %}
+    "dateModified": "{{ meta.update_date|date("yyyy-MM-dd HH:mm:ss") }}",
+    {% endif -%}
+    "mainEntityOfPage": "{{ page.absoluteUrl }}",
+    "description": "{{ meta.seo_description }}",
+    "publisher": {
+      "@type": "Organization",
+      "name": "{{ meta.site_name }}",
+      "url": "{{ DOMAIN }}",
+    },
+    "author": [{% for author in meta.byline %}{
+      {% if author.name %}"name": "{{ author.name }}",{% endif %}
+      {% if author.url %}"url": "{{ author.url }}",{% endif %}
+      "@type": "Person"
+    }{% if not loop.last %},{% endif %}{% endfor %}]
+  }
+  </script>
+  {% endblock ldjson %}
+
+  {% block styles %}
+  {% endblock styles %}
+
+  {% block scripts %}
+  {% endblock scripts %}
+</head>
+<body>
+  {% block content %}
+  {% endblock content %}
+</body>
+</html>

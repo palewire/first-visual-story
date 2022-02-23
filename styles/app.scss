@@ -1,0 +1,65 @@
+// RESET
+// Smooths out the rough edges across browsers
+@use './tools/normalize';
+
+// VARIABLES
+// Reusable settings
+@use './variables/colors';
+@use './variables/fonts';
+
+// YOUR CODE
+// Starting writing your stuff below here
+.container {
+    max-width: 630px;
+    margin: 30px auto;
+    line-height: 1.4;
+    @media (max-width: 767px) {
+        padding: 0 15px;
+    }
+}
+
+h1 {
+    font-family: fonts.$font-family-headline;
+    font-weight: fonts.$font-weight-headline;
+    font-size: 26px;
+}
+
+p {
+    font-family: fonts.$font-family-body;
+    font-weight: fonts.$font-weight-body;
+    &.byline {
+        text-transform: uppercase;
+        font-size: 14px;
+    }
+    &.prose {
+        margin: 18px 0;
+        font-size: 18px;
+    }
+}
+
+.table {
+    font-family: fonts.$font-family-table;
+    border-collapse: collapse;
+    width: 100%;
+    caption {
+        text-align: left;
+        text-transform: uppercase;
+        font-weight: bold;
+        font-size: 18px;
+    }
+    td, th {
+        border: 1px solid #ddd;
+        padding: 8px;
+    }
+    tr:nth-child(even) {
+        background-color: colors.$gray;
+    }
+    tr:hover {
+        background-color: #ddd;
+    }
+    th {
+      text-align: left;
+      background-color: colors.$black;
+      color: white;
+    }
+}

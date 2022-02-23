@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block styles -%}
+<link rel="stylesheet" href="{% static 'styles/app.scss' %}">
+{% endblock styles -%}
+
+{% block content %}
+<article>
+  <header class="container">
+    <h1 class="headline">{{ obj.year }}</h1>
+  </header>
+  <div class="container">
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Wheat</td>
+                <td>{{ obj.wheat }}</td>
+            </tr>
+            <tr>
+                <th>Wages</td>
+                <td>{{ obj.wages }}</td>
+            </tr>
+        </tbody>
+    </table>
+  </div>
+</article>
+{% endblock content %}

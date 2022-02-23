@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+{% block styles -%}
+<link rel="stylesheet" href="{% static 'styles/app.scss' %}">
+{% endblock styles -%}
+
+{% block scripts -%}
+{% script 'app' %}
+{% endblock scripts -%}
+
+{% block content %}
+<article>
+  <header class="container">
+    <h1 class="headline">{{ meta.headline }}</h1>
+    <img src="{% static 'assets/images/baker.jpg' %}" alt="Baker logo" width=250 />
+    <div class="attribution">
+        {% set comma = joiner() %}
+        <p class="byline">
+          By {%- for author in meta.byline -%}
+          {% if not loop.last %}{{ comma() }}{% elif not loop.first %} and{% endif %} <span class="author" itemscope itemtype="http://schema.org/Person"><a itemprop="url" href="{{ author.url }}">{{ author.name }}</a></span>
+          {%- endfor -%}
+        </p>
+    </div>
+  </header>
+  <div class="container">
+    {% for p in copy.body %}
+        <p class="prose">{{ p.value }}</p>
+    {% endfor %}
+    <table class="table">
+        <caption>Wheat production</caption>
+        <thead>
+            <tr>
+                <th>Year</th>
+                <th>Yield</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for obj in example %}
+            <tr>
+                <td>{{ obj.year }}</td>
+                <td>{{ obj.wheat }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+  </div>
+</article>
+
+{{ example|jsonScript('example-data') }}
+
+{% endblock content %}
