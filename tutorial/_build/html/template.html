@@ -186,6 +186,35 @@ $ git commit -m <span class="s2">&quot;Started editing templates&quot;</span>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ git push origin master
 </pre></div>
 </div>
+<section id="push-to-github">
+<h2><span class="section-number">5.1. </span>Push to GitHub<a class="headerlink" href="#push-to-github" title="Permalink to this headline">¶</a></h2>
+<p>The next step is to instruct <code class="docutils literal notranslate"><span class="pre">git</span></code> to track the new files with the <a class="reference external" href="https://git-scm.com/docs/git-add"><code class="docutils literal notranslate"><span class="pre">add</span></code></a> command.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git add README.md
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Rather than introduce files one by one, you can add more than one file by using a <a class="reference external" href="https://en.wikipedia.org/wiki/Wildcard_character">wildcard character</a> in your command. One common shortcut is <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">add</span> <span class="pre">.</span></code>, which will add all of the files in your repository at once.</p>
+</div>
+<p>Logging changes also requires using the <a class="reference external" href="https://git-scm.com/docs/git-commit"><code class="docutils literal notranslate"><span class="pre">commit</span></code></a> command, which expects a summary of your work after the <code class="docutils literal notranslate"><span class="pre">-m</span></code> flag.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git commit -m <span class="s2">&quot;First commit&quot;</span>
+</pre></div>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>If this is your first time using Git, you may be prompted to configure you name and email. If so, take the time now.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git config --global user.email <span class="s2">&quot;your@email.com&quot;</span>
+git config --global user.name <span class="s2">&quot;your name&quot;</span>
+</pre></div>
+</div>
+<p>Then run the <code class="docutils literal notranslate"><span class="pre">commit</span></code> command above again.</p>
+</div>
+<p>The final step is to syncronize the changes we’ve made on our computer with the copy of the repository hosted on github.com. This is done via the <a class="reference external" href="https://git-scm.com/docs/git-push"><code class="docutils literal notranslate"><span class="pre">push</span></code></a> tool. This complicated <code class="docutils literal notranslate"><span class="pre">git</span></code> command requires two inputs.</p>
+<p>First, the command asks for the name of the remote repository where you’d like to send your changes. In the parlance of <code class="docutils literal notranslate"><span class="pre">git</span></code>, the default name is <code class="docutils literal notranslate"><span class="pre">origin</span></code>.</p>
+<p>Second, you need to provide the <a class="reference external" href="https://en.wikipedia.org/wiki/Branching_(version_control)">branch</a> of the code you’d like to syncronize. Branching is a tool for maintaining parallel versions of your code within the same respository. We won’t get that sophisticated in this tutorial, so you can stick to the default code branch, which is called <code class="docutils literal notranslate"><span class="pre">main</span></code>.</p>
+<p>Taking all that into account, the command to push local changes to GitHub is typically the following. Try it.</p>
+<p>You just created your first code commit! Reload your repository on GitHub and see your handiwork.</p>
+</section>
 </section>
 
 

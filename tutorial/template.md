@@ -1,4 +1,5 @@
 ```{include} _templates/nav.html
+
 ```
 
 # Template
@@ -27,7 +28,7 @@ You should see it immediately show up thanks to a [BrowserSync](https://browsers
 :width: 100%
 ```
 
-Now, look closely at the `index.nunjucks` file. You will notice that it doesn't include code for much of what you expect from an HTML  page. For instance, you won't see the class `<html>` or `<body>` tags. Nor will you find the stylesheets that dicatate how a page looks.
+Now, look closely at the `index.nunjucks` file. You will notice that it doesn't include code for much of what you expect from an HTML page. For instance, you won't see the class `<html>` or `<body>` tags. Nor will you find the stylesheets that dicatate how a page looks.
 
 That's because that boilerplate has been moved back into a parent template "extended" by the index file with a line of Nunjucks code at the top of the page.
 
@@ -64,7 +65,7 @@ While most newsrooms keep their base templates to themselves, a few have publish
 - The Los Angeles Times's [HTML Cookbook](http://cookbook.latimes.com)
 - The Texas Tribune's [style guide](https://apps.texastribune.org/styles/)
 - Politico's [style guide](https://github.com/The-Politico/politico-style)
-:::
+  :::
 
 For this class, we have developed a simpelified base template that will act as a stand-in for a real newsroom's base template. It is not as sophisticated or complete as a real-world example, but it will provide all of the basic elements we will need.
 
@@ -165,3 +166,42 @@ And, again, push it to GitHub.
 ```bash
 $ git push origin master
 ```
+
+## Push to GitHub
+
+The next step is to instruct `git` to track the new files with the [`add`](https://git-scm.com/docs/git-add) command.
+
+```bash
+git add README.md
+```
+
+```{note}
+Rather than introduce files one by one, you can add more than one file by using a [wildcard character](https://en.wikipedia.org/wiki/Wildcard_character) in your command. One common shortcut is `git add .`, which will add all of the files in your repository at once.
+```
+
+Logging changes also requires using the [`commit`](https://git-scm.com/docs/git-commit) command, which expects a summary of your work after the `-m` flag.
+
+```bash
+git commit -m "First commit"
+```
+
+````{warning}
+If this is your first time using Git, you may be prompted to configure you name and email. If so, take the time now.
+
+```bash
+git config --global user.email "your@email.com"
+git config --global user.name "your name"
+```
+
+Then run the `commit` command above again.
+````
+
+The final step is to syncronize the changes we’ve made on our computer with the copy of the repository hosted on github.com. This is done via the [`push`](https://git-scm.com/docs/git-push) tool. This complicated `git` command requires two inputs.
+
+First, the command asks for the name of the remote repository where you’d like to send your changes. In the parlance of `git`, the default name is `origin`.
+
+Second, you need to provide the [branch](<https://en.wikipedia.org/wiki/Branching_(version_control)>) of the code you’d like to syncronize. Branching is a tool for maintaining parallel versions of your code within the same respository. We won't get that sophisticated in this tutorial, so you can stick to the default code branch, which is called `main`.
+
+Taking all that into account, the command to push local changes to GitHub is typically the following. Try it.
+
+You just created your first code commit! Reload your repository on GitHub and see your handiwork.

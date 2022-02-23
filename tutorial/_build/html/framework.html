@@ -86,7 +86,7 @@
 <ul class="simple">
 <li><p><a class="reference internal" href="#what-is-a-framework" id="id1">What is a framework?</a></p></li>
 <li><p><a class="reference internal" href="#install-our-system" id="id2">Install our system</a></p></li>
-<li><p><a class="reference internal" href="#push-to-github" id="id3">Push to GitHub</a></p></li>
+<li><p><a class="reference internal" href="#start-the-test-server" id="id3">Start the test server</a></p></li>
 </ul>
 </div>
 <section id="what-is-a-framework">
@@ -108,75 +108,22 @@
 </section>
 <section id="install-our-system">
 <h2><a class="toc-backref" href="#id2"><span class="section-number">4.2. </span>Install our system</a><a class="headerlink" href="#install-our-system" title="Permalink to this headline">¶</a></h2>
-<p>The Times’ baker framework — like most of its peers — is developed using the Node.js JavaScript programming language. Now that you have the fundamentals cloned to your computer, installing the underlying dependencies necessary to develop a page requires that you use Node.js’s package manager <code class="docutils literal notranslate"><span class="pre">npm</span></code>.</p>
+<p>The Times’ baker framework — like most of its peers — is developed using the Node.js JavaScript programming language.</p>
+<p>Now that you have the fundamentals cloned to your computer, installing the underlying dependencies necessary to develop a page requires that you use Node.js’s package manager <code class="docutils literal notranslate"><span class="pre">npm</span></code>.</p>
 <p>From your terminal positioned inside of the repository’s directory on your computer, run the following to get everything necessary to start work:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>npm install
 </pre></div>
 </div>
-<p>The <code class="docutils literal notranslate"><span class="pre">-g</span></code> means that we’re installing the packages globally. You’ll be able to run these from any directory on your computer.</p>
-<p>The <code class="docutils literal notranslate"><span class="pre">&#64;</span></code> followed by numbers after the <code class="docutils literal notranslate"><span class="pre">yo</span></code> package means we’re installing a specific version. Code libraries often change quickly. By specifying a version, we’re protecting ourselves against future changes that could break the code of this lesson. If you don’t care what version you’re installing, you could just use the name of the package, i.e, <code class="docutils literal notranslate"><span class="pre">npm</span> <span class="pre">install</span> <span class="pre">-g</span> <span class="pre">yo</span></code>.</p>
-<p>Next we’ll install <a class="reference external" href="https://gulpjs.com/">Gulp</a>, a helpful Node.js utility for running a framework on your computer as you develop a site. Again, we turn to npm.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ npm install -g gulp@4.0.2
-</pre></div>
-</div>
-<p>Finally, we use npm to install <a class="reference external" href="https://github.com/larsonjj/generator-yeogurt">yeogurt</a>, our project generator for Yeoman. It includes dozens of customizations created by its author to help us build websites. It can’t do everything a full-featured newsroom framework might, but it can do enough for us to achieve our goals for this class.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ npm install -g generator-yeogurt@3.1.2
-</pre></div>
-</div>
-<p>Create a new project using our yeogurt generator as the guide.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ yo yeogurt
-</pre></div>
-</div>
-<p>After you run the command, you will be asked a series of questions. <em>Pay close attention</em> because you will need to choose the proper options to continue with our tutorial, and some of the correct selections are not the default choice.</p>
-<a class="reference internal image-reference" href="_images/yeogurt-setup.png"><img alt="_images/yeogurt-setup.png" src="_images/yeogurt-setup.png" style="width: 100%;" /></a>
-<ol class="arabic simple">
-<li><p>Your project name should be the slug “first-graphics-app”</p></li>
-<li><p>The HTML preprocessor you choose must be “Nunjucks.”</p></li>
-<li><p>Styles must be written with “Sass”</p></li>
-<li><p>The Sass syntax must be “Scss”</p></li>
-</ol>
-<p>Don’t sweat the rest. But make sure you get the above right.</p>
-<p>Yeoman will then use the generator to create a complete project that’s ready for us to work in. Take a look at the folders its created in the <code class="docutils literal notranslate"><span class="pre">src</span></code> directory. That’s the framework offering your a comfortable place to do your work. Let’s get in there set up shop.</p>
-<p>First, fire up its test server to see what it has to offer out of the box.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ npm run-script serve
-</pre></div>
-</div>
-<p>Visit <a class="reference external" href="http://localhost:3000">localhost:3000</a> in your browser. There you can see the generic website offered as a starting point by our Yeoman generator.</p>
-<a class="reference internal image-reference" href="_images/welcome.png"><img alt="_images/welcome.png" src="_images/welcome.png" style="width: 100%;" /></a>
-<p>Congratulations, you’ve got your framework up and running. Let’s save our work and then we’ll be ready to start developing our own content.</p>
-<p>:::{note}
-You’ll notice that the all of the sub folders in the <code class="docutils literal notranslate"><span class="pre">src/</span></code> directory of your project have underscores <code class="docutils literal notranslate"><span class="pre">_</span></code> in front of their name. This convention is used to note that these files are <strong>private</strong>, and won’t be deployed to your live site.</p>
-<p>Instead, Gulp processes the contents of these folders when it builds the project and serves the files from a <code class="docutils literal notranslate"><span class="pre">tmp/</span></code> folder, where you’ll see unprefixed <code class="docutils literal notranslate"><span class="pre">images/</span></code>, <code class="docutils literal notranslate"><span class="pre">scripts/</span></code> and <code class="docutils literal notranslate"><span class="pre">styles/</span></code> directories.
-:::</p>
 </section>
-<section id="push-to-github">
-<h2><a class="toc-backref" href="#id3"><span class="section-number">4.3. </span>Push to GitHub</a><a class="headerlink" href="#push-to-github" title="Permalink to this headline">¶</a></h2>
-<p>The next step is to instruct <code class="docutils literal notranslate"><span class="pre">git</span></code> to track the new files with the <a class="reference external" href="https://git-scm.com/docs/git-add"><code class="docutils literal notranslate"><span class="pre">add</span></code></a> command.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git add README.md
+<section id="start-the-test-server">
+<h2><a class="toc-backref" href="#id3"><span class="section-number">4.3. </span>Start the test server</a><a class="headerlink" href="#start-the-test-server" title="Permalink to this headline">¶</a></h2>
+<p>Once the dependencies have been installed, you’re ready to preview the project. Run the following to start the test server:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>npm start
 </pre></div>
 </div>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>Rather than introduce files one by one, you can add more than one file by using a <a class="reference external" href="https://en.wikipedia.org/wiki/Wildcard_character">wildcard character</a> in your command. One common shortcut is <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">add</span> <span class="pre">.</span></code>, which will add all of the files in your repository at once.</p>
-</div>
-<p>Logging changes also requires using the <a class="reference external" href="https://git-scm.com/docs/git-commit"><code class="docutils literal notranslate"><span class="pre">commit</span></code></a> command, which expects a summary of your work after the <code class="docutils literal notranslate"><span class="pre">-m</span></code> flag.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git commit -m <span class="s2">&quot;First commit&quot;</span>
-</pre></div>
-</div>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>If this is your first time using Git, you may be prompted to configure you name and email. If so, take the time now.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git config --global user.email <span class="s2">&quot;your@email.com&quot;</span>
-git config --global user.name <span class="s2">&quot;your name&quot;</span>
-</pre></div>
-</div>
-<p>Then run the <code class="docutils literal notranslate"><span class="pre">commit</span></code> command above again.</p>
-</div>
-<p>The final step is to syncronize the changes we’ve made on our computer with the copy of the repository hosted on github.com. This is done via the <a class="reference external" href="https://git-scm.com/docs/git-push"><code class="docutils literal notranslate"><span class="pre">push</span></code></a> tool. This complicated <code class="docutils literal notranslate"><span class="pre">git</span></code> command requires two inputs.</p>
-<p>First, the command asks for the name of the remote repository where you’d like to send your changes. In the parlance of <code class="docutils literal notranslate"><span class="pre">git</span></code>, the default name is <code class="docutils literal notranslate"><span class="pre">origin</span></code>.</p>
-<p>Second, you need to provide the <a class="reference external" href="https://en.wikipedia.org/wiki/Branching_(version_control)">branch</a> of the code you’d like to syncronize. Branching is a tool for maintaining parallel versions of your code within the same respository. We won’t get that sophisticated in this tutorial, so you can stick to the default code branch, which is called <code class="docutils literal notranslate"><span class="pre">main</span></code>.</p>
-<p>Taking all that into account, the command to push local changes to GitHub is typically the following. Try it.</p>
-<p>You just created your first code commit! Reload your repository on GitHub and see your handiwork.</p>
+<p>Visit <a class="reference external" href="http://localhost:3000">localhost:3000</a> in your browser. There you can see the generic website offered as a starting point by our framework.</p>
+<p><img alt="npm start" src="_images/npm-start.png" /></p>
+<p>Congratulations, you’ve got your framework up and running. Now we’re ready to start developing our own content.</p>
 </section>
 </section>
 
