@@ -87,7 +87,7 @@ ls
 Use `cd` to move into the directory, where we can begin work.
 
 ```bash
-cd my-first-visual-scraper
+cd my-first-visual-story
 ```
 
 We've got our starter kit installed. Let’s get it up and running.
