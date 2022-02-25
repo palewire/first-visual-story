@@ -1,4 +1,5 @@
 ```{include} _templates/nav.html
+
 ```
 
 # Git
@@ -38,7 +39,7 @@ We will name this folder `Code`. To verify the command works, open the file expl
 mkdir Code
 ```
 
-Now jump into the new directory with the [`cd`](https://en.wikipedia.org/wiki/Cd_(command)) command, which operates the same as double clicking on a folder in your file explorer.
+Now jump into the new directory with the [`cd`](<https://en.wikipedia.org/wiki/Cd_(command)>) command, which operates the same as double clicking on a folder in your file explorer.
 
 ```bash
 cd Code
@@ -50,7 +51,7 @@ Visit [GitHub](http://www.github.com) and find the homepage for `baker-example-p
 
 [![new repo button](_static/template-page.png)](https://github.com/datadesk/baker-example-page-template)
 
-This is a special kind of repository known as a template. It’s designed to serve as a starting point for new projects.  Click the [green "use this template" button](https://github.com/datadesk/baker-example-page-template/generate) near the middle of the page to get started.
+This is a special kind of repository known as a template. It’s designed to serve as a starting point for new projects. Click the [green "use this template" button](https://github.com/datadesk/baker-example-page-template/generate) near the middle of the page to get started.
 
 [![click it](_static/template-button.png)](https://github.com/datadesk/baker-example-page-template/generate)
 
@@ -69,7 +70,7 @@ gh auth login
 After you authenticate, it’s time to clone the new repository we created. Edit the code below by inserting your user name and repository. Then run it.
 
 ```bash
-gh clone <your-username>/<your-repo>
+gh repo clone <your-username>/<your-repo>
 ```
 
 In my case, the command looks like this:
