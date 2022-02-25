@@ -1,0 +1,300 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>5. Template &#8212; First Visual Story  documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css" />
+    <link rel="stylesheet" type="text/css" href="_static/css/custom.css" />
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="6. Data" href="data.html" />
+    <link rel="prev" title="4. Framework" href="framework.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+    <link rel="canonical" href="https://palewi.re/docs/First Visual Story/template.html"/>
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <nav>
+    <div class="row">
+        <div class="sevencol">
+            <div class="shingle">
+                <a href="https://palewi.re/">
+                    <div rel="rnews:copyrightedBy rnews:hasSource rnews:providedBy">
+                        <div about="http://palewi.re/" typeof="rnews:Organization">
+                            <div property="rnews:name">palewire</div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="fivecol last links">
+            <ul>
+                <li>
+                    <a href="http://palewi.re/posts/" title="Posts">
+                        Posts
+                    </a>
+                </li>
+                <li>
+                    <a href="http://palewi.re/work/" title="Work">
+                        Work
+                    </a>
+                </li>
+                <li>
+                    <a href="http://palewi.re/talks/" title="Talks">
+                        Talks
+                    </a>
+                </li>
+                <li>
+                    <a href="http://palewi.re/who-is-ben-welsh/" title="Who is Ben Welsh?">
+                        About
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<div class="row topbar">
+    <div class="twelvecol last"></div>
+</div>
+<section id="template">
+<h1><span class="section-number">5. </span>Template<a class="headerlink" href="#template" title="Permalink to this headline">¶</a></h1>
+<p>This chapter will show you how to start editing content and customizing your page.</p>
+<div class="contents local topic" id="sections">
+<p class="topic-title">Sections</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#edit-the-index" id="id1">Edit the index</a></p></li>
+</ul>
+</div>
+<section id="edit-the-index">
+<h2><a class="toc-backref" href="#id1"><span class="section-number">5.1. </span>Edit the index</a><a class="headerlink" href="#edit-the-index" title="Permalink to this headline">¶</a></h2>
+<p>The contents of the page you see at <a class="reference external" href="https://localhost:3000">localhost:3000</a> is configured in the <code class="docutils literal notranslate"><span class="pre">index.html</span></code> file found in the repository’s root directory. It uses a templating language invented at Mozilla called <a class="reference external" href="https://mozilla.github.io/nunjucks/">Nunjucks</a>.</p>
+<p>You can edit the page by changing what’s found inside of the <code class="docutils literal notranslate"><span class="pre">content</span></code> block. Delete everything you see there now and replace it with something simple like:</p>
+<div class="highlight-jinja notranslate"><div class="highlight"><pre><span></span><span class="cp">{%</span> <span class="k">block</span> <span class="nv">content</span> <span class="cp">%}</span><span class="x"></span>
+<span class="hll"><span class="x">&lt;p&gt;Hello World&lt;/p&gt;</span>
+</span><span class="cp">{%</span> <span class="k">endblock</span> <span class="cp">%}</span><span class="x"></span>
+</pre></div>
+</div>
+<p>You should see it immediately show up thanks a feature of baker that automatically updates your test site after you make a change.</p>
+<p><img alt="hello world" src="_images/hello-world.png" /></p>
+<p>Now, look closely at the <code class="docutils literal notranslate"><span class="pre">index.html</span></code> file. You will notice that it doesn’t include code for much of what you might expect from an HTML page.</p>
+<p>For instance, you won’t see the class <code class="docutils literal notranslate"><span class="pre">&lt;html&gt;</span></code> or <code class="docutils literal notranslate"><span class="pre">&lt;body&gt;</span></code> tags. Nor do you find the stylesheets that typically dicatate how a page looks.</p>
+<p>That’s because that boilerplate has been moved back into a parent template “extended” by the index file with a line of Nunjucks code at the top of the page.</p>
+<div class="highlight-jinja notranslate"><div class="highlight"><pre><span></span><span class="cp">{%</span> <span class="k">extends</span> <span class="s1">&#39;base.html&#39;</span> <span class="cp">%}</span><span class="x"></span>
+</pre></div>
+</div>
+<p>That “base” file, sometimes called the “layout,” can be inherited by other pages on your site to avoid duplication and share common code. One change to a parent file instantly ripples out to all pages the extend it.</p>
+<p>This approach to “template inheritance” is not just found in Nunjucks. It can be found in other templating systems, including Python ones like <a class="reference external" href="https://docs.djangoproject.com/en/1.7/topics/templates/">Django</a> and <a class="reference external" href="http://jinja.pocoo.org">Jinja</a>. It’s probably even used at some level in your organization’s content-management system.</p>
+<p>You can find baker’s base layout packaged with our framework by following the path and opening the <code class="docutils literal notranslate"><span class="pre">_layouts/base.html</span></code> file. You’ll see it includes a set of block tags, like <code class="docutils literal notranslate"><span class="pre">content</span></code>, that act as placeholders for use in templates that extend it.</p>
+<p>Make a small change to <code class="docutils literal notranslate"><span class="pre">_layouts/base.nunjucks</span></code> above the <code class="docutils literal notranslate"><span class="pre">content</span></code> block and save the file.</p>
+<div class="highlight-jinja notranslate"><div class="highlight"><pre><span></span><span class="hll"><span class="x">Above content</span>
+</span><span class="cp">{%</span> <span class="k">block</span> <span class="nv">content</span> <span class="cp">%}{%</span> <span class="k">endblock</span> <span class="cp">%}</span><span class="x"></span>
+</pre></div>
+</div>
+<p>You should see the change on our site, with the new line appearing above the paragraph we added earlier to the index file.</p>
+<a class="reference internal image-reference" href="_images/above-content.png"><img alt="_images/above-content.png" src="_images/above-content.png" style="width: 100%;" /></a>
+<p>Most newsrooms that use a similar system have their own base template for their custom pages. Graphic artists and designers install and extend it as the first step in their work.</p>
+<p>They then develop their custom page within its confines and largely accept the furniture it provides, like the site’s header and footer, fonts and common color schemes. This allows them to work more quickly, because they do not have to bother with reinventing their site’s most common elements.</p>
+<p>For this example, we have developed a simplified base template that will act as a stand-in for a real newsroom’s base template. It is not as sophisticated or complete as a real-world example, but it will provide all of the basic elements we will need.</p>
+<p>You can find it in the code block below. Copy all of its contents and paste them into <code class="docutils literal notranslate"><span class="pre">_layouts/base.nunjucks</span></code>, replacing everything.</p>
+<div class="highlight-jinja notranslate"><div class="highlight"><pre><span></span><span class="x">&lt;!DOCTYPE html&gt;</span>
+<span class="x">&lt;html lang=&quot;</span><span class="cp">{%</span> <span class="k">block</span> <span class="nv">lang</span> <span class="cp">%}</span><span class="x">en</span><span class="cp">{%</span> <span class="k">endblock</span> <span class="nv">lang</span> <span class="cp">%}</span><span class="x">&quot;&gt;</span>
+<span class="x">&lt;head&gt;</span>
+<span class="x">  &lt;meta charset=&quot;utf-8&quot;&gt;</span>
+<span class="x">  &lt;title&gt;First Visual Story&lt;/title&gt;</span>
+<span class="x">  &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1&quot;&gt;</span>
+<span class="x">  </span><span class="cp">{%</span> <span class="k">block</span> <span class="nv">styles</span> <span class="cp">%}</span><span class="x"></span>
+<span class="x">  </span><span class="cp">{%</span> <span class="k">endblock</span> <span class="nv">styles</span> <span class="cp">%}</span><span class="x"></span>
+<span class="x">  &lt;link rel=&quot;stylesheet&quot; href=&quot;https://bl.ocks.org/palewire/raw/1035cd306a2f85b362b1a20ce315b8eb/base.css?rev=8&quot;&gt;</span>
+<span class="x">  </span><span class="cp">{%</span> <span class="k">block</span> <span class="nv">scripts</span> <span class="cp">%}</span><span class="x"></span>
+<span class="x">  </span><span class="cp">{%</span> <span class="k">endblock</span> <span class="nv">scripts</span> <span class="cp">%}</span><span class="x"></span>
+<span class="x">&lt;/head&gt;</span>
+<span class="x">&lt;body&gt;</span>
+<span class="x">    &lt;nav&gt;</span>
+<span class="x">        &lt;img src=&quot;https://bl.ocks.org/palewire/raw/1035cd306a2f85b362b1a20ce315b8eb/ire-logo.png&quot;&gt;</span>
+<span class="x">    &lt;/nav&gt;</span>
+<span class="x">  &lt;header&gt;</span>
+<span class="x">    &lt;h1&gt;</span><span class="cp">{%</span> <span class="k">block</span> <span class="nv">headline</span> <span class="cp">%}{%</span> <span class="k">endblock</span> <span class="cp">%}</span><span class="x">&lt;/h1&gt;</span>
+<span class="x">    &lt;div class=&quot;byline&quot;&gt;</span>
+<span class="x">        </span><span class="cp">{%</span> <span class="k">block</span> <span class="nv">byline</span> <span class="cp">%}{%</span> <span class="k">endblock</span> <span class="cp">%}</span><span class="x"></span>
+<span class="x">    &lt;/div&gt;</span>
+<span class="x">    &lt;div class=&quot;pubdate&quot;&gt;</span>
+<span class="x">        </span><span class="cp">{%</span> <span class="k">block</span> <span class="nv">pubdate</span> <span class="cp">%}{%</span> <span class="k">endblock</span> <span class="cp">%}</span><span class="x"></span>
+<span class="x">    &lt;/div&gt;</span>
+<span class="x">  &lt;/header&gt;</span>
+<span class="x">  </span><span class="cp">{%</span> <span class="k">block</span> <span class="nv">content</span> <span class="cp">%}</span><span class="x"></span>
+<span class="x">  </span><span class="cp">{%</span> <span class="k">endblock</span> <span class="nv">content</span> <span class="cp">%}</span><span class="x"></span>
+<span class="x">&lt;/body&gt;</span>
+<span class="x">&lt;/html&gt;</span>
+</pre></div>
+</div>
+<p>As you can see, it includes all of the standard HTML tags, with our custom stylesheets and content blocks mixed in.</p>
+<p>To see the effects, return to <code class="docutils literal notranslate"><span class="pre">index.html</span></code> and fill in a headline using the <code class="docutils literal notranslate"><span class="pre">headline</span></code> block introduced by our base template. Save the page and you should quickly see it appear on the page.</p>
+<div class="highlight-jinja notranslate"><div class="highlight"><pre><span></span><span class="cp">{%</span> <span class="k">extends</span> <span class="s1">&#39;_layouts/base.html&#39;</span> <span class="cp">%}</span><span class="x"></span>
+
+<span class="hll"><span class="cp">{%</span> <span class="k">block</span> <span class="nv">headline</span> <span class="cp">%}</span><span class="x">My headline will go here</span><span class="cp">{%</span> <span class="k">endblock</span> <span class="cp">%}</span><span class="x"></span>
+</span></pre></div>
+</div>
+<p><img alt="headline" src="_images/headline.png" /></p>
+<p>Now fill in a byline.</p>
+<div class="highlight-jinja notranslate"><div class="highlight"><pre><span></span><span class="cp">{%</span> <span class="k">extends</span> <span class="s1">&#39;_layouts/base.html&#39;</span> <span class="cp">%}</span><span class="x"></span>
+
+<span class="cp">{%</span> <span class="k">block</span> <span class="nv">headline</span> <span class="cp">%}</span><span class="x">My headline will go here</span><span class="cp">{%</span> <span class="k">endblock</span> <span class="cp">%}</span><span class="x"></span>
+<span class="hll"><span class="cp">{%</span> <span class="k">block</span> <span class="nv">byline</span> <span class="cp">%}</span><span class="x">By me</span><span class="cp">{%</span> <span class="k">endblock</span> <span class="cp">%}</span><span class="x"></span>
+</span></pre></div>
+</div>
+<p><img alt="headline" src="_images/byline.png" /></p>
+<p>And let’s do the publication date too while we are at it.</p>
+<div class="highlight-jinja notranslate"><div class="highlight"><pre><span></span><span class="cp">{%</span> <span class="k">extends</span> <span class="s1">&#39;_layouts/base.html&#39;</span> <span class="cp">%}</span><span class="x"></span>
+
+<span class="cp">{%</span> <span class="k">block</span> <span class="nv">headline</span> <span class="cp">%}</span><span class="x">My headline will go here</span><span class="cp">{%</span> <span class="k">endblock</span> <span class="cp">%}</span><span class="x"></span>
+<span class="cp">{%</span> <span class="k">block</span> <span class="nv">byline</span> <span class="cp">%}</span><span class="x">By me</span><span class="cp">{%</span> <span class="k">endblock</span> <span class="cp">%}</span><span class="x"></span>
+<span class="hll"><span class="cp">{%</span> <span class="k">block</span> <span class="nv">pubdate</span> <span class="cp">%}</span><span class="x"></span>
+</span><span class="hll"><span class="x">  &lt;time datetime=&quot;2022-03-05&quot; pubdate&gt;Mar. 5, 2022&lt;/time&gt;</span>
+</span><span class="hll"><span class="cp">{%</span> <span class="k">endblock</span> <span class="cp">%}</span><span class="x"></span>
+</span></pre></div>
+</div>
+<p><img alt="pubdate" src="_images/pubdate.png" /></p>
+<p>Congratulations. You’ve installed a base template and started in on creating your first custom page. Now is a good time to pause and log our work with GitHub.</p>
+<p>The first command to learn is <a class="reference external" href="https://git-scm.com/docs/git-status"><code class="docutils literal notranslate"><span class="pre">status</span></code></a>, which prints out a report card on the current state of your repository.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git status
+</pre></div>
+</div>
+<p>The next step is to instruct <code class="docutils literal notranslate"><span class="pre">git</span></code> to track the new files with the <a class="reference external" href="https://git-scm.com/docs/git-add"><code class="docutils literal notranslate"><span class="pre">add</span></code></a> command. Rather than introduce files one by one, you can add more than one file by using a <a class="reference external" href="https://en.wikipedia.org/wiki/Wildcard_character">wildcard character</a> in your command. One common shortcut is <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">add</span> <span class="pre">.</span></code>, which will add all of the files in your repository at once.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git add .
+</pre></div>
+</div>
+<p>Logging changes also requires using the <a class="reference external" href="https://git-scm.com/docs/git-commit"><code class="docutils literal notranslate"><span class="pre">commit</span></code></a> command, which expects a summary of your work after the <code class="docutils literal notranslate"><span class="pre">-m</span></code> flag.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git commit -m <span class="s2">&quot;First commit&quot;</span>
+</pre></div>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>If this is your first time using Git, you may be prompted to configure you name and email. If so, take the time now.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git config --global user.email <span class="s2">&quot;your@email.com&quot;</span>
+git config --global user.name <span class="s2">&quot;your name&quot;</span>
+</pre></div>
+</div>
+<p>Then run the <code class="docutils literal notranslate"><span class="pre">commit</span></code> command above again.</p>
+</div>
+<p>The final step is to syncronize the changes we’ve made on our computer with the copy of the repository hosted on github.com. This is done via the <a class="reference external" href="https://git-scm.com/docs/git-push"><code class="docutils literal notranslate"><span class="pre">push</span></code></a> tool. This complicated <code class="docutils literal notranslate"><span class="pre">git</span></code> command requires two inputs.</p>
+<p>First, the command asks for the name of the remote repository where you’d like to send your changes. In the parlance of <code class="docutils literal notranslate"><span class="pre">git</span></code>, the default name is <code class="docutils literal notranslate"><span class="pre">origin</span></code>.</p>
+<p>Second, you need to provide the <a class="reference external" href="https://en.wikipedia.org/wiki/Branching_(version_control)">branch</a> of the code you’d like to syncronize. Branching is a tool for maintaining parallel versions of your code within the same respository. We won’t get that sophisticated in this tutorial, so you can stick to the default code branch, which is called <code class="docutils literal notranslate"><span class="pre">main</span></code>.</p>
+<p>Taking all that into account, the command to push local changes to GitHub is typically the following. Try it.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git push origin main
+</pre></div>
+</div>
+<p>You just created your first code commit. Reload your repository on GitHub and see your handiwork. Now it’s time to load in some real data and start sculpting it on the page.</p>
+</section>
+</section>
+
+
+          </div>
+              <div class="related bottom">
+                &nbsp;
+  <nav id="rellinks">
+    <ul>
+        <li>
+          &larr;
+          <a href="framework.html" title="Previous document"><span class="section-number">4. </span>Framework</a>
+        </li>
+        <li>
+          <a href="data.html" title="Next document"><span class="section-number">6. </span>Data</a>
+          &rarr;
+        </li>
+    </ul>
+  </nav>
+              </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">First Visual Story</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="what.html">1. What you will make</a></li>
+<li class="toctree-l1"><a class="reference internal" href="prereqs.html">2. Prerequisites</a></li>
+<li class="toctree-l1"><a class="reference internal" href="github.html">3. Git</a></li>
+<li class="toctree-l1"><a class="reference internal" href="framework.html">4. Framework</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">5. Template</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data.html">6. Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cards.html">7. Cards</a></li>
+<li class="toctree-l1"><a class="reference internal" href="charts.html">8. Charts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="map.html">9. Map</a></li>
+<li class="toctree-l1"><a class="reference internal" href="internet.html">10. Internet</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="framework.html" title="previous chapter"><span class="section-number">4. </span>Framework</a></li>
+      <li>Next: <a href="data.html" title="next chapter"><span class="section-number">6. </span>Data</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2022.
+      
+      |
+      <a href="_sources/template.md.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
