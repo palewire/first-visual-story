@@ -73,6 +73,10 @@ p {
   }
   div.graphic {
     flex: 0 1 48%;
+    @media (max-width: 500px) {
+      display: block;
+      margin-bottom: 15px;
+    }
     iframe {
       height: 350px !important;
     }
