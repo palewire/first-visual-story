@@ -1,4 +1,5 @@
 ```{include} _templates/nav.html
+
 ```
 
 # Internet
@@ -9,7 +10,7 @@ Our Yeoman framework, with its tools, structure and shortcuts, has served us wel
 
 The HTML, JavaScript and CSS files the framework generates are all they need. Without all the code running in our terminal, those files aren't be able to take advantage of Yeogurt, Gulp, BrowserSync and all our other tricks. But it won't matter. We can upload the simple files our framework renders to the web and they'll be enough for anyone who wants them.
 
-That process — converting a dynamic, living website to simple files living on the filesystem — is a common strategy for publishing news sites. It goes by different names, like "flattening," "freezing" or "baking."  Whatever you call it, it’s a solid path to cheap­, stable host­ing for simple sites. It is used across the industry for pub­lish­ing elec­tion res­ults, longform stories, spe­cial pro­jects and numerous other things.
+That process — converting a dynamic, living website to simple files living on the filesystem — is a common strategy for publishing news sites. It goes by different names, like "flattening," "freezing" or "baking." Whatever you call it, it’s a solid path to cheap­, stable host­ing for simple sites. It is used across the industry for pub­lish­ing elec­tion res­ults, longform stories, spe­cial pro­jects and numerous other things.
 
 :::{note}
 Examples of static news pages in the wild include:
@@ -20,7 +21,7 @@ Examples of static news pages in the wild include:
 - Interactive apps by [The Dallas Morning News](https://interactives.dallasnews.com/2018/secrets-dallas-dead/)
 - [Live election results](https://open.blogs.nytimes.com/2010/12/20/using-flat-files-so-elections-dont-break-your-server/) published by The New York Times
 - Data downloads from the [California Civic Data Coalition](https://calaccess.californiacivicdata.org/downloads/latest/)
-:::
+  :::
 
 Lucky for us, Yeogurt is pre-configured to flatten our dynamic site. And GitHub has a hosting service for publishing static pages.
 
@@ -82,4 +83,14 @@ Wait a few moments and visit [\<your_username>.github.com/first-graphics-app/](h
 If your page does not appear, make sure that you have verified your email address with GitHub. It is required before the site will allow publishing pages. And keep in mind there are many other options for publishing flat files, like [Amazon's S3 service](https://en.wikipedia.org/wiki/Amazon_S3).
 :::
 
-Congratulations. You've finished this class.
+Congratulations! You've finished this class.
+
+## What's next?
+
+If you enjoyed what you learned today, here are some resources to help you get further down the path of news nerdery. Many of these resources are tools we've used ourselves.
+
+- [w3schools.com](https://www.w3schools.com/) has a pretty good introductory tutorial for basic [HTML](https://www.w3schools.com/html/) and [CSS](https://www.w3schools.com/css/)
+- If charts interest you, there is much more you can do with [Datawrapper](https://academy.datawrapper.de/)!
+  - Or you could dive into learning [d3.js](https://d3js.org/), [_Interactive Data Visualization for the Web, 2nd Edition_](https://www.oreilly.com/library/view/interactive-data-visualization/9781491921296/) is a good resource if you like learning from a book
+  - [Observable notebooks](https://observablehq.com/) are also a great way to explore and browse data visualizations, and figure out how they update by changing parts of the code. You can log in with the same GitHub account you used in class today, and Ben's also [written a tutorial](https://observablehq.com/collection/@palewire/first-observable-notebook-2020)
+- For mapping, experiment more with [Leaflet](https://leafletjs.com/), or for even more flexible maps, check out [Mapbox.js](https://docs.mapbox.com/help/tutorials/) or the open-source [Maplibre](https://maplibre.org/)

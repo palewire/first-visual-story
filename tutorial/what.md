@@ -1,4 +1,5 @@
 ```{include} _templates/nav.html
+
 ```
 
 # What you will make
@@ -10,3 +11,21 @@ You will create the page by repurposing data from [a 2017 Los Angeles Times stor
 A working example of what you will make can be found at [ireapps.github.io/first-graphics-app](https://ireapps.github.io/first-graphics-app/)
 
 [![preview](_static/preview.gif)](https://ireapps.github.io/first-graphics-app/)
+
+## What you will learn
+
+As part of this class, you'll gain a basic understanding of how graphics, design and data teams across the journalism industry build customized templates that prioritize visual and interactive elements of a story. This will include:
+
+- How to use the command line on your computer to do basic commands like changing directories, listing files and starting a local server
+- What frameworks are and how to use them. We'll use the [L.A. Times Baker template](https://github.com/datadesk/baker) today, but there are many others
+- How to use [GitHub](https://github.com/) as a version control system for your work
+- How you can publish your work as a "static" or "flat" file on the internet
+- The lightest introduction to HTML and JavaScript
+
+## What we won't be covering today
+
+Since our class today is six hours, there are many key topics we'll lightly glaze over or barely touch on. But if these interest you, we encourage you to read more on the topics!
+
+- We'll be writing some JavaScript in this class, but this is not a JS class. We'll try and keep most steps to copy/pasting, but we'll introduce some concepts as we go through the class
+- Earlier versions of this class included the data visualization library [D3.js](https://d3js.org/). While D3 is frequently used in data and graphics departments, we've found that it's a little advanced for this class to make the visuals we'll create today.
+- You might have heard a lot about the [React.js](https://reactjs.org/) framework. While it's a great tool and commonly used in development frameworks, there are some fundamental concepts that make it very different from basic HTML, CSS and JavaScript.
