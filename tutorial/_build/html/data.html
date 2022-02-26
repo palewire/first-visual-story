@@ -132,7 +132,7 @@
 <p>Visit <a class="reference external" href="https://localhost:3000">localhost:3000</a> and you should see the data puked out on the page.</p>
 <p><img alt="puke" src="_images/puke.png" /></p>
 <p>Instead of just printing the data in one big block, let’s loop through the records and print them one by one.</p>
-<p>We’ll use the <code class="docutils literal notranslate"><span class="pre">{%</span> <span class="pre">%}</span></code> template tags provided by Nunjucks, which allow us to use common computer programming logic when we’re laying out a page.</p>
+<p>We’ll use the <code class="docutils literal notranslate"><span class="pre">{%</span> <span class="pre">%}</span></code> template tags provided by Nunjucks, which allow us to use a common computer programming structure called a <a class="reference external" href="https://en.wikipedia.org/wiki/For_loop">“for loop”</a> when we’re laying out a page.</p>
 <div class="highlight-jinja notranslate"><div class="highlight"><pre><span></span><span class="cp">{%</span> <span class="k">block</span> <span class="nv">content</span> <span class="cp">%}</span><span class="x"></span>
 <span class="hll"><span class="cp">{%</span> <span class="k">for</span> <span class="nv">obj</span> <span class="k">in</span> <span class="nv">harvard_park_homicides</span> <span class="cp">%}</span><span class="x"></span>
 </span><span class="hll"><span class="x">    </span><span class="cp">{{</span> <span class="nv">obj</span> <span class="cp">}}</span><span class="x"></span>

@@ -1,4 +1,5 @@
 ```{include} _templates/nav.html
+
 ```
 
 # Map
@@ -8,21 +9,20 @@ Next we'll move on to creating a map focused on West 62nd Street and Harvard Bou
 To draw the map we will rely on [Leaflet](http://leafletjs.com), a JavaScript library for creating interactive maps. We will install it just as before by using `npm` from our terminal.
 
 ```bash
-$ npm install leaflet@1.6.0
+$ npm install leaflet
 ```
 
 Next we import Leaflet's stylesheets in `_styles/main.scss` so that they are also included on our site.
 
 ```{code-block} css
-:emphasize-lines: 7
+:emphasize-lines: 4
 
-// Normalize Styles
-@import 'node_modules/normalize.css/normalize';
+// RESET
+// Smooths out the rough edges across browsers
+@use './tools/normalize';
+@use 'node_modules/leaflet/dist/leaflet';
 
-// Import Modules
-@import '../_modules/link/link';
-@import '_charts.scss';
-@import 'node_modules/leaflet/dist/leaflet';
+// VARIABLES
 ```
 
 Now, back in the `index.nunjucks` template, we should create a placeholder in the page template where the map will live. Let's set it right above the charts section we've just finished.
@@ -43,32 +43,21 @@ Now, back in the `index.nunjucks` template, we should create a placeholder in th
 </section>
 ```
 
-To bring the map to life, add a new file named `_map.js` to the `_scripts` directory. Import it in `main.js`.
+To bring the map to life, add a new file named `map.js` to the `scripts` directory. Import it in `app.js`.
 
 ```{code-block} javascript
-:emphasize-lines: 10
+:emphasize-lines: 4
 
-// Main javascript entry point
-// Should handle bootstrapping/starting application
-'use strict';
+// Write your code!
+console.log("Hello bakers");
 
-import "core-js";
-import "regenerator-runtime/runtime";
-import $ from "jquery";
-import { Link } from "../_modules/link/link";
-import "./_charts";
-import "./_map";
-
-$(function() {
-  new Link(); // Activate Link modules logic
-  console.log('Welcome to Yeogurt!');
-});
+import "./map";
 ```
 
-We should then import Leaflet into `_scripts/map.js` so that its tools are available in this file.
+Now we need to import Leaflet into `scripts/map.js` so that its tools are available in this file.
 
 ```javascript
-import * as L from "leaflet";
+import * as L from 'leaflet';
 ```
 
 Now in `_scripts/_map.js` paste in the following Leaflet code to generate a simple map. It does three things:
@@ -78,10 +67,12 @@ Now in `_scripts/_map.js` paste in the following Leaflet code to generate a simp
 - finally, add the layer to the map.
 
 ```javascript
-import * as L from "leaflet";
+import * as L from 'leaflet';
 
 var map = L.map('map');
-var sat = L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/satellite-streets-v9/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibGF0aW1lcyIsImEiOiJjanJmNjg4ZzYweGtvNDNxa2ZpZ2lma3Z4In0.g0lYVIEs9Y5QcUOhXactHA');
+var sat = L.tileLayer(
+  'https://api.mapbox.com/styles/v1/mapbox/satellite-streets-v9/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibGF0aW1lcyIsImEiOiJjanJmNjg4ZzYweGtvNDNxa2ZpZ2lma3Z4In0.g0lYVIEs9Y5QcUOhXactHA'
+);
 sat.addTo(map);
 ```
 
@@ -196,9 +187,9 @@ Next let's sprinkle some CSS in our page to make the circles match the orange co
 
 ```css
 #map path {
-    fill: #e64d1f;
-    fill-opacity: 0.5;
-    stroke-opacity: 0;
+  fill: #e64d1f;
+  fill-opacity: 0.5;
+  stroke-opacity: 0;
 }
 ```
 

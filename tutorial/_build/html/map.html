@@ -82,18 +82,17 @@
 <h1><span class="section-number">9. </span>Map<a class="headerlink" href="#map" title="Permalink to this headline">¶</a></h1>
 <p>Next we’ll move on to creating a map focused on West 62nd Street and Harvard Boulevard, an intersection in South Los Angeles where four men died in less than a year and a half.</p>
 <p>To draw the map we will rely on <a class="reference external" href="http://leafletjs.com">Leaflet</a>, a JavaScript library for creating interactive maps. We will install it just as before by using <code class="docutils literal notranslate"><span class="pre">npm</span></code> from our terminal.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ npm install leaflet@1.6.0
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ npm install leaflet
 </pre></div>
 </div>
 <p>Next we import Leaflet’s stylesheets in <code class="docutils literal notranslate"><span class="pre">_styles/main.scss</span></code> so that they are also included on our site.</p>
-<div class="highlight-css notranslate"><div class="highlight"><pre><span></span><span class="o">//</span><span class="w"> </span><span class="nt">Normalize</span><span class="w"> </span><span class="nt">Styles</span><span class="w"></span>
-<span class="p">@</span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;node_modules/normalize.css/normalize&#39;</span><span class="p">;</span><span class="w"></span>
-
-<span class="o">//</span><span class="w"> </span><span class="nt">Import</span><span class="w"> </span><span class="nt">Modules</span><span class="w"></span>
-<span class="p">@</span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;../_modules/link/link&#39;</span><span class="p">;</span><span class="w"></span>
-<span class="p">@</span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;_charts.scss&#39;</span><span class="p">;</span><span class="w"></span>
-<span class="hll"><span class="p">@</span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;node_modules/leaflet/dist/leaflet&#39;</span><span class="p">;</span><span class="w"></span>
-</span></pre></div>
+<div class="highlight-css notranslate"><div class="highlight"><pre><span></span><span class="o">//</span><span class="w"> </span><span class="nt">RESET</span><span class="w"></span>
+<span class="o">//</span><span class="w"> </span><span class="nt">Smooths</span><span class="w"> </span><span class="nt">out</span><span class="w"> </span><span class="nt">the</span><span class="w"> </span><span class="nt">rough</span><span class="w"> </span><span class="nt">edges</span><span class="w"> </span><span class="nt">across</span><span class="w"> </span><span class="nt">browsers</span><span class="w"></span>
+<span class="p">@</span><span class="k">use</span><span class="w"> </span><span class="s1">&#39;./tools/normalize&#39;</span><span class="p">;</span><span class="w"></span>
+<span class="hll"><span class="p">@</span><span class="k">use</span><span class="w"> </span><span class="s1">&#39;node_modules/leaflet/dist/leaflet&#39;</span><span class="p">;</span><span class="w"></span>
+</span>
+<span class="o">//</span><span class="w"> </span><span class="nt">VARIABLES</span><span class="w"></span>
+</pre></div>
 </div>
 <p>Now, back in the <code class="docutils literal notranslate"><span class="pre">index.nunjucks</span></code> template, we should create a placeholder in the page template where the map will live. Let’s set it right above the charts section we’ve just finished.</p>
 <div class="highlight-jinja notranslate"><div class="highlight"><pre><span></span><span class="hll"><span class="x">&lt;div id=&quot;map&quot;&gt;&lt;/div&gt;</span>
@@ -109,25 +108,14 @@
 <span class="x">&lt;/section&gt;</span>
 </pre></div>
 </div>
-<p>To bring the map to life, add a new file named <code class="docutils literal notranslate"><span class="pre">_map.js</span></code> to the <code class="docutils literal notranslate"><span class="pre">_scripts</span></code> directory. Import it in <code class="docutils literal notranslate"><span class="pre">main.js</span></code>.</p>
-<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="c1">// Main javascript entry point</span>
-<span class="c1">// Should handle bootstrapping/starting application</span>
-<span class="s1">&#39;use strict&#39;</span><span class="p">;</span>
+<p>To bring the map to life, add a new file named <code class="docutils literal notranslate"><span class="pre">map.js</span></code> to the <code class="docutils literal notranslate"><span class="pre">scripts</span></code> directory. Import it in <code class="docutils literal notranslate"><span class="pre">app.js</span></code>.</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="c1">// Write your code!</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;Hello bakers&quot;</span><span class="p">);</span>
 
-<span class="k">import</span> <span class="s2">&quot;core-js&quot;</span><span class="p">;</span>
-<span class="k">import</span> <span class="s2">&quot;regenerator-runtime/runtime&quot;</span><span class="p">;</span>
-<span class="k">import</span> <span class="nx">$</span> <span class="kr">from</span> <span class="s2">&quot;jquery&quot;</span><span class="p">;</span>
-<span class="k">import</span> <span class="p">{</span> <span class="nx">Link</span> <span class="p">}</span> <span class="kr">from</span> <span class="s2">&quot;../_modules/link/link&quot;</span><span class="p">;</span>
-<span class="k">import</span> <span class="s2">&quot;./_charts&quot;</span><span class="p">;</span>
-<span class="hll"><span class="k">import</span> <span class="s2">&quot;./_map&quot;</span><span class="p">;</span>
-</span>
-<span class="nx">$</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-  <span class="ow">new</span> <span class="nx">Link</span><span class="p">();</span> <span class="c1">// Activate Link modules logic</span>
-  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;Welcome to Yeogurt!&#39;</span><span class="p">);</span>
-<span class="p">});</span>
-</pre></div>
+<span class="hll"><span class="k">import</span> <span class="s2">&quot;./map&quot;</span><span class="p">;</span>
+</span></pre></div>
 </div>
-<p>We should then import Leaflet into <code class="docutils literal notranslate"><span class="pre">_scripts/map.js</span></code> so that its tools are available in this file.</p>
+<p>Now we need to import Leaflet into <code class="docutils literal notranslate"><span class="pre">scripts/map.js</span></code> so that its tools are available in this file.</p>
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="k">import</span> <span class="o">*</span> <span class="kr">as</span> <span class="nx">L</span> <span class="kr">from</span> <span class="s2">&quot;leaflet&quot;</span><span class="p">;</span>
 </pre></div>
 </div>

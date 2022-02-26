@@ -74,7 +74,7 @@ Visit [localhost:3000](https://localhost:3000) and you should see the data puked
 
 Instead of just printing the data in one big block, let's loop through the records and print them one by one.
 
-We'll use the `{% %}` template tags provided by Nunjucks, which allow us to use common computer programming logic when we’re laying out a page.
+We'll use the `{% %}` template tags provided by Nunjucks, which allow us to use a common computer programming structure called a ["for loop"](https://en.wikipedia.org/wiki/For_loop) when we’re laying out a page.
 
 ```{code-block} jinja
 :emphasize-lines: 2-4
