@@ -6,7 +6,7 @@
 
 Next we'll move on to creating a map focused on West 62nd Street and Harvard Boulevard, an intersection in South Los Angeles where four men died in less than a year and a half.
 
-To draw the map we will rely on [Leaflet](http://leafletjs.com), a JavaScript library for creating interactive maps. We will install it just as before by using `npm` from our terminal.
+To draw the map we will rely on [Leaflet](http://leafletjs.com), a JavaScript library for creating interactive maps. We will install it just as before by using `npm` from our terminal. This should install the latest version of leaflet, which at the time of writing was 1.7.
 
 ```bash
 $ npm install leaflet
@@ -243,39 +243,35 @@ To put it to use, we'll need to return to our friend `npm`.
 $ npm install leaflet-minimap
 ```
 
-Just as with other libraries, we need to import it into `_scripts/_map.js`
+Just as with other libraries, we need to import it into `scripts/map.js`
 
 ```{code-block} javascript
 :emphasize-lines: 2
 
 import * as L from "leaflet";
 import MiniMap from "leaflet-minimap";
+import homicides from '../_data/harvard_park_homicides.json';
 ```
 
-Its stylesheets also need to be imported to `_styles/main.scss`.
+Its stylesheets also need to be imported to `styles/app.scss`.
 
 ```{code-block} css
-:emphasize-lines: 8
+:emphasize-lines: 3
 
-// Normalize Styles
-@import 'node_modules/normalize.css/normalize';
-
-// Import Modules
-@import '../_modules/link/link';
-@import '_charts.scss';
-@import 'node_modules/leaflet/dist/leaflet';
-@import 'node_modules/leaflet-minimap/src/Control.MiniMap';
-@import '_map.scss';
+@use './tools/normalize';
+@use 'node_modules/leaflet/dist/leaflet';
+@use 'node_modules/leaflet-minimap/src/Control.MiniMap';
+@use './map';
 ```
 
-Now that everything is installed, return to `scripts/_map.js` and create an inset map with the library's custom tools. We can set its view with the `maxZoom` option.
+Now that everything is installed, return to `scripts/map.js` and create an inset map with the library's custom tools. We can set its view with the `maxZoom` option.
 
 ```{code-block} javascript
 :emphasize-lines: 12-16
 
-var map = L.map('map')
-var sat = L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/satellite-streets-v9/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibGF0aW1lcyIsImEiOiJjanJmNjg4ZzYweGtvNDNxa2ZpZ2lma3Z4In0.g0lYVIEs9Y5QcUOhXactHA');
-sat.addTo(map);
+const map = L.map('map')
+const satelliteLayer = L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/satellite-streets-v9/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibGF0aW1lcyIsImEiOiJjanJmNjg4ZzYweGtvNDNxa2ZpZ2lma3Z4In0.g0lYVIEs9Y5QcUOhXactHA');
+satelliteLayer.addTo(map);
 map.setView([33.983265, -118.306799], 18);
 
 homicides.forEach(obj => {
@@ -284,11 +280,11 @@ homicides.forEach(obj => {
       .bindTooltip(obj.first_name + " " + obj.last_name, {permanent: true});
 })
 
-var sat2 = L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/satellite-streets-v9/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibGF0aW1lcyIsImEiOiJjanJmNjg4ZzYweGtvNDNxa2ZpZ2lma3Z4In0.g0lYVIEs9Y5QcUOhXactHA', {
+const satelliteLayer2 = L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/satellite-streets-v9/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibGF0aW1lcyIsImEiOiJjanJmNjg4ZzYweGtvNDNxa2ZpZ2lma3Z4In0.g0lYVIEs9Y5QcUOhXactHA', {
     maxZoom: 8
 });
-var mini = new L.Control.MiniMap(sat2);
-mini.addTo(map);
+const miniMap = new MiniMap(satelliteLayer2);
+miniMap.addTo(map);
 ```
 
 Save the file and the inset map should appear on your page.
@@ -297,16 +293,16 @@ Save the file and the inset map should appear on your page.
 :width: 100%
 ```
 
-Just for fun, let's add a couple creature comforts to map. By default, the scroll wheel on your mouse or laptop trackpad will trigger zooms on the map. Some people (Armand!) have strong feelings about this. Let's do them a favor and turn it off.
+Just for fun, let's add a couple creature comforts to map. By default, the scroll wheel on your mouse or laptop trackpad will trigger zooms on the map. Some people (Armand!) have strong feelings about this. Let's do them a favor and turn it off. Replace the initial map definition with the highlighted lines.
 
 ```{code-block} javascript
 :emphasize-lines: 1-3
 
-var map = L.map('map', {
+const map = L.map('map', {
     scrollWheelZoom: false
 });
-var sat = L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/satellite-streets-v9/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibGF0aW1lcyIsImEiOiJjanJmNjg4ZzYweGtvNDNxa2ZpZ2lma3Z4In0.g0lYVIEs9Y5QcUOhXactHA');
-sat.addTo(map);
+const satelliteLayer = L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/satellite-streets-v9/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibGF0aW1lcyIsImEiOiJjanJmNjg4ZzYweGtvNDNxa2ZpZ2lma3Z4In0.g0lYVIEs9Y5QcUOhXactHA');
+satelliteLayer.addTo(map);
 map.setView([33.983265, -118.306799], 18);
 
 homicides.forEach(obj => {
@@ -315,25 +311,25 @@ homicides.forEach(obj => {
       .bindTooltip(obj.first_name + " " + obj.last_name, {permanent: true});
 })
 
-var sat2 = L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/satellite-streets-v9/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibGF0aW1lcyIsImEiOiJjanJmNjg4ZzYweGtvNDNxa2ZpZ2lma3Z4In0.g0lYVIEs9Y5QcUOhXactHA', {
+const satelliteLayer2 = L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/satellite-streets-v9/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibGF0aW1lcyIsImEiOiJjanJmNjg4ZzYweGtvNDNxa2ZpZ2lma3Z4In0.g0lYVIEs9Y5QcUOhXactHA', {
     maxZoom: 8
 });
-var mini = new L.Control.MiniMap(sat2);
-mini.addTo(map);
+const miniMap = new MiniMap(satelliteLayer2);
+miniMap.addTo(map);
 ```
 
-While we're at it, let's also restrict the zoom level so it you can't back too far away from LA.
+In general, it's best to help users by keeping your map from views that aren't part of the story. So while we're at it, let's also restrict the zoom level so it you can't back too far away from our area of interest in South LA.
 
 ```{code-block} javascript
 :emphasize-lines: 4-6
 
-var map = L.map('map', {
+const map = L.map('map', {
     scrollWheelZoom: false
 })
-var sat = L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/satellite-streets-v9/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibGF0aW1lcyIsImEiOiJjanJmNjg4ZzYweGtvNDNxa2ZpZ2lma3Z4In0.g0lYVIEs9Y5QcUOhXactHA', {
-    minZoom: 9
+const satelliteLayer = L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/satellite-streets-v9/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibGF0aW1lcyIsImEiOiJjanJmNjg4ZzYweGtvNDNxa2ZpZ2lma3Z4In0.g0lYVIEs9Y5QcUOhXactHA', {
+    minZoom: 13
 });
-sat.addTo(map);
+satelliteLayer.addTo(map);
 map.setView([33.983265, -118.306799], 18);
 
 homicides.forEach(function (obj) {
@@ -342,11 +338,11 @@ homicides.forEach(function (obj) {
       .bindTooltip(obj.first_name + " " + obj.last_name, {permanent: true});
 })
 
-var sat2 = L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/satellite-streets-v9/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibGF0aW1lcyIsImEiOiJjanJmNjg4ZzYweGtvNDNxa2ZpZ2lma3Z4In0.g0lYVIEs9Y5QcUOhXactHA', {
+const satelliteLayer2 = L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/satellite-streets-v9/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibGF0aW1lcyIsImEiOiJjanJmNjg4ZzYweGtvNDNxa2ZpZ2lma3Z4In0.g0lYVIEs9Y5QcUOhXactHA', {
     maxZoom: 8
 });
-var mini = new L.Control.MiniMap(sat2);
-mini.addTo(map);
+const miniMap = MiniMap(satelliteLayer2);
+miniMap.addTo(map);
 ```
 
 Finally, let's preface the map with so a headline.
@@ -420,9 +416,9 @@ And a real byline.
 {% extends '_layouts/base.nunjucks' %}
 
 {% block headline %}A South L.A. neighborhood grapples with a wave of violence{% endblock %}
-{% block byline %}By <a href="https://www.firstgraphics.app/">The First Graphics App Tutorial</a>{% endblock %}
+{% block byline %}By <a href="https://palewi.re/docs/first-visual-story/">The First Visual Story Tutorial</a>{% endblock %}
 {% block pubdate %}
-    <time datetime="2020-03-07" pubdate>Mar. 7, 2020</time>
+    <time datetime="2022-03-05" pubdate>Mar. 5, 2022</time>
 {% endblock %}
 ```
 
