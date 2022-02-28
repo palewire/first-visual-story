@@ -1,7 +1,7 @@
 A step-by-step guide to publishing a standalone story from a dataset.
 
-- Demonstration: TK
-- Documentation: [https://palewi.re/docs/first-visual-story/](https://palewi.re/docs/first-visual-story/)
+- Demonstration: [palewire.github.io/first-visual-story](https://palewire.github.io/first-visual-story/)
+- Documentation: [palewi.re/docs/first-visual-story](https://palewi.re/docs/first-visual-story/)
 - Issues: [https://github.com/palewire/first-visual-story/issues](https://github.com/palewire/first-visual-story/issues)
 
 ## Contributing to the docs
