@@ -4,7 +4,7 @@
 
 # Cards
 
-This chapter will guide you through converting your list of victims in a photo grid of photographs.
+This chapter will guide you through converting your list of victims in a grid with photographs.
 
 ```{contents} Sections
   :depth: 1
