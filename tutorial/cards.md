@@ -70,6 +70,8 @@ Let's add a sentence below the name that summarizes who each victim was and when
 
 ![](_static/cards-second.png)
 
+## Add images
+
 Now let's add each victim's image to their card.
 
 ```{code-block} jinja
@@ -114,13 +116,20 @@ The error should go away and you should see something more like this in your bro
 
 Phew. That’s better, but still far from what we want. What we've got so far is a grid that doesn't look much like a grid. In fact it's not a grid at all. It's just a big stack.
 
-To arrange our cards using Bootstrap’s system, we need to play by Bootstrap's rules. Look at its documentation and you'll see that Bootstrap asks us to wrap our cards in a div with the class `card-columns` if we want a grid. Like this:
+## Create a grid
+
+To arrange our cards using Bootstrap’s system, we need to play by Bootstrap's rules.
+
+Look at [its documentation](https://getbootstrap.com/docs/5.1/examples/masonry/) and you’ll see that Bootstrap asks us to wrap our cards in a div with the class `row` and a special attribute required by Masonry, the Javascript tool that will layout the page. It also wants us to use some special Bootstrap classes to dictate how wide our cards will be.
+
+Make the following changes. Remember there’s no shame in using copy and paste.
 
 ```{code-block} jinja
-:emphasize-lines: 1,11
+:emphasize-lines: 1,3,11,13
 
-<div class="card-columns">
+<div class="row" data-masonry='{"percentPosition": true }'>
     {% for obj in harvard_park_homicides %}
+    <div class="col-sm-6 col-lg-4 mb-4">
     <div class="card">
       {% if obj.image %}<img class="card-img-top" src="{{ obj.image }}" alt="{{ obj.first_name }} {{ obj.last_name }}">{% endif %}
       <div class="card-body">
@@ -128,21 +137,27 @@ To arrange our cards using Bootstrap’s system, we need to play by Bootstrap's 
         <p class="card-text">{{ obj.last_name }}, a {{ obj.age}}-year-old {{ obj.race }} {{ obj.gender }}, died in {{ obj.death_year }}.</p>
       </div>
     </div>
+    </div>
     {% endfor %}
 </div>
 ```
 
-Note that the new div is outside of our `for` loop, meaning it only appears on the page once with all of the card divs inside of it.
+![](_static/cards-working.png)
+
+```{note}
+Notice that the new division is outside of our `for` loop, meaning it only appears on the page once with all of the card divs inside of it.
+```
 
 We're not done yet. We want to be able to click on each card and be redirected to the victim's page on the Los Angeles Times Homicide Report site. While we're at it, let's add some `<strong>` tags to the victims' names to make them stand out from the sentence about them.
 
 ```{code-block} jinja
-:emphasize-lines: 6-10
+:emphasize-lines: 7-11
 
-<div class="card-columns">
+<div class="row" data-masonry='{"percentPosition": true }'>
     {% for obj in harvard_park_homicides %}
+    <div class="col-sm-6 col-lg-4 mb-4">
     <div class="card">
-      {% if obj.image %}<img class="card-img-top" src="{{ obj.image }}">{% endif %}
+      {% if obj.image %}<img class="card-img-top" src="{{ obj.image }}" alt="{{ obj.first_name }} {{ obj.last_name }}">{% endif %}
       <div class="card-body">
         <a href="http://homicide.latimes.com/post/{{ obj.slug }}" target="_blank">
             <strong>
@@ -152,13 +167,14 @@ We're not done yet. We want to be able to click on each card and be redirected t
         <p class="card-text">{{ obj.last_name }}, a {{ obj.age}}-year-old {{ obj.race }} {{ obj.gender }}, died in {{ obj.death_year }}.</p>
       </div>
     </div>
+    </div>
     {% endfor %}
 </div>
 ```
 
-```{image} _static/card-slug.png
-:width: 100%
-```
+![](_static/cards-links.png)
+
+## Add supporting elements
 
 Now let's start to wrap things up by writing a headline for our cards section.
 
@@ -166,10 +182,11 @@ Now let's start to wrap things up by writing a headline for our cards section.
 :emphasize-lines: 1
 
 <h3>Lives lost in Harvard Park</h3>
-<div class="card-columns">
+<div class="row" data-masonry='{"percentPosition": true }'>
     {% for obj in harvard_park_homicides %}
+    <div class="col-sm-6 col-lg-4 mb-4">
     <div class="card">
-      {% if obj.image %}<img class="card-img-top" src="{{ obj.image }}">{% endif %}
+      {% if obj.image %}<img class="card-img-top" src="{{ obj.image }}" alt="{{ obj.first_name }} {{ obj.last_name }}">{% endif %}
       <div class="card-body">
         <a href="http://homicide.latimes.com/post/{{ obj.slug }}" target="_blank">
             <strong>
@@ -179,13 +196,12 @@ Now let's start to wrap things up by writing a headline for our cards section.
         <p class="card-text">{{ obj.last_name }}, a {{ obj.age}}-year-old {{ obj.race }} {{ obj.gender }}, died in {{ obj.death_year }}.</p>
       </div>
     </div>
+    </div>
     {% endfor %}
 </div>
 ```
 
-```{image} _static/card-headline.png
-:width: 100%
-```
+![](_static/cards-headline.png)
 
 And now, some introductory text. We can use a new templating trick, the `length` filter, to insert some automatically generated statistics into the text.
 
@@ -194,10 +210,11 @@ And now, some introductory text. We can use a new templating trick, the `length`
 
 <h3>Lives lost in Harvard Park</h3>
 <p>The {{ harvard_park_homicides|length }} homicides in Harvard Park since 2000 were primarily black and Latino males, but the list includes husbands, wives, fathers, mothers of all ages, and even some small children.</p>
-<div class="card-columns">
+<div class="row" data-masonry='{"percentPosition": true }'>
     {% for obj in harvard_park_homicides %}
+    <div class="col-sm-6 col-lg-4 mb-4">
     <div class="card">
-      {% if obj.image %}<img class="card-img-top" src="{{ obj.image }}">{% endif %}
+      {% if obj.image %}<img class="card-img-top" src="{{ obj.image }}" alt="{{ obj.first_name }} {{ obj.last_name }}">{% endif %}
       <div class="card-body">
         <a href="http://homicide.latimes.com/post/{{ obj.slug }}" target="_blank">
             <strong>
@@ -207,9 +224,12 @@ And now, some introductory text. We can use a new templating trick, the `length`
         <p class="card-text">{{ obj.last_name }}, a {{ obj.age}}-year-old {{ obj.race }} {{ obj.gender }}, died in {{ obj.death_year }}.</p>
       </div>
     </div>
+    </div>
     {% endfor %}
 </div>
 ```
+
+![](_static/cards-description.png)
 
 Let's set up our card grid as it's own section by adding `<section>` tags. This is simple example of adding some hidden stucture to your page so its easier for search engines and other spiders to parse.
 
@@ -218,11 +238,12 @@ Let's set up our card grid as it's own section by adding `<section>` tags. This 
 
 <section>
     <h3>Lives lost in Harvard Park</h3>
-    <p>The {{ site.data.harvard_park_homicides|length }} homicides in Harvard Park since 2000 were primarily black and Latino males, but the list includes husbands, wives, fathers, mothers of all ages, and even some small children.</p>
-    <div class="card-columns">
-        {% for obj in site.data.harvard_park_homicides %}
+    <p>The {{ harvard_park_homicides|length }} homicides in Harvard Park since 2000 were primarily black and Latino males, but the list includes husbands, wives, fathers, mothers of all ages, and even some small children.</p>
+    <div class="row" data-masonry='{"percentPosition": true }'>
+        {% for obj in harvard_park_homicides %}
+        <div class="col-sm-6 col-lg-4 mb-4">
         <div class="card">
-          {% if obj.image %}<img class="card-img-top" src="{{ obj.image }}">{% endif %}
+          {% if obj.image %}<img class="card-img-top" src="{{ obj.image }}" alt="{{ obj.first_name }} {{ obj.last_name }}">{% endif %}
           <div class="card-body">
             <a href="http://homicide.latimes.com/post/{{ obj.slug }}" target="_blank">
                 <strong>
@@ -232,24 +253,34 @@ Let's set up our card grid as it's own section by adding `<section>` tags. This 
             <p class="card-text">{{ obj.last_name }}, a {{ obj.age}}-year-old {{ obj.race }} {{ obj.gender }}, died in {{ obj.death_year }}.</p>
           </div>
         </div>
+        </div>
         {% endfor %}
     </div>
 </section>
 ```
 
-```{image} _static/card-full-section.png
+```{image} _static/cards-full-section.png
 :width: 100%
 ```
 
+## Commit your work
+
 We're all done here. So let's commit our work for this chapter.
 
+First add.
+
 ```bash
-$ git add .
+git add .
+```
+
+Then commit.
+
+```bash
 $ git commit -m "Created a victims card grid"
 ```
 
-Push it to GitHub.
+Then push.
 
 ```bash
-$ git push origin master
+git push origin main
 ```
