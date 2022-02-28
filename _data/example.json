@@ -1,0 +1,10 @@
+[
+    {"year":"1775","wheat":44,"wages":19.5},
+    {"year":"1780","wheat":46,"wages":21},
+    {"year":"1785","wheat":42,"wages":23},
+    {"year":"1790","wheat":47.5,"wages":25.5},
+    {"year":"1795","wheat":76,"wages":27.5},
+    {"year":"1800","wheat":79,"wages":28.5},
+    {"year":"1805","wheat":81,"wages":29.5},
+    {"year":"1810","wheat":99,"wages":30}
+]

@@ -1,0 +1,27 @@
+{
+  "name": "page-template",
+  "private": true,
+  "scripts": {
+    "build": "NODE_ENV=production bake build --config",
+    "git-pre-commit": "lint-staged",
+    "start": "NODE_ENV=development bake serve --config"
+  },
+  "dependencies": {
+    "@datagraphics/baker": "^0.40.0",
+    "@datagraphics/delivery": "^0.6.0",
+    "intersection-observer": "^0.12.0"
+  },
+  "devDependencies": {
+    "@datagraphics/prettier-config": "^2.0.0",
+    "@types/node": "^14.17.20",
+    "@vercel/git-hooks": "^1.0.0",
+    "lint-staged": "^11.1.2",
+    "prettier": "^2.4.1"
+  },
+  "prettier": "@datagraphics/prettier-config",
+  "lint-staged": {
+    "*.{js,md,scss}": [
+      "prettier --write"
+    ]
+  }
+}

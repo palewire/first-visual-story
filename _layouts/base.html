@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="{% block lang %}en{% endblock lang %}">
+<head>
+  <meta charset="utf-8">
+  <title>First Visual Story</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  {% block styles %}
+    <link rel="stylesheet" href="{% static 'styles/app.scss' %}">
+  {% endblock styles %}
+  <link rel="stylesheet" href="https://bl.ocks.org/palewire/raw/1035cd306a2f85b362b1a20ce315b8eb/base.css?rev=8">
+  {% block scripts %}
+    {% script 'app' %}
+  {% endblock scripts %}
+</head>
+<body>
+    <nav>
+        <img src="https://bl.ocks.org/palewire/raw/1035cd306a2f85b362b1a20ce315b8eb/ire-logo.png">
+    </nav>
+  <header>
+    <h1>{% block headline %}{% endblock %}</h1>
+    <div class="byline">
+        {% block byline %}{% endblock %}
+    </div>
+    <div class="pubdate">
+        {% block pubdate %}{% endblock %}
+    </div>
+  </header>
+  {% block content %}
+  {% endblock content %}
+</body>
+</html>
