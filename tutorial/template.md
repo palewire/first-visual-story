@@ -11,7 +11,7 @@ This chapter will show you how to start editing content and customizing your pag
   :local:
 ```
 
-## Edit the index
+## Configure the index
 
 The contents of the page you see at [localhost:3000](https://localhost:3000) is configured in the `index.html` file found in the repository’s root directory. It uses a templating language invented at Mozilla called [Nunjucks](https://mozilla.github.io/nunjucks/).
 
@@ -39,9 +39,9 @@ That’s because that boilerplate has been moved back into a parent template "ex
 {% extends 'base.html' %}
 ```
 
-That "base" file, sometimes called the “layout,” can be inherited by other pages on your site to avoid duplication and share common code. One change to a parent file instantly ripples out to all pages the extend it.
+That base file, sometimes called the layout, can be inherited by other pages on your site to avoid duplication and share common code. One change to a parent file instantly ripples out to all pages the extend it.
 
-This approach to "template inheritance" is not just found in Nunjucks. It can be found in other templating systems, including Python ones like [Django](https://docs.djangoproject.com/en/1.7/topics/templates/) and [Jinja](http://jinja.pocoo.org). It's probably even used at some level in your organization's content-management system.
+This approach to [inheritance](<https://en.wikipedia.org/wiki/Inheritance_(object-oriented_programming)>) is not just found in Nunjucks. It can be found in other templating systems, including Python ones like [Django](https://docs.djangoproject.com/en/1.7/topics/templates/) and [Jinja](http://jinja.pocoo.org). It's probably even used at some level in your organization's content-management system.
 
 You can find baker’s base layout packaged with our framework by following the path and opening the `_layouts/base.html` file. You'll see it includes a set of block tags, like `content`, that act as placeholders for use in templates that extend it.
 
@@ -100,6 +100,8 @@ You can find it in the code block below. Copy all of its contents and paste them
 </html>
 ```
 
+## Fill in the blocks
+
 As you can see, it includes all of the standard HTML tags, with our custom stylesheets and content blocks mixed in.
 
 To see the effects, return to `index.html` and fill in a headline using the `headline` block introduced by our base template. Save the page and you should quickly see it appear on the page.
@@ -143,7 +145,9 @@ And let's do the publication date too while we are at it.
 
 ![pubdate](_static/pubdate.png)
 
-Congratulations. You’ve installed a base template and started in on creating your first custom page. Now is a good time to pause and log our work with GitHub.
+## Commit your work
+
+You’ve installed a base template and started in on creating your first custom page. Now is a good time to pause and log our work with GitHub.
 
 The first command to learn is [`status`](https://git-scm.com/docs/git-status), which prints out a report card on the current state of your repository.
 
@@ -151,7 +155,9 @@ The first command to learn is [`status`](https://git-scm.com/docs/git-status), w
 git status
 ```
 
-The next step is to instruct `git` to track the new files with the [`add`](https://git-scm.com/docs/git-add) command. Rather than introduce files one by one, you can add more than one file by using a [wildcard character](https://en.wikipedia.org/wiki/Wildcard_character) in your command. One common shortcut is `git add .`, which will add all of the files in your repository at once.
+The next step is to instruct `git` to track the new files with the [`add`](https://git-scm.com/docs/git-add) command.
+
+Rather than introduce files one by one, you can add more than one file by using a [wildcard character](https://en.wikipedia.org/wiki/Wildcard_character) in your command. One common shortcut is `git add .`, which will add all of the files in your repository at once.
 
 ```bash
 git add .
@@ -174,9 +180,9 @@ git config --global user.name "your name"
 Then run the `commit` command above again.
 ````
 
-The final step is to syncronize the changes we’ve made on our computer with the copy of the repository hosted on github.com. This is done via the [`push`](https://git-scm.com/docs/git-push) tool. This complicated `git` command requires two inputs.
+The final step is to syncronize the changes we’ve made on our computer with the copy of the repository hosted on github.com. This is done via the [`push`](https://git-scm.com/docs/git-push) command. This complicated `git` command requires two inputs.
 
-First, the command asks for the name of the remote repository where you’d like to send your changes. In the parlance of `git`, the default name is `origin`.
+First, `push` asks for the name of the remote repository where you’d like to send your changes. In the parlance of `git`, the default target is `origin`.
 
 Second, you need to provide the [branch](<https://en.wikipedia.org/wiki/Branching_(version_control)>) of the code you’d like to syncronize. Branching is a tool for maintaining parallel versions of your code within the same respository. We won't get that sophisticated in this tutorial, so you can stick to the default code branch, which is called `main`.
 
@@ -186,4 +192,6 @@ Taking all that into account, the command to push local changes to GitHub is typ
 git push origin main
 ```
 
-You just created your first code commit. Reload your repository on GitHub and see your handiwork. Now it’s time to load in some real data and start sculpting it on the page.
+You just created your first code commit. Reload your repository on GitHub and see your handiwork.
+
+Next it’s time to load in some real data and start sculpting it on the page.
