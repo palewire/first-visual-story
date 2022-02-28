@@ -4,7 +4,7 @@
 
 # Git
 
-This chapter will show you how to get a code repository up and running on your computer.
+This chapter will show you how to get a `git` code repository up and running.
 
 ```{contents} Sections
   :depth: 1
@@ -13,37 +13,39 @@ This chapter will show you how to get a code repository up and running on your c
 
 ## Create a code directory
 
-First things first. It always helps to store all your code in the same place, instead of haphazard folders around your computer. This way, you always know where to look if you need to find a project.
+First things first. It always helps to store all your code in the same place, rather than scattering your work in haphazard folders around your computer.
 
 Let's settle the issue on the command-line. Open the terminal of your choice. It will start you off in your computer’s home directory, much like your file explorer.
 
-Let’s verify that using a command called [`pwd`](https://en.wikipedia.org/wiki/Pwd), which stands for present working directory. The output is the full path of your terminal’s current location in the file system. You should get back something like `/Users/palewire/`, the path to your home directory.
+Verify that by using a command called [`pwd`](https://en.wikipedia.org/wiki/Pwd), which stands for present working directory. The output is the full path of your terminal’s current location in the file system. You should get back something like `/Users/palewire/`.
 
 ```bash
 pwd
 ```
 
-Next let’s enter the [`ls`](https://en.wikipedia.org/wiki/Ls) command to see all of its subdirectories. The terminal should print out the same list of folders you can see in your home directory via the file explorer.
+Enter the [`ls`](https://en.wikipedia.org/wiki/Ls) command to see all of the home folder’s subdirectories. The terminal should print out the same list of folders you can see via the file explorer.
 
 ```bash
 ls
 ```
 
-Our first task is to create a folder to store our code.
-
 Use the [`mkdir`](https://en.wikipedia.org/wiki/Mkdir) command to create a new directory in the same style as the Desktop, Documents and Downloads folders included by most operating systems.
 
-We will name this folder `Code`. To verify the command works, open the file explorer and navigate to your home folder. After it’s run, you should see the new directory alongside the rest.
+Since we want it to store our code, we will name this folder `Code`.
 
 ```bash
 mkdir Code
 ```
+
+To verify the command works, open the file explorer and navigate to your home folder. After it’s run, you should see the new directory alongside the rest.
 
 Now jump into the new directory with the [`cd`](<https://en.wikipedia.org/wiki/Cd_(command)>) command, which operates the same as double clicking on a folder in your file explorer.
 
 ```bash
 cd Code
 ```
+
+In this simple exercise you’ve learned some of the most important, and most common, terminal commands.
 
 ## Create a repository
 
@@ -67,17 +69,19 @@ Return to your terminal. Use `gh` to login to GitHub, which will verify that you
 gh auth login
 ```
 
-After you authenticate, it’s time to clone the new repository we created. Edit the code below by inserting your user name and repository. Then run it.
+After you authenticate, clone the new repository we created. Edit the code below by inserting your user name and repository. Then run it.
 
 ```bash
 gh repo clone <your-username>/<your-repo>
 ```
 
+````{note}
 In my case, the command looks like this:
 
 ```bash
 gh repo clone palewire/my-first-visual-story
 ```
+````
 
 After clone completes, run the `ls` command again. You should see a new folder created by `gh`.
 
@@ -91,4 +95,4 @@ Use `cd` to move into the directory, where we can begin work.
 cd my-first-visual-story
 ```
 
-We've got our starter kit installed. Let’s get it up and running.
+We've got our starter kit installed. Let’s get it going.
