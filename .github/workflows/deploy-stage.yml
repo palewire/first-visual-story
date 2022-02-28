@@ -6,11 +6,11 @@ concurrency:
 
 on:
   workflow_dispatch:
-  push:
-    branches:
-      - "**" # always deploy for branches
-    tags-ignore:
-      - "**" # never deploy for tags
+  # push:
+  #   branches:
+  #     - "**" # always deploy for branches
+  #   tags-ignore:
+  #     - "**" # never deploy for tags
 
 jobs:
   deploy:
