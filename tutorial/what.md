@@ -4,9 +4,9 @@
 
 # What you will make
 
-As part of this class, you'll gain a basic understanding of how graphics, design and data teams across the journalism industry build customized templates that prioritize visual and interactive elements of a story.
+As part of this class, you'll gain a basic understanding of how graphics, design and data teams across the journalism industry build pages that require customized computer programming.
 
-This will include how to:
+The tutorial will demonstrate how to:
 
 - Use a command-line interface to issue commands
 - Develop HTML, CSS and Javascript within a [static-site framework](https://github.com/datadesk/baker-example-page-template)
