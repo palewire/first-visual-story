@@ -123,4 +123,4 @@ tags
 [._]*.un~
 
 
-tutorial/_build/html/*.doctrees
+tutorial/_build/
