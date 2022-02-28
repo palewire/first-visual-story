@@ -16,6 +16,6 @@ An edit there followed by push to the master branch on GitHub will trigger the d
 - Install dependencies with `pipenv install --dev`
 - Run `make docs`. You'll be able to see your local version of the docs at localhost:8000
 
-## TODO: Editing the example site
+Editing the example site
 
-The demonstration site at TK is published via TK, following the instructions in the tutorial. The files on the web are available here in the `docs` folder. Changes made there will go live following a push to the master branch on GitHub.
+The demonstration site at [palewire.github.io/first-visual-story](https://palewire.github.io/first-visual-story/) is published via GitHub Pages and the `docs` folder, following the instructions in the tutorial.Changes made there will go live following a push to the `main` branch.
