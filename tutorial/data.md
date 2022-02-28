@@ -11,13 +11,15 @@ We've got our system set up. Now it's time to start telling our story. To do tha
   :local:
 ```
 
+## Import JSON
+
 If we were writing this application entirely in the browser with traditional JavaScript we'd have to pull it in with dynamic ["AJAX"](<https://en.wikipedia.org/wiki/Ajax_(programming)>) calls that retrieve data over the web as the page is constructed.
 
 Since we're working with a Node.js system, running JavaScript code on the backend, we can import data directly into the template instead and lay it out before the page is rendered in the browser. This results in a faster experience for our users and opens up new ways for us to be creative with our data.
 
 Every newsroom's system will handle this differently. Our baker framework is preconfigured to open all JSON data files in the `_data` folder and import them into our Nunjucks templates.
 
-Let's give it a try. Grab the [list of Harvard Park homicides](https://gist.githubusercontent.com/palewire/e0e3a3d64ed818ded354ffd99e63984b/raw/c1952a9dcdd37443aef63511c052e50f3bf51c6b/harvard_park_homicides.json) published by the Los Angeles Times and save it to `_data/harvard_park_homicides.json`. It includes every homicide victim in the neighborhood since 2000 in the [JSON data format](https://en.wikipedia.org/wiki/JSON) favored by JavaScript.
+Let's give it a try. Grab the [list of Harvard Park homicides](https://gist.githubusercontent.com/palewire/e0e3a3d64ed818ded354ffd99e63984b/raw/c1952a9dcdd37443aef63511c052e50f3bf51c6b/harvard_park_homicides.json) published by the Los Angeles Times. It includes every homicide victim in the neighborhood since 2000 in the [JSON data format](https://en.wikipedia.org/wiki/JSON) favored by JavaScript. Save it to `_data/harvard_park_homicides.json`.
 
 ```javascript
 [
@@ -72,6 +74,8 @@ Visit [localhost:3000](https://localhost:3000) and you should see the data puked
 
 ![puke](_static/puke.png)
 
+## The `for` loop
+
 Instead of just printing the data in one big block, let's loop through the records and print them one by one.
 
 We'll use the `{% %}` template tags provided by Nunjucks, which allow us to use a common computer programming structure called a ["for loop"](https://en.wikipedia.org/wiki/For_loop) when we’re laying out a page.
@@ -92,7 +96,7 @@ The result should look much the same, but we’re making progress.
 :width: 100%
 ```
 
-To put each record on its own line, add a line break with a `<br>` tag. That's just boring old HTML. Writing pages with a templating language like Nunjucks is typically nothing more than mixing traditional HTML with the template tags that negotiate your data files and other variables.
+To put each record on its own line, add a line break with a [`<br>`](https://www.w3schools.com/TAGS/tag_br.asp) tag. That's just boring old HTML. Writing pages with a templating language like Nunjucks is typically nothing more than mixing traditional HTML with the template tags that negotiate your data files and other variables.
 
 ```{code-block} jinja
 :emphasize-lines: 3
@@ -107,6 +111,8 @@ To put each record on its own line, add a line break with a `<br>` tag. That's j
 ```{image} _static/hello-loop.png
 :width: 100%
 ```
+
+## Access attributes
 
 That's good, but hardly informative. How do we start printing out the contents of the data? The fields in the JSON dictionary for each homicide are available by adding a `.` after the object. For instance, here's how to print the contents of the `last_name` field.
 
@@ -139,6 +145,8 @@ Now the first name.
 ```{image} _static/hello-full-name.png
 :width: 100%
 ```
+
+## Commit your work
 
 Not bad. We’ve actually got some data on the page. Seems like a good moment to stop, take a break and commit our work.
 
