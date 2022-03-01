@@ -9,7 +9,9 @@
   "dependencies": {
     "@datagraphics/baker": "^0.40.0",
     "@datagraphics/delivery": "^0.6.0",
-    "intersection-observer": "^0.12.0"
+    "intersection-observer": "^0.12.0",
+    "leaflet": "^1.7.1",
+    "leaflet-minimap": "^3.6.1"
   },
   "devDependencies": {
     "@datagraphics/prettier-config": "^2.0.0",

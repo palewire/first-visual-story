@@ -281,7 +281,7 @@ homicides.forEach(obj => {
 })
 
 const satelliteLayer2 = L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/satellite-streets-v9/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibGF0aW1lcyIsImEiOiJjanJmNjg4ZzYweGtvNDNxa2ZpZ2lma3Z4In0.g0lYVIEs9Y5QcUOhXactHA', {
-    maxZoom: 8
+    maxZoom: 11
 });
 const miniMap = new MiniMap(satelliteLayer2);
 miniMap.addTo(map);
@@ -312,7 +312,7 @@ homicides.forEach(obj => {
 })
 
 const satelliteLayer2 = L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/satellite-streets-v9/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibGF0aW1lcyIsImEiOiJjanJmNjg4ZzYweGtvNDNxa2ZpZ2lma3Z4In0.g0lYVIEs9Y5QcUOhXactHA', {
-    maxZoom: 8
+    maxZoom: 11
 });
 const miniMap = new MiniMap(satelliteLayer2);
 miniMap.addTo(map);
@@ -339,7 +339,7 @@ homicides.forEach(function (obj) {
 })
 
 const satelliteLayer2 = L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/satellite-streets-v9/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibGF0aW1lcyIsImEiOiJjanJmNjg4ZzYweGtvNDNxa2ZpZ2lma3Z4In0.g0lYVIEs9Y5QcUOhXactHA', {
-    maxZoom: 8
+    maxZoom: 11
 });
 const miniMap = MiniMap(satelliteLayer2);
 miniMap.addTo(map);
