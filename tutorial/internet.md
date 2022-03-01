@@ -25,7 +25,7 @@ Whatever you call it, it’s a solid path to cheap­, stable host­ing for simpl
 Examples of static news pages in the wild include:
 
 - [A wide array of interactive graphics](https://twitter.com/PostGraphics/status/1207035549527236609) by The Washington Post
-- Hundreds of Los Angeles Times stories at [latimes.com/projects](http://www.latimes.com/projects/)
+- Hundreds of Los Angeles Times stories at latimes.com/projects
 - Dozens more from The Seattle Times at [projects.seattletimes.com](https://projects.seattletimes.com)
 - Interactive apps by [The Dallas Morning News](https://interactives.dallasnews.com/2018/secrets-dallas-dead/)
 - [Live election results](https://open.blogs.nytimes.com/2010/12/20/using-flat-files-so-elections-dont-break-your-server/) published by The New York Times
@@ -39,7 +39,7 @@ Lucky for us, baker is pre-configured to flatten our dynamic site. And GitHub ha
 Open the `baker.config.js` file at the root of the project. We will intruct it to `output` files to the `docs` directory instead of `_dist` and set the name of our GitHub repository as the `domain`.
 
 ```{code-block} javascript
-:emphasize-lines: 7-8
+:emphasize-lines: 7-8,12
 
 const entrypoints = [
   // Add more script entrypoints here as needed
@@ -48,11 +48,11 @@ const entrypoints = [
 
 export default {
   output: 'docs',
-  domain: 'https://your-username.github.io/your-repo-name/',
+  domain: 'https://your-username.github.io',
   entrypoints: `scripts/${
     entrypoints.length > 1 ? `{${entrypoints.join(',')}}` : entrypoints[0]
   }.js`,
-  pathPrefix: process.env.BAKER_PATH_PREFIX || process.env.DELIVERY_BASE_PATH || '/',
+  pathPrefix: '/your-repo-name/',
 // An example of how creating dynamic pages, as described in the README
 // createPages(createPage, data) {
 //   const pageList = data.example;
@@ -71,7 +71,11 @@ In my case, that would look like:
 
 ```javascript
   output: 'docs',
-  domain: 'https://palewire.github.io/my-first-visual-story/',
+  domain: 'https://palewire.github.io',
+  entrypoints: `scripts/${
+    entrypoints.length > 1 ? `{${entrypoints.join(',')}}` : entrypoints[0]
+  }.js`,
+  pathPrefix: '/my-first-visual-story/',
 ```
 ````
 
