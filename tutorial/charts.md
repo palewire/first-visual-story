@@ -249,7 +249,6 @@ $ git push origin master
 ```
 
 ```{note}
-**NOTE***
 We used Datawrapper in this class, but there are many other ways to create charts.
 
 There are other tools similar to Datawrapper that allow you to use a visual editor, creating charts and other visualizations that you can download and/or embed in your project.
