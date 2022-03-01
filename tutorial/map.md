@@ -6,7 +6,16 @@
 
 Next we'll move on to creating a map focused on West 62nd Street and Harvard Boulevard, an intersection in South Los Angeles where four men died in less than a year and a half.
 
-To draw the map we will rely on [Leaflet](http://leafletjs.com), a JavaScript library for creating interactive maps. We will install it just as before by using `npm` from our terminal. This should install the latest version of leaflet, which at the time of writing was 1.7.
+To draw the map we will rely on [Leaflet](http://leafletjs.com), a library for creating interactive maps. We'll also be writing a bit of JavaScript.
+
+```{contents} Sections
+  :depth: 1
+  :local:
+```
+
+## Installing Leaflet
+
+We will install it just as before by using `npm` from our terminal. This should install the latest version of leaflet, which at the time of writing was 1.7.
 
 ```bash
 $ npm install leaflet
@@ -43,7 +52,7 @@ Now, back in the `index.nunjucks` template, we should create a placeholder in th
 </section>
 ```
 
-To bring the map to life, add a new file named `map.js` to the `scripts` directory. Import it in `app.js`.
+To bring the map to life, add a new file named `map.js` to the `scripts` directory. Use the `import` statement to bring it in to `app.js`.
 
 ```{code-block} javascript
 :emphasize-lines: 4
@@ -59,6 +68,8 @@ Now we need to import Leaflet into `scripts/map.js` so that its tools are availa
 ```javascript
 import * as L from 'leaflet';
 ```
+
+## Making your first map
 
 Now in `scripts/map.js` paste in the following Leaflet code to generate a simple map. It does three things:
 
@@ -111,6 +122,8 @@ map.setView([33.983265, -118.306799], 18);
 ```{image} _static/corner-map.png?v=2
 :width: 100%
 ```
+
+## Putting data on the map
 
 Now let's load some data on the map. We will return to the list of all homicides already stored in `_data/harvard_park_homicides.json`.
 
@@ -187,6 +200,8 @@ Here's what you should see after you do that.
 :width: 100%
 ```
 
+## Styling the data
+
 Next let's add some styles to our page to make the circles match the orange color of the dots found on [The Homicide Report](https://homicide.latimes.com/). As we did with the charts, go to the `styles` folder and create a new file. We'll call this one `map.scss`. In that file, copy or write the following:
 
 ```css
@@ -232,6 +247,8 @@ Here they are.
 ```{image} _static/permanent-tooltips.png?v=2
 :width: 100%
 ```
+
+## Adding a minimap
 
 Alright. We've got an okay map. But it's zoomed in so close a reader might now know where it is. To combat this problem, graphic artists often inset a small map in the corner that shows the the area of focus from a greater distance.
 
@@ -318,6 +335,8 @@ const miniMap = new MiniMap(satelliteLayer2);
 miniMap.addTo(map);
 ```
 
+## Some cleanup
+
 In general, it's best to help users by keeping your map from views that aren't part of the story. So while we're at it, let's also restrict the zoom level so it you can't back too far away from our area of interest in South LA.
 
 ```{code-block} javascript
@@ -344,6 +363,8 @@ const satelliteLayer2 = L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/sat
 const miniMap = MiniMap(satelliteLayer2);
 miniMap.addTo(map);
 ```
+
+## Adding a headline and text
 
 Finally, let's preface the map with so a headline.
 
