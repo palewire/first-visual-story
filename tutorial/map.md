@@ -94,6 +94,8 @@ After you save, the index page should reload with a blank map.
 ```
 
 ```{note}
+## Assigning variables
+
 You'll notice that we just declared a couple of variables: `map` and `satelliteLayer` with the word `const`. This is how you declare a "constant" variable in JS, or something that won't change.
 
 You can also use `let`, which lets you change a value after assigning, but in most cases it's better to use `const` until you need to use `let`.
@@ -371,6 +373,16 @@ const satelliteLayer2 = L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/sat
 });
 const miniMap = MiniMap(satelliteLayer2);
 miniMap.addTo(map);
+```
+
+```{note}
+## Other mapping libraries
+
+We used [Leaflet](https://leafletjs.com/) today, but this isn't the only mapping tool you can use.
+
+One of the most popular options for interactive mapping is [Mapbox GL](https://www.mapbox.com/), which is fast and very flexible, but is not a free tool.
+
+Other open-source options are [MapLibre](https://github.com/maplibre/maplibre-gl-js) or [OpenLayers](https://openlayers.org/). Or, go with embedded maps from [Datawrapper](https://app.datawrapper.de/select/map).
 ```
 
 ## Adding a headline and text
