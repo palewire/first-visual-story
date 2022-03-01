@@ -45,7 +45,7 @@ node --version
 
 The number you get back is the version you have installed. If you get an error, you don't have Node.js and you seek out an installer. If you have a slightly older version, you are probably okay. But we make no guarantees. Consider upgrading.
 
-## npm
+## The `npm` package manager
 
 Installing Node will also install [`npm`](<https://en.wikipedia.org/wiki/Npm_(software)>) on your computer, which stands for "Node Package Manager." We will use it to install open-source JavaScript packages beyond what’s provided by Node.JS, including tools that will help us draw charts and maps.
 
@@ -71,7 +71,7 @@ git --version
 
 [The free plan](https://github.com/pricing) is all that's required to complete this lesson. If you make a new account, make sure to confirm your email address with GitHub. We'll need that for something later.
 
-## `gh`
+## The `gh` client
 
 There are numerous methods to connect with GitHub from your terminal, covered thoroughly in [GitHub’s documentation](https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository). This tutorial will demonstrate how to use the [`gh`](https://cli.github.com/) command-line utility. If you don't have it installed, visit [cli.github.com](https://cli.github.com/) and follow the instructions there.
 
