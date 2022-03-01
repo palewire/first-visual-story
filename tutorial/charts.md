@@ -8,10 +8,10 @@ To visualize our data, we’re going to use [Datawrapper](https://www.datawrappe
 
 We'll make the charts by following these steps:
 
-1. Create the first chart
-2. Create the second chart
-3. Add the charts to the page
-4. Style the charts section with CSS
+```{contents} Sections
+  :depth: 1
+  :local:
+```
 
 ## Create the first chart
 
@@ -249,6 +249,7 @@ $ git push origin master
 ```
 
 ```{note}
+
 We used Datawrapper in this class, but there are many other ways to create charts.
 
 There are other tools similar to Datawrapper that allow you to use a visual editor, creating charts and other visualizations that you can download and/or embed in your project.
