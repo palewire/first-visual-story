@@ -1131,24 +1131,24 @@ p.prose {
   color: white;
 }
 
-.graphics-container {
+div.graphics-container {
   display: flex;
   justify-content: space-between;
 }
 @media (max-width: 500px) {
-  .graphics-container {
+  div.graphics-container {
     display: block;
   }
 }
-.graphics-container div.graphic {
+div.graphics-container div.graphic {
   flex: 0 1 48%;
 }
 @media (max-width: 500px) {
-  .graphics-container div.graphic {
+  div.graphics-container div.graphic {
     display: block;
     margin-bottom: 15px;
   }
 }
-.graphics-container div.graphic iframe {
+div.graphics-container div.graphic iframe {
   height: 350px !important;
 }

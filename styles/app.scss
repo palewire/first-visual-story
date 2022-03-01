@@ -68,7 +68,7 @@ p {
   }
 }
 
-.graphics-container {
+div.graphics-container {
   display: flex;
   justify-content: space-between;
   @media (max-width: 500px) {
