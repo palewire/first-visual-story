@@ -137,11 +137,11 @@ Continue to “Publish & Embed” or click “Proceed” on the bottom left-hand
 
 ## Add the charts to the page
 
-In the `index.html` file, we’ll find a spot below the cards section for the charts. Let’s wrap our charts HTML in `<section>` tags to keep things orderly. We'll also add a headline and short introduction to the section.
+In the `index.html` file, we’ll find a spot before the cards section for the charts. Let’s wrap our charts HTML in `<section>` tags to keep things orderly. We'll also add a headline and short introduction to the section.
 
 ```
 <section>
-  <h2>A South L.A. neighborhood stands apart</h2>
+  <h3>A South L.A. neighborhood stands apart</h3>
   <p>Harvard Park's 2016 homicide total was its highest in at least 15 years despite a downward trend in killings across L.A. County.</p>
   </section>
 ```
@@ -150,7 +150,7 @@ Next, we’ll want to create a container to hold the graphics. We will give this
 
 ```
 <section>
-  <h2>A South L.A. neighborhood stands apart</h2>
+  <h3>A South L.A. neighborhood stands apart</h3>
   <p>Harvard Park's 2016 homicide total was its highest in at least 15 years despite a downward trend in killings across L.A. County.</p>
   <div class="graphics-container">
       <div class="graphic">
@@ -212,11 +212,11 @@ div.graphics-container {
     flex: 0 1 48%;
     }
 }
+```
 
 Now that the charts are next to each other, we can see that despite our resizing in Datawrapper, they are not the same height. We’ll add a few more lines to our CSS to make both iframes the same height (`350px`) and we will also specify with media queries that on screens smaller than `500px` wide, we want the charts to be positioned one after another instead of side-by-side. This will help so that on mobile, they are not super tiny.
 
 ```
-
 div.graphics-container {
 display: flex;
 justify-content: space-between;
@@ -230,10 +230,11 @@ display: block;
 margin-bottom: 15px;
 }
 iframe {
-height: 350px !important;
+min-height: 350px;
 }
 }
 }
+```
 
 Congratulations, you’ve made your charts!
 

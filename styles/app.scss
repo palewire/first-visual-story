@@ -81,7 +81,7 @@ div.graphics-container {
       margin-bottom: 15px;
     }
     iframe {
-      height: 350px !important;
+      min-height: 350px;
     }
   }
 }
