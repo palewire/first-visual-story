@@ -93,6 +93,15 @@ After you save, the index page should reload with a blank map.
 :width: 100%
 ```
 
+```{note}
+You'll notice that we just declared a couple of variables: `map` and `satelliteLayer` with the word `const`. This is how you declare a "constant" variable in JS, or something that won't change.
+
+You can also use `let`, which lets you change a value after assigning, but in most cases it's better to use `const` until you need to use `let`.
+
+In older JS you would have used `var` to declare variables. This is still valid, but `const`/`let` are more commonly used and have fewer gotchas.
+
+```
+
 To zero in on the area we're reporting on, we will need its longitude and latitude coordinates. Go to Google Maps and find [62nd Street and Harvard Boulevard](https://www.google.com/maps/@33.9832603,-118.3078895,18z) in South LA. Hold down a click until it gives you the coordinates in a popup box. Paste those numbers into Leaflet's `setView` method with a zoom level of 15 included.
 
 ```{code-block} javascript
