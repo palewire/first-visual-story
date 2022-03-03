@@ -77,6 +77,8 @@ console.log("Hello bakers");
 import "./map";
 ```
 
+Whenever something isn't working in our app, this is usually where we'll find the answer.
+
 Now we need to import Leaflet into `scripts/map.js` so that its tools are available in this file.
 
 ```javascript
