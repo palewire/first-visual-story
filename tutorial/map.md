@@ -52,7 +52,21 @@ Now, back in the `index.nunjucks` template, we should create a placeholder in th
 </section>
 ```
 
-To bring the map to life, add a new file named `map.js` to the `scripts` directory. Use the `import` statement to bring it in to `app.js`.
+To bring the map to life, add a new file named `map.js` to the `scripts` directory. For now, let's just put a simple `console.log` statement in there.
+
+```{code-block} javascript
+console.log("This is the map file")
+```
+
+Now, when you load the page, you can open up the console with `cmd + option + i`, or by going to View -> Developer -> Developer Tools in the menu. You won't see this message yet!
+
+```{image} _static/hello-bakers.png
+:width: 100%
+```
+
+Why is that? Because we still need to `import` it in to `app.js`, which is where all the JavaScript in our app is read.
+
+In your `app.js` file:
 
 ```{code-block} javascript
 :emphasize-lines: 4
@@ -67,6 +81,22 @@ Now we need to import Leaflet into `scripts/map.js` so that its tools are availa
 
 ```javascript
 import * as L from 'leaflet';
+```
+
+This imports everything under a variable called `L`. You can confirm this by adding a line in your `map.js` file, right below the import statement. This allows you to see the contents of that variable.
+
+```{code-block} javascript
+:emphasize-lines: 3
+
+import * as L from 'leaflet';
+
+console.log("Leaflet", L);
+```
+
+If you open your console you'll be able to see it. If you click on the little triangle, you can actually see all of the different leaflet methods and properties available.
+
+```{image} _static/console-log-l.png
+:width: 100%
 ```
 
 ## Making your first map
