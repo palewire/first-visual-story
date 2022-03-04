@@ -175,7 +175,7 @@ Paste it in place of the html notes in the previous code block example. Your htm
 
 ```
 <section>
-  <h2>A South L.A. neighborhood stands apart</h2>
+  <h3>A South L.A. neighborhood stands apart</h3>
   <p>Harvard Park's 2016 homicide total was its highest in at least 15 years despite a downward trend in killings across L.A. County.</p>
   <div class="graphics-container">
       <div class="graphic">
