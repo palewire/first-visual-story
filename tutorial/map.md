@@ -8,6 +8,8 @@ Next we'll move on to creating a map focused on West 62nd Street and Harvard Bou
 
 To draw the map we will rely on [Leaflet](http://leafletjs.com), a library for creating interactive maps. We'll also be writing a bit of JavaScript.
 
+This is a long section, and you'll probably run into bugs! That's a normal part of development, and we'll teach you how to identify and debug them when they come up.
+
 ```{contents} Sections
   :depth: 1
   :local:
