@@ -142,8 +142,11 @@ In the `index.html` file, we’ll find a spot before the cards section for the c
 ```html
 <section>
   <h3>A South L.A. neighborhood stands apart</h3>
-  <p>Harvard Park's 2016 homicide total was its highest in at least 15 years despite a downward trend in killings across L.A. County.</p>
-  </section>
+  <p>
+    Harvard Park's 2016 homicide total was its highest in at least 15 years
+    despite a downward trend in killings across L.A. County.
+  </p>
+</section>
 ```
 
 Next, we’ll want to create a container to hold the graphics. We will give this `div` a class of `graphics-container`. Inside it, we'll add two other `divs` with the class `graphic` to hold each graphic.
@@ -151,14 +154,17 @@ Next, we’ll want to create a container to hold the graphics. We will give this
 ```html
 <section>
   <h3>A South L.A. neighborhood stands apart</h3>
-  <p>Harvard Park's 2016 homicide total was its highest in at least 15 years despite a downward trend in killings across L.A. County.</p>
+  <p>
+    Harvard Park's 2016 homicide total was its highest in at least 15 years
+    despite a downward trend in killings across L.A. County.
+  </p>
   <div class="graphics-container">
-      <div class="graphic">
-	<!-- first graphic’s embed code goes here -->
-      </div>
-      <div class="graphic">
-	<!-- second graphic’s embed code goes here -->
-       </div>
+    <div class="graphic">
+      <!-- first graphic’s embed code goes here -->
+    </div>
+    <div class="graphic">
+      <!-- second graphic’s embed code goes here -->
+    </div>
   </div>
 </section>
 ```
@@ -176,16 +182,65 @@ Paste it in place of the html notes in the previous code block example. Your htm
 ```html
 <section>
   <h3>A South L.A. neighborhood stands apart</h3>
-  <p>Harvard Park's 2016 homicide total was its highest in at least 15 years despite a downward trend in killings across L.A. County.</p>
+  <p>
+    Harvard Park's 2016 homicide total was its highest in at least 15 years
+    despite a downward trend in killings across L.A. County.
+  </p>
   <div class="graphics-container">
-      <div class="graphic">
-          <iframe title="County homicides, 2000-2017" aria-label="Column Chart" id="datawrapper-chart-XSj9X" src="https://datawrapper.dwcdn.net/XSj9X/5/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="350"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(e){if(void 0!==e.data["datawrapper-height"]){var t=document.querySelectorAll("iframe");for(var a in e.data["datawrapper-height"])for(var r=0;r<t.length;r++){if(t[r].contentWindow===e.source)t[r].style.height=e.data["datawrapper-height"][a]+"px"}}}))}();
-          </script>
-      </div>
-      <div class="graphic">
-          <iframe title="Harvard Park homicides, 2000-2017" aria-label="Column Chart" id="datawrapper-chart-qvF1G" src="https://datawrapper.dwcdn.net/qvF1G/4/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="350"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(e){if(void 0!==e.data["datawrapper-height"]){var t=document.querySelectorAll("iframe");for(var a in e.data["datawrapper-height"])for(var r=0;r<t.length;r++){if(t[r].contentWindow===e.source)t[r].style.height=e.data["datawrapper-height"][a]+"px"}}}))}();
-          </script>
-      </div>
+    <div class="graphic">
+      <iframe
+        title="County homicides, 2000-2017"
+        aria-label="Column Chart"
+        id="datawrapper-chart-XSj9X"
+        src="https://datawrapper.dwcdn.net/XSj9X/5/"
+        scrolling="no"
+        frameborder="0"
+        style="width: 0; min-width: 100% !important; border: none;"
+        height="350"
+      ></iframe>
+      <script type="text/javascript">
+        !(function () {
+          'use strict';
+          window.addEventListener('message', function (e) {
+            if (void 0 !== e.data['datawrapper-height']) {
+              var t = document.querySelectorAll('iframe');
+              for (var a in e.data['datawrapper-height'])
+                for (var r = 0; r < t.length; r++) {
+                  if (t[r].contentWindow === e.source)
+                    t[r].style.height = e.data['datawrapper-height'][a] + 'px';
+                }
+            }
+          });
+        })();
+      </script>
+    </div>
+    <div class="graphic">
+      <iframe
+        title="Harvard Park homicides, 2000-2017"
+        aria-label="Column Chart"
+        id="datawrapper-chart-qvF1G"
+        src="https://datawrapper.dwcdn.net/qvF1G/4/"
+        scrolling="no"
+        frameborder="0"
+        style="width: 0; min-width: 100% !important; border: none;"
+        height="350"
+      ></iframe>
+      <script type="text/javascript">
+        !(function () {
+          'use strict';
+          window.addEventListener('message', function (e) {
+            if (void 0 !== e.data['datawrapper-height']) {
+              var t = document.querySelectorAll('iframe');
+              for (var a in e.data['datawrapper-height'])
+                for (var r = 0; r < t.length; r++) {
+                  if (t[r].contentWindow === e.source)
+                    t[r].style.height = e.data['datawrapper-height'][a] + 'px';
+                }
+            }
+          });
+        })();
+      </script>
+    </div>
   </div>
 </section>
 ```
@@ -210,7 +265,7 @@ div.graphics-container {
   justify-content: space-between;
   div.graphic {
     flex: 0 1 48%;
-    }
+  }
 }
 ```
 
@@ -218,23 +273,22 @@ Now that the charts are next to each other, we can see that despite our resizing
 
 ```css
 div.graphics-container {
-     display: flex;
-     justify-content: space-between;
-     @media (max-width: 500px) {
-         display: block;
+  display: flex;
+  justify-content: space-between;
+  @media (max-width: 500px) {
+    display: block;
+  }
+  div.graphic {
+    flex: 0 1 48%;
+    @media (max-width: 500px) {
+      display: block;
+      margin-bottom: 15px;
     }
-     div.graphic {
-         flex: 0 1 48%;
-         @media (max-width: 500px) {
-             display: block;
-             margin-bottom: 15px;
-        }
-         iframe {
-             min-height: 350px;
-        }
+    iframe {
+      min-height: 350px;
     }
+  }
 }
-
 ```
 
 Congratulations, you’ve made your charts!
@@ -247,7 +301,7 @@ Let's commit our changes and move on to our next challenge.
 
 ```bash
 git commit -m "Made my first charts."
-git push origin master
+git push origin main
 ```
 
 ```{note}
