@@ -20,7 +20,7 @@ This is a long section, and you'll probably run into bugs! That's a normal part 
 We will install it just as before by using `npm` from our terminal. This should install the latest version of leaflet, which at the time of writing was 1.7.
 
 ```bash
-$ npm install leaflet
+npm install leaflet
 ```
 
 Next we import Leaflet's stylesheets in `styles/app.scss` so that they are also included on our site. We do this by using `@use` and the path to a file.
@@ -527,14 +527,14 @@ And let's a write a lead.
 Commit our work.
 
 ```bash
-$ git add .
-$ git commit -m "Added map, headline and chatter"
+git add .
+git commit -m "Added map, headline and chatter"
 ```
 
 Push it to GitHub.
 
 ```bash
-$ git push origin master
+git push origin master
 ```
 
 Now we're ready. Let's do it live.
