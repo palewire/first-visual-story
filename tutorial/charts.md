@@ -31,7 +31,7 @@ You can [upload your data](https://academy.datawrapper.de/article/86-upload-data
 
 We’re going to paste in the data. The following CSV data contains annual homicide counts for Harvard Park and all of Los Angeles County. Copy the following data and paste it into the blank text area in Datawrapper.
 
-```
+```csv
 year,homicides_total,homicides_harvard_park
 2000,1036,3
 2001,1125,2
@@ -101,7 +101,7 @@ Let’s build our second chart, with Harvard Park homicides data.
 
 Following the same steps, create a new chart and paste in the same CSV data:
 
-```
+```csv
 year,homicides_total,homicides_harvard_park
 2000,1036,3
 2001,1125,2
@@ -139,7 +139,7 @@ Continue to “Publish & Embed” or click “Proceed” on the bottom left-hand
 
 In the `index.html` file, we’ll find a spot before the cards section for the charts. Let’s wrap our charts HTML in `<section>` tags to keep things orderly. We'll also add a headline and short introduction to the section.
 
-```
+```html
 <section>
   <h3>A South L.A. neighborhood stands apart</h3>
   <p>Harvard Park's 2016 homicide total was its highest in at least 15 years despite a downward trend in killings across L.A. County.</p>
@@ -148,7 +148,7 @@ In the `index.html` file, we’ll find a spot before the cards section for the c
 
 Next, we’ll want to create a container to hold the graphics. We will give this `div` a class of `graphics-container`. Inside it, we'll add two other `divs` with the class `graphic` to hold each graphic.
 
-```
+```html
 <section>
   <h3>A South L.A. neighborhood stands apart</h3>
   <p>Harvard Park's 2016 homicide total was its highest in at least 15 years despite a downward trend in killings across L.A. County.</p>
@@ -173,7 +173,7 @@ The iframe embed codes are located in the “Publish & Embed” step of each map
 
 Paste it in place of the html notes in the previous code block example. Your html should look something like this at the end:
 
-```
+```html
 <section>
   <h3>A South L.A. neighborhood stands apart</h3>
   <p>Harvard Park's 2016 homicide total was its highest in at least 15 years despite a downward trend in killings across L.A. County.</p>
@@ -204,7 +204,7 @@ Navigate to your app.scss file.
 
 We can get both charts on the same line by using [Flexbox](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Flexible_Box_Layout/Basic_Concepts_of_Flexbox). Using CSS, we will target the `div` that contains both graphics (`div.graphics-container`) and make each graphic 48% of the width, with some space in between them.
 
-```
+```css
 div.graphics-container {
   display: flex;
   justify-content: space-between;
@@ -216,24 +216,25 @@ div.graphics-container {
 
 Now that the charts are next to each other, we can see that despite our resizing in Datawrapper, they are not the same height. We’ll add a few more lines to our CSS to make both iframes the same height (`350px`) and we will also specify with media queries that on screens smaller than `500px` wide, we want the charts to be positioned one after another instead of side-by-side. This will help so that on mobile, they are not super tiny.
 
-```
+```css
 div.graphics-container {
-display: flex;
-justify-content: space-between;
-@media (max-width: 500px) {
-display: block;
+     display: flex;
+     justify-content: space-between;
+     @media (max-width: 500px) {
+         display: block;
+    }
+     div.graphic {
+         flex: 0 1 48%;
+         @media (max-width: 500px) {
+             display: block;
+             margin-bottom: 15px;
+        }
+         iframe {
+             min-height: 350px;
+        }
+    }
 }
-div.graphic {
-flex: 0 1 48%;
-@media (max-width: 500px) {
-display: block;
-margin-bottom: 15px;
-}
-iframe {
-min-height: 350px;
-}
-}
-}
+
 ```
 
 Congratulations, you’ve made your charts!
@@ -245,8 +246,8 @@ Congratulations, you’ve made your charts!
 Let's commit our changes and move on to our next challenge.
 
 ```bash
-$ git commit -m "Made my first charts."
-$ git push origin master
+git commit -m "Made my first charts."
+git push origin master
 ```
 
 ```{note}
