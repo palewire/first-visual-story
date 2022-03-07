@@ -13,7 +13,7 @@ This chapter will show you how to start editing content and customizing your pag
 
 ## Configure the index
 
-The contents of the page you see at [localhost:3000](https://localhost:3000) is configured in the `index.html` file found in the repository’s root directory. It uses a templating language invented at Mozilla called [Nunjucks](https://mozilla.github.io/nunjucks/).
+The contents of the page you see at [localhost:3000](https://localhost:3000) is configured in the `index.html` file found in the repository’s root directory. It uses a templating language [created by James Long](https://archive.jlongster.com/Introducing-Nunjucks,-a-Better-Javascript-Templating-System) called [Nunjucks](https://mozilla.github.io/nunjucks/).
 
 You can edit the page by changing what's found inside of the `content` block. Delete everything you see there now and replace it with something simple like:
 
