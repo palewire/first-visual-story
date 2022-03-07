@@ -36,7 +36,7 @@ Next we import Leaflet's stylesheets in `styles/app.scss` so that they are also 
 // VARIABLES
 ```
 
-Now, back in the `index.nunjucks` template, we should create a placeholder in the page template where the map will live. Let's set it right above the charts section we've just finished.
+Now, back in the `index.html` template, we should create a placeholder in the page template where the map will live. Let's set it right above the charts section we've just finished.
 
 ```{code-block} jinja
 :emphasize-lines: 1
@@ -469,15 +469,13 @@ Congratulations. You've created a custom map. Before we get on to the business o
 Hey. How about a headline?
 
 ```{code-block} html
-:emphasize-lines: 3
+:emphasize-lines: 1
 
-{% extends '_layouts/base.nunjucks' %}
-
-{% block headline %}A South L.A. neighborhood grapples with a wave of violence{% endblock %}
-{% block byline %}By me{% endblock %}
+{% block headline %}A South L.A. neighborhood grapples with a wave of violence{% endblock headline %}
+{% block byline %}By me{% endblock byline %}
 {% block pubdate %}
     <time datetime="2020-03-07" pubdate>Mar. 7, 2020</time>
-{% endblock %}
+{% endblock pubdate %}
 ```
 
 ```{image} _static/final-hed.png?v=2
@@ -487,22 +485,20 @@ Hey. How about a headline?
 And a real byline.
 
 ```{code-block} html
-:emphasize-lines: 4
+:emphasize-lines: 2
 
-{% extends '_layouts/base.nunjucks' %}
-
-{% block headline %}A South L.A. neighborhood grapples with a wave of violence{% endblock %}
-{% block byline %}By <a href="https://palewi.re/docs/first-visual-story/">The First Visual Story Tutorial</a>{% endblock %}
+{% block headline %}A South L.A. neighborhood grapples with a wave of violence{% endblock headline %}
+{% block byline %}By <a href="https://palewi.re/docs/first-visual-story/">The First Visual Story Tutorial</a>{% endblock byline %}
 {% block pubdate %}
     <time datetime="2022-03-05" pubdate>Mar. 5, 2022</time>
-{% endblock %}
+{% endblock pubdate %}
 ```
 
 ```{image} _static/final-byline.png?v=2
 :width: 100%
 ```
 
-And let's a write a lead.
+And let's a write a lead at the top of the content block.
 
 ```{code-block} html
 :emphasize-lines: 2-4
@@ -516,25 +512,28 @@ And let's a write a lead.
     <p>The southwest corner of Harvard Park, at West 62nd Street and Harvard Boulevard, has been especially deadly. In the last year-and-a-half, four men have been killed there — while sitting in a car, trying to defuse an argument or walking home from the barber shop or the corner store.</p>
     <div id="map"></div>
 </section>
-...
-{% endblock %}
 ```
 
 ```{image} _static/final-lead.png?v=2
 :width: 100%
 ```
 
-Commit our work.
+Add our work.
 
 ```bash
 git add .
+```
+
+Commit it.
+
+```bash
 git commit -m "Added map, headline and chatter"
 ```
 
-Push it to GitHub.
+Push to GitHub.
 
 ```bash
 git push origin master
 ```
 
-Now we're ready. Let's do it live.
+Now we're ready. Let’s do it live.

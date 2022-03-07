@@ -22,7 +22,7 @@ You can edit the page by changing what's found inside of the `content` block. De
 
 {% block content %}
 <p>Hello World</p>
-{% endblock %}
+{% endblock content %}
 ```
 
 You should see it immediately show up thanks a feature of baker that automatically updates your test site after you make a change.
@@ -45,13 +45,14 @@ This approach to [inheritance](<https://en.wikipedia.org/wiki/Inheritance_(objec
 
 You can find baker’s base layout packaged with our framework by following the path and opening the `_layouts/base.html` file. You'll see it includes a set of block tags, like `content`, that act as placeholders for use in templates that extend it.
 
-Make a small change to `_layouts/base.nunjucks` above the `content` block and save the file.
+Make a small change to `_layouts/base.html` above the `content` block and save the file.
 
 ```{code-block} jinja
 :emphasize-lines: 1
 
 Above content
-{% block content %}{% endblock %}
+{% block content %}
+{% endblock content %}
 ```
 
 You should see the change on our site, with the new line appearing above the paragraph we added earlier to the index file.
@@ -66,7 +67,7 @@ They then develop their custom page within its confines and largely accept the f
 
 For this example, we have developed a simplified base template that will act as a stand-in for a real newsroom's base template. It is not as sophisticated or complete as a real-world example, but it will provide all of the basic elements we will need.
 
-You can find it in the code block below. Copy all of its contents and paste them into `_layouts/base.nunjucks`, replacing everything.
+You can find it in the code block below. Copy all of its contents and paste them into `_layouts/base.html`, replacing everything.
 
 ```jinja
 <!DOCTYPE html>
@@ -91,12 +92,12 @@ You can find it in the code block below. Copy all of its contents and paste them
         <img src="https://bl.ocks.org/palewire/raw/1035cd306a2f85b362b1a20ce315b8eb/ire-logo.png">
     </nav>
   <header>
-    <h1>{% block headline %}{% endblock %}</h1>
+    <h1>{% block headline %}{% endblock headline %}</h1>
     <div class="byline">
-        {% block byline %}{% endblock %}
+        {% block byline %}{% endblock byline %}
     </div>
     <div class="pubdate">
-        {% block pubdate %}{% endblock %}
+        {% block pubdate %}{% endblock pubdate %}
     </div>
   </header>
   {% block content %}
@@ -114,9 +115,9 @@ To see the effects, return to `index.html` and fill in a headline using the `hea
 ```{code-block} jinja
 :emphasize-lines: 3
 
-{% extends '_layouts/base.html' %}
+{% extends 'base.html' %}
 
-{% block headline %}My headline will go here{% endblock %}
+{% block headline %}My headline will go here{% endblock headline %}
 ```
 
 ![headline](_static/headline.png)
@@ -126,10 +127,10 @@ Now fill in a byline.
 ```{code-block} jinja
 :emphasize-lines: 4
 
-{% extends '_layouts/base.html' %}
+{% extends 'base.html' %}
 
-{% block headline %}My headline will go here{% endblock %}
-{% block byline %}By me{% endblock %}
+{% block headline %}My headline will go here{% endblock headline %}
+{% block byline %}By me{% endblock byline %}
 ```
 
 ![headline](_static/byline.png)
@@ -139,13 +140,13 @@ And let's do the publication date too while we are at it.
 ```{code-block} jinja
 :emphasize-lines: 5-7
 
-{% extends '_layouts/base.html' %}
+{% extends 'base.html' %}
 
-{% block headline %}My headline will go here{% endblock %}
-{% block byline %}By me{% endblock %}
+{% block headline %}My headline will go here{% endblock headline %}
+{% block byline %}By me{% endblock byline %}
 {% block pubdate %}
   <time datetime="2022-03-05" pubdate>Mar. 5, 2022</time>
-{% endblock %}
+{% endblock pubdate %}
 ```
 
 ![pubdate](_static/pubdate.png)

@@ -1,32 +1,43 @@
-{% extends '_layouts/base.html' %}
+{% extends 'base.html' %}
 
-{% block headline %}My headline will go here{% endblock %}
-{% block byline %}By me{% endblock %}
+{% block headline %}A South L.A. neighborhood grapples with a wave of violence{% endblock %}
+{% block byline %}By First Visual Story{% endblock %}
 {% block pubdate %}
 <time datetime="2022-03-05" pubdate>Mar. 5, 2022</time>
 {% endblock %}
 {% block content %}
 <section>
-  <p>The area around Harvard Park was the deadliest place for African Americans in Los Angeles County last year, according to <a href="http://homicide.latimes.com/">The Times’ Homicide Report</a>. So far this year, six people have been killed. Most of the victims were black men.</p>
+  <p>The area around Harvard Park was the deadliest place for African Americans in Los Angeles County last year,
+    according to <a href="http://homicide.latimes.com/">The Times’ Homicide Report</a>. So far this year, six people
+    have been killed. Most of the victims were black men.</p>
 </section>
 <section>
   <h3>One corner. Four killings</h3>
-  <p>The southwest corner of Harvard Park, at West 62nd Street and Harvard Boulevard, has been especially deadly. In the last year-and-a-half, four men have been killed there — while sitting in a car, trying to defuse an argument or walking home from the barber shop or the corner store.</p>
+  <p>The southwest corner of Harvard Park, at West 62nd Street and Harvard Boulevard, has been especially deadly. In the
+    last year-and-a-half, four men have been killed there — while sitting in a car, trying to defuse an argument or
+    walking home from the barber shop or the corner store.</p>
   <div id="map"></div>
 </section>
 
 <section>
   <h3>A South L.A. neighborhood stands apart</h3>
-  <p>Harvard Park's 2016 homicide total was its highest in at least 15 years despite a downward trend in killings across L.A. County.</p>
+  <p>Harvard Park's 2016 homicide total was its highest in at least 15 years despite a downward trend in killings across
+    L.A. County.</p>
   <div class="graphics-container">
-      <div class="graphic">
-          <iframe title="County homicides, 2000-2017" aria-label="Column Chart" id="datawrapper-chart-XSj9X" src="https://datawrapper.dwcdn.net/XSj9X/5/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="350"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(e){if(void 0!==e.data["datawrapper-height"]){var t=document.querySelectorAll("iframe");for(var a in e.data["datawrapper-height"])for(var r=0;r<t.length;r++){if(t[r].contentWindow===e.source)t[r].style.height=e.data["datawrapper-height"][a]+"px"}}}))}();
-          </script>
-      </div>
-      <div class="graphic">
-          <iframe title="Harvard Park homicides, 2000-2017" aria-label="Column Chart" id="datawrapper-chart-qvF1G" src="https://datawrapper.dwcdn.net/qvF1G/4/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="350"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(e){if(void 0!==e.data["datawrapper-height"]){var t=document.querySelectorAll("iframe");for(var a in e.data["datawrapper-height"])for(var r=0;r<t.length;r++){if(t[r].contentWindow===e.source)t[r].style.height=e.data["datawrapper-height"][a]+"px"}}}))}();
-          </script>
-      </div>
+    <div class="graphic">
+      <iframe title="County homicides, 2000-2017" aria-label="Column Chart" id="datawrapper-chart-XSj9X"
+        src="https://datawrapper.dwcdn.net/XSj9X/5/" scrolling="no" frameborder="0"
+        style="width: 0; min-width: 100% !important; border: none;" height="350"></iframe>
+      <script type="text/javascript">!function () { "use strict"; window.addEventListener("message", (function (e) { if (void 0 !== e.data["datawrapper-height"]) { var t = document.querySelectorAll("iframe"); for (var a in e.data["datawrapper-height"]) for (var r = 0; r < t.length; r++) { if (t[r].contentWindow === e.source) t[r].style.height = e.data["datawrapper-height"][a] + "px" } } })) }();
+      </script>
+    </div>
+    <div class="graphic">
+      <iframe title="Harvard Park homicides, 2000-2017" aria-label="Column Chart" id="datawrapper-chart-qvF1G"
+        src="https://datawrapper.dwcdn.net/qvF1G/4/" scrolling="no" frameborder="0"
+        style="width: 0; min-width: 100% !important; border: none;" height="350"></iframe>
+      <script type="text/javascript">!function () { "use strict"; window.addEventListener("message", (function (e) { if (void 0 !== e.data["datawrapper-height"]) { var t = document.querySelectorAll("iframe"); for (var a in e.data["datawrapper-height"]) for (var r = 0; r < t.length; r++) { if (t[r].contentWindow === e.source) t[r].style.height = e.data["datawrapper-height"][a] + "px" } } })) }();
+      </script>
+    </div>
   </div>
 </section>
 
