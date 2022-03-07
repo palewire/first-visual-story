@@ -113,11 +113,13 @@ As you can see, it includes all of the standard HTML tags, with our custom style
 To see the effects, return to `index.html` and fill in a headline using the `headline` block introduced by our base template. Save the page and you should quickly see it appear on the page.
 
 ```{code-block} jinja
-:emphasize-lines: 3
-
-{% extends 'base.html' %}
+:emphasize-lines: 1
 
 {% block headline %}My headline will go here{% endblock headline %}
+
+{% block content %}
+<p>Hello World</p>
+{% endblock content %}
 ```
 
 ![headline](_static/headline.png)
@@ -125,12 +127,14 @@ To see the effects, return to `index.html` and fill in a headline using the `hea
 Now fill in a byline.
 
 ```{code-block} jinja
-:emphasize-lines: 4
-
-{% extends 'base.html' %}
+:emphasize-lines: 2
 
 {% block headline %}My headline will go here{% endblock headline %}
 {% block byline %}By me{% endblock byline %}
+
+{% block content %}
+<p>Hello World</p>
+{% endblock content %}
 ```
 
 ![headline](_static/byline.png)
@@ -138,15 +142,17 @@ Now fill in a byline.
 And let's do the publication date too while we are at it.
 
 ```{code-block} jinja
-:emphasize-lines: 5-7
-
-{% extends 'base.html' %}
+:emphasize-lines: 3-5
 
 {% block headline %}My headline will go here{% endblock headline %}
 {% block byline %}By me{% endblock byline %}
 {% block pubdate %}
   <time datetime="2022-03-05" pubdate>Mar. 5, 2022</time>
 {% endblock pubdate %}
+
+{% block content %}
+<p>Hello World</p>
+{% endblock content %}
 ```
 
 ![pubdate](_static/pubdate.png)
