@@ -234,7 +234,7 @@ And now, some introductory text. We can use a new templating trick, the `length`
 Let's set up our card grid as it's own section by adding `<section>` tags. This is simple example of adding some hidden stucture to your page so its easier for search engines and other spiders to parse.
 
 ```{code-block} jinja
-:emphasize-lines: 1,19
+:emphasize-lines: 1,21
 
 <section>
     <h3>Lives lost in Harvard Park</h3>
