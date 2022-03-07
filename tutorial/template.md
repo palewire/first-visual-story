@@ -45,7 +45,7 @@ This approach to [inheritance](<https://en.wikipedia.org/wiki/Inheritance_(objec
 
 You can find baker’s base layout packaged with our framework by following the path and opening the `_layouts/base.html` file. You'll see it includes a set of block tags, like `content`, that act as placeholders for use in templates that extend it.
 
-Make a small change to `_layouts/base.nunjucks` above the `content` block and save the file.
+Make a small change to `_layouts/base.html` above the `content` block and save the file.
 
 ```{code-block} jinja
 :emphasize-lines: 1
@@ -66,7 +66,7 @@ They then develop their custom page within its confines and largely accept the f
 
 For this example, we have developed a simplified base template that will act as a stand-in for a real newsroom's base template. It is not as sophisticated or complete as a real-world example, but it will provide all of the basic elements we will need.
 
-You can find it in the code block below. Copy all of its contents and paste them into `_layouts/base.nunjucks`, replacing everything.
+You can find it in the code block below. Copy all of its contents and paste them into `_layouts/base.html`, replacing everything.
 
 ```jinja
 <!DOCTYPE html>
@@ -114,7 +114,7 @@ To see the effects, return to `index.html` and fill in a headline using the `hea
 ```{code-block} jinja
 :emphasize-lines: 3
 
-{% extends '_layouts/base.html' %}
+{% extends 'base.html' %}
 
 {% block headline %}My headline will go here{% endblock %}
 ```
@@ -126,7 +126,7 @@ Now fill in a byline.
 ```{code-block} jinja
 :emphasize-lines: 4
 
-{% extends '_layouts/base.html' %}
+{% extends 'base.html' %}
 
 {% block headline %}My headline will go here{% endblock %}
 {% block byline %}By me{% endblock %}
@@ -139,7 +139,7 @@ And let's do the publication date too while we are at it.
 ```{code-block} jinja
 :emphasize-lines: 5-7
 
-{% extends '_layouts/base.html' %}
+{% extends 'base.html' %}
 
 {% block headline %}My headline will go here{% endblock %}
 {% block byline %}By me{% endblock %}

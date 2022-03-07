@@ -36,7 +36,7 @@ Next we import Leaflet's stylesheets in `styles/app.scss` so that they are also 
 // VARIABLES
 ```
 
-Now, back in the `index.nunjucks` template, we should create a placeholder in the page template where the map will live. Let's set it right above the charts section we've just finished.
+Now, back in the `index.html` template, we should create a placeholder in the page template where the map will live. Let's set it right above the charts section we've just finished.
 
 ```{code-block} jinja
 :emphasize-lines: 1
@@ -471,7 +471,7 @@ Hey. How about a headline?
 ```{code-block} html
 :emphasize-lines: 3
 
-{% extends '_layouts/base.nunjucks' %}
+{% extends 'base.html' %}
 
 {% block headline %}A South L.A. neighborhood grapples with a wave of violence{% endblock %}
 {% block byline %}By me{% endblock %}
@@ -489,7 +489,7 @@ And a real byline.
 ```{code-block} html
 :emphasize-lines: 4
 
-{% extends '_layouts/base.nunjucks' %}
+{% extends 'base.html' %}
 
 {% block headline %}A South L.A. neighborhood grapples with a wave of violence{% endblock %}
 {% block byline %}By <a href="https://palewi.re/docs/first-visual-story/">The First Visual Story Tutorial</a>{% endblock %}
