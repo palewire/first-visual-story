@@ -48,7 +48,7 @@ Let's give it a try. We will start by creating a container div for each victim. 
       </div>
     </div>
 {% endfor %}
-{% endblock %}
+{% endblock content %}
 ```
 
 ![](_static/cards-first.png)

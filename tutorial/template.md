@@ -22,7 +22,7 @@ You can edit the page by changing what's found inside of the `content` block. De
 
 {% block content %}
 <p>Hello World</p>
-{% endblock %}
+{% endblock content %}
 ```
 
 You should see it immediately show up thanks a feature of baker that automatically updates your test site after you make a change.
@@ -51,7 +51,8 @@ Make a small change to `_layouts/base.html` above the `content` block and save t
 :emphasize-lines: 1
 
 Above content
-{% block content %}{% endblock %}
+{% block content %}
+{% endblock content %}
 ```
 
 You should see the change on our site, with the new line appearing above the paragraph we added earlier to the index file.
@@ -91,12 +92,12 @@ You can find it in the code block below. Copy all of its contents and paste them
         <img src="https://bl.ocks.org/palewire/raw/1035cd306a2f85b362b1a20ce315b8eb/ire-logo.png">
     </nav>
   <header>
-    <h1>{% block headline %}{% endblock %}</h1>
+    <h1>{% block headline %}{% endblock headline %}</h1>
     <div class="byline">
-        {% block byline %}{% endblock %}
+        {% block byline %}{% endblock byline %}
     </div>
     <div class="pubdate">
-        {% block pubdate %}{% endblock %}
+        {% block pubdate %}{% endblock pubdate %}
     </div>
   </header>
   {% block content %}
@@ -116,7 +117,7 @@ To see the effects, return to `index.html` and fill in a headline using the `hea
 
 {% extends 'base.html' %}
 
-{% block headline %}My headline will go here{% endblock %}
+{% block headline %}My headline will go here{% endblock headline %}
 ```
 
 ![headline](_static/headline.png)
@@ -128,8 +129,8 @@ Now fill in a byline.
 
 {% extends 'base.html' %}
 
-{% block headline %}My headline will go here{% endblock %}
-{% block byline %}By me{% endblock %}
+{% block headline %}My headline will go here{% endblock headline %}
+{% block byline %}By me{% endblock byline %}
 ```
 
 ![headline](_static/byline.png)
@@ -141,11 +142,11 @@ And let's do the publication date too while we are at it.
 
 {% extends 'base.html' %}
 
-{% block headline %}My headline will go here{% endblock %}
-{% block byline %}By me{% endblock %}
+{% block headline %}My headline will go here{% endblock headline %}
+{% block byline %}By me{% endblock byline %}
 {% block pubdate %}
   <time datetime="2022-03-05" pubdate>Mar. 5, 2022</time>
-{% endblock %}
+{% endblock pubdate %}
 ```
 
 ![pubdate](_static/pubdate.png)

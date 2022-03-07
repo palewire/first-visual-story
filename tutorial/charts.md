@@ -31,7 +31,7 @@ You can [upload your data](https://academy.datawrapper.de/article/86-upload-data
 
 We’re going to paste in the data. The following CSV data contains annual homicide counts for Harvard Park and all of Los Angeles County. Copy the following data and paste it into the blank text area in Datawrapper.
 
-```csv
+```
 year,homicides_total,homicides_harvard_park
 2000,1036,3
 2001,1125,2
@@ -101,7 +101,7 @@ Let’s build our second chart, with Harvard Park homicides data.
 
 Following the same steps, create a new chart and paste in the same CSV data:
 
-```csv
+```
 year,homicides_total,homicides_harvard_park
 2000,1036,3
 2001,1125,2
@@ -300,6 +300,7 @@ Congratulations, you’ve made your charts!
 Let's commit our changes and move on to our next challenge.
 
 ```bash
+git add .
 git commit -m "Made my first charts."
 git push origin main
 ```
