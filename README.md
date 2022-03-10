@@ -6,7 +6,7 @@ A step-by-step guide to publishing a standalone story from a dataset.
 
 ## Contributing to the docs
 
-The documentation for this site is published via [Sphinx](https://www.sphinx-doc.org/en/master/) and written in [Markdown](https://www.markdownguide.org/) files in the [tutorial directory](/tutorial/).
+The documentation for this site is published via [Sphinx](https://www.sphinx-doc.org/en/master/) and written in [Markdown](https://www.markdownguide.org/) files in the [`tutorial` directory](/tutorial/).
 
 An edit there followed by push to the master branch on GitHub will trigger the docs being redeployed to [https://palewi.re/docs/first-visual-story/](https://palewi.re/docs/first-visual-story/).
 
