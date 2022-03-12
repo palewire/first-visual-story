@@ -173,6 +173,7 @@ nav .shingle a:hover {
     nav .shingle {
         float: left;
         margin-bottom: 5px;
+        padding-left: 0;
    }
 }
 nav .links {
