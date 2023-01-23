@@ -22,7 +22,7 @@ jobs:
       run: pip install -r tutorial/requirements.txt
 
     - name: Build Sphinx site
-      run: cd tutorial && sphinx-build -b html src _build
+      run: cd tutorial && sphinx-build -b html ./ _build
 
     - uses: actions/upload-artifact@v3
       with:
