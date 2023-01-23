@@ -27,7 +27,7 @@ jobs:
     - uses: actions/upload-artifact@v3
       with:
         name: tutorial
-        path: tutorial/_build/html/
+        path: tutorial/_build/
 
   demo:
     name: Demo
