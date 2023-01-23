@@ -1,8 +1,4 @@
-name: Deploy to production
-
-concurrency:
-  group: deploy-prod-${{ github.ref }}
-  cancel-in-progress: true
+name: Deploy demo
 
 on:
   workflow_dispatch:
@@ -16,35 +12,21 @@ jobs:
     steps:
       - id: checkout
         name: Checkout the repo
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - id: install-node
-        name: Use Node.js 14.x
-        uses: actions/setup-node@v2
+        name: Use Node.js 16
+        uses: actions/setup-node@v3
         with:
-          node-version: 14
-
-      - id: install-npm
-        name: Use npm v7
-        run: npm install --global npm@7
-
-      - id: cache-node-modules
-        name: Cache node modules
-        uses: actions/cache@v2
-        with:
-          path: ~/.npm # npm cache files are stored in `~/.npm` on Linux/macOS
-          key: ${{ runner.os }}-build-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-build-
-            ${{ runner.os }}-
+          node-version: 16
 
       - id: install-project-modules
         name: Install project dependencies
-        run: npm ci --production   ## For the app's build routine
+        run: npm ci --production
 
       - id: install-action-modules
         name: Install action dependencies
-        run: npm install archieml  ## For the deployment routine
+        run: npm install archieml
 
       - id: get-slug
         name: Get slug

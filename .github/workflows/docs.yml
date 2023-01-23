@@ -1,4 +1,5 @@
-name: "Build documentation"
+name: Deploy tutorial
+
 on:
   push:
   pull_request:
@@ -9,16 +10,18 @@ jobs:
     name: "Build and deploy"
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v1
+    - uses: actions/checkout@v3
     
-    - uses: ammaraskar/sphinx-action@master
+    - name: Install Python
+      uses: actions/setup-python@v4
       with:
-        docs-folder: "tutorial/"
-        
-    - uses: actions/upload-artifact@v1
-      with:
-        name: documentation-html
-        path: tutorial/_build/html/
+        python-version: '3.9'
+
+    - name: Install dependencies
+      run: pip install -r tutorial/requirements.txt
+
+    - name: Build Sphinx site
+      run: cd tutorial && sphinx-build -b html ./ _build
 
     - uses: shallwefootball/s3-upload-action@master
       with:
