@@ -23,10 +23,19 @@ jobs:
     - name: Build Sphinx site
       run: cd tutorial && sphinx-build -b html ./ _build
 
-    - uses: shallwefootball/s3-upload-action@master
+    - name: Configure AWS Credentials
+      uses: aws-actions/configure-aws-credentials@v1
       with:
-        aws_key_id: ${{ secrets.PALEWIRE_DOCS_AWS_ACCESS_KEY_ID }}
-        aws_secret_access_key: ${{ secrets.PALEWIRE_DOCS_AWS_SECRET_ACCESS_KEY }}
-        aws_bucket: ${{ secrets.PALEWIRE_DOCS_AWS_BUCKET }}
-        source_dir: tutorial/_build/
-        destination_dir: first-visual-story
+        aws-access-key-id: ${{ secrets.PALEWIRE_AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ secrets.PALEWIRE_AWS_SECRET_ACCESS_KEY }}
+        aws-region: us-west-1
+
+    - name: Upload
+      uses: datadesk/delivery-deploy-action@v1
+      with:
+        bucket: ${{ secrets.PALEWIRE_DOCS_AWS_BUCKET }}
+        base-path: first-visual-story
+        dir: tutorial/_build/
+        should-cache: true
+        use-accelerate-endpoint: true
+        public: true
