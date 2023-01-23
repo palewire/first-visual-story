@@ -33,9 +33,9 @@ jobs:
     - name: Upload
       uses: datadesk/delivery-deploy-action@v1
       with:
-        bucket: ${{ secrets.PALEWIRE_DOCS_AWS_BUCKET }}
+        bucket: palewire-docs
         base-path: first-visual-story
         dir: tutorial/_build/
-        should-cache: true
-        use-accelerate-endpoint: true
+        should-cache: false
+        use-accelerate-endpoint: false
         public: true
