@@ -42,13 +42,11 @@ jobs:
 
       - name: Build distribution
         run: npm run build
-        env:
-          BAKER_PATH_PREFIX: ${{ steps.get-slug.outputs.result }}
 
       - uses: actions/upload-artifact@v3
         with:
           name: release-candidate
-          path: _dist
+          path: demo/_dist
 
   deploy:
     name: Deploy
@@ -71,6 +69,6 @@ jobs:
         with:
           path: _dist
 
-      - name: Deploy to GitHub Pages
-        id: deployment
+      - id: deployment
+        name: Deploy to GitHub Pages
         uses: actions/deploy-pages@v1
