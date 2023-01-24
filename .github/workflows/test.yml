@@ -9,6 +9,10 @@ jobs:
   tutorial:
     name: Tutorial
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: bash
+        working-directory: tutorial
     steps:
     - name: Checkout
       uses: actions/checkout@v3
@@ -19,19 +23,23 @@ jobs:
         python-version: '3.9'
 
     - name: Install dependencies
-      run: pip install -r tutorial/requirements.txt
+      run: pip install -r requirements.txt
 
     - name: Build Sphinx site
-      run: cd tutorial && sphinx-build -b html ./ _build
+      run: sphinx-build -b html ./ _build
 
     - uses: actions/upload-artifact@v3
       with:
         name: tutorial
-        path: tutorial/_build/
+        path: _build/
 
   demo:
     name: Demo
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: bash
+        working-directory: demo
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -52,4 +60,4 @@ jobs:
       - uses: actions/upload-artifact@v3
         with:
           name: demo
-          path: docs
+          path: _dist
