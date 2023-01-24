@@ -27,7 +27,7 @@ jobs:
     defaults:
       run:
         shell: bash
-        working-directory: tutorial
+        working-directory: demo
     steps:
       - name: Checkout
         uses: actions/checkout@v3
