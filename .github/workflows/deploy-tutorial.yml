@@ -39,7 +39,7 @@ jobs:
       with:
         bucket: palewire-docs
         base-path: first-visual-story
-        dir: _build/
+        dir: tutorial/_build/
         should-cache: false
         use-accelerate-endpoint: false
         public: true
