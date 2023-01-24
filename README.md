@@ -4,7 +4,7 @@ A step-by-step guide to publishing a standalone story from a dataset.
 - Demonstration: [palewire.github.io/first-visual-story](https://palewire.github.io/first-visual-story/)
 - Issues: [https://github.com/palewire/first-visual-story/issues](https://github.com/palewire/first-visual-story/issues)
 
-## Contributing to the tutorial
+### Contributing to the tutorial
 
 The documentation for this site is published via [Sphinx](https://www.sphinx-doc.org/en/master/) and written in [Markdown](https://www.markdownguide.org/) files in the [`tutorial` directory](/tutorial/).
 
