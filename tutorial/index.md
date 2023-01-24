@@ -23,7 +23,7 @@ framework
 template
 data
 cards
-charts
+embeds
 map
 internet
 about
