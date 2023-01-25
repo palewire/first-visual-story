@@ -25,7 +25,7 @@ data
 cards
 embeds
 styles
-map
+scripts
 internet
 about
 ```

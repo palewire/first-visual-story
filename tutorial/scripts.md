@@ -2,7 +2,7 @@
 
 ```
 
-# Map
+# Scripts
 
 Next we'll move on to creating a map focused on West 62nd Street and Harvard Boulevard, an intersection in South Los Angeles where four men died in less than a year and a half.
 
