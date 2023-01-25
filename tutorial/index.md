@@ -5,9 +5,15 @@
 
 A step-by-step guide to publishing a standalone story from a dataset.
 
+## What you will learn
+
 This tutorial will show you how journalists at America’s top news organizations escape rigid content-management systems to publish custom interactive graphics on deadline.
 
 You will get hands-on experience in every stage of the development process, writing JavaScript, HTML and CSS within a Node.js framework. You won't stop until you've deployed a working application on the World Wide Web.
+
+## Who can take it
+
+This course is free. If you have a good attitude and know how to take a few code crashes in stride, you are qualified for this class. If you’re a little scared, that’s a good thing. You’re ready for this.
 
 ## Table of contents
 
@@ -29,9 +35,3 @@ scripts
 internet
 about
 ```
-
-## About
-
-This guide was first prepared by [Dana Amihere](http://damihere.com), [Armand Emamdjomeh](http://emamd.net) and [Ben Welsh](http://palewi.re/who-is-ben-welsh/) for a training sessions at the [National Institute for Computer-Assisted Reporting (NICAR)](http://data.nicar.org/)'s 2018 conference in Chicago.
-
-It has been taught in numerous venues by Welsh, Amihere and Emamdjomeh, as well as by [Vanessa Martinez](https://www.vanessa-martinez.com/), [Aida Ylanan](https://www.linkedin.com/in/a1daylanan/), [James Thomas](https://www.nytimes.com/by/james-thomas) and [Elbert Wang](https://www.linkedin.com/in/elbert-wang-9331691b5/).

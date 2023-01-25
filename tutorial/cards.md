@@ -1,5 +1,4 @@
 ```{include} _templates/nav.html
-
 ```
 
 # Cards
