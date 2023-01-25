@@ -6,18 +6,25 @@
 
 Next we'll move on to creating a map focused on West 62nd Street and Harvard Boulevard, an intersection in South Los Angeles where four men died in less than a year and a half.
 
-To draw the map we will rely on [Leaflet](http://leafletjs.com), a library for creating interactive maps. We'll also be writing a bit of JavaScript.
+To draw the map we will rely on [Leaflet](http://leafletjs.com), a JavaScript library for creating maps. JavaScript is a programming language that is primarily used to create interactive websites. JavaScript code is typically executed directly by the browser, so it can run on the user's computer, which allows for faster and more responsive websites, as well as a better user experience.
 
-This is a long section, and you'll probably run into bugs! That's a normal part of development, and we'll teach you how to identify and debug them when they come up.
+Learning how to write JavaScript and everything it takes to create a Leaflet map is beyond the scope of this class, But, as with CSS, we can cover the broad outlines of how JavaScript code is included in a framework.
 
-```{contents} Sections
-  :depth: 1
-  :local:
+## The entrypoint
+
+Most of today's frameworks offer a file that is the starting point for the JavaScript code execution. Commonly known as the entrypoint, it is booted up in your page template when the page loads. In the case of baker, that file is called `app.js` and it is found in the `scripts` directory. You can put whatever JavaScript code you'd like in the folder, but it's the `app.js` file that will be the first to run.
+
+Let's test it out by opening up `app.js` and insert a single, simple line of JavaScript.
+
+```{code-block} javascript
+alert("Hello World");
 ```
 
-## Installing Leaflet
+Save the file and reload your page. You should see a popup that reads "Hello World," an action triggered by JavaScript's built-in [`alert`](https://developer.mozilla.org/en-US/docs/Web/API/Window/alert) function.
 
-We will install it just as before by using `npm` from our terminal. This should install the latest version of leaflet, which at the time of writing was 1.7.
+## Installing dependencies
+
+Before we start writing code there, we'll need to install Leaflet. Since it is maintained by a community of volunteers and not included with Node.js by default, we will need to download it using the `npm` tool we used earlier. That can be done by providing Leaflet's unique identifier [in the Node Package Manager](https://www.npmjs.com/package/leaflet) to the npm install` command.
 
 ```bash
 npm install leaflet
@@ -36,7 +43,7 @@ Next we import Leaflet's stylesheets in `styles/app.scss` so that they are also 
 // VARIABLES
 ```
 
-Now, back in the `index.html` template, we should create a placeholder in the page template where the map will live. Let's set it right above the charts section we've just finished.
+Now, back in the `index.html` template, we should create a placeholder in the page template where the map will live. Let's set it right above the charts section we've just finished. We will set the `id` attribute to give our `div` a unique identifer we can use later in our JavaScript.
 
 ```{code-block} jinja
 :emphasize-lines: 1
@@ -46,197 +53,79 @@ Now, back in the `index.html` template, we should create a placeholder in the pa
 <section>
     <h3>A South L.A. neighborhood stands apart</h3>
     <p>Harvard Park's 2016 homicide total was its highest in at least 15 years despite a downward trend in killings across L.A. County.</p>
-
-    <div class="charts-holder clearfix">
-        <div class="inline-chart" id="county-homicides"></div>
-        <div class="inline-chart" id="harvard-park-homicides"></div>
-    </div>
-</section>
 ```
 
-To bring the map to life, add a new file named `map.js` to the `scripts` directory. For now, let's just put a simple `console.log` statement in there.
+To bring the map to life, open the `app.js` file and paste in the following block of code, which will import our data file and make a simple Leaflet map.
 
 ```{code-block} javascript
-console.log("This is the map file")
-```
-
-Now, when you load the page, you can open up the console with `cmd + option + i`, or by going to View -> Developer -> Developer Tools in the menu. You won't see this message yet!
-
-```{image} _static/hello-bakers.png
-:width: 100%
-```
-
-Why is that? Because we still need to `import` it in to `app.js`, which is where all the JavaScript in our app is read.
-
-In your `app.js` file:
-
-```{code-block} javascript
-:emphasize-lines: 4
-
-// Write your code!
-console.log("Hello bakers");
-
-import "./map";
-```
-
-Whenever something isn't working in our app, this is usually where we'll find the answer.
-
-Now we need to import Leaflet into `scripts/map.js` so that its tools are available in this file.
-
-```javascript
-import * as L from 'leaflet';
-```
-
-This imports everything under a variable called `L`. You can confirm this by adding a line in your `map.js` file, right below the import statement. This allows you to see the contents of that variable.
-
-```{code-block} javascript
-:emphasize-lines: 3
-
+// Import dependencies
 import * as L from 'leaflet';
 
-console.log("Leaflet", L);
-```
+// Import data
+import homicides from '../_data/harvard_park_homicides.json';
 
-If you open your console you'll be able to see it. If you click on the little triangle, you can actually see all of the different leaflet methods and properties available.
+// Set the id of the div on the page where the map will go
+const divId = undefined;
 
-```{image} _static/console-log-l.png
-:width: 100%
-```
+// Create the map
+const map = L.map(divId, {
+  scrollWheelZoom: false,
+});
 
-## Making your first map
+// Add a satellite layer
+L.tileLayer(
+  'https://api.mapbox.com/styles/v1/mapbox/satellite-streets-v9/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibGF0aW1lcyIsImEiOiJjanJmNjg4ZzYweGtvNDNxa2ZpZ2lma3Z4In0.g0lYVIEs9Y5QcUOhXactHA',
+  {
+    minZoom: 13,
+  }
+).addTo(map);
 
-Now in `scripts/map.js` paste in the following Leaflet code to generate a simple map. It does three things:
-
-- creates a new map in the HTML element with an ID of "map" that we made in the previous steps,
-- adds a new map layer of satellite imagery overlaid with roads, borders, water and other features from OpenStreetMap,
-- finally, adds the layer to the map.
-
-```javascript
-import * as L from 'leaflet';
-
-const map = L.map('map');
-const satelliteLayer = L.tileLayer(
-  'https://api.mapbox.com/styles/v1/mapbox/satellite-streets-v9/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibGF0aW1lcyIsImEiOiJjanJmNjg4ZzYweGtvNDNxa2ZpZ2lma3Z4In0.g0lYVIEs9Y5QcUOhXactHA'
-);
-satelliteLayer.addTo(map);
-```
-
-After you save, the index page should reload with a blank map.
-
-```{image} _static/blank-map.png
-:width: 100%
-```
-
-```{note}
-## Assigning variables
-
-You'll notice that we just declared a couple of variables: `map` and `satelliteLayer` with the word `const`. This is how you declare a "constant" variable in JS, or something that won't change.
-
-You can also use `let`, which lets you change a value after assigning, but in most cases it's better to use `const` until you need to use `let`.
-
-In older JS you would have used `var` to declare variables. This is still valid, but `const`/`let` are more commonly used and have fewer gotchas.
-
-```
-
-To zero in on the area we're reporting on, we will need its longitude and latitude coordinates. Go to Google Maps and find [62nd Street and Harvard Boulevard](https://www.google.com/maps/@33.9832603,-118.3078895,18z) in South LA. Hold down a click until it gives you the coordinates in a popup box. Paste those numbers into Leaflet's `setView` method with a zoom level of 15 included.
-
-```{code-block} javascript
-:emphasize-lines: 4
-
-const map = L.map('map')
-const satelliteLayer = L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/satellite-streets-v9/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibGF0aW1lcyIsImEiOiJjanJmNjg4ZzYweGtvNDNxa2ZpZ2lma3Z4In0.g0lYVIEs9Y5QcUOhXactHA');
-satelliteLayer.addTo(map);
-map.setView([33.983265, -118.306799], 15);
-```
-
-```{image} _static/first-map.png?v=2
-:width: 100%
-```
-
-After you save the file, your map should have loaded the location you specified. Let's zoom in a bit and save again. Change the zoom level to 18.
-
-```{code-block} javascript
-:emphasize-lines: 4
-
-const map = L.map('map')
-const satelliteLayer = L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/satellite-streets-v9/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibGF0aW1lcyIsImEiOiJjanJmNjg4ZzYweGtvNDNxa2ZpZ2lma3Z4In0.g0lYVIEs9Y5QcUOhXactHA');
-satelliteLayer.addTo(map);
-map.setView([33.983265, -118.306799], 18);
-```
-
-```{image} _static/corner-map.png?v=2
-:width: 100%
-```
-
-## Putting data on the map
-
-Now let's load some data on the map. We will return to the list of all homicides already stored in `_data/harvard_park_homicides.json`.
-
-Import the homicides data into `_map.js`.
-
-```{code-block} javascript
-:emphasize-lines: 2
-
-import * as L from "leaflet";
-import homicides from "../_data/harvard_park_homicides.json";
-```
-
-If you look in the `_data/harvard_park_homicides.json` file, you'll see that every record has a latitude and longitude associated with it. We can use these to place each homicide as a point on the map.
-
-```javascript
-{
-    "case_number":"2017-04514",
-    "slug":"eddie-rosendo-lino",
-    "first_name":"Eddie",
-    "middle_name":"Rosendo",
-    "last_name":"Lino",
-    "death_date":"2017-06-18T00:00:00.000Z",
-    "death_year":2017,
-    "age":23.0,
-    "race":"black",
-    "gender":"male",
-    "image":null,
-    "longitude":-118.304107484,
-    "latitude":33.9904336958
-},
-```
-
-At the bottom add some JavaScript code that steps through the homicide list and adds each one to the map as a circle, just like the real Homicide Report.
-
-```{code-block} javascript
-:emphasize-lines: 6-9
-
-const map = L.map('map')
-const satelliteLayer = L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/satellite-streets-v9/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibGF0aW1lcyIsImEiOiJjanJmNjg4ZzYweGtvNDNxa2ZpZ2lma3Z4In0.g0lYVIEs9Y5QcUOhXactHA');
-satelliteLayer.addTo(map);
+// Set the center and zoom
 map.setView([33.983265, -118.306799], 18);
 
-homicides.forEach(obj => {
-    L.circleMarker([obj.latitude,  obj.longitude])
-      .addTo(map)
+// Load the data
+homicides.forEach((obj) => {
+  L.circleMarker([obj.latitude, obj.longitude])  // As a pin ...
+    .addTo(map)
+    .bindTooltip(obj.first_name + ' ' + obj.last_name);  // ... with a tooltip
 });
 ```
 
-Save the file and you should now see all the homicides mapped on the page.
-
-```{image} _static/hello-circles.png?v=2
-:width: 100%
-```
-
-```{note}
-Remember the for loop we used in the [data section](data.md)? `homicides.forEach()` is how you would write the same in JavaScript. Every language is a little different!
-```
-
-Next, extend the code you just wrote in `scripts/map.js` to add a tooltip label on each point.
+If you save the file, the code will run but your map will not appear. That's because we need to connect our JavaScript with `div` on our page. Leaflet does this by accepting the `id` element of the division where you'd like to place your map. Edit `app.js` to set the `divId` variable that's now defined to our id. Make sure to put it in quotes.
 
 ```{code-block} javascript
-:emphasize-lines: 4
+:emphasize-lines: 8
+// Import dependencies
+import * as L from 'leaflet';
 
-homicides.forEach(obj => {
-    L.circleMarker([obj.latitude,  obj.longitude])
-      .addTo(map)
-      .bindTooltip(obj.first_name + " " + obj.last_name);
-})
+// Import data
+import homicides from '../_data/harvard_park_homicides.json';
+
+// Set the id of the div on the page where the map will go
+const divId = "map";
+
+// Create the map
+const map = L.map(divId, {
+  scrollWheelZoom: false,
+});
+
+// Add a satellite layer
+L.tileLayer(
+  'https://api.mapbox.com/styles/v1/mapbox/satellite-streets-v9/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibGF0aW1lcyIsImEiOiJjanJmNjg4ZzYweGtvNDNxa2ZpZ2lma3Z4In0.g0lYVIEs9Y5QcUOhXactHA',
+  {
+    minZoom: 13,
+  }
+).addTo(map);
+
+// Set the center and zoom
+map.setView([33.983265, -118.306799], 18);
+
+// Load the data
+homicides.forEach((obj) => {
+  L.circleMarker([obj.latitude, obj.longitude])  // As a pin ...
+    .addTo(map)
+    .bindTooltip(obj.first_name + ' ' + obj.last_name);  // ... with a tooltip
+});
 ```
 
 Here's what you should see after you do that.
@@ -247,7 +136,7 @@ Here's what you should see after you do that.
 
 ## Styling the data
 
-Next let's add some styles to our page to make the circles match the orange color of the dots found on [The Homicide Report](https://homicide.latimes.com/). As we did with the charts, go to the `styles` folder and create a new file. We'll call this one `map.scss`. In that file, copy or write the following:
+Next let's add some styles to our page to make the circles match the orange color of the dots found on [The Homicide Report](https://homicide.latimes.com/). As we did with the charts, go to the `styles` folder and open `app.scss`. In that file, copy or write the following:
 
 ```css
 #map path {
@@ -257,23 +146,13 @@ Next let's add some styles to our page to make the circles match the orange colo
 }
 ```
 
-Just as before, that won't change anything until you import our new file into the main stylesheet. Again, use `@use` to introduce your CSS file into `main.css`
-
-```{code-block} css
-:emphasize-lines: 5
-
-// RESET
-// Smooths out the rough edges across browsers
-@use './tools/normalize';
-@use 'node_modules/leaflet/dist/leaflet';
-@use './map';
-```
-
 After you save, here's what you'll get.
 
 ```{image} _static/orange-circles.png?v=2
 :width: 100%
 ```
+
+## Some final touches
 
 If you want to make the tooltips visible all the time, edit the JavaScript in `scripts/map.js` to make the tooltips "permanent."
 
@@ -283,143 +162,14 @@ If you want to make the tooltips visible all the time, edit the JavaScript in `s
 homicides.forEach(obj => {
     L.circleMarker([obj.latitude,  obj.longitude])
       .addTo(map)
-      .bindTooltip(obj.first_name + " " + obj.last_name, {permanent: true});
+      .bindTooltip(obj.first_name + " " + obj.last_name, {permanent: true});  // ... with a tooltip
 });
 ```
-
 Here they are.
 
 ```{image} _static/permanent-tooltips.png?v=2
 :width: 100%
 ```
-
-## Adding a minimap
-
-Alright. We've got an okay map. But it's zoomed in so close a reader might now know where it is. To combat this problem, graphic artists often inset a small map in the corner that shows the the area of focus from a greater distance.
-
-Lucky for us, there's already a Leaflet extension that provides this feature. It's called [MiniMap](https://github.com/Norkart/Leaflet-MiniMap).
-
-To put it to use, we'll need to return to our friend `npm`.
-
-```bash
-$ npm install leaflet-minimap
-```
-
-Just as with other libraries, we need to import it into `scripts/map.js`
-
-```{code-block} javascript
-:emphasize-lines: 2
-
-import * as L from "leaflet";
-import MiniMap from "leaflet-minimap";
-import homicides from '../_data/harvard_park_homicides.json';
-```
-
-Its stylesheets also need to be imported to `styles/app.scss`.
-
-```{code-block} css
-:emphasize-lines: 3
-
-@use './tools/normalize';
-@use 'node_modules/leaflet/dist/leaflet';
-@use 'node_modules/leaflet-minimap/src/Control.MiniMap';
-@use './map';
-```
-
-Now that everything is installed, return to `scripts/map.js` and create an inset map with the library's custom tools. We can set its view with the `maxZoom` option.
-
-```{code-block} javascript
-:emphasize-lines: 12-16
-
-const map = L.map('map')
-const satelliteLayer = L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/satellite-streets-v9/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibGF0aW1lcyIsImEiOiJjanJmNjg4ZzYweGtvNDNxa2ZpZ2lma3Z4In0.g0lYVIEs9Y5QcUOhXactHA');
-satelliteLayer.addTo(map);
-map.setView([33.983265, -118.306799], 18);
-
-homicides.forEach(obj => {
-    L.circleMarker([obj.latitude,  obj.longitude])
-      .addTo(map)
-      .bindTooltip(obj.first_name + " " + obj.last_name, {permanent: true});
-})
-
-const satelliteLayer2 = L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/satellite-streets-v9/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibGF0aW1lcyIsImEiOiJjanJmNjg4ZzYweGtvNDNxa2ZpZ2lma3Z4In0.g0lYVIEs9Y5QcUOhXactHA', {
-    maxZoom: 11
-});
-const miniMap = new MiniMap(satelliteLayer2);
-miniMap.addTo(map);
-```
-
-Save the file and the inset map should appear on your page.
-
-```{image} _static/hello-minimap.png?v=2
-:width: 100%
-```
-
-Just for fun, let's add a couple creature comforts to map. By default, the scroll wheel on your mouse or laptop trackpad will trigger zooms on the map. Some people (Armand!) have strong feelings about this. Let's do them a favor and turn it off. Replace the initial map definition with the highlighted lines.
-
-```{code-block} javascript
-:emphasize-lines: 1-3
-
-const map = L.map('map', {
-    scrollWheelZoom: false
-});
-const satelliteLayer = L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/satellite-streets-v9/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibGF0aW1lcyIsImEiOiJjanJmNjg4ZzYweGtvNDNxa2ZpZ2lma3Z4In0.g0lYVIEs9Y5QcUOhXactHA');
-satelliteLayer.addTo(map);
-map.setView([33.983265, -118.306799], 18);
-
-homicides.forEach(obj => {
-    L.circleMarker([obj.latitude,  obj.longitude])
-      .addTo(map)
-      .bindTooltip(obj.first_name + " " + obj.last_name, {permanent: true});
-})
-
-const satelliteLayer2 = L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/satellite-streets-v9/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibGF0aW1lcyIsImEiOiJjanJmNjg4ZzYweGtvNDNxa2ZpZ2lma3Z4In0.g0lYVIEs9Y5QcUOhXactHA', {
-    maxZoom: 11
-});
-const miniMap = new MiniMap(satelliteLayer2);
-miniMap.addTo(map);
-```
-
-## Some cleanup
-
-In general, it's best to help users by keeping your map from views that aren't part of the story. So while we're at it, let's also restrict the zoom level so it you can't back too far away from our area of interest in South LA.
-
-```{code-block} javascript
-:emphasize-lines: 4-6
-
-const map = L.map('map', {
-    scrollWheelZoom: false
-})
-const satelliteLayer = L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/satellite-streets-v9/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibGF0aW1lcyIsImEiOiJjanJmNjg4ZzYweGtvNDNxa2ZpZ2lma3Z4In0.g0lYVIEs9Y5QcUOhXactHA', {
-    minZoom: 13
-});
-satelliteLayer.addTo(map);
-map.setView([33.983265, -118.306799], 18);
-
-homicides.forEach(function (obj) {
-    L.circleMarker([obj.latitude,  obj.longitude])
-      .addTo(map)
-      .bindTooltip(obj.first_name + " " + obj.last_name, {permanent: true});
-})
-
-const satelliteLayer2 = L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/satellite-streets-v9/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibGF0aW1lcyIsImEiOiJjanJmNjg4ZzYweGtvNDNxa2ZpZ2lma3Z4In0.g0lYVIEs9Y5QcUOhXactHA', {
-    maxZoom: 11
-});
-const miniMap = MiniMap(satelliteLayer2);
-miniMap.addTo(map);
-```
-
-```{note}
-## Other mapping libraries
-
-We used [Leaflet](https://leafletjs.com/) today, but this isn't the only mapping tool you can use.
-
-One of the most popular options for interactive mapping is [Mapbox GL](https://www.mapbox.com/), which is fast and very flexible, but is not a free tool.
-
-Other open-source options are [MapLibre](https://github.com/maplibre/maplibre-gl-js) or [OpenLayers](https://openlayers.org/). Or, go with embedded maps from [Datawrapper](https://app.datawrapper.de/select/map).
-```
-
-## Adding a headline and text
 
 Finally, let's preface the map with so a headline.
 
@@ -448,7 +198,7 @@ Then an introductory paragraph.
 :width: 100%
 ```
 
-All wrapped up in a `<section>` tag.
+And wrap it all up in a `<section>` tag.
 
 ```{code-block} html
 :emphasize-lines: 1,5
@@ -533,7 +283,7 @@ git commit -m "Added map, headline and chatter"
 Push to GitHub.
 
 ```bash
-git push origin master
+git push origin main
 ```
 
 Now we're ready. Let’s do it live.

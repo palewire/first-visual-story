@@ -5,7 +5,7 @@ import * as L from 'leaflet';
 import homicides from '../_data/harvard_park_homicides.json';
 
 // Set the id of the div on the page where the map will go
-const divId = 'map';
+const divId = '';
 
 // Create the map
 const map = L.map(divId, {
