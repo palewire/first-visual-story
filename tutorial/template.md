@@ -89,7 +89,7 @@ You can find it in the code block below. Copy all of its contents and paste them
 </head>
 <body>
     <nav>
-        <img src="https://bl.ocks.org/palewire/raw/1035cd306a2f85b362b1a20ce315b8eb/ire-logo.png">
+        <img src="https://gist.githubusercontent.com/palewire/1035cd306a2f85b362b1a20ce315b8eb/raw/7c999fc46dbfe52f0e2ff81e09cca50198366c4c/ire-logo.png">
     </nav>
   <header>
     <h1>{% block headline %}{% endblock headline %}</h1>

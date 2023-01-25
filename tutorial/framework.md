@@ -41,7 +41,7 @@ While many of the particulars are specific to the choices made but Times develop
 
 ## Install our system
 
-The Times’ baker framework — like most of its peers’ — is developed using the Node.js JavaScript programming language.
+The Times’ baker framework — like most of its peers — is developed using the Node.js JavaScript programming language.
 
 Now that you have the fundamentals cloned to your computer, installing the underlying dependencies necessary to develop a page requires that you use Node.js’s package manager `npm`.
 

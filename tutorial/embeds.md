@@ -19,7 +19,7 @@ In HTML this is typically done with an inline frame. Using a special tag called 
 Ahead of this class, we have prepared two datawrapper charts for inclusion in the page. [One](https://www.datawrapper.de/_/XSj9X/) shows a declining countywide trend in homicides. [The other](https://www.datawrapper.de/_/qvF1G/) tracks the same metric in Harvard Park.
 
 ```{note}
-The [Datawrapper Academy](https://academy.datawrapper.de/) has tons of documentation for making various types of charts/graphics and maps, if you’re interested in learning more about the tool.
+The [Datawrapper Academy](https://academy.datawrapper.de/) has documentation for making various types of charts, if you’re interested in learning more about the tool.
 ```
 
 In the `index.html` file, we’ll find a spot before the cards section for the charts. To keep things consistent with our previous component, let’s start with a `<section>` tag, a headline and short introduction.
@@ -59,7 +59,7 @@ emphasize-lines: 7-14
 
 Now that we have containers for the iframes, let’s go back and get those iframe embed codes and paste them within the `div`s with the class `graphic`.
 
-The iframe embed codes are located in the “Publish & Embed” step of each chart in Datawrapper. In cases where you make a chart youself, you can find the code there. In many cases, a might delegate the creation of an outside asset to colleague. Then they'll provide you with the necessary iframe code. Let's simulate that here. Here's the iframe code for the first chart.
+The iframe embed codes are located in the “Publish & Embed” step of each chart in Datawrapper. In cases where you make a chart youself, you can find the code there. If you delegate the creation of an outside asset to colleague, they can provide you with the necessary iframe code. Let's simulate that here. Here's the `iframe` element for the first chart.
 
 ```html
 <iframe
@@ -89,7 +89,7 @@ The iframe embed codes are located in the “Publish & Embed” step of each cha
 </script>
 ```
 
-Copy that and paste it inside the first placeholder div in the previous code block example. Your html should look something like this at the end:
+Copy that and paste it inside the first placeholder `div` in the previous code block example. Your html should look something like this at the end:
 
 ```{code-block} html
 ---

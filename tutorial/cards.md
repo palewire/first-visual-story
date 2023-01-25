@@ -1,7 +1,7 @@
 ```{include} _templates/nav.html
 ```
 
-# Cards
+# HTML
 
 This chapter will guide you through converting your list of victims in a grid with photographs.
 
@@ -89,11 +89,11 @@ Now let's add each victim's image to their card.
 
 Ugh. You save and nothing changes on localhost. What’s wrong? When in doubt, take a look at your terminal. You should see something like this:
 
-![](card-image-fail.png)
+![](_static/card-image-fail.png)
 
 Baker has raised an error. Look carefully and you can see it’s telling you that `attempted to output null or undefined value`. This means you tried to print something in your template that doesn’t exist. Check your data and you’ll see that not every victim has an image. So trying to print one for every iteration of the `for` loop caused this crash.
 
-To fix it, let's add an `if` clause around the image tag to check for an image in the data. This way, our code will loop through the list of victims and \_if\_ there is an image it will add it to the right card. If not, the code will move on to the next row in the data.
+To fix it, let's add an `if` clause around the image tag to check for an image in the data. This way, our code will loop through the list of victims and if there is an image it will add it to the right card. If not, the code will move on to the next row in the data.
 
 ```{code-block} jinja
 :emphasize-lines: 3
@@ -111,7 +111,7 @@ To fix it, let's add an `if` clause around the image tag to check for an image i
 
 The error should go away and you should see something more like this in your browser.
 
-![](cards-image.png)
+![](_static/cards-image.png)
 
 Phew. That’s better, but still far from what we want. What we've got so far is a grid that doesn't look much like a grid. In fact it's not a grid at all. It's just a big stack.
 
@@ -144,7 +144,7 @@ Make the following changes. Remember there’s no shame in using copy and paste.
 ![](_static/cards-working.png)
 
 ```{note}
-Notice that the new division is outside of our `for` loop, meaning it only appears on the page once with all of the card divs inside of it.
+Notice that the new division is outside of our `for` loop, meaning it only appears on the page once with all of the cards inside of it.
 ```
 
 We're not done yet. We want to be able to click on each card and be redirected to the victim's page on the Los Angeles Times Homicide Report site. While we're at it, let's add some `<strong>` tags to the victims' names to make them stand out from the sentence about them.
