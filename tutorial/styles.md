@@ -5,7 +5,18 @@
 
 We want the charts to be positioned side-by-side, so we will need to add some code that dictates the design of the page.
 
-That is typically done by writing [CSS](https://en.wikipedia.org/wiki/CSS) code. Short for Cascading Style Sheets, CSS is a language used to add style and layout to webpages. It allows developers to control the colors, fonts, layout, and other visual elements of a webpage, while remaining separate from the HTML structure, which makes it easier to maintain and update.
+```{contents} Sections
+  :depth: 1
+  :local:
+```
+
+## What is CSS?
+
+Customizing design is typically done by writing [CSS](https://en.wikipedia.org/wiki/CSS) code. Short for Cascading Style Sheets, CSS is a language used to add style and layout to webpages. It allows developers to control the colors, fonts, layout, and other visual elements of a webpage, while remaining separate from the HTML structure, which makes your code easier to maintain and update.
+
+```{note}
+We don't have time to cover how CSS works in this class. There are dozens of free tutorials available elsewhere online, including [one by Mozilla](https://developer.mozilla.org/en-US/docs/Learn/CSS/CSS_layout/Introduction).
+```
 
 Every decent framework offers some method for managing CSS. In baker's cases, CSS files are stored in the `styles` folder. There you can find an `app.scss` file that acts a starting point for whatever styles you'd like to include.
 
@@ -90,7 +101,7 @@ Your charts should now stack into one-column at mobile phone sizes.
 :width: 100%
 ```
 
-Let's commit our changes and move on to our next challenge.
+Let's commit our changes and move on to our next challenge. You know the drill.
 
 ```bash
 git add .
