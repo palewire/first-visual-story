@@ -24,6 +24,7 @@ template
 data
 cards
 embeds
+styles
 map
 internet
 about
