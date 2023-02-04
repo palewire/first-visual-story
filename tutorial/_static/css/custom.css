@@ -2,7 +2,7 @@
 @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;700&display=swap');
 
 div.document {
-    margin-top: 0;
+    margin-top: 0 !important;
 }
 
 div.body {
