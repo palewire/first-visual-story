@@ -50,7 +50,7 @@ Next we import Leaflet's stylesheets in `styles/app.scss` so that they are also 
 // VARIABLES
 ```
 
-Now, back in the `index.html` template, we should create a placeholder in the page template where the map will live. Let's set it right above the charts section we've just finished. We will set the `id` attribute to give our `div` a unique identifer we can use later in our JavaScript.
+Now, back in the `index.html` template, we should create a placeholder in the page template where the map will live. Let's set it right above the charts section we've just finished. We will set the `id` attribute to give our `div` a unique identifier we can use later in our JavaScript.
 
 ```{code-block} jinja
 :emphasize-lines: 1
@@ -98,7 +98,7 @@ homicides.forEach((obj) => {
 });
 ```
 
-If you save the file, the code will run but your map will not appear. That's because we need to connect our JavaScript with `div` on our page. Leaflet does this by accepting the `id` element of the division where you'd like to place your map. Edit `app.js` to set the `divId` variable that's now defined to our id. Make sure to put it in quotes.
+If you save the file, the code will run but your map will not appear. That's because we need to connect our JavaScript to the `div` container on our page that will hold the map. Leaflet does this by accepting the `id` element of the destination `div`. Edit `app.js` to set the `divId` variable that's now defined to our id. Make sure to put it in quotes.
 
 ```{code-block} javascript
 :emphasize-lines: 8
@@ -178,7 +178,7 @@ Here they are.
 :width: 100%
 ```
 
-Finally, let's preface the map with so a headline.
+Finally, let's preface the map with a headline.
 
 ```{code-block} html
 :emphasize-lines: 1
@@ -223,7 +223,7 @@ And wrap it all up in a `<section>` tag.
 
 Congratulations. You've created a custom map. Before we get on to the business of sharing it with the world, we need a couple more pieces here.
 
-Hey. How about a headline?
+Hey. How about a headline for the whole package?
 
 ```{code-block} html
 :emphasize-lines: 1
