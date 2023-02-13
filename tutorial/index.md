@@ -13,7 +13,7 @@ You will get hands-on experience in every stage of the development process, writ
 
 ## Who can take it
 
-This course is free. If you have a good attitude and know how to take a few code crashes in stride, you are qualified for this class. If you’re a little scared, that’s a good thing. You’re ready for this.
+This course is free. If you have a good attitude and know how to take a few code crashes in stride, you are qualified. If you’re a little scared, that’s a good thing. You’re ready for this.
 
 ## Table of contents
 
