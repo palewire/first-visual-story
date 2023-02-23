@@ -27,6 +27,7 @@ While some frameworks are more popular than others, each newsroom tends to go it
 Some of them have even been released as open-source software. They include:
 
 - Reuters’ [graphics-kit](https://github.com/reuters-graphics/bluprint_graphics-kit)
+- The City's [react-template](https://github.com/thecityny/react-template)
 - The Texas Tribune’s [data-visuals-create](https://github.com/texastribune/data-visuals-create)
 - The Seattle Times' [newsapp-template](https://github.com/seattletimes/newsapp-template/)
 - The NPR Apps team's [dailygraphics](https://github.com/nprapps/dailygraphics)
