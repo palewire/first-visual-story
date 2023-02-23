@@ -37,7 +37,7 @@ The GitHub template we cloned in the last chapter is a demonstration of the Los 
 
 The remainder of this tutorial will demonstrate how to use The Times tool to publish a page to the web.
 
-While many of the particulars are specific to the choices made but Times developers, most of the overall principles are shared by the frameworks employed at other newsrooms.
+While many of the particulars are specific to the choices made by Times developers, most of the overall principles are shared by the frameworks employed at other newsrooms.
 
 ## Install our system
 
