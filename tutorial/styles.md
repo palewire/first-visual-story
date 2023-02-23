@@ -29,6 +29,8 @@ There we can get both charts on the same line by using the [Flexbox](https://dev
 }
 ```
 
+## What is SCSS?
+
 One benefit of baker, and many other frameworks, is that they allow you to take advantage of extensions to the traditional tools like CSS. One example is SCSS, also known as [Sassy CSS](https://sass-lang.com/). It extends the capabilities of CSS with features such as variables, mixins and oter functions that make writing and maintaining CSS code more efficient and organized.
 
 We can use it here by nesting a directive to limit the width of the two charts to just shy of half the page. By placing the code inside of the parent container's code, we will only style the two elements in our container.
@@ -69,6 +71,8 @@ emphasize-lines: 13-15
   }
 }
 ```
+
+## What is responsive design?
 
 We can also specify media queries that target screens smaller than 500 pixels wide, more commonly known as mobile phones, where we want the charts to be stacked on top of each other instead of squeezed side-by-side.
 
