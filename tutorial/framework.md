@@ -31,7 +31,6 @@ Some of them have even been released as open-source software. They include:
 - The Texas Tribune’s [data-visuals-create](https://github.com/texastribune/data-visuals-create)
 - The Seattle Times' [newsapp-template](https://github.com/seattletimes/newsapp-template/)
 - The NPR Apps team's [dailygraphics](https://github.com/nprapps/dailygraphics)
-- Politico's [generator-politico-graphics](https://github.com/The-Politico/generator-politico-graphics)
 ```
 
 The GitHub template we cloned in the last chapter is a demonstration of the Los Angeles Times tool, which is known as [baker](https://github.com/datadesk/baker) and published as free and open software that anyone can easily reuse at [github.com/datadesk/baker-example-page-template](https://github.com/datadesk/baker-example-page-template). It's also been used publish custom pages by developers at ProPublica, The City and The Baltimore Banner.
