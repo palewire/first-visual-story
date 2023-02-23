@@ -26,7 +26,7 @@ You can edit the page by changing what's found inside of the `content` block. De
 {% endblock content %}
 ```
 
-You should see it immediately show up thanks a feature of baker that automatically updates your test site after you make a change.
+Return to web browser and reload the page. You should see the change appear immediately.
 
 ![hello world](_static/hello-world.png)
 
