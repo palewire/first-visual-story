@@ -78,11 +78,13 @@ You can find it in the code block below. Copy all of its contents and paste them
   <title>First Visual Story</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   {% block styles %}
+  <link rel="stylesheet" href="{% static 'styles/app.scss' %}">
   {% endblock styles %}
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
   <link rel="stylesheet" href="https://palewi.re/docs/first-visual-story/_static/css/tutorial.css">
   {% block scripts %}
+  {% script 'app' %}
   {% endblock scripts %}
   <script src="https://cdn.jsdelivr.net/npm/masonry-layout@4.2.2/dist/masonry.pkgd.min.js"
     integrity="sha384-GNFwBvfVxBkLMJpYMOABq3c+d3KnQxudP/mGPkzpZSTYykLBNsZEnG2D9G/X/+7D" crossorigin="anonymous"

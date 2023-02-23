@@ -51,7 +51,7 @@ Now that the charts are next to each other, we can see that despite our resizing
 
 ```{code-block} scss
 ---
-emphasize-lines: 13-15
+emphasize-lines: 6-8
 ---
 .graphics-container {
   display: flex;
@@ -66,7 +66,7 @@ emphasize-lines: 13-15
       margin-bottom: 15px;
     }
     iframe {
-      min-height: 350px;
+      min-height: 360px;
     }
   }
 }
@@ -93,7 +93,7 @@ emphasize-lines: 4-6,9-12
       margin-bottom: 15px;
     }
     iframe {
-      min-height: 350px;
+      min-height: 360px;
     }
   }
 }

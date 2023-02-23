@@ -13,11 +13,11 @@ We've got our system set up. Now it's time to start telling our story. To do tha
 
 ## Import JSON
 
-If we were writing this application entirely in the browser with traditional JavaScript we'd have to pull it in with dynamic ["AJAX"](<https://en.wikipedia.org/wiki/Ajax_(programming)>) calls that retrieve data over the web as the page is constructed.
+If we were writing this application entirely in the browser with traditional JavaScript we'd have to pull it in with dynamic ["AJAX"](<https://en.wikipedia.org/wiki/Ajax_(programming)>) calls that retrieve data over the web as the page is loaded in your browser.
 
-Since we're working with a Node.js system, running JavaScript code on the backend, we can import data directly into the template instead and lay it out before the page is rendered in the browser. This results in a faster experience for our users and opens up new ways for us to be creative with our data.
+Thanks to our framework's templating system, we can import data and lay it before the page is served. This results in a faster experience for users and opens up new ways to be creative with our data.
 
-Every newsroom's system will handle this differently. Our baker framework is preconfigured to open all JSON data files in the `_data` folder and import them into our Nunjucks templates.
+Every newsroom's system will handle this technique a little differently. Our baker framework is preconfigured to detect files in the `_data` folder and import them into our Nunjucks templates.
 
 Let's give it a try. Grab the [list of Harvard Park homicides](https://gist.githubusercontent.com/palewire/e0e3a3d64ed818ded354ffd99e63984b/raw/c1952a9dcdd37443aef63511c052e50f3bf51c6b/harvard_park_homicides.json) published by the Los Angeles Times. It includes every homicide victim in the neighborhood since 2000 in the [JSON data format](https://en.wikipedia.org/wiki/JSON) favored by JavaScript. Save it to `_data/harvard_park_homicides.json`.
 
