@@ -137,7 +137,7 @@ Now fill in a byline.
 And let's do the publication date too while we are at it.
 
 ```{code-block} jinja
-:emphasize-lines: 4-6
+:emphasize-lines: 5-7
 {% extends 'base.html' %}
 
 {% block headline %}My headline will go here{% endblock headline %}
