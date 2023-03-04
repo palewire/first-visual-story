@@ -28,7 +28,7 @@ We aim to create a grid of victims where each block will have a picture and some
 
 ## Add division tags
 
-First, we need to set up our grid. To do that, we need to talk about [HTML's division tag](https://www.w3schools.com/Tags/tag_div.asp), also known as a `<div>`. The simplest way to think of a div is as container. Like any container, divisions hold things. Divisions can be nested inside of each other, like putting one box inside another box.
+First, we need to set up our grid. To do that, we need to talk about [HTML's division tag](https://www.w3schools.com/Tags/tag_div.asp), also known as a `<div>`. In simple terms, a div is a container. Like any container, divisions hold things. Divisions can be nested inside of each other, like putting one box inside another box.
 
 This is how Bootstrap cards work. Each card is a container which has additional containers inside it to hold, in this example, a picture, the victim's name, age, race and when he or she was killed.
 
@@ -230,7 +230,7 @@ And now, some introductory text. We can use a new templating trick, the `length`
 
 ![](_static/cards-description.png)
 
-Let's set up our card grid as it's own section by adding `<section>` tags. This is simple example of adding some hidden stucture to your page so its easier for search engines and other spiders to parse.
+Let's set up our card grid as its own section by adding `<section>` tags. This is a simple example of adding some hidden stucture to your page so it's easier for search engines and other spiders to parse.
 
 ```{code-block} jinja
 :emphasize-lines: 1,21

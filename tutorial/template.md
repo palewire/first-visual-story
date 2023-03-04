@@ -26,7 +26,7 @@ You can edit the page by changing what's found inside of the `content` block. De
 {% endblock content %}
 ```
 
-Return to web browser and reload the page. You should see the change appear immediately.
+Return to the web browser and reload the page. You should see the change appear immediately.
 
 ![hello world](_static/hello-world.png)
 
@@ -40,7 +40,7 @@ That’s because that boilerplate has been moved back into a parent template "ex
 {% extends 'base.html' %}
 ```
 
-That base file, sometimes called the layout, can be inherited by other pages on your site to avoid duplication and share common code. One change to a parent file instantly ripples out to all pages the extend it.
+That base file, sometimes called the layout, can be inherited by other pages on your site to avoid duplication and share common code. One change to a parent file instantly ripples out to all pages that extend it.
 
 This approach to [inheritance](<https://en.wikipedia.org/wiki/Inheritance_(object-oriented_programming)>) is not just found in Nunjucks. It can be found in other templating systems, including Python ones like [Django](https://docs.djangoproject.com/en/1.7/topics/templates/) and [Jinja](http://jinja.pocoo.org). It's probably even used at some level in your organization's content-management system.
 

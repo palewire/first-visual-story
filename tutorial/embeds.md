@@ -14,7 +14,7 @@ In HTML this is typically done with an inline frame. Using a special tag called 
 
 ## Embedding Datawrapper charts
 
-[Datawrapper](https://www.datawrapper.de/) is a free online tool that can make charts and maps without requiring any code. It offers iframe tags that can easily be embedded in any HTML page. You can commonly find visual stories that rely on datawrapper to make bar charts, line charts and other simple plots, which allows develops to focus their development time on more ambitious components.
+[Datawrapper](https://www.datawrapper.de/) is a free online tool that can make charts and maps without requiring any code. It offers iframe tags that can easily be embedded in any HTML page. You can commonly find visual stories that rely on datawrapper to make bar charts, line charts and other simple plots, which allows developers to focus their time on more ambitious components.
 
 Ahead of this class, we have prepared two datawrapper charts for inclusion in the page. [One](https://www.datawrapper.de/_/XSj9X/) shows a declining countywide trend in homicides. [The other](https://www.datawrapper.de/_/qvF1G/) tracks the same metric in Harvard Park.
 
@@ -59,7 +59,7 @@ emphasize-lines: 7-14
 
 Now that we have containers for the iframes, let’s go back and get those iframe embed codes and paste them within the `div`s with the class `graphic`.
 
-The iframe embed codes are located in the “Publish & Embed” step of each chart in Datawrapper. In cases where you make a chart youself, you can find the code there. If you delegate the creation of an outside asset to colleague, they can provide you with the necessary iframe code. Let's simulate that here. Here's the `iframe` element for the first chart.
+The iframe embed codes are located in the “Publish & Embed” step of each chart in Datawrapper. In cases where you make a chart yourself, you can find the code there. If you delegate the creation of an outside asset to colleague, they can provide you with the necessary iframe code. Let's simulate that here. Here's the `iframe` element for the first chart.
 
 ```html
 <iframe
