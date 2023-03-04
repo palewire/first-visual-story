@@ -24,6 +24,7 @@ Whatever you call it, it’s a solid path to cheap, stable hosting for simple si
 ```{note}
 Examples of static news pages in the wild include:
 
+- [Visual stories](https://www.reuters.com/graphics/) and [special reports](https://www.reuters.com/investigates/) by Reuters
 - [A wide array of interactive graphics](https://twitter.com/PostGraphics/status/1207035549527236609) by The Washington Post
 - Hundreds of Los Angeles Times stories at latimes.com/projects
 - Dozens more from The Seattle Times at [projects.seattletimes.com](https://projects.seattletimes.com)
@@ -39,7 +40,7 @@ Lucky for us, baker is pre-configured to flatten our dynamic site. And GitHub ha
 Open the `baker.config.js` file at the root of the project. We will instruct it to `output` files to the `docs` directory instead of `_dist` and set the name of our GitHub repository as the `domain`.
 
 ```{code-block} javascript
-:emphasize-lines: 7-8,12
+:emphasize-lines: 7,11
 
 const entrypoints = [
   // Add more script entrypoints here as needed
@@ -47,7 +48,6 @@ const entrypoints = [
 ];
 
 export default {
-  output: 'docs',
   domain: 'https://your-username.github.io',
   entrypoints: `scripts/${
     entrypoints.length > 1 ? `{${entrypoints.join(',')}}` : entrypoints[0]
@@ -129,7 +129,7 @@ In the “Source” section select the `main` branch and the `/docs` folder. Hit
 
 This will result in any files pushed to the `./docs` directory of your repository being published on the web. For free.
 
-Wait a few moments and visit [\<your_username>.github.com/first-graphics-app/](https://palewire.github.io/first-visual-story/). You should see your app published live on the World Wide Web.
+Wait a few moments and visit [\<your_username>.github.com/first-visual-story/](https://palewire.github.io/first-visual-story/). You should see your app published live on the World Wide Web.
 
 ```{image} _static/preview.gif
 :target: https://ireapps.github.io/first-graphics-app/

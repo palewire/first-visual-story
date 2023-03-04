@@ -18,14 +18,15 @@ The contents of the page you see at [localhost:3000](https://localhost:3000) is 
 You can edit the page by changing what's found inside of the `content` block. Delete everything you see there now and replace it with something simple like:
 
 ```{code-block} jinja
-:emphasize-lines: 2
+:emphasize-lines: 3
 
+{% extends 'base.html' %}
 {% block content %}
 <p>Hello World</p>
 {% endblock content %}
 ```
 
-You should see it immediately show up thanks to a feature of baker that automatically updates your test site after you make a change.
+Return to the web browser and reload the page. You should see the change appear immediately.
 
 ![hello world](_static/hello-world.png)
 
@@ -77,11 +78,13 @@ You can find it in the code block below. Copy all of its contents and paste them
   <title>First Visual Story</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   {% block styles %}
+  <link rel="stylesheet" href="{% static 'styles/app.scss' %}">
   {% endblock styles %}
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
   <link rel="stylesheet" href="https://palewi.re/docs/first-visual-story/_static/css/tutorial.css">
   {% block scripts %}
+  {% script 'app' %}
   {% endblock scripts %}
   <script src="https://cdn.jsdelivr.net/npm/masonry-layout@4.2.2/dist/masonry.pkgd.min.js"
     integrity="sha384-GNFwBvfVxBkLMJpYMOABq3c+d3KnQxudP/mGPkzpZSTYykLBNsZEnG2D9G/X/+7D" crossorigin="anonymous"
@@ -113,13 +116,10 @@ As you can see, it includes all of the standard HTML tags, with our custom style
 To see the effects, return to `index.html` and fill in a headline using the `headline` block introduced by our base template. Save the page and you should quickly see it appear on the page.
 
 ```{code-block} jinja
-:emphasize-lines: 1
+:emphasize-lines: 3
+{% extends 'base.html' %}
 
 {% block headline %}My headline will go here{% endblock headline %}
-
-{% block content %}
-<p>Hello World</p>
-{% endblock content %}
 ```
 
 ![headline](_static/headline.png)
@@ -127,14 +127,11 @@ To see the effects, return to `index.html` and fill in a headline using the `hea
 Now fill in a byline.
 
 ```{code-block} jinja
-:emphasize-lines: 2
+:emphasize-lines: 4
+{% extends 'base.html' %}
 
 {% block headline %}My headline will go here{% endblock headline %}
 {% block byline %}By me{% endblock byline %}
-
-{% block content %}
-<p>Hello World</p>
-{% endblock content %}
 ```
 
 ![headline](_static/byline.png)
@@ -142,17 +139,14 @@ Now fill in a byline.
 And let's do the publication date too while we are at it.
 
 ```{code-block} jinja
-:emphasize-lines: 3-5
+:emphasize-lines: 5-7
+{% extends 'base.html' %}
 
 {% block headline %}My headline will go here{% endblock headline %}
 {% block byline %}By me{% endblock byline %}
 {% block pubdate %}
-  <time datetime="2022-03-05" pubdate>Mar. 5, 2022</time>
+  <time datetime="2023-03-04" pubdate>Mar. 4, 2023</time>
 {% endblock pubdate %}
-
-{% block content %}
-<p>Hello World</p>
-{% endblock content %}
 ```
 
 ![pubdate](_static/pubdate.png)
@@ -162,6 +156,8 @@ And let's do the publication date too while we are at it.
 You’ve installed a base template and started in on creating your first custom page. Now is a good time to pause and log our work with GitHub.
 
 The first command to learn is [`status`](https://git-scm.com/docs/git-status), which prints out a report card on the current state of your repository.
+
+If your [localhost:3000](https://localhost:3000) server is still running, hit CTRL-C or CTRL-Z in the terminal to terminate its process. We'll use the terminal to log our work with GitHub.
 
 ```bash
 git status
