@@ -4,13 +4,13 @@
 
 # GitHub
 
-This chapter will show you how to get a `git` code repository up and running. At most news organizations where you'd be collaborating on code with other developers, you'll rely heavily on the **GitHub** Web app.
+This chapter will show you how to get a `git` code repository up and running. At most news organizations where you'd be collaborating on code with other developers, you'll rely heavily on the GitHub web app.
 
-You might consider `git`, which you installed in the last chapter, as an **air traffic controller**. It makes sure the code you're writing at your desk and the code your colleague is writing in her home office don't clobber each other like two wayward Boeings when you both *commit* them: push them to the same repository. If both your commits make changes to the same part of the code, 'git' alerts you and forces you to reconcile the work before it can be merged into the whole.
+You might consider `git`, which you installed in the last chapter, as an air traffic controller. It makes sure the code you're writing at your desk and the code your colleague is writing in her home office don't clobber each other like two wayward Boeings when you both "commit" them: push them to the same repository. If both your commits make changes to the same part of the code, 'git' alerts you and forces you to reconcile the work before it can be merged into the whole.
 
 If you're working on a part of the code that has been changed by someone else since you last saw it, `git` won't let you continue until you "pull" the latest version. It keeps a flight log: If you need to get to the root of a bug, you can see every change to the code, when it was introduced, and by whom.
 
-You can then **think of GitHub as an airport.** It's a secure, systemized way to launch and land the planes.
+You can then think of GitHub as an airport. It's a secure, systemized way to launch and land the planes.
 
 GitHub has become an integral part of the newsroom workflow as developers need to make updates swiftly and with confidence that all contributors' individual changes will work on the published site. Its dashboards give visibility into what work is in progress and which is final. This visibility can be tuned to let the whole world view your code or limit it to a small, trusted group.
 
