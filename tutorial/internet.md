@@ -40,7 +40,7 @@ Lucky for us, baker is pre-configured to flatten our dynamic site. And GitHub ha
 Open the `baker.config.js` file at the root of the project. We will instruct it to `output` files to the `docs` directory instead of `_dist` and set the name of our GitHub repository as the `domain`.
 
 ```{code-block} javascript
-:emphasize-lines: 7,11
+:emphasize-lines: 7,8,12
 
 const entrypoints = [
   // Add more script entrypoints here as needed
@@ -48,6 +48,7 @@ const entrypoints = [
 ];
 
 export default {
+  output: 'docs',
   domain: 'https://your-username.github.io',
   entrypoints: `scripts/${
     entrypoints.length > 1 ? `{${entrypoints.join(',')}}` : entrypoints[0]
