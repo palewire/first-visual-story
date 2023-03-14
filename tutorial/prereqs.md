@@ -45,6 +45,16 @@ node --version
 
 The number you get back is the version you have installed. If you get an error, you don't have Node.js and you seek out an installer. If you have a slightly older version, you are probably okay. But we make no guarantees. Consider upgrading.
 
+## Code compiler
+
+Our computer programming tools require a [code compiler](https://en.wikipedia.org/wiki/Compiler) that can install lower-level programs. Apple computers do not include one out of the box. If you're using an Apple, you'll need to install the XCode package, which includes a compiler. You can do this by opening your terminal and running the following command:
+
+```bash
+xcode-select --install
+```
+
+A popup message may ask for your approval. You should grant it. After the installation completes, close and reopen your terminal before continuing.
+
 ## The `npm` package manager
 
 Installing Node will also install [`npm`](<https://en.wikipedia.org/wiki/Npm_(software)>) on your computer, which stands for "Node Package Manager." We will use it to install open-source JavaScript packages beyond what’s provided by Node.JS, including tools that will help us draw charts and maps.
