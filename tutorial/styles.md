@@ -56,15 +56,8 @@ emphasize-lines: 6-8
 .graphics-container {
   display: flex;
   justify-content: space-between;
-  @media (max-width: 500px) {
-    display: block;
-  }
   .graphic {
     flex: 0 1 48%;
-    @media (max-width: 500px) {
-      display: block;
-      margin-bottom: 15px;
-    }
     iframe {
       min-height: 360px;
     }
