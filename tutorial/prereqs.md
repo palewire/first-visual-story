@@ -35,7 +35,7 @@ Regardless of your operating system, we recommend newcomers begin by installing 
 
 [Node.js](https://nodejs.org/en/) is an open-source programming framework built using JavaScript. Many programmers like it because it allows them to write [JavaScript](https://en.wikipedia.org/wiki/JavaScript), which was initially designed to run in web browsers, from the terminal or on a server.
 
-We recommend you use the latest [long-term support](https://en.wikipedia.org/wiki/Long-term_support) version, which at the time of this writing was `16.14.0`. The [Node.js site](https://nodejs.org) has [installer packages](https://nodejs.org/en/download/) available for Windows, MacOS and Linux.
+We recommend you use the latest [long-term support](https://en.wikipedia.org/wiki/Long-term_support) version, which at the time of this writing was `20.11.0`. The [Node.js site](https://nodejs.org) has [installer packages](https://nodejs.org/en/download/) available for Windows, MacOS and Linux.
 
 You can verify you have Node.js installed, and if so what version, by running the following in your terminal:
 
@@ -43,7 +43,7 @@ You can verify you have Node.js installed, and if so what version, by running th
 node --version
 ```
 
-The number you get back is the version you have installed. If you get an error, you don't have Node.js and you seek out an installer. If you have a slightly older version, you are probably okay. But we make no guarantees. Consider upgrading.
+If you get an error, you don't have Node.js and you should seek out an installer. If you see an older version, you are probably okay. But we make no guarantees. You should consider upgrading.
 
 ## Code compiler
 
@@ -65,9 +65,9 @@ You can verify you have `npm` installed by running the following command on your
 npm --version
 ```
 
-## Git and GitHub
+## Git
 
-The [`git`](http://git-scm.com/) program allows you to carefully track the changes you make to files over time. This is useful when you're working on your own, but quickly becomes essential on large software projects where you work with other developers.
+The [`git`](http://git-scm.com/) program allows you to carefully track the changes you make to files over time. This can be useful when you're working on your own, but quickly becomes essential when you work with other developers.
 
 You can verify `git` is installed from your command line like so:
 
@@ -75,11 +75,13 @@ You can verify `git` is installed from your command line like so:
 git --version
 ```
 
+If you don't have git installed, you can refer to these guides for [Windows](https://help.github.com/articles/set-up-git#platform-windows), [Apple](https://help.github.com/articles/set-up-git#platform-mac) and [Linux](https://help.github.com/articles/set-up-git#platform-linux) operating systems.
+
 ## GitHub
 
-[GitHub](https://github.com/) is a website that hosts `git` code repositories, both public and private. It comes with many helpful tools for reviewing code and managing projects. It also has some [extra tricks](http://pages.github.com/) that make it easy to publish web pages, which we will use later. GitHub offers helpful guides for installing Git for [Windows](https://help.github.com/articles/set-up-git#platform-windows), [Macs](https://help.github.com/articles/set-up-git#platform-mac) and [Linux](https://help.github.com/articles/set-up-git#platform-linux).
+[GitHub](https://github.com/) is a website that hosts `git` code repositories, both public and private. It comes with many helpful tools for reviewing code and managing projects. It also has some [extra tricks](http://pages.github.com/) that make it easy do a wide variety of tasks, including publishing web pages.
 
-[The free plan](https://github.com/pricing) is all that's required to complete this lesson. If you make a new account, make sure to confirm your email address with GitHub. We'll need that for something later.
+[The free plan](https://github.com/pricing) is all that's required to complete this lesson. If you make a new account, make sure to confirm your email address with GitHub. You'll need that to complete this lesson.
 
 ## The `gh` client
 
