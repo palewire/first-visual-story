@@ -24,15 +24,10 @@ a:hover {
 a:link, a:visited, a:hover, a:active {
     color: #0085c7;
 }
-header, h1, h3 {
-    font-family: Times, Times New Roman, serif;
-}
 h1, h3 {
+    font-family: Times, Times New Roman, serif;
     font-weight: bold;
-}
-header, section {
-    max-width: 880px;
-    padding: 0px 10px 15px 10px;
+    margin: 10px 0 5px 0;
 }
 h1 {
     padding: 0;
@@ -42,9 +37,6 @@ h1 {
     font-style: italic;
 	text-shadow: 0.3px 0.3px 0px gray;
     letter-spacing: .01em;
-}
-h1, h2 {
-    margin: 10px 0 5px 0;
 }
 .byline {
     margin: 6px 0 0 0;
