@@ -22,42 +22,7 @@ Ahead of this class, we have prepared two datawrapper charts for inclusion in th
 The [Datawrapper Academy](https://academy.datawrapper.de/) has documentation for making various types of charts, if you’re interested in learning more about the tool.
 ```
 
-In the `index.html` file, we’ll find a spot before the cards section for the charts. To keep things consistent with our previous component, let’s start with a `<section>` tag, a headline and short introduction.
-
-```html
-<section>
-  <h3>A South L.A. neighborhood stands apart</h3>
-  <p>
-    Harvard Park's 2016 homicide total was its highest in at least 15 years
-    despite a downward trend in killings across L.A. County.
-  </p>
-</section>
-```
-
-Next, we’ll want to create a container to hold the graphics. Give this `div` the class of `graphics-container`. Inside it, we'll add two other `divs` with the class `graphic`, one for each chart.
-
-```{code-block} html
----
-emphasize-lines: 7-14
----
-<section>
-  <h3>A South L.A. neighborhood stands apart</h3>
-  <p>
-    Harvard Park's 2016 homicide total was its highest in at least 15 years
-    despite a downward trend in killings across L.A. County.
-  </p>
-  <div class="graphics-container">
-    <div class="graphic">
-      <!-- first graphic’s embed code goes here -->
-    </div>
-    <div class="graphic">
-      <!-- second graphic’s embed code goes here -->
-    </div>
-  </div>
-</section>
-```
-
-Now that we have containers for the iframes, let’s go back and get those iframe embed codes and paste them within the `div`s with the class `graphic`.
+Now let’s go back and get those `iframe` embed codes and paste them within the `div`s with the class `graphic`.
 
 The iframe embed codes are located in the “Publish & Embed” step of each chart in Datawrapper. In cases where you make a chart yourself, you can find the code there. If you delegate the creation of an outside asset to colleague, they can provide you with the necessary iframe code. Let's simulate that here. Here's the `iframe` element for the first chart.
 
@@ -93,47 +58,45 @@ Copy that and paste it inside the first placeholder `div` in the previous code b
 
 ```{code-block} html
 ---
-emphasize-lines: 9-33
+emphasize-lines: 8-32
 ---
-<section>
-  <h3>A South L.A. neighborhood stands apart</h3>
-  <p>
-    Harvard Park's 2016 homicide total was its highest in at least 15 years
-    despite a downward trend in killings across L.A. County.
-  </p>
-  <div class="graphics-container">
-    <div class="graphic">
-      <iframe
-        title="County homicides, 2000-2017"
-        aria-label="Column Chart"
-        id="datawrapper-chart-XSj9X"
-        src="https://datawrapper.dwcdn.net/XSj9X/5/"
-        scrolling="no"
-        frameborder="0"
-        style="width: 0; min-width: 100% !important; border: none;"
-        height="350"
-      ></iframe>
-      <script type="text/javascript">
-        !(function () {
-          'use strict';
-          window.addEventListener('message', function (e) {
-            if (void 0 !== e.data['datawrapper-height']) {
-              var t = document.querySelectorAll('iframe');
-              for (var a in e.data['datawrapper-height'])
-                for (var r = 0; r < t.length; r++) {
-                  if (t[r].contentWindow === e.source)
-                    t[r].style.height = e.data['datawrapper-height'][a] + 'px';
-                }
-            }
-          });
-        })();
-      </script>
-    </div>
-    <div class="graphic">
-      <!-- second graphic’s embed code goes here -->
-    </div>
+<h3>A South L.A. neighborhood stands apart</h3>
+<p>
+  Harvard Park's 2016 homicide total was its highest in at least 15 years
+  despite a downward trend in killings across L.A. County.
+</p>
+<div class="graphics-container">
+  <div class="graphic">
+    <iframe
+      title="County homicides, 2000-2017"
+      aria-label="Column Chart"
+      id="datawrapper-chart-XSj9X"
+      src="https://datawrapper.dwcdn.net/XSj9X/5/"
+      scrolling="no"
+      frameborder="0"
+      style="width: 0; min-width: 100% !important; border: none;"
+      height="350"
+    ></iframe>
+    <script type="text/javascript">
+      !(function () {
+        'use strict';
+        window.addEventListener('message', function (e) {
+          if (void 0 !== e.data['datawrapper-height']) {
+            var t = document.querySelectorAll('iframe');
+            for (var a in e.data['datawrapper-height'])
+              for (var r = 0; r < t.length; r++) {
+                if (t[r].contentWindow === e.source)
+                  t[r].style.height = e.data['datawrapper-height'][a] + 'px';
+              }
+          }
+        });
+      })();
+    </script>
   </div>
-</section>
+  <div class="graphic">
+    <!-- second graphic’s embed code goes here -->
+  </div>
+</div>
 ```
 
 Now copy the code for the second chart.
@@ -170,71 +133,69 @@ And paste it in the second placeholder.
 
 ```{code-block} html
 ---
-emphasize-lines: 36-60
+emphasize-lines: 35-59
 ---
-<section>
-  <h3>A South L.A. neighborhood stands apart</h3>
-  <p>
-    Harvard Park's 2016 homicide total was its highest in at least 15 years
-    despite a downward trend in killings across L.A. County.
-  </p>
-  <div class="graphics-container">
-    <div class="graphic">
-      <iframe
-        title="County homicides, 2000-2017"
-        aria-label="Column Chart"
-        id="datawrapper-chart-XSj9X"
-        src="https://datawrapper.dwcdn.net/XSj9X/5/"
-        scrolling="no"
-        frameborder="0"
-        style="width: 0; min-width: 100% !important; border: none;"
-        height="350"
-      ></iframe>
-      <script type="text/javascript">
-        !(function () {
-          'use strict';
-          window.addEventListener('message', function (e) {
-            if (void 0 !== e.data['datawrapper-height']) {
-              var t = document.querySelectorAll('iframe');
-              for (var a in e.data['datawrapper-height'])
-                for (var r = 0; r < t.length; r++) {
-                  if (t[r].contentWindow === e.source)
-                    t[r].style.height = e.data['datawrapper-height'][a] + 'px';
-                }
-            }
-          });
-        })();
-      </script>
-    </div>
-    <div class="graphic">
-      <iframe
-        title="Harvard Park homicides, 2000-2017"
-        aria-label="Column Chart"
-        id="datawrapper-chart-qvF1G"
-        src="https://datawrapper.dwcdn.net/qvF1G/4/"
-        scrolling="no"
-        frameborder="0"
-        style="width: 0; min-width: 100% !important; border: none;"
-        height="350"
-      ></iframe>
-      <script type="text/javascript">
-        !(function () {
-          'use strict';
-          window.addEventListener('message', function (e) {
-            if (void 0 !== e.data['datawrapper-height']) {
-              var t = document.querySelectorAll('iframe');
-              for (var a in e.data['datawrapper-height'])
-                for (var r = 0; r < t.length; r++) {
-                  if (t[r].contentWindow === e.source)
-                    t[r].style.height = e.data['datawrapper-height'][a] + 'px';
-                }
-            }
-          });
-        })();
-      </script>
-    </div>
+<h3>A South L.A. neighborhood stands apart</h3>
+<p>
+  Harvard Park's 2016 homicide total was its highest in at least 15 years
+  despite a downward trend in killings across L.A. County.
+</p>
+<div class="graphics-container">
+  <div class="graphic">
+    <iframe
+      title="County homicides, 2000-2017"
+      aria-label="Column Chart"
+      id="datawrapper-chart-XSj9X"
+      src="https://datawrapper.dwcdn.net/XSj9X/5/"
+      scrolling="no"
+      frameborder="0"
+      style="width: 0; min-width: 100% !important; border: none;"
+      height="350"
+    ></iframe>
+    <script type="text/javascript">
+      !(function () {
+        'use strict';
+        window.addEventListener('message', function (e) {
+          if (void 0 !== e.data['datawrapper-height']) {
+            var t = document.querySelectorAll('iframe');
+            for (var a in e.data['datawrapper-height'])
+              for (var r = 0; r < t.length; r++) {
+                if (t[r].contentWindow === e.source)
+                  t[r].style.height = e.data['datawrapper-height'][a] + 'px';
+              }
+          }
+        });
+      })();
+    </script>
   </div>
-</section>
+  <div class="graphic">
+    <iframe
+      title="Harvard Park homicides, 2000-2017"
+      aria-label="Column Chart"
+      id="datawrapper-chart-qvF1G"
+      src="https://datawrapper.dwcdn.net/qvF1G/4/"
+      scrolling="no"
+      frameborder="0"
+      style="width: 0; min-width: 100% !important; border: none;"
+      height="350"
+    ></iframe>
+    <script type="text/javascript">
+      !(function () {
+        'use strict';
+        window.addEventListener('message', function (e) {
+          if (void 0 !== e.data['datawrapper-height']) {
+            var t = document.querySelectorAll('iframe');
+            for (var a in e.data['datawrapper-height'])
+              for (var r = 0; r < t.length; r++) {
+                if (t[r].contentWindow === e.source)
+                  t[r].style.height = e.data['datawrapper-height'][a] + 'px';
+              }
+          }
+        });
+      })();
+    </script>
+  </div>
+</div>
 ```
 
 At this point, you should see something like this on your page:

@@ -6,63 +6,56 @@
 <time datetime="2022-03-05" pubdate>Mar. 5, 2022</time>
 {% endblock %}
 {% block content %}
-<section>
-  <p>The area around Harvard Park was the deadliest place for African Americans in Los Angeles County last year,
+<p>The area around Harvard Park was the deadliest place for African Americans in Los Angeles County last year,
     according to <a href="http://homicide.latimes.com/">The Times’ Homicide Report</a>. So far this year, six people
     have been killed. Most of the victims were black men.</p>
-</section>
-<section>
-  <h3>One corner. Four killings</h3>
-  <p>The southwest corner of Harvard Park, at West 62nd Street and Harvard Boulevard, has been especially deadly. In the
-    last year-and-a-half, four men have been killed there — while sitting in a car, trying to defuse an argument or
-    walking home from the barber shop or the corner store.</p>
-  <div id="map"></div>
-</section>
 
-<section>
-  <h3>A South L.A. neighborhood stands apart</h3>
-  <p>Harvard Park's 2016 homicide total was its highest in at least 15 years despite a downward trend in killings across
-    L.A. County.</p>
-  <div class="graphics-container">
-    <div class="graphic">
-      <iframe title="County homicides, 2000-2017" aria-label="Column Chart" id="datawrapper-chart-XSj9X"
-        src="https://datawrapper.dwcdn.net/XSj9X/5/" scrolling="no" frameborder="0"
-        style="width: 0; min-width: 100% !important; border: none;" height="350"></iframe>
-      <script type="text/javascript">!function () { "use strict"; window.addEventListener("message", (function (e) { if (void 0 !== e.data["datawrapper-height"]) { var t = document.querySelectorAll("iframe"); for (var a in e.data["datawrapper-height"]) for (var r = 0; r < t.length; r++) { if (t[r].contentWindow === e.source) t[r].style.height = e.data["datawrapper-height"][a] + "px" } } })) }();
-      </script>
-    </div>
-    <div class="graphic">
-      <iframe title="Harvard Park homicides, 2000-2017" aria-label="Column Chart" id="datawrapper-chart-qvF1G"
-        src="https://datawrapper.dwcdn.net/qvF1G/4/" scrolling="no" frameborder="0"
-        style="width: 0; min-width: 100% !important; border: none;" height="350"></iframe>
-      <script type="text/javascript">!function () { "use strict"; window.addEventListener("message", (function (e) { if (void 0 !== e.data["datawrapper-height"]) { var t = document.querySelectorAll("iframe"); for (var a in e.data["datawrapper-height"]) for (var r = 0; r < t.length; r++) { if (t[r].contentWindow === e.source) t[r].style.height = e.data["datawrapper-height"][a] + "px" } } })) }();
-      </script>
-    </div>
+<h3>One corner. Four killings</h3>
+<p>The southwest corner of Harvard Park, at West 62nd Street and Harvard Boulevard, has been especially deadly. In the
+  last year-and-a-half, four men have been killed there — while sitting in a car, trying to defuse an argument or
+  walking home from the barber shop or the corner store.</p>
+<div id="map"></div>
+
+<h3>A South L.A. neighborhood stands apart</h3>
+<p>Harvard Park's 2016 homicide total was its highest in at least 15 years despite a downward trend in killings across
+  L.A. County.</p>
+<div class="graphics-container">
+  <div class="graphic">
+    <iframe title="County homicides, 2000-2017" aria-label="Column Chart" id="datawrapper-chart-XSj9X"
+      src="https://datawrapper.dwcdn.net/XSj9X/5/" scrolling="no" frameborder="0"
+      style="width: 0; min-width: 100% !important; border: none;" height="350"></iframe>
+    <script type="text/javascript">!function () { "use strict"; window.addEventListener("message", (function (e) { if (void 0 !== e.data["datawrapper-height"]) { var t = document.querySelectorAll("iframe"); for (var a in e.data["datawrapper-height"]) for (var r = 0; r < t.length; r++) { if (t[r].contentWindow === e.source) t[r].style.height = e.data["datawrapper-height"][a] + "px" } } })) }();
+    </script>
   </div>
-</section>
+  <div class="graphic">
+    <iframe title="Harvard Park homicides, 2000-2017" aria-label="Column Chart" id="datawrapper-chart-qvF1G"
+      src="https://datawrapper.dwcdn.net/qvF1G/4/" scrolling="no" frameborder="0"
+      style="width: 0; min-width: 100% !important; border: none;" height="350"></iframe>
+    <script type="text/javascript">!function () { "use strict"; window.addEventListener("message", (function (e) { if (void 0 !== e.data["datawrapper-height"]) { var t = document.querySelectorAll("iframe"); for (var a in e.data["datawrapper-height"]) for (var r = 0; r < t.length; r++) { if (t[r].contentWindow === e.source) t[r].style.height = e.data["datawrapper-height"][a] + "px" } } })) }();
+    </script>
+  </div>
+</div>
 
-<section>
-  <h3>Lives lost in Harvard Park</h3>
-  <p>The {{ harvard_park_homicides|length }} homicides in Harvard Park since 2000 were primarily black and Latino males,
-    but the list includes husbands, wives, fathers, mothers of all ages, and even some small children.</p>
-  <div class="row" data-masonry='{"percentPosition": true }'>
-    {% for obj in harvard_park_homicides %}
-    <div class="col-sm-6 col-lg-4 mb-4">
-      <div class="card">
-        {% if obj.image %}<img class="card-img-top" src="{{ obj.image }}"
-          alt="{{ obj.first_name }} {{ obj.last_name }}">{% endif %}
-        <div class="card-body">
-          <a href="http://homicide.latimes.com/post/{{ obj.slug }}" target="_blank">
-            <strong>
-              <h5 class="card-title">{{ obj.first_name }} {{ obj.last_name }}</h5>
-            </strong>
-          </a>
-          <p class="card-text">{{ obj.last_name }}, a {{ obj.age}}-year-old {{ obj.race }} {{ obj.gender }}, died in {{
-            obj.death_year }}.</p>
-        </div>
+<h3>Lives lost in Harvard Park</h3>
+<p>The {{ harvard_park_homicides|length }} homicides in Harvard Park since 2000 were primarily black and Latino males,
+  but the list includes husbands, wives, fathers, mothers of all ages, and even some small children.</p>
+<div class="row" data-masonry='{"percentPosition": true }'>
+  {% for obj in harvard_park_homicides %}
+  <div class="col-sm-6 col-lg-4 mb-4">
+    <div class="card">
+      {% if obj.image %}<img class="card-img-top" src="{{ obj.image }}"
+        alt="{{ obj.first_name }} {{ obj.last_name }}">{% endif %}
+      <div class="card-body">
+        <a href="http://homicide.latimes.com/post/{{ obj.slug }}" target="_blank">
+          <strong>
+            <h5 class="card-title">{{ obj.first_name }} {{ obj.last_name }}</h5>
+          </strong>
+        </a>
+        <p class="card-text">{{ obj.last_name }}, a {{ obj.age}}-year-old {{ obj.race }} {{ obj.gender }}, died in {{
+          obj.death_year }}.</p>
       </div>
     </div>
-    {% endfor %}
   </div>
-</section>
+  {% endfor %}
+</div>
 {% endblock %}

@@ -230,38 +230,6 @@ And now, some introductory text. We can use a new templating trick, the `length`
 
 ![](_static/cards-description.png)
 
-Let's set up our card grid as its own section by adding `<section>` tags. This is a simple example of adding some hidden stucture to your page so it's easier for search engines and other spiders to parse.
-
-```{code-block} jinja
-:emphasize-lines: 1,21
-
-<section>
-    <h3>Lives lost in Harvard Park</h3>
-    <p>The {{ harvard_park_homicides|length }} homicides in Harvard Park since 2000 were primarily black and Latino males, but the list includes husbands, wives, fathers, mothers of all ages, and even some small children.</p>
-    <div class="row" data-masonry='{"percentPosition": true }'>
-        {% for obj in harvard_park_homicides %}
-        <div class="col-sm-6 col-lg-4 mb-4">
-        <div class="card">
-          {% if obj.image %}<img class="card-img-top" src="{{ obj.image }}" alt="{{ obj.first_name }} {{ obj.last_name }}">{% endif %}
-          <div class="card-body">
-            <a href="http://homicide.latimes.com/post/{{ obj.slug }}" target="_blank">
-                <strong>
-                    <h5 class="card-title">{{ obj.first_name }} {{ obj.last_name }}</h5>
-                </strong>
-            </a>
-            <p class="card-text">{{ obj.last_name }}, a {{ obj.age}}-year-old {{ obj.race }} {{ obj.gender }}, died in {{ obj.death_year }}.</p>
-          </div>
-        </div>
-        </div>
-        {% endfor %}
-    </div>
-</section>
-```
-
-```{image} _static/cards-full-section.png
-:width: 100%
-```
-
 ## Commit your work
 
 We're all done here. So let's commit our work for this chapter.

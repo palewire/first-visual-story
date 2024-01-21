@@ -57,9 +57,8 @@ Now, back in the `index.html` template, we should create a placeholder in the pa
 
 <div id="map"></div>
 
-<section>
-    <h3>A South L.A. neighborhood stands apart</h3>
-    <p>Harvard Park's 2016 homicide total was its highest in at least 15 years despite a downward trend in killings across L.A. County.</p>
+<h3>A South L.A. neighborhood stands apart</h3>
+<p>Harvard Park's 2016 homicide total was its highest in at least 15 years despite a downward trend in killings across L.A. County.</p>
 ```
 
 To bring the map to life, open the `app.js` file and paste in the following block of code, which will import our data file and make a simple Leaflet map.
@@ -205,22 +204,6 @@ Then an introductory paragraph.
 :width: 100%
 ```
 
-And wrap it all up in a `<section>` tag.
-
-```{code-block} html
-:emphasize-lines: 1,5
-
-<section>
-    <h3>One corner. Four killings</h3>
-    <p>The southwest corner of Harvard Park, at West 62nd Street and Harvard Boulevard, has been especially deadly. In the last year-and-a-half, four men have been killed there — while sitting in a car, trying to defuse an argument or walking home from the barber shop or the corner store.</p>
-    <div id="map"></div>
-</section>
-```
-
-```{image} _static/map-section.png?v=2
-:width: 100%
-```
-
 Congratulations. You've created a custom map. Before we get on to the business of sharing it with the world, we need a couple more pieces here.
 
 Hey. How about a headline for the whole package?
@@ -258,17 +241,14 @@ And a real byline.
 And let's a write a lead at the top of the content block.
 
 ```{code-block} html
-:emphasize-lines: 2-4
+:emphasize-lines: 1-4
 
 {% block content %}
-<section>
     <p>The area around Harvard Park was the deadliest place for African Americans in Los Angeles County last year, according to <a href="http://homicide.latimes.com/">The Times’ Homicide Report</a>. So far this year, six people have been killed. Most of the victims were black men.</p>
-</section>
-<section>
+
     <h3>One corner. Four killings</h3>
     <p>The southwest corner of Harvard Park, at West 62nd Street and Harvard Boulevard, has been especially deadly. In the last year-and-a-half, four men have been killed there — while sitting in a car, trying to defuse an argument or walking home from the barber shop or the corner store.</p>
     <div id="map"></div>
-</section>
 ```
 
 ```{image} _static/final-lead.png?v=2
