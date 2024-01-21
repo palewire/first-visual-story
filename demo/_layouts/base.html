@@ -23,15 +23,13 @@
   <nav>
     <img src="https://gist.githubusercontent.com/palewire/1035cd306a2f85b362b1a20ce315b8eb/raw/7c999fc46dbfe52f0e2ff81e09cca50198366c4c/ire-logo.png">
   </nav>
-  <header>
-    <h1>{% block headline %}{% endblock %}</h1>
-    <div class="byline">
-      {% block byline %}{% endblock %}
-    </div>
-    <div class="pubdate">
-      {% block pubdate %}{% endblock %}
-    </div>
-  </header>
+  <h1>{% block headline %}{% endblock %}</h1>
+  <div class="byline">
+    {% block byline %}{% endblock %}
+  </div>
+  <div class="pubdate">
+    {% block pubdate %}{% endblock %}
+  </div>
   {% block content %}
   {% endblock content %}
 </body>
