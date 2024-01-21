@@ -2,7 +2,7 @@ body {
     margin: 0 auto;
     padding: 0;
     font-family: Verdana, sans-serif;
-    background-color: ##F2EFEC;
+    background-color: #F2EFEC;
     max-width: 880px;
 }
 nav {
@@ -32,11 +32,9 @@ h1, h3 {
 }
 header, section {
     max-width: 880px;
-    margin: 20px auto 15px auto;
     padding: 0px 10px 15px 10px;
 }
 h1 {
-    margin: 0;
     padding: 0;
     font-size: 44px;
     line-height: 50px;
@@ -44,6 +42,9 @@ h1 {
     font-style: italic;
 	text-shadow: 0.3px 0.3px 0px gray;
     letter-spacing: .01em;
+}
+h1, h2 {
+    margin: 10px 0 5px 0;
 }
 .byline {
     margin: 6px 0 0 0;
@@ -67,15 +68,12 @@ p:first-child:first-letter {
   padding-right: 8px;
   padding-left: 3px;
 }
-section {
-    display: inline-block;
-}
-section p {
+p {
     font-size: 17px;
     line-height: 27px;
     margin: 0 0 20px 0;
 }
-section p:last-child {
+p:last-child {
     margin: 0;
 }
 #map {
