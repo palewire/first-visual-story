@@ -241,14 +241,14 @@ And a real byline.
 And let's a write a lead at the top of the content block.
 
 ```{code-block} html
-:emphasize-lines: 1-4
+:emphasize-lines: 2
 
 {% block content %}
-    <p>The area around Harvard Park was the deadliest place for African Americans in Los Angeles County last year, according to <a href="http://homicide.latimes.com/">The Times’ Homicide Report</a>. So far this year, six people have been killed. Most of the victims were black men.</p>
+<p>The area around Harvard Park was the deadliest place for African Americans in Los Angeles County last year, according to <a href="http://homicide.latimes.com/">The Times’ Homicide Report</a>. So far this year, six people have been killed. Most of the victims were black men.</p>
 
-    <h3>One corner. Four killings</h3>
-    <p>The southwest corner of Harvard Park, at West 62nd Street and Harvard Boulevard, has been especially deadly. In the last year-and-a-half, four men have been killed there — while sitting in a car, trying to defuse an argument or walking home from the barber shop or the corner store.</p>
-    <div id="map"></div>
+<h3>One corner. Four killings</h3>
+<p>The southwest corner of Harvard Park, at West 62nd Street and Harvard Boulevard, has been especially deadly. In the last year-and-a-half, four men have been killed there — while sitting in a car, trying to defuse an argument or walking home from the barber shop or the corner store.</p>
+<div id="map"></div>
 ```
 
 ```{image} _static/final-lead.png?v=2
