@@ -1,7 +1,3 @@
-```{include} _templates/nav.html
-
-```
-
 # Publishing
 
 In in our last chapter, all the work we've done will finally be published online.

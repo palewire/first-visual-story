@@ -5,7 +5,7 @@ extensions = [
     "myst_parser"
 ]
 templates_path = ["_templates"]
-source_suffix = ".rst"
+source_suffix = ".md"
 master_doc = "index"
 
 project = 'First Visual Story'
@@ -14,25 +14,16 @@ copyright = f'{year}'
 
 exclude_patterns = ["_build"]
 
-html_theme = "alabaster"
+html_theme = "palewire"
 html_sidebars = {
     '**': [
         'about.html',
         'navigation.html',
-        'relations.html',
-        'searchbox.html',
-        'donate.html',
     ]
 }
 html_theme_options = {
-    "canonical_url": f"https://palewi.re/docs/{project}/",
-    "show_powered_by": False,
-    "show_relbar_bottom": True,
+    "canonical_url": f"https://palewi.re/docs/first-visual-story/",
 }
-
 html_static_path = ['_static']
-html_css_files = [
-    'css/custom.css',
-]
 
 pygments_style = 'sphinx'

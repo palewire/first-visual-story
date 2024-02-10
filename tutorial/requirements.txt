@@ -1,3 +1,0 @@
-Sphinx
-sphinx-multitoc-numbering
-myst-parser

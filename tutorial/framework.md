@@ -1,7 +1,3 @@
-```{include} _templates/nav.html
-
-```
-
 # Framework
 
 Now that we have our `git` repository created, we’re going to start installing the tools we need to start building a page.

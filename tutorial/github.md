@@ -1,7 +1,3 @@
-```{include} _templates/nav.html
-
-```
-
 # GitHub
 
 This chapter will show you how to get a `git` code repository up and running. At most news organizations where you'd be collaborating on code with other developers, you'll rely heavily on the GitHub web app.

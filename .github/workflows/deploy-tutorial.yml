@@ -14,32 +14,64 @@ jobs:
         shell: bash
         working-directory: tutorial
     steps:
-    - uses: actions/checkout@v3
-    
-    - name: Install Python
-      uses: actions/setup-python@v4
-      with:
-        python-version: '3.9'
+      - id: checkout
+        name: Checkout
+        uses: actions/checkout@v4
 
-    - name: Install dependencies
-      run: pip install -r requirements.txt
+      - id: setup-python
+        name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pipenv'
 
-    - name: Build Sphinx site
-      run: sphinx-build -b html ./ _build
+      - id: install-pipenv
+        name: Install pipenv
+        run: curl https://raw.githubusercontent.com/pypa/pipenv/master/get-pipenv.py | python
+        shell: bash
 
-    - name: Configure AWS Credentials
-      uses: aws-actions/configure-aws-credentials@v1.7.0
-      with:
-        aws-access-key-id: ${{ secrets.PALEWIRE_DOCS_AWS_ACCESS_KEY_ID }}
-        aws-secret-access-key: ${{ secrets.PALEWIRE_DOCS_AWS_SECRET_ACCESS_KEY }}
-        aws-region: us-east-1
+      - id: install-python-dependencies
+        name: Install Python dependencies
+        run: pipenv sync --dev
+        shell: bash
 
-    - name: Upload
-      uses: datadesk/delivery-deploy-action@v1
-      with:
-        bucket: palewire-docs
-        base-path: first-visual-story
-        dir: tutorial/_build/
-        should-cache: false
-        use-accelerate-endpoint: false
-        public: true
+      - name: Build Sphinx site
+        run: pipenv run sphinx-build -b html ./tutorial _build
+
+      - id: upload-release-candidate
+        name: Upload release candidate
+        uses: actions/upload-artifact@v4
+        with:
+          name: release-candidate
+          path: tutorial/_build/
+
+  deploy:
+    name: Deploy
+    runs-on: ubuntu-latest
+    needs: build
+    if: ${{ github.ref_name == 'main' }}
+    steps:
+      - name: Download release candidate
+        uses: actions/download-artifact@v4
+        with:
+          name: release-candidate
+          path: ./docs/
+
+      - id: configure-aws
+        name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.PALEWIRE_DOCS_AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.PALEWIRE_DOCS_AWS_SECRET_ACCESS_KEY }}
+          aws-region: us-east-1
+
+      - id: upload-to-s3
+        name: Upload documentation to Amazon S3
+        uses: datadesk/delivery-deploy-action@v1
+        with:
+          bucket: ${{ secrets.PALEWIRE_DOCS_AWS_BUCKET }}
+          base-path: first-visual-story
+          dir: ./docs/
+          should-cache: false
+          use-accelerate-endpoint: false
+          public: true

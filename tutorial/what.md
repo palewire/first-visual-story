@@ -1,7 +1,3 @@
-```{include} _templates/nav.html
-
-```
-
 # What you will make
 
 As part of this class, you'll gain a basic understanding of how graphics, design and data teams across the journalism industry build pages that require customized computer programming.

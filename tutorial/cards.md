@@ -1,6 +1,3 @@
-```{include} _templates/nav.html
-```
-
 # HTML
 
 This chapter will guide you through converting your list of victims in a grid with photographs.

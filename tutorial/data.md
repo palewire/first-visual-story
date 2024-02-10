@@ -1,7 +1,3 @@
-```{include} _templates/nav.html
-
-```
-
 # Data
 
 We've got our system set up. Now it's time to start telling our story. To do that, we need our data. This chapter will guide you through how to introduce it to the page.

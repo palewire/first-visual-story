@@ -10,6 +10,7 @@ Sphinx = "*"
 sphinx-autobuild = "*"
 sphinx-multitoc-numbering = "*"
 myst-parser = "*"
+sphinx-palewire-theme = "==0.0.18"
 
 [requires]
-python_version = "3.9"
+python_version = "3.11"

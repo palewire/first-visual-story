@@ -1,7 +1,3 @@
-```{include} _templates/nav.html
-
-```
-
 # Prerequisites
 
 This chapter will help you prepare your computer with the required software. Stop and make sure you have all these tools installed and working properly. Otherwise, [you're gonna have a bad time](https://www.youtube.com/watch?v=ynxPshq8ERo).

@@ -1,6 +1,3 @@
-```{include} _templates/nav.html
-```
-
 # Styles
 
 We want the charts to be positioned side-by-side, so we will need to add some code that dictates the design of the page.

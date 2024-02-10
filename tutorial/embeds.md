@@ -1,7 +1,3 @@
-```{include} _templates/nav.html
-
-```
-
 # Embeds
 
 You won't have to code up every element yourself. Visual stories often include assets hosted elsewhere, like videos from YouTube or maps from Mapbox. In those cases, you may be given ready-to-serve components that you only need to embed in the page.

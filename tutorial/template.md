@@ -1,7 +1,3 @@
-```{include} _templates/nav.html
-
-```
-
 # Template
 
 This chapter will show you how to start editing content and customizing your page.

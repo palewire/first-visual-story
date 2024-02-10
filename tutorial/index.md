@@ -1,6 +1,3 @@
-```{include} _templates/nav.html
-```
-
 # First Visual Story
 
 A step-by-step guide to publishing a standalone story from a dataset.
