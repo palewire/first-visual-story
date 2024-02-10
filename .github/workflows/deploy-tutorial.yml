@@ -6,13 +6,12 @@ on:
   workflow_dispatch:
 
 jobs:
-  docs:
-    name: Deploy
+  build:
+    name: Build
     runs-on: ubuntu-latest
     defaults:
       run:
         shell: bash
-        working-directory: tutorial
     steps:
       - id: checkout
         name: Checkout
@@ -43,7 +42,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: release-candidate
-          path: tutorial/_build/
+          path: ./_build/
 
   deploy:
     name: Deploy
