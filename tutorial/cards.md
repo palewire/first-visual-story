@@ -18,13 +18,13 @@ We aim to create a grid of victims where each block will have a picture and some
 
 ## Add division tags
 
-First, we need to set up our grid. To do that, we need to talk about [HTML's division tag](https://www.w3schools.com/Tags/tag_div.asp), also known as a `<div>`. In simple terms, a div is a container. Like any container, divisions hold things. Divisions can be nested inside of each other, like putting one box inside another box.
+First, we need to set up our grid. To do that, we need to talk about [HTML's division tag](https://www.w3schools.com/Tags/tag_div.asp), also known as a `<div>`. In simple terms, a division is a container. Like any container, it holds things. Divisions can be nested inside of each other, like putting one box inside another box.
 
 This is how Bootstrap cards work. Each card is a container which has additional containers inside it to hold, in this example, a picture, the victim's name, age, race and when he or she was killed.
 
 Like other HTML tags, divisions can have `class` attributes that help identify their function and link them to cosmetic styles. Bootstrap provides us with a standard layout of boxes that, if structured and labeled properly, will instantly snap together to look like cards.
 
-Let's give it a try. We will start by creating a container div for each victim. We'll add just the name of the first and last name of each victim first.
+Let's give it a try. We will start by creating a container for each victim. We'll add just the name of the first and last name of each victim first.
 
 ```{code-block} jinja
 :emphasize-lines: 3-7
@@ -81,9 +81,9 @@ Ugh. You save and nothing changes on localhost. What’s wrong? When in doubt, t
 
 ![](_static/card-image-fail.png)
 
-Baker has raised an error. Look carefully and you can see it’s telling you that `attempted to output null or undefined value`. This means you tried to print something in your template that doesn’t exist. Check your data and you’ll see that not every victim has an image. So trying to print one for every iteration of the `for` loop caused this crash.
+Baker has raised an error. Look carefully and you can see it’s telling you that `attempted to output null or undefined value`. This means you tried to print something in your template that doesn’t exist. Check your data and you’ll see that not every victim has an image. So trying to print one for every iteration of the loop caused a crash.
 
-To fix it, let's add an `if` clause around the image tag to check for an image in the data. This way, our code will loop through the list of victims and if there is an image it will add it to the right card. If not, the code will move on to the next row in the data.
+To fix it, let's add an `{% if %}` clause around the image tag to check for an image in the data. This way, our code will loop through the list of victims and if there is an image it will add it to the right card. If not, the code will skip ahead to the next row.
 
 ```{code-block} jinja
 :emphasize-lines: 3
@@ -111,7 +111,8 @@ To arrange our cards using Bootstrap’s system, we need to play by Bootstrap's 
 
 Look at [its documentation](https://getbootstrap.com/docs/5.1/examples/masonry/) and you’ll see that Bootstrap asks us to wrap our cards in a div with the class `row` and a special attribute required by Masonry, the Javascript tool that will layout the page. It also wants us to use some special Bootstrap classes to dictate how wide our cards will be.
 
-Make the following changes. Remember there’s no shame in using copy and paste.
+Make the following changes. Remember there’s no shame in using copy and paste. And don't miss that the new division is outside of our for loop, meaning it only appears on the page once with all of the cards inside of it.
+
 
 ```{code-block} jinja
 :emphasize-lines: 1,3,11,13
@@ -133,11 +134,7 @@ Make the following changes. Remember there’s no shame in using copy and paste.
 
 ![](_static/cards-working.png)
 
-```{note}
-Notice that the new division is outside of our `for` loop, meaning it only appears on the page once with all of the cards inside of it.
-```
-
-We're not done yet. We want to be able to click on each card and be redirected to the victim's page on the Los Angeles Times Homicide Report site. While we're at it, let's add some `<strong>` tags to the victims' names to make them stand out from the sentence about them.
+We want to be able to click on each card and be redirected to the victim's page on the Los Angeles Times Homicide Report site. While we're at it, let's add some `<strong>` tags to the victims' names to make them stand out from the sentence about them.
 
 ```{code-block} jinja
 :emphasize-lines: 7-11
