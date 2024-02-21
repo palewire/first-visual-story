@@ -2,11 +2,6 @@
 
 Next we'll move on to creating a map focused on West 62nd Street and Harvard Boulevard, an intersection in South Los Angeles where four men died in less than a year and a half.
 
-```{contents} Sections
-  :depth: 1
-  :local:
-```
-
 ## What is JavaScript?
 
 To draw the map we will rely on [Leaflet](http://leafletjs.com), a JavaScript library for creating maps. JavaScript is a programming language that is primarily used to create interactive websites. JavaScript code is typically executed directly by the browser, so it can run on the user's computer, which allows for faster and more responsive websites, as well as a better user experience.
