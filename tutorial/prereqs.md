@@ -2,7 +2,7 @@
 
 This chapter will help you prepare your computer with the required software. Stop and make sure you have all these tools installed and working properly.
 
-```{contents} Sections
+```{contents} Checklist
   :depth: 1
   :local:
 ```
@@ -13,17 +13,15 @@ Whether you know it or not, there is a way to open a special window and directly
 
 On Windows this is called the “command prompt.” On MacOS it is called the “terminal.” Others may call it the “command line.” They’re the same thing, just in different slightly shapes.
 
-```{note}
 If you're a Windows user, we recommend you avoid the standard command line provided by the operating system. Instead, you'd be well served by the [Windows Subsystem for Linux](https://docs.microsoft.com/en-us/windows/wsl/install-win10), which will create a development environment better suited for open-source software work.
 
 We recommend you install the Ubuntu distribution from the Windows Store. This will give you access to a generic terminal without the quirks of Windows.
-```
 
 ## Text editor
 
-A program like Microsoft Word, which can do all sorts of text formatting like change the size and color of words, is not what you need. Do not try to use it.
+A program like Microsoft Word, which can do all sorts of text formatting like change the size and color of words, is not what you need. Do not use it for this class.
 
-You need a program that works with simple ["plain text" files](https://en.wikipedia.org/wiki/Text_file), and is therefore capable of editing documents containing Python code, HTML markup and other languages without dressing them up. Such programs are easy to find and some of the best ones are free.
+You need a program that works with simple ["plain text,"](https://en.wikipedia.org/wiki/Text_file) and is therefore capable of editing documents containing Python code, HTML markup and other computer-programming instructions without dressing them up. Such programs are easy to find and some of the best ones are free.
 
 Regardless of your operating system, we recommend newcomers begin by installing [Visual Studio Code](https://code.visualstudio.com/). [Atom](https://atom.io) and [Sublime Text](https://www.sublimetext.com/) are also excellent options. They’re all free.
 
@@ -31,7 +29,7 @@ Regardless of your operating system, we recommend newcomers begin by installing 
 
 [Node.js](https://nodejs.org/en/) is an open-source programming framework built using JavaScript. Many programmers like it because it allows them to write [JavaScript](https://en.wikipedia.org/wiki/JavaScript), which was initially designed to run in web browsers, from the terminal or on a server.
 
-We recommend you use the latest [long-term support](https://en.wikipedia.org/wiki/Long-term_support) version, which at the time of this writing was `20.11.0`. The [Node.js site](https://nodejs.org) has [installer packages](https://nodejs.org/en/download/) available for Windows, MacOS and Linux.
+We recommend you use the latest [long-term support](https://en.wikipedia.org/wiki/Long-term_support) version, which at the time of this writing was `20.11`. The [Node.js site](https://nodejs.org) has [installer packages](https://nodejs.org/en/download/) available for Windows, MacOS and Linux.
 
 You can verify you have Node.js installed, and if so what version, by running the following in your terminal:
 
@@ -43,7 +41,9 @@ If you get an error, you don't have Node.js and you should seek out an installer
 
 ## Code compiler
 
-Our computer programming tools require a [code compiler](https://en.wikipedia.org/wiki/Compiler) that can install lower-level programs. Apple computers do not include one out of the box. If you're using an Apple, you'll need to install the XCode package, which includes a compiler. You can do this by opening your terminal and running the following command:
+Our computer programming tools require a [code compiler](https://en.wikipedia.org/wiki/Compiler) that can install lower-level programs that are written in languages like C and C++.
+
+Most modern computers come with one, but Apple computers do not include one out of the box. If you're using an Apple, you'll need to install the XCode package, which includes a compiler. You can do this by opening your terminal and running the following command:
 
 ```bash
 xcode-select --install
@@ -53,7 +53,7 @@ A popup message may ask for your approval. You should grant it. After the instal
 
 ## The `npm` package manager
 
-Installing Node will also install [`npm`](<https://en.wikipedia.org/wiki/Npm_(software)>) on your computer, which stands for "Node Package Manager." We will use it to install open-source JavaScript packages beyond what’s provided by Node.JS, including tools that will help us draw charts and maps.
+Installing Node will also install [`npm`](<https://en.wikipedia.org/wiki/Npm_(software)>) on your computer, which stands for "Node Package Manager." We will use it to install open-source JavaScript packages beyond what’s provided by the Node.JS installer, including the tools that will help us draw charts and maps.
 
 You can verify you have `npm` installed by running the following command on your terminal:
 
@@ -89,15 +89,6 @@ You can verify you’re ready by executing the following command, which should p
 gh --version
 ```
 
-The output should look something like this:
-
-```bash
-gh version 2.5.1 (2022-02-15)
-https://github.com/cli/cli/releases/tag/v2.5.1
-```
-
-```{note}
 If you get an error instead, open a fresh terminal and try again. If it’s still not working, revisit [cli.github.com](https://cli.github.com) to make sure you've followed all the necessary steps.
-```
 
 With all that installed, you’re ready to get to work.
