@@ -14,14 +14,6 @@ GitHub has become an integral part of the newsroom workflow as developers need t
 
 One of the most important things GitHub can be configured to do is run safety tests on every line of code before it can publish. We won't get into testing in this tutorial, but just know that Github is intrinsic to the work of today's newsrooms.
 
-
-
-
-```{contents} Sections
-  :depth: 1
-  :local:
-```
-
 ## Create a code directory
 
 But before we approach the runway, let's make sure your local hangar is set up properly. It always helps to store all your code in the same place, rather than scattering your work in haphazard folders around your computer.
