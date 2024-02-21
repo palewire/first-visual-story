@@ -1,18 +1,18 @@
 # GitHub
 
-This chapter will show you how to get a `git` code repository up and running. At most news organizations where you'd be collaborating on code with other developers, you'll rely heavily on the GitHub web app.
+This chapter will show you how to get a git code repository up and running. At most news organizations where you'd be collaborating on code with other developers, you'll rely heavily on the GitHub web app.
 
 ## Why?
 
-You might consider `git` as an air traffic controller. It makes sure the code you're writing at your desk and the code your colleague is writing in her home office don't clobber each other like two wayward Boeings. If you both make changes to the same part of the code, git steps in and forces you to reconcile the work before it can be combined into a single, stable version.
+You can think of git as an air traffic controller. It makes sure the code you're writing at your desk and the code your colleague is writing in her home office don't clobber each other like two wayward Boeings. If you each make changes to the same lines of code, git steps in and forces you to reconcile the work before it can be combined into the published version.
 
-If you're working on a part of the code that has been changed by someone else since you last saw it, `git` won't let you continue until you "pull" the latest version. It keeps a flight log: If you need to get to the root of a bug, you can see every change to the code, when it was introduced, and by whom.
+Git does this by keeping a flight log. Every change to your code recorded in a series of entries known as commits. Not only does it keep you from crashing into your colleagues, it provides a comprehensive record of the project's history, which you can use to identify when bugs are introduced, and by whom.
 
-You can then think of GitHub as an airport. It's a secure, systemized way to launch and land the planes.
+You can then think of GitHub as an airport. It's a secure, systemized way to launch and land your code.
 
 GitHub has become an integral part of the newsroom workflow as developers need to make updates swiftly and with confidence that all contributors' individual changes will work on the published site. Its dashboards give visibility into what work is in progress and which is final. This visibility can be tuned to let the whole world view your code or limit it to a small, trusted group.
 
-One of the most important things GitHub can be configured to do is run safety tests on every line of code before it can publish. We won't get into testing in this tutorial, but just know that Github is intrinsic to the work as a stable marketplace for your code.
+One of the most important things GitHub can be configured to do is run safety tests on every line of code before it can publish. We won't get into testing in this tutorial, but just know that Github is intrinsic to the work of today's newsrooms.
 
 
 
