@@ -1,30 +1,27 @@
 # Styles
 
-We want the charts to be positioned side-by-side, so we will need to add some code that dictates the design of the page.
-
-```{contents} Sections
-  :depth: 1
-  :local:
-```
+We want the charts to be positioned side-by-side, so we will need to add some code that dictates the design of the page. To do that, we'll need yet another programming language.
 
 ## What is CSS?
 
-Customizing design is typically done by writing [CSS](https://en.wikipedia.org/wiki/CSS) code. Short for Cascading Style Sheets, CSS is a language used to add style and layout to webpages. It allows developers to control the colors, fonts, layout, and other visual elements of a webpage, while remaining separate from the HTML structure, which makes your code easier to maintain and update.
+Customizing design is typically done by writing [CSS](https://en.wikipedia.org/wiki/CSS) code. Short for Cascading Style Sheets, CSS allows developers to control the colors, fonts, layout and other visual elements of a webpage, while remaining separate from the HTML, which makes your code easier to maintain and update.
 
 ```{note}
-We don't have time to cover how CSS works in this class. There are dozens of free tutorials available elsewhere online, including [one by Mozilla](https://developer.mozilla.org/en-US/docs/Learn/CSS/CSS_layout/Introduction).
+We don't have time to fully cover how CSS works in this class. If you want to learn more, there are dozens of free tutorials available elsewhere online, including [an excellent one offered by Mozilla](https://developer.mozilla.org/en-US/docs/Learn/CSS/CSS_layout/Introduction).
 ```
 
-Every decent framework offers some method for managing CSS. In baker's cases, CSS files are stored in the `styles` folder. There you can find an `app.scss` file that acts a starting point for whatever styles you'd like to include.
+Every decent framework offers some method for managing CSS. In baker's case, CSS files are stored in the `styles` folder. There you can find an `app.scss` file that acts a starting point for whatever styles you'd like to include.
 
 There we can get both charts on the same line by using the [Flexbox](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Flexible_Box_Layout/Basic_Concepts_of_Flexbox) layout system. To start, lets target the `div` that contains the parent graphics container.
 
-```{code-block}
+```{code-block} scss
 .graphics-container {
   display: flex;
   justify-content: space-between;
 }
 ```
+
+The `.` at the beginning of `.graphics-container` is a [CSS class selector](https://developer.mozilla.org/en-US/docs/Web/CSS/Class_selectors) that targets the `div` with the class `graphics-container`. The `display: flex;` property tells the browser to use the Flexbox layout system, and `justify-content: space-between;` tells the browser to space the two charts as far apart as possible.
 
 ## What is SCSS?
 
@@ -32,7 +29,7 @@ One benefit of baker, and many other frameworks, is that they allow you to take 
 
 We can use it here by nesting a directive to limit the width of the two charts to just shy of half the page. By placing the code inside of the parent container's code, we will only style the two elements in our container.
 
-```{code-block}
+```{code-block} scss
 :emphasize-lines: 4-6
 
 .graphics-container {
@@ -64,7 +61,7 @@ emphasize-lines: 6-8
 
 ## What is responsive design?
 
-We can also specify media queries that target screens smaller than 500 pixels wide, more commonly known as mobile phones, where we want the charts to be stacked on top of each other instead of squeezed side-by-side.
+We can also specify media queries that target screens smaller than 500 pixels wide, more commonly known as mobile phones, where we want the charts to be stacked on top of each other instead of squeezed side by side.
 
 ```{code-block} scss
 ---
