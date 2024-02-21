@@ -2,7 +2,9 @@
 
 This chapter will show you how to get a `git` code repository up and running. At most news organizations where you'd be collaborating on code with other developers, you'll rely heavily on the GitHub web app.
 
-You might consider `git`, which you installed in the last chapter, as an air traffic controller. It makes sure the code you're writing at your desk and the code your colleague is writing in her home office don't clobber each other like two wayward Boeings when you both "commit" them: push them to the same repository. If both your commits make changes to the same part of the code, 'git' alerts you and forces you to reconcile the work before it can be merged into the whole.
+## Why?
+
+You might consider `git` as an air traffic controller. It makes sure the code you're writing at your desk and the code your colleague is writing in her home office don't clobber each other like two wayward Boeings. If you both make changes to the same part of the code, git steps in and forces you to reconcile the work before it can be combined into a single, stable version.
 
 If you're working on a part of the code that has been changed by someone else since you last saw it, `git` won't let you continue until you "pull" the latest version. It keeps a flight log: If you need to get to the root of a bug, you can see every change to the code, when it was introduced, and by whom.
 
