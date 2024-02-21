@@ -2,16 +2,11 @@
 
 We've got our system set up. Now it's time to start telling our story. To do that, we need our data. This chapter will guide you through how to introduce it to the page.
 
-```{contents} Sections
-  :depth: 1
-  :local:
-```
-
 ## Import JSON
 
 If we were writing this application entirely in the browser with traditional JavaScript we'd have to pull it in with dynamic ["AJAX"](<https://en.wikipedia.org/wiki/Ajax_(programming)>) calls that retrieve data over the web as the page is loaded in your browser.
 
-Thanks to our framework's templating system, we can import data and lay it before the page is served. This results in a faster experience for users and opens up new ways to be creative with our data.
+Thanks to our framework's templating system, we can import data before the page is served. This results in a faster experience for users and opens up new ways to be creative with data.
 
 Every newsroom's system will handle this technique a little differently. Our baker framework is preconfigured to detect files in the `_data` folder and import them into our Nunjucks templates.
 
@@ -66,11 +61,11 @@ Now restart your test server, as we’ve done before.
 npm start
 ```
 
-Visit [localhost:3000](https://localhost:3000) and you should see the data puked out on the page.
+Visit [localhost:3000](https://localhost:3000) and you should see the data dumped on the page.
 
 ![puke](_static/puke.png)
 
-## The `for` loop
+## The for loop
 
 Instead of just printing the data in one big block, let's loop through the records and print them one by one.
 
@@ -86,13 +81,13 @@ We'll use the `{% %}` template tags provided by Nunjucks, which allow us to use 
 {% endblock %}
 ```
 
-The result should look much the same, but we’re making progress.
+The result should look much the same.
 
 ```{image} _static/data-dump.png
 :width: 100%
 ```
 
-To put each record on its own line, add a line break with a [`<br>`](https://www.w3schools.com/TAGS/tag_br.asp) tag. That's just boring old HTML. Writing pages with a templating language like Nunjucks is typically nothing more than mixing traditional HTML with the template tags that negotiate your data files and other variables.
+To put each record on its own line, add a line break with a [`<br>`](https://www.w3schools.com/TAGS/tag_br.asp) tag. That's just boring old HTML. Writing pages with a templating language like Nunjucks is typically nothing more than mixing traditional HTML with the template tags that negotiate your data.
 
 ```{code-block} jinja
 :emphasize-lines: 3

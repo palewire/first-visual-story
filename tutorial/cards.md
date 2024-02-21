@@ -1,17 +1,10 @@
 # HTML
 
-This chapter will guide you through converting your list of victims in a grid with photographs.
-
-```{contents} Sections
-  :depth: 1
-  :local:
-```
+This chapter will guide you through converting your list of names into a grid with photographs.
 
 ## Meet Bootstrap
 
-[Bootstrap](https://getbootstrap.com/docs/5.1/getting-started/introduction/) is an HTML, CSS and JavaScript toolkit that you can use to create the cosmetic frontend of web applications. It is a collection of ready-to-use pieces called components, which are building blocks you can mix and match to help jumpstart a project. Its components can be used as-is or as a base to be customized by the developer.
-
-The components library includes things that you might include in a project, like buttons, modals and dropdowns.
+[Bootstrap](https://getbootstrap.com/docs/5.1/getting-started/introduction/) is a free toolkit for designing the cosmetic face of web applications. It is a collection of ready-to-use pieces you can mix and match to jumpstart a project. It includes useful things that you might include in any project, like buttons, modals and dropdowns.
 
 ```{image} _static/bootstrap.png
 :width: 100%
