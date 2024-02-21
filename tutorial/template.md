@@ -2,14 +2,9 @@
 
 This chapter will show you how to start editing content and customizing your page.
 
-```{contents} Sections
-  :depth: 1
-  :local:
-```
-
 ## Configure the index
 
-The contents of the page you see at [localhost:3000](https://localhost:3000) is configured in the `index.html` file found in the repository’s root directory. It uses a templating language [created by James Long](https://archive.jlongster.com/Introducing-Nunjucks,-a-Better-Javascript-Templating-System) called [Nunjucks](https://mozilla.github.io/nunjucks/).
+The contents of the page you see at [localhost:3000](https://localhost:3000) is configured in the `index.html` file found in the repository’s root directory. It uses a templating language called [Nunjucks](https://mozilla.github.io/nunjucks/).
 
 You can edit the page by changing what's found inside of the `content` block. Delete everything you see there now and replace it with something simple like:
 
@@ -26,7 +21,7 @@ Return to the web browser and reload the page. You should see the change appear 
 
 ![hello world](_static/hello-world.png)
 
-Now, look closely at the `index.html` file. You will notice that it doesn't include code for much of what you might expect from an HTML page.
+Now, look closely at the `index.html` file. If you have experience with HTML, you will notice that it doesn't include much of what you might expect from a web page.
 
 For instance, you won't see the class `<html>` or `<body>` tags. Nor do you find the stylesheets that typically dicatate how a page looks.
 
@@ -58,13 +53,11 @@ You should see the change on our site, with the new line appearing above the par
 :width: 100%
 ```
 
-Most newsrooms that use a similar system have their own base template for their custom pages. Graphic artists and designers install and extend it as the first step in their work.
-
-They then develop their custom page within its confines and largely accept the furniture it provides, like the site's header and footer, fonts and common color schemes. This allows them to work more quickly, because they do not have to bother with reinventing their site’s most common elements.
+Most newsrooms that use a similar system have their own base template for custom pages. Graphic artists and designers extend it as the first step in their work. They then develop their custom page within its confines and largely accept the furniture it provides, like the site's header and footer, fonts and common color schemes. This allows them to work more quickly, because they do not have to bother with reinventing their site’s most common elements.
 
 For this example, we have developed a simplified base template that will act as a stand-in for a real newsroom's base template. It is not as sophisticated or complete as a real-world example, but it will provide all of the basic elements we will need.
 
-You can find it in the code block below. Copy all of its contents and paste them into `_layouts/base.html`, replacing everything.
+You can find it in the code block below. Copy its contents and paste into `_layouts/base.html`, replacing everything that's there now.
 
 ```jinja
 <!DOCTYPE html>
@@ -141,7 +134,7 @@ And let's do the publication date too while we are at it.
 {% block headline %}My headline will go here{% endblock headline %}
 {% block byline %}By me{% endblock byline %}
 {% block pubdate %}
-  <time datetime="2023-03-04" pubdate>Mar. 4, 2023</time>
+  <time datetime="2024-03-07" pubdate>March 7, 2024</time>
 {% endblock pubdate %}
 ```
 
@@ -149,9 +142,9 @@ And let's do the publication date too while we are at it.
 
 ## Commit your work
 
-You’ve installed a base template and started in on creating your first custom page. Now is a good time to pause and log our work with GitHub.
+You’ve installed a base template and started in on creating your first custom page. Now is a good time to pause and log your work with GitHub.
 
-The first command to learn is [`status`](https://git-scm.com/docs/git-status), which prints out a report card on the current state of your repository.
+The first git command to learn is [`status`](https://git-scm.com/docs/git-status), which prints out a report card on the current state of your repository.
 
 If your [localhost:3000](https://localhost:3000) server is still running, hit CTRL-C or CTRL-Z in the terminal to terminate its process. We'll use the terminal to log our work with GitHub.
 
@@ -159,7 +152,7 @@ If your [localhost:3000](https://localhost:3000) server is still running, hit CT
 git status
 ```
 
-The next step is to instruct `git` to track the new files with the [`add`](https://git-scm.com/docs/git-add) command.
+The next step is to instruct git to track the new files with the [`add`](https://git-scm.com/docs/git-add) command.
 
 Rather than introduce files one by one, you can add more than one file by using a [wildcard character](https://en.wikipedia.org/wiki/Wildcard_character) in your command. One common shortcut is `git add .`, which will add all of the files in your repository at once.
 
@@ -174,7 +167,7 @@ git commit -m "First commit"
 ```
 
 ````{warning}
-If this is your first time using Git, you may be prompted to configure you name and email. If so, take the time now.
+If this is your first time using git, you may be prompted to configure you name and email. If so, take the time now, like so:
 
 ```bash
 git config --global user.email "your@email.com"
@@ -184,11 +177,11 @@ git config --global user.name "your name"
 Then run the `commit` command above again.
 ````
 
-The final step is to syncronize the changes we’ve made on our computer with the copy of the repository hosted on github.com. This is done via the [`push`](https://git-scm.com/docs/git-push) command. This complicated `git` command requires two inputs.
+The final step is to synchronize the changes we’ve made on our computer with the copy of the repository hosted on github.com. This is done via the [`push`](https://git-scm.com/docs/git-push) command. This complicated git command requires two inputs.
 
-First, `push` asks for the name of the remote repository where you’d like to send your changes. In the parlance of `git`, the default target is `origin`.
+First, `push` asks for the name of the remote repository where you’d like to send your changes. In the parlance of git, the default target is `origin`.
 
-Second, you need to provide the [branch](<https://en.wikipedia.org/wiki/Branching_(version_control)>) of the code you’d like to syncronize. Branching is a tool for maintaining parallel versions of your code within the same respository. We won't get that sophisticated in this tutorial, so you can stick to the default code branch, which is called `main`.
+Second, you need to provide the [branch](<https://en.wikipedia.org/wiki/Branching_(version_control)>) of the code you’d like to sync. Branching is a tool for maintaining parallel versions of your code within the same respository. We won't get that sophisticated in this tutorial, so you can stick to the default code branch, which is called `main`.
 
 Taking all that into account, the command to push local changes to GitHub is typically the following. Try it.
 
