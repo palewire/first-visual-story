@@ -10,7 +10,7 @@ master_doc = "index"
 
 project = 'First Visual Story'
 year = datetime.now().year
-copyright = f'{year}'
+copyright = f'{year} palewire'
 
 exclude_patterns = ["_build"]
 
