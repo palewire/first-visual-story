@@ -2,7 +2,7 @@ from datetime import datetime
 
 extensions = [
     "sphinx_multitoc_numbering",
-    "myst_parser"
+    "myst_parser",
 ]
 templates_path = ["_templates"]
 source_suffix = ".md"

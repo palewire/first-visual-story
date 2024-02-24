@@ -29,7 +29,7 @@ One benefit of baker, and many other frameworks, is that they allow you to take 
 
 We can use it here by nesting a directive to limit the width of the two charts to just shy of half the page. By placing the code inside of the parent container's code, we will only style the two elements in our container.
 
-```{code-block} scss
+```{code-block} css
 :emphasize-lines: 4-6
 
 .graphics-container {

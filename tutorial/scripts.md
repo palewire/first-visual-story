@@ -127,7 +127,7 @@ homicides.forEach((obj) => {
 
 Here's what you should see after you do that.
 
-```{image} _static/hello-tooltips.gif?v=2
+```{image} _static/hello-tooltips.gif
 :width: 100%
 ```
 
@@ -145,7 +145,7 @@ Next let's add some styles to our page to make the circles match the orange colo
 
 After you save, here's what you'll get.
 
-```{image} _static/orange-circles.png?v=2
+```{image} _static/orange-circles.png
 :width: 100%
 ```
 
@@ -164,75 +164,36 @@ homicides.forEach(obj => {
 ```
 Here they are.
 
-```{image} _static/permanent-tooltips.png?v=2
+```{image} _static/permanent-tooltips.png
 :width: 100%
 ```
 
-Finally, let's preface the map with a headline.
+Finally, let's preface the map with a headline and introductory paragraph
 
 ```{code-block} html
-:emphasize-lines: 1
-
-<h3>One corner. Four killings</h3>
-<div id="map"></div>
-```
-
-```{image} _static/map-hed.png?v=2
-:width: 100%
-```
-
-Then an introductory paragraph.
-
-```{code-block} html
-:emphasize-lines: 2
+:emphasize-lines: 1-2
 
 <h3>One corner. Four killings</h3>
 <p>The southwest corner of Harvard Park, at West 62nd Street and Harvard Boulevard, has been especially deadly. In the last year-and-a-half, four men have been killed there — while sitting in a car, trying to defuse an argument or walking home from the barber shop or the corner store.</p>
 <div id="map"></div>
 ```
 
-```{image} _static/map-deck.png?v=2
+```{image} _static/map-deck.png
 :width: 100%
 ```
 
 Congratulations. You've created a custom map. Before we get on to the business of sharing it with the world, we need a couple more pieces here.
 
-Hey. How about a headline for the whole package?
+Hey. How about a headline for the whole package? We also need a byline and a lead for the whole piece.
 
 ```{code-block} html
-:emphasize-lines: 1
-
-{% block headline %}A South L.A. neighborhood grapples with a wave of violence{% endblock headline %}
-{% block byline %}By me{% endblock byline %}
-{% block pubdate %}
-    <time datetime="2020-03-07" pubdate>Mar. 7, 2020</time>
-{% endblock pubdate %}
-```
-
-```{image} _static/final-hed.png?v=2
-:width: 100%
-```
-
-And a real byline.
-
-```{code-block} html
-:emphasize-lines: 2
+:emphasize-lines: 1-2,8
 
 {% block headline %}A South L.A. neighborhood grapples with a wave of violence{% endblock headline %}
 {% block byline %}By <a href="https://palewi.re/docs/first-visual-story/">The First Visual Story Tutorial</a>{% endblock byline %}
 {% block pubdate %}
-    <time datetime="2022-03-05" pubdate>Mar. 5, 2022</time>
+    <time datetime="2024-03-09" pubdate>March 9, 2024</time>
 {% endblock pubdate %}
-```
-
-```{image} _static/final-byline.png?v=2
-:width: 100%
-```
-
-And let's a write a lead at the top of the content block.
-
-```{code-block} html
-:emphasize-lines: 2
 
 {% block content %}
 <p>The area around Harvard Park was the deadliest place for African Americans in Los Angeles County last year, according to <a href="http://homicide.latimes.com/">The Times’ Homicide Report</a>. So far this year, six people have been killed. Most of the victims were black men.</p>
@@ -242,7 +203,7 @@ And let's a write a lead at the top of the content block.
 <div id="map"></div>
 ```
 
-```{image} _static/final-lead.png?v=2
+```{image} _static/final-lead.png
 :width: 100%
 ```
 
