@@ -6,15 +6,11 @@ This chapter will guide you through converting your list of names into a grid wi
 
 [Bootstrap](https://getbootstrap.com/docs/5.1/getting-started/introduction/) is a free toolkit for designing the cosmetic face of web applications. It is a collection of ready-to-use pieces you can mix and match to jumpstart a project. It includes useful things that you might include in any project, like buttons, modals and dropdowns.
 
-```{image} _static/bootstrap.png
-:width: 100%
-```
+![](_static/bootstrap-site.png)
 
 We aim to create a grid of victims where each block will have a picture and some basic information. To do this, we’re going to use [the "cards" component](https://getbootstrap.com/docs/4.4/components/card/) included in Bootstrap's version 5. Cards are self-contained boxes of information which can be arranged and grouped on a page any way you want.
 
-```{image} _static/bootstrap-cols.png
-:width: 100%
-```
+![](_static/bootstrap-cards.png)
 
 ## Add division tags
 
@@ -40,7 +36,7 @@ Let's give it a try. We will start by creating a container for each victim. We'l
 {% endblock content %}
 ```
 
-![](_static/cards-first.png)
+![](_static/cards-dump.png)
 
 Let's add a sentence below the name that summarizes who each victim was and when they died.
 
@@ -57,7 +53,7 @@ Let's add a sentence below the name that summarizes who each victim was and when
 {% endfor %}
 ```
 
-![](_static/cards-second.png)
+![](_static/cards-p.png)
 
 ## Add images
 
@@ -101,7 +97,7 @@ To fix it, let's add an `{% if %}` clause around the image tag to check for an i
 
 The error should go away and you should see something more like this in your browser.
 
-![](_static/cards-image.png)
+![](_static/card-image.png)
 
 Phew. That’s better, but still far from what we want. What we've got so far is a grid that doesn't look much like a grid. In fact it's not a grid at all. It's just a big stack.
 
@@ -132,7 +128,7 @@ Make the following changes. Remember there’s no shame in using copy and paste.
 </div>
 ```
 
-![](_static/cards-working.png)
+![](_static/card-working.png)
 
 We want to be able to click on each card and be redirected to the victim's page on the Los Angeles Times Homicide Report site. While we're at it, let's add some `<strong>` tags to the victims' names to make them stand out from the sentence about them.
 
@@ -158,7 +154,7 @@ We want to be able to click on each card and be redirected to the victim's page 
 </div>
 ```
 
-![](_static/cards-links.png)
+![](_static/card-link.png)
 
 ## Add supporting elements
 
@@ -187,15 +183,19 @@ Now let's start to wrap things up by writing a headline for our cards section.
 </div>
 ```
 
-![](_static/cards-headline.png)
+![](_static/card-h3.png)
 
 And now, some introductory text. We can use a new templating trick, the `length` filter, to insert some automatically generated statistics into the text.
 
 ```{code-block} jinja
-:emphasize-lines: 2
+:emphasize-lines: 2-6
 
 <h3>Lives lost in Harvard Park</h3>
-<p>The {{ harvard_park_homicides|length }} homicides in Harvard Park since 2000 were primarily black and Latino males, but the list includes husbands, wives, fathers, mothers of all ages, and even some small children.</p>
+<p>
+  The {{ harvard_park_homicides|length }} homicides in Harvard Park since 2000
+  were primarily black and Latino males,but the list includes husbands, wives,
+  fathers, mothers of all ages, and even some small children.
+</p>
 <div class="row" data-masonry='{"percentPosition": true }'>
     {% for obj in harvard_park_homicides %}
     <div class="col-sm-6 col-lg-4 mb-4">
@@ -215,7 +215,7 @@ And now, some introductory text. We can use a new templating trick, the `length`
 </div>
 ```
 
-![](_static/cards-description.png)
+![](_static/card-description.png)
 
 ## Commit your work
 

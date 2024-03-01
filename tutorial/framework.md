@@ -48,6 +48,6 @@ npm start
 
 Visit [localhost:3000](http://localhost:3000) in your browser. There you can see the generic website offered as a starting point by our framework.
 
-![npm start and the first page you'll see](_static/npm-start.png)
+![npm start and the first page you'll see](_static/localhost.png)
 
 Congratulations, you’ve got your framework up and running. Now we’re ready to start developing our story.

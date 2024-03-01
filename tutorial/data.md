@@ -63,7 +63,7 @@ npm start
 
 Visit [localhost:3000](https://localhost:3000) and you should see the data dumped on the page.
 
-![puke](_static/puke.png)
+![puke](_static/print-data.png)
 
 ## The for loop
 
@@ -83,9 +83,7 @@ We'll use the `{% %}` template tags provided by Nunjucks, which allow us to use 
 
 The result should look much the same.
 
-```{image} _static/data-dump.png
-:width: 100%
-```
+![](_static/loop-data.png)
 
 To put each record on its own line, add a line break with a [`<br>`](https://www.w3schools.com/TAGS/tag_br.asp) tag. That's just boring old HTML. Writing pages with a templating language like Nunjucks is typically nothing more than mixing traditional HTML with the template tags that negotiate your data.
 
@@ -99,9 +97,8 @@ To put each record on its own line, add a line break with a [`<br>`](https://www
 {% endblock %}
 ```
 
-```{image} _static/hello-loop.png
-:width: 100%
-```
+![](_static/loop-with-br.png)
+
 
 ## Access attributes
 

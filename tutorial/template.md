@@ -49,9 +49,7 @@ Above content
 
 You should see the change on our site, with the new line appearing above the paragraph we added earlier to the index file.
 
-```{image} _static/above-content.png
-:width: 100%
-```
+![](_static/above-content.png)
 
 Most newsrooms that use a similar system have their own base template for custom pages. Graphic artists and designers extend it as the first step in their work. They then develop their custom page within its confines and largely accept the furniture it provides, like the site's header and footer, fonts and common color schemes. This allows them to work more quickly, because they do not have to bother with reinventing their site’s most common elements.
 
@@ -98,11 +96,15 @@ You can find it in the code block below. Copy its contents and paste into `_layo
 </html>
 ```
 
-## Fill in the blocks
-
 As you can see, it includes all of the standard HTML tags, with our custom stylesheets and content blocks mixed in.
 
-To see the effects, return to `index.html` and fill in a headline using the `headline` block introduced by our base template. Save the page and you should quickly see it appear on the page.
+Save that and return to the web browser. You should see the page has changed to include a header and a navigation bar.
+
+![](_static/hello-base.png)
+
+## Fill in the blocks
+
+Return to `index.html` and fill in a headline using the `headline` block introduced by our new base template. Save the page and you should quickly see it appear on the page.
 
 ```{code-block} jinja
 :emphasize-lines: 3
@@ -142,7 +144,7 @@ And let's do the publication date too while we are at it.
 
 ## Commit your work
 
-You’ve installed a base template and started in on creating your first custom page. Now is a good time to pause and log your work with GitHub.
+You’ve installed a base template and started in on creating your first custom page. That's a great start! Now is a good time to pause and log your work with GitHub.
 
 The first git command to learn is [`status`](https://git-scm.com/docs/git-status), which prints out a report card on the current state of your repository.
 
