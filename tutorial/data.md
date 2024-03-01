@@ -114,9 +114,7 @@ That's good, but hardly informative. How do we start printing out the contents o
 {% endblock %}
 ```
 
-```{image} _static/hello-last-name.png
-:width: 100%
-```
+![](_static/loop-last-name.png)
 
 Now the first name.
 
@@ -130,9 +128,7 @@ Now the first name.
 {% endblock %}
 ```
 
-```{image} _static/hello-full-name.png
-:width: 100%
-```
+![](_static/loop-full-name.png)
 
 ## Commit your work
 
