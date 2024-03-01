@@ -2,11 +2,6 @@
 
 Now that we have our git repository, we’re going to install the tools we need to start building a page.
 
-```{contents} Sections
-  :depth: 1
-  :local:
-```
-
 ## What is a framework?
 
 The first and more important is our [framework](https://en.wikipedia.org/wiki/Software_framework).
@@ -53,6 +48,6 @@ npm start
 
 Visit [localhost:3000](http://localhost:3000) in your browser. There you can see the generic website offered as a starting point by our framework.
 
-![npm start](_static/npm-start.png)
+![npm start and the first page you'll see](_static/npm-start.png)
 
-Congratulations, you've got your framework up and running. Now we're ready to start developing our story.
+Congratulations, you’ve got your framework up and running. Now we’re ready to start developing our story.

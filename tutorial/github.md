@@ -56,7 +56,7 @@ Visit [GitHub](http://www.github.com) and find the homepage for `baker-example-p
 
 [![new repo button](_static/template-page.png)](https://github.com/datadesk/baker-example-page-template)
 
-This is a special kind of repository known as a template. It’s designed to serve as a starting point for new projects. Click the [green "use this template" button](https://github.com/datadesk/baker-example-page-template/generate) near the middle of the page to get started.
+This is a special kind of repository known as a template. It’s designed to serve as a starting point for new projects. Click the [green "use this template" button](https://github.com/datadesk/baker-example-page-template/generate) near the middle of the page to get started. Select the "create a new repository" option.
 
 [![click it](_static/template-button.png)](https://github.com/datadesk/baker-example-page-template/generate)
 
