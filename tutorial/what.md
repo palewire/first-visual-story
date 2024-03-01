@@ -11,7 +11,7 @@ The tutorial will demonstrate how to:
 
 By the end of this lesson, you will deploy a standalone page with a series of graphics examining the high homicide rate in Harvard Park, a small neighborhood in South Los Angeles.
 
-[![preview](_static/preview.png)](https://palewire.github.io/first-visual-story/)
+[![The finished app](_static/preview.png)](https://palewire.github.io/first-visual-story/)
 
 You will create the page by repurposing data from [a 2017 Los Angeles Times story](http://www.latimes.com/projects/la-me-harvard-park-homicides/) by Nicole Santa Cruz and Cindy Chang.
 

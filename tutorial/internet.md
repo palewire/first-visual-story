@@ -128,10 +128,7 @@ This will result in any files pushed to the `./docs` directory of your repositor
 
 Wait a few moments and visit [\<your_username>.github.com/first-visual-story/](https://palewire.github.io/first-visual-story/). You should see your app published live on the World Wide Web.
 
-```{image} _static/preview.gif
-:target: https://ireapps.github.io/first-graphics-app/
-:width: 100%
-```
+[![The finished app](_static/preview.png)](https://palewire.github.io/first-visual-story/)
 
 If your page does not appear, make sure that you have verified your email address with GitHub. It is required before the site will allow publishing pages. And keep in mind there are many other options for publishing flat files, like [Amazon's S3 service](https://en.wikipedia.org/wiki/Amazon_S3).
 
