@@ -14,7 +14,7 @@ Every decent framework offers some method for managing CSS. In baker's case, CSS
 
 There we can get both charts on the same line by using the [Flexbox](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Flexible_Box_Layout/Basic_Concepts_of_Flexbox) layout system. To start, lets target the `div` that contains the parent graphics container.
 
-```{code-block} scss
+```{code-block}
 .graphics-container {
   display: flex;
   justify-content: space-between;
@@ -23,13 +23,17 @@ There we can get both charts on the same line by using the [Flexbox](https://dev
 
 The `.` at the beginning of `.graphics-container` is a [CSS class selector](https://developer.mozilla.org/en-US/docs/Web/CSS/Class_selectors) that targets the `div` with the class `graphics-container`. The `display: flex;` property tells the browser to use the Flexbox layout system, and `justify-content: space-between;` tells the browser to space the two charts as far apart as possible.
 
+However, if you add this code to `app.scss` and refresh the page, you'll notice that there is nothing there. That's because our code isn't working just yet. We need a little more.
+
+![](_static/no-flex.png)
+
 ## What is SCSS?
 
 One benefit of baker, and many other frameworks, is that they allow you to take advantage of extensions to the traditional tools like CSS. One example is SCSS, also known as [Sassy CSS](https://sass-lang.com/). It extends the capabilities of CSS with features such as variables, mixins and other functions that make writing and maintaining CSS code more efficient and organized.
 
 We can use it here by nesting a directive to limit the width of the two charts to just shy of half the page. By placing the code inside of the parent container's code, we will only style the two elements in our container.
 
-```{code-block} css
+```{code-block}
 :emphasize-lines: 4-6
 
 .graphics-container {
@@ -41,9 +45,13 @@ We can use it here by nesting a directive to limit the width of the two charts t
 }
 ```
 
+This change will give each of the graphics some instruction on how to behave within the parent container. The `flex` property tells the browser to allow the charts to scale up 48% of the available width.
+
+![](_static/first-flex.png)
+
 Now that the charts are next to each other, we can see that despite our resizing in Datawrapper, they are not the same height. We’ll add a few more lines to our CSS to make both iframes the same height.
 
-```{code-block} scss
+```{code-block}
 ---
 emphasize-lines: 6-8
 ---
@@ -58,6 +66,10 @@ emphasize-lines: 6-8
   }
 }
 ```
+
+![](_static/flex-fixed.png)
+
+Much better.
 
 ## What is responsive design?
 
@@ -88,14 +100,26 @@ emphasize-lines: 4-6,9-12
 
 Your charts should now stack into one-column at mobile phone sizes.
 
-```{image} _static/charts/chart-preview-2.png
-:width: 100%
-```
+![](_static/mobile-size.png)
 
-Let's commit our changes and move on to our next challenge. You know the drill.
+There's plenty more that we could fine tune in our design, but we don’t have time today. This stage of development is often iterative, with many small changes made over time. The important thing for today is that you get a basic understanding of how CSS fits within a typical web development workflow.
+
+Before we move on, let's commit our work yet again.
+
+First add.
 
 ```bash
 git add .
-git commit -m "Styled charts."
+```
+
+Then commit.
+
+```bash
+$ git commit -m "Embedded datawrapper charts"
+```
+
+Then push.
+
+```bash
 git push origin main
 ```

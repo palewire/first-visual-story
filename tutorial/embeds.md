@@ -21,6 +21,7 @@ The [Datawrapper Academy](https://academy.datawrapper.de/) has documentation for
 Before we begin, let's add a new section of the page where our charts will be embedded. We'll start with a heading and lead for the section. Paste the code below into your page.
 
 ```{code-block} html
+{% block content %}
 <h3>A South L.A. neighborhood stands apart</h3>
 <p>
   Harvard Park's 2016 homicide total was its highest in at least 15 years
@@ -28,7 +29,9 @@ Before we begin, let's add a new section of the page where our charts will be em
 </p>
 ```
 
-Add a new division tag with the class `graphics-container` to hold the charts. Inside that, add two more division tags with the class `graphic` to hold each chart. Your HTML should look like this:
+![](_static/embed-section.png)
+
+Add a new division tag with the class attribute `graphics-container` to hold the charts. Inside that, add two more division tags with the class `graphic` to hold each chart. Your HTML should look like this:
 
 ```{code-block} html
 :emphasize-lines: 6-13
@@ -126,6 +129,8 @@ emphasize-lines: 8-32
   </div>
 </div>
 ```
+
+![](_static/embed-one.png)
 
 Now copy the code for the second chart.
 
@@ -228,14 +233,27 @@ emphasize-lines: 35-59
 
 At this point, you should see something like this on your page:
 
-```{image} _static/charts/chart-preview-1.png
-:width: 100%
-```
+![](_static/embed-two.png)
 
-Let's commit our changes and move on to our next challenge.
+It ain’t pretty, but it’s a start. We’ll make it look better in the next section.
+
+But before we do that, let's commit our changes and push them to GitHub. We need all the practice we can get.
+
+First add.
 
 ```bash
 git add .
-git commit -m "Embedded charts."
+```
+
+Then commit.
+
+```bash
+$ git commit -m "Embedded datawrapper charts"
+```
+
+Then push.
+
+```bash
 git push origin main
 ```
+
