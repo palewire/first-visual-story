@@ -27,7 +27,6 @@ a:link, a:visited, a:hover, a:active {
 h1, h3 {
     font-family: Times, Times New Roman, serif;
     font-weight: bold;
-    margin: 10px 0 5px 0;
 }
 h1 {
     padding: 0;
@@ -37,6 +36,10 @@ h1 {
     font-style: italic;
 	text-shadow: 0.3px 0.3px 0px gray;
     letter-spacing: .01em;
+    margin: 10px 0 5px 0;
+}
+h3 {
+    margin: 25px 0 5px 0;
 }
 .byline {
     margin: 6px 0 0 0;
