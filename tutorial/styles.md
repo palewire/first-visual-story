@@ -10,7 +10,7 @@ Customizing design is typically done by writing [CSS](https://en.wikipedia.org/w
 We don't have time to fully cover how CSS works in this class. If you want to learn more, there are dozens of free tutorials available elsewhere online, including [an excellent one offered by Mozilla](https://developer.mozilla.org/en-US/docs/Learn/CSS/CSS_layout/Introduction).
 ```
 
-Every decent framework offers some method for managing CSS. In baker's case, CSS files are stored in the `styles` folder. There you can find an `app.scss` file that acts a starting point for whatever styles you'd like to include.
+Every decent framework offers some method for managing CSS. In baker's case, CSS files are stored in the `styles` folder. There you can find an `app.scss` file that acts as a starting point for whatever styles you'd like to include.
 
 There we can get both charts on the same line by using the [Flexbox](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Flexible_Box_Layout/Basic_Concepts_of_Flexbox) layout system. To start, lets target the `div` that contains the parent graphics container.
 

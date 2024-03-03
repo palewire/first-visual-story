@@ -23,7 +23,7 @@ Return to the web browser and reload the page. You should see the change appear 
 
 Now, look closely at the `index.html` file. If you have experience with HTML, you will notice that it doesn't include much of what you might expect from a web page.
 
-For instance, you won't see the class `<html>` or `<body>` tags. Nor do you find the stylesheets that typically dicatate how a page looks.
+For instance, you won't see the class `<html>` or `<body>` tags. Nor do you find the stylesheets that typically dictate how a page looks.
 
 That’s because that boilerplate has been moved back into a parent template "extended" by the index file with a line of Nunjucks code at the top of the page.
 
