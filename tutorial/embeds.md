@@ -2,7 +2,7 @@
 
 You won't have to code up every element yourself. Visual stories often include assets hosted elsewhere, like videos from YouTube or maps from Mapbox. In those cases, you may be given ready-to-serve components that you only need to embed in the page.
 
-In HTML this is typically done with an HTML [frame](https://en.wikipedia.org/wiki/Frame_(World_Wide_Web)) Using a special tag called an [`<iframe>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/iframe) you can nest a separate HTML document within the current page. It essentially creates a window through which another webpage can be viewed. The page being embedded is specified by the `src` attribute of the `iframe` element. For instance, this snippet will create a frame of https://example.com that is 500 pixels wide and 300 pixels high. 
+In HTML this is typically done with an HTML [frame](https://en.wikipedia.org/wiki/Frame_(World_Wide_Web)). Using a special tag called an [`<iframe>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/iframe), you can nest a separate HTML document within the current page. It essentially creates a window through which another webpage can be viewed. The page being embedded is specified by the `src` attribute of the `iframe` element. For instance, this snippet will create a frame of https://example.com that is 500 pixels wide and 300 pixels high. 
 
 ```html
 <iframe src="https://example.com" width="500" height="300"></iframe>

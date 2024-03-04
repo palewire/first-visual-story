@@ -12,7 +12,7 @@ To draw our map we will rely on [Leaflet](http://leafletjs.com), a JavaScript li
 
 Most of today's frameworks offer a file that is the starting point for the JavaScript code execution. Commonly known as the entrypoint, it is booted up when the page loads. In the case of baker, that file is called `app.js` and it is found in the `scripts` directory. You can put whatever JavaScript code you'd like in the folder, but it's the `app.js` file that will be the first to run.
 
-Let's test it out by opening up `app.js` and insert a single, simple line of JavaScript.
+Let's test it out by opening up `app.js` and inserting a single, simple line of JavaScript.
 
 ```{code-block} javascript
 alert("Hello World");

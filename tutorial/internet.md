@@ -1,6 +1,6 @@
 # Publishing
 
-In in our last chapter, all the work we've done will finally be published online.
+In our last chapter, all the work we've done will finally be published online.
 
 ## The importance of being static
 
@@ -123,7 +123,7 @@ In the “Source” section select the `main` branch and the `/docs` folder. Hit
 
 This will result in any files pushed to the `./docs` directory of your repository being published on the web. For free.
 
-Wait a few minutes and then visit [\<your_username>.github.com/first-visual-story/](https://palewire.github.io/first-visual-story/). You should see your app published live on the World Wide Web.
+Wait a few minutes and then visit [\<your_username>.github.io/first-visual-story/](https://palewire.github.io/first-visual-story/). You should see your app published live on the World Wide Web.
 
 [![The finished app](_static/preview.png)](https://palewire.github.io/first-visual-story/)
 

@@ -20,7 +20,7 @@ This is how Bootstrap cards work. Each card is a container which has additional 
 
 Like other HTML tags, divisions can have `class` attributes that help identify their function and link them to cosmetic styles. Bootstrap provides us with a standard layout of boxes that, if structured and labeled properly, will instantly snap together to look like cards.
 
-Let's give it a try. We will start by creating a container for each victim. We'll add just the name of the first and last name of each victim first.
+Let's give it a try. We will start by creating a container for each victim. We'll add just the first and last name of each victim.
 
 ```{code-block} jinja
 :emphasize-lines: 3-7
