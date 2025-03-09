@@ -207,7 +207,7 @@ Hey. How about a headline for the whole package? We also need a byline and a lea
 {% block headline %}A South L.A. neighborhood grapples with a wave of violence{% endblock headline %}
 {% block byline %}By <a href="https://palewi.re/docs/first-visual-story/">The First Visual Story Tutorial</a>{% endblock byline %}
 {% block pubdate %}
-    <time datetime="2024-03-07" pubdate>March 7, 2024</time>
+    <time datetime="2025-03-09" pubdate>March 9, 2025</time>
 {% endblock pubdate %}
 
 {% block content %}

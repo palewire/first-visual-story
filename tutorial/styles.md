@@ -115,7 +115,7 @@ git add .
 Then commit.
 
 ```bash
-$ git commit -m "Embedded datawrapper charts"
+$ git commit -m "Styled datawrapper charts"
 ```
 
 Then push.
