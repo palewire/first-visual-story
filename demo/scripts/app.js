@@ -14,8 +14,9 @@ const map = L.map(divId, {
 
 // Add a satellite layer
 L.tileLayer(
-  'https://api.mapbox.com/styles/v1/mapbox/satellite-streets-v9/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibGF0aW1lcyIsImEiOiJjanJmNjg4ZzYweGtvNDNxa2ZpZ2lma3Z4In0.g0lYVIEs9Y5QcUOhXactHA',
+  'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
   {
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
     minZoom: 13,
   }
 ).addTo(map);
