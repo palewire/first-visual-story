@@ -1,0 +1,25 @@
+[build-system]
+requires = ["setuptools >= 61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "first-visual-story"
+version = "1.0.0"
+description = "A step-by-step guide to publishing a standalone story from a dataset."
+readme = "README.md"
+requires-python = "==3.13.*"
+license = "MIT"
+dependencies = [
+    "sphinx",
+    "sphinx-autobuild",
+    "sphinx-multitoc-numbering",
+    "myst-parser",
+    "sphinx-palewire-theme==0.0.18",
+]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.13",
+]
+
+[tool.setuptools]
+packages = []
