@@ -14,7 +14,7 @@ dependencies = [
     "sphinx-autobuild",
     "sphinx-multitoc-numbering",
     "myst-parser",
-    "sphinx-palewire-theme==0.0.18",
+    "sphinx-palewire-theme>=0.1.3",
 ]
 classifiers = [
     "Programming Language :: Python :: 3",

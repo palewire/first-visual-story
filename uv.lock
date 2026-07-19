@@ -111,7 +111,7 @@ requires-dist = [
     { name = "sphinx" },
     { name = "sphinx-autobuild" },
     { name = "sphinx-multitoc-numbering" },
-    { name = "sphinx-palewire-theme", specifier = "==0.0.18" },
+    { name = "sphinx-palewire-theme", specifier = ">=0.1.3" },
 ]
 
 [[package]]
@@ -361,12 +361,12 @@ wheels = [
 
 [[package]]
 name = "sphinx-palewire-theme"
-version = "0.0.18"
+version = "0.1.3"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "sphinx" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/69/cd/5633005e54d53bae6de7faf8039af6e2f6ac1b0358bd52663ab62c2dcfb1/sphinx-palewire-theme-0.0.18.tar.gz", hash = "sha256:f009e70d388f314c42c9a5cab9e5c7d8f8ea90ffe9acc10932cbcd6986ed105b", size = 13116, upload-time = "2024-02-10T11:39:24.15Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/62/3c/85c0e4beaaab9c4135be304878ca484ba230558b00f30a2778af925f4909/sphinx_palewire_theme-0.1.3.tar.gz", hash = "sha256:d02cfdc4b6f857de398477a85af4a7844c5eadfba252a632458ec1298e387ab8", size = 12638, upload-time = "2026-02-17T01:08:49.247Z" }
 
 [[package]]
 name = "sphinxcontrib-applehelp"
