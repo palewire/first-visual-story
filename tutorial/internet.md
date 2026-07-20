@@ -30,7 +30,7 @@ Lucky for us, baker is pre-configured to flatten our dynamic site. And GitHub ha
 
 Open the `baker.config.js` file at the root of the project. It's the control room where we can adjust how baker works.
 
-To fit our work with GitHub’s publishing system, will instruct baker to `output` files to the `docs` directory instead of `_dist` and set the name of our GitHub repository as the `domain`. That will require you to make three careful changes to what you see in the file, highlighted below. Take a moment to do that now.
+To fit our work with GitHub’s publishing system, we will instruct baker to `output` files to the `docs` directory instead of `_dist` and set the name of our GitHub repository as the `domain`. That will require you to make three careful changes to what you see in the file, highlighted below. Take a moment to do that now.
 
 ```{code-block} javascript
 :emphasize-lines: 7,8,12
