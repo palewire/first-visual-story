@@ -12,8 +12,11 @@ An edit there followed by push to the master branch on GitHub will trigger the d
 
 ### Running the tutorial locally
 
-- If you're using [pipenv](https://pipenv.pypa.io/en/latest/) (recommended), start a virtual environment with `pipenv shell`
-- Install dependencies with `pipenv install --dev`
+- Install dependencies with [uv](https://docs.astral.sh/uv/):
+
+  ```bash
+  uv sync --all-groups
+  ```
 - Run `make docs`. You'll be able to see your local version of the docs at localhost:8000
 
 ### Editing the demostration site
