@@ -183,7 +183,7 @@ The final step is to synchronize the changes we’ve made on our computer with t
 
 First, `push` asks for the name of the remote repository where you’d like to send your changes. In the parlance of git, the default target is `origin`.
 
-Second, you need to provide the [branch](<https://en.wikipedia.org/wiki/Branching_(version_control)>) of the code you’d like to sync. Branching is a tool for maintaining parallel versions of your code within the same respository. We won't get that sophisticated in this tutorial, so you can stick to the default code branch, which is called `main`.
+Second, you need to provide the [branch](<https://en.wikipedia.org/wiki/Branching_(version_control)>) of the code you’d like to sync. Branching is a tool for maintaining parallel versions of your code within the same repository. We won't get that sophisticated in this tutorial, so you can stick to the default code branch, which is called `main`.
 
 Taking all that into account, the command to push local changes to GitHub is typically the following. Try it.
 
